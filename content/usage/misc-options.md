@@ -3,25 +3,25 @@ title: "Misc. Build Options"
 weight: 4
 ---
 
-`-no-debug`
+- `-no-debug`
 Disable outputting debug symbols. This can be useful for WebAssembly, as there is no debugger for .wasm files yet and .wasm files are generally served directly. Avoiding debug symbols can have a big impact on generated binary size, reducing them by more than half.
-
 This is not necessary on microcontrollers because debugging symbols are not flashed to the microcontroller. Additionally, you will need it when you use `tinygo gdb`. In general, it is recommended to include debug symbols unless you have a good reason not to.
-
 Note: while there is some support for debug symbols, only line numbers have been implemented so far. That means single-stepping and stacktraces work just fine, but no variables can be inspected.
 
-`-size`
+- `-size`
 Print size (``none``, ``short``, or ``full``) of the output (linked) binary. Note that the calculated size includes RAM reserved for the stack.
 
--`none` (default)
+- `none` (default)
 Print nothing.
--`short`
+
+- `short`
 Print size statistics, roughly like what the ``size`` binutils program would print but with useful flash and RAM columns:
 ```
 code    data     bss |   flash     ram
 5780     144    2132 |    5924    2276
 ```
--`full`
+
+- `full`
 Try to determine per package how much space is used. Note that these calculations are merely guesses and can somethimes be way off due to various reasons like inlining:
 ```
 code  rodata    data     bss |   flash     ram | package
