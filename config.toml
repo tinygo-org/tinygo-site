@@ -2,3 +2,7 @@ baseURL = "https://tinygo.org/"
 languageCode = "en-us"
 title = "TinyGo"
 theme = "learn"
+
+[params]
+  # Change default color scheme with a variant one. Can be "red", "blue", "green".
+  themeVariant = "blue"
