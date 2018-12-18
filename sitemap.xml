@@ -11,11 +11,19 @@
   </url>
   
   <url>
+    <loc>https://tinygo-org.github.io/tinygo-site/docker/using/</loc>
+  </url>
+  
+  <url>
     <loc>https://tinygo-org.github.io/tinygo-site/getting-started/usage/</loc>
   </url>
   
   <url>
     <loc>https://tinygo-org.github.io/tinygo-site/getting-started/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tinygo-org.github.io/tinygo-site/docker/</loc>
   </url>
   
   <url>

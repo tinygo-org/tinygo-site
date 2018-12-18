@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/tinygo-site/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/tinygo-site/images/favicon.png" type="image/x-icon" />
-    <title>Categories :: TinyGo</title>
+    <title>Using TinyGo with Docker :: TinyGo</title>
 
     
     <link href="/tinygo-site/css/nucleus.css?1545162738" rel="stylesheet">
@@ -34,7 +34,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/tinygo-site/categories/">
+  <body class="" data-url="/tinygo-site/docker/using/">
     <nav id="sidebar" class="">
 
 
@@ -167,7 +167,7 @@
   
     
     <li data-nav-id="/tinygo-site/docker/" title="Docker" class="dd-item 
-        
+        parent
         
         
         ">
@@ -191,7 +191,7 @@
  
   
     
-      <li data-nav-id="/tinygo-site/docker/using/" title="Using TinyGo with Docker" class="dd-item ">
+      <li data-nav-id="/tinygo-site/docker/using/" title="Using TinyGo with Docker" class="dd-item active">
         <a href="/tinygo-site/docker/using/">
         Using TinyGo with Docker
         
@@ -259,7 +259,19 @@
                     
           
           
-            Categories
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/tinygo-site/'>Home</a> > <a href='/tinygo-site/docker/'>Docker</a> > Using TinyGo with Docker
+          
+         
+          
+         
           
         
                  
@@ -280,17 +292,48 @@
         
         <div id="body-inner">
           
-            <h1>Categories</h1>
+            <h1>Using TinyGo with Docker</h1>
           
 
         
 
 
+<p>A docker container exists for easy access to the TinyGo CLI. For example, to compile <code>wasm.wasm</code> for the WebAssembly example, from the root of the repository:</p>
+
+<pre><code>docker run --rm -v $(pwd):/src tinygo/tinygo tinygo build -o /src/wasm.wasm -target wasm examples/wasm
+</code></pre>
+
+<p>To compile <code>blinky1.hex</code> targeting an ARM microcontroller, such as the PCA10040:</p>
+
+<pre><code>docker run --rm -v $(pwd):/src tinygo/tinygo tinygo build -o /src/blinky1.hex -size=short -target=pca10040 examples/blinky1
+</code></pre>
+
+<p>To compile <code>blinky1.hex</code> targeting an AVR microcontroller such as the Arduino:</p>
+
+<pre><code>docker run --rm -v $(pwd):/src tinygo/tinygo tinygo build -o /src/blinky1.hex -size=short -target=arduino examples/blinky1
+</code></pre>
+
+<p>For projects that have remote dependencies outside of the standard library and go code within your own project, you will need to map your entire GOPATH into the docker image in order for those dependencies to be found:</p>
+
+<pre><code>docker run  -v $(PWD):/mysrc -v $GOPATH:/gohost -e &quot;GOPATH=$GOPATH:/gohost&quot; tinygo/tinygo tinygo build -o /mysrc/wasmout.wasm -target wasm /mysrc/wasm-main.go
+</code></pre>
+
+<p><strong>note: At this time, tinygo does not resolve dependencies from the /vendor/ folder within your project.</strong></p>
+
+<p>For microcontroller development you must flash your hardware devices from your host environment, since you cannot run <code>tinygo flash</code> from inside the docker container.</p>
+
+<p>So your workflow could be:</p>
+
+<ul>
+<li>Compile TinyGo code using the Docker container into a HEX file.</li>
+<li>Flash the HEX file from your host environment to the target microcontroller.</li>
+</ul>
 
 
 <footer class=" footline" >
 	
 </footer>
+
 
         
         </div> 
@@ -390,6 +433,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -403,6 +447,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -425,6 +470,8 @@
 
 	 
 	 
+		
+			<a class="nav nav-prev" href="/tinygo-site/docker/" title="Docker"> <i class="fa fa-chevron-left"></i></a>
 		
 		
 			<a class="nav nav-next" href="/tinygo-site/getting-started/" title="Getting Started" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
@@ -458,3 +505,4 @@
 
   </body>
 </html>
+
