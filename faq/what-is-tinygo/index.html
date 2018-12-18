@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/tinygo-site/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/tinygo-site/images/favicon.png" type="image/x-icon" />
-    <title>Compiler Internals :: TinyGo</title>
+    <title>What is TinyGo exactly? :: TinyGo</title>
 
     
     <link href="/tinygo-site/css/nucleus.css?1545174311" rel="stylesheet">
@@ -34,7 +34,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/tinygo-site/compiler-internals/">
+  <body class="" data-url="/tinygo-site/faq/what-is-tinygo/">
     <nav id="sidebar" class="">
 
 
@@ -574,7 +574,7 @@
   
     
     <li data-nav-id="/tinygo-site/faq/" title="FAQ" class="dd-item 
-        
+        parent
         
         
         ">
@@ -598,7 +598,7 @@
  
   
     
-      <li data-nav-id="/tinygo-site/faq/what-is-tinygo/" title="What is TinyGo exactly?" class="dd-item ">
+      <li data-nav-id="/tinygo-site/faq/what-is-tinygo/" title="What is TinyGo exactly?" class="dd-item active">
         <a href="/tinygo-site/faq/what-is-tinygo/">
         What is TinyGo exactly?
         
@@ -682,8 +682,8 @@
   
     
     <li data-nav-id="/tinygo-site/compiler-internals/" title="Compiler Internals" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/tinygo-site/compiler-internals/">
@@ -823,6 +823,8 @@
                         </a>
                     </span>
                   
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
                   <span class="links">
                  
                  
@@ -833,7 +835,13 @@
             
           
           
-            <a href='/tinygo-site/'>Home</a> > Compiler Internals
+            
+            
+          
+          
+            <a href='/tinygo-site/'>Home</a> > <a href='/tinygo-site/faq/'>FAQ</a> > What is TinyGo exactly?
+          
+         
           
          
           
@@ -842,32 +850,42 @@
                   </span>
                 </div>
                 
+                    <div class="progress">
+    <div class="wrapper">
+
+    </div>
+</div>
+
+                
               </div>
             </div>
             
 
         
-          <div id="chapter">
-        
         <div id="body-inner">
+          
+            <h1>What is TinyGo exactly?</h1>
           
 
         
 
 
+<p>A new compiler and a new runtime implementation.</p>
 
+<p>Specifically:</p>
 
-<h1 id="compiler-internals">Compiler Internals</h1>
+<ul>
+<li><p>A new compiler using (mostly) the standard library to parse Go programs and using LLVM to optimize the code and generate machine code for the target architecture.</p></li>
 
-<p>Want to learn how TinyGo works? We break it all down for you here.</p>
+<li><p>A new runtime library that implements some compiler intrinsics, like a memory allocator, a scheduler, and operations on strings. Also, some packages that are strongly connected to the runtime like the <code>sync</code> package and the <code>reflect</code> package have been or will be re-implemented for use with this new compiler.</p></li>
+</ul>
 
 
 <footer class=" footline" >
 	
 </footer>
 
-        
-            </div> 
+
         
         </div> 
         
@@ -1254,6 +1272,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1266,6 +1285,26 @@
             
             
                 
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -1310,22 +1349,6 @@
             
         
                     
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
             
         
                     
@@ -1334,7 +1357,6 @@
             
                 
                     
-                    
                 
                 
 
@@ -1347,9 +1369,6 @@
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -1422,10 +1441,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/tinygo-site/faq/what-about-esp8266-esp32/" title="What about the ESP8266/ESP32?"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/tinygo-site/faq/" title="FAQ"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/tinygo-site/compiler-internals/differences-from-go/" title="Differences from Go" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/tinygo-site/faq/why-a-new-compiler/" title="Why a new compiler?" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1456,3 +1475,4 @@
 
   </body>
 </html>
+

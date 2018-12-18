@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/tinygo-site/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/tinygo-site/images/favicon.png" type="image/x-icon" />
-    <title>Compiler Internals :: TinyGo</title>
+    <title>Inline assembly :: TinyGo</title>
 
     
     <link href="/tinygo-site/css/nucleus.css?1545174311" rel="stylesheet">
@@ -34,7 +34,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/tinygo-site/compiler-internals/">
+  <body class="" data-url="/tinygo-site/microcontrollers/inline-assembly/">
     <nav id="sidebar" class="">
 
 
@@ -415,7 +415,7 @@
   
     
     <li data-nav-id="/tinygo-site/microcontrollers/" title="Go on microcontrollers" class="dd-item 
-        
+        parent
         
         
         ">
@@ -477,7 +477,7 @@
  
   
     
-      <li data-nav-id="/tinygo-site/microcontrollers/inline-assembly/" title="Inline assembly" class="dd-item ">
+      <li data-nav-id="/tinygo-site/microcontrollers/inline-assembly/" title="Inline assembly" class="dd-item active">
         <a href="/tinygo-site/microcontrollers/inline-assembly/">
         Inline assembly
         
@@ -682,8 +682,8 @@
   
     
     <li data-nav-id="/tinygo-site/compiler-internals/" title="Compiler Internals" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/tinygo-site/compiler-internals/">
@@ -823,6 +823,8 @@
                         </a>
                     </span>
                   
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
                   <span class="links">
                  
                  
@@ -833,7 +835,13 @@
             
           
           
-            <a href='/tinygo-site/'>Home</a> > Compiler Internals
+            
+            
+          
+          
+            <a href='/tinygo-site/'>Home</a> > <a href='/tinygo-site/microcontrollers/'>Go on microcontrollers</a> > Inline assembly
+          
+         
           
          
           
@@ -842,32 +850,54 @@
                   </span>
                 </div>
                 
+                    <div class="progress">
+    <div class="wrapper">
+
+    </div>
+</div>
+
+                
               </div>
             </div>
             
 
         
-          <div id="chapter">
-        
         <div id="body-inner">
+          
+            <h1>Inline assembly</h1>
           
 
         
 
 
+<p>The device-specific packages like <code>device/avr</code> and <code>device/arm</code> provide <code>Asm</code> functions which you can use to write inline assembly:</p>
 
+<pre><code class="language-go">arm.Asm(&quot;wfi&quot;)
+</code></pre>
 
-<h1 id="compiler-internals">Compiler Internals</h1>
+<p>You can also pass parameters to the inline assembly:</p>
 
-<p>Want to learn how TinyGo works? We break it all down for you here.</p>
+<pre><code class="language-go">var result int32
+arm.AsmFull(`
+    lsls  {value}, #1
+    str   {value}, {result}
+`, map[string]interface{}{
+    &quot;value&quot;:  42,
+    &quot;result&quot;: &amp;result,
+})
+println(&quot;result:&quot;, result)
+</code></pre>
+
+<p>In general, types are autodetected. That is, integer types are passed as raw registers and pointer types are passed as memory locations. This means you can&rsquo;t easily do pointer arithmetic. To do that, convert a pointer value to a <code>uintptr</code>.</p>
+
+<p>Inline assembly support is expected to change in the future and may change in a backwards-incompatible manner.</p>
 
 
 <footer class=" footline" >
 	
 </footer>
 
-        
-            </div> 
+
         
         </div> 
         
@@ -1142,6 +1172,126 @@
             
                 
                     
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
                 
                 
 
@@ -1234,122 +1384,6 @@
             
             
                 
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
                     
                 
                 
@@ -1422,10 +1456,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/tinygo-site/faq/what-about-esp8266-esp32/" title="What about the ESP8266/ESP32?"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/tinygo-site/microcontrollers/volatile/" title="The volatile keyword"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/tinygo-site/compiler-internals/differences-from-go/" title="Differences from Go" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/tinygo-site/microcontrollers/harvard-arch/" title="Harvard architectures (AVR)" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1456,3 +1490,4 @@
 
   </body>
 </html>
+

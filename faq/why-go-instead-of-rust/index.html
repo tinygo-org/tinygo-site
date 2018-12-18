@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/tinygo-site/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/tinygo-site/images/favicon.png" type="image/x-icon" />
-    <title>Compiler Internals :: TinyGo</title>
+    <title>Why Go instead of Rust? :: TinyGo</title>
 
     
     <link href="/tinygo-site/css/nucleus.css?1545174311" rel="stylesheet">
@@ -34,7 +34,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/tinygo-site/compiler-internals/">
+  <body class="" data-url="/tinygo-site/faq/why-go-instead-of-rust/">
     <nav id="sidebar" class="">
 
 
@@ -574,7 +574,7 @@
   
     
     <li data-nav-id="/tinygo-site/faq/" title="FAQ" class="dd-item 
-        
+        parent
         
         
         ">
@@ -636,7 +636,7 @@
  
   
     
-      <li data-nav-id="/tinygo-site/faq/why-go-instead-of-rust/" title="Why Go instead of Rust?" class="dd-item ">
+      <li data-nav-id="/tinygo-site/faq/why-go-instead-of-rust/" title="Why Go instead of Rust?" class="dd-item active">
         <a href="/tinygo-site/faq/why-go-instead-of-rust/">
         Why Go instead of Rust?
         
@@ -682,8 +682,8 @@
   
     
     <li data-nav-id="/tinygo-site/compiler-internals/" title="Compiler Internals" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/tinygo-site/compiler-internals/">
@@ -823,6 +823,8 @@
                         </a>
                     </span>
                   
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
                   <span class="links">
                  
                  
@@ -833,7 +835,13 @@
             
           
           
-            <a href='/tinygo-site/'>Home</a> > Compiler Internals
+            
+            
+          
+          
+            <a href='/tinygo-site/'>Home</a> > <a href='/tinygo-site/faq/'>FAQ</a> > Why Go instead of Rust?
+          
+         
           
          
           
@@ -842,32 +850,54 @@
                   </span>
                 </div>
                 
+                    <div class="progress">
+    <div class="wrapper">
+
+    </div>
+</div>
+
+                
               </div>
             </div>
             
 
         
-          <div id="chapter">
-        
         <div id="body-inner">
+          
+            <h1>Why Go instead of Rust?</h1>
           
 
         
 
 
+<p>Rust is another &ldquo;new&rdquo; and safer language that is now made ready for embedded processors. There is <a href="https://rust-embedded.github.io/blog/">a fairly active community around it</a>.</p>
 
+<p>However, apart from personal language preference, Go has a few advantages:</p>
 
-<h1 id="compiler-internals">Compiler Internals</h1>
+<ul>
+<li><p>Subjective, but in general Go is <a href="https://matthias-endler.de/2017/go-vs-rust/">easier to learn</a>. Rust is in general far more complicated than Go, with difficult-to-grasp ownership rules, traits, generics, etc. Go prides itself on being a simple and slightly dumb language, sacrificing some expressiveness for readability.</p></li>
 
-<p>Want to learn how TinyGo works? We break it all down for you here.</p>
+<li><p>Built-in support for concurrency with goroutines and channels that do not rely on a particular implementation threads. This avoids the need for a custom <a href="https://blog.japaric.io/rtfm-v2/">RTOS-like framework</a> or a <a href="https://github.com/rust-embedded/wg/issues/45">full-blown RTOS</a> with the associated API one has to learn. In Go, everything is handled by goroutines which are built into the language itself.</p></li>
+
+<li><p>A batteries-included standard library that consists of loosely-coupled packages. Rust uses a monolithic standard library that is currently unusable on bare-metal, while the Go standard library is much more loosely coupled so is more likely to be (partially) supported. Also, non-standard packages in Go do not have to be marked with something like <code>#![no_std]</code> to be usable on bare metal. Note: most standard library packages cannot yet be compiled, but this situation will hopefully improve in the future.</p></li>
+</ul>
+
+<p>At the same time, Rust has other advantages:</p>
+
+<ul>
+<li><p>Unlike Go, Rust does not have a garbage collector by default and carefully written Rust code can avoid most or all uses of the heap. Go relies heavily on garbage collection and often implicitly allocates memory on the heap.</p></li>
+
+<li><p>Rust has stronger memory-safety guarantees.</p></li>
+
+<li><p>In general, Rust is more low-level and easier to support on a microcontroller. Of course, this doesn&rsquo;t mean one shouldn&rsquo;t try to run Go on a microcontroller, just that it is more difficult. When even dynamic languages like <a href="https://micropython.org/">Python</a>, <a href="https://nodemcu.readthedocs.io/en/master">Lua</a> and <a href="https://www.espruino.com/">JavaScript</a> can run on a microcontroller, then certainly Go can.</p></li>
+</ul>
 
 
 <footer class=" footline" >
 	
 </footer>
 
-        
-            </div> 
+
         
         </div> 
         
@@ -1254,6 +1284,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1266,6 +1297,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1299,6 +1333,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1306,6 +1341,28 @@
                     
                     
 
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
                     
             
         
@@ -1323,33 +1380,10 @@
                     
 
                     
-            
-        
-                    
-            
-        
-                    
                         
             
             
                 
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
                     
                 
                 
@@ -1422,10 +1456,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/tinygo-site/faq/what-about-esp8266-esp32/" title="What about the ESP8266/ESP32?"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/tinygo-site/faq/why-a-new-compiler/" title="Why a new compiler?"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/tinygo-site/compiler-internals/differences-from-go/" title="Differences from Go" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/tinygo-site/faq/what-about-esp8266-esp32/" title="What about the ESP8266/ESP32?" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1456,3 +1490,4 @@
 
   </body>
 </html>
+

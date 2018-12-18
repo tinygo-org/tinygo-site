@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/tinygo-site/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/tinygo-site/images/favicon.png" type="image/x-icon" />
-    <title>Compiler Internals :: TinyGo</title>
+    <title>Go on microcontrollers :: TinyGo</title>
 
     
     <link href="/tinygo-site/css/nucleus.css?1545174311" rel="stylesheet">
@@ -34,7 +34,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/tinygo-site/compiler-internals/">
+  <body class="" data-url="/tinygo-site/microcontrollers/">
     <nav id="sidebar" class="">
 
 
@@ -415,8 +415,8 @@
   
     
     <li data-nav-id="/tinygo-site/microcontrollers/" title="Go on microcontrollers" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/tinygo-site/microcontrollers/">
@@ -682,8 +682,8 @@
   
     
     <li data-nav-id="/tinygo-site/compiler-internals/" title="Compiler Internals" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/tinygo-site/compiler-internals/">
@@ -833,7 +833,7 @@
             
           
           
-            <a href='/tinygo-site/'>Home</a> > Compiler Internals
+            <a href='/tinygo-site/'>Home</a> > Go on microcontrollers
           
          
           
@@ -857,9 +857,11 @@
 
 
 
-<h1 id="compiler-internals">Compiler Internals</h1>
+<h1 id="go-on-microcontrollers">Go on microcontrollers</h1>
 
-<p>Want to learn how TinyGo works? We break it all down for you here.</p>
+<p>TinyGo was designed to run on microcontrollers, but the Go language wasn&rsquo;t. This means there are a few challenges to writing Go code for microcontrollers.</p>
+
+<p>Microcontrollers have very little RAM and execute code directly from flash. Also, constant globals are generally put in flash whenever possible. The Go language itself heavily relies on garbage collection so care must be taken to avoid dynamic memory allocation.</p>
 
 
 <footer class=" footline" >
@@ -1142,6 +1144,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1154,6 +1157,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1334,7 +1340,6 @@
             
                 
                     
-                    
                 
                 
 
@@ -1347,9 +1352,6 @@
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -1422,10 +1424,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/tinygo-site/faq/what-about-esp8266-esp32/" title="What about the ESP8266/ESP32?"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/tinygo-site/targets/wasm/" title="WebAssembly"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/tinygo-site/compiler-internals/differences-from-go/" title="Differences from Go" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/tinygo-site/microcontrollers/heap-allocation/" title="Heap allocation" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

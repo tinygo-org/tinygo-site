@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/tinygo-site/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/tinygo-site/images/favicon.png" type="image/x-icon" />
-    <title>Compiler Internals :: TinyGo</title>
+    <title>What about the ESP8266/ESP32? :: TinyGo</title>
 
     
     <link href="/tinygo-site/css/nucleus.css?1545174311" rel="stylesheet">
@@ -34,7 +34,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/tinygo-site/compiler-internals/">
+  <body class="" data-url="/tinygo-site/faq/what-about-esp8266-esp32/">
     <nav id="sidebar" class="">
 
 
@@ -574,7 +574,7 @@
   
     
     <li data-nav-id="/tinygo-site/faq/" title="FAQ" class="dd-item 
-        
+        parent
         
         
         ">
@@ -655,7 +655,7 @@
  
   
     
-      <li data-nav-id="/tinygo-site/faq/what-about-esp8266-esp32/" title="What about the ESP8266/ESP32?" class="dd-item ">
+      <li data-nav-id="/tinygo-site/faq/what-about-esp8266-esp32/" title="What about the ESP8266/ESP32?" class="dd-item active">
         <a href="/tinygo-site/faq/what-about-esp8266-esp32/">
         What about the ESP8266/ESP32?
         
@@ -682,8 +682,8 @@
   
     
     <li data-nav-id="/tinygo-site/compiler-internals/" title="Compiler Internals" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/tinygo-site/compiler-internals/">
@@ -823,6 +823,8 @@
                         </a>
                     </span>
                   
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
                   <span class="links">
                  
                  
@@ -833,7 +835,13 @@
             
           
           
-            <a href='/tinygo-site/'>Home</a> > Compiler Internals
+            
+            
+          
+          
+            <a href='/tinygo-site/'>Home</a> > <a href='/tinygo-site/faq/'>FAQ</a> > What about the ESP8266/ESP32?
+          
+         
           
          
           
@@ -842,32 +850,42 @@
                   </span>
                 </div>
                 
+                    <div class="progress">
+    <div class="wrapper">
+
+    </div>
+</div>
+
+                
               </div>
             </div>
             
 
         
-          <div id="chapter">
-        
         <div id="body-inner">
+          
+            <h1>What about the ESP8266/ESP32?</h1>
           
 
         
 
 
+<p>These chips use the rather obscure Xtensa instruction set. While a port of GCC exists and Espressif provides precompiled GNU toolchains, there is no support yet in LLVM (although there have been <a href="http://lists.llvm.org/pipermail/llvm-dev/2018-July/124789.html">multiple attempts</a>.</p>
 
+<p>There are two ways these chips might be supported in the future, and both will take a considerable amount of work:</p>
 
-<h1 id="compiler-internals">Compiler Internals</h1>
+<ul>
+<li><p>The compiled LLVM IR can be converted into (ugly) C and then be compiled with a supported C compiler (like GCC for Xtensa). This has been <a href="https://github.com/JuliaComputing/llvm-cbe">done before</a> so should be doable.</p></li>
 
-<p>Want to learn how TinyGo works? We break it all down for you here.</p>
+<li><p>One of the work-in-progress LLVM backends can be worked on to get it in a usable state. If this is finished, a true TinyGo port is possible.</p></li>
+</ul>
 
 
 <footer class=" footline" >
 	
 </footer>
 
-        
-            </div> 
+
         
         </div> 
         
@@ -1254,6 +1272,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1266,6 +1285,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1315,6 +1337,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1334,6 +1357,8 @@
             
                 
                     
+                        
+                        
                     
                 
                 
@@ -1347,9 +1372,6 @@
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -1422,10 +1444,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/tinygo-site/faq/what-about-esp8266-esp32/" title="What about the ESP8266/ESP32?"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/tinygo-site/faq/why-go-instead-of-rust/" title="Why Go instead of Rust?"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/tinygo-site/compiler-internals/differences-from-go/" title="Differences from Go" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/tinygo-site/compiler-internals/" title="Compiler Internals" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1456,3 +1478,4 @@
 
   </body>
 </html>
+

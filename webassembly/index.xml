@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>WebAssembly (WASM) on TinyGo</title>
+    <link>https://tinygo-org.github.io/tinygo-site/webassembly/</link>
+    <description>Recent content in WebAssembly (WASM) on TinyGo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://tinygo-org.github.io/tinygo-site/webassembly/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Using WebAssembly</title>
+      <link>https://tinygo-org.github.io/tinygo-site/webassembly/webassembly/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tinygo-org.github.io/tinygo-site/webassembly/webassembly/</guid>
+      <description>You can call a JavaScript function from Go and call a Go function from WebAssembly:
+package main // This calls a JS function from Go. func main() { println(&amp;quot;adding two numbers:&amp;quot;, add(2, 3)) // expecting 5 } // This function is imported from JavaScript, as it doesn&#39;t define a body. // You should define a function named &#39;main.add&#39; in the WebAssembly &#39;env&#39; // module from JavaScript. func add(x, y int) // This function is exported to JavaScript, so can be called using // exports.</description>
+    </item>
+    
+  </channel>
+</rss>

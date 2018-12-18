@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/tinygo-site/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/tinygo-site/images/favicon.png" type="image/x-icon" />
-    <title>Compiler Internals :: TinyGo</title>
+    <title>Why a new compiler? :: TinyGo</title>
 
     
     <link href="/tinygo-site/css/nucleus.css?1545174311" rel="stylesheet">
@@ -34,7 +34,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/tinygo-site/compiler-internals/">
+  <body class="" data-url="/tinygo-site/faq/why-a-new-compiler/">
     <nav id="sidebar" class="">
 
 
@@ -574,7 +574,7 @@
   
     
     <li data-nav-id="/tinygo-site/faq/" title="FAQ" class="dd-item 
-        
+        parent
         
         
         ">
@@ -617,7 +617,7 @@
  
   
     
-      <li data-nav-id="/tinygo-site/faq/why-a-new-compiler/" title="Why a new compiler?" class="dd-item ">
+      <li data-nav-id="/tinygo-site/faq/why-a-new-compiler/" title="Why a new compiler?" class="dd-item active">
         <a href="/tinygo-site/faq/why-a-new-compiler/">
         Why a new compiler?
         
@@ -682,8 +682,8 @@
   
     
     <li data-nav-id="/tinygo-site/compiler-internals/" title="Compiler Internals" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/tinygo-site/compiler-internals/">
@@ -823,6 +823,8 @@
                         </a>
                     </span>
                   
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
                   <span class="links">
                  
                  
@@ -833,7 +835,13 @@
             
           
           
-            <a href='/tinygo-site/'>Home</a> > Compiler Internals
+            
+            
+          
+          
+            <a href='/tinygo-site/'>Home</a> > <a href='/tinygo-site/faq/'>FAQ</a> > Why a new compiler?
+          
+         
           
          
           
@@ -842,32 +850,77 @@
                   </span>
                 </div>
                 
+                    <div class="progress">
+    <div class="wrapper">
+
+    </div>
+</div>
+
+                
               </div>
             </div>
             
 
         
-          <div id="chapter">
-        
         <div id="body-inner">
+          
+            <h1>Why a new compiler?</h1>
           
 
         
 
 
+<p>Why not modify the existing compiler to produce binaries for microcontrollers?</p>
 
+<p>There are several reasons for this:</p>
 
-<h1 id="compiler-internals">Compiler Internals</h1>
+<ul>
+<li><p>The standard Go compiler (<code>gc</code>) does not support instruction sets as used on microcontrollers:</p>
 
-<p>Want to learn how TinyGo works? We break it all down for you here.</p>
+<ul>
+<li>The Thumb instruction set is unsupported, but it should be possible to add support for it as it already has an ARM backend.</li>
+<li>The AVR instruction set (as used in the Arduino Uno) is unsupported and unlikely to be ever supported.</li>
+</ul></li>
+</ul>
+
+<p>Of course, it is possible to use <code>gccgo</code>, but that has different problems (see below).</p>
+
+<ul>
+<li><p>The runtime is really big. A standard &lsquo;hello world&rsquo; on a desktop PC produces a binary of about 1MB, even when using the builtin <code>println</code> function and nothing else. All this overhead is due to the runtime. Of course, it may be possible to use a different runtime with the same compiler but that will be kind of painful as the exact ABI as used by the compiler has to be matched, limiting optimization opportunities (see below).</p></li>
+
+<li><p>The compiler is optimized for speed, not for code size or memory consumption (which are usually far more important on MCUs). This results in design choices like allocating memory on every value → interface conversion while TinyGo sacrifices some performance for reduced GC pressure.</p></li>
+
+<li><p>With the existing Go libraries for parsing Go code and the pretty awesome LLVM optimizer/backend it is relatively easy to get simple Go programs working with a very small binary size. Extra features can be added where needed in a pay-as-you-go manner similar to C++ avoiding their cost when unused. Most programs on microcontrollers are relatively small so a not-complete compiler is still useful.</p></li>
+
+<li><p>The standard Go compilers do not allocate global variables as static data, but as zero-initialized data that is initialized during program startup. This is not a big deal on desktop computers but prevents allocating these values in flash on microcontrollers. Part of this is due to how the <a href="https://golang.org/ref/spec#Package_initialization">language specification defines package initialization</a>, but this can be worked around to a large extent.</p></li>
+
+<li><p>The standard Go compilers do a few special things for CGo calls. This is necessary because only Go code can use the (small) Go stack while C code will need a much bigger stack. A new compiler can avoid this limitation if it ensures stacks are big enough for C, greatly reducing the C ↔ Go calling overhead.</p></li>
+</ul>
+
+<p><a href="https://github.com/aykevl/tinygo-gccgo">At one point</a>, a real Go compiler had been used to produce binaries for various platforms, and the result was painful enough to start writing a new compiler:</p>
+
+<ul>
+<li><p>The ABI was fixed, so could not be optimized for speed. Also, the ABI didn&rsquo;t seem to be documented anywhere.</p></li>
+
+<li><p>Working arount limitations in the <code>go</code> toolchain was rather burdensome and quite a big hack.</p></li>
+
+<li><p>The binaries produced were quite bloated, for various reasons:</p>
+
+<ul>
+<li><p>The Go calling convention places all arguments on the stack. Due to this, stack usage was really bad and code size was bigger than it needed to be.</p></li>
+
+<li><p>Global initialization was very inefficient, see above.</p></li>
+
+<li><p>There seemed to be no way to optimize across packages.</p></li>
+</ul></li>
+</ul>
 
 
 <footer class=" footline" >
 	
 </footer>
 
-        
-            </div> 
+
         
         </div> 
         
@@ -1254,6 +1307,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1266,6 +1320,45 @@
             
             
                 
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -1294,19 +1387,6 @@
             
         
                     
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
             
         
                     
@@ -1323,33 +1403,10 @@
                     
 
                     
-            
-        
-                    
-            
-        
-                    
                         
             
             
                 
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
                     
                 
                 
@@ -1422,10 +1479,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/tinygo-site/faq/what-about-esp8266-esp32/" title="What about the ESP8266/ESP32?"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/tinygo-site/faq/what-is-tinygo/" title="What is TinyGo exactly?"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/tinygo-site/compiler-internals/differences-from-go/" title="Differences from Go" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/tinygo-site/faq/why-go-instead-of-rust/" title="Why Go instead of Rust?" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1456,3 +1513,4 @@
 
   </body>
 </html>
+

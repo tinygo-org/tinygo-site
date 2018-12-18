@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/tinygo-site/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/tinygo-site/images/favicon.png" type="image/x-icon" />
-    <title>Compiler Internals :: TinyGo</title>
+    <title>Heap allocation :: TinyGo</title>
 
     
     <link href="/tinygo-site/css/nucleus.css?1545174311" rel="stylesheet">
@@ -34,7 +34,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/tinygo-site/compiler-internals/">
+  <body class="" data-url="/tinygo-site/microcontrollers/heap-allocation/">
     <nav id="sidebar" class="">
 
 
@@ -415,7 +415,7 @@
   
     
     <li data-nav-id="/tinygo-site/microcontrollers/" title="Go on microcontrollers" class="dd-item 
-        
+        parent
         
         
         ">
@@ -439,7 +439,7 @@
  
   
     
-      <li data-nav-id="/tinygo-site/microcontrollers/heap-allocation/" title="Heap allocation" class="dd-item ">
+      <li data-nav-id="/tinygo-site/microcontrollers/heap-allocation/" title="Heap allocation" class="dd-item active">
         <a href="/tinygo-site/microcontrollers/heap-allocation/">
         Heap allocation
         
@@ -682,8 +682,8 @@
   
     
     <li data-nav-id="/tinygo-site/compiler-internals/" title="Compiler Internals" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/tinygo-site/compiler-internals/">
@@ -823,6 +823,8 @@
                         </a>
                     </span>
                   
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
                   <span class="links">
                  
                  
@@ -833,7 +835,13 @@
             
           
           
-            <a href='/tinygo-site/'>Home</a> > Compiler Internals
+            
+            
+          
+          
+            <a href='/tinygo-site/'>Home</a> > <a href='/tinygo-site/microcontrollers/'>Go on microcontrollers</a> > Heap allocation
+          
+         
           
          
           
@@ -842,32 +850,89 @@
                   </span>
                 </div>
                 
+                    <div class="progress">
+    <div class="wrapper">
+
+    </div>
+</div>
+
+                
               </div>
             </div>
             
 
         
-          <div id="chapter">
-        
         <div id="body-inner">
+          
+            <h1>Heap allocation</h1>
           
 
         
 
 
+<p>Many operations in Go rely on heap allocation. Some of these heap allocations are optimized away, but not all of them. Also, TinyGo does not yet contain a garbage collector so heap allocation must be avoided whenever possible outside of initialization code.</p>
 
+<p>These operations currently do heap allocations:</p>
 
-<h1 id="compiler-internals">Compiler Internals</h1>
+<ul>
+<li>Taking the pointer of a local variable. This will result in a heap allocation, unless the compiler can see the resulting pointer never escapes. This causes a heap allocation:</li>
+</ul>
 
-<p>Want to learn how TinyGo works? We break it all down for you here.</p>
+<pre><code class="language-go">var global *int
+
+func foo() {
+    i := 3
+    global = &amp;i
+}
+</code></pre>
+
+<p>This does not cause a heap allocation:</p>
+
+<pre><code class="language-go">func foo() {
+    i := 3
+    bar(&amp;i)
+}
+
+func bar(i *int) {
+    println(*i)
+}
+</code></pre>
+
+<ul>
+<li>Converting between <code>string</code> and <code>[]byte</code>. In general, this causes a heap allocation because one is constant while the other is not: for example, a <code>[]byte</code> is not allowed to write to the underlying buffer of a <code>string</code>. However, there is an optimization that avoids a heap allocation when converting a string to a <code>[]byte</code> when the compiler can see the slice is never written to. For example, this <code>WriteString</code> function does not cause a heap allocation:</li>
+</ul>
+
+<pre><code class="language-go">func WriteString(s string) {
+    Write([]byte(s))
+}
+
+func Write(buf []byte) {
+    for _, c := range buf {
+        WriteByte(c)
+    }
+}
+</code></pre>
+
+<ul>
+<li><p>Converting a <code>byte</code> or <code>rune</code> into a <code>string</code>. This operation is actually a conversion from a Unicode code point into a single-character string so is similar to the previous point.</p></li>
+
+<li><p>Concatenating strings, unless one of them is zero length.</p></li>
+
+<li><p>Creating an interface with a value larger than a pointer. Interfaces in Go are not a zero-cost abstraction and should be used carefully on microcontrollers.</p></li>
+
+<li><p>Closures where the collection of shared variables between the closure and the main function is larger than a pointer.</p></li>
+
+<li><p>Creating and modifying maps. Maps have <em>very</em> little support at the moment and should not yet be used. They exist mostly for compatibility with some standard library packages.</p></li>
+
+<li><p>Starting goroutines. There is limited support for goroutines and currently they are not at all efficient. Also, there is no support for channels yet so their usefulness is limited.</p></li>
+</ul>
 
 
 <footer class=" footline" >
 	
 </footer>
 
-        
-            </div> 
+
         
         </div> 
         
@@ -1142,6 +1207,123 @@
             
                 
                     
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
                 
                 
 
@@ -1234,122 +1416,6 @@
             
             
                 
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
                     
                 
                 
@@ -1422,10 +1488,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/tinygo-site/faq/what-about-esp8266-esp32/" title="What about the ESP8266/ESP32?"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/tinygo-site/microcontrollers/" title="Go on microcontrollers"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/tinygo-site/compiler-internals/differences-from-go/" title="Differences from Go" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/tinygo-site/microcontrollers/volatile/" title="The volatile keyword" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1456,3 +1522,4 @@
 
   </body>
 </html>
+

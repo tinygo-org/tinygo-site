@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>FAQ on TinyGo</title>
+    <link>https://tinygo-org.github.io/tinygo-site/faq/</link>
+    <description>Recent content in FAQ on TinyGo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://tinygo-org.github.io/tinygo-site/faq/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>What is TinyGo exactly?</title>
+      <link>https://tinygo-org.github.io/tinygo-site/faq/what-is-tinygo/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tinygo-org.github.io/tinygo-site/faq/what-is-tinygo/</guid>
+      <description>A new compiler and a new runtime implementation.
+Specifically:
+ A new compiler using (mostly) the standard library to parse Go programs and using LLVM to optimize the code and generate machine code for the target architecture.
+ A new runtime library that implements some compiler intrinsics, like a memory allocator, a scheduler, and operations on strings. Also, some packages that are strongly connected to the runtime like the sync package and the reflect package have been or will be re-implemented for use with this new compiler.</description>
+    </item>
+    
+    <item>
+      <title>Why a new compiler?</title>
+      <link>https://tinygo-org.github.io/tinygo-site/faq/why-a-new-compiler/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tinygo-org.github.io/tinygo-site/faq/why-a-new-compiler/</guid>
+      <description>Why not modify the existing compiler to produce binaries for microcontrollers?
+There are several reasons for this:
+ The standard Go compiler (gc) does not support instruction sets as used on microcontrollers:
+ The Thumb instruction set is unsupported, but it should be possible to add support for it as it already has an ARM backend. The AVR instruction set (as used in the Arduino Uno) is unsupported and unlikely to be ever supported.</description>
+    </item>
+    
+    <item>
+      <title>Why Go instead of Rust?</title>
+      <link>https://tinygo-org.github.io/tinygo-site/faq/why-go-instead-of-rust/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tinygo-org.github.io/tinygo-site/faq/why-go-instead-of-rust/</guid>
+      <description>Rust is another &amp;ldquo;new&amp;rdquo; and safer language that is now made ready for embedded processors. There is a fairly active community around it.
+However, apart from personal language preference, Go has a few advantages:
+ Subjective, but in general Go is easier to learn. Rust is in general far more complicated than Go, with difficult-to-grasp ownership rules, traits, generics, etc. Go prides itself on being a simple and slightly dumb language, sacrificing some expressiveness for readability.</description>
+    </item>
+    
+    <item>
+      <title>What about the ESP8266/ESP32?</title>
+      <link>https://tinygo-org.github.io/tinygo-site/faq/what-about-esp8266-esp32/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tinygo-org.github.io/tinygo-site/faq/what-about-esp8266-esp32/</guid>
+      <description>These chips use the rather obscure Xtensa instruction set. While a port of GCC exists and Espressif provides precompiled GNU toolchains, there is no support yet in LLVM (although there have been multiple attempts.
+There are two ways these chips might be supported in the future, and both will take a considerable amount of work:
+ The compiled LLVM IR can be converted into (ugly) C and then be compiled with a supported C compiler (like GCC for Xtensa).</description>
+    </item>
+    
+  </channel>
+</rss>

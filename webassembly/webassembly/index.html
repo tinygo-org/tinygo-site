@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/tinygo-site/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/tinygo-site/images/favicon.png" type="image/x-icon" />
-    <title>Compiler Internals :: TinyGo</title>
+    <title>Using WebAssembly :: TinyGo</title>
 
     
     <link href="/tinygo-site/css/nucleus.css?1545174311" rel="stylesheet">
@@ -34,7 +34,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/tinygo-site/compiler-internals/">
+  <body class="" data-url="/tinygo-site/webassembly/webassembly/">
     <nav id="sidebar" class="">
 
 
@@ -523,7 +523,7 @@
   
     
     <li data-nav-id="/tinygo-site/webassembly/" title="WebAssembly (WASM)" class="dd-item 
-        
+        parent
         
         
         ">
@@ -547,7 +547,7 @@
  
   
     
-      <li data-nav-id="/tinygo-site/webassembly/webassembly/" title="Using WebAssembly" class="dd-item ">
+      <li data-nav-id="/tinygo-site/webassembly/webassembly/" title="Using WebAssembly" class="dd-item active">
         <a href="/tinygo-site/webassembly/webassembly/">
         Using WebAssembly
         
@@ -682,8 +682,8 @@
   
     
     <li data-nav-id="/tinygo-site/compiler-internals/" title="Compiler Internals" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/tinygo-site/compiler-internals/">
@@ -823,6 +823,8 @@
                         </a>
                     </span>
                   
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
                   <span class="links">
                  
                  
@@ -833,7 +835,13 @@
             
           
           
-            <a href='/tinygo-site/'>Home</a> > Compiler Internals
+            
+            
+          
+          
+            <a href='/tinygo-site/'>Home</a> > <a href='/tinygo-site/webassembly/'>WebAssembly (WASM)</a> > Using WebAssembly
+          
+         
           
          
           
@@ -842,32 +850,70 @@
                   </span>
                 </div>
                 
+                    <div class="progress">
+    <div class="wrapper">
+
+    </div>
+</div>
+
+                
               </div>
             </div>
             
 
         
-          <div id="chapter">
-        
         <div id="body-inner">
+          
+            <h1>Using WebAssembly</h1>
           
 
         
 
 
+<p>You can call a JavaScript function from Go and call a Go function from WebAssembly:</p>
 
+<pre><code class="language-go">package main
 
-<h1 id="compiler-internals">Compiler Internals</h1>
+// This calls a JS function from Go.
+func main() {
+    println(&quot;adding two numbers:&quot;, add(2, 3)) // expecting 5
+}
 
-<p>Want to learn how TinyGo works? We break it all down for you here.</p>
+// This function is imported from JavaScript, as it doesn't define a body.
+// You should define a function named 'main.add' in the WebAssembly 'env'
+// module from JavaScript.
+func add(x, y int)
+
+// This function is exported to JavaScript, so can be called using
+// exports.add() in JavaScript.
+//go:export multiply
+func multiply(x, y int) int {
+    return x * y;
+}
+</code></pre>
+
+<p>Related JavaScript would look something like this:</p>
+
+<pre><code class="language-javascript">// Providing the environment object, used in WebAssembly.instantiateStreaming.
+env: {
+    'main.add': function(x, y) {
+        return x + y
+    }
+    // ... other functions
+}
+
+// Calling the multiply function:
+console.log('multiplied two numbers:', wasm.exports.multiply(5, 3));
+</code></pre>
+
+<p>A more complete example is provided in the <a href="https://github.com/aykevl/tinygo/tree/master/src/examples/wasm">wasm example</a>.</p>
 
 
 <footer class=" footline" >
 	
 </footer>
 
-        
-            </div> 
+
         
         </div> 
         
@@ -1222,6 +1268,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1234,6 +1281,7 @@
             
             
                 
+                    
                     
                 
                 
@@ -1254,18 +1302,8 @@
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
                         
-            
-            
-                
+                        
                     
                 
                 
@@ -1274,9 +1312,6 @@
                     
                     
 
-                    
-            
-        
                     
                         
             
@@ -1326,6 +1361,22 @@
             
         
                     
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
             
         
                     
@@ -1334,7 +1385,6 @@
             
                 
                     
-                    
                 
                 
 
@@ -1347,9 +1397,6 @@
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -1422,10 +1469,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/tinygo-site/faq/what-about-esp8266-esp32/" title="What about the ESP8266/ESP32?"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/tinygo-site/webassembly/" title="WebAssembly (WASM)"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/tinygo-site/compiler-internals/differences-from-go/" title="Differences from Go" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/tinygo-site/faq/" title="FAQ" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1456,3 +1503,4 @@
 
   </body>
 </html>
+
