@@ -1,4 +1,4 @@
-baseURL = "https://tinygo.org/"
+baseURL = "https://tinygo-org.github.io/tinygo-site/"
 languageCode = "en-us"
 title = "TinyGo"
 theme = "learn"
