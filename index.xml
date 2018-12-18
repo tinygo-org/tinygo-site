@@ -43,6 +43,15 @@ go get -u github.com/aykevl/tinygo  If you get an error like this::
     </item>
     
     <item>
+      <title>POSIX-like</title>
+      <link>https://tinygo-org.github.io/tinygo-site/targets/posix/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tinygo-org.github.io/tinygo-site/targets/posix/</guid>
+      <description>Only Linux is supported at the moment, but it should be trivial to add support for more POSIX-like systems.</description>
+    </item>
+    
+    <item>
       <title>Subcommands</title>
       <link>https://tinygo-org.github.io/tinygo-site/usage/subcommands/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -65,6 +74,16 @@ docker run --rm -v $(pwd):/src tinygo/tinygo tinygo build -o /src/blinky1.hex -s
     </item>
     
     <item>
+      <title>ARM / Cortex-M</title>
+      <link>https://tinygo-org.github.io/tinygo-site/targets/arm/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tinygo-org.github.io/tinygo-site/targets/arm/</guid>
+      <description>ARM Cortex-M processors are well supported. There is support for multiple chips and the backend appears to be stable. In fact, it uses the same underlying technology (LLVM) as the proprietary ARM compiler for code generation.
+ BBC micro:bit (nRF51822) Nordic PCA10031 (nRF51422) Nordic PCA10040 (nRF52832) nRF52840-MDK (nRF52840) reel board (nRF52840) Nordic PCA10056_(nRF52840) QEMU (LM3S6965) This target is supported only for testing purposes. It has not been tested on real hardware.</description>
+    </item>
+    
+    <item>
       <title>Datatypes</title>
       <link>https://tinygo-org.github.io/tinygo-site/compiler-internals/datatypes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -83,8 +102,11 @@ slice A slice is encoded as a {ptr, len, cap} tuple. There is no runtime definit
       <guid>https://tinygo-org.github.io/tinygo-site/usage/important-options/</guid>
       <description>There are a few flags to control how binaries are built:
 -o Output filename, see the build command.
--target Select the target you want to use. Leave it empty to compile for the host. Example targets:
- wasm WebAssembly target. Creates .wasm files that can be run in a web browser. arduino Compile using the experimental AVR backend to run Go programs on an Arduino Uno. microbit Compile programs for the BBC micro:bit &amp;lt;https://microbit.</description>
+-target Select the target you want to use. Leave it empty to compile for the host.
+Example targets:
+ wasm WebAssembly target. Creates .wasm files that can be run in a web browser.
+ arduino Compile using the experimental AVR backend to run Go programs on an Arduino Uno.
+ microbit Compile programs for the BBC micro:bit &amp;lt;https://microbit.</description>
     </item>
     
     <item>
@@ -97,6 +119,16 @@ slice A slice is encoded as a {ptr, len, cap} tuple. There is no runtime definit
 tinygo run examples/test  Before anything can be built for a bare-metal target, you need to generate some files first:
 make gen-device  This will generate register descriptions, interrupt vectors, and linker scripts for various devices. Also, you may need to re-run this command after updates, as some updates cause changes to the generated files.
 Now you can run a blinky example.</description>
+    </item>
+    
+    <item>
+      <title>AVR</title>
+      <link>https://tinygo-org.github.io/tinygo-site/targets/avr/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tinygo-org.github.io/tinygo-site/targets/avr/</guid>
+      <description>Note: the AVR backend of LLVM is still experimental so you may encounter bugs.
+ Arduino Uno (ATmega328p) Digispark (ATtiny85) Very limited support at the moment.  </description>
     </item>
     
     <item>
@@ -129,6 +161,15 @@ This is not necessary on microcontrollers because debugging symbols are not flas
       <description>Like most compilers, TinyGo is a compiler built as a pipeline of transformations, that each translate an input to a simpler output version (also called lowering). However, most of these part are not in TinyGo itself. The frontend is mostly implemented by external Go libraries, and most optimizations and code generation is implemented by LLVM.
 This is roughly the pipeline for TinyGo:
  Lexing, parsing, typechecking and AST building is done by packages in the standard library and in the golang.</description>
+    </item>
+    
+    <item>
+      <title>WebAssembly</title>
+      <link>https://tinygo-org.github.io/tinygo-site/targets/wasm/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tinygo-org.github.io/tinygo-site/targets/wasm/</guid>
+      <description>WebAssembly support is relatively new but appears to be stable.</description>
     </item>
     
   </channel>

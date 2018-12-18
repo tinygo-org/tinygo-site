@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/tinygo-site/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/tinygo-site/images/favicon.png" type="image/x-icon" />
-    <title>Using TinyGo with Docker :: TinyGo</title>
+    <title>AVR :: TinyGo</title>
 
     
     <link href="/tinygo-site/css/nucleus.css?1545169495" rel="stylesheet">
@@ -34,7 +34,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/tinygo-site/docker/using/">
+  <body class="" data-url="/tinygo-site/targets/avr/">
     <nav id="sidebar" class="">
 
 
@@ -256,7 +256,7 @@
   
     
     <li data-nav-id="/tinygo-site/docker/" title="Using With Docker" class="dd-item 
-        parent
+        
         
         
         ">
@@ -280,7 +280,7 @@
  
   
     
-      <li data-nav-id="/tinygo-site/docker/using/" title="Using TinyGo with Docker" class="dd-item active">
+      <li data-nav-id="/tinygo-site/docker/using/" title="Using TinyGo with Docker" class="dd-item ">
         <a href="/tinygo-site/docker/using/">
         Using TinyGo with Docker
         
@@ -415,7 +415,7 @@
   
     
     <li data-nav-id="/tinygo-site/targets/" title="Supported Targets" class="dd-item 
-        
+        parent
         
         
         ">
@@ -477,7 +477,7 @@
  
   
     
-      <li data-nav-id="/tinygo-site/targets/avr/" title="AVR" class="dd-item ">
+      <li data-nav-id="/tinygo-site/targets/avr/" title="AVR" class="dd-item active">
         <a href="/tinygo-site/targets/avr/">
         AVR
         
@@ -572,7 +572,7 @@
             
           
           
-            <a href='/tinygo-site/'>Home</a> > <a href='/tinygo-site/docker/'>Using With Docker</a> > Using TinyGo with Docker
+            <a href='/tinygo-site/'>Home</a> > <a href='/tinygo-site/targets/'>Supported Targets</a> > AVR
           
          
           
@@ -597,41 +597,17 @@
         
         <div id="body-inner">
           
-            <h1>Using TinyGo with Docker</h1>
+            <h1>AVR</h1>
           
 
         
 
 
-<p>A docker container exists for easy access to the TinyGo CLI. For example, to compile <code>wasm.wasm</code> for the WebAssembly example, from the root of the repository:</p>
-
-<pre><code>docker run --rm -v $(pwd):/src tinygo/tinygo tinygo build -o /src/wasm.wasm -target wasm examples/wasm
-</code></pre>
-
-<p>To compile <code>blinky1.hex</code> targeting an ARM microcontroller, such as the PCA10040:</p>
-
-<pre><code>docker run --rm -v $(pwd):/src tinygo/tinygo tinygo build -o /src/blinky1.hex -size=short -target=pca10040 examples/blinky1
-</code></pre>
-
-<p>To compile <code>blinky1.hex</code> targeting an AVR microcontroller such as the Arduino:</p>
-
-<pre><code>docker run --rm -v $(pwd):/src tinygo/tinygo tinygo build -o /src/blinky1.hex -size=short -target=arduino examples/blinky1
-</code></pre>
-
-<p>For projects that have remote dependencies outside of the standard library and go code within your own project, you will need to map your entire GOPATH into the docker image in order for those dependencies to be found:</p>
-
-<pre><code>docker run  -v $(PWD):/mysrc -v $GOPATH:/gohost -e &quot;GOPATH=$GOPATH:/gohost&quot; tinygo/tinygo tinygo build -o /mysrc/wasmout.wasm -target wasm /mysrc/wasm-main.go
-</code></pre>
-
-<p><strong>note: At this time, tinygo does not resolve dependencies from the /vendor/ folder within your project.</strong></p>
-
-<p>For microcontroller development you must flash your hardware devices from your host environment, since you cannot run <code>tinygo flash</code> from inside the docker container.</p>
-
-<p>So your workflow could be:</p>
+<p>Note: the AVR backend of LLVM is still experimental so you may encounter bugs.</p>
 
 <ul>
-<li>Compile TinyGo code using the Docker container into a HEX file.</li>
-<li>Flash the HEX file from your host environment to the target microcontroller.</li>
+<li><a href="https://store.arduino.cc/arduino-uno-rev3">Arduino Uno</a> (<a href="https://www.microchip.com/wwwproducts/en/ATmega328p">ATmega328p</a>)</li>
+<li><a href="http://digistump.com/products/1">Digispark</a> (<a href="https://www.microchip.com/wwwproducts/en/ATtiny85">ATtiny85</a>) Very limited support at the moment.</li>
 </ul>
 
 
@@ -802,7 +778,6 @@
             
                 
                     
-                    
                 
                 
 
@@ -810,90 +785,6 @@
                     
                     
 
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
                     
                         
             
@@ -979,6 +870,94 @@
             
             
                 
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -1003,10 +982,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/tinygo-site/docker/" title="Using With Docker"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/tinygo-site/targets/arm/" title="ARM / Cortex-M"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/tinygo-site/compiler-internals/" title="Compiler Internals" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/tinygo-site/targets/wasm/" title="WebAssembly" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

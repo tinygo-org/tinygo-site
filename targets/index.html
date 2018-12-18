@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/tinygo-site/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/tinygo-site/images/favicon.png" type="image/x-icon" />
-    <title>Using TinyGo with Docker :: TinyGo</title>
+    <title>Supported Targets :: TinyGo</title>
 
     
     <link href="/tinygo-site/css/nucleus.css?1545169495" rel="stylesheet">
@@ -34,7 +34,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/tinygo-site/docker/using/">
+  <body class="" data-url="/tinygo-site/targets/">
     <nav id="sidebar" class="">
 
 
@@ -256,7 +256,7 @@
   
     
     <li data-nav-id="/tinygo-site/docker/" title="Using With Docker" class="dd-item 
-        parent
+        
         
         
         ">
@@ -280,7 +280,7 @@
  
   
     
-      <li data-nav-id="/tinygo-site/docker/using/" title="Using TinyGo with Docker" class="dd-item active">
+      <li data-nav-id="/tinygo-site/docker/using/" title="Using TinyGo with Docker" class="dd-item ">
         <a href="/tinygo-site/docker/using/">
         Using TinyGo with Docker
         
@@ -415,8 +415,8 @@
   
     
     <li data-nav-id="/tinygo-site/targets/" title="Supported Targets" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/tinygo-site/targets/">
@@ -556,8 +556,6 @@
                         </a>
                     </span>
                   
-                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
-                  
                   <span class="links">
                  
                  
@@ -568,13 +566,7 @@
             
           
           
-            
-            
-          
-          
-            <a href='/tinygo-site/'>Home</a> > <a href='/tinygo-site/docker/'>Using With Docker</a> > Using TinyGo with Docker
-          
-         
+            <a href='/tinygo-site/'>Home</a> > Supported Targets
           
          
           
@@ -583,63 +575,34 @@
                   </span>
                 </div>
                 
-                    <div class="progress">
-    <div class="wrapper">
-
-    </div>
-</div>
-
-                
               </div>
             </div>
             
 
         
+          <div id="chapter">
+        
         <div id="body-inner">
-          
-            <h1>Using TinyGo with Docker</h1>
           
 
         
 
 
-<p>A docker container exists for easy access to the TinyGo CLI. For example, to compile <code>wasm.wasm</code> for the WebAssembly example, from the root of the repository:</p>
 
-<pre><code>docker run --rm -v $(pwd):/src tinygo/tinygo tinygo build -o /src/wasm.wasm -target wasm examples/wasm
-</code></pre>
 
-<p>To compile <code>blinky1.hex</code> targeting an ARM microcontroller, such as the PCA10040:</p>
+<h1 id="supported-targets">Supported targets</h1>
 
-<pre><code>docker run --rm -v $(pwd):/src tinygo/tinygo tinygo build -o /src/blinky1.hex -size=short -target=pca10040 examples/blinky1
-</code></pre>
+<p>TinyGo makes it easy to add new targets. If your target isn&rsquo;t listed here, please raise an issue in the <a href="https://github.com/aykevl/tinygo/issues">issue tracker</a>.</p>
 
-<p>To compile <code>blinky1.hex</code> targeting an AVR microcontroller such as the Arduino:</p>
-
-<pre><code>docker run --rm -v $(pwd):/src tinygo/tinygo tinygo build -o /src/blinky1.hex -size=short -target=arduino examples/blinky1
-</code></pre>
-
-<p>For projects that have remote dependencies outside of the standard library and go code within your own project, you will need to map your entire GOPATH into the docker image in order for those dependencies to be found:</p>
-
-<pre><code>docker run  -v $(PWD):/mysrc -v $GOPATH:/gohost -e &quot;GOPATH=$GOPATH:/gohost&quot; tinygo/tinygo tinygo build -o /mysrc/wasmout.wasm -target wasm /mysrc/wasm-main.go
-</code></pre>
-
-<p><strong>note: At this time, tinygo does not resolve dependencies from the /vendor/ folder within your project.</strong></p>
-
-<p>For microcontroller development you must flash your hardware devices from your host environment, since you cannot run <code>tinygo flash</code> from inside the docker container.</p>
-
-<p>So your workflow could be:</p>
-
-<ul>
-<li>Compile TinyGo code using the Docker container into a HEX file.</li>
-<li>Flash the HEX file from your host environment to the target microcontroller.</li>
-</ul>
+<p>Support for the ESP8266/ESP32 chips will take a lot of work if they ever get support. See the FAQ for details.</p>
 
 
 <footer class=" footline" >
 	
 </footer>
 
-
+        
+            </div> 
         
         </div> 
         
@@ -802,7 +765,6 @@
             
                 
                     
-                    
                 
                 
 
@@ -815,7 +777,6 @@
             
             
                 
-                    
                     
                 
                 
@@ -835,9 +796,6 @@
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -919,6 +877,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -931,6 +890,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1003,10 +965,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/tinygo-site/docker/" title="Using With Docker"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/tinygo-site/compiler-internals/pipeline/" title="Pipeline"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/tinygo-site/compiler-internals/" title="Compiler Internals" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/tinygo-site/targets/posix/" title="POSIX-like" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1037,4 +999,3 @@
 
   </body>
 </html>
-

@@ -29,8 +29,11 @@ build Compile the given program. The output binary is specified using the -o par
       <guid>https://tinygo-org.github.io/tinygo-site/usage/important-options/</guid>
       <description>There are a few flags to control how binaries are built:
 -o Output filename, see the build command.
--target Select the target you want to use. Leave it empty to compile for the host. Example targets:
- wasm WebAssembly target. Creates .wasm files that can be run in a web browser. arduino Compile using the experimental AVR backend to run Go programs on an Arduino Uno. microbit Compile programs for the BBC micro:bit &amp;lt;https://microbit.</description>
+-target Select the target you want to use. Leave it empty to compile for the host.
+Example targets:
+ wasm WebAssembly target. Creates .wasm files that can be run in a web browser.
+ arduino Compile using the experimental AVR backend to run Go programs on an Arduino Uno.
+ microbit Compile programs for the BBC micro:bit &amp;lt;https://microbit.</description>
     </item>
     
     <item>

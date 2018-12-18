@@ -12,19 +12,19 @@
     <title>Important Build Options :: TinyGo</title>
 
     
-    <link href="/tinygo-site/css/nucleus.css?1545167733" rel="stylesheet">
-    <link href="/tinygo-site/css/fontawesome-all.min.css?1545167733" rel="stylesheet">
-    <link href="/tinygo-site/css/hybrid.css?1545167733" rel="stylesheet">
-    <link href="/tinygo-site/css/featherlight.min.css?1545167733" rel="stylesheet">
-    <link href="/tinygo-site/css/perfect-scrollbar.min.css?1545167733" rel="stylesheet">
-    <link href="/tinygo-site/css/auto-complete.css?1545167733" rel="stylesheet">
-    <link href="/tinygo-site/css/theme.css?1545167733" rel="stylesheet">
-    <link href="/tinygo-site/css/hugo-theme.css?1545167733" rel="stylesheet">
+    <link href="/tinygo-site/css/nucleus.css?1545169495" rel="stylesheet">
+    <link href="/tinygo-site/css/fontawesome-all.min.css?1545169495" rel="stylesheet">
+    <link href="/tinygo-site/css/hybrid.css?1545169495" rel="stylesheet">
+    <link href="/tinygo-site/css/featherlight.min.css?1545169495" rel="stylesheet">
+    <link href="/tinygo-site/css/perfect-scrollbar.min.css?1545169495" rel="stylesheet">
+    <link href="/tinygo-site/css/auto-complete.css?1545169495" rel="stylesheet">
+    <link href="/tinygo-site/css/theme.css?1545169495" rel="stylesheet">
+    <link href="/tinygo-site/css/hugo-theme.css?1545169495" rel="stylesheet">
     
-      <link href="/tinygo-site/css/theme-blue.css?1545167733" rel="stylesheet">
+      <link href="/tinygo-site/css/theme-blue.css?1545169495" rel="stylesheet">
     
 
-    <script src="/tinygo-site/js/jquery-2.x.min.js?1545167733"></script>
+    <script src="/tinygo-site/js/jquery-2.x.min.js?1545169495"></script>
 
     <style type="text/css">
       :root #header + #content > #left > #rlblock_left{
@@ -54,14 +54,14 @@
     <span data-search-clear=""><i class="fas fa-close"></i></span>
 </div>
 
-<script type="text/javascript" src="/tinygo-site/js/lunr.min.js?1545167733"></script>
-<script type="text/javascript" src="/tinygo-site/js/auto-complete.js?1545167733"></script>
+<script type="text/javascript" src="/tinygo-site/js/lunr.min.js?1545169495"></script>
+<script type="text/javascript" src="/tinygo-site/js/auto-complete.js?1545169495"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/tinygo-org.github.io\/tinygo-site\/";
     
 </script>
-<script type="text/javascript" src="/tinygo-site/js/search.js?1545167733"></script>
+<script type="text/javascript" src="/tinygo-site/js/search.js?1545169495"></script>
 
     
   </div>
@@ -408,6 +408,114 @@
  
 
           
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/tinygo-site/targets/" title="Supported Targets" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/tinygo-site/targets/">
+          Supported Targets
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/tinygo-site/targets/posix/" title="POSIX-like" class="dd-item ">
+        <a href="/tinygo-site/targets/posix/">
+        POSIX-like
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/tinygo-site/targets/arm/" title="ARM / Cortex-M" class="dd-item ">
+        <a href="/tinygo-site/targets/arm/">
+        ARM / Cortex-M
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/tinygo-site/targets/avr/" title="AVR" class="dd-item ">
+        <a href="/tinygo-site/targets/avr/">
+        AVR
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/tinygo-site/targets/wasm/" title="WebAssembly" class="dd-item ">
+        <a href="/tinygo-site/targets/wasm/">
+        WebAssembly
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
          
     </ul>
 
@@ -501,22 +609,25 @@
 Output filename, see the <code>build</code> command.</p>
 
 <p><code>-target</code>
-Select the target you want to use. Leave it empty to compile for the host.
-Example targets:</p>
+Select the target you want to use. Leave it empty to compile for the host.</p>
+
+<p>Example targets:</p>
 
 <ul>
-<li>wasm
-WebAssembly target. Creates .wasm files that can be run in a web browser.</li>
-<li>arduino
-Compile using the experimental AVR backend to run Go programs on an Arduino Uno.</li>
-<li>microbit
-Compile programs for the <code>BBC micro:bit &lt;https://microbit.org/&gt;</code>_.</li>
-<li>qemu
-Run on a Stellaris LM3S as emulated by QEMU.</li>
+<li><p>wasm
+WebAssembly target. Creates .wasm files that can be run in a web browser.</p></li>
+
+<li><p>arduino
+Compile using the experimental AVR backend to run Go programs on an Arduino Uno.</p></li>
+
+<li><p>microbit
+Compile programs for the <code>BBC micro:bit &lt;https://microbit.org/&gt;</code>_.</p></li>
+
+<li><p>qemu
+Run on a Stellaris LM3S as emulated by QEMU.</p></li>
 </ul>
 
-<p>This switch also configures the emulator, flash tool and debugger to use so
-you don&rsquo;t have to fiddle with those options.</p>
+<p>This switch also configures the emulator, flash tool and debugger to use so you don&rsquo;t have to fiddle with those options.</p>
 
 <p>Read [supported targets]() for a list of supported targets.</p>
 
@@ -527,28 +638,36 @@ Specify the serial port used for flashing. This is used for the Arduino Uno, whi
 Which optimization level to use. Optimization levels roughly follow standard <code>-O</code> level options like <code>-O2</code>, <code>-Os</code>, etc. Available optimization levels:</p>
 
 <ul>
-<li><code>-opt=0</code>
-Disable as much optimizations as possible. There are still a few optimization passes that run to make sure the program executes correctly, but all LLVM passes that can be disabled are disabled.</li>
-<li><code>-opt=1</code>
-Enable only a few optimization passes. In particular, this keeps the inliner disabled. It can be useful when you want to look at the generated IR but want to avoid the noise that is common in non-optimized code.</li>
-<li><code>-opt=2</code>
-A good optimization level for use cases not strongly limited by code size. Provided here for completeness. It enables most optimizations and will likely result in the fastest code.</li>
-<li><code>-opt=s</code>
-Like <code>-opt=2</code>, but while being more careful about code size. It provides a balance between performance and code size.</li>
-<li><code>-opt=z</code> (default)
-Like <code>-opt=s</code>, but more aggressive about code size. This pass also reduces the inliner threshold by a large margin. Use this pass if you care a lot about code size.</li>
+<li><p><code>-opt=0</code>
+Disable as much optimizations as possible. There are still a few optimization passes that run to make sure the program executes correctly, but all LLVM passes that can be disabled are disabled.</p></li>
+
+<li><p><code>-opt=1</code>
+Enable only a few optimization passes. In particular, this keeps the inliner disabled. It can be useful when you want to look at the generated IR but want to avoid the noise that is common in non-optimized code.</p></li>
+
+<li><p><code>-opt=2</code>
+A good optimization level for use cases not strongly limited by code size. Provided here for completeness. It enables most optimizations and will likely result in the fastest code.</p></li>
+
+<li><p><code>-opt=s</code>
+Like <code>-opt=2</code>, but while being more careful about code size. It provides a balance between performance and code size.</p></li>
+
+<li><p><code>-opt=z</code> (default)
+Like <code>-opt=s</code>, but more aggressive about code size. This pass also reduces the inliner threshold by a large margin. Use this pass if you care a lot about code size.</p></li>
 
 <li><p><code>-ocd-output</code>
-Print output of the on-chip debugger tool (like OpenOCD) while in a <code>tinygo gdb</code> session. This can be useful to diagnose connection problems.
--<code>-gc</code>
-Use the specified memory manager.
-<code>-gc=none</code>
-Do not use a memory manager at all. This will cause a link error at every place in the program that tries to allocate memory. The primary use case for this is finding such locations.</p>
+Print output of the on-chip debugger tool (like OpenOCD) while in a <code>tinygo gdb</code> session. This can be useful to diagnose connection problems.</p></li>
+</ul>
 
-<p><code>-gc=dumb</code>
-Only allocate memory, never free it. This is the simplest allocator possible and uses very few resources while being very portable. Also, allocation is very fast. Larger programs will likely need a real garbage collector.</p>
+<p>-<code>-gc</code>
+Use the specified memory manager:</p>
 
-<p><code>-gc=marksweep</code>
+<ul>
+<li><p><code>-gc=none</code>
+Do not use a memory manager at all. This will cause a link error at every place in the program that tries to allocate memory. The primary use case for this is finding such locations.</p></li>
+
+<li><p><code>-gc=dumb</code>
+Only allocate memory, never free it. This is the simplest allocator possible and uses very few resources while being very portable. Also, allocation is very fast. Larger programs will likely need a real garbage collector.</p></li>
+
+<li><p><code>-gc=marksweep</code>
 Simple conservative mark/sweep garbage collector. This collector does not yet work on all platforms. Also, the performance of the collector is highly unpredictable as any allocation may trigger a garbage collection cycle.</p></li>
 </ul>
 
@@ -835,6 +954,86 @@ Simple conservative mark/sweep garbage collector. This collector does not yet wo
             
         
                     
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
             
         
         
@@ -857,20 +1056,20 @@ Simple conservative mark/sweep garbage collector. This collector does not yet wo
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/tinygo-site/js/clipboard.min.js?1545167733"></script>
-    <script src="/tinygo-site/js/perfect-scrollbar.min.js?1545167733"></script>
-    <script src="/tinygo-site/js/perfect-scrollbar.jquery.min.js?1545167733"></script>
-    <script src="/tinygo-site/js/jquery.sticky.js?1545167733"></script>
-    <script src="/tinygo-site/js/featherlight.min.js?1545167733"></script>
-    <script src="/tinygo-site/js/html5shiv-printshiv.min.js?1545167733"></script>
-    <script src="/tinygo-site/js/highlight.pack.js?1545167733"></script>
+    <script src="/tinygo-site/js/clipboard.min.js?1545169495"></script>
+    <script src="/tinygo-site/js/perfect-scrollbar.min.js?1545169495"></script>
+    <script src="/tinygo-site/js/perfect-scrollbar.jquery.min.js?1545169495"></script>
+    <script src="/tinygo-site/js/jquery.sticky.js?1545169495"></script>
+    <script src="/tinygo-site/js/featherlight.min.js?1545169495"></script>
+    <script src="/tinygo-site/js/html5shiv-printshiv.min.js?1545169495"></script>
+    <script src="/tinygo-site/js/highlight.pack.js?1545169495"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/tinygo-site/js/modernizr.custom.71422.js?1545167733"></script>
-    <script src="/tinygo-site/js/learn.js?1545167733"></script>
-    <script src="/tinygo-site/js/hugo-learn.js?1545167733"></script>
+    <script src="/tinygo-site/js/modernizr.custom.71422.js?1545169495"></script>
+    <script src="/tinygo-site/js/learn.js?1545169495"></script>
+    <script src="/tinygo-site/js/hugo-learn.js?1545169495"></script>
 
-    <link href="/tinygo-site/mermaid/mermaid.css?1545167733" type="text/css" rel="stylesheet" />
-    <script src="/tinygo-site/mermaid/mermaid.js?1545167733"></script>
+    <link href="/tinygo-site/mermaid/mermaid.css?1545169495" type="text/css" rel="stylesheet" />
+    <script src="/tinygo-site/mermaid/mermaid.js?1545169495"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

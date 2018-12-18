@@ -15,11 +15,19 @@
   </url>
   
   <url>
+    <loc>https://tinygo-org.github.io/tinygo-site/targets/posix/</loc>
+  </url>
+  
+  <url>
     <loc>https://tinygo-org.github.io/tinygo-site/usage/subcommands/</loc>
   </url>
   
   <url>
     <loc>https://tinygo-org.github.io/tinygo-site/docker/using/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tinygo-org.github.io/tinygo-site/targets/arm/</loc>
   </url>
   
   <url>
@@ -32,6 +40,10 @@
   
   <url>
     <loc>https://tinygo-org.github.io/tinygo-site/getting-started/usage/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tinygo-org.github.io/tinygo-site/targets/avr/</loc>
   </url>
   
   <url>
@@ -51,6 +63,10 @@
   </url>
   
   <url>
+    <loc>https://tinygo-org.github.io/tinygo-site/targets/wasm/</loc>
+  </url>
+  
+  <url>
     <loc>https://tinygo-org.github.io/tinygo-site/usage/</loc>
   </url>
   
@@ -60,6 +76,10 @@
   
   <url>
     <loc>https://tinygo-org.github.io/tinygo-site/compiler-internals/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tinygo-org.github.io/tinygo-site/targets/</loc>
   </url>
   
   <url>
