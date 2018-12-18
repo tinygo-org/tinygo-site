@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/tinygo-site/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/tinygo-site/images/favicon.png" type="image/x-icon" />
-    <title>Using With Docker :: TinyGo</title>
+    <title>Misc. Build Options :: TinyGo</title>
 
     
     <link href="/tinygo-site/css/nucleus.css?1545167733" rel="stylesheet">
@@ -34,7 +34,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/tinygo-site/docker/">
+  <body class="" data-url="/tinygo-site/usage/misc-options/">
     <nav id="sidebar" class="">
 
 
@@ -167,7 +167,7 @@
   
     
     <li data-nav-id="/tinygo-site/usage/" title="Using TinyGo" class="dd-item 
-        
+        parent
         
         
         ">
@@ -229,7 +229,7 @@
  
   
     
-      <li data-nav-id="/tinygo-site/usage/misc-options/" title="Misc. Build Options" class="dd-item ">
+      <li data-nav-id="/tinygo-site/usage/misc-options/" title="Misc. Build Options" class="dd-item active">
         <a href="/tinygo-site/usage/misc-options/">
         Misc. Build Options
         
@@ -256,8 +256,8 @@
   
     
     <li data-nav-id="/tinygo-site/docker/" title="Using With Docker" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/tinygo-site/docker/">
@@ -448,6 +448,8 @@
                         </a>
                     </span>
                   
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
                   <span class="links">
                  
                  
@@ -458,7 +460,13 @@
             
           
           
-            <a href='/tinygo-site/'>Home</a> > Using With Docker
+            
+            
+          
+          
+            <a href='/tinygo-site/'>Home</a> > <a href='/tinygo-site/usage/'>Using TinyGo</a> > Misc. Build Options
+          
+         
           
          
           
@@ -467,32 +475,64 @@
                   </span>
                 </div>
                 
+                    <div class="progress">
+    <div class="wrapper">
+
+    </div>
+</div>
+
+                
               </div>
             </div>
             
 
         
-          <div id="chapter">
-        
         <div id="body-inner">
+          
+            <h1>Misc. Build Options</h1>
           
 
         
 
 
+<p><code>-no-debug</code>
+Disable outputting debug symbols. This can be useful for WebAssembly, as there is no debugger for .wasm files yet and .wasm files are generally served directly. Avoiding debug symbols can have a big impact on generated binary size, reducing them by more than half.</p>
 
+<p>This is not necessary on microcontrollers because debugging symbols are not flashed to the microcontroller. Additionally, you will need it when you use <code>tinygo gdb</code>. In general, it is recommended to include debug symbols unless you have a good reason not to.</p>
 
-<h1 id="tinygo-with-docker">TinyGo with Docker</h1>
+<p>Note: while there is some support for debug symbols, only line numbers have been implemented so far. That means single-stepping and stacktraces work just fine, but no variables can be inspected.</p>
 
-<p>You can use our Docker image to be able to run the TinyGo compiler on your computer without having to install all the dependencies. Read on to learn how.</p>
+<p><code>-size</code>
+Print size (<code>none</code>, <code>short</code>, or <code>full</code>) of the output (linked) binary. Note that the calculated size includes RAM reserved for the stack.</p>
+
+<p>-<code>none</code> (default)
+Print nothing.
+-<code>short</code>
+Print size statistics, roughly like what the <code>size</code> binutils program would print but with useful flash and RAM columns:</p>
+
+<pre><code>code    data     bss |   flash     ram
+5780     144    2132 |    5924    2276
+</code></pre>
+
+<p>-<code>full</code>
+Try to determine per package how much space is used. Note that these calculations are merely guesses and can somethimes be way off due to various reasons like inlining:</p>
+
+<pre><code>code  rodata    data     bss |   flash     ram | package
+876        0       4       0 |     880       4 | (bootstrap)
+38         0       0       0 |      38       0 | device/arm
+0          0       0      66 |       0      66 | machine
+2994     440     124       0 |    3558     124 | main
+948      127       4       1 |    1079       5 | runtime
+4856     567     132      67 |    5555     199 | (sum)
+5780       -     144    2132 |    5924    2276 | (all)
+</code></pre>
 
 
 <footer class=" footline" >
 	
 </footer>
 
-        
-            </div> 
+
         
         </div> 
         
@@ -591,6 +631,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -603,6 +644,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -636,6 +680,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -655,6 +700,8 @@
             
                 
                     
+                        
+                        
                     
                 
                 
@@ -668,9 +715,6 @@
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -775,10 +819,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/tinygo-site/usage/misc-options/" title="Misc. Build Options"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/tinygo-site/usage/important-options/" title="Important Build Options"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/tinygo-site/docker/using/" title="Using TinyGo with Docker" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/tinygo-site/docker/" title="Using With Docker" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -809,3 +853,4 @@
 
   </body>
 </html>
+

@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/tinygo-site/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/tinygo-site/images/favicon.png" type="image/x-icon" />
-    <title>Using With Docker :: TinyGo</title>
+    <title>Subcommands :: TinyGo</title>
 
     
     <link href="/tinygo-site/css/nucleus.css?1545167733" rel="stylesheet">
@@ -34,7 +34,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/tinygo-site/docker/">
+  <body class="" data-url="/tinygo-site/usage/subcommands/">
     <nav id="sidebar" class="">
 
 
@@ -167,7 +167,7 @@
   
     
     <li data-nav-id="/tinygo-site/usage/" title="Using TinyGo" class="dd-item 
-        
+        parent
         
         
         ">
@@ -191,7 +191,7 @@
  
   
     
-      <li data-nav-id="/tinygo-site/usage/subcommands/" title="Subcommands" class="dd-item ">
+      <li data-nav-id="/tinygo-site/usage/subcommands/" title="Subcommands" class="dd-item active">
         <a href="/tinygo-site/usage/subcommands/">
         Subcommands
         
@@ -256,8 +256,8 @@
   
     
     <li data-nav-id="/tinygo-site/docker/" title="Using With Docker" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/tinygo-site/docker/">
@@ -448,6 +448,8 @@
                         </a>
                     </span>
                   
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
                   <span class="links">
                  
                  
@@ -458,7 +460,13 @@
             
           
           
-            <a href='/tinygo-site/'>Home</a> > Using With Docker
+            
+            
+          
+          
+            <a href='/tinygo-site/'>Home</a> > <a href='/tinygo-site/usage/'>Using TinyGo</a> > Subcommands
+          
+         
           
          
           
@@ -467,14 +475,36 @@
                   </span>
                 </div>
                 
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#build">build</a></li>
+<li><a href="#run">run</a></li>
+<li><a href="#flash">flash</a></li>
+<li><a href="#gdb">gdb</a></li>
+<li><a href="#clean">clean</a></li>
+<li><a href="#help">help</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
+                
               </div>
             </div>
             
 
         
-          <div id="chapter">
-        
         <div id="body-inner">
+          
+            <h1>Subcommands</h1>
           
 
         
@@ -482,17 +512,60 @@
 
 
 
-<h1 id="tinygo-with-docker">TinyGo with Docker</h1>
+<p>TinyGo tries to be similar to the main <code>go</code> command in usage. It consists of the following main subcommands:</p>
 
-<p>You can use our Docker image to be able to run the TinyGo compiler on your computer without having to install all the dependencies. Read on to learn how.</p>
+<h3 id="build">build</h3>
+
+<p>Compile the given program. The output binary is specified using the <code>-o</code>
+parameter. The generated file type depends on the extension:</p>
+
+<p><code>.o</code>
+Create a relocatable object file. You can use this option if you don&rsquo;t want to use the TinyGo build system or want to do other custom things.</p>
+
+<p><code>.ll</code>
+Create textual LLVM IR, after optimization. This is mainly useful for debugging.</p>
+
+<p><code>.bc</code>
+Create LLVM bitcode, after optimization. This may be useful for debugging or for linking into other programs using LTO.</p>
+
+<p><code>.hex</code>
+Create an <a href="https://en.wikipedia.org/wiki/Intel_HEX">Intel HEX</a> file to flash it to a microcontroller.</p>
+
+<p><code>.bin</code>
+Similar, but create a binary file.</p>
+
+<p><code>.wasm</code>
+Compile and link a WebAssembly file.</p>
+
+<p>(all other)
+Compile and link the program into a regular executable. For microcontrollers, it is common to use the .elf file extension to indicate a linked ELF file is generated. For Linux, it is common to build binaries with no extension at all.</p>
+
+<h3 id="run">run</h3>
+
+<p>Run the program, either directly on the host or in an emulated environment (depending on <code>-target</code>).</p>
+
+<h3 id="flash">flash</h3>
+
+<p>Flash the program to a microcontroller.</p>
+
+<h3 id="gdb">gdb</h3>
+
+<p>Compile the program, optionally flash it to a microcontroller if it is a remote target, and drop into a GDB shell. From here you can break the current program (Ctrl-C), single-step, show a backtrace, etc. A debugger must be specified for your particular target in the target .json file and the required tools (like GDB for your target) must be installed as well.</p>
+
+<h3 id="clean">clean</h3>
+
+<p>Clean the cache directory, normally stored in <code>$HOME/.cache/tinygo</code>. This is not normally needed.</p>
+
+<h3 id="help">help</h3>
+
+<p>Print a short summary of the available commands, plus a list of command flags.</p>
 
 
 <footer class=" footline" >
 	
 </footer>
 
-        
-            </div> 
+
         
         </div> 
         
@@ -591,6 +664,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -603,6 +677,26 @@
             
             
                 
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -631,22 +725,6 @@
             
         
                     
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
             
         
                     
@@ -655,7 +733,6 @@
             
                 
                     
-                    
                 
                 
 
@@ -668,9 +745,6 @@
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -775,10 +849,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/tinygo-site/usage/misc-options/" title="Misc. Build Options"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/tinygo-site/usage/" title="Using TinyGo"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/tinygo-site/docker/using/" title="Using TinyGo with Docker" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/tinygo-site/usage/important-options/" title="Important Build Options" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -809,3 +883,4 @@
 
   </body>
 </html>
+

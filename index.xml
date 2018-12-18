@@ -22,6 +22,15 @@ ARM Cortex-M The Cortex-M family of microcontrollers is well supported, as it us
     </item>
     
     <item>
+      <title>Differences from Go</title>
+      <link>https://tinygo-org.github.io/tinygo-site/compiler-internals/differences-from-go/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tinygo-org.github.io/tinygo-site/compiler-internals/differences-from-go/</guid>
+      <description>A whole program is compiled in a single step, without intermediate linking. This makes incremental development much slower for large programs but enables far more optimization opportunities. In the future, an option should be added for incremental compilation during edit-compile-test cycles. Interfaces are always represented as a {typecode, value} pair. Unlike Go https://research.swtch.com/interfaces, TinyGo will not precompute a list of function pointers for fast interface method calls. Instead, all interface method calls are looked up where they are used.</description>
+    </item>
+    
+    <item>
       <title>Installation</title>
       <link>https://tinygo-org.github.io/tinygo-site/getting-started/installation/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -31,6 +40,17 @@ ARM Cortex-M The Cortex-M family of microcontrollers is well supported, as it us
 go get -u github.com/aykevl/tinygo  If you get an error like this::
 /usr/local/go/pkg/tool/linux_amd64/link: running g++ failed: exit status 1 /usr/bin/ld: error: cannot find -lLLVM-7 cgo-gcc-prolog:58: error: undefined reference to &#39;LLVMVerifyFunction&#39; cgo-gcc-prolog:80: error: undefined reference to &#39;LLVMVerifyModule&#39; [...etc...]  Or like this::
 ../go-llvm/analysis.go:17:93: fatal error: llvm-c/Analysis.h: No such file or directory #include &amp;quot;llvm-c/Analysis.h&amp;quot; // If you are getting an error here read bindings/go/README.</description>
+    </item>
+    
+    <item>
+      <title>Subcommands</title>
+      <link>https://tinygo-org.github.io/tinygo-site/usage/subcommands/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tinygo-org.github.io/tinygo-site/usage/subcommands/</guid>
+      <description>TinyGo tries to be similar to the main go command in usage. It consists of the following main subcommands:
+build Compile the given program. The output binary is specified using the -o parameter. The generated file type depends on the extension:
+.o Create a relocatable object file. You can use this option if you don&amp;rsquo;t want to use the TinyGo build system or want to do other custom things.</description>
     </item>
     
     <item>
@@ -45,6 +65,29 @@ docker run --rm -v $(pwd):/src tinygo/tinygo tinygo build -o /src/blinky1.hex -s
     </item>
     
     <item>
+      <title>Datatypes</title>
+      <link>https://tinygo-org.github.io/tinygo-site/compiler-internals/datatypes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tinygo-org.github.io/tinygo-site/compiler-internals/datatypes/</guid>
+      <description>TinyGo uses a different representation for some data types than standard Go.
+string A string is encoded as a {ptr, len} tuple. The type is actually defined in the runtime as runtime._string, in src/runtime/string.go. That file also contains some compiler intrinsics for dealing with strings and UTF-8.
+slice A slice is encoded as a {ptr, len, cap} tuple. There is no runtime definition of it as slices are a generic type and the pointer type is different for each slice.</description>
+    </item>
+    
+    <item>
+      <title>Important Build Options</title>
+      <link>https://tinygo-org.github.io/tinygo-site/usage/important-options/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tinygo-org.github.io/tinygo-site/usage/important-options/</guid>
+      <description>There are a few flags to control how binaries are built:
+-o Output filename, see the build command.
+-target Select the target you want to use. Leave it empty to compile for the host. Example targets:
+ wasm WebAssembly target. Creates .wasm files that can be run in a web browser. arduino Compile using the experimental AVR backend to run Go programs on an Arduino Uno. microbit Compile programs for the BBC micro:bit &amp;lt;https://microbit.</description>
+    </item>
+    
+    <item>
       <title>Usage</title>
       <link>https://tinygo-org.github.io/tinygo-site/getting-started/usage/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -54,6 +97,38 @@ docker run --rm -v $(pwd):/src tinygo/tinygo tinygo build -o /src/blinky1.hex -s
 tinygo run examples/test  Before anything can be built for a bare-metal target, you need to generate some files first:
 make gen-device  This will generate register descriptions, interrupt vectors, and linker scripts for various devices. Also, you may need to re-run this command after updates, as some updates cause changes to the generated files.
 Now you can run a blinky example.</description>
+    </item>
+    
+    <item>
+      <title>Calling convention</title>
+      <link>https://tinygo-org.github.io/tinygo-site/compiler-internals/calling-convention/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tinygo-org.github.io/tinygo-site/compiler-internals/calling-convention/</guid>
+      <description>Go uses a stack-based calling convention and passes a pointer to the argument list as the first argument in the function. There were/are plans to switch to a register-based calling convention but they&amp;rsquo;re now on hold.
+TinyGo, however, uses a register based calling convention. In fact it is somewhat compatible with the C calling convention but with a few quirks:
+ Struct parameters are split into separate arguments, if the number of fields (after flattening recursively) is 3 or lower.</description>
+    </item>
+    
+    <item>
+      <title>Misc. Build Options</title>
+      <link>https://tinygo-org.github.io/tinygo-site/usage/misc-options/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tinygo-org.github.io/tinygo-site/usage/misc-options/</guid>
+      <description>-no-debug Disable outputting debug symbols. This can be useful for WebAssembly, as there is no debugger for .wasm files yet and .wasm files are generally served directly. Avoiding debug symbols can have a big impact on generated binary size, reducing them by more than half.
+This is not necessary on microcontrollers because debugging symbols are not flashed to the microcontroller. Additionally, you will need it when you use tinygo gdb. In general, it is recommended to include debug symbols unless you have a good reason not to.</description>
+    </item>
+    
+    <item>
+      <title>Pipeline</title>
+      <link>https://tinygo-org.github.io/tinygo-site/compiler-internals/pipeline/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tinygo-org.github.io/tinygo-site/compiler-internals/pipeline/</guid>
+      <description>Like most compilers, TinyGo is a compiler built as a pipeline of transformations, that each translate an input to a simpler output version (also called lowering). However, most of these part are not in TinyGo itself. The frontend is mostly implemented by external Go libraries, and most optimizations and code generation is implemented by LLVM.
+This is roughly the pipeline for TinyGo:
+ Lexing, parsing, typechecking and AST building is done by packages in the standard library and in the golang.</description>
     </item>
     
   </channel>

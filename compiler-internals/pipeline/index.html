@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/tinygo-site/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/tinygo-site/images/favicon.png" type="image/x-icon" />
-    <title>Using With Docker :: TinyGo</title>
+    <title>Pipeline :: TinyGo</title>
 
     
     <link href="/tinygo-site/css/nucleus.css?1545167733" rel="stylesheet">
@@ -34,7 +34,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/tinygo-site/docker/">
+  <body class="" data-url="/tinygo-site/compiler-internals/pipeline/">
     <nav id="sidebar" class="">
 
 
@@ -256,8 +256,8 @@
   
     
     <li data-nav-id="/tinygo-site/docker/" title="Using With Docker" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/tinygo-site/docker/">
@@ -307,7 +307,7 @@
   
     
     <li data-nav-id="/tinygo-site/compiler-internals/" title="Compiler Internals" class="dd-item 
-        
+        parent
         
         
         ">
@@ -388,7 +388,7 @@
  
   
     
-      <li data-nav-id="/tinygo-site/compiler-internals/pipeline/" title="Pipeline" class="dd-item ">
+      <li data-nav-id="/tinygo-site/compiler-internals/pipeline/" title="Pipeline" class="dd-item active">
         <a href="/tinygo-site/compiler-internals/pipeline/">
         Pipeline
         
@@ -448,6 +448,8 @@
                         </a>
                     </span>
                   
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
                   <span class="links">
                  
                  
@@ -458,7 +460,13 @@
             
           
           
-            <a href='/tinygo-site/'>Home</a> > Using With Docker
+            
+            
+          
+          
+            <a href='/tinygo-site/'>Home</a> > <a href='/tinygo-site/compiler-internals/'>Compiler Internals</a> > Pipeline
+          
+         
           
          
           
@@ -467,32 +475,49 @@
                   </span>
                 </div>
                 
+                    <div class="progress">
+    <div class="wrapper">
+
+    </div>
+</div>
+
+                
               </div>
             </div>
             
 
         
-          <div id="chapter">
-        
         <div id="body-inner">
+          
+            <h1>Pipeline</h1>
           
 
         
 
 
+<p>Like most compilers, TinyGo is a compiler built as a pipeline of transformations, that each translate an input to a simpler output version (also called lowering). However, most of these part are not in TinyGo itself. The frontend is mostly implemented by external Go libraries, and most optimizations and code generation is implemented by LLVM.</p>
 
+<p>This is roughly the pipeline for TinyGo:</p>
 
-<h1 id="tinygo-with-docker">TinyGo with Docker</h1>
+<ul>
+<li>Lexing, parsing, typechecking and <a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">AST</a> building is done by
+packages in the <a href="https://godoc.org/go">standard library</a> and in the <a href="https://godoc.org/golang.org/x/tools/go">golang.org/x/tools/go library</a>.</li>
+<li><a href="https://en.wikipedia.org/wiki/Static_single_assignment_form">SSA</a> construction (a very important step) is done by the <a href="https://godoc.org/golang.org/x/tools/go/ssa">golang.org/x/tools/go/ssa</a> package.</li>
+<li>This SSA form is then analyzed by the <a href="https://godoc.org/github.com/aykevl/tinygo/ir">ir package</a> to learn all kinds of things about the code that help the optimizer.</li>
+<li>The Go SSA is then transformed into LLVM IR by the <a href="https://godoc.org/github.com/aykevl/tinygo/compiler">compiler package</a>. Both forms are SSA, but because Go SSA is higher level and contains Go-specific constructs (like interfaces and goroutines) this is non-trivial. However, the vast majority of the work is simply lowering the available Go SSA into LLVM IR, possibly calling some runtime library intrinsics in the process (for example, operations on maps).</li>
+<li>This LLVM IR is then optimized by the LLVM optimizer, which has a large array of standard <a href="https://llvm.org/docs/Passes.html">optimization passes</a>. Currently, the standard optimization pipeline is used as is also be used by Clang, but a pipeline better tuned for TinyGo might be used in the future.</li>
+<li>After all optimizations have run, a few fixups are needed for AVR for globals. This is implemented by the compiler package.</li>
+<li>Finally, the resulting machine code is emitted by LLVM to an object file, to be linked by an architecture-specific linker in a later step.</li>
+</ul>
 
-<p>You can use our Docker image to be able to run the TinyGo compiler on your computer without having to install all the dependencies. Read on to learn how.</p>
+<p>After this whole list of compiler phases, the Go source has been transformed into object code. It can then be emitted directly to a file (for linking in a different build system), or it can be linked directly or even be flashed to a target by TinyGo (using external tools under the hood).</p>
 
 
 <footer class=" footline" >
 	
 </footer>
 
-        
-            </div> 
+
         
         </div> 
         
@@ -655,42 +680,6 @@
             
                 
                     
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
                 
                 
 
@@ -715,10 +704,30 @@
             
         
                     
+            
+        
+                    
                         
             
             
                 
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -751,6 +760,23 @@
             
             
                 
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
                     
                 
                 
@@ -775,10 +801,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/tinygo-site/usage/misc-options/" title="Misc. Build Options"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/tinygo-site/compiler-internals/calling-convention/" title="Calling convention"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/tinygo-site/docker/using/" title="Using TinyGo with Docker" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/tinygo-site/compiler-internals/differences-from-go/" title="Differences from Go" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -809,3 +835,4 @@
 
   </body>
 </html>
+

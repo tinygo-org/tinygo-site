@@ -7,7 +7,15 @@
   </url>
   
   <url>
+    <loc>https://tinygo-org.github.io/tinygo-site/compiler-internals/differences-from-go/</loc>
+  </url>
+  
+  <url>
     <loc>https://tinygo-org.github.io/tinygo-site/getting-started/installation/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tinygo-org.github.io/tinygo-site/usage/subcommands/</loc>
   </url>
   
   <url>
@@ -15,7 +23,23 @@
   </url>
   
   <url>
+    <loc>https://tinygo-org.github.io/tinygo-site/compiler-internals/datatypes/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tinygo-org.github.io/tinygo-site/usage/important-options/</loc>
+  </url>
+  
+  <url>
     <loc>https://tinygo-org.github.io/tinygo-site/getting-started/usage/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tinygo-org.github.io/tinygo-site/compiler-internals/calling-convention/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tinygo-org.github.io/tinygo-site/usage/misc-options/</loc>
   </url>
   
   <url>
@@ -23,7 +47,19 @@
   </url>
   
   <url>
+    <loc>https://tinygo-org.github.io/tinygo-site/compiler-internals/pipeline/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tinygo-org.github.io/tinygo-site/usage/</loc>
+  </url>
+  
+  <url>
     <loc>https://tinygo-org.github.io/tinygo-site/docker/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tinygo-org.github.io/tinygo-site/compiler-internals/</loc>
   </url>
   
   <url>

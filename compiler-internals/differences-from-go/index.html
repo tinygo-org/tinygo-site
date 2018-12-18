@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/tinygo-site/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/tinygo-site/images/favicon.png" type="image/x-icon" />
-    <title>Using With Docker :: TinyGo</title>
+    <title>Differences from Go :: TinyGo</title>
 
     
     <link href="/tinygo-site/css/nucleus.css?1545167733" rel="stylesheet">
@@ -34,7 +34,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/tinygo-site/docker/">
+  <body class="" data-url="/tinygo-site/compiler-internals/differences-from-go/">
     <nav id="sidebar" class="">
 
 
@@ -256,8 +256,8 @@
   
     
     <li data-nav-id="/tinygo-site/docker/" title="Using With Docker" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/tinygo-site/docker/">
@@ -307,7 +307,7 @@
   
     
     <li data-nav-id="/tinygo-site/compiler-internals/" title="Compiler Internals" class="dd-item 
-        
+        parent
         
         
         ">
@@ -331,7 +331,7 @@
  
   
     
-      <li data-nav-id="/tinygo-site/compiler-internals/differences-from-go/" title="Differences from Go" class="dd-item ">
+      <li data-nav-id="/tinygo-site/compiler-internals/differences-from-go/" title="Differences from Go" class="dd-item active">
         <a href="/tinygo-site/compiler-internals/differences-from-go/">
         Differences from Go
         
@@ -448,6 +448,8 @@
                         </a>
                     </span>
                   
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
                   <span class="links">
                  
                  
@@ -458,7 +460,13 @@
             
           
           
-            <a href='/tinygo-site/'>Home</a> > Using With Docker
+            
+            
+          
+          
+            <a href='/tinygo-site/'>Home</a> > <a href='/tinygo-site/compiler-internals/'>Compiler Internals</a> > Differences from Go
+          
+         
           
          
           
@@ -467,32 +475,47 @@
                   </span>
                 </div>
                 
+                    <div class="progress">
+    <div class="wrapper">
+
+    </div>
+</div>
+
+                
               </div>
             </div>
             
 
         
-          <div id="chapter">
-        
         <div id="body-inner">
+          
+            <h1>Differences from Go</h1>
           
 
         
 
 
+<ul>
+<li>A whole program is compiled in a single step, without intermediate linking. This makes incremental development much slower for large programs but enables far more optimization opportunities. In the future, an option should be added for incremental compilation during edit-compile-test cycles.</li>
+<li>Interfaces are always represented as a <code>{typecode, value}</code> pair. Unlike Go <a href="https://research.swtch.com/interfaces">https://research.swtch.com/interfaces</a>, TinyGo will not precompute a list of function pointers for fast interface method calls. Instead, all interface method calls are looked up where they are used. This may sound expensive, but it avoids memory allocation at interface creation.</li>
+<li>Global variables are computed during compilation whenever possible (unlike Go, which does not have the equivalent of a <code>.data</code> section). This is an important optimization for several reasons:
 
-
-<h1 id="tinygo-with-docker">TinyGo with Docker</h1>
-
-<p>You can use our Docker image to be able to run the TinyGo compiler on your computer without having to install all the dependencies. Read on to learn how.</p>
+<ul>
+<li>Startup time is reduced. This is nice, but not the main reason.</li>
+<li>Initializing globals by copying the initial data from flash to RAM costs much less flash space as only the actual data needs to be stored, instead of all instructions to initialize these globals.</li>
+<li>Data can often be statically allocated instead of dynamically allocated at startup.</li>
+<li>Dead globals are trivially optimized away by LLVM.</li>
+<li>Constant globals are trivially recognized by LLVM and marked <code>constant</code>. This makes sure they can be stored in flash instead of RAM.</li>
+<li>Global constants are useful for constant propagation and thus for dead code elimination (like an <code>if</code> that depends on a global variable).</li>
+</ul></li>
+</ul>
 
 
 <footer class=" footline" >
 	
 </footer>
 
-        
-            </div> 
+
         
         </div> 
         
@@ -655,42 +678,6 @@
             
                 
                     
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
                 
                 
 
@@ -715,10 +702,47 @@
             
         
                     
+            
+        
+                    
                         
             
             
                 
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -775,10 +799,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/tinygo-site/usage/misc-options/" title="Misc. Build Options"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/tinygo-site/compiler-internals/" title="Compiler Internals"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/tinygo-site/docker/using/" title="Using TinyGo with Docker" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/tinygo-site/compiler-internals/datatypes/" title="Datatypes" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -809,3 +833,4 @@
 
   </body>
 </html>
+

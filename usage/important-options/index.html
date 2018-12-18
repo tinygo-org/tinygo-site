@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/tinygo-site/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/tinygo-site/images/favicon.png" type="image/x-icon" />
-    <title>Using With Docker :: TinyGo</title>
+    <title>Important Build Options :: TinyGo</title>
 
     
     <link href="/tinygo-site/css/nucleus.css?1545167733" rel="stylesheet">
@@ -34,7 +34,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/tinygo-site/docker/">
+  <body class="" data-url="/tinygo-site/usage/important-options/">
     <nav id="sidebar" class="">
 
 
@@ -167,7 +167,7 @@
   
     
     <li data-nav-id="/tinygo-site/usage/" title="Using TinyGo" class="dd-item 
-        
+        parent
         
         
         ">
@@ -210,7 +210,7 @@
  
   
     
-      <li data-nav-id="/tinygo-site/usage/important-options/" title="Important Build Options" class="dd-item ">
+      <li data-nav-id="/tinygo-site/usage/important-options/" title="Important Build Options" class="dd-item active">
         <a href="/tinygo-site/usage/important-options/">
         Important Build Options
         
@@ -256,8 +256,8 @@
   
     
     <li data-nav-id="/tinygo-site/docker/" title="Using With Docker" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/tinygo-site/docker/">
@@ -448,6 +448,8 @@
                         </a>
                     </span>
                   
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
                   <span class="links">
                  
                  
@@ -458,7 +460,13 @@
             
           
           
-            <a href='/tinygo-site/'>Home</a> > Using With Docker
+            
+            
+          
+          
+            <a href='/tinygo-site/'>Home</a> > <a href='/tinygo-site/usage/'>Using TinyGo</a> > Important Build Options
+          
+         
           
          
           
@@ -467,32 +475,89 @@
                   </span>
                 </div>
                 
+                    <div class="progress">
+    <div class="wrapper">
+
+    </div>
+</div>
+
+                
               </div>
             </div>
             
 
         
-          <div id="chapter">
-        
         <div id="body-inner">
+          
+            <h1>Important Build Options</h1>
           
 
         
 
 
+<p>There are a few flags to control how binaries are built:</p>
 
+<p><code>-o</code>
+Output filename, see the <code>build</code> command.</p>
 
-<h1 id="tinygo-with-docker">TinyGo with Docker</h1>
+<p><code>-target</code>
+Select the target you want to use. Leave it empty to compile for the host.
+Example targets:</p>
 
-<p>You can use our Docker image to be able to run the TinyGo compiler on your computer without having to install all the dependencies. Read on to learn how.</p>
+<ul>
+<li>wasm
+WebAssembly target. Creates .wasm files that can be run in a web browser.</li>
+<li>arduino
+Compile using the experimental AVR backend to run Go programs on an Arduino Uno.</li>
+<li>microbit
+Compile programs for the <code>BBC micro:bit &lt;https://microbit.org/&gt;</code>_.</li>
+<li>qemu
+Run on a Stellaris LM3S as emulated by QEMU.</li>
+</ul>
+
+<p>This switch also configures the emulator, flash tool and debugger to use so
+you don&rsquo;t have to fiddle with those options.</p>
+
+<p>Read [supported targets]() for a list of supported targets.</p>
+
+<p><code>-port</code>
+Specify the serial port used for flashing. This is used for the Arduino Uno, which is flashed over a serial port. It defaults to <code>/dev/ttyACM0</code> as that is the default port on Linux.</p>
+
+<p><code>-opt</code>
+Which optimization level to use. Optimization levels roughly follow standard <code>-O</code> level options like <code>-O2</code>, <code>-Os</code>, etc. Available optimization levels:</p>
+
+<ul>
+<li><code>-opt=0</code>
+Disable as much optimizations as possible. There are still a few optimization passes that run to make sure the program executes correctly, but all LLVM passes that can be disabled are disabled.</li>
+<li><code>-opt=1</code>
+Enable only a few optimization passes. In particular, this keeps the inliner disabled. It can be useful when you want to look at the generated IR but want to avoid the noise that is common in non-optimized code.</li>
+<li><code>-opt=2</code>
+A good optimization level for use cases not strongly limited by code size. Provided here for completeness. It enables most optimizations and will likely result in the fastest code.</li>
+<li><code>-opt=s</code>
+Like <code>-opt=2</code>, but while being more careful about code size. It provides a balance between performance and code size.</li>
+<li><code>-opt=z</code> (default)
+Like <code>-opt=s</code>, but more aggressive about code size. This pass also reduces the inliner threshold by a large margin. Use this pass if you care a lot about code size.</li>
+
+<li><p><code>-ocd-output</code>
+Print output of the on-chip debugger tool (like OpenOCD) while in a <code>tinygo gdb</code> session. This can be useful to diagnose connection problems.
+-<code>-gc</code>
+Use the specified memory manager.
+<code>-gc=none</code>
+Do not use a memory manager at all. This will cause a link error at every place in the program that tries to allocate memory. The primary use case for this is finding such locations.</p>
+
+<p><code>-gc=dumb</code>
+Only allocate memory, never free it. This is the simplest allocator possible and uses very few resources while being very portable. Also, allocation is very fast. Larger programs will likely need a real garbage collector.</p>
+
+<p><code>-gc=marksweep</code>
+Simple conservative mark/sweep garbage collector. This collector does not yet work on all platforms. Also, the performance of the collector is highly unpredictable as any allocation may trigger a garbage collection cycle.</p></li>
+</ul>
 
 
 <footer class=" footline" >
 	
 </footer>
 
-        
-            </div> 
+
         
         </div> 
         
@@ -591,6 +656,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -604,37 +670,8 @@
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
                         
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
                         
-            
-            
-                
                     
                 
                 
@@ -643,9 +680,6 @@
                     
                     
 
-                    
-            
-        
                     
             
         
@@ -664,6 +698,9 @@
                     
 
                     
+            
+        
+                    
                         
             
             
@@ -671,6 +708,38 @@
                     
                         
                         
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
                     
                 
                 
@@ -775,10 +844,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/tinygo-site/usage/misc-options/" title="Misc. Build Options"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/tinygo-site/usage/subcommands/" title="Subcommands"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/tinygo-site/docker/using/" title="Using TinyGo with Docker" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/tinygo-site/usage/misc-options/" title="Misc. Build Options" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -809,3 +878,4 @@
 
   </body>
 </html>
+

@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/tinygo-site/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/tinygo-site/images/favicon.png" type="image/x-icon" />
-    <title>Using With Docker :: TinyGo</title>
+    <title>Datatypes :: TinyGo</title>
 
     
     <link href="/tinygo-site/css/nucleus.css?1545167733" rel="stylesheet">
@@ -34,7 +34,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/tinygo-site/docker/">
+  <body class="" data-url="/tinygo-site/compiler-internals/datatypes/">
     <nav id="sidebar" class="">
 
 
@@ -256,8 +256,8 @@
   
     
     <li data-nav-id="/tinygo-site/docker/" title="Using With Docker" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/tinygo-site/docker/">
@@ -307,7 +307,7 @@
   
     
     <li data-nav-id="/tinygo-site/compiler-internals/" title="Compiler Internals" class="dd-item 
-        
+        parent
         
         
         ">
@@ -350,7 +350,7 @@
  
   
     
-      <li data-nav-id="/tinygo-site/compiler-internals/datatypes/" title="Datatypes" class="dd-item ">
+      <li data-nav-id="/tinygo-site/compiler-internals/datatypes/" title="Datatypes" class="dd-item active">
         <a href="/tinygo-site/compiler-internals/datatypes/">
         Datatypes
         
@@ -448,6 +448,8 @@
                         </a>
                     </span>
                   
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
                   <span class="links">
                  
                  
@@ -458,7 +460,13 @@
             
           
           
-            <a href='/tinygo-site/'>Home</a> > Using With Docker
+            
+            
+          
+          
+            <a href='/tinygo-site/'>Home</a> > <a href='/tinygo-site/compiler-internals/'>Compiler Internals</a> > Datatypes
+          
+         
           
          
           
@@ -467,14 +475,38 @@
                   </span>
                 </div>
                 
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#string">string</a></li>
+<li><a href="#slice">slice</a></li>
+<li><a href="#array">array</a></li>
+<li><a href="#complex">complex</a></li>
+<li><a href="#map">map</a></li>
+<li><a href="#interface">interface</a></li>
+<li><a href="#function-value">function value</a></li>
+<li><a href="#goroutine">goroutine</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
+                
               </div>
             </div>
             
 
         
-          <div id="chapter">
-        
         <div id="body-inner">
+          
+            <h1>Datatypes</h1>
           
 
         
@@ -482,17 +514,48 @@
 
 
 
-<h1 id="tinygo-with-docker">TinyGo with Docker</h1>
+<p>TinyGo uses a different representation for some data types than standard Go.</p>
 
-<p>You can use our Docker image to be able to run the TinyGo compiler on your computer without having to install all the dependencies. Read on to learn how.</p>
+<h3 id="string">string</h3>
+
+<p>A string is encoded as a <code>{ptr, len}</code> tuple. The type is actually defined in the runtime as <code>runtime._string</code>, in <a href="https://github.com/aykevl/tinygo/blob/master/src/runtime/string.go">src/runtime/string.go</a>. That file also contains some compiler intrinsics for dealing with strings and UTF-8.</p>
+
+<h3 id="slice">slice</h3>
+
+<p>A slice is encoded as a <code>{ptr, len, cap}</code> tuple. There is no runtime definition of it as slices are a generic type and the pointer type is different for each slice. That said, the bit layout is exactly the same for every slice and generic <code>copy</code> and <code>append</code> functions are implemented in <a href="https://github.com/aykevl/tinygo/blob/master/src/runtime/slice.go">src/runtime/slice.go</a>.</p>
+
+<h3 id="array">array</h3>
+
+<p>Arrays are simple: they are simply lowered to a LLVM array type.</p>
+
+<h3 id="complex">complex</h3>
+
+<p>Complex numbers are implemented in the most obvious way: as a vector of floating point numbers with length 2.</p>
+
+<h3 id="map">map</h3>
+
+<p>The map type is a very complex type and is implemented as an (incomplete) hashmap. It is defined as <code>runtime.hashmap</code> in <a href="https://github.com/aykevl/tinygo/blob/master/src/runtime/hashmap.go">src/runtime/hashmap.go</a>. As maps are reference types, they are lowered to a pointer to the aforementioned struct. See for example <code>runtime.hashmapMake</code> that is the compiler intrinsic to create a new hashmap.</p>
+
+<h3 id="interface">interface</h3>
+
+<p>An interface is a <code>{typecode, value}</code> tuple and is defined as <code>runtime._interface</code> in <a href="https://github.com/aykevl/tinygo/blob/master/src/runtime/interface.go">src/runtime/interface.go</a>. The typecode is a small integer unique to the type of the value. See interface.go for a detailed description of how typeasserts and interface calls are implemented.</p>
+
+<h3 id="function-value">function value</h3>
+
+<p>A function value is a fat function pointer in the form of <code>{context, function pointer}</code> where context is a pointer which may have any value. The function pointer is expected to be called with the context as the last parameter in all cases.</p>
+
+<h3 id="goroutine">goroutine</h3>
+
+<p>A goroutine is a linked list of <a href="https://llvm.org/docs/Coroutines.html">LLVM coroutines</a>. Every blocking call will create a new coroutine, pass the resulting coroutine to the scheduler, and will mark itself as waiting for a return. Once the called blocking function returns, it re-activates its parent coroutine. Non-blocking calls are normal calls, unaware of the fact that they&rsquo;re running on a particular goroutine. For details, see <a href="https://github.com/aykevl/tinygo/blob/master/src/runtime/scheduler.go">src/runtime/scheduler.go</a>.</p>
+
+<p>This is rather expensive and should be optimized in the future. But the way it works now, a single stack can be used for all goroutines lowering memory consumption.</p>
 
 
 <footer class=" footline" >
 	
 </footer>
 
-        
-            </div> 
+
         
         </div> 
         
@@ -655,6 +718,38 @@
             
                 
                     
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
                     
                 
                 
@@ -683,26 +778,11 @@
             
         
                     
-            
-        
-                    
                         
             
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
                     
                 
                 
@@ -720,21 +800,8 @@
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
                         
-            
-            
-                
+                        
                     
                 
                 
@@ -775,10 +842,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/tinygo-site/usage/misc-options/" title="Misc. Build Options"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/tinygo-site/compiler-internals/differences-from-go/" title="Differences from Go"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/tinygo-site/docker/using/" title="Using TinyGo with Docker" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/tinygo-site/compiler-internals/calling-convention/" title="Calling convention" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -809,3 +876,4 @@
 
   </body>
 </html>
+
