@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/tinygo-site/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/tinygo-site/images/favicon.png" type="image/x-icon" />
-    <title>Tags :: TinyGo</title>
+    <title>Requirements :: TinyGo</title>
 
     
     <link href="/tinygo-site/css/nucleus.css?1545143276" rel="stylesheet">
@@ -34,7 +34,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/tinygo-site/tags/">
+  <body class="" data-url="/tinygo-site/getting-started/requirements/">
     <nav id="sidebar" class="">
 
 
@@ -78,7 +78,7 @@
   
     
     <li data-nav-id="/tinygo-site/getting-started/" title="Getting Started" class="dd-item 
-        
+        parent
         
         
         ">
@@ -102,7 +102,7 @@
  
   
     
-      <li data-nav-id="/tinygo-site/getting-started/requirements/" title="Requirements" class="dd-item ">
+      <li data-nav-id="/tinygo-site/getting-started/requirements/" title="Requirements" class="dd-item active">
         <a href="/tinygo-site/getting-started/requirements/">
         Requirements
         
@@ -201,7 +201,19 @@
                     
           
           
-            Tags
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/tinygo-site/'>Home</a> > <a href='/tinygo-site/getting-started/'>Getting Started</a> > Requirements
+          
+         
+          
+         
           
         
                  
@@ -210,7 +222,16 @@
                 
                     <div class="progress">
     <div class="wrapper">
-
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#arm-cortex-m">ARM Cortex-M</a></li>
+<li><a href="#avr-arduino">AVR (Arduino)</a></li>
+<li><a href="#webassembly">WebAssembly</a></li>
+</ul></li>
+</ul>
+</nav>
     </div>
 </div>
 
@@ -222,7 +243,7 @@
         
         <div id="body-inner">
           
-            <h1>Tags</h1>
+            <h1>Requirements</h1>
           
 
         
@@ -230,9 +251,54 @@
 
 
 
+<p>These are the base requirements and enough for most (desktop) use.</p>
+
+<ul>
+<li>Go 1.11+</li>
+<li>LLVM 7 (for example, from <a href="http://apt.llvm.org/">apt.llvm.org</a></li>
+</ul>
+
+<p>Linking a binary needs an installed C compiler (<code>cc</code>). At the moment it
+expects GCC or a recent Clang.</p>
+
+<h2 id="arm-cortex-m">ARM Cortex-M</h2>
+
+<p>The Cortex-M family of microcontrollers is well supported, as it uses the stable
+ARM LLVM backend (which is even used in the propietary C compiler from ARM).
+Compiling to object code should be supported out of the box, but compiling the
+final binary and flashing it needs some extra tools.</p>
+
+<ul>
+<li>binutils (<code>arm-none-eabi-ld</code>, <code>arm-none-eabi-objcopy</code>) for linking and for producing .hex files for flashing.</li>
+<li>Clang 7 (<code>clang-7</code>) for building assembly files and the compiler runtime library <a href="https://compiler-rt.llvm.org/">https://compiler-rt.llvm.org/</a>.</li>
+<li>The flashing tool for the particular chip, like <code>openocd</code> or <code>nrfjprog</code>.</li>
+</ul>
+
+<h2 id="avr-arduino">AVR (Arduino)</h2>
+
+<p>The AVR backend has similar requirements as the <code>ARM Cortex-M</code> backend. It
+needs the following tools:</p>
+
+<ul>
+<li>binutils (<code>avr-objcopy</code>) for flashing.</li>
+<li>GCC (<code>avr-gcc</code>) for linking object files.</li>
+<li>libc (<code>avr-libc</code>), which is not installed on Debian as a dependency of <code>avr-gcc</code>.</li>
+<li><code>avrdude</code> for flashing to an Arduino.</li>
+</ul>
+
+<h2 id="webassembly">WebAssembly</h2>
+
+<p>The WebAssembly backend only needs a special linker from the LLVM project:</p>
+
+<ul>
+<li>LLVM linker (<code>ld.lld-7</code>) for linking WebAssembly files together.</li>
+</ul>
+
+
 <footer class=" footline" >
 	
 </footer>
+
 
         
         </div> 
@@ -265,8 +331,6 @@
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -280,6 +344,7 @@
             
             
                 
+                    
                     
                 
                 
@@ -296,6 +361,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -336,8 +404,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/tinygo-site/getting-started/" title="Getting Started"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/tinygo-site/getting-started/" title="Getting Started" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/tinygo-site/getting-started/installation/" title="Installation" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -368,3 +438,4 @@
 
   </body>
 </html>
+

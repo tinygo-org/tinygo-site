@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/tinygo-site/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/tinygo-site/images/favicon.png" type="image/x-icon" />
-    <title>Tags :: TinyGo</title>
+    <title>Usage :: TinyGo</title>
 
     
     <link href="/tinygo-site/css/nucleus.css?1545143276" rel="stylesheet">
@@ -34,7 +34,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/tinygo-site/tags/">
+  <body class="" data-url="/tinygo-site/getting-started/usage/">
     <nav id="sidebar" class="">
 
 
@@ -78,7 +78,7 @@
   
     
     <li data-nav-id="/tinygo-site/getting-started/" title="Getting Started" class="dd-item 
-        
+        parent
         
         
         ">
@@ -140,7 +140,7 @@
  
   
     
-      <li data-nav-id="/tinygo-site/getting-started/usage/" title="Usage" class="dd-item ">
+      <li data-nav-id="/tinygo-site/getting-started/usage/" title="Usage" class="dd-item active">
         <a href="/tinygo-site/getting-started/usage/">
         Usage
         
@@ -201,7 +201,19 @@
                     
           
           
-            Tags
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/tinygo-site/'>Home</a> > <a href='/tinygo-site/getting-started/'>Getting Started</a> > Usage
+          
+         
+          
+         
           
         
                  
@@ -222,17 +234,43 @@
         
         <div id="body-inner">
           
-            <h1>Tags</h1>
+            <h1>Usage</h1>
           
 
         
 
 
+<p>TinyGo should now be installed. Test it by running a test program:</p>
+
+<pre><code>tinygo run examples/test
+</code></pre>
+
+<p>Before anything can be built for a bare-metal target, you need to generate some
+files first:</p>
+
+<pre><code>make gen-device
+</code></pre>
+
+<p>This will generate register descriptions, interrupt vectors, and linker scripts
+for various devices. Also, you may need to re-run this command after updates,
+as some updates cause changes to the generated files.</p>
+
+<p>Now you can run a blinky example. For the PCA10040 <a href="https://www.nordicsemi.com/eng/Products/Bluetooth-low-energy/nRF52-DK">https://www.nordicsemi.com/eng/Products/Bluetooth-low-energy/nRF52-DK</a>
+development board:</p>
+
+<pre><code>tinygo flash -target=pca10040 examples/blinky2
+</code></pre>
+
+<p>Or for an Arduino Uno <a href="https://store.arduino.cc/arduino-uno-rev3">https://store.arduino.cc/arduino-uno-rev3</a></p>
+
+<pre><code>tinygo flash -target=arduino examples/blinky1
+</code></pre>
 
 
 <footer class=" footline" >
 	
 </footer>
+
 
         
         </div> 
@@ -265,8 +303,6 @@
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -280,6 +316,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -312,6 +351,7 @@
             
             
                 
+                    
                     
                 
                 
@@ -336,8 +376,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/tinygo-site/getting-started/installation/" title="Installation"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/tinygo-site/getting-started/" title="Getting Started" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/tinygo-site/getting-started/requirements/" title="Requirements" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -368,3 +410,4 @@
 
   </body>
 </html>
+

@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/tinygo-site/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/tinygo-site/images/favicon.png" type="image/x-icon" />
-    <title>Tags :: TinyGo</title>
+    <title>Installation :: TinyGo</title>
 
     
     <link href="/tinygo-site/css/nucleus.css?1545143276" rel="stylesheet">
@@ -34,7 +34,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/tinygo-site/tags/">
+  <body class="" data-url="/tinygo-site/getting-started/installation/">
     <nav id="sidebar" class="">
 
 
@@ -78,7 +78,7 @@
   
     
     <li data-nav-id="/tinygo-site/getting-started/" title="Getting Started" class="dd-item 
-        
+        parent
         
         
         ">
@@ -121,7 +121,7 @@
  
   
     
-      <li data-nav-id="/tinygo-site/getting-started/installation/" title="Installation" class="dd-item ">
+      <li data-nav-id="/tinygo-site/getting-started/installation/" title="Installation" class="dd-item active">
         <a href="/tinygo-site/getting-started/installation/">
         Installation
         
@@ -201,7 +201,19 @@
                     
           
           
-            Tags
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/tinygo-site/'>Home</a> > <a href='/tinygo-site/getting-started/'>Getting Started</a> > Installation
+          
+         
+          
+         
           
         
                  
@@ -222,17 +234,50 @@
         
         <div id="body-inner">
           
-            <h1>Tags</h1>
+            <h1>Installation</h1>
           
 
         
 
 
+<p>Now that you have the requirements, now download the sources. This may take a while.</p>
+
+<pre><code>go get -u github.com/aykevl/tinygo
+</code></pre>
+
+<p>If you get an error like this::</p>
+
+<pre><code>/usr/local/go/pkg/tool/linux_amd64/link: running g++ failed: exit status 1
+/usr/bin/ld: error: cannot find -lLLVM-7
+cgo-gcc-prolog:58: error: undefined reference to 'LLVMVerifyFunction'
+cgo-gcc-prolog:80: error: undefined reference to 'LLVMVerifyModule'
+[...etc...]
+</code></pre>
+
+<p>Or like this::</p>
+
+<pre><code>../go-llvm/analysis.go:17:93: fatal error: llvm-c/Analysis.h: No such file or directory
+ #include &quot;llvm-c/Analysis.h&quot; // If you are getting an error here read bindings/go/README.txt
+</code></pre>
+
+<p>It means something is wrong with your LLVM installation. Make sure LLVM 7 is
+installed (Debian package <code>llvm-7-dev</code>). If it still doesn&rsquo;t work, you can
+try running:</p>
+
+<pre><code>cd $GOPATH/github.com/aykevl/go-llvm
+make config
+</code></pre>
+
+<p>And retry:</p>
+
+<pre><code>go install github.com/aykevl/tinygo
+</code></pre>
 
 
 <footer class=" footline" >
 	
 </footer>
+
 
         
         </div> 
@@ -265,8 +310,6 @@
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -280,6 +323,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -297,6 +343,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -312,6 +359,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -336,8 +386,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/tinygo-site/getting-started/requirements/" title="Requirements"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/tinygo-site/getting-started/" title="Getting Started" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/tinygo-site/getting-started/usage/" title="Usage" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -368,3 +420,4 @@
 
   </body>
 </html>
+

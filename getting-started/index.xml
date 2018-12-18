@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Home on TinyGo</title>
-    <link>https://tinygo-org.github.io/tinygo-site/</link>
-    <description>Recent content in Home on TinyGo</description>
+    <title>Getting Started on TinyGo</title>
+    <link>https://tinygo-org.github.io/tinygo-site/getting-started/</link>
+    <description>Recent content in Getting Started on TinyGo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="https://tinygo-org.github.io/tinygo-site/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://tinygo-org.github.io/tinygo-site/getting-started/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>

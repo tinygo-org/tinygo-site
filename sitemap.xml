@@ -3,6 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://tinygo-org.github.io/tinygo-site/getting-started/requirements/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tinygo-org.github.io/tinygo-site/getting-started/installation/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tinygo-org.github.io/tinygo-site/getting-started/usage/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tinygo-org.github.io/tinygo-site/getting-started/</loc>
+  </url>
+  
+  <url>
     <loc>https://tinygo-org.github.io/tinygo-site/categories/</loc>
     <priority>0</priority>
   </url>
