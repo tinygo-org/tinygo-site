@@ -3,16 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://tinygo.org/categories/</loc>
+    <loc>https://tinygo-org.github.io/tinygo-site/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://tinygo.org/</loc>
+    <loc>https://tinygo-org.github.io/tinygo-site/</loc>
   </url>
   
   <url>
-    <loc>https://tinygo.org/tags/</loc>
+    <loc>https://tinygo-org.github.io/tinygo-site/tags/</loc>
     <priority>0</priority>
   </url>
   

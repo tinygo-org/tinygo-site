@@ -2,12 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on TinyGo</title>
-    <link>https://tinygo.org/tags/</link>
+    <link>https://tinygo-org.github.io/tinygo-site/tags/</link>
     <description>Recent content in Tags on TinyGo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="https://tinygo.org/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://tinygo-org.github.io/tinygo-site/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>
