@@ -1,0 +1,4 @@
+baseURL = "https://tinygo.org/"
+languageCode = "en-us"
+title = "TinyGo"
+theme = "learn"
