@@ -1,7 +1,7 @@
 ---
 title: "Using With Docker"
 chapter: true
-weight: 6
+weight: 5
 ---
 
 # TinyGo with Docker

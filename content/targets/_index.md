@@ -1,7 +1,7 @@
 ---
 title: "Supported Targets"
 chapter: true
-weight: 7
+weight: 6
 ---
 
 # Supported targets
