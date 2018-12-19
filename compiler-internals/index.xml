@@ -2,29 +2,29 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Compiler Internals on TinyGo</title>
-    <link>https://tinygo-org.github.io/tinygo-site/compiler-internals/</link>
+    <link>https://tinygo.org/compiler-internals/</link>
     <description>Recent content in Compiler Internals on TinyGo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="https://tinygo-org.github.io/tinygo-site/compiler-internals/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://tinygo.org/compiler-internals/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Differences from Go</title>
-      <link>https://tinygo-org.github.io/tinygo-site/compiler-internals/differences-from-go/</link>
+      <link>https://tinygo.org/compiler-internals/differences-from-go/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo-org.github.io/tinygo-site/compiler-internals/differences-from-go/</guid>
+      <guid>https://tinygo.org/compiler-internals/differences-from-go/</guid>
       <description>A whole program is compiled in a single step, without intermediate linking. This makes incremental development much slower for large programs but enables far more optimization opportunities. In the future, an option should be added for incremental compilation during edit-compile-test cycles. Interfaces are always represented as a {typecode, value} pair. Unlike Go https://research.swtch.com/interfaces, TinyGo will not precompute a list of function pointers for fast interface method calls. Instead, all interface method calls are looked up where they are used.</description>
     </item>
     
     <item>
       <title>Datatypes</title>
-      <link>https://tinygo-org.github.io/tinygo-site/compiler-internals/datatypes/</link>
+      <link>https://tinygo.org/compiler-internals/datatypes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo-org.github.io/tinygo-site/compiler-internals/datatypes/</guid>
+      <guid>https://tinygo.org/compiler-internals/datatypes/</guid>
       <description>TinyGo uses a different representation for some data types than standard Go.
 string A string is encoded as a {ptr, len} tuple. The type is actually defined in the runtime as runtime._string, in src/runtime/string.go. That file also contains some compiler intrinsics for dealing with strings and UTF-8.
 slice A slice is encoded as a {ptr, len, cap} tuple. There is no runtime definition of it as slices are a generic type and the pointer type is different for each slice.</description>
@@ -32,10 +32,10 @@ slice A slice is encoded as a {ptr, len, cap} tuple. There is no runtime definit
     
     <item>
       <title>Calling convention</title>
-      <link>https://tinygo-org.github.io/tinygo-site/compiler-internals/calling-convention/</link>
+      <link>https://tinygo.org/compiler-internals/calling-convention/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo-org.github.io/tinygo-site/compiler-internals/calling-convention/</guid>
+      <guid>https://tinygo.org/compiler-internals/calling-convention/</guid>
       <description>Go uses a stack-based calling convention and passes a pointer to the argument list as the first argument in the function. There were/are plans to switch to a register-based calling convention but they&amp;rsquo;re now on hold.
 TinyGo, however, uses a register based calling convention. In fact it is somewhat compatible with the C calling convention but with a few quirks:
  Struct parameters are split into separate arguments, if the number of fields (after flattening recursively) is 3 or lower.</description>
@@ -43,10 +43,10 @@ TinyGo, however, uses a register based calling convention. In fact it is somewha
     
     <item>
       <title>Pipeline</title>
-      <link>https://tinygo-org.github.io/tinygo-site/compiler-internals/pipeline/</link>
+      <link>https://tinygo.org/compiler-internals/pipeline/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo-org.github.io/tinygo-site/compiler-internals/pipeline/</guid>
+      <guid>https://tinygo.org/compiler-internals/pipeline/</guid>
       <description>Like most compilers, TinyGo is a compiler built as a pipeline of transformations, that each translate an input to a simpler output version (also called lowering). However, most of these part are not in TinyGo itself. The frontend is mostly implemented by external Go libraries, and most optimizations and code generation is implemented by LLVM.
 This is roughly the pipeline for TinyGo:
  Lexing, parsing, typechecking and AST building is done by packages in the standard library and in the golang.</description>

@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Home on TinyGo</title>
-    <link>https://tinygo-org.github.io/tinygo-site/</link>
+    <link>https://tinygo.org/</link>
     <description>Recent content in Home on TinyGo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="https://tinygo-org.github.io/tinygo-site/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://tinygo.org/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Requirements</title>
-      <link>https://tinygo-org.github.io/tinygo-site/getting-started/requirements/</link>
+      <link>https://tinygo.org/getting-started/requirements/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo-org.github.io/tinygo-site/getting-started/requirements/</guid>
+      <guid>https://tinygo.org/getting-started/requirements/</guid>
       <description>These are the base requirements and enough for most (desktop) use.
  Go 1.11+ LLVM 7 (for example, from apt.llvm.org  Linking a binary needs an installed C compiler (cc). At the moment it expects GCC or a recent Clang.
 ARM Cortex-M The Cortex-M family of microcontrollers is well supported, as it uses the stable ARM LLVM backend (which is even used in the propietary C compiler from ARM). Compiling to object code should be supported out of the box, but compiling the final binary and flashing it needs some extra tools.</description>
@@ -23,19 +23,19 @@ ARM Cortex-M The Cortex-M family of microcontrollers is well supported, as it us
     
     <item>
       <title>Differences from Go</title>
-      <link>https://tinygo-org.github.io/tinygo-site/compiler-internals/differences-from-go/</link>
+      <link>https://tinygo.org/compiler-internals/differences-from-go/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo-org.github.io/tinygo-site/compiler-internals/differences-from-go/</guid>
+      <guid>https://tinygo.org/compiler-internals/differences-from-go/</guid>
       <description>A whole program is compiled in a single step, without intermediate linking. This makes incremental development much slower for large programs but enables far more optimization opportunities. In the future, an option should be added for incremental compilation during edit-compile-test cycles. Interfaces are always represented as a {typecode, value} pair. Unlike Go https://research.swtch.com/interfaces, TinyGo will not precompute a list of function pointers for fast interface method calls. Instead, all interface method calls are looked up where they are used.</description>
     </item>
     
     <item>
       <title>Heap allocation</title>
-      <link>https://tinygo-org.github.io/tinygo-site/microcontrollers/heap-allocation/</link>
+      <link>https://tinygo.org/microcontrollers/heap-allocation/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo-org.github.io/tinygo-site/microcontrollers/heap-allocation/</guid>
+      <guid>https://tinygo.org/microcontrollers/heap-allocation/</guid>
       <description>Many operations in Go rely on heap allocation. Some of these heap allocations are optimized away, but not all of them. Also, TinyGo does not yet contain a garbage collector so heap allocation must be avoided whenever possible outside of initialization code.
 These operations currently do heap allocations:
  Taking the pointer of a local variable. This will result in a heap allocation, unless the compiler can see the resulting pointer never escapes.</description>
@@ -43,10 +43,10 @@ These operations currently do heap allocations:
     
     <item>
       <title>Installation</title>
-      <link>https://tinygo-org.github.io/tinygo-site/getting-started/installation/</link>
+      <link>https://tinygo.org/getting-started/installation/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo-org.github.io/tinygo-site/getting-started/installation/</guid>
+      <guid>https://tinygo.org/getting-started/installation/</guid>
       <description>Now that you have the requirements, now download the sources. This may take a while.
 go get -u github.com/aykevl/tinygo  If you get an error like this::
 /usr/local/go/pkg/tool/linux_amd64/link: running g++ failed: exit status 1 /usr/bin/ld: error: cannot find -lLLVM-7 cgo-gcc-prolog:58: error: undefined reference to &#39;LLVMVerifyFunction&#39; cgo-gcc-prolog:80: error: undefined reference to &#39;LLVMVerifyModule&#39; [...etc...]  Or like this::
@@ -55,19 +55,19 @@ go get -u github.com/aykevl/tinygo  If you get an error like this::
     
     <item>
       <title>POSIX-like</title>
-      <link>https://tinygo-org.github.io/tinygo-site/targets/posix/</link>
+      <link>https://tinygo.org/targets/posix/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo-org.github.io/tinygo-site/targets/posix/</guid>
+      <guid>https://tinygo.org/targets/posix/</guid>
       <description>Only Linux is supported at the moment, but it should be trivial to add support for more POSIX-like systems.</description>
     </item>
     
     <item>
       <title>Subcommands</title>
-      <link>https://tinygo-org.github.io/tinygo-site/usage/subcommands/</link>
+      <link>https://tinygo.org/usage/subcommands/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo-org.github.io/tinygo-site/usage/subcommands/</guid>
+      <guid>https://tinygo.org/usage/subcommands/</guid>
       <description>TinyGo tries to be similar to the main go command in usage. It consists of the following main subcommands:
 build Compile the given program. The output binary is specified using the -o parameter. The generated file type depends on the extension:
 .o Create a relocatable object file. You can use this option if you don&amp;rsquo;t want to use the TinyGo build system or want to do other custom things.</description>
@@ -75,10 +75,10 @@ build Compile the given program. The output binary is specified using the -o par
     
     <item>
       <title>Using TinyGo with Docker</title>
-      <link>https://tinygo-org.github.io/tinygo-site/docker/using/</link>
+      <link>https://tinygo.org/docker/using/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo-org.github.io/tinygo-site/docker/using/</guid>
+      <guid>https://tinygo.org/docker/using/</guid>
       <description>A docker container exists for easy access to the TinyGo CLI. For example, to compile wasm.wasm for the WebAssembly example, from the root of the repository:
 docker run --rm -v $(pwd):/src tinygo/tinygo tinygo build -o /src/wasm.wasm -target wasm examples/wasm  To compile blinky1.hex targeting an ARM microcontroller, such as the PCA10040:
 docker run --rm -v $(pwd):/src tinygo/tinygo tinygo build -o /src/blinky1.hex -size=short -target=pca10040 examples/blinky1  To compile blinky1.hex targeting an AVR microcontroller such as the Arduino:</description>
@@ -86,10 +86,10 @@ docker run --rm -v $(pwd):/src tinygo/tinygo tinygo build -o /src/blinky1.hex -s
     
     <item>
       <title>What is TinyGo exactly?</title>
-      <link>https://tinygo-org.github.io/tinygo-site/faq/what-is-tinygo/</link>
+      <link>https://tinygo.org/faq/what-is-tinygo/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo-org.github.io/tinygo-site/faq/what-is-tinygo/</guid>
+      <guid>https://tinygo.org/faq/what-is-tinygo/</guid>
       <description>A new compiler and a new runtime implementation.
 Specifically:
  A new compiler using (mostly) the standard library to parse Go programs and using LLVM to optimize the code and generate machine code for the target architecture.
@@ -98,20 +98,20 @@ Specifically:
     
     <item>
       <title>ARM / Cortex-M</title>
-      <link>https://tinygo-org.github.io/tinygo-site/targets/arm/</link>
+      <link>https://tinygo.org/targets/arm/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo-org.github.io/tinygo-site/targets/arm/</guid>
+      <guid>https://tinygo.org/targets/arm/</guid>
       <description>ARM Cortex-M processors are well supported. There is support for multiple chips and the backend appears to be stable. In fact, it uses the same underlying technology (LLVM) as the proprietary ARM compiler for code generation.
  BBC micro:bit (nRF51822) Nordic PCA10031 (nRF51422) Nordic PCA10040 (nRF52832) nRF52840-MDK (nRF52840) reel board (nRF52840) Nordic PCA10056_(nRF52840) QEMU (LM3S6965) This target is supported only for testing purposes. It has not been tested on real hardware.</description>
     </item>
     
     <item>
       <title>Datatypes</title>
-      <link>https://tinygo-org.github.io/tinygo-site/compiler-internals/datatypes/</link>
+      <link>https://tinygo.org/compiler-internals/datatypes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo-org.github.io/tinygo-site/compiler-internals/datatypes/</guid>
+      <guid>https://tinygo.org/compiler-internals/datatypes/</guid>
       <description>TinyGo uses a different representation for some data types than standard Go.
 string A string is encoded as a {ptr, len} tuple. The type is actually defined in the runtime as runtime._string, in src/runtime/string.go. That file also contains some compiler intrinsics for dealing with strings and UTF-8.
 slice A slice is encoded as a {ptr, len, cap} tuple. There is no runtime definition of it as slices are a generic type and the pointer type is different for each slice.</description>
@@ -119,10 +119,10 @@ slice A slice is encoded as a {ptr, len, cap} tuple. There is no runtime definit
     
     <item>
       <title>Important Build Options</title>
-      <link>https://tinygo-org.github.io/tinygo-site/usage/important-options/</link>
+      <link>https://tinygo.org/usage/important-options/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo-org.github.io/tinygo-site/usage/important-options/</guid>
+      <guid>https://tinygo.org/usage/important-options/</guid>
       <description>There are a few flags to control how binaries are built:
  -o Output filename, see the build command.
  -target Select the target you want to use. Leave it empty to compile for the host. This switch also configures the emulator, flash tool and debugger to use so you don&amp;rsquo;t have to fiddle with those options. Read [supported targets]() for a list of supported targets. Example targets:
@@ -131,20 +131,20 @@ slice A slice is encoded as a {ptr, len, cap} tuple. There is no runtime definit
     
     <item>
       <title>The volatile keyword</title>
-      <link>https://tinygo-org.github.io/tinygo-site/microcontrollers/volatile/</link>
+      <link>https://tinygo.org/microcontrollers/volatile/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo-org.github.io/tinygo-site/microcontrollers/volatile/</guid>
+      <guid>https://tinygo.org/microcontrollers/volatile/</guid>
       <description>Go does not have the volatile keyword like C/C++. This keyword is unnecessary in most desktop use cases but is required for memory mapped I/O on microcontrollers and interrupt handlers. As a workaround, any variable of a type annotated with the //go:volatile pragma will be marked volatile. For example:
 //go:volatile type volatileBool bool var isrFlag volatileBool  This is a workaround for a limitation in the Go language and should at some point be replaced with something else.</description>
     </item>
     
     <item>
       <title>Usage</title>
-      <link>https://tinygo-org.github.io/tinygo-site/getting-started/usage/</link>
+      <link>https://tinygo.org/getting-started/usage/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo-org.github.io/tinygo-site/getting-started/usage/</guid>
+      <guid>https://tinygo.org/getting-started/usage/</guid>
       <description>TinyGo should now be installed. Test it by running a test program:
 tinygo run examples/test  Before anything can be built for a bare-metal target, you need to generate some files first:
 make gen-device  This will generate register descriptions, interrupt vectors, and linker scripts for various devices. Also, you may need to re-run this command after updates, as some updates cause changes to the generated files.
@@ -153,20 +153,20 @@ Now you can run a blinky example.</description>
     
     <item>
       <title>Using WebAssembly</title>
-      <link>https://tinygo-org.github.io/tinygo-site/webassembly/webassembly/</link>
+      <link>https://tinygo.org/webassembly/webassembly/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo-org.github.io/tinygo-site/webassembly/webassembly/</guid>
+      <guid>https://tinygo.org/webassembly/webassembly/</guid>
       <description>You can call a JavaScript function from Go and call a Go function from WebAssembly:
 package main // This calls a JS function from Go. func main() { println(&amp;quot;adding two numbers:&amp;quot;, add(2, 3)) // expecting 5 } // This function is imported from JavaScript, as it doesn&#39;t define a body. // You should define a function named &#39;main.add&#39; in the WebAssembly &#39;env&#39; // module from JavaScript. func add(x, y int) // This function is exported to JavaScript, so can be called using // exports.</description>
     </item>
     
     <item>
       <title>Why a new compiler?</title>
-      <link>https://tinygo-org.github.io/tinygo-site/faq/why-a-new-compiler/</link>
+      <link>https://tinygo.org/faq/why-a-new-compiler/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo-org.github.io/tinygo-site/faq/why-a-new-compiler/</guid>
+      <guid>https://tinygo.org/faq/why-a-new-compiler/</guid>
       <description>Why not modify the existing compiler to produce binaries for microcontrollers?
 There are several reasons for this:
  The standard Go compiler (gc) does not support instruction sets as used on microcontrollers:
@@ -175,20 +175,20 @@ There are several reasons for this:
     
     <item>
       <title>AVR</title>
-      <link>https://tinygo-org.github.io/tinygo-site/targets/avr/</link>
+      <link>https://tinygo.org/targets/avr/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo-org.github.io/tinygo-site/targets/avr/</guid>
+      <guid>https://tinygo.org/targets/avr/</guid>
       <description>Note: the AVR backend of LLVM is still experimental so you may encounter bugs.
  Arduino Uno (ATmega328p) Digispark (ATtiny85) Very limited support at the moment.  </description>
     </item>
     
     <item>
       <title>Calling convention</title>
-      <link>https://tinygo-org.github.io/tinygo-site/compiler-internals/calling-convention/</link>
+      <link>https://tinygo.org/compiler-internals/calling-convention/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo-org.github.io/tinygo-site/compiler-internals/calling-convention/</guid>
+      <guid>https://tinygo.org/compiler-internals/calling-convention/</guid>
       <description>Go uses a stack-based calling convention and passes a pointer to the argument list as the first argument in the function. There were/are plans to switch to a register-based calling convention but they&amp;rsquo;re now on hold.
 TinyGo, however, uses a register based calling convention. In fact it is somewhat compatible with the C calling convention but with a few quirks:
  Struct parameters are split into separate arguments, if the number of fields (after flattening recursively) is 3 or lower.</description>
@@ -196,10 +196,10 @@ TinyGo, however, uses a register based calling convention. In fact it is somewha
     
     <item>
       <title>Inline assembly</title>
-      <link>https://tinygo-org.github.io/tinygo-site/microcontrollers/inline-assembly/</link>
+      <link>https://tinygo.org/microcontrollers/inline-assembly/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo-org.github.io/tinygo-site/microcontrollers/inline-assembly/</guid>
+      <guid>https://tinygo.org/microcontrollers/inline-assembly/</guid>
       <description>The device-specific packages like device/avr and device/arm provide Asm functions which you can use to write inline assembly:
 arm.Asm(&amp;quot;wfi&amp;quot;)  You can also pass parameters to the inline assembly:
 var result int32 arm.AsmFull(` lsls {value}, #1 str {value}, {result} `, map[string]interface{}{ &amp;quot;value&amp;quot;: 42, &amp;quot;result&amp;quot;: &amp;amp;result, }) println(&amp;quot;result:&amp;quot;, result)  In general, types are autodetected. That is, integer types are passed as raw registers and pointer types are passed as memory locations.</description>
@@ -207,19 +207,19 @@ var result int32 arm.AsmFull(` lsls {value}, #1 str {value}, {result} `, map[str
     
     <item>
       <title>Misc. Build Options</title>
-      <link>https://tinygo-org.github.io/tinygo-site/usage/misc-options/</link>
+      <link>https://tinygo.org/usage/misc-options/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo-org.github.io/tinygo-site/usage/misc-options/</guid>
+      <guid>https://tinygo.org/usage/misc-options/</guid>
       <description>-no-debug Disable outputting debug symbols. This can be useful for WebAssembly, as there is no debugger for .wasm files yet and .wasm files are generally served directly. Avoiding debug symbols can have a big impact on generated binary size, reducing them by more than half. This is not necessary on microcontrollers because debugging symbols are not flashed to the microcontroller. Additionally, you will need it when you use tinygo gdb.</description>
     </item>
     
     <item>
       <title>Why Go instead of Rust?</title>
-      <link>https://tinygo-org.github.io/tinygo-site/faq/why-go-instead-of-rust/</link>
+      <link>https://tinygo.org/faq/why-go-instead-of-rust/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo-org.github.io/tinygo-site/faq/why-go-instead-of-rust/</guid>
+      <guid>https://tinygo.org/faq/why-go-instead-of-rust/</guid>
       <description>Rust is another &amp;ldquo;new&amp;rdquo; and safer language that is now made ready for embedded processors. There is a fairly active community around it.
 However, apart from personal language preference, Go has a few advantages:
  Subjective, but in general Go is easier to learn. Rust is in general far more complicated than Go, with difficult-to-grasp ownership rules, traits, generics, etc. Go prides itself on being a simple and slightly dumb language, sacrificing some expressiveness for readability.</description>
@@ -227,20 +227,20 @@ However, apart from personal language preference, Go has a few advantages:
     
     <item>
       <title>Harvard architectures (AVR)</title>
-      <link>https://tinygo-org.github.io/tinygo-site/microcontrollers/harvard-arch/</link>
+      <link>https://tinygo.org/microcontrollers/harvard-arch/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo-org.github.io/tinygo-site/microcontrollers/harvard-arch/</guid>
+      <guid>https://tinygo.org/microcontrollers/harvard-arch/</guid>
       <description>The AVR architecture is a modified Harvard architecture, which means that flash and RAM live in different address spaces. In practice, this means that any given pointer may either point to RAM or flash, but this is not visible from the pointer itself.
 To get TinyGo to work on the Arduino, which uses the AVR architecutre, all global variables (which include string constants!) are marked non-constant and thus are stored in RAM and all pointer dereferences assume that pointers point to RAM.</description>
     </item>
     
     <item>
       <title>Pipeline</title>
-      <link>https://tinygo-org.github.io/tinygo-site/compiler-internals/pipeline/</link>
+      <link>https://tinygo.org/compiler-internals/pipeline/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo-org.github.io/tinygo-site/compiler-internals/pipeline/</guid>
+      <guid>https://tinygo.org/compiler-internals/pipeline/</guid>
       <description>Like most compilers, TinyGo is a compiler built as a pipeline of transformations, that each translate an input to a simpler output version (also called lowering). However, most of these part are not in TinyGo itself. The frontend is mostly implemented by external Go libraries, and most optimizations and code generation is implemented by LLVM.
 This is roughly the pipeline for TinyGo:
  Lexing, parsing, typechecking and AST building is done by packages in the standard library and in the golang.</description>
@@ -248,19 +248,19 @@ This is roughly the pipeline for TinyGo:
     
     <item>
       <title>WebAssembly</title>
-      <link>https://tinygo-org.github.io/tinygo-site/targets/wasm/</link>
+      <link>https://tinygo.org/targets/wasm/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo-org.github.io/tinygo-site/targets/wasm/</guid>
+      <guid>https://tinygo.org/targets/wasm/</guid>
       <description>WebAssembly support is relatively new but appears to be stable.</description>
     </item>
     
     <item>
       <title>What about the ESP8266/ESP32?</title>
-      <link>https://tinygo-org.github.io/tinygo-site/faq/what-about-esp8266-esp32/</link>
+      <link>https://tinygo.org/faq/what-about-esp8266-esp32/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo-org.github.io/tinygo-site/faq/what-about-esp8266-esp32/</guid>
+      <guid>https://tinygo.org/faq/what-about-esp8266-esp32/</guid>
       <description>These chips use the rather obscure Xtensa instruction set. While a port of GCC exists and Espressif provides precompiled GNU toolchains, there is no support yet in LLVM (although there have been multiple attempts.
 There are two ways these chips might be supported in the future, and both will take a considerable amount of work:
  The compiled LLVM IR can be converted into (ugly) C and then be compiled with a supported C compiler (like GCC for Xtensa).</description>

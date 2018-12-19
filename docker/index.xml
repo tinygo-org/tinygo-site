@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Using With Docker on TinyGo</title>
-    <link>https://tinygo-org.github.io/tinygo-site/docker/</link>
+    <link>https://tinygo.org/docker/</link>
     <description>Recent content in Using With Docker on TinyGo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="https://tinygo-org.github.io/tinygo-site/docker/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://tinygo.org/docker/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Using TinyGo with Docker</title>
-      <link>https://tinygo-org.github.io/tinygo-site/docker/using/</link>
+      <link>https://tinygo.org/docker/using/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo-org.github.io/tinygo-site/docker/using/</guid>
+      <guid>https://tinygo.org/docker/using/</guid>
       <description>A docker container exists for easy access to the TinyGo CLI. For example, to compile wasm.wasm for the WebAssembly example, from the root of the repository:
 docker run --rm -v $(pwd):/src tinygo/tinygo tinygo build -o /src/wasm.wasm -target wasm examples/wasm  To compile blinky1.hex targeting an ARM microcontroller, such as the PCA10040:
 docker run --rm -v $(pwd):/src tinygo/tinygo tinygo build -o /src/blinky1.hex -size=short -target=pca10040 examples/blinky1  To compile blinky1.hex targeting an AVR microcontroller such as the Arduino:</description>

@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Getting Started on TinyGo</title>
-    <link>https://tinygo-org.github.io/tinygo-site/getting-started/</link>
+    <link>https://tinygo.org/getting-started/</link>
     <description>Recent content in Getting Started on TinyGo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="https://tinygo-org.github.io/tinygo-site/getting-started/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://tinygo.org/getting-started/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Requirements</title>
-      <link>https://tinygo-org.github.io/tinygo-site/getting-started/requirements/</link>
+      <link>https://tinygo.org/getting-started/requirements/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo-org.github.io/tinygo-site/getting-started/requirements/</guid>
+      <guid>https://tinygo.org/getting-started/requirements/</guid>
       <description>These are the base requirements and enough for most (desktop) use.
  Go 1.11+ LLVM 7 (for example, from apt.llvm.org  Linking a binary needs an installed C compiler (cc). At the moment it expects GCC or a recent Clang.
 ARM Cortex-M The Cortex-M family of microcontrollers is well supported, as it uses the stable ARM LLVM backend (which is even used in the propietary C compiler from ARM). Compiling to object code should be supported out of the box, but compiling the final binary and flashing it needs some extra tools.</description>
@@ -23,10 +23,10 @@ ARM Cortex-M The Cortex-M family of microcontrollers is well supported, as it us
     
     <item>
       <title>Installation</title>
-      <link>https://tinygo-org.github.io/tinygo-site/getting-started/installation/</link>
+      <link>https://tinygo.org/getting-started/installation/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo-org.github.io/tinygo-site/getting-started/installation/</guid>
+      <guid>https://tinygo.org/getting-started/installation/</guid>
       <description>Now that you have the requirements, now download the sources. This may take a while.
 go get -u github.com/aykevl/tinygo  If you get an error like this::
 /usr/local/go/pkg/tool/linux_amd64/link: running g++ failed: exit status 1 /usr/bin/ld: error: cannot find -lLLVM-7 cgo-gcc-prolog:58: error: undefined reference to &#39;LLVMVerifyFunction&#39; cgo-gcc-prolog:80: error: undefined reference to &#39;LLVMVerifyModule&#39; [...etc...]  Or like this::
@@ -35,10 +35,10 @@ go get -u github.com/aykevl/tinygo  If you get an error like this::
     
     <item>
       <title>Usage</title>
-      <link>https://tinygo-org.github.io/tinygo-site/getting-started/usage/</link>
+      <link>https://tinygo.org/getting-started/usage/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo-org.github.io/tinygo-site/getting-started/usage/</guid>
+      <guid>https://tinygo.org/getting-started/usage/</guid>
       <description>TinyGo should now be installed. Test it by running a test program:
 tinygo run examples/test  Before anything can be built for a bare-metal target, you need to generate some files first:
 make gen-device  This will generate register descriptions, interrupt vectors, and linker scripts for various devices. Also, you may need to re-run this command after updates, as some updates cause changes to the generated files.

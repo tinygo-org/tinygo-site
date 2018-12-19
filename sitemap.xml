@@ -3,144 +3,144 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://tinygo-org.github.io/tinygo-site/getting-started/requirements/</loc>
+    <loc>https://tinygo.org/getting-started/requirements/</loc>
   </url>
   
   <url>
-    <loc>https://tinygo-org.github.io/tinygo-site/compiler-internals/differences-from-go/</loc>
+    <loc>https://tinygo.org/compiler-internals/differences-from-go/</loc>
   </url>
   
   <url>
-    <loc>https://tinygo-org.github.io/tinygo-site/microcontrollers/heap-allocation/</loc>
+    <loc>https://tinygo.org/microcontrollers/heap-allocation/</loc>
   </url>
   
   <url>
-    <loc>https://tinygo-org.github.io/tinygo-site/getting-started/installation/</loc>
+    <loc>https://tinygo.org/getting-started/installation/</loc>
   </url>
   
   <url>
-    <loc>https://tinygo-org.github.io/tinygo-site/targets/posix/</loc>
+    <loc>https://tinygo.org/targets/posix/</loc>
   </url>
   
   <url>
-    <loc>https://tinygo-org.github.io/tinygo-site/usage/subcommands/</loc>
+    <loc>https://tinygo.org/usage/subcommands/</loc>
   </url>
   
   <url>
-    <loc>https://tinygo-org.github.io/tinygo-site/docker/using/</loc>
+    <loc>https://tinygo.org/docker/using/</loc>
   </url>
   
   <url>
-    <loc>https://tinygo-org.github.io/tinygo-site/faq/what-is-tinygo/</loc>
+    <loc>https://tinygo.org/faq/what-is-tinygo/</loc>
   </url>
   
   <url>
-    <loc>https://tinygo-org.github.io/tinygo-site/targets/arm/</loc>
+    <loc>https://tinygo.org/targets/arm/</loc>
   </url>
   
   <url>
-    <loc>https://tinygo-org.github.io/tinygo-site/compiler-internals/datatypes/</loc>
+    <loc>https://tinygo.org/compiler-internals/datatypes/</loc>
   </url>
   
   <url>
-    <loc>https://tinygo-org.github.io/tinygo-site/getting-started/</loc>
+    <loc>https://tinygo.org/getting-started/</loc>
   </url>
   
   <url>
-    <loc>https://tinygo-org.github.io/tinygo-site/usage/important-options/</loc>
+    <loc>https://tinygo.org/usage/important-options/</loc>
   </url>
   
   <url>
-    <loc>https://tinygo-org.github.io/tinygo-site/microcontrollers/volatile/</loc>
+    <loc>https://tinygo.org/microcontrollers/volatile/</loc>
   </url>
   
   <url>
-    <loc>https://tinygo-org.github.io/tinygo-site/getting-started/usage/</loc>
+    <loc>https://tinygo.org/getting-started/usage/</loc>
   </url>
   
   <url>
-    <loc>https://tinygo-org.github.io/tinygo-site/webassembly/webassembly/</loc>
+    <loc>https://tinygo.org/webassembly/webassembly/</loc>
   </url>
   
   <url>
-    <loc>https://tinygo-org.github.io/tinygo-site/faq/why-a-new-compiler/</loc>
+    <loc>https://tinygo.org/faq/why-a-new-compiler/</loc>
   </url>
   
   <url>
-    <loc>https://tinygo-org.github.io/tinygo-site/targets/avr/</loc>
+    <loc>https://tinygo.org/targets/avr/</loc>
   </url>
   
   <url>
-    <loc>https://tinygo-org.github.io/tinygo-site/compiler-internals/calling-convention/</loc>
+    <loc>https://tinygo.org/compiler-internals/calling-convention/</loc>
   </url>
   
   <url>
-    <loc>https://tinygo-org.github.io/tinygo-site/microcontrollers/inline-assembly/</loc>
+    <loc>https://tinygo.org/microcontrollers/inline-assembly/</loc>
   </url>
   
   <url>
-    <loc>https://tinygo-org.github.io/tinygo-site/usage/misc-options/</loc>
+    <loc>https://tinygo.org/usage/misc-options/</loc>
   </url>
   
   <url>
-    <loc>https://tinygo-org.github.io/tinygo-site/usage/</loc>
+    <loc>https://tinygo.org/usage/</loc>
   </url>
   
   <url>
-    <loc>https://tinygo-org.github.io/tinygo-site/faq/why-go-instead-of-rust/</loc>
+    <loc>https://tinygo.org/faq/why-go-instead-of-rust/</loc>
   </url>
   
   <url>
-    <loc>https://tinygo-org.github.io/tinygo-site/microcontrollers/harvard-arch/</loc>
+    <loc>https://tinygo.org/microcontrollers/harvard-arch/</loc>
   </url>
   
   <url>
-    <loc>https://tinygo-org.github.io/tinygo-site/compiler-internals/pipeline/</loc>
+    <loc>https://tinygo.org/compiler-internals/pipeline/</loc>
   </url>
   
   <url>
-    <loc>https://tinygo-org.github.io/tinygo-site/docker/</loc>
+    <loc>https://tinygo.org/docker/</loc>
   </url>
   
   <url>
-    <loc>https://tinygo-org.github.io/tinygo-site/targets/wasm/</loc>
+    <loc>https://tinygo.org/targets/wasm/</loc>
   </url>
   
   <url>
-    <loc>https://tinygo-org.github.io/tinygo-site/faq/what-about-esp8266-esp32/</loc>
+    <loc>https://tinygo.org/faq/what-about-esp8266-esp32/</loc>
   </url>
   
   <url>
-    <loc>https://tinygo-org.github.io/tinygo-site/targets/</loc>
+    <loc>https://tinygo.org/targets/</loc>
   </url>
   
   <url>
-    <loc>https://tinygo-org.github.io/tinygo-site/microcontrollers/</loc>
+    <loc>https://tinygo.org/microcontrollers/</loc>
   </url>
   
   <url>
-    <loc>https://tinygo-org.github.io/tinygo-site/webassembly/</loc>
+    <loc>https://tinygo.org/webassembly/</loc>
   </url>
   
   <url>
-    <loc>https://tinygo-org.github.io/tinygo-site/faq/</loc>
+    <loc>https://tinygo.org/faq/</loc>
   </url>
   
   <url>
-    <loc>https://tinygo-org.github.io/tinygo-site/compiler-internals/</loc>
+    <loc>https://tinygo.org/compiler-internals/</loc>
   </url>
   
   <url>
-    <loc>https://tinygo-org.github.io/tinygo-site/categories/</loc>
+    <loc>https://tinygo.org/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://tinygo-org.github.io/tinygo-site/</loc>
+    <loc>https://tinygo.org/</loc>
   </url>
   
   <url>
-    <loc>https://tinygo-org.github.io/tinygo-site/tags/</loc>
+    <loc>https://tinygo.org/tags/</loc>
     <priority>0</priority>
   </url>
   

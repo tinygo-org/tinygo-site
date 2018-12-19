@@ -2,49 +2,49 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Supported Targets on TinyGo</title>
-    <link>https://tinygo-org.github.io/tinygo-site/targets/</link>
+    <link>https://tinygo.org/targets/</link>
     <description>Recent content in Supported Targets on TinyGo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="https://tinygo-org.github.io/tinygo-site/targets/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://tinygo.org/targets/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>POSIX-like</title>
-      <link>https://tinygo-org.github.io/tinygo-site/targets/posix/</link>
+      <link>https://tinygo.org/targets/posix/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo-org.github.io/tinygo-site/targets/posix/</guid>
+      <guid>https://tinygo.org/targets/posix/</guid>
       <description>Only Linux is supported at the moment, but it should be trivial to add support for more POSIX-like systems.</description>
     </item>
     
     <item>
       <title>ARM / Cortex-M</title>
-      <link>https://tinygo-org.github.io/tinygo-site/targets/arm/</link>
+      <link>https://tinygo.org/targets/arm/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo-org.github.io/tinygo-site/targets/arm/</guid>
+      <guid>https://tinygo.org/targets/arm/</guid>
       <description>ARM Cortex-M processors are well supported. There is support for multiple chips and the backend appears to be stable. In fact, it uses the same underlying technology (LLVM) as the proprietary ARM compiler for code generation.
  BBC micro:bit (nRF51822) Nordic PCA10031 (nRF51422) Nordic PCA10040 (nRF52832) nRF52840-MDK (nRF52840) reel board (nRF52840) Nordic PCA10056_(nRF52840) QEMU (LM3S6965) This target is supported only for testing purposes. It has not been tested on real hardware.</description>
     </item>
     
     <item>
       <title>AVR</title>
-      <link>https://tinygo-org.github.io/tinygo-site/targets/avr/</link>
+      <link>https://tinygo.org/targets/avr/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo-org.github.io/tinygo-site/targets/avr/</guid>
+      <guid>https://tinygo.org/targets/avr/</guid>
       <description>Note: the AVR backend of LLVM is still experimental so you may encounter bugs.
  Arduino Uno (ATmega328p) Digispark (ATtiny85) Very limited support at the moment.  </description>
     </item>
     
     <item>
       <title>WebAssembly</title>
-      <link>https://tinygo-org.github.io/tinygo-site/targets/wasm/</link>
+      <link>https://tinygo.org/targets/wasm/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo-org.github.io/tinygo-site/targets/wasm/</guid>
+      <guid>https://tinygo.org/targets/wasm/</guid>
       <description>WebAssembly support is relatively new but appears to be stable.</description>
     </item>
     
