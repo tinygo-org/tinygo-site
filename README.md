@@ -17,7 +17,7 @@ https://github.com/matcornic/hugo-theme-learn
 
 ## TODO:
 
-- Move all content from current `docs` directory.
-- Create solution to generate custom godocs for all tinygo build tags, and add to "Documentation" section.
+- Generate custom godocs for all tinygo build tags, add to "Documentation" section, and point Godocs links there.
 - Activate search.
+- Custom domain for all packages
 - ?
