@@ -5,6 +5,7 @@
     <link>https://tinygo.org/targets/</link>
     <description>Recent content in Supported Targets on TinyGo - Go on Microcontrollers and WASM</description>
     <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
     
 	<atom:link href="https://tinygo.org/targets/index.xml" rel="self" type="application/rss+xml" />
     

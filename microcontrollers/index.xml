@@ -5,6 +5,7 @@
     <link>https://tinygo.org/microcontrollers/</link>
     <description>Recent content in Go on microcontrollers on TinyGo - Go on Microcontrollers and WASM</description>
     <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
     
 	<atom:link href="https://tinygo.org/microcontrollers/index.xml" rel="self" type="application/rss+xml" />
     
