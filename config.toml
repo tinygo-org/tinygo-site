@@ -1,16 +1,18 @@
 baseURL = "https://tinygo.org/"
 title = "TinyGo - Go on Microcontrollers and WASM"
+languageCode = "en-us"
 theme = "learn"
 
 [params]
-  # Change default color scheme with a variant one. Can be "red", "blue", "green".
-  themeVariant = "blue"
-  # Disable search function. It will hide search bar
-  disableSearch = true
-  editURL = "https://github.com/tinygo-org/tinygo-site/edit/master/content/"
+# Change default color scheme with a variant one. Can be "red", "blue", "green".
+themeVariant = "blue"
+# Disable search function. It will hide search bar
+disableSearch = true
+editURL = "https://github.com/tinygo-org/tinygo-site/edit/master/content/"
+disableInlineCopyToClipBoard = true
 
 [[menu.shortcuts]] 
-name = "<i class='fa fa-github'></i> Github repo"
+name = "<i class='fab fa-github'></i> Github repo"
 url = "https://github.com/aykevl/tinygo"
 weight = 10
 
@@ -20,6 +22,6 @@ url = "https://godoc.org/github.com/aykevl/tinygo"
 weight = 20
 
 [[menu.shortcuts]] 
-name = "<i class='fa fa-twitter'></i> Twitter"
+name = "<i class='fab fa-twitter'></i> Twitter"
 url = "https://twitter.com/TinyGolang"
 weight = 30
