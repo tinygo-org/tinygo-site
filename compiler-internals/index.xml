@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Compiler Internals on TinyGo</title>
+    <title>Compiler Internals on TinyGo - Go on Microcontrollers and WASM</title>
     <link>https://tinygo.org/compiler-internals/</link>
-    <description>Recent content in Compiler Internals on TinyGo</description>
+    <description>Recent content in Compiler Internals on TinyGo - Go on Microcontrollers and WASM</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
     
 	<atom:link href="https://tinygo.org/compiler-internals/index.xml" rel="self" type="application/rss+xml" />
     
