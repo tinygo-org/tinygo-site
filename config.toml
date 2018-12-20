@@ -25,3 +25,8 @@ weight = 20
 name = "<i class='fab fa-twitter'></i> Twitter"
 url = "https://twitter.com/TinyGolang"
 weight = 30
+
+[[menu.shortcuts]] 
+name = "<i class='fab fa-slack'></i> Slack"
+url = "https://gophers.slack.com/messages/CDJD3SUP6/"
+weight = 40
