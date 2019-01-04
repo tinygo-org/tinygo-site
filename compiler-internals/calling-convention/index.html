@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.52" />
+    <meta name="generator" content="Hugo 0.53" />
     <meta name="description" content="">
 
 
@@ -12,19 +12,19 @@
     <title>Calling convention :: TinyGo - Go on Microcontrollers and WASM</title>
 
     
-    <link href="/css/nucleus.css?1545505585" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1545505585" rel="stylesheet">
-    <link href="/css/hybrid.css?1545505585" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1545505585" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1545505585" rel="stylesheet">
-    <link href="/css/auto-complete.css?1545505585" rel="stylesheet">
-    <link href="/css/theme.css?1545505585" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1545505585" rel="stylesheet">
+    <link href="/css/nucleus.css?1546612779" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1546612779" rel="stylesheet">
+    <link href="/css/hybrid.css?1546612779" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1546612779" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1546612779" rel="stylesheet">
+    <link href="/css/auto-complete.css?1546612779" rel="stylesheet">
+    <link href="/css/theme.css?1546612779" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1546612779" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1545505585" rel="stylesheet">
+      <link href="/css/theme-blue.css?1546612779" rel="stylesheet">
     
 
-    <script src="/js/jquery-2.x.min.js?1545505585"></script>
+    <script src="/js/jquery-2.x.min.js?1546612779"></script>
 
     <style type="text/css">
       :root #header + #content > #left > #rlblock_left{
@@ -911,13 +911,15 @@
 <p>Note that all native Go data types that are lowered to aggregate types in LLVM are expanded this way: <code>string</code>, slices, interfaces, and fat function pointers. This avoids some overhead in the C calling convention and makes the work of the LLVM optimizers easier.</p>
 
 <ul>
-<li>The WebAssembly target never exports or imports a <code>i64</code> (<code>int64</code>, <code>uint64</code>) parameter. Instead, it replaces them with <code>i64*</code>, allocating the value on the stack. In other words, imported functions are called with a 64-bit integer on the stack and exported functions must be called with a pointer to a 64-bit integer somewhere in linear memory.</li>
+<li>The WebAssembly target by default doesn&rsquo;t export or import <code>i64</code> (<code>int64</code>, <code>uint64</code>) parameters. Instead, it replaces them with <code>i64*</code>, allocating the value on the stack. In other words, imported functions are called with a 64-bit integer on the stack and exported functions must be called with a pointer to a 64-bit integer somewhere in linear memory.</li>
 </ul>
 
 <p>This is a workaround for a limitation in JavaScript, which only deals with doubles and can therefore only work with integers up to 32-bit in size (a 64-bit integer cannot be represented exactly in a double, a 32-bit integer can). It is expected that 64-bit integers will be <a href="https://github.com/WebAssembly/design/issues/1172">added in the near future</a> at which point this calling convention workaround may be removed. Also see <a href="https://github.com/rustwasm/wasm-bindgen/issues/35">this wasm-bindgen issue</a>.</p>
 
+<p>Currently there are also non-browser WebAssembly execution environments that do not have this limitation. Use the -wasm-abi=generic flag to remove the behavior described above and enable emitting functions with i64 parameters directly.</p>
+
 <ul>
-<li>The WebAssembly target does not return variables directly that cannot be handled by JavaScript (<code>struct</code>, <code>i64</code>, multiple return values, etc). Instead, they are stored into a pointer passed as the first parameter by the caller.</li>
+<li>The WebAssembly target does not return variables directly that cannot be handled by JavaScript (see above about <code>i64</code>, also <code>struct</code>, <code>i64</code>, multiple return values, etc). Instead, they are stored into a pointer passed as the first parameter by the caller.</li>
 </ul>
 
 <p>This is the calling convention as implemented by LLVM, with the extension that <code>i64</code> return values are returned in the same way as aggregate types.</p>
@@ -1505,20 +1507,20 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1545505585"></script>
-    <script src="/js/perfect-scrollbar.min.js?1545505585"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1545505585"></script>
-    <script src="/js/jquery.sticky.js?1545505585"></script>
-    <script src="/js/featherlight.min.js?1545505585"></script>
-    <script src="/js/html5shiv-printshiv.min.js?1545505585"></script>
-    <script src="/js/highlight.pack.js?1545505585"></script>
+    <script src="/js/clipboard.min.js?1546612779"></script>
+    <script src="/js/perfect-scrollbar.min.js?1546612779"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1546612779"></script>
+    <script src="/js/jquery.sticky.js?1546612779"></script>
+    <script src="/js/featherlight.min.js?1546612779"></script>
+    <script src="/js/html5shiv-printshiv.min.js?1546612779"></script>
+    <script src="/js/highlight.pack.js?1546612779"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom.71422.js?1545505585"></script>
-    <script src="/js/learn.js?1545505585"></script>
-    <script src="/js/hugo-learn.js?1545505585"></script>
+    <script src="/js/modernizr.custom.71422.js?1546612779"></script>
+    <script src="/js/learn.js?1546612779"></script>
+    <script src="/js/hugo-learn.js?1546612779"></script>
 
-    <link href="/mermaid/mermaid.css?1545505585" type="text/css" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1545505585"></script>
+    <link href="/mermaid/mermaid.css?1546612779" type="text/css" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1546612779"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
