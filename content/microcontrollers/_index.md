@@ -6,6 +6,4 @@ weight: 7
 
 # Go on microcontrollers
 
-TinyGo was designed to run on microcontrollers, but the Go language wasn't. This means there are a few challenges to writing Go code for microcontrollers.
-
-Microcontrollers have very little RAM and execute code directly from flash. Also, constant globals are generally put in flash whenever possible. The Go language itself heavily relies on garbage collection so care must be taken to avoid dynamic memory allocation.
+TinyGo lets you run Go directly on microcontrollers. We also give you the ability to add new boards. If your target isn't listed here, please raise an issue in the [issue tracker](https://github.com/aykevl/tinygo/issues).
