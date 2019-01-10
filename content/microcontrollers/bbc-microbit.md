@@ -14,4 +14,4 @@ The [BBC micro:bit](https://microbit.org) is a tiny programmable computer design
 | SPI      | YES | YES |
 | I2C      | YES | YES |
 | ADC      | YES | Not yet |
-| PWM      | YES | Not yet |
+| PWM      | Software support | Not yet |
