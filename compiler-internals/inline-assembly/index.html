@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/images/favicon.png" type="image/x-icon" />
-    <title>Using With Docker :: TinyGo - Go on Microcontrollers and WASM</title>
+    <title>Inline assembly :: TinyGo - Go on Microcontrollers and WASM</title>
 
     
     <link href="/css/nucleus.css?1547190857" rel="stylesheet">
@@ -38,7 +38,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/docker/">
+  <body class="" data-url="/compiler-internals/inline-assembly/">
     <nav id="sidebar" class="">
 
 
@@ -244,8 +244,8 @@
   
     
     <li data-nav-id="/docker/" title="Using With Docker" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/docker/">
@@ -679,7 +679,7 @@
   
     
     <li data-nav-id="/compiler-internals/" title="Compiler Internals" class="dd-item 
-        
+        parent
         
         
         ">
@@ -798,7 +798,7 @@
  
   
     
-      <li data-nav-id="/compiler-internals/inline-assembly/" title="Inline assembly" class="dd-item ">
+      <li data-nav-id="/compiler-internals/inline-assembly/" title="Inline assembly" class="dd-item active">
         <a href="/compiler-internals/inline-assembly/">
         Inline assembly
         
@@ -934,7 +934,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/tinygo-org/tinygo-site/edit/master/content/docker/_index.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/tinygo-org/tinygo-site/edit/master/content/compiler-internals/inline-assembly.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -949,6 +949,8 @@
                         </a>
                     </span>
                   
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
                   <span class="links">
                  
                  
@@ -959,7 +961,13 @@
             
           
           
-            <a href='/'>Home</a> > Using With Docker
+            
+            
+          
+          
+            <a href='/'>Home</a> > <a href='/compiler-internals/'>Compiler Internals</a> > Inline assembly
+          
+         
           
          
           
@@ -968,32 +976,54 @@
                   </span>
                 </div>
                 
+                    <div class="progress">
+    <div class="wrapper">
+
+    </div>
+</div>
+
+                
               </div>
             </div>
             
 
         
-          <div id="chapter">
-        
         <div id="body-inner">
+          
+            <h1>Inline assembly</h1>
           
 
         
 
 
+<p>The device-specific packages like <code>device/avr</code> and <code>device/arm</code> provide <code>Asm</code> functions which you can use to write inline assembly:</p>
 
+<pre><code class="language-go">arm.Asm(&quot;wfi&quot;)
+</code></pre>
 
-<h1 id="tinygo-with-docker">TinyGo with Docker</h1>
+<p>You can also pass parameters to the inline assembly:</p>
 
-<p>You can use our Docker image to be able to run the TinyGo compiler on your computer without having to install all the dependencies. Read on to learn how.</p>
+<pre><code class="language-go">var result int32
+arm.AsmFull(`
+    lsls  {value}, #1
+    str   {value}, {result}
+`, map[string]interface{}{
+    &quot;value&quot;:  42,
+    &quot;result&quot;: &amp;result,
+})
+println(&quot;result:&quot;, result)
+</code></pre>
+
+<p>In general, types are autodetected. That is, integer types are passed as raw registers and pointer types are passed as memory locations. This means you can&rsquo;t easily do pointer arithmetic. To do that, convert a pointer value to a <code>uintptr</code>.</p>
+
+<p>Inline assembly support is expected to change in the future and may change in a backwards-incompatible manner.</p>
 
 
 <footer class=" footline" >
 	
 </footer>
 
-        
-            </div> 
+
         
         </div> 
         
@@ -1156,7 +1186,6 @@
             
                 
                     
-                    
                 
                 
 
@@ -1169,9 +1198,6 @@
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -1480,6 +1506,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1492,6 +1519,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1573,6 +1603,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1588,6 +1619,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1644,10 +1678,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/usage/misc-options/" title="Misc. Build Options"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/compiler-internals/calling-convention/" title="Calling convention"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/docker/using/" title="Using TinyGo with Docker" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/compiler-internals/harvard-arch/" title="Harvard architectures (AVR)" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1678,3 +1712,4 @@
 
   </body>
 </html>
+

@@ -11,15 +11,11 @@
   </url>
   
   <url>
-    <loc>https://tinygo.org/microcontrollers/heap-allocation/</loc>
+    <loc>https://tinygo.org/compiler-internals/heap-allocation/</loc>
   </url>
   
   <url>
     <loc>https://tinygo.org/getting-started/installation/</loc>
-  </url>
-  
-  <url>
-    <loc>https://tinygo.org/targets/posix/</loc>
   </url>
   
   <url>
@@ -35,11 +31,23 @@
   </url>
   
   <url>
-    <loc>https://tinygo.org/targets/arm/</loc>
+    <loc>https://tinygo.org/microcontrollers/arduino-uno/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tinygo.org/microcontrollers/bbc-microbit/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tinygo.org/microcontrollers/bluepill/</loc>
   </url>
   
   <url>
     <loc>https://tinygo.org/compiler-internals/datatypes/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tinygo.org/microcontrollers/digispark/</loc>
   </url>
   
   <url>
@@ -51,7 +59,19 @@
   </url>
   
   <url>
-    <loc>https://tinygo.org/microcontrollers/volatile/</loc>
+    <loc>https://tinygo.org/microcontrollers/pca10031/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tinygo.org/microcontrollers/pca10040/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tinygo.org/microcontrollers/pca10056/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tinygo.org/compiler-internals/volatile/</loc>
   </url>
   
   <url>
@@ -67,7 +87,11 @@
   </url>
   
   <url>
-    <loc>https://tinygo.org/targets/avr/</loc>
+    <loc>https://tinygo.org/microcontrollers/nrf52840-mdk/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tinygo.org/microcontrollers/reelboard/</loc>
   </url>
   
   <url>
@@ -75,7 +99,7 @@
   </url>
   
   <url>
-    <loc>https://tinygo.org/microcontrollers/inline-assembly/</loc>
+    <loc>https://tinygo.org/compiler-internals/inline-assembly/</loc>
   </url>
   
   <url>
@@ -91,7 +115,11 @@
   </url>
   
   <url>
-    <loc>https://tinygo.org/microcontrollers/harvard-arch/</loc>
+    <loc>https://tinygo.org/compiler-internals/harvard-arch/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tinygo.org/compiler-internals/microcontrollers/</loc>
   </url>
   
   <url>
@@ -103,19 +131,15 @@
   </url>
   
   <url>
-    <loc>https://tinygo.org/targets/wasm/</loc>
-  </url>
-  
-  <url>
     <loc>https://tinygo.org/faq/what-about-esp8266-esp32/</loc>
   </url>
   
   <url>
-    <loc>https://tinygo.org/targets/</loc>
+    <loc>https://tinygo.org/microcontrollers/</loc>
   </url>
   
   <url>
-    <loc>https://tinygo.org/microcontrollers/</loc>
+    <loc>https://tinygo.org/linux/</loc>
   </url>
   
   <url>

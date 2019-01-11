@@ -32,10 +32,10 @@ ARM Cortex-M The Cortex-M family of microcontrollers is well supported, as it us
     
     <item>
       <title>Heap allocation</title>
-      <link>https://tinygo.org/microcontrollers/heap-allocation/</link>
+      <link>https://tinygo.org/compiler-internals/heap-allocation/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo.org/microcontrollers/heap-allocation/</guid>
+      <guid>https://tinygo.org/compiler-internals/heap-allocation/</guid>
       <description>Many operations in Go rely on heap allocation. Some of these heap allocations are optimized away, but not all of them. Also, TinyGo does not yet contain a garbage collector so heap allocation must be avoided whenever possible outside of initialization code.
 These operations currently do heap allocations:
  Taking the pointer of a local variable. This will result in a heap allocation, unless the compiler can see the resulting pointer never escapes.</description>
@@ -51,15 +51,6 @@ These operations currently do heap allocations:
 go get -u github.com/aykevl/tinygo  If you get an error like this::
 /usr/local/go/pkg/tool/linux_amd64/link: running g++ failed: exit status 1 /usr/bin/ld: error: cannot find -lLLVM-7 cgo-gcc-prolog:58: error: undefined reference to &#39;LLVMVerifyFunction&#39; cgo-gcc-prolog:80: error: undefined reference to &#39;LLVMVerifyModule&#39; [...etc...]  Or like this::
 ../go-llvm/analysis.go:17:93: fatal error: llvm-c/Analysis.h: No such file or directory #include &amp;quot;llvm-c/Analysis.h&amp;quot; // If you are getting an error here read bindings/go/README.</description>
-    </item>
-    
-    <item>
-      <title>POSIX-like</title>
-      <link>https://tinygo.org/targets/posix/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://tinygo.org/targets/posix/</guid>
-      <description>Only Linux is supported at the moment, but it should be trivial to add support for more POSIX-like systems.</description>
     </item>
     
     <item>
@@ -97,13 +88,34 @@ Specifically:
     </item>
     
     <item>
-      <title>ARM / Cortex-M</title>
-      <link>https://tinygo.org/targets/arm/</link>
+      <title>Arduino Uno</title>
+      <link>https://tinygo.org/microcontrollers/arduino-uno/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo.org/targets/arm/</guid>
-      <description>ARM Cortex-M processors are well supported. There is support for multiple chips and the backend appears to be stable. In fact, it uses the same underlying technology (LLVM) as the proprietary ARM compiler for code generation.
- BBC micro:bit (nRF51822) Nordic PCA10031 (nRF51422) Nordic PCA10040 (nRF52832) nRF52840-MDK (nRF52840) reel board (nRF52840) Nordic PCA10056_(nRF52840) QEMU (LM3S6965) This target is supported only for testing purposes. It has not been tested on real hardware.</description>
+      <guid>https://tinygo.org/microcontrollers/arduino-uno/</guid>
+      <description> The Arduino Uno is based on the AVR (ATmega328p) microcontroller.
+Note: the AVR backend of LLVM is still experimental so you may encounter bugs.
+Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UART YES YES   SPI YES Not yet   I2C YES YES   ADC YES YES   PWM YES YES    </description>
+    </item>
+    
+    <item>
+      <title>BBC:Microbit</title>
+      <link>https://tinygo.org/microcontrollers/bbc-microbit/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tinygo.org/microcontrollers/bbc-microbit/</guid>
+      <description> The BBC micro:bit is a tiny programmable computer designed for learning. It is based on the Nordic Semiconductor nRF51822 ARM Cortex MO chip.
+Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UART YES YES   SPI YES YES   I2C YES YES   ADC YES Not yet   PWM Software support Not yet    </description>
+    </item>
+    
+    <item>
+      <title>Bluepill</title>
+      <link>https://tinygo.org/microcontrollers/bluepill/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tinygo.org/microcontrollers/bluepill/</guid>
+      <description> The Bluepill is a popular, ultra-cheap and compact ARM development board based on the ST Micro STM32F103C8 SoC.
+Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UART YES YES   SPI YES YES   I2C YES YES   ADC YES Not yet   PWM YES Not yet    </description>
     </item>
     
     <item>
@@ -115,6 +127,18 @@ Specifically:
       <description>TinyGo uses a different representation for some data types than standard Go.
 string A string is encoded as a {ptr, len} tuple. The type is actually defined in the runtime as runtime._string, in src/runtime/string.go. That file also contains some compiler intrinsics for dealing with strings and UTF-8.
 slice A slice is encoded as a {ptr, len, cap} tuple. There is no runtime definition of it as slices are a generic type and the pointer type is different for each slice.</description>
+    </item>
+    
+    <item>
+      <title>Digispark</title>
+      <link>https://tinygo.org/microcontrollers/digispark/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tinygo.org/microcontrollers/digispark/</guid>
+      <description>The Digispark is an ATtiny85 based microcontroller development board similar to the Arduino line, only cheaper, smaller, and a bit less powerful.
+There is very limited support at the moment for this board.
+Note: the AVR backend of LLVM is still experimental so you may encounter bugs.
+Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UART YES Not yet   SPI Requires software Not yet   I2C Requires software Not yet   ADC YES Not yet   PWM ?</description>
     </item>
     
     <item>
@@ -130,11 +154,41 @@ slice A slice is encoded as a {ptr, len, cap} tuple. There is no runtime definit
     </item>
     
     <item>
-      <title>The volatile keyword</title>
-      <link>https://tinygo.org/microcontrollers/volatile/</link>
+      <title>PCA10031</title>
+      <link>https://tinygo.org/microcontrollers/pca10031/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo.org/microcontrollers/volatile/</guid>
+      <guid>https://tinygo.org/microcontrollers/pca10031/</guid>
+      <description> The Nordic Semiconductor PCA10031 is a low-cost, versatile USB development dongle for wireless applications based on the Nordic Semiconductor nRF51422 chip using the nRF51 series SoC.
+Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UART YES YES   SPI YES Not yet   I2C YES Not yet   ADC YES Not yet   PWM YES Not yet    </description>
+    </item>
+    
+    <item>
+      <title>PCA10040</title>
+      <link>https://tinygo.org/microcontrollers/pca10040/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tinygo.org/microcontrollers/pca10040/</guid>
+      <description> The Nordic Semiconductor PCA10040 is a single-board development kit for wireless applications based on the Nordic Semiconductor nRF52832 SoC.
+Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UART YES YES   SPI YES YES   I2C YES YES   ADC YES YES   PWM YES YES    </description>
+    </item>
+    
+    <item>
+      <title>PCA10056</title>
+      <link>https://tinygo.org/microcontrollers/pca10056/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tinygo.org/microcontrollers/pca10056/</guid>
+      <description> The Nordic Semiconductor PCA10056 is a single-board development kit for wireless applications based on the Nordic Semiconductor nRF52840 SoC.
+Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UART YES YES   SPI YES YES   I2C YES YES   ADC YES Not yet   PWM YES Not yet    </description>
+    </item>
+    
+    <item>
+      <title>The volatile keyword</title>
+      <link>https://tinygo.org/compiler-internals/volatile/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tinygo.org/compiler-internals/volatile/</guid>
       <description>Go does not have the volatile keyword like C/C++. This keyword is unnecessary in most desktop use cases but is required for memory mapped I/O on microcontrollers and interrupt handlers. As a workaround, any variable of a type annotated with the //go:volatile pragma will be marked volatile. For example:
 //go:volatile type volatileBool bool var isrFlag volatileBool  This is a workaround for a limitation in the Go language and should at some point be replaced with something else.</description>
     </item>
@@ -174,13 +228,24 @@ There are several reasons for this:
     </item>
     
     <item>
-      <title>AVR</title>
-      <link>https://tinygo.org/targets/avr/</link>
+      <title>nRF52840-MDK</title>
+      <link>https://tinygo.org/microcontrollers/nrf52840-mdk/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo.org/targets/avr/</guid>
-      <description>Note: the AVR backend of LLVM is still experimental so you may encounter bugs.
- Arduino Uno (ATmega328p) Digispark (ATtiny85) Very limited support at the moment.  </description>
+      <guid>https://tinygo.org/microcontrollers/nrf52840-mdk/</guid>
+      <description> The nRF52840-MDK is an open-source, micro development kit for IoT applications based on the Nordic Semiconductor nRF52840 SoC chip.
+Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UART YES YES   SPI YES YES   I2C YES YES   ADC YES Not yet   PWM YES Not yet    </description>
+    </item>
+    
+    <item>
+      <title>reel board</title>
+      <link>https://tinygo.org/microcontrollers/reelboard/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tinygo.org/microcontrollers/reelboard/</guid>
+      <description> The reel board is an evaluation board based on the Nordic Semiconductor nRF52840 SoC.
+It is equipped with an Electrophoretic (electronic ink) Display (EPD), along with temperature, humidity, light, and accelerometer sensors, and Bluetooth connectivity.
+Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UART YES YES   SPI YES YES   I2C YES YES   ADC YES Not yet   PWM YES Not yet    </description>
     </item>
     
     <item>
@@ -196,10 +261,10 @@ TinyGo, however, uses a register based calling convention. In fact it is somewha
     
     <item>
       <title>Inline assembly</title>
-      <link>https://tinygo.org/microcontrollers/inline-assembly/</link>
+      <link>https://tinygo.org/compiler-internals/inline-assembly/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo.org/microcontrollers/inline-assembly/</guid>
+      <guid>https://tinygo.org/compiler-internals/inline-assembly/</guid>
       <description>The device-specific packages like device/avr and device/arm provide Asm functions which you can use to write inline assembly:
 arm.Asm(&amp;quot;wfi&amp;quot;)  You can also pass parameters to the inline assembly:
 var result int32 arm.AsmFull(` lsls {value}, #1 str {value}, {result} `, map[string]interface{}{ &amp;quot;value&amp;quot;: 42, &amp;quot;result&amp;quot;: &amp;amp;result, }) println(&amp;quot;result:&amp;quot;, result)  In general, types are autodetected. That is, integer types are passed as raw registers and pointer types are passed as memory locations.</description>
@@ -227,12 +292,23 @@ However, apart from personal language preference, Go has a few advantages:
     
     <item>
       <title>Harvard architectures (AVR)</title>
-      <link>https://tinygo.org/microcontrollers/harvard-arch/</link>
+      <link>https://tinygo.org/compiler-internals/harvard-arch/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo.org/microcontrollers/harvard-arch/</guid>
+      <guid>https://tinygo.org/compiler-internals/harvard-arch/</guid>
       <description>The AVR architecture is a modified Harvard architecture, which means that flash and RAM live in different address spaces. In practice, this means that any given pointer may either point to RAM or flash, but this is not visible from the pointer itself.
 To get TinyGo to work on the Arduino, which uses the AVR architecutre, all global variables (which include string constants!) are marked non-constant and thus are stored in RAM and all pointer dereferences assume that pointers point to RAM.</description>
+    </item>
+    
+    <item>
+      <title>Microcontroller Targets</title>
+      <link>https://tinygo.org/compiler-internals/microcontrollers/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tinygo.org/compiler-internals/microcontrollers/</guid>
+      <description>TinyGo was designed to run on microcontrollers, but the Go language wasn&amp;rsquo;t. This means there are a few challenges to writing Go code for microcontrollers.
+Microcontrollers have very little RAM and execute code directly from flash. Also, constant globals are generally put in flash whenever possible. The Go language itself heavily relies on garbage collection so care must be taken to avoid dynamic memory allocation.
+ARM ARM Cortex-M processors are well supported.</description>
     </item>
     
     <item>
@@ -244,15 +320,6 @@ To get TinyGo to work on the Arduino, which uses the AVR architecutre, all globa
       <description>Like most compilers, TinyGo is a compiler built as a pipeline of transformations, that each translate an input to a simpler output version (also called lowering). However, most of these part are not in TinyGo itself. The frontend is mostly implemented by external Go libraries, and most optimizations and code generation is implemented by LLVM.
 This is roughly the pipeline for TinyGo:
  Lexing, parsing, typechecking and AST building is done by packages in the standard library and in the golang.</description>
-    </item>
-    
-    <item>
-      <title>WebAssembly</title>
-      <link>https://tinygo.org/targets/wasm/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://tinygo.org/targets/wasm/</guid>
-      <description>WebAssembly support is relatively new but appears to be stable.</description>
     </item>
     
     <item>

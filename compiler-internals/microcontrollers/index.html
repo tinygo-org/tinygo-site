@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/images/favicon.png" type="image/x-icon" />
-    <title>Using With Docker :: TinyGo - Go on Microcontrollers and WASM</title>
+    <title>Microcontroller Targets :: TinyGo - Go on Microcontrollers and WASM</title>
 
     
     <link href="/css/nucleus.css?1547190857" rel="stylesheet">
@@ -38,7 +38,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/docker/">
+  <body class="" data-url="/compiler-internals/microcontrollers/">
     <nav id="sidebar" class="">
 
 
@@ -244,8 +244,8 @@
   
     
     <li data-nav-id="/docker/" title="Using With Docker" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/docker/">
@@ -679,7 +679,7 @@
   
     
     <li data-nav-id="/compiler-internals/" title="Compiler Internals" class="dd-item 
-        
+        parent
         
         
         ">
@@ -836,7 +836,7 @@
  
   
     
-      <li data-nav-id="/compiler-internals/microcontrollers/" title="Microcontroller Targets" class="dd-item ">
+      <li data-nav-id="/compiler-internals/microcontrollers/" title="Microcontroller Targets" class="dd-item active">
         <a href="/compiler-internals/microcontrollers/">
         Microcontroller Targets
         
@@ -934,7 +934,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/tinygo-org/tinygo-site/edit/master/content/docker/_index.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/tinygo-org/tinygo-site/edit/master/content/compiler-internals/microcontrollers.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -949,6 +949,8 @@
                         </a>
                     </span>
                   
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
                   <span class="links">
                  
                  
@@ -959,7 +961,13 @@
             
           
           
-            <a href='/'>Home</a> > Using With Docker
+            
+            
+          
+          
+            <a href='/'>Home</a> > <a href='/compiler-internals/'>Compiler Internals</a> > Microcontroller Targets
+          
+         
           
          
           
@@ -968,14 +976,30 @@
                   </span>
                 </div>
                 
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#arm">ARM</a></li>
+<li><a href="#avr">AVR</a></li>
+<li><a href="#xtensa">Xtensa</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
+                
               </div>
             </div>
             
 
         
-          <div id="chapter">
-        
         <div id="body-inner">
+          
+            <h1>Microcontroller Targets</h1>
           
 
         
@@ -983,17 +1007,28 @@
 
 
 
-<h1 id="tinygo-with-docker">TinyGo with Docker</h1>
+<p>TinyGo was designed to run on microcontrollers, but the Go language wasn&rsquo;t. This means there are a few challenges to writing Go code for microcontrollers.</p>
 
-<p>You can use our Docker image to be able to run the TinyGo compiler on your computer without having to install all the dependencies. Read on to learn how.</p>
+<p>Microcontrollers have very little RAM and execute code directly from flash. Also, constant globals are generally put in flash whenever possible. The Go language itself heavily relies on garbage collection so care must be taken to avoid dynamic memory allocation.</p>
+
+<h2 id="arm">ARM</h2>
+
+<p>ARM Cortex-M processors are well supported. There is support for multiple chips and the backend appears to be stable. In fact, it uses the same underlying technology (LLVM) as the proprietary ARM compiler for code generation.</p>
+
+<h2 id="avr">AVR</h2>
+
+<p>The AVR backend of LLVM is still experimental so you may encounter bugs.</p>
+
+<h2 id="xtensa">Xtensa</h2>
+
+<p>Support for the ESP8266/ESP32 chips will take a lot of work if they ever get support. See the FAQ for details.</p>
 
 
 <footer class=" footline" >
 	
 </footer>
 
-        
-            </div> 
+
         
         </div> 
         
@@ -1156,7 +1191,6 @@
             
                 
                     
-                    
                 
                 
 
@@ -1169,9 +1203,6 @@
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -1480,6 +1511,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1492,6 +1524,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1605,6 +1640,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1620,6 +1656,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1644,10 +1683,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/usage/misc-options/" title="Misc. Build Options"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/compiler-internals/harvard-arch/" title="Harvard architectures (AVR)"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/docker/using/" title="Using TinyGo with Docker" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/compiler-internals/pipeline/" title="Pipeline" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1678,3 +1717,4 @@
 
   </body>
 </html>
+

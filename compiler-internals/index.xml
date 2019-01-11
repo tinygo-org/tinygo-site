@@ -20,6 +20,17 @@
     </item>
     
     <item>
+      <title>Heap allocation</title>
+      <link>https://tinygo.org/compiler-internals/heap-allocation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tinygo.org/compiler-internals/heap-allocation/</guid>
+      <description>Many operations in Go rely on heap allocation. Some of these heap allocations are optimized away, but not all of them. Also, TinyGo does not yet contain a garbage collector so heap allocation must be avoided whenever possible outside of initialization code.
+These operations currently do heap allocations:
+ Taking the pointer of a local variable. This will result in a heap allocation, unless the compiler can see the resulting pointer never escapes.</description>
+    </item>
+    
+    <item>
       <title>Datatypes</title>
       <link>https://tinygo.org/compiler-internals/datatypes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -31,6 +42,16 @@ slice A slice is encoded as a {ptr, len, cap} tuple. There is no runtime definit
     </item>
     
     <item>
+      <title>The volatile keyword</title>
+      <link>https://tinygo.org/compiler-internals/volatile/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tinygo.org/compiler-internals/volatile/</guid>
+      <description>Go does not have the volatile keyword like C/C++. This keyword is unnecessary in most desktop use cases but is required for memory mapped I/O on microcontrollers and interrupt handlers. As a workaround, any variable of a type annotated with the //go:volatile pragma will be marked volatile. For example:
+//go:volatile type volatileBool bool var isrFlag volatileBool  This is a workaround for a limitation in the Go language and should at some point be replaced with something else.</description>
+    </item>
+    
+    <item>
       <title>Calling convention</title>
       <link>https://tinygo.org/compiler-internals/calling-convention/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -39,6 +60,38 @@ slice A slice is encoded as a {ptr, len, cap} tuple. There is no runtime definit
       <description>Go uses a stack-based calling convention and passes a pointer to the argument list as the first argument in the function. There were/are plans to switch to a register-based calling convention but they&amp;rsquo;re now on hold.
 TinyGo, however, uses a register based calling convention. In fact it is somewhat compatible with the C calling convention but with a few quirks:
  Struct parameters are split into separate arguments, if the number of fields (after flattening recursively) is 3 or lower.</description>
+    </item>
+    
+    <item>
+      <title>Inline assembly</title>
+      <link>https://tinygo.org/compiler-internals/inline-assembly/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tinygo.org/compiler-internals/inline-assembly/</guid>
+      <description>The device-specific packages like device/avr and device/arm provide Asm functions which you can use to write inline assembly:
+arm.Asm(&amp;quot;wfi&amp;quot;)  You can also pass parameters to the inline assembly:
+var result int32 arm.AsmFull(` lsls {value}, #1 str {value}, {result} `, map[string]interface{}{ &amp;quot;value&amp;quot;: 42, &amp;quot;result&amp;quot;: &amp;amp;result, }) println(&amp;quot;result:&amp;quot;, result)  In general, types are autodetected. That is, integer types are passed as raw registers and pointer types are passed as memory locations.</description>
+    </item>
+    
+    <item>
+      <title>Harvard architectures (AVR)</title>
+      <link>https://tinygo.org/compiler-internals/harvard-arch/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tinygo.org/compiler-internals/harvard-arch/</guid>
+      <description>The AVR architecture is a modified Harvard architecture, which means that flash and RAM live in different address spaces. In practice, this means that any given pointer may either point to RAM or flash, but this is not visible from the pointer itself.
+To get TinyGo to work on the Arduino, which uses the AVR architecutre, all global variables (which include string constants!) are marked non-constant and thus are stored in RAM and all pointer dereferences assume that pointers point to RAM.</description>
+    </item>
+    
+    <item>
+      <title>Microcontroller Targets</title>
+      <link>https://tinygo.org/compiler-internals/microcontrollers/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tinygo.org/compiler-internals/microcontrollers/</guid>
+      <description>TinyGo was designed to run on microcontrollers, but the Go language wasn&amp;rsquo;t. This means there are a few challenges to writing Go code for microcontrollers.
+Microcontrollers have very little RAM and execute code directly from flash. Also, constant globals are generally put in flash whenever possible. The Go language itself heavily relies on garbage collection so care must be taken to avoid dynamic memory allocation.
+ARM ARM Cortex-M processors are well supported.</description>
     </item>
     
     <item>

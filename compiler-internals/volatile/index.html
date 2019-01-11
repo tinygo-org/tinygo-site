@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/images/favicon.png" type="image/x-icon" />
-    <title>Using With Docker :: TinyGo - Go on Microcontrollers and WASM</title>
+    <title>The volatile keyword :: TinyGo - Go on Microcontrollers and WASM</title>
 
     
     <link href="/css/nucleus.css?1547190857" rel="stylesheet">
@@ -38,7 +38,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/docker/">
+  <body class="" data-url="/compiler-internals/volatile/">
     <nav id="sidebar" class="">
 
 
@@ -244,8 +244,8 @@
   
     
     <li data-nav-id="/docker/" title="Using With Docker" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/docker/">
@@ -679,7 +679,7 @@
   
     
     <li data-nav-id="/compiler-internals/" title="Compiler Internals" class="dd-item 
-        
+        parent
         
         
         ">
@@ -760,7 +760,7 @@
  
   
     
-      <li data-nav-id="/compiler-internals/volatile/" title="The volatile keyword" class="dd-item ">
+      <li data-nav-id="/compiler-internals/volatile/" title="The volatile keyword" class="dd-item active">
         <a href="/compiler-internals/volatile/">
         The volatile keyword
         
@@ -934,7 +934,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/tinygo-org/tinygo-site/edit/master/content/docker/_index.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/tinygo-org/tinygo-site/edit/master/content/compiler-internals/volatile.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -949,6 +949,8 @@
                         </a>
                     </span>
                   
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
                   <span class="links">
                  
                  
@@ -959,7 +961,13 @@
             
           
           
-            <a href='/'>Home</a> > Using With Docker
+            
+            
+          
+          
+            <a href='/'>Home</a> > <a href='/compiler-internals/'>Compiler Internals</a> > The volatile keyword
+          
+         
           
          
           
@@ -968,32 +976,42 @@
                   </span>
                 </div>
                 
+                    <div class="progress">
+    <div class="wrapper">
+
+    </div>
+</div>
+
+                
               </div>
             </div>
             
 
         
-          <div id="chapter">
-        
         <div id="body-inner">
+          
+            <h1>The volatile keyword</h1>
           
 
         
 
 
+<p>Go does not have the <code>volatile</code> keyword like C/C++. This keyword is unnecessary in most desktop use cases but is required for memory mapped I/O on microcontrollers and interrupt handlers. As a workaround, any variable of a type annotated with the <code>//go:volatile</code> pragma will be marked volatile. For example:</p>
 
+<pre><code class="language-go">//go:volatile
+type volatileBool bool
 
-<h1 id="tinygo-with-docker">TinyGo with Docker</h1>
+var isrFlag volatileBool
+</code></pre>
 
-<p>You can use our Docker image to be able to run the TinyGo compiler on your computer without having to install all the dependencies. Read on to learn how.</p>
+<p>This is a workaround for a limitation in the Go language and should at some point be replaced with something else.</p>
 
 
 <footer class=" footline" >
 	
 </footer>
 
-        
-            </div> 
+
         
         </div> 
         
@@ -1156,7 +1174,6 @@
             
                 
                     
-                    
                 
                 
 
@@ -1169,9 +1186,6 @@
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -1480,6 +1494,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1492,6 +1507,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1541,6 +1559,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1556,6 +1575,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1644,10 +1666,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/usage/misc-options/" title="Misc. Build Options"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/compiler-internals/datatypes/" title="Datatypes"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/docker/using/" title="Using TinyGo with Docker" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/compiler-internals/calling-convention/" title="Calling convention" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1678,3 +1700,4 @@
 
   </body>
 </html>
+

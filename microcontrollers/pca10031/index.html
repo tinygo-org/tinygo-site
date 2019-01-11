@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/images/favicon.png" type="image/x-icon" />
-    <title>Using With Docker :: TinyGo - Go on Microcontrollers and WASM</title>
+    <title>PCA10031 :: TinyGo - Go on Microcontrollers and WASM</title>
 
     
     <link href="/css/nucleus.css?1547190857" rel="stylesheet">
@@ -38,7 +38,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/docker/">
+  <body class="" data-url="/microcontrollers/pca10031/">
     <nav id="sidebar" class="">
 
 
@@ -244,8 +244,8 @@
   
     
     <li data-nav-id="/docker/" title="Using With Docker" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/docker/">
@@ -295,7 +295,7 @@
   
     
     <li data-nav-id="/microcontrollers/" title="Go on microcontrollers" class="dd-item 
-        
+        parent
         
         
         ">
@@ -395,7 +395,7 @@
  
   
     
-      <li data-nav-id="/microcontrollers/pca10031/" title="PCA10031" class="dd-item ">
+      <li data-nav-id="/microcontrollers/pca10031/" title="PCA10031" class="dd-item active">
         <a href="/microcontrollers/pca10031/">
         PCA10031
         
@@ -934,7 +934,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/tinygo-org/tinygo-site/edit/master/content/docker/_index.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/tinygo-org/tinygo-site/edit/master/content/microcontrollers/pca10031.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -949,6 +949,8 @@
                         </a>
                     </span>
                   
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
                   <span class="links">
                  
                  
@@ -959,7 +961,13 @@
             
           
           
-            <a href='/'>Home</a> > Using With Docker
+            
+            
+          
+          
+            <a href='/'>Home</a> > <a href='/microcontrollers/'>Go on microcontrollers</a> > PCA10031
+          
+         
           
          
           
@@ -968,14 +976,28 @@
                   </span>
                 </div>
                 
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#interfaces">Interfaces</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
+                
               </div>
             </div>
             
 
         
-          <div id="chapter">
-        
         <div id="body-inner">
+          
+            <h1>PCA10031</h1>
           
 
         
@@ -983,17 +1005,64 @@
 
 
 
-<h1 id="tinygo-with-docker">TinyGo with Docker</h1>
+<p>The <a href="https://www.nordicsemi.com/eng/Products/nRF51-Dongle">Nordic Semiconductor PCA10031</a> is a low-cost, versatile USB development dongle for wireless applications based on the Nordic Semiconductor <a href="https://www.nordicsemi.com/eng/Products/ANT/nRF51422">nRF51422</a> chip using the nRF51 series SoC.</p>
 
-<p>You can use our Docker image to be able to run the TinyGo compiler on your computer without having to install all the dependencies. Read on to learn how.</p>
+<h2 id="interfaces">Interfaces</h2>
+
+<table>
+<thead>
+<tr>
+<th>Interface</th>
+<th>Hardware Supported</th>
+<th>TinyGo Support</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>GPIO</td>
+<td>YES</td>
+<td>YES</td>
+</tr>
+
+<tr>
+<td>UART</td>
+<td>YES</td>
+<td>YES</td>
+</tr>
+
+<tr>
+<td>SPI</td>
+<td>YES</td>
+<td>Not yet</td>
+</tr>
+
+<tr>
+<td>I2C</td>
+<td>YES</td>
+<td>Not yet</td>
+</tr>
+
+<tr>
+<td>ADC</td>
+<td>YES</td>
+<td>Not yet</td>
+</tr>
+
+<tr>
+<td>PWM</td>
+<td>YES</td>
+<td>Not yet</td>
+</tr>
+</tbody>
+</table>
 
 
 <footer class=" footline" >
 	
 </footer>
 
-        
-            </div> 
+
         
         </div> 
         
@@ -1156,42 +1225,6 @@
             
                 
                     
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
                 
                 
 
@@ -1216,10 +1249,30 @@
             
         
                     
+            
+        
+                    
                         
             
             
                 
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -1284,6 +1337,26 @@
             
             
                 
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -1644,10 +1717,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/usage/misc-options/" title="Misc. Build Options"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/microcontrollers/digispark/" title="Digispark"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/docker/using/" title="Using TinyGo with Docker" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/microcontrollers/pca10040/" title="PCA10040" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1678,3 +1751,4 @@
 
   </body>
 </html>
+

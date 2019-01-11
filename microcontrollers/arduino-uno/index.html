@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/images/favicon.png" type="image/x-icon" />
-    <title>Using With Docker :: TinyGo - Go on Microcontrollers and WASM</title>
+    <title>Arduino Uno :: TinyGo - Go on Microcontrollers and WASM</title>
 
     
     <link href="/css/nucleus.css?1547190857" rel="stylesheet">
@@ -38,7 +38,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/docker/">
+  <body class="" data-url="/microcontrollers/arduino-uno/">
     <nav id="sidebar" class="">
 
 
@@ -244,8 +244,8 @@
   
     
     <li data-nav-id="/docker/" title="Using With Docker" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/docker/">
@@ -295,7 +295,7 @@
   
     
     <li data-nav-id="/microcontrollers/" title="Go on microcontrollers" class="dd-item 
-        
+        parent
         
         
         ">
@@ -319,7 +319,7 @@
  
   
     
-      <li data-nav-id="/microcontrollers/arduino-uno/" title="Arduino Uno" class="dd-item ">
+      <li data-nav-id="/microcontrollers/arduino-uno/" title="Arduino Uno" class="dd-item active">
         <a href="/microcontrollers/arduino-uno/">
         Arduino Uno
         
@@ -934,7 +934,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/tinygo-org/tinygo-site/edit/master/content/docker/_index.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/tinygo-org/tinygo-site/edit/master/content/microcontrollers/arduino-uno.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -949,6 +949,8 @@
                         </a>
                     </span>
                   
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
                   <span class="links">
                  
                  
@@ -959,7 +961,13 @@
             
           
           
-            <a href='/'>Home</a> > Using With Docker
+            
+            
+          
+          
+            <a href='/'>Home</a> > <a href='/microcontrollers/'>Go on microcontrollers</a> > Arduino Uno
+          
+         
           
          
           
@@ -968,14 +976,28 @@
                   </span>
                 </div>
                 
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#interfaces">Interfaces</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
+                
               </div>
             </div>
             
 
         
-          <div id="chapter">
-        
         <div id="body-inner">
+          
+            <h1>Arduino Uno</h1>
           
 
         
@@ -983,17 +1005,66 @@
 
 
 
-<h1 id="tinygo-with-docker">TinyGo with Docker</h1>
+<p>The <a href="https://store.arduino.cc/arduino-uno-rev3">Arduino Uno</a> is based on the AVR (<a href="https://www.microchip.com/wwwproducts/en/ATmega328p">ATmega328p</a>) microcontroller.</p>
 
-<p>You can use our Docker image to be able to run the TinyGo compiler on your computer without having to install all the dependencies. Read on to learn how.</p>
+<p>Note: the AVR backend of LLVM is still experimental so you may encounter bugs.</p>
+
+<h2 id="interfaces">Interfaces</h2>
+
+<table>
+<thead>
+<tr>
+<th>Interface</th>
+<th>Hardware Supported</th>
+<th>TinyGo Support</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>GPIO</td>
+<td>YES</td>
+<td>YES</td>
+</tr>
+
+<tr>
+<td>UART</td>
+<td>YES</td>
+<td>YES</td>
+</tr>
+
+<tr>
+<td>SPI</td>
+<td>YES</td>
+<td>Not yet</td>
+</tr>
+
+<tr>
+<td>I2C</td>
+<td>YES</td>
+<td>YES</td>
+</tr>
+
+<tr>
+<td>ADC</td>
+<td>YES</td>
+<td>YES</td>
+</tr>
+
+<tr>
+<td>PWM</td>
+<td>YES</td>
+<td>YES</td>
+</tr>
+</tbody>
+</table>
 
 
 <footer class=" footline" >
 	
 </footer>
 
-        
-            </div> 
+
         
         </div> 
         
@@ -1156,42 +1227,6 @@
             
                 
                     
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
                 
                 
 
@@ -1216,10 +1251,47 @@
             
         
                     
+            
+        
+                    
                         
             
             
                 
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -1644,10 +1716,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/usage/misc-options/" title="Misc. Build Options"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/microcontrollers/" title="Go on microcontrollers"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/docker/using/" title="Using TinyGo with Docker" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/microcontrollers/bbc-microbit/" title="BBC:Microbit" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1678,3 +1750,4 @@
 
   </body>
 </html>
+
