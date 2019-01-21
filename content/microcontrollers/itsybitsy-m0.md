@@ -12,6 +12,6 @@ The [Adafruit ItsyBitsy M0](https://www.adafruit.com/product/3727) is very compa
 | GPIO      | YES | YES |
 | UART      | YES | YES |
 | SPI      | YES | Not yet |
-| I2C      | YES | Not yet |
+| I2C      | YES | YES |
 | ADC      | YES | Not yet |
 | PWM      | YES | Not yet |
