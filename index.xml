@@ -154,6 +154,16 @@ Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UAR
     </item>
     
     <item>
+      <title>ItsyBitsy M0</title>
+      <link>https://tinygo.org/microcontrollers/itsybitsy-m0/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tinygo.org/microcontrollers/itsybitsy-m0/</guid>
+      <description> The Adafruit ItsyBitsy M0 is very compact ARM development board based on the Atmel SAMD21 family of SoC.
+Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UART YES YES   SPI YES Not yet   I2C YES Not yet   ADC YES Not yet   PWM YES Not yet    </description>
+    </item>
+    
+    <item>
       <title>PCA10031</title>
       <link>https://tinygo.org/microcontrollers/pca10031/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
