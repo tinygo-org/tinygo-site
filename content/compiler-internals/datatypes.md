@@ -24,9 +24,18 @@ The map type is a very complex type and is implemented as an (incomplete) hashma
 An interface is a `{typecode, value}` tuple and is defined as `runtime._interface` in [src/runtime/interface.go](https://github.com/aykevl/tinygo/blob/master/src/runtime/interface.go). The typecode is a small integer unique to the type of the value. See interface.go for a detailed description of how typeasserts and interface calls are implemented.
 
 ### function value
-A function value is a fat function pointer in the form of `{context, function pointer}` where context is a pointer which may have any value. The function pointer is expected to be called with the context as the last parameter in all cases.
+A function value is a fat function pointer in the form of `{context, function
+pointer}` where context is a pointer which may have any value. See [calling
+convention]({{<ref "calling-convention.md">}}) for details.
 
 ### goroutine
-A goroutine is a linked list of [LLVM coroutines](https://llvm.org/docs/Coroutines.html). Every blocking call will create a new coroutine, pass the resulting coroutine to the scheduler, and will mark itself as waiting for a return. Once the called blocking function returns, it re-activates its parent coroutine. Non-blocking calls are normal calls, unaware of the fact that they're running on a particular goroutine. For details, see [src/runtime/scheduler.go](https://github.com/aykevl/tinygo/blob/master/src/runtime/scheduler.go).
+A goroutine is a linked list of [LLVM
+coroutines](https://llvm.org/docs/Coroutines.html). Every blocking call will
+create a new coroutine and pass itself to the coroutine as a parameter (see
+[calling convention]({{<ref "calling-convention.md">}})). The callee then
+re-activates the caller once it would otherwise return to the parent.
+Non-blocking calls are normal calls, unaware of the fact that they're running on
+a particular goroutine. For details, see
+[src/runtime/scheduler.go](https://github.com/aykevl/tinygo/blob/master/src/runtime/scheduler.go).
 
 This is rather expensive and should be optimized in the future. But the way it works now, a single stack can be used for all goroutines lowering memory consumption.

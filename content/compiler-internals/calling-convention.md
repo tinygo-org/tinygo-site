@@ -14,7 +14,7 @@ TinyGo, however, uses a register based calling convention. In fact it is somewha
         {{i64}}              -> i64
         {}                   ->
         {i8*, i32, i8, i8}   -> {i8*, i32, i8, i8}
-        {{i8*, i32, i8}, i8} -> {i8*, i32, i8, i8}
+        {{i8*, i32, i8}, i8} -> {{i8*, i32, i8}, i8}
 
     Note that all native Go data types that are lowered to aggregate types in LLVM are expanded this way: `string`, slices, interfaces, and fat function pointers. This avoids some overhead in the C calling convention and makes the work of the LLVM optimizers easier.
 
@@ -28,6 +28,12 @@ TinyGo, however, uses a register based calling convention. In fact it is somewha
 
     This is the calling convention as implemented by LLVM, with the extension that `i64` return values are returned in the same way as aggregate types.
 
-  * Blocking functions have a coroutine pointer prepended to the argument list, see [src/runtime/scheduler.go](https://github.com/aykevl/tinygo/blob/master/src/runtime/scheduler.go) for details. Whether a function is blocking is determined by the AnalyseBlockingRecursive pass.
+  * Non-exported functions have two extra `i8` (roughly equivalent to
+    `unsafe.Pointer`) parameters appended at the end of the argument list. The
+    first extra parameter is the context for when the function is a function
+    pointer. If it is known not to be a closure, this value may be left
+    undefined. The second extra parameter is the parent goroutine handle, which
+    is used only in blocking functions to return to the parent, otherwise it is
+    also unused and may be left undefined.
 
 This calling convention may change in the future. Changes will be documented here. However, even though it may change, it is expected that function signatures that only contain integers and pointers will remain stable.
