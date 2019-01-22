@@ -11,6 +11,6 @@ TinyGo can also be used to produce [WebAssembly (WASM)](https://webassembly.org/
 
 Just want to see the code? Go to the Github repository at [https://github.com/aykevl/tinygo](https://github.com/aykevl/tinygo).
 
-TinyGo also has support for several different devices such as accelerometers and magnetometers. Check out the Github repository at [https://github.com/aykevl/tinygo-drivers](https://github.com/aykevl/tinygo-drivers) for more information.
+TinyGo also has support for several different devices such as accelerometers and magnetometers. Check out the Github repository at [https://github.com/tinygo-org/drivers](https://github.com/tinygo-org/drivers) for more information.
 
 Ready to get started? Click on.
