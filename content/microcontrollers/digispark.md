@@ -19,3 +19,12 @@ Note: the AVR backend of LLVM is still experimental so you may encounter bugs.
 | I2C      | Requires software | Not yet |
 | ADC      | YES | Not yet |
 | PWM      | ? | Not yet |
+
+## Flashing
+
+### Micronucleus
+
+Programs are loaded onto the Digispark using the `micronucleus` command line utility program. You must install [micronucleus](https://littlewire.github.io/) before you will be able to flash the Digispark board with your TinyGo code.
+
+- Build and flash your TinyGo program using `tinygo flash -target=digispark`
+- Plug your Digispark into your computer's USB port after you start the flashing process. This is because the bootloader is only active for 5 seconds after power up. Micronucleus will show a message when to insert the device.
