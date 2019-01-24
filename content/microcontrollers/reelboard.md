@@ -17,3 +17,12 @@ It is equipped with an Electrophoretic (electronic ink) Display (EPD), along wit
 | I2C      | YES | YES |
 | ADC      | YES | Not yet |
 | PWM      | YES | Not yet |
+
+## Flashing
+
+### OpenOCD
+
+Programs are loaded onto the reelboard using the `openocd` command line utility program. You must install [OpenOCD](http://openocd.org/) before you will be able to flash the reelboard with your TinyGo code.
+
+- Plug your reelboard into your computer's USB port.
+- Build and flash your TinyGo program using `tinygo flash -target=reelboard`

@@ -15,3 +15,12 @@ The [BBC micro:bit](https://microbit.org) is a tiny programmable computer design
 | I2C      | YES | YES |
 | ADC      | YES | Not yet |
 | PWM      | Software support | Not yet |
+
+## Flashing
+
+### OpenOCD
+
+Programs are loaded onto the BBC:Microbit using the `openocd` command line utility program. You must install [OpenOCD](http://openocd.org/) before you will be able to flash the BBC:Microbit board with your TinyGo code.
+
+- Plug your Microbit into your computer's USB port.
+- Build and flash your TinyGo program using `tinygo flash -target=microbit`
