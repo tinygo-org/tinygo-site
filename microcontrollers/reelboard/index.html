@@ -12,19 +12,19 @@
     <title>reel board :: TinyGo - Go on Microcontrollers and WASM</title>
 
     
-    <link href="/css/nucleus.css?1548145364" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1548145364" rel="stylesheet">
-    <link href="/css/hybrid.css?1548145364" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1548145364" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1548145364" rel="stylesheet">
-    <link href="/css/auto-complete.css?1548145364" rel="stylesheet">
-    <link href="/css/theme.css?1548145364" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1548145364" rel="stylesheet">
+    <link href="/css/nucleus.css?1548338115" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1548338115" rel="stylesheet">
+    <link href="/css/hybrid.css?1548338115" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1548338115" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1548338115" rel="stylesheet">
+    <link href="/css/auto-complete.css?1548338115" rel="stylesheet">
+    <link href="/css/theme.css?1548338115" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1548338115" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1548145364" rel="stylesheet">
+      <link href="/css/theme-blue.css?1548338115" rel="stylesheet">
     
 
-    <script src="/js/jquery-2.x.min.js?1548145364"></script>
+    <script src="/js/jquery-2.x.min.js?1548338115"></script>
 
     <style type="text/css">
       :root #header + #content > #left > #rlblock_left{
@@ -1001,6 +1001,10 @@
 <li>
 <ul>
 <li><a href="#interfaces">Interfaces</a></li>
+<li><a href="#flashing">Flashing</a>
+<ul>
+<li><a href="#openocd">OpenOCD</a></li>
+</ul></li>
 </ul></li>
 </ul>
 </nav>
@@ -1076,6 +1080,17 @@
 </tr>
 </tbody>
 </table>
+
+<h2 id="flashing">Flashing</h2>
+
+<h3 id="openocd">OpenOCD</h3>
+
+<p>Programs are loaded onto the reelboard using the <code>openocd</code> command line utility program. You must install <a href="http://openocd.org/">OpenOCD</a> before you will be able to flash the reelboard with your TinyGo code.</p>
+
+<ul>
+<li>Plug your reelboard into your computer&rsquo;s USB port.</li>
+<li>Build and flash your TinyGo program using <code>tinygo flash -target=reelboard</code></li>
+</ul>
 
 
 <footer class=" footline" >
@@ -1766,20 +1781,20 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1548145364"></script>
-    <script src="/js/perfect-scrollbar.min.js?1548145364"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1548145364"></script>
-    <script src="/js/jquery.sticky.js?1548145364"></script>
-    <script src="/js/featherlight.min.js?1548145364"></script>
-    <script src="/js/html5shiv-printshiv.min.js?1548145364"></script>
-    <script src="/js/highlight.pack.js?1548145364"></script>
+    <script src="/js/clipboard.min.js?1548338115"></script>
+    <script src="/js/perfect-scrollbar.min.js?1548338115"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1548338115"></script>
+    <script src="/js/jquery.sticky.js?1548338115"></script>
+    <script src="/js/featherlight.min.js?1548338115"></script>
+    <script src="/js/html5shiv-printshiv.min.js?1548338115"></script>
+    <script src="/js/highlight.pack.js?1548338115"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom.71422.js?1548145364"></script>
-    <script src="/js/learn.js?1548145364"></script>
-    <script src="/js/hugo-learn.js?1548145364"></script>
+    <script src="/js/modernizr.custom.71422.js?1548338115"></script>
+    <script src="/js/learn.js?1548338115"></script>
+    <script src="/js/hugo-learn.js?1548338115"></script>
 
-    <link href="/mermaid/mermaid.css?1548145364" type="text/css" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1548145364"></script>
+    <link href="/mermaid/mermaid.css?1548338115" type="text/css" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1548338115"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

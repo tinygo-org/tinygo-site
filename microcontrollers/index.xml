@@ -16,9 +16,9 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://tinygo.org/microcontrollers/arduino-uno/</guid>
-      <description> The Arduino Uno is based on the AVR (ATmega328p) microcontroller.
+      <description>The Arduino Uno is based on the AVR ATmega328p microcontroller.
 Note: the AVR backend of LLVM is still experimental so you may encounter bugs.
-Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UART YES YES   SPI YES Not yet   I2C YES YES   ADC YES YES   PWM YES YES    </description>
+Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UART YES YES   SPI YES Not yet   I2C YES YES   ADC YES YES   PWM YES YES    Flashing AVRDude Programs are loaded onto the Arduino Uno using the avrdude command line utility program.</description>
     </item>
     
     <item>
@@ -27,8 +27,8 @@ Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UAR
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://tinygo.org/microcontrollers/bbc-microbit/</guid>
-      <description> The BBC micro:bit is a tiny programmable computer designed for learning. It is based on the Nordic Semiconductor nRF51822 ARM Cortex MO chip.
-Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UART YES YES   SPI YES YES   I2C YES YES   ADC YES Not yet   PWM Software support Not yet    </description>
+      <description>The BBC micro:bit is a tiny programmable computer designed for learning. It is based on the Nordic Semiconductor nRF51822 ARM Cortex MO chip.
+Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UART YES YES   SPI YES YES   I2C YES YES   ADC YES Not yet   PWM Software support Not yet    Flashing OpenOCD Programs are loaded onto the BBC:Microbit using the openocd command line utility program.</description>
     </item>
     
     <item>
@@ -37,8 +37,8 @@ Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UAR
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://tinygo.org/microcontrollers/bluepill/</guid>
-      <description> The Bluepill is a popular, ultra-cheap and compact ARM development board based on the ST Micro STM32F103C8 SoC.
-Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UART YES YES   SPI YES YES   I2C YES YES   ADC YES Not yet   PWM YES Not yet    </description>
+      <description>The Bluepill is a popular, ultra-cheap and compact ARM development board based on the ST Micro STM32F103C8 SoC.
+Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UART YES YES   SPI YES YES   I2C YES YES   ADC YES Not yet   PWM YES Not yet    Flashing OpenOCD Programs are loaded onto the Bluepill with a separate hardware programmer such as the STLink v2 board, using the openocd command line utility program to perform the board flashing.</description>
     </item>
     
     <item>
@@ -59,8 +59,8 @@ Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UAR
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://tinygo.org/microcontrollers/itsybitsy-m0/</guid>
-      <description> The Adafruit ItsyBitsy M0 is very compact ARM development board based on the Atmel SAMD21 family of SoC.
-Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UART YES YES   SPI YES Not yet   I2C YES YES   ADC YES Not yet   PWM YES Not yet    </description>
+      <description>The Adafruit ItsyBitsy M0 is very compact ARM development board based on the Atmel SAMD21 family of SoC.
+Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UART YES YES   SPI YES Not yet   I2C YES YES   ADC YES Not yet   PWM YES Not yet    Flashing UF2 The ItsyBitsy M0 comes with the UF2 bootloader already installed.</description>
     </item>
     
     <item>
@@ -69,8 +69,8 @@ Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UAR
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://tinygo.org/microcontrollers/pca10031/</guid>
-      <description> The Nordic Semiconductor PCA10031 is a low-cost, versatile USB development dongle for wireless applications based on the Nordic Semiconductor nRF51422 chip using the nRF51 series SoC.
-Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UART YES YES   SPI YES Not yet   I2C YES Not yet   ADC YES Not yet   PWM YES Not yet    </description>
+      <description>The Nordic Semiconductor PCA10031 is a low-cost, versatile USB development dongle for wireless applications based on the Nordic Semiconductor nRF51422 chip using the nRF51 series SoC.
+Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UART YES YES   SPI YES Not yet   I2C YES Not yet   ADC YES Not yet   PWM YES Not yet    Flashing nrfjprog/J-Link Programs are loaded onto the pca10031 board using the nrfjprog command line utility program.</description>
     </item>
     
     <item>
@@ -79,8 +79,8 @@ Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UAR
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://tinygo.org/microcontrollers/pca10040/</guid>
-      <description> The Nordic Semiconductor PCA10040 is a single-board development kit for wireless applications based on the Nordic Semiconductor nRF52832 SoC.
-Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UART YES YES   SPI YES YES   I2C YES YES   ADC YES YES   PWM YES YES    </description>
+      <description>The Nordic Semiconductor PCA10040 is a single-board development kit for wireless applications based on the Nordic Semiconductor nRF52832 SoC.
+Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UART YES YES   SPI YES YES   I2C YES YES   ADC YES YES   PWM YES YES    Flashing nrfjprog/J-Link Programs are loaded onto the pca10040 board using the nrfjprog command line utility program.</description>
     </item>
     
     <item>
@@ -89,8 +89,8 @@ Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UAR
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://tinygo.org/microcontrollers/pca10056/</guid>
-      <description> The Nordic Semiconductor PCA10056 is a single-board development kit for wireless applications based on the Nordic Semiconductor nRF52840 SoC.
-Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UART YES YES   SPI YES YES   I2C YES YES   ADC YES Not yet   PWM YES Not yet    </description>
+      <description>The Nordic Semiconductor PCA10056 is a single-board development kit for wireless applications based on the Nordic Semiconductor nRF52840 SoC.
+Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UART YES YES   SPI YES YES   I2C YES YES   ADC YES Not yet   PWM YES Not yet    Flashing nrfjprog/J-Link Programs are loaded onto the pca10056 board using the nrfjprog command line utility program.</description>
     </item>
     
     <item>
@@ -99,8 +99,8 @@ Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UAR
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://tinygo.org/microcontrollers/nrf52840-mdk/</guid>
-      <description> The nRF52840-MDK is an open-source, micro development kit for IoT applications based on the Nordic Semiconductor nRF52840 SoC chip.
-Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UART YES YES   SPI YES YES   I2C YES YES   ADC YES Not yet   PWM YES Not yet    </description>
+      <description>The nRF52840-MDK is an open-source, micro development kit for IoT applications based on the Nordic Semiconductor nRF52840 SoC chip.
+Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UART YES YES   SPI YES YES   I2C YES YES   ADC YES Not yet   PWM YES Not yet    Flashing OpenOCD Programs are loaded onto the nRF52840-MDK board using the openocd command line utility program.</description>
     </item>
     
     <item>
@@ -109,9 +109,9 @@ Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UAR
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://tinygo.org/microcontrollers/reelboard/</guid>
-      <description> The reel board is an evaluation board based on the Nordic Semiconductor nRF52840 SoC.
+      <description>The reel board is an evaluation board based on the Nordic Semiconductor nRF52840 SoC.
 It is equipped with an Electrophoretic (electronic ink) Display (EPD), along with temperature, humidity, light, and accelerometer sensors, and Bluetooth connectivity.
-Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UART YES YES   SPI YES YES   I2C YES YES   ADC YES Not yet   PWM YES Not yet    </description>
+Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UART YES YES   SPI YES YES   I2C YES YES   ADC YES Not yet   PWM YES Not yet    Flashing OpenOCD Programs are loaded onto the reelboard using the openocd command line utility program.</description>
     </item>
     
   </channel>

@@ -12,19 +12,19 @@
     <title>Datatypes :: TinyGo - Go on Microcontrollers and WASM</title>
 
     
-    <link href="/css/nucleus.css?1548145364" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1548145364" rel="stylesheet">
-    <link href="/css/hybrid.css?1548145364" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1548145364" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1548145364" rel="stylesheet">
-    <link href="/css/auto-complete.css?1548145364" rel="stylesheet">
-    <link href="/css/theme.css?1548145364" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1548145364" rel="stylesheet">
+    <link href="/css/nucleus.css?1548338115" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1548338115" rel="stylesheet">
+    <link href="/css/hybrid.css?1548338115" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1548338115" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1548338115" rel="stylesheet">
+    <link href="/css/auto-complete.css?1548338115" rel="stylesheet">
+    <link href="/css/theme.css?1548338115" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1548338115" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1548145364" rel="stylesheet">
+      <link href="/css/theme-blue.css?1548338115" rel="stylesheet">
     
 
-    <script src="/js/jquery-2.x.min.js?1548145364"></script>
+    <script src="/js/jquery-2.x.min.js?1548338115"></script>
 
     <style type="text/css">
       :root #header + #content > #left > #rlblock_left{
@@ -1061,11 +1061,20 @@
 
 <h3 id="function-value">function value</h3>
 
-<p>A function value is a fat function pointer in the form of <code>{context, function pointer}</code> where context is a pointer which may have any value. The function pointer is expected to be called with the context as the last parameter in all cases.</p>
+<p>A function value is a fat function pointer in the form of <code>{context, function
+pointer}</code> where context is a pointer which may have any value. See <a href="/compiler-internals/calling-convention/">calling
+convention</a> for details.</p>
 
 <h3 id="goroutine">goroutine</h3>
 
-<p>A goroutine is a linked list of <a href="https://llvm.org/docs/Coroutines.html">LLVM coroutines</a>. Every blocking call will create a new coroutine, pass the resulting coroutine to the scheduler, and will mark itself as waiting for a return. Once the called blocking function returns, it re-activates its parent coroutine. Non-blocking calls are normal calls, unaware of the fact that they&rsquo;re running on a particular goroutine. For details, see <a href="https://github.com/aykevl/tinygo/blob/master/src/runtime/scheduler.go">src/runtime/scheduler.go</a>.</p>
+<p>A goroutine is a linked list of <a href="https://llvm.org/docs/Coroutines.html">LLVM
+coroutines</a>. Every blocking call will
+create a new coroutine and pass itself to the coroutine as a parameter (see
+<a href="/compiler-internals/calling-convention/">calling convention</a>). The callee then
+re-activates the caller once it would otherwise return to the parent.
+Non-blocking calls are normal calls, unaware of the fact that they&rsquo;re running on
+a particular goroutine. For details, see
+<a href="https://github.com/aykevl/tinygo/blob/master/src/runtime/scheduler.go">src/runtime/scheduler.go</a>.</p>
 
 <p>This is rather expensive and should be optimized in the future. But the way it works now, a single stack can be used for all goroutines lowering memory consumption.</p>
 
@@ -1758,20 +1767,20 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1548145364"></script>
-    <script src="/js/perfect-scrollbar.min.js?1548145364"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1548145364"></script>
-    <script src="/js/jquery.sticky.js?1548145364"></script>
-    <script src="/js/featherlight.min.js?1548145364"></script>
-    <script src="/js/html5shiv-printshiv.min.js?1548145364"></script>
-    <script src="/js/highlight.pack.js?1548145364"></script>
+    <script src="/js/clipboard.min.js?1548338115"></script>
+    <script src="/js/perfect-scrollbar.min.js?1548338115"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1548338115"></script>
+    <script src="/js/jquery.sticky.js?1548338115"></script>
+    <script src="/js/featherlight.min.js?1548338115"></script>
+    <script src="/js/html5shiv-printshiv.min.js?1548338115"></script>
+    <script src="/js/highlight.pack.js?1548338115"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom.71422.js?1548145364"></script>
-    <script src="/js/learn.js?1548145364"></script>
-    <script src="/js/hugo-learn.js?1548145364"></script>
+    <script src="/js/modernizr.custom.71422.js?1548338115"></script>
+    <script src="/js/learn.js?1548338115"></script>
+    <script src="/js/hugo-learn.js?1548338115"></script>
 
-    <link href="/mermaid/mermaid.css?1548145364" type="text/css" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1548145364"></script>
+    <link href="/mermaid/mermaid.css?1548338115" type="text/css" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1548338115"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

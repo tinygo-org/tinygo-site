@@ -12,19 +12,19 @@
     <title>PCA10031 :: TinyGo - Go on Microcontrollers and WASM</title>
 
     
-    <link href="/css/nucleus.css?1548145364" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1548145364" rel="stylesheet">
-    <link href="/css/hybrid.css?1548145364" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1548145364" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1548145364" rel="stylesheet">
-    <link href="/css/auto-complete.css?1548145364" rel="stylesheet">
-    <link href="/css/theme.css?1548145364" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1548145364" rel="stylesheet">
+    <link href="/css/nucleus.css?1548338115" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1548338115" rel="stylesheet">
+    <link href="/css/hybrid.css?1548338115" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1548338115" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1548338115" rel="stylesheet">
+    <link href="/css/auto-complete.css?1548338115" rel="stylesheet">
+    <link href="/css/theme.css?1548338115" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1548338115" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1548145364" rel="stylesheet">
+      <link href="/css/theme-blue.css?1548338115" rel="stylesheet">
     
 
-    <script src="/js/jquery-2.x.min.js?1548145364"></script>
+    <script src="/js/jquery-2.x.min.js?1548338115"></script>
 
     <style type="text/css">
       :root #header + #content > #left > #rlblock_left{
@@ -1001,6 +1001,10 @@
 <li>
 <ul>
 <li><a href="#interfaces">Interfaces</a></li>
+<li><a href="#flashing">Flashing</a>
+<ul>
+<li><a href="#nrfjprog-j-link">nrfjprog/J-Link</a></li>
+</ul></li>
 </ul></li>
 </ul>
 </nav>
@@ -1074,6 +1078,23 @@
 </tr>
 </tbody>
 </table>
+
+<h2 id="flashing">Flashing</h2>
+
+<h3 id="nrfjprog-j-link">nrfjprog/J-Link</h3>
+
+<p>Programs are loaded onto the pca10031 board using the <code>nrfjprog</code> command line utility program.</p>
+
+<p>First install the J-Link Software and Documentation Pack from Segger: <a href="https://www.segger.com/downloads/jlink/#J-LinkSoftwareAndDocumentationPack">https://www.segger.com/downloads/jlink/#J-LinkSoftwareAndDocumentationPack</a></p>
+
+<p>Then install the nRF5x Command-Line Tools: <a href="https://docs.zephyrproject.org/latest/tools/nordic_segger.html#nordic-segger">https://docs.zephyrproject.org/latest/tools/nordic_segger.html#nordic-segger</a></p>
+
+<p>Once you have installed both of these correctly, you will be able to flash the pca10031 board with your TinyGo code.</p>
+
+<ul>
+<li>Plug your pca10031 into your computer&rsquo;s USB port.</li>
+<li>Build and flash your TinyGo program using <code>tinygo flash -target=pca10031</code></li>
+</ul>
 
 
 <footer class=" footline" >
@@ -1764,20 +1785,20 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1548145364"></script>
-    <script src="/js/perfect-scrollbar.min.js?1548145364"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1548145364"></script>
-    <script src="/js/jquery.sticky.js?1548145364"></script>
-    <script src="/js/featherlight.min.js?1548145364"></script>
-    <script src="/js/html5shiv-printshiv.min.js?1548145364"></script>
-    <script src="/js/highlight.pack.js?1548145364"></script>
+    <script src="/js/clipboard.min.js?1548338115"></script>
+    <script src="/js/perfect-scrollbar.min.js?1548338115"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1548338115"></script>
+    <script src="/js/jquery.sticky.js?1548338115"></script>
+    <script src="/js/featherlight.min.js?1548338115"></script>
+    <script src="/js/html5shiv-printshiv.min.js?1548338115"></script>
+    <script src="/js/highlight.pack.js?1548338115"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom.71422.js?1548145364"></script>
-    <script src="/js/learn.js?1548145364"></script>
-    <script src="/js/hugo-learn.js?1548145364"></script>
+    <script src="/js/modernizr.custom.71422.js?1548338115"></script>
+    <script src="/js/learn.js?1548338115"></script>
+    <script src="/js/hugo-learn.js?1548338115"></script>
 
-    <link href="/mermaid/mermaid.css?1548145364" type="text/css" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1548145364"></script>
+    <link href="/mermaid/mermaid.css?1548338115" type="text/css" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1548338115"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
