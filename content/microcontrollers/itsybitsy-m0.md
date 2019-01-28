@@ -14,7 +14,7 @@ The [Adafruit ItsyBitsy M0](https://www.adafruit.com/product/3727) is very compa
 | SPI      | YES | Not yet |
 | I2C      | YES | YES |
 | ADC      | YES | Not yet |
-| PWM      | YES | Not yet |
+| PWM      | YES | YES |
 
 ## Flashing
 
