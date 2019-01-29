@@ -55,4 +55,4 @@ These operations currently do heap allocations:
 
 * Creating and modifying maps. Maps have *very* little support at the moment and should not yet be used. They exist mostly for compatibility with some standard library packages.
 
-* Starting goroutines. There is limited support for goroutines and currently they are not at all efficient. Also, there is no support for channels yet so their usefulness is limited.
+* Starting goroutines. There is limited support for goroutines and currently they are not at all efficient. See [Go language support]({{<ref "lang-support/_index.md">}}) for details.
