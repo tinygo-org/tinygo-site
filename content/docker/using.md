@@ -3,6 +3,14 @@ title: "Using TinyGo with Docker"
 weight: 2
 ---
 
+You can use our Docker image to be able to run the TinyGo compiler on your computer without having to install all the dependencies. Read on to learn how.
+
+## Installing
+
+    docker pull tinygo/tinygo
+
+## Using
+
 A docker container exists for easy access to the TinyGo CLI. For example, to compile `wasm.wasm` for the WebAssembly example, from the root of the repository:
 
     docker run --rm -v $(pwd):/src tinygo/tinygo tinygo build -o /src/wasm.wasm -target wasm examples/wasm
