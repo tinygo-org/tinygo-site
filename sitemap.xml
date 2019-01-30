@@ -23,10 +23,6 @@
   </url>
   
   <url>
-    <loc>https://tinygo.org/docker/using/</loc>
-  </url>
-  
-  <url>
     <loc>https://tinygo.org/faq/what-is-tinygo/</loc>
   </url>
   
@@ -115,6 +111,10 @@
   </url>
   
   <url>
+    <loc>https://tinygo.org/getting-started/using-docker/</loc>
+  </url>
+  
+  <url>
     <loc>https://tinygo.org/faq/why-go-instead-of-rust/</loc>
   </url>
   
@@ -128,10 +128,6 @@
   
   <url>
     <loc>https://tinygo.org/compiler-internals/pipeline/</loc>
-  </url>
-  
-  <url>
-    <loc>https://tinygo.org/docker/</loc>
   </url>
   
   <url>

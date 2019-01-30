@@ -65,17 +65,6 @@ build Compile the given program. The output binary is specified using the -o par
     </item>
     
     <item>
-      <title>Using TinyGo with Docker</title>
-      <link>https://tinygo.org/docker/using/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://tinygo.org/docker/using/</guid>
-      <description>A docker container exists for easy access to the TinyGo CLI. For example, to compile wasm.wasm for the WebAssembly example, from the root of the repository:
-docker run --rm -v $(pwd):/src tinygo/tinygo tinygo build -o /src/wasm.wasm -target wasm examples/wasm  To compile blinky1.hex targeting an ARM microcontroller, such as the PCA10040:
-docker run --rm -v $(pwd):/src tinygo/tinygo tinygo build -o /src/blinky1.hex -size=short -target=pca10040 examples/blinky1  To compile blinky1.hex targeting an AVR microcontroller such as the Arduino:</description>
-    </item>
-    
-    <item>
       <title>What is TinyGo exactly?</title>
       <link>https://tinygo.org/faq/what-is-tinygo/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -287,6 +276,17 @@ var result int32 arm.AsmFull(` lsls {value}, #1 str {value}, {result} `, map[str
       
       <guid>https://tinygo.org/usage/misc-options/</guid>
       <description>-no-debug Disable outputting debug symbols. This can be useful for WebAssembly, as there is no debugger for .wasm files yet and .wasm files are generally served directly. Avoiding debug symbols can have a big impact on generated binary size, reducing them by more than half. This is not necessary on microcontrollers because debugging symbols are not flashed to the microcontroller. Additionally, you will need it when you use tinygo gdb.</description>
+    </item>
+    
+    <item>
+      <title>Using TinyGo with Docker</title>
+      <link>https://tinygo.org/getting-started/using-docker/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tinygo.org/getting-started/using-docker/</guid>
+      <description>You can use our Docker image to be able to run the TinyGo compiler on your computer without having to install all the dependencies. Read on to learn how.
+Installing docker pull tinygo/tinygo  Using A docker container exists for easy access to the TinyGo CLI. For example, to compile wasm.wasm for the WebAssembly example, from the root of the repository:
+docker run --rm -v $(pwd):/src tinygo/tinygo tinygo build -o /src/wasm.</description>
     </item>
     
     <item>
