@@ -1,7 +1,7 @@
 ---
 title: "Using TinyGo"
 chapter: true
-weight: 4
+weight: 2
 ---
 
 # Using TinyGo

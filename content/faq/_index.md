@@ -1,7 +1,7 @@
 ---
 title: "FAQ"
 chapter: true
-weight: 9
+weight: 7
 ---
 
 # FAQ

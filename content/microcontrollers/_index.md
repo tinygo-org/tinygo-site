@@ -1,7 +1,7 @@
 ---
 title: "Go on microcontrollers"
 chapter: true
-weight: 7
+weight: 3
 ---
 
 # Go on microcontrollers

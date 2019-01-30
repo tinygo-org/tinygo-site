@@ -1,7 +1,7 @@
 ---
 title: "Getting Started"
 chapter: true
-weight: 3
+weight: 1
 ---
 
 # Getting Started

@@ -1,7 +1,7 @@
 ---
 title: "WebAssembly (WASM)"
 chapter: true
-weight: 8
+weight: 4
 ---
 
 # TinyGo and WebAssembly

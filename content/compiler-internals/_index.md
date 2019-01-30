@@ -1,7 +1,7 @@
 ---
 title: "Compiler Internals"
 chapter: true
-weight: 10
+weight: 8
 ---
 
 # Compiler Internals

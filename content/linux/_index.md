@@ -1,7 +1,7 @@
 ---
 title: "Linux"
 chapter: true
-weight: 7
+weight: 5
 ---
 
 # TinyGo on Linux
