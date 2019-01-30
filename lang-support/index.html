@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/images/favicon.png" type="image/x-icon" />
-    <title>Using TinyGo :: TinyGo - Go on Microcontrollers and WASM</title>
+    <title>Go language features :: TinyGo - Go on Microcontrollers and WASM</title>
 
     
     <link href="/css/nucleus.css?1548883108" rel="stylesheet">
@@ -38,7 +38,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/usage/">
+  <body class="" data-url="/lang-support/">
     <nav id="sidebar" class="">
 
 
@@ -154,8 +154,8 @@
   
     
     <li data-nav-id="/usage/" title="Using TinyGo" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/usage/">
@@ -294,8 +294,8 @@
   
     
     <li data-nav-id="/lang-support/" title="Go language features" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/lang-support/">
@@ -974,7 +974,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/tinygo-org/tinygo-site/edit/master/content/usage/_index.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/tinygo-org/tinygo-site/edit/master/content/lang-support/_index.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -989,6 +989,8 @@
                         </a>
                     </span>
                   
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
                   <span class="links">
                  
                  
@@ -999,7 +1001,7 @@
             
           
           
-            <a href='/'>Home</a> > Using TinyGo
+            <a href='/'>Home</a> > Go language features
           
          
           
@@ -1008,14 +1010,34 @@
                   </span>
                 </div>
                 
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#concurrency">Concurrency</a></li>
+<li><a href="#cgo">Cgo</a></li>
+<li><a href="#reflection">Reflection</a></li>
+<li><a href="#maps">Maps</a></li>
+<li><a href="#standard-library">Standard library</a></li>
+<li><a href="#garbage-collection">Garbage collection</a></li>
+<li><a href="#little-used-features">Little used features</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
+                
               </div>
             </div>
             
 
         
-          <div id="chapter">
-        
         <div id="body-inner">
+          
+            <h1>Go language features</h1>
           
 
         
@@ -1023,17 +1045,70 @@
 
 
 
-<h1 id="using-tinygo">Using TinyGo</h1>
+<p>While TinyGo supports a big subset of the Go language, not everything is supported yet.</p>
 
-<p>These pages assume you already have TinyGo installed, either using Docker or by installing it manually.</p>
+<p>Here is a list of features that are supported:</p>
+
+<ul>
+<li>The subset of Go that directly translates to C is well supported. This includes all basic types (except for <code>complex64</code> and <code>complex128</code>) and all regular control flow (including <code>switch</code>).</li>
+<li>Slices are well supported, with the exception of 3-index slicing (see below).</li>
+<li>Interfaces, while tested less than other features, are quite stable and should work well in almost all cases. Type switches and type asserts are also supported, as well as calling methods on interfaces.</li>
+<li>Closures and bound methods are supported, for example inline anonymous (lambda-like) functions.</li>
+<li>The <code>defer</code> keyword is supported, with the exception of deferring a call on a function pointer. Immediately applied functions that are deferred are supported, however. In practice, function pointers are little used in deferred calls.</li>
+</ul>
+
+<h2 id="concurrency">Concurrency</h2>
+
+<p>At the time of writing (2019-01-29), support for goroutines and channels is weak. There is some support, but you will often encounter compiler errors when trying to use concurrency in more complicated ways (for example with function pointers). Also, some things may unexpectedly allocate memory like calling a function that blocks. This situation should certainly improve in the future, but at the moment you shouldn&rsquo;t rely on concurrency features to work well.</p>
+
+<h2 id="cgo">Cgo</h2>
+
+<p>While TinyGo embeds the <a href="https://clang.llvm.org/">Clang</a> compiler to parse <code>import &quot;C&quot;</code> blocks, many features of Cgo are still unsupported. For example, <code>#cgo</code> statements are currently ignored.</p>
+
+<h2 id="reflection">Reflection</h2>
+
+<p>Many packages, especially in the standard library, rely on reflection to work. The <code>reflect</code> package in the standards library is closely coupled to the main Go compilers and the runtime, so will have to be replaced. <a href="https://github.com/aykevl/tinygo/pull/104">Work is underway</a> that provides at least initial support for reflection.</p>
+
+<h2 id="maps">Maps</h2>
+
+<p>Support for maps is still very limited and in general you shouldn&rsquo;t rely on their availability. The main reason they are supported is so the <code>unicode</code> package compiles.</p>
+
+<p>To use maps, you will currently have to deal with the following limitations:</p>
+
+<ul>
+<li>A map can store at most 8 entries. The exception is when it is initialized as a global variable, in which case it can store more entries.</li>
+<li>Map keys must be either strings, integers, or (nested) structs that contain only integers. Supporting more will likely depend on reflection for code size reasons.</li>
+<li>Map operations are likely to be very slow.</li>
+<li>The current implementation is little tested so may contain bugs.</li>
+</ul>
+
+<h2 id="standard-library">Standard library</h2>
+
+<p>Due to the above missing pieces and because parts of the standard library depend on the particular compiler/runtime in use, many packages do not yet compile.</p>
+
+<h2 id="garbage-collection">Garbage collection</h2>
+
+<p>While not directly a language feature (the Go spec doesn&rsquo;t mention it), garbage collection is important for most Go programs to make sure their memory usage stays in reasonable bounds.</p>
+
+<p>Garbage collection is currently only supported on ARM microcontrollers (Cortex-M). For this platform, a simple conservative mark-sweep collector has been implemented. Other platforms will just allocate memory without ever freeing it.</p>
+
+<p>Careful design may avoid memory allocations in main loops. You may want to compile with <code>-gc=none</code> and look at link errors to find out where allocations happen: the compiler inserts calls to <code>runtime.alloc</code> to allocate memory. For more information, see <a href="/compiler-internals/heap-allocation/">heap allocation</a>.</p>
+
+<h2 id="little-used-features">Little used features</h2>
+
+<p>Some features are little used and there hasn&rsquo;t been a real need to implement them yet. These include:</p>
+
+<ul>
+<li><code>recover()</code>: this can be useful sometimes but in general most programs work just fine with a <code>panic()</code> that simply aborts. Supporting <code>recover()</code> will also likely increase code size so it has also been left out at the moment for that reason. When <code>recover()</code> gets implemented, it will likely be disabled by default and can be enabled with a compiler flag.</li>
+<li>Arithmetic on complex numbers is not yet supported (add, sub, mul, div). However, the <code>complex</code>, <code>real</code> and <code>imag</code> builtins, as well as complex number constants, are all supported. Apart from the fact that complex number operations are little used, they are also <a href="https://github.com/golang/go/issues/29846">hard to implement correctly</a>.</li>
+<li>Slice expessions with 3 indexes that sets the capacity as well as the length. This feature was <a href="https://tip.golang.org/doc/go1.2#three_index">introduced in Go 1.2</a>.</li>
+</ul>
 
 
 <footer class=" footline" >
 	
 </footer>
 
-        
-            </div> 
         
         </div> 
         
@@ -1132,7 +1207,6 @@
             
                 
                     
-                    
                 
                 
 
@@ -1145,9 +1219,6 @@
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -1232,6 +1303,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1247,6 +1319,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1716,10 +1791,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/getting-started/usage/" title="Usage"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/docker/using/" title="Using TinyGo with Docker"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/usage/subcommands/" title="Subcommands" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/microcontrollers/" title="Go on microcontrollers" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

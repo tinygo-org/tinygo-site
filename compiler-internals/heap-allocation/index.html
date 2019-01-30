@@ -12,19 +12,19 @@
     <title>Heap allocation :: TinyGo - Go on Microcontrollers and WASM</title>
 
     
-    <link href="/css/nucleus.css?1548687161" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1548687161" rel="stylesheet">
-    <link href="/css/hybrid.css?1548687161" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1548687161" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1548687161" rel="stylesheet">
-    <link href="/css/auto-complete.css?1548687161" rel="stylesheet">
-    <link href="/css/theme.css?1548687161" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1548687161" rel="stylesheet">
+    <link href="/css/nucleus.css?1548883108" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1548883108" rel="stylesheet">
+    <link href="/css/hybrid.css?1548883108" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1548883108" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1548883108" rel="stylesheet">
+    <link href="/css/auto-complete.css?1548883108" rel="stylesheet">
+    <link href="/css/theme.css?1548883108" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1548883108" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1548687161" rel="stylesheet">
+      <link href="/css/theme-blue.css?1548883108" rel="stylesheet">
     
 
-    <script src="/js/jquery-2.x.min.js?1548687161"></script>
+    <script src="/js/jquery-2.x.min.js?1548883108"></script>
 
     <style type="text/css">
       :root #header + #content > #left > #rlblock_left{
@@ -281,6 +281,28 @@
           
         
         </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/lang-support/" title="Go language features" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/lang-support/">
+          Go language features
+          
+      </a>
+      
               
     </li>
   
@@ -1019,11 +1041,10 @@
 <p>These operations currently do heap allocations:</p>
 
 <ul>
-<li>Taking the pointer of a local variable. This will result in a heap allocation, unless the compiler can see the resulting pointer never escapes. This causes a heap allocation:</li>
-</ul>
+<li><p>Taking the pointer of a local variable. This will result in a heap allocation, unless the compiler can see the resulting pointer never escapes. This causes a heap allocation:</p>
 
 <pre><code class="language-go">var global *int
-
+    
 func foo() {
     i := 3
     global = &amp;i
@@ -1036,28 +1057,25 @@ func foo() {
     i := 3
     bar(&amp;i)
 }
-
+    
 func bar(i *int) {
     println(*i)
 }
-</code></pre>
+</code></pre></li>
 
-<ul>
-<li>Converting between <code>string</code> and <code>[]byte</code>. In general, this causes a heap allocation because one is constant while the other is not: for example, a <code>[]byte</code> is not allowed to write to the underlying buffer of a <code>string</code>. However, there is an optimization that avoids a heap allocation when converting a string to a <code>[]byte</code> when the compiler can see the slice is never written to. For example, this <code>WriteString</code> function does not cause a heap allocation:</li>
-</ul>
+<li><p>Converting between <code>string</code> and <code>[]byte</code>. In general, this causes a heap allocation because one is constant while the other is not: for example, a <code>[]byte</code> is not allowed to write to the underlying buffer of a <code>string</code>. However, there is an optimization that avoids a heap allocation when converting a string to a <code>[]byte</code> when the compiler can see the slice is never written to. For example, this <code>WriteString</code> function does not cause a heap allocation:</p>
 
 <pre><code class="language-go">func WriteString(s string) {
     Write([]byte(s))
 }
-
+    
 func Write(buf []byte) {
     for _, c := range buf {
         WriteByte(c)
     }
 }
-</code></pre>
+</code></pre></li>
 
-<ul>
 <li><p>Converting a <code>byte</code> or <code>rune</code> into a <code>string</code>. This operation is actually a conversion from a Unicode code point into a single-character string so is similar to the previous point.</p></li>
 
 <li><p>Concatenating strings, unless one of them is zero length.</p></li>
@@ -1068,7 +1086,7 @@ func Write(buf []byte) {
 
 <li><p>Creating and modifying maps. Maps have <em>very</em> little support at the moment and should not yet be used. They exist mostly for compatibility with some standard library packages.</p></li>
 
-<li><p>Starting goroutines. There is limited support for goroutines and currently they are not at all efficient. Also, there is no support for channels yet so their usefulness is limited.</p></li>
+<li><p>Starting goroutines. There is limited support for goroutines and currently they are not at all efficient. See <a href="/lang-support/">Go language support</a> for details.</p></li>
 </ul>
 
 
@@ -1262,6 +1280,22 @@ func Write(buf []byte) {
                     
             
         
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
                     
             
         
@@ -1760,20 +1794,20 @@ func Write(buf []byte) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1548687161"></script>
-    <script src="/js/perfect-scrollbar.min.js?1548687161"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1548687161"></script>
-    <script src="/js/jquery.sticky.js?1548687161"></script>
-    <script src="/js/featherlight.min.js?1548687161"></script>
-    <script src="/js/html5shiv-printshiv.min.js?1548687161"></script>
-    <script src="/js/highlight.pack.js?1548687161"></script>
+    <script src="/js/clipboard.min.js?1548883108"></script>
+    <script src="/js/perfect-scrollbar.min.js?1548883108"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1548883108"></script>
+    <script src="/js/jquery.sticky.js?1548883108"></script>
+    <script src="/js/featherlight.min.js?1548883108"></script>
+    <script src="/js/html5shiv-printshiv.min.js?1548883108"></script>
+    <script src="/js/highlight.pack.js?1548883108"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom.71422.js?1548687161"></script>
-    <script src="/js/learn.js?1548687161"></script>
-    <script src="/js/hugo-learn.js?1548687161"></script>
+    <script src="/js/modernizr.custom.71422.js?1548883108"></script>
+    <script src="/js/learn.js?1548883108"></script>
+    <script src="/js/hugo-learn.js?1548883108"></script>
 
-    <link href="/mermaid/mermaid.css?1548687161" type="text/css" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1548687161"></script>
+    <link href="/mermaid/mermaid.css?1548883108" type="text/css" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1548883108"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
