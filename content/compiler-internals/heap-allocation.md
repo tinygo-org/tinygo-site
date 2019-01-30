@@ -9,41 +9,41 @@ These operations currently do heap allocations:
 
 * Taking the pointer of a local variable. This will result in a heap allocation, unless the compiler can see the resulting pointer never escapes. This causes a heap allocation:
 
-```go
-var global *int
+    ```go
+    var global *int
+    
+    func foo() {
+        i := 3
+        global = &i
+    }
+    ```
 
-func foo() {
-    i := 3
-    global = &i
-}
-```
+    This does not cause a heap allocation:
 
-This does not cause a heap allocation:
-
-```go
-func foo() {
-    i := 3
-    bar(&i)
-}
-
-func bar(i *int) {
-    println(*i)
-}
-```
+    ```go
+    func foo() {
+        i := 3
+        bar(&i)
+    }
+    
+    func bar(i *int) {
+        println(*i)
+    }
+    ```
 
 * Converting between `string` and `[]byte`. In general, this causes a heap allocation because one is constant while the other is not: for example, a `[]byte` is not allowed to write to the underlying buffer of a `string`. However, there is an optimization that avoids a heap allocation when converting a string to a `[]byte` when the compiler can see the slice is never written to. For example, this ``WriteString`` function does not cause a heap allocation:
 
-```go
-func WriteString(s string) {
-    Write([]byte(s))
-}
-
-func Write(buf []byte) {
-    for _, c := range buf {
-        WriteByte(c)
+    ```go
+    func WriteString(s string) {
+        Write([]byte(s))
     }
-}
-```
+    
+    func Write(buf []byte) {
+        for _, c := range buf {
+            WriteByte(c)
+        }
+    }
+    ```
 
 * Converting a `byte` or `rune` into a `string`. This operation is actually a conversion from a Unicode code point into a single-character string so is similar to the previous point.
 
@@ -55,4 +55,4 @@ func Write(buf []byte) {
 
 * Creating and modifying maps. Maps have *very* little support at the moment and should not yet be used. They exist mostly for compatibility with some standard library packages.
 
-* Starting goroutines. There is limited support for goroutines and currently they are not at all efficient. Also, there is no support for channels yet so their usefulness is limited.
+* Starting goroutines. There is limited support for goroutines and currently they are not at all efficient. See [Go language support]({{<ref "lang-support/_index.md">}}) for details.
