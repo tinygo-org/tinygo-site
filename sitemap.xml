@@ -3,6 +3,10 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://tinygo.org/getting-started/</loc>
+  </url>
+  
+  <url>
     <loc>https://tinygo.org/getting-started/requirements/</loc>
   </url>
   
@@ -20,6 +24,10 @@
   
   <url>
     <loc>https://tinygo.org/usage/subcommands/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tinygo.org/usage/</loc>
   </url>
   
   <url>
@@ -47,7 +55,7 @@
   </url>
   
   <url>
-    <loc>https://tinygo.org/getting-started/</loc>
+    <loc>https://tinygo.org/microcontrollers/</loc>
   </url>
   
   <url>
@@ -107,11 +115,11 @@
   </url>
   
   <url>
-    <loc>https://tinygo.org/usage/</loc>
+    <loc>https://tinygo.org/getting-started/using-docker/</loc>
   </url>
   
   <url>
-    <loc>https://tinygo.org/getting-started/using-docker/</loc>
+    <loc>https://tinygo.org/webassembly/</loc>
   </url>
   
   <url>
@@ -120,6 +128,10 @@
   
   <url>
     <loc>https://tinygo.org/compiler-internals/harvard-arch/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tinygo.org/linux/</loc>
   </url>
   
   <url>
@@ -136,18 +148,6 @@
   
   <url>
     <loc>https://tinygo.org/lang-support/</loc>
-  </url>
-  
-  <url>
-    <loc>https://tinygo.org/microcontrollers/</loc>
-  </url>
-  
-  <url>
-    <loc>https://tinygo.org/linux/</loc>
-  </url>
-  
-  <url>
-    <loc>https://tinygo.org/webassembly/</loc>
   </url>
   
   <url>
