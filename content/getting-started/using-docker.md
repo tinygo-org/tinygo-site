@@ -1,6 +1,6 @@
 ---
 title: "Using TinyGo with Docker"
-weight: 2
+weight: 4
 ---
 
 You can use our Docker image to be able to run the TinyGo compiler on your computer without having to install all the dependencies. Read on to learn how.
