@@ -28,7 +28,7 @@ ARM Cortex-M The Cortex-M family of microcontrollers is well supported, as it us
       
       <guid>https://tinygo.org/getting-started/installation/</guid>
       <description>Now that you have the requirements, now download the sources. This may take a while.
-go get -u github.com/aykevl/tinygo  If you get an error like this::
+go get -u github.com/tinygo-org/tinygo  If you get an error like this::
 /usr/local/go/pkg/tool/linux_amd64/link: running g++ failed: exit status 1 /usr/bin/ld: error: cannot find -lLLVM-7 cgo-gcc-prolog:58: error: undefined reference to &#39;LLVMVerifyFunction&#39; cgo-gcc-prolog:80: error: undefined reference to &#39;LLVMVerifyModule&#39; [...etc...]  Or like this::
 ../go-llvm/analysis.go:17:93: fatal error: llvm-c/Analysis.h: No such file or directory #include &amp;quot;llvm-c/Analysis.h&amp;quot; // If you are getting an error here read bindings/go/README.</description>
     </item>
