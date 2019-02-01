@@ -5,7 +5,7 @@ weight: 2
 
 Now that you have the requirements, now download the sources. This may take a while.
 
-    go get -u github.com/aykevl/tinygo
+    go get -u github.com/tinygo-org/tinygo
 
 If you get an error like this::
 
@@ -24,9 +24,9 @@ It means something is wrong with your LLVM installation. Make sure LLVM 7 is
 installed (Debian package ``llvm-7-dev``). If it still doesn't work, you can
 try running:
 
-    cd $GOPATH/github.com/aykevl/go-llvm
+    cd $GOPATH/github.com/tinygo-org/go-llvm
     make config
 
 And retry:
 
-    go install github.com/aykevl/tinygo
+    go install github.com/tinygo-org/tinygo

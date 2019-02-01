@@ -25,7 +25,7 @@ Of course, it is possible to use ``gccgo``, but that has different problems (see
 
 * The standard Go compilers do a few special things for CGo calls. This is necessary because only Go code can use the (small) Go stack while C code will need a much bigger stack. A new compiler can avoid this limitation if it ensures stacks are big enough for C, greatly reducing the C ↔ Go calling overhead.
 
-[At one point](https://github.com/aykevl/tinygo-gccgo), a real Go compiler had been used to produce binaries for various platforms, and the result was painful enough to start writing a new compiler:
+[At one point](https://github.com/tinygo-org/tinygo-gccgo), a real Go compiler had been used to produce binaries for various platforms, and the result was painful enough to start writing a new compiler:
 
 * The ABI was fixed, so could not be optimized for speed. Also, the ABI didn't seem to be documented anywhere.
 

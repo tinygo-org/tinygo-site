@@ -41,4 +41,4 @@ env: {
 console.log('multiplied two numbers:', wasm.exports.multiply(5, 3));
 ```
 
-A more complete example is provided in the [wasm example](https://github.com/aykevl/tinygo/tree/master/src/examples/wasm).
+A more complete example is provided in the [wasm example](https://github.com/tinygo-org/tinygo/tree/master/src/examples/wasm).

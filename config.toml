@@ -13,12 +13,12 @@ disableInlineCopyToClipBoard = true
 
 [[menu.shortcuts]] 
 name = "<i class='fab fa-github'></i> Github repo"
-url = "https://github.com/aykevl/tinygo"
+url = "https://github.com/tinygo-org/tinygo"
 weight = 10
 
 [[menu.shortcuts]] 
 name = "<i class='fa fa-book'></i> Godoc"
-url = "https://godoc.org/github.com/aykevl/tinygo"
+url = "https://godoc.org/github.com/tinygo-org/tinygo"
 weight = 20
 
 [[menu.shortcuts]] 

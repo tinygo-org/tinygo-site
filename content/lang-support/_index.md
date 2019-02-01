@@ -23,7 +23,7 @@ While TinyGo embeds the [Clang](https://clang.llvm.org/) compiler to parse `impo
 
 ## Reflection
 
-Many packages, especially in the standard library, rely on reflection to work. The `reflect` package in the standards library is closely coupled to the main Go compilers and the runtime, so will have to be replaced. [Work is underway](https://github.com/aykevl/tinygo/pull/104) that provides at least initial support for reflection.
+Many packages, especially in the standard library, rely on reflection to work. The `reflect` package in the standards library is closely coupled to the main Go compilers and the runtime, so will have to be replaced. [Work is underway](https://github.com/tinygo-org/tinygo/pull/104) that provides at least initial support for reflection.
 
 ## Maps
 
