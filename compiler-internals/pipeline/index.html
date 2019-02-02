@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.53" />
+    <meta name="generator" content="Hugo 0.54.0" />
     <meta name="description" content="">
 
 
@@ -12,19 +12,19 @@
     <title>Pipeline :: TinyGo - Go on Microcontrollers and WASM</title>
 
     
-    <link href="/css/nucleus.css?1549012806" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1549012806" rel="stylesheet">
-    <link href="/css/hybrid.css?1549012806" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1549012806" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1549012806" rel="stylesheet">
-    <link href="/css/auto-complete.css?1549012806" rel="stylesheet">
-    <link href="/css/theme.css?1549012806" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1549012806" rel="stylesheet">
+    <link href="/css/nucleus.css?1549104646" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1549104646" rel="stylesheet">
+    <link href="/css/hybrid.css?1549104646" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1549104646" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1549104646" rel="stylesheet">
+    <link href="/css/auto-complete.css?1549104646" rel="stylesheet">
+    <link href="/css/theme.css?1549104646" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1549104646" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1549012806" rel="stylesheet">
+      <link href="/css/theme-blue.css?1549104646" rel="stylesheet">
     
 
-    <script src="/js/jquery-2.x.min.js?1549012806"></script>
+    <script src="/js/jquery-2.x.min.js?1549104646"></script>
 
     <style type="text/css">
       :root #header + #content > #left > #rlblock_left{
@@ -1004,22 +1004,51 @@
         
 
 
-<p>Like most compilers, TinyGo is a compiler built as a pipeline of transformations, that each translate an input to a simpler output version (also called lowering). However, most of these part are not in TinyGo itself. The frontend is mostly implemented by external Go libraries, and most optimizations and code generation is implemented by LLVM.</p>
+<p>Like most compilers, TinyGo is a compiler built as a pipeline of transformations
+that each translate an input to a simpler output version (also called lowering).
+However, most of these part are not in TinyGo itself. The frontend is mostly
+implemented by external Go libraries, and most optimizations and code generation
+is implemented by LLVM.</p>
 
 <p>This is roughly the pipeline for TinyGo:</p>
 
 <ul>
-<li>Lexing, parsing, typechecking and <a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">AST</a> building is done by
-packages in the <a href="https://godoc.org/go">standard library</a> and in the <a href="https://godoc.org/golang.org/x/tools/go">golang.org/x/tools/go library</a>.</li>
-<li><a href="https://en.wikipedia.org/wiki/Static_single_assignment_form">SSA</a> construction (a very important step) is done by the <a href="https://godoc.org/golang.org/x/tools/go/ssa">golang.org/x/tools/go/ssa</a> package.</li>
-<li>This SSA form is then analyzed by the <a href="https://godoc.org/github.com/tinygo-org/tinygo/ir">ir package</a> to learn all kinds of things about the code that help the optimizer.</li>
-<li>The Go SSA is then transformed into LLVM IR by the <a href="https://godoc.org/github.com/tinygo-org/tinygo/compiler">compiler package</a>. Both forms are SSA, but because Go SSA is higher level and contains Go-specific constructs (like interfaces and goroutines) this is non-trivial. However, the vast majority of the work is simply lowering the available Go SSA into LLVM IR, possibly calling some runtime library intrinsics in the process (for example, operations on maps).</li>
-<li>This LLVM IR is then optimized by the LLVM optimizer, which has a large array of standard <a href="https://llvm.org/docs/Passes.html">optimization passes</a>. Currently, the standard optimization pipeline is used as is also be used by Clang, but a pipeline better tuned for TinyGo might be used in the future.</li>
-<li>After all optimizations have run, a few fixups are needed for AVR for globals. This is implemented by the compiler package.</li>
-<li>Finally, the resulting machine code is emitted by LLVM to an object file, to be linked by an architecture-specific linker in a later step.</li>
+<li>Lexing, parsing, and typechecking is done by packages in the
+<a href="https://godoc.org/go">standard library</a> and in the
+<a href="https://godoc.org/golang.org/x/tools/go">golang.org/x/tools/go library</a>.</li>
+<li><a href="https://en.wikipedia.org/wiki/Static_single_assignment_form">SSA</a>
+construction (a very important step) is done by the
+<a href="https://godoc.org/golang.org/x/tools/go/ssa">golang.org/x/tools/go/ssa</a>
+package.</li>
+<li>The Go SSA is then transformed into LLVM IR by the
+<a href="https://godoc.org/github.com/tinygo-org/tinygo/compiler">compiler package</a>.
+Both forms are SSA, but because Go SSA is higher level and contains
+Go-specific constructs (like interfaces and goroutines) this is non-trivial.
+However, the vast majority of the work is simply lowering the available Go
+SSA into LLVM IR, possibly calling some runtime library intrinsics in the
+process (for example, operations on maps).</li>
+<li>Go does a lot of initialization at runtime, which is really bad for
+code size. This includes all global variables: they are all initialized at
+runtime, not at compile time like C. So TinyGo
+<a href="https://github.com/tinygo-org/tinygo/tree/master/interp">interprets these functions at compile time</a>
+as far as it is able to.</li>
+<li>The resulting IR is then first optimized by a mixture of handpicked LLVM
+optimization passes, TinyGo-specific
+optimizations (escape analysis, <code>string</code>-to-<code>[]byte</code> optimizations, etc.)
+and custom lowering. For example, this is the time when interfaces are
+lowered to their final form to benefit from the optimizations already done
+until that point.</li>
+<li>This LLVM IR is then optimized by the LLVM optimizer, which has a large
+array of standard <a href="https://llvm.org/docs/Passes.html">optimization passes</a>.
+This is the standard optimization pipeline as is also used by Clang.</li>
+<li>After all optimizations have run, a few fixups are needed for AVR for
+globals, because AVR has separate address spaces for flash and RAM. This is
+implemented by the compiler package.</li>
+<li>Finally, the resulting machine code is emitted by LLVM to an object file.</li>
 </ul>
 
-<p>After this whole list of compiler phases, the Go source has been transformed into object code. It can then be emitted directly to a file (for linking in a different build system), or it can be linked directly or even be flashed to a target by TinyGo (using external tools under the hood).</p>
+<p>This is just the compiler. TinyGo can also automatically link the file and flash
+it to a device, if needed.</p>
 
 
 <footer class=" footline" >
@@ -1707,20 +1736,20 @@ packages in the <a href="https://godoc.org/go">standard library</a> and in the <
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1549012806"></script>
-    <script src="/js/perfect-scrollbar.min.js?1549012806"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1549012806"></script>
-    <script src="/js/jquery.sticky.js?1549012806"></script>
-    <script src="/js/featherlight.min.js?1549012806"></script>
-    <script src="/js/html5shiv-printshiv.min.js?1549012806"></script>
-    <script src="/js/highlight.pack.js?1549012806"></script>
+    <script src="/js/clipboard.min.js?1549104646"></script>
+    <script src="/js/perfect-scrollbar.min.js?1549104646"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1549104646"></script>
+    <script src="/js/jquery.sticky.js?1549104646"></script>
+    <script src="/js/featherlight.min.js?1549104646"></script>
+    <script src="/js/html5shiv-printshiv.min.js?1549104646"></script>
+    <script src="/js/highlight.pack.js?1549104646"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom.71422.js?1549012806"></script>
-    <script src="/js/learn.js?1549012806"></script>
-    <script src="/js/hugo-learn.js?1549012806"></script>
+    <script src="/js/modernizr.custom.71422.js?1549104646"></script>
+    <script src="/js/learn.js?1549104646"></script>
+    <script src="/js/hugo-learn.js?1549104646"></script>
 
-    <link href="/mermaid/mermaid.css?1549012806" type="text/css" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1549012806"></script>
+    <link href="/mermaid/mermaid.css?1549104646" type="text/css" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1549104646"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

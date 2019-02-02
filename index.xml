@@ -327,9 +327,9 @@ ARM ARM Cortex-M processors are well supported.</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://tinygo.org/compiler-internals/pipeline/</guid>
-      <description>Like most compilers, TinyGo is a compiler built as a pipeline of transformations, that each translate an input to a simpler output version (also called lowering). However, most of these part are not in TinyGo itself. The frontend is mostly implemented by external Go libraries, and most optimizations and code generation is implemented by LLVM.
+      <description>Like most compilers, TinyGo is a compiler built as a pipeline of transformations that each translate an input to a simpler output version (also called lowering). However, most of these part are not in TinyGo itself. The frontend is mostly implemented by external Go libraries, and most optimizations and code generation is implemented by LLVM.
 This is roughly the pipeline for TinyGo:
- Lexing, parsing, typechecking and AST building is done by packages in the standard library and in the golang.</description>
+ Lexing, parsing, and typechecking is done by packages in the standard library and in the golang.</description>
     </item>
     
     <item>
