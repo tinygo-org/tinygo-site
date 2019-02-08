@@ -15,7 +15,7 @@ A slice is encoded as a `{ptr, len, cap}` tuple. There is no runtime definition 
 Arrays are simple: they are simply lowered to a LLVM array type.
 
 ### complex
-Complex numbers are implemented in the most obvious way: as a vector of floating point numbers with length 2.
+Complex numbers are implemented the same way as Clang implements them: as a struct with two `float32` or `float64` elements.
 
 ### map
 The map type is a very complex type and is implemented as an (incomplete) hashmap. It is defined as `runtime.hashmap` in [src/runtime/hashmap.go](https://github.com/tinygo-org/tinygo/blob/master/src/runtime/hashmap.go). As maps are reference types, they are lowered to a pointer to the aforementioned struct. See for example `runtime.hashmapMake` that is the compiler intrinsic to create a new hashmap.
