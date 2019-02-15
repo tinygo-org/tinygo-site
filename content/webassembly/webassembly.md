@@ -19,7 +19,7 @@ func main() {
 func add(x, y int)
 
 // This function is exported to JavaScript, so can be called using
-// exports.add() in JavaScript.
+// exports.multiply() in JavaScript.
 //go:export multiply
 func multiply(x, y int) int {
     return x * y;
