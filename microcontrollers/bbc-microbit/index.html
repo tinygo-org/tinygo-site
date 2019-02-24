@@ -12,19 +12,19 @@
     <title>BBC:Microbit :: TinyGo - Go on Microcontrollers and WASM</title>
 
     
-    <link href="/css/nucleus.css?1549454418" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1549454418" rel="stylesheet">
-    <link href="/css/hybrid.css?1549454418" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1549454418" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1549454418" rel="stylesheet">
-    <link href="/css/auto-complete.css?1549454418" rel="stylesheet">
-    <link href="/css/theme.css?1549454418" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1549454418" rel="stylesheet">
+    <link href="/css/nucleus.css?1551011327" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1551011327" rel="stylesheet">
+    <link href="/css/hybrid.css?1551011327" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1551011327" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1551011327" rel="stylesheet">
+    <link href="/css/auto-complete.css?1551011327" rel="stylesheet">
+    <link href="/css/theme.css?1551011327" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1551011327" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1549454418" rel="stylesheet">
+      <link href="/css/theme-blue.css?1551011327" rel="stylesheet">
     
 
-    <script src="/js/jquery-2.x.min.js?1549454418"></script>
+    <script src="/js/jquery-2.x.min.js?1551011327"></script>
 
     <style type="text/css">
       :root #header + #content > #left > #rlblock_left{
@@ -995,6 +995,7 @@
 <ul>
 <li><a href="#openocd">OpenOCD</a></li>
 </ul></li>
+<li><a href="#notes">Notes</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -1079,6 +1080,26 @@
 <li>Plug your Microbit into your computer&rsquo;s USB port.</li>
 <li>Build and flash your TinyGo program using <code>tinygo flash -target=microbit</code></li>
 </ul>
+
+<h2 id="notes">Notes</h2>
+
+<p>The BBC:Microbit has two built-in I2C devices, a MMA8653 accelerometer and a MAG3110 magnetometer. You can use them via the I2C0 bus.</p>
+
+<p>The BBC:Microbit I2C0 and SPI0 buses both share the same address space. This means you cannot use them both at the same time. However, you can still use both SPI and I2C at the same time, by using the SPI1 bus with the standard SPI pins at the same time as using the I2C0 bus to access the built-in devices.</p>
+
+<p>For example:</p>
+
+<pre><code class="language-go">// use the same pins as for SPI0, but with SPI1
+machine.SPI1.Configure(machine.SPIConfig{
+    SCK:       machine.SPI0_SCK_PIN,
+    MOSI:      machine.SPI0_MOSI_PIN,
+    MISO:      machine.SPI0_MISO_PIN,
+    Frequency: 500000,
+    Mode:      0})
+
+// use I2C0 as normally do
+machine.I2C0.Configure(machine.I2CConfig{})
+</code></pre>
 
 
 <footer class=" footline" >
@@ -1769,20 +1790,20 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1549454418"></script>
-    <script src="/js/perfect-scrollbar.min.js?1549454418"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1549454418"></script>
-    <script src="/js/jquery.sticky.js?1549454418"></script>
-    <script src="/js/featherlight.min.js?1549454418"></script>
-    <script src="/js/html5shiv-printshiv.min.js?1549454418"></script>
-    <script src="/js/highlight.pack.js?1549454418"></script>
+    <script src="/js/clipboard.min.js?1551011327"></script>
+    <script src="/js/perfect-scrollbar.min.js?1551011327"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1551011327"></script>
+    <script src="/js/jquery.sticky.js?1551011327"></script>
+    <script src="/js/featherlight.min.js?1551011327"></script>
+    <script src="/js/html5shiv-printshiv.min.js?1551011327"></script>
+    <script src="/js/highlight.pack.js?1551011327"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom.71422.js?1549454418"></script>
-    <script src="/js/learn.js?1549454418"></script>
-    <script src="/js/hugo-learn.js?1549454418"></script>
+    <script src="/js/modernizr.custom.71422.js?1551011327"></script>
+    <script src="/js/learn.js?1551011327"></script>
+    <script src="/js/hugo-learn.js?1551011327"></script>
 
-    <link href="/mermaid/mermaid.css?1549454418" type="text/css" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1549454418"></script>
+    <link href="/mermaid/mermaid.css?1551011327" type="text/css" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1551011327"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
