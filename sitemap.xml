@@ -47,6 +47,10 @@
   </url>
   
   <url>
+    <loc>https://tinygo.org/microcontrollers/circuit-playground-express/</loc>
+  </url>
+  
+  <url>
     <loc>https://tinygo.org/compiler-internals/datatypes/</loc>
   </url>
   

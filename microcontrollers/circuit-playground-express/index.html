@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/images/favicon.png" type="image/x-icon" />
-    <title>Subcommands :: TinyGo - Go on Microcontrollers and WASM</title>
+    <title>Circuit Playground Express :: TinyGo - Go on Microcontrollers and WASM</title>
 
     
     <link href="/css/nucleus.css?1551336512" rel="stylesheet">
@@ -38,7 +38,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/usage/subcommands/">
+  <body class="" data-url="/microcontrollers/circuit-playground-express/">
     <nav id="sidebar" class="">
 
 
@@ -173,7 +173,7 @@
   
     
     <li data-nav-id="/usage/" title="Using TinyGo" class="dd-item 
-        parent
+        
         
         
         ">
@@ -197,7 +197,7 @@
  
   
     
-      <li data-nav-id="/usage/subcommands/" title="Subcommands" class="dd-item active">
+      <li data-nav-id="/usage/subcommands/" title="Subcommands" class="dd-item ">
         <a href="/usage/subcommands/">
         Subcommands
         
@@ -262,7 +262,7 @@
   
     
     <li data-nav-id="/microcontrollers/" title="Go on microcontrollers" class="dd-item 
-        
+        parent
         
         
         ">
@@ -343,7 +343,7 @@
  
   
     
-      <li data-nav-id="/microcontrollers/circuit-playground-express/" title="Circuit Playground Express" class="dd-item ">
+      <li data-nav-id="/microcontrollers/circuit-playground-express/" title="Circuit Playground Express" class="dd-item active">
         <a href="/microcontrollers/circuit-playground-express/">
         Circuit Playground Express
         
@@ -961,7 +961,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/tinygo-org/tinygo-site/edit/master/content/usage/subcommands.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/tinygo-org/tinygo-site/edit/master/content/microcontrollers/circuit-playground-express.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -992,7 +992,7 @@
             
           
           
-            <a href='/'>Home</a> > <a href='/usage/'>Using TinyGo</a> > Subcommands
+            <a href='/'>Home</a> > <a href='/microcontrollers/'>Go on microcontrollers</a> > Circuit Playground Express
           
          
           
@@ -1009,15 +1009,12 @@
 <ul>
 <li>
 <ul>
-<li>
+<li><a href="#interfaces">Interfaces</a></li>
+<li><a href="#flashing">Flashing</a>
 <ul>
-<li><a href="#build">build</a></li>
-<li><a href="#run">run</a></li>
-<li><a href="#flash">flash</a></li>
-<li><a href="#gdb">gdb</a></li>
-<li><a href="#clean">clean</a></li>
-<li><a href="#help">help</a></li>
+<li><a href="#uf2">UF2</a></li>
 </ul></li>
+<li><a href="#notes">Notes</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -1032,7 +1029,7 @@
         
         <div id="body-inner">
           
-            <h1>Subcommands</h1>
+            <h1>Circuit Playground Express</h1>
           
 
         
@@ -1040,53 +1037,76 @@
 
 
 
-<p>TinyGo tries to be similar to the main <code>go</code> command in usage. It consists of the following main subcommands:</p>
+<p>The <a href="https://www.adafruit.com/product/3333">Adafruit Circuit Playground Express</a> is small ARM development board based on the Atmel <a href="https://www.microchip.com/wwwproducts/en/ATSAMD21G18">SAMD21</a> family of processors. It has several built-in devices such as WS2812 &ldquo;NeoPixel&rdquo; LEDs, buttons, an accelerometer, and some other sensors.</p>
 
-<h3 id="build">build</h3>
+<h2 id="interfaces">Interfaces</h2>
 
-<p>Compile the given program. The output binary is specified using the <code>-o</code>
-parameter. The generated file type depends on the extension:</p>
+<table>
+<thead>
+<tr>
+<th>Interface</th>
+<th>Hardware Supported</th>
+<th>TinyGo Support</th>
+</tr>
+</thead>
 
-<p><code>.o</code>
-Create a relocatable object file. You can use this option if you don&rsquo;t want to use the TinyGo build system or want to do other custom things.</p>
+<tbody>
+<tr>
+<td>GPIO</td>
+<td>YES</td>
+<td>YES</td>
+</tr>
 
-<p><code>.ll</code>
-Create textual LLVM IR, after optimization. This is mainly useful for debugging.</p>
+<tr>
+<td>UART</td>
+<td>YES</td>
+<td>YES</td>
+</tr>
 
-<p><code>.bc</code>
-Create LLVM bitcode, after optimization. This may be useful for debugging or for linking into other programs using LTO.</p>
+<tr>
+<td>SPI</td>
+<td>YES</td>
+<td>Not yet</td>
+</tr>
 
-<p><code>.hex</code>
-Create an <a href="https://en.wikipedia.org/wiki/Intel_HEX">Intel HEX</a> file to flash it to a microcontroller.</p>
+<tr>
+<td>I2C</td>
+<td>YES</td>
+<td>YES</td>
+</tr>
 
-<p><code>.bin</code>
-Similar, but create a binary file.</p>
+<tr>
+<td>ADC</td>
+<td>YES</td>
+<td>Not yet</td>
+</tr>
 
-<p><code>.wasm</code>
-Compile and link a WebAssembly file.</p>
+<tr>
+<td>PWM</td>
+<td>YES</td>
+<td>YES</td>
+</tr>
+</tbody>
+</table>
 
-<p>(all other)
-Compile and link the program into a regular executable. For microcontrollers, it is common to use the .elf file extension to indicate a linked ELF file is generated. For Linux, it is common to build binaries with no extension at all.</p>
+<h2 id="flashing">Flashing</h2>
 
-<h3 id="run">run</h3>
+<h3 id="uf2">UF2</h3>
 
-<p>Run the program, either directly on the host or in an emulated environment (depending on <code>-target</code>).</p>
+<p>The Circuit Playground Express comes with the <a href="https://github.com/Microsoft/uf2">UF2 bootloader</a> already installed.</p>
 
-<h3 id="flash">flash</h3>
+<ul>
+<li>Plug your Circuit Playground Express into your computer&rsquo;s USB port.</li>
+<li>Build your TinyGo program to <code>.bin</code> format using the <code>tinygo build -target=circuitplay-express</code> command.</li>
+<li>Press the &ldquo;RESET&rdquo; button on the board two times.</li>
+<li>Convert/flash the resulting <code>.bin</code> using the <a href="https://github.com/Microsoft/uf2/blob/master/utils/uf2conv.py"><code>uf2conv.py</code></a> program.</li>
+</ul>
 
-<p>Flash the program to a microcontroller.</p>
+<h2 id="notes">Notes</h2>
 
-<h3 id="gdb">gdb</h3>
+<p>You can use the USB port to the Circuit Playground Express as a serial port. <code>UART0</code> refers to this connection.</p>
 
-<p>Compile the program, optionally flash it to a microcontroller if it is a remote target, and drop into a GDB shell. From here you can break the current program (Ctrl-C), single-step, show a backtrace, etc. A debugger must be specified for your particular target in the target .json file and the required tools (like GDB for your target) must be installed as well.</p>
-
-<h3 id="clean">clean</h3>
-
-<p>Clean the cache directory, normally stored in <code>$HOME/.cache/tinygo</code>. This is not normally needed.</p>
-
-<h3 id="help">help</h3>
-
-<p>Print a short summary of the available commands, plus a list of command flags.</p>
+<p>For an example that uses the built-in Neopixel LEDs, take a look at the TinyGo drivers repository located at <a href="https://github.com/tinygo-org/drivers">https://github.com/tinygo-org/drivers/tree/master/examples</a></p>
 
 
 <footer class=" footline" >
@@ -1208,75 +1228,6 @@ Compile and link the program into a regular executable. For microcontrollers, it
             
                 
                     
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
                 
                 
 
@@ -1333,6 +1284,42 @@ Compile and link the program into a regular executable. For microcontrollers, it
             
         
                     
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
                         
             
             
@@ -1353,6 +1340,42 @@ Compile and link the program into a regular executable. For microcontrollers, it
             
             
                 
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -1777,10 +1800,10 @@ Compile and link the program into a regular executable. For microcontrollers, it
 	 
 	 
 		
-			<a class="nav nav-prev" href="/usage/" title="Using TinyGo"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/microcontrollers/bluepill/" title="Bluepill"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/usage/important-options/" title="Important Build Options" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/microcontrollers/digispark/" title="Digispark" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

@@ -42,6 +42,16 @@ Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UAR
     </item>
     
     <item>
+      <title>Circuit Playground Express</title>
+      <link>https://tinygo.org/microcontrollers/circuit-playground-express/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tinygo.org/microcontrollers/circuit-playground-express/</guid>
+      <description>The Adafruit Circuit Playground Express is small ARM development board based on the Atmel SAMD21 family of processors. It has several built-in devices such as WS2812 &amp;ldquo;NeoPixel&amp;rdquo; LEDs, buttons, an accelerometer, and some other sensors.
+Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UART YES YES   SPI YES Not yet   I2C YES YES   ADC YES Not yet   PWM YES YES    Flashing UF2 The Circuit Playground Express comes with the UF2 bootloader already installed.</description>
+    </item>
+    
+    <item>
       <title>Digispark</title>
       <link>https://tinygo.org/microcontrollers/digispark/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
