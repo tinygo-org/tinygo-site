@@ -11,9 +11,9 @@ The [Adafruit ItsyBitsy M0](https://www.adafruit.com/product/3727) is very compa
 | --------- | ------------- | ----- |
 | GPIO      | YES | YES |
 | UART      | YES | YES |
-| SPI      | YES | Not yet |
+| SPI      | YES | YES |
 | I2C      | YES | YES |
-| ADC      | YES | Not yet |
+| ADC      | YES | YES |
 | PWM      | YES | YES |
 
 ## Flashing
@@ -23,16 +23,7 @@ The [Adafruit ItsyBitsy M0](https://www.adafruit.com/product/3727) is very compa
 The ItsyBitsy M0 comes with the [UF2 bootloader](https://github.com/Microsoft/uf2) already installed.
 
 - Plug your ItsyBitsy M0 into your computer's USB port.
-- Build your TinyGo program to `.bin` format using the `tinygo build -target=itsybitsy-m0` command.
-- Press the "RESET" button on the board two times.
-- Convert/flash the resulting `.bin` using the [`uf2conv.py`](https://github.com/Microsoft/uf2/blob/master/utils/uf2conv.py) program.
-
-### BOSSA
-
-The ItsyBitsy M0 UF2 bootloader also supports the BOSSA format. You must install the latest version of the `bossac` command line utility version 1.9+ from [https://github.com/shumatech/BOSSA](https://github.com/shumatech/BOSSA).
-
-It is slower to flash the board using `bossac` as the dual bootloader takes longer to become active than just using the UF2 format.
-
-- Plug your ItsyBitsy M0 into your computer's USB port.
-- Press the "RESET" button on the board two times.
-- Build and flash your TinyGo program using `tinygo flash -target=itsybitsy-m0`
+- Press the "RESET" button on the board two times to get the ItsyBitsy M0 board ready to receive code.
+- The ItsyBitsy M0 board will appear to your computer like a USB drive. Determine the path to the board, for example on Linux it will be something like `/media/[USERNAME]/[NAME OF THE BOARD]`.
+- Build your TinyGo program to the board in `.uf2` format using the `tinygo build -o=/media/[USERNAME]/[NAME OF THE BOARD]/flash.uf2 -target=itsybitsy-m0 [PATH TO YOUR PROGRAM]` command.
+- The ItsyBitsy M0 board should restart and then begin running your program.
