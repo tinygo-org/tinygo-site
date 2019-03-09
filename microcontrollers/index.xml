@@ -48,7 +48,7 @@ Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UAR
       
       <guid>https://tinygo.org/microcontrollers/circuit-playground-express/</guid>
       <description>The Adafruit Circuit Playground Express is small ARM development board based on the Atmel SAMD21 family of processors. It has several built-in devices such as WS2812 &amp;ldquo;NeoPixel&amp;rdquo; LEDs, buttons, an accelerometer, and some other sensors.
-Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UART YES YES   SPI YES Not yet   I2C YES YES   ADC YES Not yet   PWM YES YES    Flashing UF2 The Circuit Playground Express comes with the UF2 bootloader already installed.</description>
+Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UART YES YES   SPI YES YES   I2C YES YES   ADC YES YES   PWM YES YES    Flashing UF2 The Circuit Playground Express comes with the UF2 bootloader already installed.</description>
     </item>
     
     <item>
@@ -70,7 +70,7 @@ Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UAR
       
       <guid>https://tinygo.org/microcontrollers/itsybitsy-m0/</guid>
       <description>The Adafruit ItsyBitsy M0 is very compact ARM development board based on the Atmel SAMD21 family of SoC.
-Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UART YES YES   SPI YES Not yet   I2C YES YES   ADC YES Not yet   PWM YES YES    Flashing UF2 The ItsyBitsy M0 comes with the UF2 bootloader already installed.</description>
+Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UART YES YES   SPI YES YES   I2C YES YES   ADC YES YES   PWM YES YES    Flashing UF2 The ItsyBitsy M0 comes with the UF2 bootloader already installed.</description>
     </item>
     
     <item>

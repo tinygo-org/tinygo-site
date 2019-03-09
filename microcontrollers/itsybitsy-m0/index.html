@@ -12,19 +12,19 @@
     <title>ItsyBitsy M0 :: TinyGo - Go on Microcontrollers and WASM</title>
 
     
-    <link href="/css/nucleus.css?1551336512" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1551336512" rel="stylesheet">
-    <link href="/css/hybrid.css?1551336512" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1551336512" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1551336512" rel="stylesheet">
-    <link href="/css/auto-complete.css?1551336512" rel="stylesheet">
-    <link href="/css/theme.css?1551336512" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1551336512" rel="stylesheet">
+    <link href="/css/nucleus.css?1552160638" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1552160638" rel="stylesheet">
+    <link href="/css/hybrid.css?1552160638" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1552160638" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1552160638" rel="stylesheet">
+    <link href="/css/auto-complete.css?1552160638" rel="stylesheet">
+    <link href="/css/theme.css?1552160638" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1552160638" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1551336512" rel="stylesheet">
+      <link href="/css/theme-blue.css?1552160638" rel="stylesheet">
     
 
-    <script src="/js/jquery-2.x.min.js?1551336512"></script>
+    <script src="/js/jquery-2.x.min.js?1552160638"></script>
 
     <style type="text/css">
       :root #header + #content > #left > #rlblock_left{
@@ -1013,7 +1013,6 @@
 <li><a href="#flashing">Flashing</a>
 <ul>
 <li><a href="#uf2">UF2</a></li>
-<li><a href="#bossa">BOSSA</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -1066,7 +1065,7 @@
 <tr>
 <td>SPI</td>
 <td>YES</td>
-<td>Not yet</td>
+<td>YES</td>
 </tr>
 
 <tr>
@@ -1078,7 +1077,7 @@
 <tr>
 <td>ADC</td>
 <td>YES</td>
-<td>Not yet</td>
+<td>YES</td>
 </tr>
 
 <tr>
@@ -1097,21 +1096,10 @@
 
 <ul>
 <li>Plug your ItsyBitsy M0 into your computer&rsquo;s USB port.</li>
-<li>Build your TinyGo program to <code>.bin</code> format using the <code>tinygo build -target=itsybitsy-m0</code> command.</li>
-<li>Press the &ldquo;RESET&rdquo; button on the board two times.</li>
-<li>Convert/flash the resulting <code>.bin</code> using the <a href="https://github.com/Microsoft/uf2/blob/master/utils/uf2conv.py"><code>uf2conv.py</code></a> program.</li>
-</ul>
-
-<h3 id="bossa">BOSSA</h3>
-
-<p>The ItsyBitsy M0 UF2 bootloader also supports the BOSSA format. You must install the latest version of the <code>bossac</code> command line utility version 1.9+ from <a href="https://github.com/shumatech/BOSSA">https://github.com/shumatech/BOSSA</a>.</p>
-
-<p>It is slower to flash the board using <code>bossac</code> as the dual bootloader takes longer to become active than just using the UF2 format.</p>
-
-<ul>
-<li>Plug your ItsyBitsy M0 into your computer&rsquo;s USB port.</li>
-<li>Press the &ldquo;RESET&rdquo; button on the board two times.</li>
-<li>Build and flash your TinyGo program using <code>tinygo flash -target=itsybitsy-m0</code></li>
+<li>Press the &ldquo;RESET&rdquo; button on the board two times to get the ItsyBitsy M0 board ready to receive code.</li>
+<li>The ItsyBitsy M0 board will appear to your computer like a USB drive. Determine the path to the board, for example on Linux it will be something like <code>/media/[USERNAME]/[NAME OF THE BOARD]</code>.</li>
+<li>Build your TinyGo program to the board in <code>.uf2</code> format using the <code>tinygo build -o=/media/[USERNAME]/[NAME OF THE BOARD]/flash.uf2 -target=itsybitsy-m0 [PATH TO YOUR PROGRAM]</code> command.</li>
+<li>The ItsyBitsy M0 board should restart and then begin running your program.</li>
 </ul>
 
 
@@ -1819,20 +1807,20 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1551336512"></script>
-    <script src="/js/perfect-scrollbar.min.js?1551336512"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1551336512"></script>
-    <script src="/js/jquery.sticky.js?1551336512"></script>
-    <script src="/js/featherlight.min.js?1551336512"></script>
-    <script src="/js/html5shiv-printshiv.min.js?1551336512"></script>
-    <script src="/js/highlight.pack.js?1551336512"></script>
+    <script src="/js/clipboard.min.js?1552160638"></script>
+    <script src="/js/perfect-scrollbar.min.js?1552160638"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1552160638"></script>
+    <script src="/js/jquery.sticky.js?1552160638"></script>
+    <script src="/js/featherlight.min.js?1552160638"></script>
+    <script src="/js/html5shiv-printshiv.min.js?1552160638"></script>
+    <script src="/js/highlight.pack.js?1552160638"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom.71422.js?1551336512"></script>
-    <script src="/js/learn.js?1551336512"></script>
-    <script src="/js/hugo-learn.js?1551336512"></script>
+    <script src="/js/modernizr.custom.71422.js?1552160638"></script>
+    <script src="/js/learn.js?1552160638"></script>
+    <script src="/js/hugo-learn.js?1552160638"></script>
 
-    <link href="/mermaid/mermaid.css?1551336512" type="text/css" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1551336512"></script>
+    <link href="/mermaid/mermaid.css?1552160638" type="text/css" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1552160638"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
