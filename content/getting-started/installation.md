@@ -24,7 +24,7 @@ It means something is wrong with your LLVM installation. Make sure LLVM 7 is
 installed (Debian package ``llvm-7-dev``). If it still doesn't work, you can
 try running:
 
-    cd $GOPATH/github.com/tinygo-org/go-llvm
+    cd $GOPATH/src/github.com/tinygo-org/go-llvm
     make config
 
 And retry:
