@@ -18,6 +18,12 @@ The [BBC micro:bit](https://microbit.org) is a tiny programmable computer design
 
 ## Flashing
 
+### File Copy
+
+The simplest way to load programs onto the BBC:Microbit is to copy the hex file onto the device. You can do this either using drag-and-drop with your operating system's file explorer. Or, e.g. when using Linux with the `cp` command:
+```
+cp path/to/your/code.hex /media/MICROBIT
+```
 ### OpenOCD
 
 Programs are loaded onto the BBC:Microbit using the `openocd` command line utility program. You must install [OpenOCD](http://openocd.org/) before you will be able to flash the BBC:Microbit board with your TinyGo code.
