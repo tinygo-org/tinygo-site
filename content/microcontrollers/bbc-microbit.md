@@ -3,7 +3,7 @@ title: "BBC:Microbit"
 weight: 3
 ---
 
-The [BBC micro:bit](https://microbit.org) is a tiny programmable computer designed for learning. It is based on the Nordic Semiconductor [nRF51822](https://www.nordicsemi.com/eng/Products/Bluetooth-low-energy/nRF51822) ARM Cortex MO chip.
+The BBC [micro:bit](https://microbit.org) is a tiny programmable computer designed for learning. It is based on the Nordic Semiconductor [nRF51822](https://www.nordicsemi.com/eng/Products/Bluetooth-low-energy/nRF51822) ARM Cortex MO chip.
 
 ## Interfaces
 
@@ -20,41 +20,19 @@ The [BBC micro:bit](https://microbit.org) is a tiny programmable computer design
 
 ### File Copy
 
-The simplest way to load programs onto the micro:bit is to copy the hex file onto the device. You can do this either using drag-and-drop with your operating system's file explorer.
+The micro:bit comes with the [DAPLink bootloader](https://tech.microbit.org/software/daplink-interface/) already installed.
 
-- Plug your micro:bit into one of your computer's USB ports
-- Often this will cause the machine's graphical explorer utility to run listing a device "MICROBIT"
-- You can drag-and-drop hex files onto the "MICROBIT" device to flash the device
-- Alternatively (see below), to use the command-line, you will need to determine the path to the board then copy the file.
- 
-#### Linux
-- Determine the path to the board.
-- It will be something like `/media/$(whoami)/MICROBIT`.
-- You can confirm the device by listing its contents (`ls /media/$(whoami)/MICROBIT`).
-- The directory should contain two files: `DETAILS.TXT` and `MICROBIT.HTM`
-- Copy your hex file to the device using `cp /path/to/your/code.hex /media/$(whoami)/MICROBIT`.
- 
-#### Windows
-- Determine the path to the board.
-- It will be mounted to one of the machine's available drive letters, perhaps `D:`.
-- You can confirm the device is mounted to the drive by listing its contents (`dir D:`).
-- The directory should contain two files: `DETAILS.TXT` and `MICROBIT.HTM`
-- Copy your hex file to the device using `copy \path\to\your\code.hex D:`.
-
-You can simply right-click on a hex file, select "Send To" and "MICROBIT (X:)".
-
-#### MacOS
-- Determine the path to the board.
-- It will be something like `/Volumes/"MICROBIT"`.
-- You can confirm the device by listings its contents (`ls /Volumes/"MICROBIT"`)
-- The directory should contain two files: `DETAILS.TXT` and `MICROBIT.HTM`
-- Copy your hex file to the device using `cp /path/to/your/code.hex /Volumes/"MICROBIT"`.
+- Plug your micro:bit into your computer's USB port.
+- The micro:bit board will appear to your computer like a USB drive.
+- Determine the path to the board, on Linux it will be something like `/media/[USERNAME]/[NAME OF THE BOARD]`.
+- Build your TinyGo program to the board in .hex format using `tinygo build -o=/media/[USERNAME]/[NAME OF THE BOARD]/flash.hex -target=microbit [PATH TO YOUR PROGRAM]` command.
+- The micro:bit should restart and begin running your program.
 
 ### OpenOCD
 
 An alternative approach to load programs onto the micro:bit is by using the `openocd` command line utility program. You must install [OpenOCD](http://openocd.org/) before you will be able to flash the micro:bit board with your TinyGo code.
 
-- Plug your Microbit into your computer's USB port.
+- Plug your micro:bit into your computer's USB port.
 - Build and flash your TinyGo program using `tinygo flash -target=microbit`
 
 ## Notes
