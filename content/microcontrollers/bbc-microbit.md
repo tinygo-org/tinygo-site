@@ -3,7 +3,7 @@ title: "BBC:Microbit"
 weight: 3
 ---
 
-The [BBC micro:bit](https://microbit.org) is a tiny programmable computer designed for learning. It is based on the Nordic Semiconductor [nRF51822](https://www.nordicsemi.com/eng/Products/Bluetooth-low-energy/nRF51822) ARM Cortex MO chip.
+The BBC [micro:bit](https://microbit.org) is a tiny programmable computer designed for learning. It is based on the Nordic Semiconductor [nRF51822](https://www.nordicsemi.com/eng/Products/Bluetooth-low-energy/nRF51822) ARM Cortex MO chip.
 
 ## Interfaces
 
@@ -18,18 +18,28 @@ The [BBC micro:bit](https://microbit.org) is a tiny programmable computer design
 
 ## Flashing
 
+### File Copy
+
+The micro:bit comes with the [DAPLink bootloader](https://tech.microbit.org/software/daplink-interface/) already installed.
+
+- Plug your micro:bit into your computer's USB port.
+- The micro:bit board will appear to your computer like a USB drive.
+- Determine the path to the board, on Linux it will be something like `/media/[USERNAME]/[NAME OF THE BOARD]`.
+- Build your TinyGo program to the board in .hex format using `tinygo build -o=/media/[USERNAME]/[NAME OF THE BOARD]/flash.hex -target=microbit [PATH TO YOUR PROGRAM]` command.
+- The micro:bit should restart and begin running your program.
+
 ### OpenOCD
 
-Programs are loaded onto the BBC:Microbit using the `openocd` command line utility program. You must install [OpenOCD](http://openocd.org/) before you will be able to flash the BBC:Microbit board with your TinyGo code.
+An alternative approach to load programs onto the micro:bit is by using the `openocd` command line utility program. You must install [OpenOCD](http://openocd.org/) before you will be able to flash the micro:bit board with your TinyGo code.
 
-- Plug your Microbit into your computer's USB port.
+- Plug your micro:bit into your computer's USB port.
 - Build and flash your TinyGo program using `tinygo flash -target=microbit`
 
 ## Notes
 
-The BBC:Microbit has two built-in I2C devices, a MMA8653 accelerometer and a MAG3110 magnetometer. You can use them via the I2C0 bus.
+The micro:bit has two built-in I2C devices, a MMA8653 accelerometer and a MAG3110 magnetometer. You can use them via the I2C0 bus.
 
-The BBC:Microbit I2C0 and SPI0 buses both share the same address space. This means you cannot use them both at the same time. However, you can still use both SPI and I2C at the same time, by using the SPI1 bus with the standard SPI pins at the same time as using the I2C0 bus to access the built-in devices.
+The micro:bit I2C0 and SPI0 buses both share the same address space. This means you cannot use them both at the same time. However, you can still use both SPI and I2C at the same time, by using the SPI1 bus with the standard SPI pins at the same time as using the I2C0 bus to access the built-in devices.
 
 For example:
 
