@@ -28,7 +28,7 @@ Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UAR
       
       <guid>https://tinygo.org/microcontrollers/bbc-microbit/</guid>
       <description>The BBC micro:bit is a tiny programmable computer designed for learning. It is based on the Nordic Semiconductor nRF51822 ARM Cortex MO chip.
-Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UART YES YES   SPI YES YES   I2C YES YES   ADC YES Not yet   PWM Software support Not yet    Flashing File Copy The micro:bit comes with the DAPLink bootloader already installed.</description>
+Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UART YES YES   SPI YES YES   I2C YES YES   ADC YES Not yet   PWM Software support Not yet    Flashing DAPLink The micro:bit comes with the DAPLink bootloader already installed.</description>
     </item>
     
     <item>
