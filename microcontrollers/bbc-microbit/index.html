@@ -12,19 +12,19 @@
     <title>BBC:Microbit :: TinyGo - Go on Microcontrollers and WASM</title>
 
     
-    <link href="/css/nucleus.css?1552485149" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1552485149" rel="stylesheet">
-    <link href="/css/hybrid.css?1552485149" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1552485149" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1552485149" rel="stylesheet">
-    <link href="/css/auto-complete.css?1552485149" rel="stylesheet">
-    <link href="/css/theme.css?1552485149" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1552485149" rel="stylesheet">
+    <link href="/css/nucleus.css?1553067088" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1553067088" rel="stylesheet">
+    <link href="/css/hybrid.css?1553067088" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1553067088" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1553067088" rel="stylesheet">
+    <link href="/css/auto-complete.css?1553067088" rel="stylesheet">
+    <link href="/css/theme.css?1553067088" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1553067088" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1552485149" rel="stylesheet">
+      <link href="/css/theme-blue.css?1553067088" rel="stylesheet">
     
 
-    <script src="/js/jquery-2.x.min.js?1552485149"></script>
+    <script src="/js/jquery-2.x.min.js?1553067088"></script>
 
     <style type="text/css">
       :root #header + #content > #left > #rlblock_left{
@@ -1012,6 +1012,7 @@
 <li><a href="#interfaces">Interfaces</a></li>
 <li><a href="#flashing">Flashing</a>
 <ul>
+<li><a href="#file-copy">File Copy</a></li>
 <li><a href="#openocd">OpenOCD</a></li>
 </ul></li>
 <li><a href="#notes">Notes</a></li>
@@ -1037,7 +1038,7 @@
 
 
 
-<p>The <a href="https://microbit.org">BBC micro:bit</a> is a tiny programmable computer designed for learning. It is based on the Nordic Semiconductor <a href="https://www.nordicsemi.com/eng/Products/Bluetooth-low-energy/nRF51822">nRF51822</a> ARM Cortex MO chip.</p>
+<p>The BBC <a href="https://microbit.org">micro:bit</a> is a tiny programmable computer designed for learning. It is based on the Nordic Semiconductor <a href="https://www.nordicsemi.com/eng/Products/Bluetooth-low-energy/nRF51822">nRF51822</a> ARM Cortex MO chip.</p>
 
 <h2 id="interfaces">Interfaces</h2>
 
@@ -1091,20 +1092,32 @@
 
 <h2 id="flashing">Flashing</h2>
 
-<h3 id="openocd">OpenOCD</h3>
+<h3 id="file-copy">File Copy</h3>
 
-<p>Programs are loaded onto the BBC:Microbit using the <code>openocd</code> command line utility program. You must install <a href="http://openocd.org/">OpenOCD</a> before you will be able to flash the BBC:Microbit board with your TinyGo code.</p>
+<p>The micro:bit comes with the <a href="https://tech.microbit.org/software/daplink-interface/">DAPLink bootloader</a> already installed.</p>
 
 <ul>
-<li>Plug your Microbit into your computer&rsquo;s USB port.</li>
+<li>Plug your micro:bit into your computer&rsquo;s USB port.</li>
+<li>The micro:bit board will appear to your computer like a USB drive.</li>
+<li>Determine the path to the board, on Linux it will be something like <code>/media/[USERNAME]/[NAME OF THE BOARD]</code>.</li>
+<li>Build your TinyGo program to the board in .hex format using <code>tinygo build -o=/media/[USERNAME]/[NAME OF THE BOARD]/flash.hex -target=microbit [PATH TO YOUR PROGRAM]</code> command.</li>
+<li>The micro:bit should restart and begin running your program.</li>
+</ul>
+
+<h3 id="openocd">OpenOCD</h3>
+
+<p>An alternative approach to load programs onto the micro:bit is by using the <code>openocd</code> command line utility program. You must install <a href="http://openocd.org/">OpenOCD</a> before you will be able to flash the micro:bit board with your TinyGo code.</p>
+
+<ul>
+<li>Plug your micro:bit into your computer&rsquo;s USB port.</li>
 <li>Build and flash your TinyGo program using <code>tinygo flash -target=microbit</code></li>
 </ul>
 
 <h2 id="notes">Notes</h2>
 
-<p>The BBC:Microbit has two built-in I2C devices, a MMA8653 accelerometer and a MAG3110 magnetometer. You can use them via the I2C0 bus.</p>
+<p>The micro:bit has two built-in I2C devices, a MMA8653 accelerometer and a MAG3110 magnetometer. You can use them via the I2C0 bus.</p>
 
-<p>The BBC:Microbit I2C0 and SPI0 buses both share the same address space. This means you cannot use them both at the same time. However, you can still use both SPI and I2C at the same time, by using the SPI1 bus with the standard SPI pins at the same time as using the I2C0 bus to access the built-in devices.</p>
+<p>The micro:bit I2C0 and SPI0 buses both share the same address space. This means you cannot use them both at the same time. However, you can still use both SPI and I2C at the same time, by using the SPI1 bus with the standard SPI pins at the same time as using the I2C0 bus to access the built-in devices.</p>
 
 <p>For example:</p>
 
@@ -1825,20 +1838,20 @@ machine.I2C0.Configure(machine.I2CConfig{})
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1552485149"></script>
-    <script src="/js/perfect-scrollbar.min.js?1552485149"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1552485149"></script>
-    <script src="/js/jquery.sticky.js?1552485149"></script>
-    <script src="/js/featherlight.min.js?1552485149"></script>
-    <script src="/js/html5shiv-printshiv.min.js?1552485149"></script>
-    <script src="/js/highlight.pack.js?1552485149"></script>
+    <script src="/js/clipboard.min.js?1553067088"></script>
+    <script src="/js/perfect-scrollbar.min.js?1553067088"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1553067088"></script>
+    <script src="/js/jquery.sticky.js?1553067088"></script>
+    <script src="/js/featherlight.min.js?1553067088"></script>
+    <script src="/js/html5shiv-printshiv.min.js?1553067088"></script>
+    <script src="/js/highlight.pack.js?1553067088"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom.71422.js?1552485149"></script>
-    <script src="/js/learn.js?1552485149"></script>
-    <script src="/js/hugo-learn.js?1552485149"></script>
+    <script src="/js/modernizr.custom.71422.js?1553067088"></script>
+    <script src="/js/learn.js?1553067088"></script>
+    <script src="/js/hugo-learn.js?1553067088"></script>
 
-    <link href="/mermaid/mermaid.css?1552485149" type="text/css" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1552485149"></script>
+    <link href="/mermaid/mermaid.css?1553067088" type="text/css" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1553067088"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
