@@ -5,7 +5,7 @@ title: "Home"
 
 TinyGo is a project to bring the [Go programming language](https://golang.org) to microcontrollers and modern web browsers by creating a new compiler based on [LLVM](https://llvm.org/).
 
-You can compile and run TinyGo programs on several different microcontroller boards such as the [BBC:Microbit](https://www.microbit.co.uk/) and the [Arduino Uno](https://store.arduino.cc/usa/arduino-uno-rev3/).
+You can compile and run TinyGo programs on several different microcontroller boards such as the [BBC micro:bit](https://www.microbit.co.uk/) and the [Arduino Uno](https://store.arduino.cc/usa/arduino-uno-rev3/).
 
 TinyGo can also be used to produce [WebAssembly (WASM)](https://webassembly.org/) code which is very compact in size.
 
