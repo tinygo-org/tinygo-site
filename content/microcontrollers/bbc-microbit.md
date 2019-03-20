@@ -1,5 +1,5 @@
 ---
-title: "BBC:Microbit"
+title: "BBC micro:bit"
 weight: 3
 ---
 
