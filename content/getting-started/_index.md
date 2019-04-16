@@ -6,4 +6,4 @@ weight: 1
 
 # Getting Started
 
-First you need to install the required software for TinyGo itself.
+To use TinyGo, you must install it on your system. We have instructions for Linux, macOS, Windows, and Docker.

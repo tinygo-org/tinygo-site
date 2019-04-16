@@ -1,5 +1,5 @@
 ---
-title: "Using TinyGo with Docker"
+title: "Docker"
 weight: 4
 ---
 
