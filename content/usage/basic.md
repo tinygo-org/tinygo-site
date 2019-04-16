@@ -7,7 +7,13 @@ Here will go some basic examples of using TinyGo in the most common scenarios.
 
 ### Building "Hello, World" program for WebAssembly
 
-Info here...
+To build the WASM example, run the following command:
+
+```shell
+tinygo build -o wasm.wasm -target=wasm examples/wasm
+```
+
+OK, so what do you do now? Some details from the community here please.
 
 ### Building/flashing a "blink" program for micro:bit
 
@@ -15,8 +21,25 @@ Info here...
 
 ### Building/flashing a "blink" program for Arduino
 
-Info here...
+To build and then flash a basic blink program for an Arduino Uno, plug in the board to your computer's USB port and then run the following command:
+
+```shell
+tinygo flash -target=arduino examples/blinky1
+```
+
+The built-in LED on the board should start to blink.
 
 ### Building/flashing a "blink" program for Circuit Playground Express
 
-Info here...
+To build and then flash a basic blink program for an Circuit Playground Express, 
+
+- Plug your Circuit Playground Express into your computer's USB port.
+- Press the "RESET" button on the board two times to get the Circuit Playground Express board ready to receive code.
+- The Circuit Playground Express board will appear to your computer like a USB drive. Determine the path to the board, for example on Linux it will be something like `/media/[USERNAME]/[NAME OF THE BOARD]`.
+- Run the following command, substituing the correct name for the board from the previous step:
+
+```shell
+tinygo build -o=/media/[USERNAME]/[NAME OF THE BOARD]/flash.uf2 -target=circuitplay-express examples/blinky1
+```
+
+The built-in LED on the board should start to blink.
