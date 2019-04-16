@@ -10,10 +10,11 @@ Here will go some basic examples of using TinyGo in the most common scenarios.
 To build the WASM example, run the following command:
 
 ```shell
-tinygo build -o wasm.wasm -target=wasm examples/wasm
+tinygo build -o wasm.wasm -target=wasm examples/wasm/export
 ```
 
-OK, so what do you do now? Some details from the community here please.
+See the [WebAssembly page](../webassmebly) for more information on executing the compiled
+WebAssembly.
 
 ### Building/flashing a "blink" program for micro:bit
 
@@ -31,7 +32,7 @@ The built-in LED on the board should start to blink.
 
 ### Building/flashing a "blink" program for Circuit Playground Express
 
-To build and then flash a basic blink program for an Circuit Playground Express, 
+To build and then flash a basic blink program for an Circuit Playground Express,
 
 - Plug your Circuit Playground Express into your computer's USB port.
 - Press the "RESET" button on the board two times to get the Circuit Playground Express board ready to receive code.
