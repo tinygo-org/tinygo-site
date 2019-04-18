@@ -11,9 +11,11 @@ If you want to use TinyGo to compile your own or sample code, you can install th
 
 You can also install the full source code to the TinyGo compiler itself, generally for people who wish to contribute to the project or want to build the compiler from sources directly.
 
-The third option is to use the Docker image. This has the benefit of making no changes to your system but has a large download and installation size.
+The third option is to use the Docker image. This has the benefit of making no changes to your system but has a large download and installation size. For instructions on using the Docker image, please see the page [here](./using-docker).
 
 ## Quick Install
+
+You must have Go v1.11+ already installed on your machine in order to install TinyGo.
 
 You can use Homebrew to install TinyGo using the following commands:
 
@@ -26,7 +28,7 @@ You can test that the installation is working properly by running this code whic
 
 ```shell
 $ tinygo version
-tinygo version 0.5.0 linux/amd64
+tinygo version 0.5.0 darwin/amd64
 ```
 
 If you are only interested in compiling TinyGo code for WebAssembly then you are done with the installation.
@@ -75,14 +77,13 @@ dep ensure
 Now you can run the following make tasks to download and build the LLVM toolchain. Please note that this is likely to take at least 1 hour even on a fast machine.
 
 ```shell
-make llvm-source
 make llvm-build
 ```
 
 Once the LLVM toolchain is installed, you can build the TinyGo binary that is linked to local system libraries like this:
 
 ```
-make tinygo
+make
 ```
 
 The result of the build will be placed into the `build` directory.
