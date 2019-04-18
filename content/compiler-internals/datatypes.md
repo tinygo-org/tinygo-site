@@ -26,7 +26,8 @@ An interface is a `{typecode, value}` tuple and is defined as `runtime._interfac
 ### function value
 A function value is a fat function pointer in the form of `{context, function
 pointer}` where context is a pointer which may have any value. See [calling
-convention]({{<ref "calling-convention.md">}}) for details.
+convention]({{<ref "calling-convention.md">}}) for details. The function pointer
+may be a real pointer or an arbitrary number, depending on the target platform.
 
 ### goroutine
 A goroutine is a linked list of [LLVM
