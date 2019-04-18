@@ -18,7 +18,17 @@ WebAssembly.
 
 ### Building/flashing a "blink" program for micro:bit
 
-Info here...
+To build and then flash a basic blink program for a micro:bit board:
+
+- Plug your micro:bit into your computer's USB port.
+- The micro:bit board will appear to your computer like a USB drive. Determine the path to the board, for example on Linux it will be something like `/media/[USERNAME]/[NAME OF THE BOARD]`.
+- Run the following command, substituing the correct name for the board from the previous step:
+
+```shell
+tinygo build -o=/media/[USERNAME]/[NAME OF THE BOARD]/flash.hex -target=microbit examples/microbit-blink
+```
+
+The entire array of built-in LEDs on the micro:bit board should start to blink in unison.
 
 ### Building/flashing a "blink" program for Arduino
 
