@@ -15,7 +15,7 @@ Here is a list of features that are supported:
 
 ## Concurrency
 
-At the time of writing (2019-01-29), support for goroutines and channels is weak. There is some support, but you will often encounter compiler errors when trying to use concurrency in more complicated ways (for example with function pointers). Also, some things may unexpectedly allocate memory like calling a function that blocks. This situation should certainly improve in the future, but at the moment you shouldn't rely on concurrency features to work well.
+At the time of writing (2019-04-18), support for goroutines and channels is weak. There is some support, but you will often encounter compiler errors when trying to use concurrency in more complicated ways (for example with function pointers). Also, some things may unexpectedly allocate memory like calling a function that blocks. This situation should certainly improve in the future, but at the moment you shouldn't rely on concurrency features to work well.
 
 ## Cgo
 
