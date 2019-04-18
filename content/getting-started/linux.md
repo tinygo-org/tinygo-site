@@ -15,6 +15,8 @@ The third option is to use the Docker image. This has the benefit of making no c
 
 ## Quick Install
 
+You must have Go v1.11+ already installed on your machine in order to install TinyGo.
+
 If you are using Ubuntu or another Debian based Linux, download the DEB file from Github and install it using the following commands:
 
 ```shell
@@ -45,7 +47,23 @@ There are some additional requirements to compile TinyGo programs that can run o
 
 #### ARM Cortex-M
 
-To compile TinyGo programs for ARM based processors you must install CLang 8 (`clang-8`) for building assembly files and the compiler runtime library [https://compiler-rt.llvm.org/](https://compiler-rt.llvm.org/).
+To compile TinyGo programs for ARM based processors you must also install Clang 8 (`clang-8`) for building assembly files and the compiler runtime library [https://compiler-rt.llvm.org/](https://compiler-rt.llvm.org/).
+
+One way to do this is to use the LLVM Debian/Ubuntu packages.
+
+First, you must add the LLVM package repository to your system. Note that if you have already done this once, you do not need to do it again.
+
+```shell
+wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add -
+sudo add-apt-repository "deb http://apt.llvm.org/$(lsb_release -s -c)/ llvm-toolchain-$(lsb_release -s -c)-8 main"
+sudo apt-get update
+```
+
+Now you can install Clang and the LLD linker by running this command:
+
+```shell
+sudo apt-get install clang-8 lldb-8 lld-8
+```
 
 Some boards also require a special flashing tool for that particular chip, like `openocd` or `nrfjprog`. See the documentation page for your board as listed [here](../../microcontrollers/) to see which flashing tool is required for your target board.
 
@@ -54,7 +72,7 @@ Some boards also require a special flashing tool for that particular chip, like 
 To compile and flash TinyGo programs for AVR based processors you must install some extra tools:
 
 ```shell
-sudo apt-get install avr-gcc
+sudo apt-get install gcc-avr
 sudo apt-get install avr-libc
 sudo apt-get install avrdude
 ```
@@ -65,7 +83,13 @@ This should allow you to compile and flash TinyGo programs on an Arduino or othe
 
 You can install TinyGo from source, which includes installing the LLVM compiler toolchain.
 
-First, obtain the TinyGo source code:
+You will need to install the following build tools/dependencies on your system:
+
+```shell
+sudo apt-get install build-essential git cmake ninja
+```
+
+Next, obtain the TinyGo source code:
 
 ```shell
 go get -d github.com/tinygo-org/tinygo
@@ -81,14 +105,15 @@ dep ensure
 Now you can run the following make tasks to download and build the LLVM toolchain. Please note that this is likely to take at least 1 hour even on a fast machine.
 
 ```shell
-make llvm-source
+export CC=clang
+export CXX=clang++
 make llvm-build
 ```
 
 Once the LLVM toolchain is installed, you can build the TinyGo binary that is linked to local system libraries like this:
 
 ```shell
-make tinygo
+make
 ```
 
 The `tinygo` executable file will be placed into the `build` directory.
