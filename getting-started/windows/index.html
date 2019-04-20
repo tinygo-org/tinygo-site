@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/images/favicon.png" type="image/x-icon" />
-    <title>nRF52840-MDK :: TinyGo - Go on Microcontrollers and WASM</title>
+    <title>Windows :: TinyGo - Go on Microcontrollers and WASM</title>
 
     
     <link href="/css/nucleus.css?1555786728" rel="stylesheet">
@@ -38,7 +38,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/microcontrollers/nrf52840-mdk/">
+  <body class="" data-url="/getting-started/windows/">
     <nav id="sidebar" class="">
 
 
@@ -65,7 +65,7 @@
   
     
     <li data-nav-id="/getting-started/" title="Getting Started" class="dd-item 
-        
+        parent
         
         
         ">
@@ -127,7 +127,7 @@
  
   
     
-      <li data-nav-id="/getting-started/windows/" title="Windows" class="dd-item ">
+      <li data-nav-id="/getting-started/windows/" title="Windows" class="dd-item active">
         <a href="/getting-started/windows/">
         Windows
         
@@ -281,7 +281,7 @@
   
     
     <li data-nav-id="/microcontrollers/" title="Go on microcontrollers" class="dd-item 
-        parent
+        
         
         
         ">
@@ -497,7 +497,7 @@
  
   
     
-      <li data-nav-id="/microcontrollers/nrf52840-mdk/" title="nRF52840-MDK" class="dd-item active">
+      <li data-nav-id="/microcontrollers/nrf52840-mdk/" title="nRF52840-MDK" class="dd-item ">
         <a href="/microcontrollers/nrf52840-mdk/">
         nRF52840-MDK
         
@@ -1025,7 +1025,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/tinygo-org/tinygo-site/edit/master/content/microcontrollers/nrf52840-mdk.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/tinygo-org/tinygo-site/edit/master/content/getting-started/windows.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -1056,7 +1056,7 @@
             
           
           
-            <a href='/'>Home</a> > <a href='/microcontrollers/'>Go on microcontrollers</a> > nRF52840-MDK
+            <a href='/'>Home</a> > <a href='/getting-started/'>Getting Started</a> > Windows
           
          
           
@@ -1073,11 +1073,8 @@
 <ul>
 <li>
 <ul>
-<li><a href="#interfaces">Interfaces</a></li>
-<li><a href="#flashing">Flashing</a>
-<ul>
-<li><a href="#openocd">OpenOCD</a></li>
-</ul></li>
+<li><a href="#quick-install">Quick Install</a></li>
+<li><a href="#docker-install">Docker Install</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -1092,7 +1089,7 @@
         
         <div id="body-inner">
           
-            <h1>nRF52840-MDK</h1>
+            <h1>Windows</h1>
           
 
         
@@ -1100,68 +1097,15 @@
 
 
 
-<p>The <a href="https://wiki.makerdiary.com/nrf52840-mdk/">nRF52840-MDK</a> is an open-source, micro development kit for IoT applications based on the Nordic Semiconductor <a href="https://www.nordicsemi.com/eng/Products/nRF52840">nRF52840</a> SoC chip.</p>
+<p>This page has information on how to install and use TinyGo on Windows 10.</p>
 
-<h2 id="interfaces">Interfaces</h2>
+<h2 id="quick-install">Quick Install</h2>
 
-<table>
-<thead>
-<tr>
-<th>Interface</th>
-<th>Hardware Supported</th>
-<th>TinyGo Support</th>
-</tr>
-</thead>
+<p>If you want to use TinyGo to compile your own or sample code, you should be able to install the release version directly on your machine using Windows Subsystem for Linux (WSL) by following the &ldquo;Quick Install&rdquo; instructions on the Linux page located <a href="./linux">here</a>.</p>
 
-<tbody>
-<tr>
-<td>GPIO</td>
-<td>YES</td>
-<td>YES</td>
-</tr>
+<h2 id="docker-install">Docker Install</h2>
 
-<tr>
-<td>UART</td>
-<td>YES</td>
-<td>YES</td>
-</tr>
-
-<tr>
-<td>SPI</td>
-<td>YES</td>
-<td>YES</td>
-</tr>
-
-<tr>
-<td>I2C</td>
-<td>YES</td>
-<td>YES</td>
-</tr>
-
-<tr>
-<td>ADC</td>
-<td>YES</td>
-<td>Not yet</td>
-</tr>
-
-<tr>
-<td>PWM</td>
-<td>YES</td>
-<td>Not yet</td>
-</tr>
-</tbody>
-</table>
-
-<h2 id="flashing">Flashing</h2>
-
-<h3 id="openocd">OpenOCD</h3>
-
-<p>Programs are loaded onto the nRF52840-MDK board using the <code>openocd</code> command line utility program. You must install <a href="http://openocd.org/">OpenOCD</a> before you will be able to flash the nRF52840-MDK board with your TinyGo code.</p>
-
-<ul>
-<li>Plug your nRF52840-MDK into your computer&rsquo;s USB port.</li>
-<li>Build and flash your TinyGo program using <code>tinygo flash -target=nrf52840-mdk</code></li>
-</ul>
+<p>The other option is to use the Docker image. This has the benefit of making no changes to your system but has a large download and installation size. For instructions on using the Docker image, please see the page <a href="./using-docker">here</a>.</p>
 
 
 <footer class=" footline" >
@@ -1200,8 +1144,93 @@
             
                 
                     
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
                         
                         
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
                     
                 
                 
@@ -1288,158 +1317,10 @@
 
                     
                     
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
                         
                     
                     
 
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
                     
                         
             
@@ -1542,6 +1423,21 @@
             
                 
                     
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
                     
                 
                 
@@ -1559,8 +1455,53 @@
             
                 
                     
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
                         
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
                         
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
                     
                 
                 
@@ -1905,10 +1846,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/microcontrollers/stm32f4discovery/" title="STM32F4 Discovery"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/getting-started/macos/" title="macOS"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/microcontrollers/reelboard/" title="reel board" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/getting-started/using-docker/" title="Docker" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

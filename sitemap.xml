@@ -4,10 +4,21 @@
   
   <url>
     <loc>https://tinygo.org/getting-started/</loc>
+    <lastmod>2019-04-15T11:41:45+02:00</lastmod>
   </url>
   
   <url>
-    <loc>https://tinygo.org/getting-started/requirements/</loc>
+    <loc>https://tinygo.org/getting-started/linux/</loc>
+    <lastmod>2019-04-15T11:41:45+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tinygo.org/getting-started/macos/</loc>
+    <lastmod>2019-04-15T11:41:45+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tinygo.org/usage/basic/</loc>
   </url>
   
   <url>
@@ -16,10 +27,6 @@
   
   <url>
     <loc>https://tinygo.org/compiler-internals/heap-allocation/</loc>
-  </url>
-  
-  <url>
-    <loc>https://tinygo.org/getting-started/installation/</loc>
   </url>
   
   <url>
@@ -32,6 +39,11 @@
   
   <url>
     <loc>https://tinygo.org/faq/what-is-tinygo/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tinygo.org/getting-started/windows/</loc>
+    <lastmod>2019-04-15T11:41:45+02:00</lastmod>
   </url>
   
   <url>
@@ -83,11 +95,11 @@
   </url>
   
   <url>
-    <loc>https://tinygo.org/compiler-internals/volatile/</loc>
+    <loc>https://tinygo.org/microcontrollers/stm32f4discovery/</loc>
   </url>
   
   <url>
-    <loc>https://tinygo.org/getting-started/usage/</loc>
+    <loc>https://tinygo.org/compiler-internals/volatile/</loc>
   </url>
   
   <url>
@@ -111,15 +123,15 @@
   </url>
   
   <url>
+    <loc>https://tinygo.org/getting-started/using-docker/</loc>
+  </url>
+  
+  <url>
     <loc>https://tinygo.org/compiler-internals/inline-assembly/</loc>
   </url>
   
   <url>
     <loc>https://tinygo.org/usage/misc-options/</loc>
-  </url>
-  
-  <url>
-    <loc>https://tinygo.org/getting-started/using-docker/</loc>
   </url>
   
   <url>
@@ -163,12 +175,17 @@
   </url>
   
   <url>
-    <loc>https://tinygo.org/categories/</loc>
-    <priority>0</priority>
+    <loc>https://tinygo.org/microcontrollers/drivers/</loc>
   </url>
   
   <url>
     <loc>https://tinygo.org/</loc>
+    <lastmod>2019-04-15T11:41:45+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tinygo.org/categories/</loc>
+    <priority>0</priority>
   </url>
   
   <url>

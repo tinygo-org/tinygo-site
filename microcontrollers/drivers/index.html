@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/images/favicon.png" type="image/x-icon" />
-    <title>nRF52840-MDK :: TinyGo - Go on Microcontrollers and WASM</title>
+    <title>Drivers :: TinyGo - Go on Microcontrollers and WASM</title>
 
     
     <link href="/css/nucleus.css?1555786728" rel="stylesheet">
@@ -38,7 +38,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/microcontrollers/nrf52840-mdk/">
+  <body class="" data-url="/microcontrollers/drivers/">
     <nav id="sidebar" class="">
 
 
@@ -497,7 +497,7 @@
  
   
     
-      <li data-nav-id="/microcontrollers/nrf52840-mdk/" title="nRF52840-MDK" class="dd-item active">
+      <li data-nav-id="/microcontrollers/nrf52840-mdk/" title="nRF52840-MDK" class="dd-item ">
         <a href="/microcontrollers/nrf52840-mdk/">
         nRF52840-MDK
         
@@ -536,8 +536,8 @@
   
     
     <li data-nav-id="/microcontrollers/drivers/" title="Drivers" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/microcontrollers/drivers/">
@@ -1025,7 +1025,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/tinygo-org/tinygo-site/edit/master/content/microcontrollers/nrf52840-mdk.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/tinygo-org/tinygo-site/edit/master/content/microcontrollers/drivers/_index.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -1039,8 +1039,6 @@
                           <i class="fas fa-bars"></i>
                         </a>
                     </span>
-                  
-                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
                   
                   <span class="links">
                  
@@ -1056,7 +1054,7 @@
             
           
           
-            <a href='/'>Home</a> > <a href='/microcontrollers/'>Go on microcontrollers</a> > nRF52840-MDK
+            <a href='/'>Home</a> > <a href='/microcontrollers/'>Go on microcontrollers</a> > Drivers
           
          
           
@@ -1067,32 +1065,14 @@
                   </span>
                 </div>
                 
-                    <div class="progress">
-    <div class="wrapper">
-<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#interfaces">Interfaces</a></li>
-<li><a href="#flashing">Flashing</a>
-<ul>
-<li><a href="#openocd">OpenOCD</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
-    </div>
-</div>
-
-                
               </div>
             </div>
             
 
         
+          <div id="chapter">
+        
         <div id="body-inner">
-          
-            <h1>nRF52840-MDK</h1>
           
 
         
@@ -1100,75 +1080,102 @@
 
 
 
-<p>The <a href="https://wiki.makerdiary.com/nrf52840-mdk/">nRF52840-MDK</a> is an open-source, micro development kit for IoT applications based on the Nordic Semiconductor <a href="https://www.nordicsemi.com/eng/Products/nRF52840">nRF52840</a> SoC chip.</p>
+<h1 id="drivers">Drivers</h1>
 
-<h2 id="interfaces">Interfaces</h2>
+<p>TinyGo has driver support for 14 different sensors and other devices, such as digital accelerometers and multicolor LEDs.</p>
+
+<p>All of the drivers code is in the TinyGo Drivers repository located at <a href="https://github.com/tinygo-org/drivers/">https://github.com/tinygo-org/drivers/</a>.</p>
 
 <table>
 <thead>
 <tr>
-<th>Interface</th>
-<th>Hardware Supported</th>
-<th>TinyGo Support</th>
+<th>Device Name</th>
+<th>Interface Type</th>
 </tr>
 </thead>
 
 <tbody>
 <tr>
-<td>GPIO</td>
-<td>YES</td>
-<td>YES</td>
-</tr>
-
-<tr>
-<td>UART</td>
-<td>YES</td>
-<td>YES</td>
-</tr>
-
-<tr>
-<td>SPI</td>
-<td>YES</td>
-<td>YES</td>
-</tr>
-
-<tr>
+<td><a href="http://www.analog.com/media/en/technical-documentation/data-sheets/ADXL345.pdf">ADXL345 accelerometer</a></td>
 <td>I2C</td>
-<td>YES</td>
-<td>YES</td>
 </tr>
 
 <tr>
-<td>ADC</td>
-<td>YES</td>
-<td>Not yet</td>
+<td><a href="https://cdn-shop.adafruit.com/product-files/2343/APA102C.pdf">APA102 RGB LED</a></td>
+<td>SPI</td>
 </tr>
 
 <tr>
-<td>PWM</td>
-<td>YES</td>
-<td>Not yet</td>
+<td><a href="https://www.mouser.com/ds/2/348/bh1750fvi-e-186247.pdf">BH1750 ambient light sensor</a></td>
+<td>I2C</td>
+</tr>
+
+<tr>
+<td><a href="http://thingm.com/fileadmin/thingm/downloads/BlinkM_datasheet.pdf">BlinkM RGB LED</a></td>
+<td>I2C</td>
+</tr>
+
+<tr>
+<td><a href="https://cdn-shop.adafruit.com/datasheets/BST-BMP180-DS000-09.pdf">BMP180 barometer</a></td>
+<td>I2C</td>
+</tr>
+
+<tr>
+<td><a href="https://datasheets.maximintegrated.com/en/ds/DS3231.pdf">DS3231 real time clock</a></td>
+<td>I2C</td>
+</tr>
+
+<tr>
+<td><a href="https://en.wikipedia.org/wiki/Stepper_motor">&ldquo;Easystepper&rdquo; stepper motor controller</a></td>
+<td>GPIO</td>
+</tr>
+
+<tr>
+<td><a href="https://github.com/espressif/esp32-at">ESP8266/ESP32 AT Command set for WiFi/TCP/UDP</a></td>
+<td>UART</td>
+</tr>
+
+<tr>
+<td><a href="https://www.st.com/resource/en/datasheet/lis3dh.pdf">LIS3DH accelerometer</a></td>
+<td>I2C</td>
+</tr>
+
+<tr>
+<td><a href="https://www.nxp.com/docs/en/data-sheet/MAG3110.pdf">MAG3110 magnetometer</a></td>
+<td>I2C</td>
+</tr>
+
+<tr>
+<td><a href="https://www.nxp.com/docs/en/data-sheet/MMA8653FC.pdf">MMA8653 accelerometer</a></td>
+<td>I2C</td>
+</tr>
+
+<tr>
+<td><a href="https://store.invensense.com/datasheets/invensense/MPU-6050_DataSheet_V3%204.pdf">MPU6050 accelerometer/gyroscope</a></td>
+<td>I2C</td>
+</tr>
+
+<tr>
+<td><a href="https://www.st.com/resource/en/datasheet/vl53l1x.pdf">VL53L1X time-of-flight distance sensor</a></td>
+<td>I2C</td>
+</tr>
+
+<tr>
+<td><a href="https://cdn-shop.adafruit.com/datasheets/WS2812.pdf">WS2812 RGB LED</a></td>
+<td>GPIO</td>
 </tr>
 </tbody>
 </table>
 
-<h2 id="flashing">Flashing</h2>
-
-<h3 id="openocd">OpenOCD</h3>
-
-<p>Programs are loaded onto the nRF52840-MDK board using the <code>openocd</code> command line utility program. You must install <a href="http://openocd.org/">OpenOCD</a> before you will be able to flash the nRF52840-MDK board with your TinyGo code.</p>
-
-<ul>
-<li>Plug your nRF52840-MDK into your computer&rsquo;s USB port.</li>
-<li>Build and flash your TinyGo program using <code>tinygo flash -target=nrf52840-mdk</code></li>
-</ul>
+<p>We also give you the ability to add new drivers. If your device isn&rsquo;t listed here, please raise an issue in the <a href="https://github.com/tinygo-org/drivers/issues">issue tracker</a>.</p>
 
 
 <footer class=" footline" >
 	
 </footer>
 
-
+        
+            </div> 
         
         </div> 
         
@@ -1542,26 +1549,6 @@
             
                 
                     
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
                 
                 
 
@@ -1589,6 +1576,23 @@
             
         
                     
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
             
         
                     
@@ -1596,6 +1600,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1905,10 +1912,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/microcontrollers/stm32f4discovery/" title="STM32F4 Discovery"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/microcontrollers/reelboard/" title="reel board"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/microcontrollers/reelboard/" title="reel board" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/webassembly/" title="WebAssembly (WASM)" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1918,20 +1925,20 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1555786728"></script>
-    <script src="/js/perfect-scrollbar.min.js?1555786728"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1555786728"></script>
-    <script src="/js/jquery.sticky.js?1555786728"></script>
-    <script src="/js/featherlight.min.js?1555786728"></script>
-    <script src="/js/html5shiv-printshiv.min.js?1555786728"></script>
-    <script src="/js/highlight.pack.js?1555786728"></script>
+    <script src="/js/clipboard.min.js?1555786729"></script>
+    <script src="/js/perfect-scrollbar.min.js?1555786729"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1555786729"></script>
+    <script src="/js/jquery.sticky.js?1555786729"></script>
+    <script src="/js/featherlight.min.js?1555786729"></script>
+    <script src="/js/html5shiv-printshiv.min.js?1555786729"></script>
+    <script src="/js/highlight.pack.js?1555786729"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom.71422.js?1555786728"></script>
-    <script src="/js/learn.js?1555786728"></script>
-    <script src="/js/hugo-learn.js?1555786728"></script>
+    <script src="/js/modernizr.custom.71422.js?1555786729"></script>
+    <script src="/js/learn.js?1555786729"></script>
+    <script src="/js/hugo-learn.js?1555786729"></script>
 
-    <link href="/mermaid/mermaid.css?1555786728" type="text/css" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1555786728"></script>
+    <link href="/mermaid/mermaid.css?1555786729" type="text/css" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1555786729"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
@@ -1939,4 +1946,3 @@
 
   </body>
 </html>
-

@@ -6,19 +6,44 @@
     <description>Recent content in Home on TinyGo - Go on Microcontrollers and WASM</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Mon, 15 Apr 2019 11:41:45 +0200</lastBuildDate>
     
 	<atom:link href="https://tinygo.org/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Requirements</title>
-      <link>https://tinygo.org/getting-started/requirements/</link>
+      <title>Linux</title>
+      <link>https://tinygo.org/getting-started/linux/</link>
+      <pubDate>Mon, 15 Apr 2019 11:41:45 +0200</pubDate>
+      
+      <guid>https://tinygo.org/getting-started/linux/</guid>
+      <description>This page has information on how to install and use TinyGo on Ubuntu, as well as other Linux distros.
+If you want to use TinyGo to compile your own or sample code, you can install the release version directly on your machine by following the &amp;ldquo;Quick Install&amp;rdquo; instructions below.
+You can instead install the full source code to the TinyGo compiler itself, generally for people who wish to contribute to the project or want to build the compiler from sources.</description>
+    </item>
+    
+    <item>
+      <title>macOS</title>
+      <link>https://tinygo.org/getting-started/macos/</link>
+      <pubDate>Mon, 15 Apr 2019 11:41:45 +0200</pubDate>
+      
+      <guid>https://tinygo.org/getting-started/macos/</guid>
+      <description>This page has information on how to install and use TinyGo on macOS.
+If you want to use TinyGo to compile your own or sample code, you can install the release version directly on your machine by following the &amp;ldquo;Quick Install&amp;rdquo; instructions below.
+You can also install the full source code to the TinyGo compiler itself, generally for people who wish to contribute to the project or want to build the compiler from sources directly.</description>
+    </item>
+    
+    <item>
+      <title>Basic command examples</title>
+      <link>https://tinygo.org/usage/basic/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tinygo.org/getting-started/requirements/</guid>
-      <description>These are the base requirements and enough for most (desktop) use.
- Go 1.11+ LLVM 7 (for example, from apt.llvm.org  Linking a binary needs an installed C compiler (cc). At the moment it expects GCC or a recent Clang.
-ARM Cortex-M The Cortex-M family of microcontrollers is well supported, as it uses the stable ARM LLVM backend (which is even used in the propietary C compiler from ARM). Compiling to object code should be supported out of the box, but compiling the final binary and flashing it needs some extra tools.</description>
+      <guid>https://tinygo.org/usage/basic/</guid>
+      <description>Here will go some basic examples of using TinyGo in the most common scenarios.
+Building &amp;ldquo;Hello, World&amp;rdquo; program for WebAssembly To build the WASM example, run the following command:
+tinygo build -o wasm.wasm -target=wasm examples/wasm/export  See the WebAssembly page for more information on executing the compiled WebAssembly.
+Building/flashing a &amp;ldquo;blink&amp;rdquo; program for micro:bit To build and then flash a basic blink program for a micro:bit board:
+ Plug your micro:bit into your computer&amp;rsquo;s USB port.</description>
     </item>
     
     <item>
@@ -42,18 +67,6 @@ These operations currently do heap allocations:
     </item>
     
     <item>
-      <title>Installation</title>
-      <link>https://tinygo.org/getting-started/installation/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://tinygo.org/getting-started/installation/</guid>
-      <description>Now that you have the requirements, now download the sources. This may take a while.
-go get -u github.com/tinygo-org/tinygo  If you get an error like this::
-/usr/local/go/pkg/tool/linux_amd64/link: running g++ failed: exit status 1 /usr/bin/ld: error: cannot find -lLLVM-7 cgo-gcc-prolog:58: error: undefined reference to &#39;LLVMVerifyFunction&#39; cgo-gcc-prolog:80: error: undefined reference to &#39;LLVMVerifyModule&#39; [...etc...]  Or like this::
-../go-llvm/analysis.go:17:93: fatal error: llvm-c/Analysis.h: No such file or directory #include &amp;quot;llvm-c/Analysis.h&amp;quot; // If you are getting an error here read bindings/go/README.</description>
-    </item>
-    
-    <item>
       <title>Subcommands</title>
       <link>https://tinygo.org/usage/subcommands/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -74,6 +87,17 @@ build Compile the given program. The output binary is specified using the -o par
 Specifically:
  A new compiler using (mostly) the standard library to parse Go programs and using LLVM to optimize the code and generate machine code for the target architecture.
  A new runtime library that implements some compiler intrinsics, like a memory allocator, a scheduler, and operations on strings. Also, some packages that are strongly connected to the runtime like the sync package and the reflect package have been or will be re-implemented for use with this new compiler.</description>
+    </item>
+    
+    <item>
+      <title>Windows</title>
+      <link>https://tinygo.org/getting-started/windows/</link>
+      <pubDate>Mon, 15 Apr 2019 11:41:45 +0200</pubDate>
+      
+      <guid>https://tinygo.org/getting-started/windows/</guid>
+      <description>This page has information on how to install and use TinyGo on Windows 10.
+Quick Install If you want to use TinyGo to compile your own or sample code, you should be able to install the release version directly on your machine using Windows Subsystem for Linux (WSL) by following the &amp;ldquo;Quick Install&amp;rdquo; instructions on the Linux page located here.
+Docker Install The other option is to use the Docker image.</description>
     </item>
     
     <item>
@@ -193,6 +217,17 @@ Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UAR
     </item>
     
     <item>
+      <title>STM32F4 Discovery</title>
+      <link>https://tinygo.org/microcontrollers/stm32f4discovery/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tinygo.org/microcontrollers/stm32f4discovery/</guid>
+      <description>The STM32F4 Discovery is an ARM development board based on the ST Micro STM32F407 SoC.
+It has an onboard LIS302DL or LIS3DSH accelerometer, MP45DT02 MEMS digital microphone, an CS43L22 audio DAC, 2 user buttons, and 4 user LEDs.
+Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UART YES YES   SPI YES Not yet   I2C YES Not yet   ADC YES Not yet   PWM YES Not yet    Flashing OpenOCD Programs are loaded onto the STM32F4 Discovery with the onboard STLink v2 hardware programmer, using the openocd command line utility program to perform the board flashing.</description>
+    </item>
+    
+    <item>
       <title>The volatile keyword</title>
       <link>https://tinygo.org/compiler-internals/volatile/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -200,18 +235,6 @@ Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UAR
       <guid>https://tinygo.org/compiler-internals/volatile/</guid>
       <description>Go does not have the volatile keyword like C/C++. This keyword is unnecessary in most desktop use cases but is required for memory mapped I/O on microcontrollers and interrupt handlers. As a workaround, any variable of a type annotated with the //go:volatile pragma will be marked volatile. For example:
 //go:volatile type volatileBool bool var isrFlag volatileBool  This is a workaround for a limitation in the Go language and should at some point be replaced with something else.</description>
-    </item>
-    
-    <item>
-      <title>Usage</title>
-      <link>https://tinygo.org/getting-started/usage/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://tinygo.org/getting-started/usage/</guid>
-      <description>TinyGo should now be installed. Test it by running a test program:
-tinygo run examples/test  Before anything can be built for a bare-metal target, you need to generate some files first:
-make gen-device  This will generate register descriptions, interrupt vectors, and linker scripts for various devices. Also, you may need to re-run this command after updates, as some updates cause changes to the generated files.
-Now you can run a blinky example.</description>
     </item>
     
     <item>
@@ -269,6 +292,17 @@ TinyGo, however, uses a register based calling convention. In fact it is somewha
     </item>
     
     <item>
+      <title>Docker</title>
+      <link>https://tinygo.org/getting-started/using-docker/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tinygo.org/getting-started/using-docker/</guid>
+      <description>You can use our Docker image to be able to run the TinyGo compiler on your computer without having to install all the dependencies. Read on to learn how.
+Installing docker pull tinygo/tinygo  Using A docker container exists for easy access to the TinyGo CLI. For example, to compile wasm.wasm for the WebAssembly example, from the root of the repository:
+docker run --rm -v $(pwd):/src tinygo/tinygo tinygo build -o /src/wasm.</description>
+    </item>
+    
+    <item>
       <title>Inline assembly</title>
       <link>https://tinygo.org/compiler-internals/inline-assembly/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -286,17 +320,6 @@ var result int32 arm.AsmFull(` lsls {value}, #1 str {value}, {result} `, map[str
       
       <guid>https://tinygo.org/usage/misc-options/</guid>
       <description>-no-debug Disable outputting debug symbols. This can be useful for WebAssembly, as there is no debugger for .wasm files yet and .wasm files are generally served directly. Avoiding debug symbols can have a big impact on generated binary size, reducing them by more than half. This is not necessary on microcontrollers because debugging symbols are not flashed to the microcontroller. Additionally, you will need it when you use tinygo gdb.</description>
-    </item>
-    
-    <item>
-      <title>Using TinyGo with Docker</title>
-      <link>https://tinygo.org/getting-started/using-docker/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://tinygo.org/getting-started/using-docker/</guid>
-      <description>You can use our Docker image to be able to run the TinyGo compiler on your computer without having to install all the dependencies. Read on to learn how.
-Installing docker pull tinygo/tinygo  Using A docker container exists for easy access to the TinyGo CLI. For example, to compile wasm.wasm for the WebAssembly example, from the root of the repository:
-docker run --rm -v $(pwd):/src tinygo/tinygo tinygo build -o /src/wasm.</description>
     </item>
     
     <item>

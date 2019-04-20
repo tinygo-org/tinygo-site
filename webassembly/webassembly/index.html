@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.54.0" />
+    <meta name="generator" content="Hugo 0.55.3" />
     <meta name="description" content="">
 
 
@@ -12,19 +12,19 @@
     <title>Using WebAssembly :: TinyGo - Go on Microcontrollers and WASM</title>
 
     
-    <link href="/css/nucleus.css?1553068548" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1553068548" rel="stylesheet">
-    <link href="/css/hybrid.css?1553068548" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1553068548" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1553068548" rel="stylesheet">
-    <link href="/css/auto-complete.css?1553068548" rel="stylesheet">
-    <link href="/css/theme.css?1553068548" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1553068548" rel="stylesheet">
+    <link href="/css/nucleus.css?1555786728" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1555786728" rel="stylesheet">
+    <link href="/css/hybrid.css?1555786728" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1555786728" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1555786728" rel="stylesheet">
+    <link href="/css/auto-complete.css?1555786728" rel="stylesheet">
+    <link href="/css/theme.css?1555786728" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1555786728" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1553068548" rel="stylesheet">
+      <link href="/css/theme-blue.css?1555786728" rel="stylesheet">
     
 
-    <script src="/js/jquery-2.x.min.js?1553068548"></script>
+    <script src="/js/jquery-2.x.min.js?1555786728"></script>
 
     <style type="text/css">
       :root #header + #content > #left > #rlblock_left{
@@ -89,9 +89,9 @@
  
   
     
-      <li data-nav-id="/getting-started/requirements/" title="Requirements" class="dd-item ">
-        <a href="/getting-started/requirements/">
-        Requirements
+      <li data-nav-id="/getting-started/linux/" title="Linux" class="dd-item ">
+        <a href="/getting-started/linux/">
+        Linux
         
         </a>
     </li>
@@ -108,9 +108,9 @@
  
   
     
-      <li data-nav-id="/getting-started/installation/" title="Installation" class="dd-item ">
-        <a href="/getting-started/installation/">
-        Installation
+      <li data-nav-id="/getting-started/macos/" title="macOS" class="dd-item ">
+        <a href="/getting-started/macos/">
+        macOS
         
         </a>
     </li>
@@ -127,9 +127,9 @@
  
   
     
-      <li data-nav-id="/getting-started/usage/" title="Usage" class="dd-item ">
-        <a href="/getting-started/usage/">
-        Usage
+      <li data-nav-id="/getting-started/windows/" title="Windows" class="dd-item ">
+        <a href="/getting-started/windows/">
+        Windows
         
         </a>
     </li>
@@ -146,9 +146,9 @@
  
   
     
-      <li data-nav-id="/getting-started/using-docker/" title="Using TinyGo with Docker" class="dd-item ">
+      <li data-nav-id="/getting-started/using-docker/" title="Docker" class="dd-item ">
         <a href="/getting-started/using-docker/">
-        Using TinyGo with Docker
+        Docker
         
         </a>
     </li>
@@ -189,6 +189,25 @@
           
           
         
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/usage/basic/" title="Basic command examples" class="dd-item ">
+        <a href="/usage/basic/">
+        Basic command examples
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
           
             
             
@@ -274,6 +293,8 @@
       
         <ul>
           
+          
+            
           
           
           
@@ -457,6 +478,25 @@
  
   
     
+      <li data-nav-id="/microcontrollers/stm32f4discovery/" title="STM32F4 Discovery" class="dd-item ">
+        <a href="/microcontrollers/stm32f4discovery/">
+        STM32F4 Discovery
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
       <li data-nav-id="/microcontrollers/nrf52840-mdk/" title="nRF52840-MDK" class="dd-item ">
         <a href="/microcontrollers/nrf52840-mdk/">
         nRF52840-MDK
@@ -483,6 +523,30 @@
         </a>
     </li>
      
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/microcontrollers/drivers/" title="Drivers" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/microcontrollers/drivers/">
+          Drivers
+          
+      </a>
+      
+              
+    </li>
   
  
 
@@ -1005,7 +1069,14 @@
                 
                     <div class="progress">
     <div class="wrapper">
-
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#how-it-works">How it works</a></li>
+</ul></li>
+</ul>
+</nav>
     </div>
 </div>
 
@@ -1021,6 +1092,8 @@
           
 
         
+
+
 
 
 <p>You can call a JavaScript function from Go and call a Go function from WebAssembly:</p>
@@ -1059,7 +1132,77 @@ env: {
 console.log('multiplied two numbers:', wasm.exports.multiply(5, 3));
 </code></pre>
 
-<p>A more complete example is provided in the <a href="https://github.com/tinygo-org/tinygo/tree/master/src/examples/wasm">wasm example</a>.</p>
+<p>You can also simply execute code in <code>func main()</code>, like in the standard library
+implementation of WebAssembly.</p>
+
+<p>More complete examples are provided in the <a href="https://github.com/tinygo-org/tinygo/tree/master/src/examples/wasm">wasm examples</a>.</p>
+
+<h2 id="how-it-works">How it works</h2>
+
+<p>Execution of the contents require a few JS helper functions which are called
+from WebAssembly. We have defined these in <code>tinygo/targets/wasm_exec.js</code>. It is
+based on <code>$GOROOT/misc/wasm/wasm_exec.js</code> from the standard library, but is
+slightly different. Ensure you are using the same version of <code>wasm_exec.js</code> as
+the version of <code>tinygo</code> you are using to compile.</p>
+
+<p>The general steps required to run the WebAssembly file in the browser includes
+loading it into JavaScript with <code>WebAssembly.instantiateStreaming</code>, or
+<code>WebAssembly.instantiate</code> in some browsers:</p>
+
+<pre><code class="language-js">const go = new Go(); // Defined in wasm_exec.js
+const WASM_URL = 'wasm.wasm';
+
+var wasm;
+
+if ('instantiateStreaming' in WebAssembly) {
+	WebAssembly.instantiateStreaming(fetch(WASM_URL), go.importObject).then(function (obj) {
+		wasm = obj.instance;
+		go.run(wasm);
+	})
+} else {
+	fetch(WASM_URL).then(resp =&gt;
+		resp.arrayBuffer()
+	).then(bytes =&gt;
+		WebAssembly.instantiate(bytes, go.importObject).then(function (obj) {
+			wasm = obj.instance;
+			go.run(wasm);
+		})
+	)
+}
+</code></pre>
+
+<p>If you have used explicit exports, you can call them by invoking them under the
+<code>wasm.exports</code> namespace. See the <code>export</code> directory in the examples for an
+example of this.</p>
+
+<p>In addition to this piece of JavaScript, it is important that the file is served
+with the correct <code>Content-Type</code> header set.</p>
+
+<pre><code class="language-go">package main
+
+import (
+	&quot;log&quot;
+	&quot;net/http&quot;
+	&quot;strings&quot;
+)
+
+const dir = &quot;./html&quot;
+
+func main() {
+	fs := http.FileServer(http.Dir(dir))
+	log.Print(&quot;Serving &quot; + dir + &quot; on http://localhost:8080&quot;)
+	http.ListenAndServe(&quot;:8080&quot;, http.HandlerFunc(func(resp http.ResponseWriter, req *http.Request) {
+		if strings.HasSuffix(req.URL.Path, &quot;.wasm&quot;) {
+			resp.Header().Set(&quot;content-type&quot;, &quot;application/wasm&quot;)
+		}
+
+		fs.ServeHTTP(resp, req)
+	}))
+}
+</code></pre>
+
+<p>This simple server serves anything inside the <code>./html</code> directory on port <code>8080</code>,
+setting any <code>*.wasm</code> files <code>Content-Type</code> header appropriately.</p>
 
 
 <footer class=" footline" >
@@ -1237,6 +1380,53 @@ console.log('multiplied two numbers:', wasm.exports.multiply(5, 3));
             
         
                     
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
             
         
                     
@@ -1252,6 +1442,9 @@ console.log('multiplied two numbers:', wasm.exports.multiply(5, 3));
                     
                     
 
+                    
+            
+        
                     
                         
             
@@ -1763,20 +1956,20 @@ console.log('multiplied two numbers:', wasm.exports.multiply(5, 3));
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1553068548"></script>
-    <script src="/js/perfect-scrollbar.min.js?1553068548"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1553068548"></script>
-    <script src="/js/jquery.sticky.js?1553068548"></script>
-    <script src="/js/featherlight.min.js?1553068548"></script>
-    <script src="/js/html5shiv-printshiv.min.js?1553068548"></script>
-    <script src="/js/highlight.pack.js?1553068548"></script>
+    <script src="/js/clipboard.min.js?1555786728"></script>
+    <script src="/js/perfect-scrollbar.min.js?1555786728"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1555786728"></script>
+    <script src="/js/jquery.sticky.js?1555786728"></script>
+    <script src="/js/featherlight.min.js?1555786728"></script>
+    <script src="/js/html5shiv-printshiv.min.js?1555786728"></script>
+    <script src="/js/highlight.pack.js?1555786728"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom.71422.js?1553068548"></script>
-    <script src="/js/learn.js?1553068548"></script>
-    <script src="/js/hugo-learn.js?1553068548"></script>
+    <script src="/js/modernizr.custom.71422.js?1555786728"></script>
+    <script src="/js/learn.js?1555786728"></script>
+    <script src="/js/hugo-learn.js?1555786728"></script>
 
-    <link href="/mermaid/mermaid.css?1553068548" type="text/css" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1553068548"></script>
+    <link href="/mermaid/mermaid.css?1555786728" type="text/css" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1555786728"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

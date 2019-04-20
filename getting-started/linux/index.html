@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/images/favicon.png" type="image/x-icon" />
-    <title>nRF52840-MDK :: TinyGo - Go on Microcontrollers and WASM</title>
+    <title>Linux :: TinyGo - Go on Microcontrollers and WASM</title>
 
     
     <link href="/css/nucleus.css?1555786728" rel="stylesheet">
@@ -38,7 +38,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/microcontrollers/nrf52840-mdk/">
+  <body class="" data-url="/getting-started/linux/">
     <nav id="sidebar" class="">
 
 
@@ -65,7 +65,7 @@
   
     
     <li data-nav-id="/getting-started/" title="Getting Started" class="dd-item 
-        
+        parent
         
         
         ">
@@ -89,7 +89,7 @@
  
   
     
-      <li data-nav-id="/getting-started/linux/" title="Linux" class="dd-item ">
+      <li data-nav-id="/getting-started/linux/" title="Linux" class="dd-item active">
         <a href="/getting-started/linux/">
         Linux
         
@@ -281,7 +281,7 @@
   
     
     <li data-nav-id="/microcontrollers/" title="Go on microcontrollers" class="dd-item 
-        parent
+        
         
         
         ">
@@ -497,7 +497,7 @@
  
   
     
-      <li data-nav-id="/microcontrollers/nrf52840-mdk/" title="nRF52840-MDK" class="dd-item active">
+      <li data-nav-id="/microcontrollers/nrf52840-mdk/" title="nRF52840-MDK" class="dd-item ">
         <a href="/microcontrollers/nrf52840-mdk/">
         nRF52840-MDK
         
@@ -1025,7 +1025,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/tinygo-org/tinygo-site/edit/master/content/microcontrollers/nrf52840-mdk.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/tinygo-org/tinygo-site/edit/master/content/getting-started/linux.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -1056,7 +1056,7 @@
             
           
           
-            <a href='/'>Home</a> > <a href='/microcontrollers/'>Go on microcontrollers</a> > nRF52840-MDK
+            <a href='/'>Home</a> > <a href='/getting-started/'>Getting Started</a> > Linux
           
          
           
@@ -1073,11 +1073,19 @@
 <ul>
 <li>
 <ul>
-<li><a href="#interfaces">Interfaces</a></li>
-<li><a href="#flashing">Flashing</a>
+<li><a href="#quick-install">Quick Install</a>
 <ul>
-<li><a href="#openocd">OpenOCD</a></li>
+<li><a href="#additional-requirements-for-microcontrollers">Additional Requirements for Microcontrollers</a>
+<ul>
+<li><a href="#arm-cortex-m">ARM Cortex-M</a></li>
+<li><a href="#avr-arduino">AVR (Arduino)</a></li>
 </ul></li>
+</ul></li>
+<li><a href="#source-install">Source Install</a>
+<ul>
+<li><a href="#additional-requirements-for-microcontrollers-1">Additional Requirements for Microcontrollers</a></li>
+</ul></li>
+<li><a href="#docker-install">Docker Install</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -1092,7 +1100,7 @@
         
         <div id="body-inner">
           
-            <h1>nRF52840-MDK</h1>
+            <h1>Linux</h1>
           
 
         
@@ -1100,68 +1108,125 @@
 
 
 
-<p>The <a href="https://wiki.makerdiary.com/nrf52840-mdk/">nRF52840-MDK</a> is an open-source, micro development kit for IoT applications based on the Nordic Semiconductor <a href="https://www.nordicsemi.com/eng/Products/nRF52840">nRF52840</a> SoC chip.</p>
+<p>This page has information on how to install and use TinyGo on Ubuntu, as well as other Linux distros.</p>
 
-<h2 id="interfaces">Interfaces</h2>
+<p>If you want to use TinyGo to compile your own or sample code, you can install the release version directly on your machine by following the &ldquo;Quick Install&rdquo; instructions below.</p>
 
-<table>
-<thead>
-<tr>
-<th>Interface</th>
-<th>Hardware Supported</th>
-<th>TinyGo Support</th>
-</tr>
-</thead>
+<p>You can instead install the full source code to the TinyGo compiler itself, generally for people who wish to contribute to the project or want to build the compiler from sources.</p>
 
-<tbody>
-<tr>
-<td>GPIO</td>
-<td>YES</td>
-<td>YES</td>
-</tr>
+<p>The third option is to use the Docker image. This has the benefit of making no changes to your system, however the image has a large download and installation size. For instructions on using the Docker image, please see the page <a href="./using-docker">here</a>.</p>
 
-<tr>
-<td>UART</td>
-<td>YES</td>
-<td>YES</td>
-</tr>
+<h2 id="quick-install">Quick Install</h2>
 
-<tr>
-<td>SPI</td>
-<td>YES</td>
-<td>YES</td>
-</tr>
+<p>You must have Go v1.11+ already installed on your machine in order to install TinyGo.</p>
 
-<tr>
-<td>I2C</td>
-<td>YES</td>
-<td>YES</td>
-</tr>
+<p>If you are using Ubuntu or another Debian based Linux, download the DEB file from Github and install it using the following commands:</p>
 
-<tr>
-<td>ADC</td>
-<td>YES</td>
-<td>Not yet</td>
-</tr>
+<pre><code class="language-shell">wget https://github.com/tinygo-org/tinygo/releases/download/v0.5.0/tinygo0.5.0.linux-amd64.deb
+sudo dpkg -i tinygo0.5.0.linux-amd64.deb
+</code></pre>
 
-<tr>
-<td>PWM</td>
-<td>YES</td>
-<td>Not yet</td>
-</tr>
-</tbody>
-</table>
+<p>You will need to ensure that the path to the <code>tinygo</code> executable file is in your <code>PATH</code> variable.</p>
 
-<h2 id="flashing">Flashing</h2>
+<pre><code class="language-shell">export PATH=$PATH:/usr/local/tinygo/bin
+</code></pre>
 
-<h3 id="openocd">OpenOCD</h3>
+<p>You can test that the installation is working properly by running this code which should display the version number:</p>
 
-<p>Programs are loaded onto the nRF52840-MDK board using the <code>openocd</code> command line utility program. You must install <a href="http://openocd.org/">OpenOCD</a> before you will be able to flash the nRF52840-MDK board with your TinyGo code.</p>
+<pre><code class="language-shell">$ tinygo version
+tinygo version 0.5.0 linux/amd64
+</code></pre>
 
-<ul>
-<li>Plug your nRF52840-MDK into your computer&rsquo;s USB port.</li>
-<li>Build and flash your TinyGo program using <code>tinygo flash -target=nrf52840-mdk</code></li>
-</ul>
+<p>If you are only interested in compiling TinyGo code for WebAssembly then you are done with the installation.</p>
+
+<p>Otherwise, please continue with the installation of the additional requirements for your desired microcontroller.</p>
+
+<h3 id="additional-requirements-for-microcontrollers">Additional Requirements for Microcontrollers</h3>
+
+<p>There are some additional requirements to compile TinyGo programs that can run on microcontrollers.</p>
+
+<h4 id="arm-cortex-m">ARM Cortex-M</h4>
+
+<p>To compile TinyGo programs for ARM based processors you must also install Clang 8 (<code>clang-8</code>) for building assembly files and the compiler runtime library <a href="https://compiler-rt.llvm.org/">https://compiler-rt.llvm.org/</a>.</p>
+
+<p>One way to do this is to use the LLVM Debian/Ubuntu packages.</p>
+
+<p>First, you must add the LLVM package repository to your system. Note that if you have already done this once, you do not need to do it again.</p>
+
+<pre><code class="language-shell">wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add -
+sudo add-apt-repository &quot;deb http://apt.llvm.org/$(lsb_release -s -c)/ llvm-toolchain-$(lsb_release -s -c)-8 main&quot;
+sudo apt-get update
+</code></pre>
+
+<p>Now you can install Clang and the LLD linker by running this command:</p>
+
+<pre><code class="language-shell">sudo apt-get install clang-8 llvm-8-dev lld-8 libclang-8-dev
+</code></pre>
+
+<p>Some boards also require a special flashing tool for that particular chip, like <code>openocd</code> or <code>nrfjprog</code>. See the documentation page for your board as listed <a href="../../microcontrollers/">here</a> to see which flashing tool is required for your target board.</p>
+
+<h4 id="avr-arduino">AVR (Arduino)</h4>
+
+<p>To compile and flash TinyGo programs for AVR based processors you must install some extra tools:</p>
+
+<pre><code class="language-shell">sudo apt-get install gcc-avr
+sudo apt-get install avr-libc
+sudo apt-get install avrdude
+</code></pre>
+
+<p>This should allow you to compile and flash TinyGo programs on an Arduino or other supported AVR-based board.</p>
+
+<h2 id="source-install">Source Install</h2>
+
+<p>You can install TinyGo from source, which includes installing the LLVM compiler toolchain.</p>
+
+<p>You will need to install the following build tools/dependencies on your system:</p>
+
+<pre><code class="language-shell">sudo apt-get install build-essential git cmake ninja
+</code></pre>
+
+<p>Next, obtain the TinyGo source code:</p>
+
+<pre><code class="language-shell">go get -d github.com/tinygo-org/tinygo
+cd $GOPATH/src/github.com/tinygo-org/tinygo
+</code></pre>
+
+<p>Once you have the code, you can install the various prerequisites using <a href="https://golang.github.io/dep/"><code>dep</code></a>:</p>
+
+<pre><code class="language-shell">dep ensure
+</code></pre>
+
+<p>Now you can run the following make tasks to download and build the LLVM toolchain. Please note that this is likely to take at least 1 hour even on a fast machine.</p>
+
+<pre><code class="language-shell">export CC=clang
+export CXX=clang++
+make llvm-build
+</code></pre>
+
+<p>Once the LLVM toolchain is installed, you can build the TinyGo binary that is linked to local system libraries like this:</p>
+
+<pre><code class="language-shell">make
+</code></pre>
+
+<p>The <code>tinygo</code> executable file will be placed into the <code>build</code> directory.</p>
+
+<h3 id="additional-requirements-for-microcontrollers-1">Additional Requirements for Microcontrollers</h3>
+
+<p>Before anything can be built for a bare-metal target, you need to generate some
+files first:</p>
+
+<pre><code class="language-shell">make gen-device
+</code></pre>
+
+<p>This will generate register descriptions, interrupt vectors, and linker scripts
+for various devices. Also, you may need to re-run this command after updates,
+as some updates cause changes to the generated files.</p>
+
+<p>The same additional requirements to compile TinyGo programs that can run on microcontrollers must be fulfilled when installing TinyGo from source. Please follow <a href="#additional-requirements-for-microcontrollers">these instructions</a> above.</p>
+
+<h2 id="docker-install">Docker Install</h2>
+
+<p>The TinyGo Docker image contains a complete development environment for both WASM and microcontroller development already setup. For instructions on using the Docker image, please see the page <a href="./using-docker">here</a>.</p>
 
 
 <footer class=" footline" >
@@ -1200,8 +1265,90 @@
             
                 
                     
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
                         
                         
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
                     
                 
                 
@@ -1288,158 +1435,10 @@
 
                     
                     
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
                         
                     
                     
 
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
                     
                         
             
@@ -1542,6 +1541,21 @@
             
                 
                     
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
                     
                 
                 
@@ -1559,8 +1573,53 @@
             
                 
                     
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
                         
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
                         
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
                     
                 
                 
@@ -1905,10 +1964,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/microcontrollers/stm32f4discovery/" title="STM32F4 Discovery"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/getting-started/" title="Getting Started"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/microcontrollers/reelboard/" title="reel board" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/getting-started/macos/" title="macOS" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

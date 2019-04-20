@@ -104,6 +104,17 @@ Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UAR
     </item>
     
     <item>
+      <title>STM32F4 Discovery</title>
+      <link>https://tinygo.org/microcontrollers/stm32f4discovery/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tinygo.org/microcontrollers/stm32f4discovery/</guid>
+      <description>The STM32F4 Discovery is an ARM development board based on the ST Micro STM32F407 SoC.
+It has an onboard LIS302DL or LIS3DSH accelerometer, MP45DT02 MEMS digital microphone, an CS43L22 audio DAC, 2 user buttons, and 4 user LEDs.
+Interfaces    Interface Hardware Supported TinyGo Support     GPIO YES YES   UART YES YES   SPI YES Not yet   I2C YES Not yet   ADC YES Not yet   PWM YES Not yet    Flashing OpenOCD Programs are loaded onto the STM32F4 Discovery with the onboard STLink v2 hardware programmer, using the openocd command line utility program to perform the board flashing.</description>
+    </item>
+    
+    <item>
       <title>nRF52840-MDK</title>
       <link>https://tinygo.org/microcontrollers/nrf52840-mdk/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

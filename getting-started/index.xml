@@ -6,47 +6,46 @@
     <description>Recent content in Getting Started on TinyGo - Go on Microcontrollers and WASM</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Mon, 15 Apr 2019 11:41:45 +0200</lastBuildDate>
     
 	<atom:link href="https://tinygo.org/getting-started/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Requirements</title>
-      <link>https://tinygo.org/getting-started/requirements/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <title>Linux</title>
+      <link>https://tinygo.org/getting-started/linux/</link>
+      <pubDate>Mon, 15 Apr 2019 11:41:45 +0200</pubDate>
       
-      <guid>https://tinygo.org/getting-started/requirements/</guid>
-      <description>These are the base requirements and enough for most (desktop) use.
- Go 1.11+ LLVM 7 (for example, from apt.llvm.org  Linking a binary needs an installed C compiler (cc). At the moment it expects GCC or a recent Clang.
-ARM Cortex-M The Cortex-M family of microcontrollers is well supported, as it uses the stable ARM LLVM backend (which is even used in the propietary C compiler from ARM). Compiling to object code should be supported out of the box, but compiling the final binary and flashing it needs some extra tools.</description>
+      <guid>https://tinygo.org/getting-started/linux/</guid>
+      <description>This page has information on how to install and use TinyGo on Ubuntu, as well as other Linux distros.
+If you want to use TinyGo to compile your own or sample code, you can install the release version directly on your machine by following the &amp;ldquo;Quick Install&amp;rdquo; instructions below.
+You can instead install the full source code to the TinyGo compiler itself, generally for people who wish to contribute to the project or want to build the compiler from sources.</description>
     </item>
     
     <item>
-      <title>Installation</title>
-      <link>https://tinygo.org/getting-started/installation/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <title>macOS</title>
+      <link>https://tinygo.org/getting-started/macos/</link>
+      <pubDate>Mon, 15 Apr 2019 11:41:45 +0200</pubDate>
       
-      <guid>https://tinygo.org/getting-started/installation/</guid>
-      <description>Now that you have the requirements, now download the sources. This may take a while.
-go get -u github.com/tinygo-org/tinygo  If you get an error like this::
-/usr/local/go/pkg/tool/linux_amd64/link: running g++ failed: exit status 1 /usr/bin/ld: error: cannot find -lLLVM-7 cgo-gcc-prolog:58: error: undefined reference to &#39;LLVMVerifyFunction&#39; cgo-gcc-prolog:80: error: undefined reference to &#39;LLVMVerifyModule&#39; [...etc...]  Or like this::
-../go-llvm/analysis.go:17:93: fatal error: llvm-c/Analysis.h: No such file or directory #include &amp;quot;llvm-c/Analysis.h&amp;quot; // If you are getting an error here read bindings/go/README.</description>
+      <guid>https://tinygo.org/getting-started/macos/</guid>
+      <description>This page has information on how to install and use TinyGo on macOS.
+If you want to use TinyGo to compile your own or sample code, you can install the release version directly on your machine by following the &amp;ldquo;Quick Install&amp;rdquo; instructions below.
+You can also install the full source code to the TinyGo compiler itself, generally for people who wish to contribute to the project or want to build the compiler from sources directly.</description>
     </item>
     
     <item>
-      <title>Usage</title>
-      <link>https://tinygo.org/getting-started/usage/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <title>Windows</title>
+      <link>https://tinygo.org/getting-started/windows/</link>
+      <pubDate>Mon, 15 Apr 2019 11:41:45 +0200</pubDate>
       
-      <guid>https://tinygo.org/getting-started/usage/</guid>
-      <description>TinyGo should now be installed. Test it by running a test program:
-tinygo run examples/test  Before anything can be built for a bare-metal target, you need to generate some files first:
-make gen-device  This will generate register descriptions, interrupt vectors, and linker scripts for various devices. Also, you may need to re-run this command after updates, as some updates cause changes to the generated files.
-Now you can run a blinky example.</description>
+      <guid>https://tinygo.org/getting-started/windows/</guid>
+      <description>This page has information on how to install and use TinyGo on Windows 10.
+Quick Install If you want to use TinyGo to compile your own or sample code, you should be able to install the release version directly on your machine using Windows Subsystem for Linux (WSL) by following the &amp;ldquo;Quick Install&amp;rdquo; instructions on the Linux page located here.
+Docker Install The other option is to use the Docker image.</description>
     </item>
     
     <item>
-      <title>Using TinyGo with Docker</title>
+      <title>Docker</title>
       <link>https://tinygo.org/getting-started/using-docker/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       

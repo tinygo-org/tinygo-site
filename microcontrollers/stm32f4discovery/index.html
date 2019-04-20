@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/images/favicon.png" type="image/x-icon" />
-    <title>nRF52840-MDK :: TinyGo - Go on Microcontrollers and WASM</title>
+    <title>STM32F4 Discovery :: TinyGo - Go on Microcontrollers and WASM</title>
 
     
     <link href="/css/nucleus.css?1555786728" rel="stylesheet">
@@ -38,7 +38,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/microcontrollers/nrf52840-mdk/">
+  <body class="" data-url="/microcontrollers/stm32f4discovery/">
     <nav id="sidebar" class="">
 
 
@@ -478,7 +478,7 @@
  
   
     
-      <li data-nav-id="/microcontrollers/stm32f4discovery/" title="STM32F4 Discovery" class="dd-item ">
+      <li data-nav-id="/microcontrollers/stm32f4discovery/" title="STM32F4 Discovery" class="dd-item active">
         <a href="/microcontrollers/stm32f4discovery/">
         STM32F4 Discovery
         
@@ -497,7 +497,7 @@
  
   
     
-      <li data-nav-id="/microcontrollers/nrf52840-mdk/" title="nRF52840-MDK" class="dd-item active">
+      <li data-nav-id="/microcontrollers/nrf52840-mdk/" title="nRF52840-MDK" class="dd-item ">
         <a href="/microcontrollers/nrf52840-mdk/">
         nRF52840-MDK
         
@@ -1025,7 +1025,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/tinygo-org/tinygo-site/edit/master/content/microcontrollers/nrf52840-mdk.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/tinygo-org/tinygo-site/edit/master/content/microcontrollers/stm32f4discovery.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -1056,7 +1056,7 @@
             
           
           
-            <a href='/'>Home</a> > <a href='/microcontrollers/'>Go on microcontrollers</a> > nRF52840-MDK
+            <a href='/'>Home</a> > <a href='/microcontrollers/'>Go on microcontrollers</a> > STM32F4 Discovery
           
          
           
@@ -1092,7 +1092,7 @@
         
         <div id="body-inner">
           
-            <h1>nRF52840-MDK</h1>
+            <h1>STM32F4 Discovery</h1>
           
 
         
@@ -1100,7 +1100,10 @@
 
 
 
-<p>The <a href="https://wiki.makerdiary.com/nrf52840-mdk/">nRF52840-MDK</a> is an open-source, micro development kit for IoT applications based on the Nordic Semiconductor <a href="https://www.nordicsemi.com/eng/Products/nRF52840">nRF52840</a> SoC chip.</p>
+<p>The <a href="https://www.st.com/en/evaluation-tools/stm32f4discovery.html">STM32F4 Discovery</a> is an ARM development board based on the ST Micro <a href="https://www.st.com/resource/en/datasheet/stm32f407vg.pdf">STM32F407</a> SoC.</p>
+
+<p>It has an onboard LIS302DL or LIS3DSH accelerometer, MP45DT02 MEMS digital microphone, an
+CS43L22 audio DAC, 2 user buttons, and 4 user LEDs.</p>
 
 <h2 id="interfaces">Interfaces</h2>
 
@@ -1129,13 +1132,13 @@
 <tr>
 <td>SPI</td>
 <td>YES</td>
-<td>YES</td>
+<td>Not yet</td>
 </tr>
 
 <tr>
 <td>I2C</td>
 <td>YES</td>
-<td>YES</td>
+<td>Not yet</td>
 </tr>
 
 <tr>
@@ -1156,11 +1159,11 @@
 
 <h3 id="openocd">OpenOCD</h3>
 
-<p>Programs are loaded onto the nRF52840-MDK board using the <code>openocd</code> command line utility program. You must install <a href="http://openocd.org/">OpenOCD</a> before you will be able to flash the nRF52840-MDK board with your TinyGo code.</p>
+<p>Programs are loaded onto the STM32F4 Discovery with the onboard <a href="https://www.st.com/en/development-tools/st-link-v2.html">STLink v2</a> hardware programmer, using the <code>openocd</code> command line utility program to perform the board flashing. You must install <a href="http://openocd.org/">OpenOCD</a> before you will be able to flash the STM32F4 Discovery board with your TinyGo code.</p>
 
 <ul>
-<li>Plug your nRF52840-MDK into your computer&rsquo;s USB port.</li>
-<li>Build and flash your TinyGo program using <code>tinygo flash -target=nrf52840-mdk</code></li>
+<li>Plug your STM32F4 Discovery into your computer&rsquo;s USB port.</li>
+<li>Build and flash your TinyGo program using <code>tinygo flash -target=stm32f4disco</code></li>
 </ul>
 
 
@@ -1526,22 +1529,6 @@
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
                     
                 
                 
@@ -1561,6 +1548,22 @@
                     
                         
                         
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
                     
                 
                 
@@ -1905,10 +1908,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/microcontrollers/stm32f4discovery/" title="STM32F4 Discovery"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/microcontrollers/pca10056/" title="PCA10056"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/microcontrollers/reelboard/" title="reel board" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/microcontrollers/nrf52840-mdk/" title="nRF52840-MDK" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

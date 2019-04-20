@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/images/favicon.png" type="image/x-icon" />
-    <title>nRF52840-MDK :: TinyGo - Go on Microcontrollers and WASM</title>
+    <title>Basic command examples :: TinyGo - Go on Microcontrollers and WASM</title>
 
     
     <link href="/css/nucleus.css?1555786728" rel="stylesheet">
@@ -38,7 +38,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/microcontrollers/nrf52840-mdk/">
+  <body class="" data-url="/usage/basic/">
     <nav id="sidebar" class="">
 
 
@@ -173,7 +173,7 @@
   
     
     <li data-nav-id="/usage/" title="Using TinyGo" class="dd-item 
-        
+        parent
         
         
         ">
@@ -197,7 +197,7 @@
  
   
     
-      <li data-nav-id="/usage/basic/" title="Basic command examples" class="dd-item ">
+      <li data-nav-id="/usage/basic/" title="Basic command examples" class="dd-item active">
         <a href="/usage/basic/">
         Basic command examples
         
@@ -281,7 +281,7 @@
   
     
     <li data-nav-id="/microcontrollers/" title="Go on microcontrollers" class="dd-item 
-        parent
+        
         
         
         ">
@@ -497,7 +497,7 @@
  
   
     
-      <li data-nav-id="/microcontrollers/nrf52840-mdk/" title="nRF52840-MDK" class="dd-item active">
+      <li data-nav-id="/microcontrollers/nrf52840-mdk/" title="nRF52840-MDK" class="dd-item ">
         <a href="/microcontrollers/nrf52840-mdk/">
         nRF52840-MDK
         
@@ -1025,7 +1025,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/tinygo-org/tinygo-site/edit/master/content/microcontrollers/nrf52840-mdk.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/tinygo-org/tinygo-site/edit/master/content/usage/basic.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -1056,7 +1056,7 @@
             
           
           
-            <a href='/'>Home</a> > <a href='/microcontrollers/'>Go on microcontrollers</a> > nRF52840-MDK
+            <a href='/'>Home</a> > <a href='/usage/'>Using TinyGo</a> > Basic command examples
           
          
           
@@ -1073,10 +1073,12 @@
 <ul>
 <li>
 <ul>
-<li><a href="#interfaces">Interfaces</a></li>
-<li><a href="#flashing">Flashing</a>
+<li>
 <ul>
-<li><a href="#openocd">OpenOCD</a></li>
+<li><a href="#building-hello-world-program-for-webassembly">Building &ldquo;Hello, World&rdquo; program for WebAssembly</a></li>
+<li><a href="#building-flashing-a-blink-program-for-micro-bit">Building/flashing a &ldquo;blink&rdquo; program for micro:bit</a></li>
+<li><a href="#building-flashing-a-blink-program-for-arduino">Building/flashing a &ldquo;blink&rdquo; program for Arduino</a></li>
+<li><a href="#building-flashing-a-blink-program-for-circuit-playground-express">Building/flashing a &ldquo;blink&rdquo; program for Circuit Playground Express</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -1092,7 +1094,7 @@
         
         <div id="body-inner">
           
-            <h1>nRF52840-MDK</h1>
+            <h1>Basic command examples</h1>
           
 
         
@@ -1100,68 +1102,57 @@
 
 
 
-<p>The <a href="https://wiki.makerdiary.com/nrf52840-mdk/">nRF52840-MDK</a> is an open-source, micro development kit for IoT applications based on the Nordic Semiconductor <a href="https://www.nordicsemi.com/eng/Products/nRF52840">nRF52840</a> SoC chip.</p>
+<p>Here will go some basic examples of using TinyGo in the most common scenarios.</p>
 
-<h2 id="interfaces">Interfaces</h2>
+<h3 id="building-hello-world-program-for-webassembly">Building &ldquo;Hello, World&rdquo; program for WebAssembly</h3>
 
-<table>
-<thead>
-<tr>
-<th>Interface</th>
-<th>Hardware Supported</th>
-<th>TinyGo Support</th>
-</tr>
-</thead>
+<p>To build the WASM example, run the following command:</p>
 
-<tbody>
-<tr>
-<td>GPIO</td>
-<td>YES</td>
-<td>YES</td>
-</tr>
+<pre><code class="language-shell">tinygo build -o wasm.wasm -target=wasm examples/wasm/export
+</code></pre>
 
-<tr>
-<td>UART</td>
-<td>YES</td>
-<td>YES</td>
-</tr>
+<p>See the <a href="../webassmebly">WebAssembly page</a> for more information on executing the compiled
+WebAssembly.</p>
 
-<tr>
-<td>SPI</td>
-<td>YES</td>
-<td>YES</td>
-</tr>
+<h3 id="building-flashing-a-blink-program-for-micro-bit">Building/flashing a &ldquo;blink&rdquo; program for micro:bit</h3>
 
-<tr>
-<td>I2C</td>
-<td>YES</td>
-<td>YES</td>
-</tr>
-
-<tr>
-<td>ADC</td>
-<td>YES</td>
-<td>Not yet</td>
-</tr>
-
-<tr>
-<td>PWM</td>
-<td>YES</td>
-<td>Not yet</td>
-</tr>
-</tbody>
-</table>
-
-<h2 id="flashing">Flashing</h2>
-
-<h3 id="openocd">OpenOCD</h3>
-
-<p>Programs are loaded onto the nRF52840-MDK board using the <code>openocd</code> command line utility program. You must install <a href="http://openocd.org/">OpenOCD</a> before you will be able to flash the nRF52840-MDK board with your TinyGo code.</p>
+<p>To build and then flash a basic blink program for a micro:bit board:</p>
 
 <ul>
-<li>Plug your nRF52840-MDK into your computer&rsquo;s USB port.</li>
-<li>Build and flash your TinyGo program using <code>tinygo flash -target=nrf52840-mdk</code></li>
+<li>Plug your micro:bit into your computer&rsquo;s USB port.</li>
+<li>The micro:bit board will appear to your computer like a USB drive. Determine the path to the board, for example on Linux it will be something like <code>/media/[USERNAME]/[NAME OF THE BOARD]</code>.</li>
+<li>Run the following command, substituing the correct name for the board from the previous step:</li>
 </ul>
+
+<pre><code class="language-shell">tinygo build -o=/media/[USERNAME]/[NAME OF THE BOARD]/flash.hex -target=microbit examples/microbit-blink
+</code></pre>
+
+<p>The entire array of built-in LEDs on the micro:bit board should start to blink in unison.</p>
+
+<h3 id="building-flashing-a-blink-program-for-arduino">Building/flashing a &ldquo;blink&rdquo; program for Arduino</h3>
+
+<p>To build and then flash a basic blink program for an Arduino Uno, plug in the board to your computer&rsquo;s USB port and then run the following command:</p>
+
+<pre><code class="language-shell">tinygo flash -target=arduino examples/blinky1
+</code></pre>
+
+<p>The built-in LED on the board should start to blink.</p>
+
+<h3 id="building-flashing-a-blink-program-for-circuit-playground-express">Building/flashing a &ldquo;blink&rdquo; program for Circuit Playground Express</h3>
+
+<p>To build and then flash a basic blink program for an Circuit Playground Express,</p>
+
+<ul>
+<li>Plug your Circuit Playground Express into your computer&rsquo;s USB port.</li>
+<li>Press the &ldquo;RESET&rdquo; button on the board two times to get the Circuit Playground Express board ready to receive code.</li>
+<li>The Circuit Playground Express board will appear to your computer like a USB drive. Determine the path to the board, for example on Linux it will be something like <code>/media/[USERNAME]/[NAME OF THE BOARD]</code>.</li>
+<li>Run the following command, substituing the correct name for the board from the previous step:</li>
+</ul>
+
+<pre><code class="language-shell">tinygo build -o=/media/[USERNAME]/[NAME OF THE BOARD]/flash.uf2 -target=circuitplay-express examples/blinky1
+</code></pre>
+
+<p>The built-in LED on the board should start to blink.</p>
 
 
 <footer class=" footline" >
@@ -1283,6 +1274,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1295,6 +1287,7 @@
             
             
                 
+                    
                     
                 
                 
@@ -1306,73 +1299,6 @@
                     
             
         
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
                     
                         
             
@@ -1425,6 +1351,9 @@
             
         
                     
+            
+        
+                    
                         
             
             
@@ -1435,11 +1364,10 @@
 
                     
                     
+                        
+                    
                     
 
-                    
-            
-        
                     
                         
             
@@ -1542,6 +1470,21 @@
             
                 
                     
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
                     
                 
                 
@@ -1559,8 +1502,53 @@
             
                 
                     
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
                         
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
                         
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
                     
                 
                 
@@ -1905,10 +1893,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/microcontrollers/stm32f4discovery/" title="STM32F4 Discovery"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/usage/" title="Using TinyGo"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/microcontrollers/reelboard/" title="reel board" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/usage/subcommands/" title="Subcommands" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

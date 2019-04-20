@@ -11,6 +11,19 @@
     
     
     <item>
+      <title>Basic command examples</title>
+      <link>https://tinygo.org/usage/basic/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tinygo.org/usage/basic/</guid>
+      <description>Here will go some basic examples of using TinyGo in the most common scenarios.
+Building &amp;ldquo;Hello, World&amp;rdquo; program for WebAssembly To build the WASM example, run the following command:
+tinygo build -o wasm.wasm -target=wasm examples/wasm/export  See the WebAssembly page for more information on executing the compiled WebAssembly.
+Building/flashing a &amp;ldquo;blink&amp;rdquo; program for micro:bit To build and then flash a basic blink program for a micro:bit board:
+ Plug your micro:bit into your computer&amp;rsquo;s USB port.</description>
+    </item>
+    
+    <item>
       <title>Subcommands</title>
       <link>https://tinygo.org/usage/subcommands/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
