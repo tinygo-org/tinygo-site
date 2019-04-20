@@ -17,11 +17,18 @@ The third option is to use the Docker image. This has the benefit of making no c
 
 You must have Go v1.11+ already installed on your machine in order to install TinyGo.
 
-If you are using Ubuntu or another Debian based Linux, download the DEB file from Github and install it using the following commands:
+If you are using Ubuntu or another Debian based Linux on an Intel processor, download the DEB file from Github and install it using the following commands:
 
 ```shell
-wget https://github.com/tinygo-org/tinygo/releases/download/v0.5.0/tinygo0.5.0.linux-amd64.deb
-sudo dpkg -i tinygo0.5.0.linux-amd64.deb
+wget https://github.com/tinygo-org/tinygo/releases/download/v0.5.0/tinygo_0.5.0_amd64.deb
+sudo dpkg -i tinygo_0.5.0_amd64.deb
+```
+
+If you are on a Raspberry Pi or other ARM-based Linux computer, you should use this command instead:
+
+```shell
+wget https://github.com/tinygo-org/tinygo/releases/download/v0.5.0/tinygo_0.5.0_armhf.deb
+sudo dpkg -i tinygo_0.5.0_armhf.deb
 ```
 
 You will need to ensure that the path to the `tinygo` executable file is in your `PATH` variable.
