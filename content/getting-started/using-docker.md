@@ -11,9 +11,15 @@ You can use our Docker image to be able to run the TinyGo compiler on your compu
 
 ## Using
 
-A docker container exists for easy access to the TinyGo CLI. For example, to compile `wasm.wasm` for the WebAssembly example, from the root of the repository:
+The paths used here are automatically resolved by `tinygo` relative to the installation directory.
+For your own code, you will probably want to use absolute paths.
 
-    docker run --rm -v $(pwd):/src tinygo/tinygo tinygo build -o /src/wasm.wasm -target wasm examples/wasm
+A docker container exists for easy access to the TinyGo CLI. For example, to compile `wasm.wasm` for the WebAssembly export example:
+
+    docker run --rm -v $(pwd):/src tinygo/tinygo tinygo build -o wasm.wasm -target=wasm examples/wasm/export
+
+See the [WebAssembly page](../webassembly) for more information on executing the compiled
+WebAssembly.
 
 To compile `blinky1.hex` targeting an ARM microcontroller, such as the PCA10040:
 
@@ -23,9 +29,11 @@ To compile `blinky1.hex` targeting an AVR microcontroller such as the Arduino:
 
     docker run --rm -v $(pwd):/src tinygo/tinygo tinygo build -o /src/blinky1.hex -size=short -target=arduino examples/blinky1
 
-For projects that have remote dependencies outside of the standard library and go code within your own project, you will need to map your entire GOPATH into the docker image in order for those dependencies to be found:
+For projects that have remote dependencies outside of the standard library and
+go code within your own project, you will need to map your entire `$GOPATH`
+into the docker image for those dependencies to be found:
 
-    docker run  -v $(PWD):/mysrc -v $GOPATH:/gohost -e "GOPATH=$GOPATH:/gohost" tinygo/tinygo tinygo build -o /mysrc/wasmout.wasm -target wasm /mysrc/wasm-main.go
+    docker run -v $GOPATH:/go -e "GOPATH=/go" tinygo/tinygo tinygo build -o /go/src/github.com/myuser/myrepo/wasm.wasm -target wasm --no-debug /go/src/github.com/myuser/myrepo/wasm-main.go
 
 **note: At this time, tinygo does not resolve dependencies from the /vendor/ folder within your project.**
 

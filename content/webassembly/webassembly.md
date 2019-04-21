@@ -44,6 +44,28 @@ console.log('multiplied two numbers:', wasm.exports.multiply(5, 3));
 You can also simply execute code in `func main()`, like in the standard library
 implementation of WebAssembly.
 
+## Building
+
+If you have `tinygo` installed, it's as simple as providing the correct target:
+
+```
+tinygo build -o wasm.wasm -target wasm ./main.go
+```
+
+If you're using the docker image, you need to mount your workspace into the image.
+Note the `--no-debug` flag, which reduces the size of the final binary by removing
+debug symbols from the output:
+
+```
+docker run -v $GOPATH:/go -e "GOPATH=/go" tinygo/tinygo tinygo build -o /go/src/github.com/myuser/myrepo/wasm.wasm -target wasm --no-debug /go/src/github.com/myuser/myrepo/wasm-main.go
+```
+
+Make sure you copy `wasm_exec.js` to your runtime environment:
+
+```
+docker run -v $GOPATH:/go -e "GOPATH=/go" tinygo/tinygo /bin/bash -c "cp /usr/local/tinygo/targets/wasm_exec.js /go/src/github.com/myuser/myrepo/
+```
+
 More complete examples are provided in the [wasm examples](https://github.com/tinygo-org/tinygo/tree/master/src/examples/wasm).
 
 ## How it works
