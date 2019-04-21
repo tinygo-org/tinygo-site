@@ -11,7 +11,7 @@ If you want to use TinyGo to compile your own or sample code, you can install th
 
 You can instead install the full source code to the TinyGo compiler itself, generally for people who wish to contribute to the project or want to build the compiler from sources.
 
-The third option is to use the Docker image. This has the benefit of making no changes to your system, however the image has a large download and installation size. For instructions on using the Docker image, please see the page [here](./using-docker).
+The third option is to use the Docker image. This has the benefit of making no changes to your system, however the image has a large download and installation size. For instructions on using the Docker image, please see the page [here](../using-docker).
 
 ## Quick Install
 
@@ -142,4 +142,4 @@ The same additional requirements to compile TinyGo programs that can run on micr
 
 ## Docker Install
 
-The TinyGo Docker image contains a complete development environment for both WASM and microcontroller development already setup. For instructions on using the Docker image, please see the page [here](./using-docker).
+The TinyGo Docker image contains a complete development environment for both WASM and microcontroller development already setup. For instructions on using the Docker image, please see the page [here](../using-docker).
