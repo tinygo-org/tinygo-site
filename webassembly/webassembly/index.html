@@ -12,19 +12,19 @@
     <title>Using WebAssembly :: TinyGo - Go on Microcontrollers and WASM</title>
 
     
-    <link href="/css/nucleus.css?1555840067" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1555840067" rel="stylesheet">
-    <link href="/css/hybrid.css?1555840067" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1555840067" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1555840067" rel="stylesheet">
-    <link href="/css/auto-complete.css?1555840067" rel="stylesheet">
-    <link href="/css/theme.css?1555840067" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1555840067" rel="stylesheet">
+    <link href="/css/nucleus.css?1555855992" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1555855992" rel="stylesheet">
+    <link href="/css/hybrid.css?1555855992" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1555855992" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1555855992" rel="stylesheet">
+    <link href="/css/auto-complete.css?1555855992" rel="stylesheet">
+    <link href="/css/theme.css?1555855992" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1555855992" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1555840067" rel="stylesheet">
+      <link href="/css/theme-blue.css?1555855992" rel="stylesheet">
     
 
-    <script src="/js/jquery-2.x.min.js?1555840067"></script>
+    <script src="/js/jquery-2.x.min.js?1555855992"></script>
 
     <style type="text/css">
       :root #header + #content > #left > #rlblock_left{
@@ -1073,6 +1073,7 @@
 <ul>
 <li>
 <ul>
+<li><a href="#building">Building</a></li>
 <li><a href="#how-it-works">How it works</a></li>
 </ul></li>
 </ul>
@@ -1134,6 +1135,25 @@ console.log('multiplied two numbers:', wasm.exports.multiply(5, 3));
 
 <p>You can also simply execute code in <code>func main()</code>, like in the standard library
 implementation of WebAssembly.</p>
+
+<h2 id="building">Building</h2>
+
+<p>If you have <code>tinygo</code> installed, it&rsquo;s as simple as providing the correct target:</p>
+
+<pre><code>tinygo build -o wasm.wasm -target wasm ./main.go
+</code></pre>
+
+<p>If you&rsquo;re using the docker image, you need to mount your workspace into the image.
+Note the <code>--no-debug</code> flag, which reduces the size of the final binary by removing
+debug symbols from the output:</p>
+
+<pre><code>docker run -v $GOPATH:/go -e &quot;GOPATH=/go&quot; tinygo/tinygo tinygo build -o /go/src/github.com/myuser/myrepo/wasm.wasm -target wasm --no-debug /go/src/github.com/myuser/myrepo/wasm-main.go
+</code></pre>
+
+<p>Make sure you copy <code>wasm_exec.js</code> to your runtime environment:</p>
+
+<pre><code>docker run -v $GOPATH:/go -e &quot;GOPATH=/go&quot; tinygo/tinygo /bin/bash -c &quot;cp /usr/local/tinygo/targets/wasm_exec.js /go/src/github.com/myuser/myrepo/
+</code></pre>
 
 <p>More complete examples are provided in the <a href="https://github.com/tinygo-org/tinygo/tree/master/src/examples/wasm">wasm examples</a>.</p>
 
@@ -1956,20 +1976,20 @@ setting any <code>*.wasm</code> files <code>Content-Type</code> header appropria
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1555840067"></script>
-    <script src="/js/perfect-scrollbar.min.js?1555840067"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1555840067"></script>
-    <script src="/js/jquery.sticky.js?1555840067"></script>
-    <script src="/js/featherlight.min.js?1555840067"></script>
-    <script src="/js/html5shiv-printshiv.min.js?1555840067"></script>
-    <script src="/js/highlight.pack.js?1555840067"></script>
+    <script src="/js/clipboard.min.js?1555855992"></script>
+    <script src="/js/perfect-scrollbar.min.js?1555855992"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1555855992"></script>
+    <script src="/js/jquery.sticky.js?1555855992"></script>
+    <script src="/js/featherlight.min.js?1555855992"></script>
+    <script src="/js/html5shiv-printshiv.min.js?1555855992"></script>
+    <script src="/js/highlight.pack.js?1555855992"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom.71422.js?1555840067"></script>
-    <script src="/js/learn.js?1555840067"></script>
-    <script src="/js/hugo-learn.js?1555840067"></script>
+    <script src="/js/modernizr.custom.71422.js?1555855992"></script>
+    <script src="/js/learn.js?1555855992"></script>
+    <script src="/js/hugo-learn.js?1555855992"></script>
 
-    <link href="/mermaid/mermaid.css?1555840067" type="text/css" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1555840067"></script>
+    <link href="/mermaid/mermaid.css?1555855992" type="text/css" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1555855992"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

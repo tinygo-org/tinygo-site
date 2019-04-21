@@ -12,19 +12,19 @@
     <title>Docker :: TinyGo - Go on Microcontrollers and WASM</title>
 
     
-    <link href="/css/nucleus.css?1555840067" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1555840067" rel="stylesheet">
-    <link href="/css/hybrid.css?1555840067" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1555840067" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1555840067" rel="stylesheet">
-    <link href="/css/auto-complete.css?1555840067" rel="stylesheet">
-    <link href="/css/theme.css?1555840067" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1555840067" rel="stylesheet">
+    <link href="/css/nucleus.css?1555855992" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1555855992" rel="stylesheet">
+    <link href="/css/hybrid.css?1555855992" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1555855992" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1555855992" rel="stylesheet">
+    <link href="/css/auto-complete.css?1555855992" rel="stylesheet">
+    <link href="/css/theme.css?1555855992" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1555855992" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1555840067" rel="stylesheet">
+      <link href="/css/theme-blue.css?1555855992" rel="stylesheet">
     
 
-    <script src="/js/jquery-2.x.min.js?1555840067"></script>
+    <script src="/js/jquery-2.x.min.js?1555855992"></script>
 
     <style type="text/css">
       :root #header + #content > #left > #rlblock_left{
@@ -1106,10 +1106,16 @@
 
 <h2 id="using">Using</h2>
 
-<p>A docker container exists for easy access to the TinyGo CLI. For example, to compile <code>wasm.wasm</code> for the WebAssembly example, from the root of the repository:</p>
+<p>The paths used here are automatically resolved by <code>tinygo</code> relative to the installation directory.
+For your own code, you will probably want to use absolute paths.</p>
 
-<pre><code>docker run --rm -v $(pwd):/src tinygo/tinygo tinygo build -o /src/wasm.wasm -target wasm examples/wasm
+<p>A docker container exists for easy access to the TinyGo CLI. For example, to compile <code>wasm.wasm</code> for the WebAssembly export example:</p>
+
+<pre><code>docker run --rm -v $(pwd):/src tinygo/tinygo tinygo build -o wasm.wasm -target=wasm examples/wasm/export
 </code></pre>
+
+<p>See the <a href="../webassembly">WebAssembly page</a> for more information on executing the compiled
+WebAssembly.</p>
 
 <p>To compile <code>blinky1.hex</code> targeting an ARM microcontroller, such as the PCA10040:</p>
 
@@ -1121,9 +1127,11 @@
 <pre><code>docker run --rm -v $(pwd):/src tinygo/tinygo tinygo build -o /src/blinky1.hex -size=short -target=arduino examples/blinky1
 </code></pre>
 
-<p>For projects that have remote dependencies outside of the standard library and go code within your own project, you will need to map your entire GOPATH into the docker image in order for those dependencies to be found:</p>
+<p>For projects that have remote dependencies outside of the standard library and
+go code within your own project, you will need to map your entire <code>$GOPATH</code>
+into the docker image for those dependencies to be found:</p>
 
-<pre><code>docker run  -v $(PWD):/mysrc -v $GOPATH:/gohost -e &quot;GOPATH=$GOPATH:/gohost&quot; tinygo/tinygo tinygo build -o /mysrc/wasmout.wasm -target wasm /mysrc/wasm-main.go
+<pre><code>docker run -v $GOPATH:/go -e &quot;GOPATH=/go&quot; tinygo/tinygo tinygo build -o /go/src/github.com/myuser/myrepo/wasm.wasm -target wasm --no-debug /go/src/github.com/myuser/myrepo/wasm-main.go
 </code></pre>
 
 <p><strong>note: At this time, tinygo does not resolve dependencies from the /vendor/ folder within your project.</strong></p>
@@ -1889,20 +1897,20 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1555840067"></script>
-    <script src="/js/perfect-scrollbar.min.js?1555840067"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1555840067"></script>
-    <script src="/js/jquery.sticky.js?1555840067"></script>
-    <script src="/js/featherlight.min.js?1555840067"></script>
-    <script src="/js/html5shiv-printshiv.min.js?1555840067"></script>
-    <script src="/js/highlight.pack.js?1555840067"></script>
+    <script src="/js/clipboard.min.js?1555855992"></script>
+    <script src="/js/perfect-scrollbar.min.js?1555855992"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1555855992"></script>
+    <script src="/js/jquery.sticky.js?1555855992"></script>
+    <script src="/js/featherlight.min.js?1555855992"></script>
+    <script src="/js/html5shiv-printshiv.min.js?1555855992"></script>
+    <script src="/js/highlight.pack.js?1555855992"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom.71422.js?1555840067"></script>
-    <script src="/js/learn.js?1555840067"></script>
-    <script src="/js/hugo-learn.js?1555840067"></script>
+    <script src="/js/modernizr.custom.71422.js?1555855992"></script>
+    <script src="/js/learn.js?1555855992"></script>
+    <script src="/js/hugo-learn.js?1555855992"></script>
 
-    <link href="/mermaid/mermaid.css?1555840067" type="text/css" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1555840067"></script>
+    <link href="/mermaid/mermaid.css?1555855992" type="text/css" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1555855992"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
