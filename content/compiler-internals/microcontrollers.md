@@ -17,4 +17,4 @@ The AVR backend of LLVM is still experimental so you may encounter bugs.
 
 ## Xtensa
 
-Support for the ESP8266/ESP32 chips will take a lot of work if they ever get support. See the [TinyGo FAQ](../../faq/what-about-esp8266-esp32) for details.
+Support to run TinyGo directly on the ESP8266/ESP32 chips should be possible once the needed support is added to LLVM. See the [TinyGo FAQ](../../faq/what-about-esp8266-esp32) for details.
