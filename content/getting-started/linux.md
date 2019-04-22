@@ -66,10 +66,10 @@ sudo add-apt-repository "deb http://apt.llvm.org/$(lsb_release -s -c)/ llvm-tool
 sudo apt-get update
 ```
 
-Now you can install Clang and the LLD linker by running this command:
+Now you can install Clang 8 by running this command:
 
 ```shell
-sudo apt-get install clang-8 llvm-8-dev lld-8 libclang-8-dev
+sudo apt-get install clang-8
 ```
 
 Some boards also require a special flashing tool for that particular chip, like `openocd` or `nrfjprog`. See the documentation page for your board as listed [here](../../microcontrollers/) to see which flashing tool is required for your target board.
