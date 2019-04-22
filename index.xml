@@ -371,9 +371,11 @@ This is roughly the pipeline for TinyGo:
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://tinygo.org/faq/what-about-esp8266-esp32/</guid>
-      <description>These chips use the rather obscure Xtensa instruction set. While a port of GCC exists and Espressif provides precompiled GNU toolchains, there is no support yet in LLVM (although there have been multiple attempts.
-There are two ways these chips might be supported in the future, and both will take a considerable amount of work:
- The compiled LLVM IR can be converted into (ugly) C and then be compiled with a supported C compiler (like GCC for Xtensa).</description>
+      <description>As of February 2019 there is now an official project from Espressif to add the Xtensa chip architecture to LLVM.
+For the discussion of this see this forum thread.
+The repository that contains the Xtensa fork of LLVM is located at https://github.com/espressif/llvm-xtensa
+The repository that contains the Xtensa fork of Clang is located at https://github.com/espressif/clang-xtensa.
+It is not yet in a usable state, but once it is we will start the process of supporting it in TinyGo.</description>
     </item>
     
   </channel>

@@ -12,19 +12,19 @@
     <title>What about the ESP8266/ESP32? :: TinyGo - Go on Microcontrollers and WASM</title>
 
     
-    <link href="/css/nucleus.css?1555855992" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1555855992" rel="stylesheet">
-    <link href="/css/hybrid.css?1555855992" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1555855992" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1555855992" rel="stylesheet">
-    <link href="/css/auto-complete.css?1555855992" rel="stylesheet">
-    <link href="/css/theme.css?1555855992" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1555855992" rel="stylesheet">
+    <link href="/css/nucleus.css?1555915996" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1555915996" rel="stylesheet">
+    <link href="/css/hybrid.css?1555915996" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1555915996" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1555915996" rel="stylesheet">
+    <link href="/css/auto-complete.css?1555915996" rel="stylesheet">
+    <link href="/css/theme.css?1555915996" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1555915996" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1555855992" rel="stylesheet">
+      <link href="/css/theme-blue.css?1555915996" rel="stylesheet">
     
 
-    <script src="/js/jquery-2.x.min.js?1555855992"></script>
+    <script src="/js/jquery-2.x.min.js?1555915996"></script>
 
     <style type="text/css">
       :root #header + #content > #left > #rlblock_left{
@@ -1087,15 +1087,15 @@
         
 
 
-<p>These chips use the rather obscure Xtensa instruction set. While a port of GCC exists and Espressif provides precompiled GNU toolchains, there is no support yet in LLVM (although there have been <a href="http://lists.llvm.org/pipermail/llvm-dev/2018-July/124789.html">multiple attempts</a>.</p>
+<p>As of February 2019 there is now an official project from Espressif to add the Xtensa chip architecture to LLVM.</p>
 
-<p>There are two ways these chips might be supported in the future, and both will take a considerable amount of work:</p>
+<p>For the discussion of this see <a href="https://www.esp32.com/viewtopic.php?t=9226">this forum thread</a>.</p>
 
-<ul>
-<li><p>The compiled LLVM IR can be converted into (ugly) C and then be compiled with a supported C compiler (like GCC for Xtensa). This has been <a href="https://github.com/JuliaComputing/llvm-cbe">done before</a> so should be doable.</p></li>
+<p>The repository that contains the Xtensa fork of LLVM is located at <a href="https://github.com/espressif/llvm-xtensa">https://github.com/espressif/llvm-xtensa</a></p>
 
-<li><p>One of the work-in-progress LLVM backends can be worked on to get it in a usable state. If this is finished, a true TinyGo port is possible.</p></li>
-</ul>
+<p>The repository that contains the Xtensa fork of Clang is located at <a href="https://github.com/espressif/clang-xtensa">https://github.com/espressif/clang-xtensa</a>.</p>
+
+<p>It is not yet in a usable state, but once it is we will start the process of supporting it in TinyGo.</p>
 
 
 <footer class=" footline" >
@@ -1852,20 +1852,20 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1555855992"></script>
-    <script src="/js/perfect-scrollbar.min.js?1555855992"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1555855992"></script>
-    <script src="/js/jquery.sticky.js?1555855992"></script>
-    <script src="/js/featherlight.min.js?1555855992"></script>
-    <script src="/js/html5shiv-printshiv.min.js?1555855992"></script>
-    <script src="/js/highlight.pack.js?1555855992"></script>
+    <script src="/js/clipboard.min.js?1555915996"></script>
+    <script src="/js/perfect-scrollbar.min.js?1555915996"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1555915996"></script>
+    <script src="/js/jquery.sticky.js?1555915996"></script>
+    <script src="/js/featherlight.min.js?1555915996"></script>
+    <script src="/js/html5shiv-printshiv.min.js?1555915996"></script>
+    <script src="/js/highlight.pack.js?1555915996"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom.71422.js?1555855992"></script>
-    <script src="/js/learn.js?1555855992"></script>
-    <script src="/js/hugo-learn.js?1555855992"></script>
+    <script src="/js/modernizr.custom.71422.js?1555915996"></script>
+    <script src="/js/learn.js?1555915996"></script>
+    <script src="/js/hugo-learn.js?1555915996"></script>
 
-    <link href="/mermaid/mermaid.css?1555855992" type="text/css" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1555855992"></script>
+    <link href="/mermaid/mermaid.css?1555915996" type="text/css" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1555915996"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
