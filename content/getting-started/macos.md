@@ -59,8 +59,6 @@ brew install avrdude
 
 ## Source Install
 
-You can instead install TinyGo from source, which includes installing the full LLVM compiler toolchain.
-
 First, obtain the TinyGo source code:
 
 ```shell
@@ -74,19 +72,64 @@ Once you have the code, you can install the various prerequisites using [`dep`](
 dep ensure
 ```
 
-Now you can run the following make tasks to download and build the LLVM toolchain. Please note that this is likely to take at least 1 hour even on a fast machine.
+You now have two options: build LLVM manually or use LLVM from Homebrew. The
+advantage of a manual build is that it includes all supported targets (including
+AVR) while Homebrew includes only stable targets. Unless you want to compile for
+AVR-based boards, you can use Homebrew.
+
+### With LLVM from Homebrew
+
+The easiest way to install LLVM on macOS is through
+[Homebrew](https://formulae.brew.sh/formula/llvm). Make sure you install LLVM 8:
+
+```shell
+brew install llvm@8
+```
+
+Installing TinyGo should now be as easy as:
+
+```shell
+go install
+```
+
+Note that you should not use `make` when you want to build using a
+system-installed LLVM, just use the Go toolchain. `make` is used when you want
+to use a self-built LLVM.
+
+### With a self-built LLVM
+
+You can also manually build LLVM. This is a long process which takes at least
+one hour on most machines. In most cases you can build TinyGo using LLVM from
+Homebrew. However, the Homebrew build does not support the experimental AVR
+target so you'll have to build from source if you want to use TinyGo for the
+Arduino Uno.
+
+You will need a few extra tools that are required during the build of LLVM:
+
+```shell
+brew install cmake ninja
+```
+
+The following command takes care of downloading and building LLVM. It places the
+source code in `llvm-build/` and the build output in `llvm/`. It only needs to
+be done once until the next LLVM release.
 
 ```shell
 make llvm-build
 ```
 
-Once the LLVM toolchain is installed, you can build the TinyGo binary that is linked to local system libraries like this:
+Once this is finished, you can build TinyGo against this manually built LLVM:
 
-```
+```shell
 make
 ```
 
-The result of the build will be placed into the `build` directory.
+This results in a `tinygo` binary in the `build` directory:
+
+```shell
+$ ./build/tinygo version
+tinygo version 0.5.0 darwin/amd64
+```
 
 ### Additional Requirements for Microcontrollers
 
