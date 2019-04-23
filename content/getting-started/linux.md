@@ -88,15 +88,7 @@ This should allow you to compile and flash TinyGo programs on an Arduino or othe
 
 ## Source Install
 
-You can install TinyGo from source, which includes installing the LLVM compiler toolchain.
-
-You will need to install the following build tools/dependencies on your system:
-
-```shell
-sudo apt-get install build-essential git cmake ninja
-```
-
-Next, obtain the TinyGo source code:
+First, obtain the TinyGo source code:
 
 ```shell
 go get -d github.com/tinygo-org/tinygo
@@ -109,7 +101,57 @@ Once you have the code, you can install the various prerequisites using [`dep`](
 dep ensure
 ```
 
-Now you can run the following make tasks to download and build the LLVM toolchain. Please note that this is likely to take at least 1 hour even on a fast machine.
+You now have two options: build LLVM manually or use a LLVM distributed with
+your package manager. The advantage of a manual build is that it includes all
+supported targets (including AVR), which not all prebuilt LLVM packages provide.
+
+### With system-installed LLVM
+
+You can use LLVM included with the package manager of your distribution. How
+this is done depends on your system. If you have gotten it to work on a
+different distribution, please let us know how so we can add it here.
+
+For Debian and Ubuntu, you can install the binaries provided by LLVM on
+[apt.llvm.org](http://apt.llvm.org/). For example, the following commands can be
+used to install LLVM 8 on Debian Stretch:
+
+```shell
+echo 'deb http://apt.llvm.org/stretch/ llvm-toolchain-stretch-8 main' | sudo tee /etc/apt/sources.list.d/llvm.list
+wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
+sudo apt-get update
+sudo apt-get install clang-8 llvm-8-dev lld-8 libclang-8-dev
+```
+
+Installing TinyGo should now be as easy as:
+
+```shell
+go install
+```
+
+Note that you should not use `make` when you want to build using a
+system-installed LLVM, just use the Go toolchain. `make` is used when you want
+to use a self-built LLVM.
+
+### With a self-built LLVM
+
+You can also manually build LLVM. This is a long process which takes at least
+one hour on most machines. In most cases you can build TinyGo using a
+system-installed LLVM. However, some builds do not support the experimental AVR
+target so you'll have to build from source if you want to use TinyGo for the
+Arduino Uno. The binaries from apt.llvm.org do provide the AVR target, however.
+
+You will need a few extra tools that are required during the build of LLVM,
+depending on your distribution. Debian and Ubuntu users can install all required
+tools this way:
+
+```shell
+sudo apt-get install build-essential git cmake ninja
+```
+
+The following command takes care of downloading and building LLVM. It places the
+source code in `llvm-build/` and the build output in `llvm/`. It only needs to
+be done once until the next LLVM release. Note that the `export` lines are
+optional, but using Clang during the build speeds up the build significantly.
 
 ```shell
 export CC=clang
@@ -117,13 +159,18 @@ export CXX=clang++
 make llvm-build
 ```
 
-Once the LLVM toolchain is installed, you can build the TinyGo binary that is linked to local system libraries like this:
+Once this is finished, you can build TinyGo against this manually built LLVM:
 
 ```shell
 make
 ```
 
-The `tinygo` executable file will be placed into the `build` directory.
+This results in a `tinygo` binary in the `build` directory:
+
+```shell
+$ ./build/tinygo version
+tinygo version 0.5.0 linux/amd64
+```
 
 ### Additional Requirements for Microcontrollers
 
