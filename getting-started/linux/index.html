@@ -12,19 +12,19 @@
     <title>Linux :: TinyGo - Go on Microcontrollers and WASM</title>
 
     
-    <link href="/css/nucleus.css?1555919183" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1555919183" rel="stylesheet">
-    <link href="/css/hybrid.css?1555919183" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1555919183" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1555919183" rel="stylesheet">
-    <link href="/css/auto-complete.css?1555919183" rel="stylesheet">
-    <link href="/css/theme.css?1555919183" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1555919183" rel="stylesheet">
+    <link href="/css/nucleus.css?1556120626" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1556120626" rel="stylesheet">
+    <link href="/css/hybrid.css?1556120626" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1556120626" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1556120626" rel="stylesheet">
+    <link href="/css/auto-complete.css?1556120626" rel="stylesheet">
+    <link href="/css/theme.css?1556120626" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1556120626" rel="stylesheet">
     
-      <link href="/css/theme-blue.css?1555919183" rel="stylesheet">
+      <link href="/css/theme-blue.css?1556120626" rel="stylesheet">
     
 
-    <script src="/js/jquery-2.x.min.js?1555919183"></script>
+    <script src="/js/jquery-2.x.min.js?1556120626"></script>
 
     <style type="text/css">
       :root #header + #content > #left > #rlblock_left{
@@ -1083,6 +1083,8 @@
 </ul></li>
 <li><a href="#source-install">Source Install</a>
 <ul>
+<li><a href="#with-system-installed-llvm">With system-installed LLVM</a></li>
+<li><a href="#with-a-self-built-llvm">With a self-built LLVM</a></li>
 <li><a href="#additional-requirements-for-microcontrollers-1">Additional Requirements for Microcontrollers</a></li>
 </ul></li>
 <li><a href="#docker-install">Docker Install</a></li>
@@ -1184,14 +1186,7 @@ sudo apt-get install avrdude
 
 <h2 id="source-install">Source Install</h2>
 
-<p>You can install TinyGo from source, which includes installing the LLVM compiler toolchain.</p>
-
-<p>You will need to install the following build tools/dependencies on your system:</p>
-
-<pre><code class="language-shell">sudo apt-get install build-essential git cmake ninja
-</code></pre>
-
-<p>Next, obtain the TinyGo source code:</p>
+<p>First, obtain the TinyGo source code:</p>
 
 <pre><code class="language-shell">go get -d github.com/tinygo-org/tinygo
 cd $GOPATH/src/github.com/tinygo-org/tinygo
@@ -1202,19 +1197,70 @@ cd $GOPATH/src/github.com/tinygo-org/tinygo
 <pre><code class="language-shell">dep ensure
 </code></pre>
 
-<p>Now you can run the following make tasks to download and build the LLVM toolchain. Please note that this is likely to take at least 1 hour even on a fast machine.</p>
+<p>You now have two options: build LLVM manually or use a LLVM distributed with
+your package manager. The advantage of a manual build is that it includes all
+supported targets (including AVR), which not all prebuilt LLVM packages provide.</p>
+
+<h3 id="with-system-installed-llvm">With system-installed LLVM</h3>
+
+<p>You can use LLVM included with the package manager of your distribution. How
+this is done depends on your system. If you have gotten it to work on a
+different distribution, please let us know how so we can add it here.</p>
+
+<p>For Debian and Ubuntu, you can install the binaries provided by LLVM on
+<a href="http://apt.llvm.org/">apt.llvm.org</a>. For example, the following commands can be
+used to install LLVM 8 on Debian Stretch:</p>
+
+<pre><code class="language-shell">echo 'deb http://apt.llvm.org/stretch/ llvm-toolchain-stretch-8 main' | sudo tee /etc/apt/sources.list.d/llvm.list
+wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
+sudo apt-get update
+sudo apt-get install clang-8 llvm-8-dev lld-8 libclang-8-dev
+</code></pre>
+
+<p>Installing TinyGo should now be as easy as:</p>
+
+<pre><code class="language-shell">go install
+</code></pre>
+
+<p>Note that you should not use <code>make</code> when you want to build using a
+system-installed LLVM, just use the Go toolchain. <code>make</code> is used when you want
+to use a self-built LLVM.</p>
+
+<h3 id="with-a-self-built-llvm">With a self-built LLVM</h3>
+
+<p>You can also manually build LLVM. This is a long process which takes at least
+one hour on most machines. In most cases you can build TinyGo using a
+system-installed LLVM. However, some builds do not support the experimental AVR
+target so you&rsquo;ll have to build from source if you want to use TinyGo for the
+Arduino Uno. The binaries from apt.llvm.org do provide the AVR target, however.</p>
+
+<p>You will need a few extra tools that are required during the build of LLVM,
+depending on your distribution. Debian and Ubuntu users can install all required
+tools this way:</p>
+
+<pre><code class="language-shell">sudo apt-get install build-essential git cmake ninja
+</code></pre>
+
+<p>The following command takes care of downloading and building LLVM. It places the
+source code in <code>llvm-build/</code> and the build output in <code>llvm/</code>. It only needs to
+be done once until the next LLVM release. Note that the <code>export</code> lines are
+optional, but using Clang during the build speeds up the build significantly.</p>
 
 <pre><code class="language-shell">export CC=clang
 export CXX=clang++
 make llvm-build
 </code></pre>
 
-<p>Once the LLVM toolchain is installed, you can build the TinyGo binary that is linked to local system libraries like this:</p>
+<p>Once this is finished, you can build TinyGo against this manually built LLVM:</p>
 
 <pre><code class="language-shell">make
 </code></pre>
 
-<p>The <code>tinygo</code> executable file will be placed into the <code>build</code> directory.</p>
+<p>This results in a <code>tinygo</code> binary in the <code>build</code> directory:</p>
+
+<pre><code class="language-shell">$ ./build/tinygo version
+tinygo version 0.5.0 linux/amd64
+</code></pre>
 
 <h3 id="additional-requirements-for-microcontrollers-1">Additional Requirements for Microcontrollers</h3>
 
@@ -1983,20 +2029,20 @@ as some updates cause changes to the generated files.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1555919183"></script>
-    <script src="/js/perfect-scrollbar.min.js?1555919183"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1555919183"></script>
-    <script src="/js/jquery.sticky.js?1555919183"></script>
-    <script src="/js/featherlight.min.js?1555919183"></script>
-    <script src="/js/html5shiv-printshiv.min.js?1555919183"></script>
-    <script src="/js/highlight.pack.js?1555919183"></script>
+    <script src="/js/clipboard.min.js?1556120626"></script>
+    <script src="/js/perfect-scrollbar.min.js?1556120626"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1556120626"></script>
+    <script src="/js/jquery.sticky.js?1556120626"></script>
+    <script src="/js/featherlight.min.js?1556120626"></script>
+    <script src="/js/html5shiv-printshiv.min.js?1556120626"></script>
+    <script src="/js/highlight.pack.js?1556120626"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom.71422.js?1555919183"></script>
-    <script src="/js/learn.js?1555919183"></script>
-    <script src="/js/hugo-learn.js?1555919183"></script>
+    <script src="/js/modernizr.custom.71422.js?1556120626"></script>
+    <script src="/js/learn.js?1556120626"></script>
+    <script src="/js/hugo-learn.js?1556120626"></script>
 
-    <link href="/mermaid/mermaid.css?1555919183" type="text/css" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1555919183"></script>
+    <link href="/mermaid/mermaid.css?1556120626" type="text/css" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1556120626"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
