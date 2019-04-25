@@ -122,6 +122,11 @@ sudo apt-get update
 sudo apt-get install clang-8 llvm-8-dev lld-8 libclang-8-dev
 ```
 
+For Arch Linux, install the [clang](https://www.archlinux.org/packages/extra/x86_64/clang/),
+[llvm](https://www.archlinux.org/packages/extra/x86_64/llvm/) and
+[lld](https://www.archlinux.org/packages/extra/x86_64/lld/) packages.
+They must be version 8.x.
+
 Installing TinyGo should now be as easy as:
 
 ```shell
