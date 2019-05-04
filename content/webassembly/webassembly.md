@@ -107,8 +107,9 @@ If you have used explicit exports, you can call them by invoking them under the
 `wasm.exports` namespace. See the `export` directory in the examples for an
 example of this.
 
-In addition to this piece of JavaScript, it is important that the file is served
-with the correct `Content-Type` header set.
+In addition to the JavaScript, it is important the wasm file is served with the
+[`Content-Type`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type)
+header set to `application/wasm`.  Without it, most browsers won't run it.
 
 ```go
 package main
@@ -125,14 +126,25 @@ func main() {
 	fs := http.FileServer(http.Dir(dir))
 	log.Print("Serving " + dir + " on http://localhost:8080")
 	http.ListenAndServe(":8080", http.HandlerFunc(func(resp http.ResponseWriter, req *http.Request) {
+		resp.Header().Add("Cache-Control", "no-cache")
 		if strings.HasSuffix(req.URL.Path, ".wasm") {
 			resp.Header().Set("content-type", "application/wasm")
 		}
-
 		fs.ServeHTTP(resp, req)
-	}))
-}
+	}))}
 ```
 
-This simple server serves anything inside the `./html` directory on port `8080`,
-setting any `*.wasm` files `Content-Type` header appropriately.
+This simple server serves anything inside the `./html` directory on port
+`8080`, setting any `*.wasm` files `Content-Type` header appropriately.
+
+For development purposes (**only!**), it also sets the `Cache-Control` header
+so your browser doesn't cache the files.  This is useful while developing, to
+ensure your browser displays the newest wasm when you recompile.
+
+In a production environment you **probably wouldn't** want to set the
+`Cache-Control` header like this.  Caching is generally beneficial for end
+users.
+
+Further information on the `Cache-Control` header can be found here:
+
+* https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control
