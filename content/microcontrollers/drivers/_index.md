@@ -6,7 +6,7 @@ weight: 90
 
 # Drivers
 
-TinyGo has driver support for 17 different sensors and devices such as digital accelerometers and multicolor LEDs.
+TinyGo has driver support for 19 different sensors and devices such as digital accelerometers and multicolor LEDs.
 
 All of the drivers code is in the TinyGo Drivers repository located at [https://github.com/tinygo-org/drivers/](https://github.com/tinygo-org/drivers/).
 
@@ -23,9 +23,11 @@ All of the drivers code is in the TinyGo Drivers repository located at [https://
 | [HUB75 RGB led matrix](https://cdn-learn.adafruit.com/downloads/pdf/32x16-32x32-rgb-led-matrix.pdf) | SPI |
 | [LIS3DH accelerometer](https://www.st.com/resource/en/datasheet/lis3dh.pdf) | I2C |
 | [MAG3110 magnetometer](https://www.nxp.com/docs/en/data-sheet/MAG3110.pdf) | I2C |
+| [BBC micro:bit LED matrix](https://github.com/bbcmicrobit/hardware/blob/master/SCH_BBC-Microbit_V1.3B.pdf) | GPIO |
 | [MMA8653 accelerometer](https://www.nxp.com/docs/en/data-sheet/MMA8653FC.pdf) | I2C |
 | [MPU6050 accelerometer/gyroscope](https://store.invensense.com/datasheets/invensense/MPU-6050_DataSheet_V3%204.pdf) | I2C |
 | [PCD8544 display](http://eia.udg.edu/~forest/PCD8544_1.pdf) | SPI |
+| [SSD1306 OLED display](https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf) | I2C / SPI |
 | [Thermistor](https://www.farnell.com/datasheets/33552.pdf) | ADC |
 | [VL53L1X time-of-flight distance sensor](https://www.st.com/resource/en/datasheet/vl53l1x.pdf) | I2C |
 | [WS2812 RGB LED](https://cdn-shop.adafruit.com/datasheets/WS2812.pdf) | GPIO |
