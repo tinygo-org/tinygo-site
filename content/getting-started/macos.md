@@ -47,6 +47,17 @@ In order to develop for ARM-based microcontrollers you will need to install LLVM
 brew install llvm
 ```
 
+{{% notice warning %}}
+When you install llvm using homebrew, there will be no symlink into /usr/local
+and the commands will not be utomatically available. You can solve this by extending the
+PATH when you run tinygo:
+
+```shell
+PATH=/usr/local/Cellar/llvm/8.0.0/bin:$PATH tinygo ...
+```
+
+{{% /notice %}}
+
 #### AVR (Arduino)
 
 If you want to compile code for AVR-based microcontrollers such as Arduino, you will need to install gcc-avr:
