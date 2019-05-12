@@ -1,5 +1,7 @@
 # TinyGo Web Site
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/83fc0c21-220b-4d35-ad59-3d48f31bb4b6/deploy-status)](https://app.netlify.com/sites/tinygo/deploys)
+
 This is the web site for TinyGo.
 
 Built using Hugo:
@@ -32,18 +34,9 @@ Now you should be able to run the site locally:
 
 Once the site code is running locally, you can navigate to it by going to http://localhost:1313
 
-## Deploy to GH Pages
+## Deploy to Netlify
 
-Perform the one time setup of getting the `gh-pages` branch into your local tree:
-
-    git checkout gh-pages
-    git checkout master
-
-Now, assuming you have the correct permissions, you can deploy the site code.
-
-Commit all changes to master.
-
-Run `publish.sh` script.
+Pushing to the `master` branch automatically deploys the latest site to Netlify.
 
 That's it.
 
