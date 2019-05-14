@@ -8,7 +8,7 @@ weight: 3
 
 TinyGo lets you run Go directly on microcontrollers.
 
-Click to see the list of supported hardware, such as the Arduino Uno and micro:bit.
+TinyGo has support for 13 different boards such as the Arduino Uno and micro:bit. Click to see the supported hardware.
 
 We also give you the ability to add new boards. If your target isn't listed here, please raise an issue in the [issue tracker](https://github.com/tinygo-org/tinygo/issues).
 
