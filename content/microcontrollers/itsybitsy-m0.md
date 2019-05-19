@@ -1,5 +1,5 @@
 ---
-title: "ItsyBitsy M0"
+title: "Adafruit ItsyBitsy M0"
 weight: 3
 ---
 

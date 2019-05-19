@@ -1,5 +1,5 @@
 ---
-title: "Circuit Playground Express"
+title: "Adafruit Circuit Playground Express"
 weight: 3
 ---
 

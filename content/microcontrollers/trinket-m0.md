@@ -1,5 +1,5 @@
 ---
-title: "Trinket M0"
+title: "Adafruit Trinket M0"
 weight: 3
 ---
 
