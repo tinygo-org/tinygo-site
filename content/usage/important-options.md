@@ -58,3 +58,12 @@ Only allocate memory, never free it. This is the simplest allocator possible and
 
  - `-gc=marksweep`
 Simple conservative mark/sweep garbage collector. This collector does not yet work on all platforms. Also, the performance of the collector is highly unpredictable as any allocation may trigger a garbage collection cycle.
+
+- `-panic`
+Use the specified panic strategy. That is, what the compiled program should do when a panic occurs.
+
+  - `-panic=abort`
+    Print the panic message and abort the program. This is the default. On a desktop system this results in a call to [`abort`](https://manpages.debian.org/stretch/manpages-dev/abort.3.en.html). On WebAssembly this is implemented as the [`unreachable`](https://webassembly.github.io/spec/core/syntax/instructions.html#syntax-instr-control) instruction. On microcontrollers, it results in a hang (endless loop).
+
+  - `-panic=trap`
+    Do not print the panic message but instead of printing anything, it directly hits a trap instruction. This instruction varies by platform but it will result in the immediate termination of the program. It could either exit with `SIGILL` or cause a call to the `HardFault_Handler`. It can be used to reduce the size of the compiled program while keeping standard Go safety rules intact at the cost of debuggability.
