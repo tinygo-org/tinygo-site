@@ -7,15 +7,15 @@ While TinyGo supports a big subset of the Go language, not everything is support
 
 Here is a list of features that are supported:
 
-* The subset of Go that directly translates to C is well supported. This includes all basic types (except for `complex64` and `complex128`) and all regular control flow (including `switch`).
+* The subset of Go that directly translates to C is well supported. This includes all basic types and all regular control flow (including `switch`).
 * Slices are well supported, with the exception of 3-index slicing (see below).
-* Interfaces, while tested less than other features, are quite stable and should work well in almost all cases. Type switches and type asserts are also supported, as well as calling methods on interfaces.
+* Interfaces are quite stable and should work well in almost all cases. Type switches and type asserts are also supported, as well as calling methods on interfaces.
 * Closures and bound methods are supported, for example inline anonymous (lambda-like) functions.
 * The `defer` keyword is supported, with the exception of deferring a call on a function pointer. Immediately applied functions that are deferred are supported, however. In practice, function pointers are little used in deferred calls.
 
 ## Concurrency
 
-At the time of writing (2019-04-18), support for goroutines and channels is weak. There is some support, but you will often encounter compiler errors when trying to use concurrency in more complicated ways (for example with function pointers). Also, some things may unexpectedly allocate memory like calling a function that blocks. This situation should certainly improve in the future, but at the moment you shouldn't rely on concurrency features to work well.
+At the time of writing (2019-07-05), support for goroutines and channels has not been fully realized but simple programs usually work. There may be problems with function pointers or starting more than two goroutines. Also, some things may unexpectedly allocate heap memory like calling a function that blocks. This situation should certainly improve in the future: at the moment, you should treat goroutines as an experimental feature.
 
 ## Cgo
 
@@ -27,14 +27,9 @@ Many packages, especially in the standard library, rely on reflection to work. T
 
 ## Maps
 
-Support for maps is still very limited and in general you shouldn't rely on their availability. The main reason they are supported is so the `unicode` package compiles.
+Support for maps is not yet complete but is usable. You can use any type as a value, but only some types are acceptable as map keys. Also, they have not been optimized for performance and will cause linear lookup times in some cases.
 
-To use maps, you will currently have to deal with the following limitations:
-
-* A map can store at most 8 entries. The exception is when it is initialized as a global variable, in which case it can store more entries.
-* Map keys must be either strings, integers, or (nested) structs that contain only integers. Supporting more will likely depend on reflection for code size reasons.
-* Map operations are likely to be very slow.
-* The current implementation is little tested so may contain bugs.
+Types supported as map keys include strings, integers, pointers, and structs/arrays that contain only these types. More complex types will depend on better reflection support.
 
 ## Standard library
 
@@ -53,5 +48,4 @@ Careful design may avoid memory allocations in main loops. You may want to compi
 Some features are little used and there hasn't been a real need to implement them yet. These include:
 
 * `recover()`: this can be useful sometimes but in general most programs work just fine with a `panic()` that simply aborts. Supporting `recover()` will also likely increase code size so it has also been left out at the moment for that reason. When `recover()` gets implemented, it will likely be disabled by default and can be enabled with a compiler flag.
-* Arithmetic on complex numbers is not yet supported (add, sub, mul, div). However, the `complex`, `real` and `imag` builtins, as well as complex number constants, are all supported. Apart from the fact that complex number operations are little used, they are also [hard to implement correctly](https://github.com/golang/go/issues/29846).
 * Slice expessions with 3 indexes that sets the capacity as well as the length. This feature was [introduced in Go 1.2](https://tip.golang.org/doc/go1.2#three_index).
