@@ -13,4 +13,4 @@ Just want to see the code? Go to the Github repository at [https://github.com/ti
 
 TinyGo also has support for several different devices such as accelerometers and magnetometers. Check out the Github repository at [https://github.com/tinygo-org/drivers](https://github.com/tinygo-org/drivers) for more information.
 
-Ready to get started? Click on.
+Ready to get started? [Click here](getting-started).
