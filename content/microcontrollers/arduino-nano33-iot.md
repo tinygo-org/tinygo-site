@@ -45,7 +45,7 @@ Once you have installed the needed BOSSA command line utility, as in the previou
 - Build and flash your TinyGo code using the `tinygo flash` command. This command flashes the Arduino Nano33 IoT with the blinky1 example:
 
 ```
-tinygo build -target=arduino-nano33 examples/blinky1
+tinygo flash -target=arduino-nano33 examples/blinky1
 ```
 
 - The Arduino Nano33 IoT board should restart and then begin running your program.
