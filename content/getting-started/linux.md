@@ -48,6 +48,11 @@ If you are only interested in compiling TinyGo code for WebAssembly then you are
 
 Otherwise, please continue with the installation of the additional requirements for your desired microcontroller.
 
+### Arch Linux
+
+There is an [AUR package](https://aur.archlinux.org/packages/tinygo-bin/)
+(`tinygo-bin`) available for the latest TinyGo release.
+
 ### Additional Requirements for Microcontrollers
 
 There are some additional requirements to compile TinyGo programs that can run on microcontrollers.
@@ -120,17 +125,6 @@ echo 'deb http://apt.llvm.org/stretch/ llvm-toolchain-stretch-8 main' | sudo tee
 wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
 sudo apt-get update
 sudo apt-get install clang-8 llvm-8-dev lld-8 libclang-8-dev
-```
-
-For Arch Linux, install the [clang](https://www.archlinux.org/packages/extra/x86_64/clang/),
-[llvm](https://www.archlinux.org/packages/extra/x86_64/llvm/) and
-[lld](https://www.archlinux.org/packages/extra/x86_64/lld/) packages.
-They must be version 8.x.
-
-Installing TinyGo should now be as easy as:
-
-```shell
-go install
 ```
 
 Note that you should not use `make` when you want to build using a
