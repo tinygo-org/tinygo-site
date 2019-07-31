@@ -24,8 +24,12 @@ The micro:bit comes with the [DAPLink bootloader](https://tech.microbit.org/soft
 
 - Plug your micro:bit into your computer's USB port.
 - The micro:bit board will appear to your computer like a USB drive.
-- Determine the path to the board, on Linux it will be something like `/media/[USERNAME]/[NAME OF THE BOARD]`.
-- Build your TinyGo program to the board in .hex format using `tinygo build -o=/media/[USERNAME]/[NAME OF THE BOARD]/flash.hex -target=microbit [PATH TO YOUR PROGRAM]` command.
+- Determine the path to the board
+    - on Linux it will be something like `/media/[USERNAME]/[NAME OF THE BOARD]`.
+    - on Mac it is `/Volumes/[NAME OF THE BOARD]`.
+- Build your TinyGo program to the board in .hex format 
+    - on Linux using `tinygo build -o=/media/[USERNAME]/[NAME OF THE BOARD]/flash.hex -target=microbit [PATH TO YOUR PROGRAM]` command.
+    - on Mac using `tinygo build -o=/Volumes/[NAME OF THE BOARD]/flash.hex -target=microbit [PATH TO YOUR PROGRAM]` command.
 - The micro:bit should restart and begin running your program.
 
 ### OpenOCD
