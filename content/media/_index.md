@@ -31,8 +31,14 @@ https://dev.to/sendilkumarn/reduce-your-webassembly-binaries-72-from-56kb-to-26k
 **Sendil Kumar N - "(Tiny)Go to WebAssembly"** - *July 5, 2019*  
 https://dev.to/sendilkumarn/tiny-go-to-webassembly-5168
 
+**Adafruit - "Using tinyGo on an Adafruit ItsyBitsy M0 board"** - *June 7, 2019*  
+https://blog.adafruit.com/2019/06/07/using-tinggo-on-an-adafruit-itsybitsy-m0-board-golang-tinygo-microcontrollers-adafruit-adafruit-deadprogram-tinggolang/
+
 **Ayke van Laëthem - "LLVM from a Go perspective"** - *April 28, 2019*  
 https://aykevl.nl/2019/04/llvm-from-go
+
+**Adafruit - "TinyGo – Go on Microcontrollers runs on Adafruit Circuit Playground Express"** - *March 12, 2019*  
+https://blog.adafruit.com/2019/03/12/tinygo-go-on-microcontrollers-tinygolang-tinygo-runs-on-adafruit-circuit-playground-express/
 
 **Ayke van Laëthem - "Goroutines in TinyGo"** - *February 25, 2019*  
 https://aykevl.nl/2019/02/tinygo-goroutines
