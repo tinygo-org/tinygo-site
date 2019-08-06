@@ -25,6 +25,9 @@ https://about.sourcegraph.com/go/gophercon-2019-small-is-going-big-go-on-microco
 **Ayke van Laëthem - "How the TinyGo playground simulates hardware"** - *July 17, 2019*  
 https://aykevl.nl/2019/07/tinygo-plaground-simulator
 
+**Sendil Kumar N - "Reduce your WebAssembly binaries 72% - from 56KB to 26KB to 16KB"** - *July 7, 2019*  
+https://dev.to/sendilkumarn/reduce-your-webassembly-binaries-72-from-56kb-to-26kb-to-16kb-40mi
+
 **Sendil Kumar N - "(Tiny)Go to WebAssembly"** - *July 5, 2019*  
 https://dev.to/sendilkumarn/tiny-go-to-webassembly-5168
 
