@@ -7,7 +7,7 @@ You can use our Docker image to be able to run the TinyGo compiler on your compu
 
 ## Installing
 
-    docker pull tinygo/tinygo
+    docker pull tinygo/tinygo:0.7.1
 
 ## Using
 
