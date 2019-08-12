@@ -28,7 +28,7 @@ To build and then flash a basic blink program for a micro:bit board:
 tinygo build -o=/media/[USERNAME]/[NAME OF THE BOARD]/flash.hex -target=microbit examples/microbit-blink
 ```
 
-The entire array of built-in LEDs on the micro:bit board should start to blink in unison.
+The top-left pixel of the built-in LED matrix on the micro:bit board should start to blink.
 
 ### Building/flashing a "blink" program for Arduino
 
