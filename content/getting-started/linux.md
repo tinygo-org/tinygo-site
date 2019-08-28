@@ -27,8 +27,8 @@ sudo dpkg -i tinygo_0.7.1_amd64.deb
 If you are on a Raspberry Pi or other ARM-based Linux computer, you should use this command instead:
 
 ```shell
-wget https://github.com/tinygo-org/tinygo/releases/download/v0.7.1/tinygo_0.7.1_armhf.deb
-sudo dpkg -i tinygo_0.7.1_armhf.deb
+wget https://github.com/tinygo-org/tinygo/releases/download/v0.7.0/tinygo_0.7.0_armhf.deb
+sudo dpkg -i tinygo_0.7.0_armhf.deb
 ```
 
 You will need to ensure that the path to the `tinygo` executable file is in your `PATH` variable.
