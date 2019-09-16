@@ -28,6 +28,18 @@ The Circuit Playground Express comes with the [UF2 bootloader](https://github.co
 - Build your TinyGo program to the board in `.uf2` format using the `tinygo build -o=/media/[USERNAME]/[NAME OF THE BOARD]/flash.uf2 -target=circuitplay-express [PATH TO YOUR PROGRAM]` command.
 - The Circuit Playground Express board should restart and then begin running your program.
 
+### CLI Flashing
+
+Once you have updated your Circuit Playground Express board the first time, after that you should be able to flash it entirely from the command line using the `stty` command like this:
+
+```
+stty -F /dev/ttyACM0 1200 hupcl; tinygo build -o=/media/[USERNAME]/[NAME OF THE BOARD]/flash.uf2 -target=circuitplay-express [PATH TO YOUR PROGRAM]
+```
+
+Replace `/dev/ttyACM0` in the command above with the correct USB port name for your board.
+
+The Circuit Playground Express board should restart and then begin running your program.
+
 ## Notes
 
 You can use the USB port to the Circuit Playground Express as a serial port. `UART0` refers to this connection.
