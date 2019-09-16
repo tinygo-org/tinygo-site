@@ -50,6 +50,18 @@ tinygo flash -target=arduino-nano33 examples/blinky1
 
 - The Arduino Nano33 IoT board should restart and then begin running your program.
 
+### CLI Flashing
+
+Once you have updated your Arduino Nano33 IoT board the first time, after that you should be able to flash it entirely from the command line using the `stty` command like this:
+
+```
+stty -F /dev/ttyACM0 1200 hupcl; tinygo flash -target=arduino-nano33 examples/blinky1
+```
+
+Replace `/dev/ttyACM0` in the command above with the correct USB port name for your board.
+
+- The Arduino Nano33 IoT board should restart and then begin running your program.
+
 ## Notes
 
 You can use the USB port to the Arduino Nano33 IoT as a serial port. `UART0` refers to this connection.
