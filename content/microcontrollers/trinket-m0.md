@@ -27,3 +27,15 @@ The Trinket M0 comes with the [UF2 bootloader](https://github.com/Microsoft/uf2)
 - The Trinket M0 board will appear to your computer like a USB drive. Determine the path to the board, for example on Linux it will be something like `/media/[USERNAME]/[NAME OF THE BOARD]`.
 - Build your TinyGo program to the board in `.uf2` format using the `tinygo build -o=/media/[USERNAME]/[NAME OF THE BOARD]/flash.uf2 -target=trinket-m0 [PATH TO YOUR PROGRAM]` command.
 - The Trinket M0 board should restart and then begin running your program.
+
+### CLI Flashing
+
+Once you have updated your Trinket M0 board the first time, after that you should be able to flash it entirely from the command line using the `stty` command like this:
+
+```
+stty -F /dev/ttyACM0 1200 hupcl; tinygo build -o=/media/[USERNAME]/[NAME OF THE BOARD]/flash.uf2 -target=trinket-m0 [PATH TO YOUR PROGRAM]
+```
+
+Replace `/dev/ttyACM0` in the command above with the correct USB port name for your board.
+
+The Trinket M0 board should restart and then begin running your program.
