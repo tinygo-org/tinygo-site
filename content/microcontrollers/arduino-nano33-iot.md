@@ -16,6 +16,12 @@ The [Arduino Nano33 IoT](https://store.arduino.cc/nano-33-iot) is a very small A
 | ADC      | YES | YES |
 | PWM      | YES | YES |
 
+## Pin Mapping
+
+Since the pin labels are located on the other side of the board, here is a picture showing the pin numbering from the front side perspective:
+
+![Arduino Nano33 IoT](../../images/nano33pinmap.jpg)
+
 ## Installing BOSSA
 
 In order to flash your TinyGo programs onto the Arduino Nano33 IoT board, you will need to install the "bossac" command line utility which is part of the [BOSSA command line utilities](https://github.com/shumatech/BOSSA).
