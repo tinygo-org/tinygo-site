@@ -30,13 +30,7 @@ convention]({{<ref "calling-convention.md">}}) for details. The function pointer
 may be a real pointer or an arbitrary number, depending on the target platform.
 
 ### goroutine
-A goroutine is a linked list of [LLVM
-coroutines](https://llvm.org/docs/Coroutines.html). Every blocking call will
-create a new coroutine and pass itself to the coroutine as a parameter (see
-[calling convention]({{<ref "calling-convention.md">}})). The callee then
-re-activates the caller once it would otherwise return to the parent.
-Non-blocking calls are normal calls, unaware of the fact that they're running on
-a particular goroutine. For details, see
-[src/runtime/scheduler.go](https://github.com/tinygo-org/tinygo/blob/master/src/runtime/scheduler.go).
+Goroutines are implemented differently depending on the platform.
 
-This is rather expensive and should be optimized in the future. But the way it works now, a single stack can be used for all goroutines lowering memory consumption.
+  * For most platforms, it is implemented as a linked list of [LLVM coroutines](https://llvm.org/docs/Coroutines.html). Every blocking call will create a new coroutine and pass itself to the coroutine as a parameter (see [calling convention]({{<ref "calling-convention.md">}})). The callee then re-activates the caller once it would otherwise return to the parent.  Non-blocking calls are normal calls, unaware of the fact that they're running on a particular goroutine. For details, see [src/runtime/scheduler.go](https://github.com/tinygo-org/tinygo/blob/master/src/runtime/scheduler.go). This is rather expensive but has the advantage of being portable and requiring only a single stack.
+  * For Cortex-M (which includes most supported microcontrollers as of this time), a real stack is allocated and scheduling happens much like the main Go implementation by saving and restoring registers in assembly.
