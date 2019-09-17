@@ -11,9 +11,15 @@ Microcontrollers have very little RAM and execute code directly from flash. Also
 
 ARM Cortex-M processors are well supported. There is support for multiple chips and the backend appears to be stable. In fact, it uses the same underlying technology (LLVM) as the proprietary ARM compiler for code generation.
 
+Please note that while Cortex-M is well supported, every chip and chip family needs to have some special support added for things like the memory map, clock configuration, timekeeping (`time.Now` and friends), and some more things. This extra code is required for TinyGo to be usable on a given chip. If you want to add support for a new board, take a look at [this wiki page](https://github.com/tinygo-org/tinygo/wiki/Adding-a-new-board).
+
 ## AVR
 
-The AVR backend of LLVM is still experimental so you may encounter bugs.
+The AVR backend of LLVM is still experimental so you may encounter bugs. Larger programs often fail to work due to this.
+
+## RISC-V
+
+There is some support for RISC-V, in particular the [HiFive1 rev B](https://github.com/tinygo-org/tinygo/wiki/Adding-a-new-board) board.
 
 ## Xtensa
 

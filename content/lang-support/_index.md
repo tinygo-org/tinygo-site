@@ -8,10 +8,10 @@ While TinyGo supports a big subset of the Go language, not everything is support
 Here is a list of features that are supported:
 
 * The subset of Go that directly translates to C is well supported. This includes all basic types and all regular control flow (including `switch`).
-* Slices are well supported, with the exception of 3-index slicing (see below).
-* Interfaces are quite stable and should work well in almost all cases. Type switches and type asserts are also supported, as well as calling methods on interfaces.
+* Slices are well supported.
+* Interfaces are quite stable and should work well in almost all cases. Type switches and type asserts are also supported, as well as calling methods on interfaces. The only exception is comparing two interface values (but comparing against `nil` works).
 * Closures and bound methods are supported, for example inline anonymous (lambda-like) functions.
-* The `defer` keyword is supported, with the exception of deferring a call on a function pointer. Immediately applied functions that are deferred are supported, however. In practice, function pointers are little used in deferred calls.
+* The `defer` keyword is supported, with the exception of a deferred call on an interface. This happens very infrequently in practice.
 
 ## Concurrency
 
@@ -23,7 +23,7 @@ While TinyGo embeds the [Clang](https://clang.llvm.org/) compiler to parse `impo
 
 ## Reflection
 
-Many packages, especially in the standard library, rely on reflection to work. The `reflect` package in the standards library is closely coupled to the main Go compilers and the runtime, so will have to be replaced. [Work is underway](https://github.com/tinygo-org/tinygo/pull/104) that provides at least initial support for reflection.
+Many packages, especially in the standard library, rely on reflection to work. The `reflect` package has been re-implemented in TinyGo and most common types like numbers, strings, and structs are supported now.
 
 ## Maps
 
@@ -33,13 +33,13 @@ Types supported as map keys include strings, integers, pointers, and structs/arr
 
 ## Standard library
 
-Due to the above missing pieces and because parts of the standard library depend on the particular compiler/runtime in use, many packages do not yet compile.
+Due to the above missing pieces and because parts of the standard library depend on the particular compiler/runtime in use, many packages do not yet compile. See the [list of compiling packages here]({{<ref "stdlib.md">}}).
 
 ## Garbage collection
 
 While not directly a language feature (the Go spec doesn't mention it), garbage collection is important for most Go programs to make sure their memory usage stays in reasonable bounds.
 
-Garbage collection is currently only supported on ARM microcontrollers (Cortex-M). For this platform, a simple conservative mark-sweep collector has been implemented. Other platforms will just allocate memory without ever freeing it.
+Garbage collection is currently supported on all platforms except AVR. A simple conservative mark-sweep collector is used that will trigger a collection cycle when the heap runs out (that is fixed at compile time) or when requested manually using `runtime.GC()`.
 
 Careful design may avoid memory allocations in main loops. You may want to compile with `-gc=none` and look at link errors to find out where allocations happen: the compiler inserts calls to `runtime.alloc` to allocate memory. For more information, see [heap allocation]({{<ref "heap-allocation.md">}}).
 
@@ -48,4 +48,3 @@ Careful design may avoid memory allocations in main loops. You may want to compi
 Some features are little used and there hasn't been a real need to implement them yet. These include:
 
 * `recover()`: this can be useful sometimes but in general most programs work just fine with a `panic()` that simply aborts. Supporting `recover()` will also likely increase code size so it has also been left out at the moment for that reason. When `recover()` gets implemented, it will likely be disabled by default and can be enabled with a compiler flag.
-* Slice expessions with 3 indexes that sets the capacity as well as the length. This feature was [introduced in Go 1.2](https://tip.golang.org/doc/go1.2#three_index).

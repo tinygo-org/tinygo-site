@@ -3,7 +3,7 @@ title: "Heap allocation"
 weight: 2
 ---
 
-Many operations in Go rely on heap allocation. Some of these heap allocations are optimized away, but not all of them. Also, TinyGo does not yet contain a garbage collector so heap allocation must be avoided whenever possible outside of initialization code.
+Many operations in Go rely on heap allocation. TinyGo will try to optimize them away using escape analysis, but that is not always possible in practice.
 
 These operations currently do heap allocations:
 
@@ -53,6 +53,6 @@ These operations currently do heap allocations:
 
 * Closures where the collection of shared variables between the closure and the main function is larger than a pointer.
 
-* Creating and modifying maps. Maps have *very* little support at the moment and should not yet be used. They exist mostly for compatibility with some standard library packages.
+* Creating and modifying maps.
 
-* Starting goroutines. There is limited support for goroutines and currently they are not at all efficient. See [Go language support]({{<ref "lang-support/_index.md">}}) for details.
+* Starting goroutines.
