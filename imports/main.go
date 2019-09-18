@@ -150,6 +150,10 @@ func checkPackages(goroot string) error {
 				if len(msg) == 0 {
 					return errors.New("tinygo exited with error but without any output!")
 				}
+				lines := strings.Split(msg, "\n")
+				if len(lines) > 15 {
+					msg = strings.Join(lines[:15], "\n") + "\n[...more lines following...]"
+				}
 				pkg.Output = msg
 			} else {
 				// This package could be compiled!
