@@ -8,6 +8,9 @@ Here are some of the videos, podcasts, and blog posts written about TinyGo.
 
 ### Podcasts/Videos
 
+**Gophercon 2019 - "Small is Going Big: Go on Microcontrollers"** - *July 26, 2019*
+https://www.youtube.com/watch?v=EiB9ZVrvrz0
+
 **The Changelog - "Go is eating the world of software"** - *July 25, 2019*
 https://changelog.com/podcast/354
 
@@ -21,6 +24,9 @@ https://www.youtube.com/watch?v=osVHH7rjpxs
 https://video.fosdem.org/2019/K.1.105/go_on_microcontrollers.mp4
 
 ### Blog posts
+
+**Arduino - "TinyGo on Arduino"** - *August 23, 2019*
+https://blog.arduino.cc/2019/08/23/tinygo-on-arduino/
 
 **Sourcegraph - "Liveblog - GopherCon 2019 - Small is going big: Go On microcontrollers"** - *July 26, 2019*
 https://about.sourcegraph.com/go/gophercon-2019-small-is-going-big-go-on-microcontrollers
