@@ -3,7 +3,7 @@ title: "Adafruit ItsyBitsy M4"
 weight: 3
 ---
 
-The [Adafruit ItsyBitsy M4](https://www.adafruit.com/product/3727) is very compact ARM development board based on the Atmel [SAMD51](https://www.microchip.com/wwwproducts/en/ATSAMD51G19A) family of SoC.
+The [Adafruit ItsyBitsy M4](https://www.adafruit.com/product/3800) is very compact ARM development board based on the Atmel [SAMD51](https://www.microchip.com/wwwproducts/en/ATSAMD51G19A) family of SoC.
 
 ## Interfaces
 
