@@ -59,17 +59,17 @@ brew install avrdude
 
 ## Source Install
 
-First, obtain the TinyGo source code:
+If you are using Go 1.11 or Go 1.12, make sure that you first turn on Go modules support, like this:
 
 ```shell
-go get -d github.com/tinygo-org/tinygo
-cd $GOPATH/src/github.com/tinygo-org/tinygo
+export GO111MODULE=on
 ```
 
-Once you have the code, you can install the various prerequisites using [`dep`](https://golang.github.io/dep/):
+Now, obtain the TinyGo source code, which should also obtain the various needed dependencies:
 
 ```shell
-dep ensure
+go get -d -u github.com/tinygo-org/tinygo
+cd $GOPATH/src/github.com/tinygo-org/tinygo
 ```
 
 You now have two options: build LLVM manually or use LLVM from Homebrew. The
