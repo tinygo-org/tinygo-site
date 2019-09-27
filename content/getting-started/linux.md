@@ -48,6 +48,14 @@ If you are only interested in compiling TinyGo code for WebAssembly then you are
 
 Otherwise, please continue with the installation of the additional requirements for your desired microcontroller.
 
+### Fedora Linux
+
+There is an [Fedora 30 package](https://apps.fedoraproject.org/packages/tinygo) available for the latest TinyGo release. To install it:
+
+```shell
+sudo dnf install tinygo
+```
+
 ### Arch Linux
 
 There is an [AUR package](https://aur.archlinux.org/packages/tinygo-bin/)
