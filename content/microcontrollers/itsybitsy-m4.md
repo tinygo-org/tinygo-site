@@ -22,20 +22,59 @@ The [Adafruit ItsyBitsy M4](https://www.adafruit.com/product/3800) is very compa
 
 The ItsyBitsy M4 comes with the [UF2 bootloader](https://github.com/Microsoft/uf2) already installed.
 
+### CLI Flashing on Linux
+
 - Plug your ItsyBitsy M4 into your computer's USB port.
-- Press the "RESET" button on the board two times to get the ItsyBitsy M4 board ready to receive code.
-- The ItsyBitsy M4 board will appear to your computer like a USB drive. Determine the path to the board, for example on Linux it will be something like `/media/[USERNAME]/[NAME OF THE BOARD]`.
-- Build your TinyGo program to the board in `.uf2` format using the `tinygo build -o=/media/[USERNAME]/[NAME OF THE BOARD]/flash.uf2 -target=itsybitsy-m4 [PATH TO YOUR PROGRAM]` command.
+- Flash your TinyGo program to the board using this command:
+
+    ```shell
+    tinygo flash -target=itsybitsy-m4 [PATH TO YOUR PROGRAM]
+    ```
+
 - The ItsyBitsy M4 board should restart and then begin running your program.
 
-### CLI Flashing
+### CLI Flashing on macOS
 
-Once you have updated your ItsyBitsy M4 board the first time, after that you should be able to flash it entirely from the command line using the `stty` command like this:
+In order to talk to flash the board using macOS, you need to discover how macOS system has named the serial port.
 
-```
-stty -F /dev/ttyACM0 1200 hupcl; tinygo build -o=/media/[USERNAME]/[NAME OF THE BOARD]/flash.uf2 -target=itsybitsy-m4 [PATH TO YOUR PROGRAM]
-```
+- Plug your ItsyBitsy M4 into your computer's USB port.
+- Run this command to display the connected USB devices:
 
-Replace `/dev/ttyACM0` in the command above with the correct USB port name for your board.
+    ```shell
+    ls /dev | grep usb
+    ```
 
-The ItsyBitsy M4 board should restart and then begin running your program.
+    The above command should result in output like this:
+
+    ```shell
+    /dev/cu.usbmodem141201
+    /dev/tty.usbmodem141201
+    ```
+
+- Using this information, you should now be able to flash your TinyGo program to the board using this command:
+
+    ```shell
+    tinygo flash -target=itsybitsy-m4 -port=[PORT TO YOUR BOARD] [PATH TO YOUR PROGRAM]
+    ```
+
+    Replace `[PORT TO YOUR BOARD]` in the command above with the correct USB port name for your board.
+
+- The ItsyBitsy M4 board should restart and then begin running your program.
+
+### Troubleshooting
+
+If you have troubles getting your ItsyBitsy M4 board to receive code, try this:
+
+- Press the "RESET" button on the board two times to get the ItsyBitsy M4 board ready to receive code.
+- The ItsyBitsy M4 board will appear to your computer like a USB drive.
+- Now try running the command as above:
+
+    ```shell
+    tinygo flash -target=itsybitsy-m4 [PATH TO YOUR PROGRAM]
+    ```
+
+Once you have updated your ItsyBitsy M4 board the first time, after that you should be able to flash it entirely from the command line.
+
+## Notes
+
+You can use the USB port to the ItsyBitsy M4 as a serial port. `UART0` refers to this connection.
