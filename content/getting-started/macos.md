@@ -28,7 +28,7 @@ You can test that the installation is working properly by running this code whic
 
 ```shell
 $ tinygo version
-tinygo version 0.8.0 darwin/amd64
+tinygo version 0.9.0 darwin/amd64
 ```
 
 If you are only interested in compiling TinyGo code for WebAssembly then you are done with the installation.
@@ -44,7 +44,7 @@ There are some additional requirements to compile TinyGo programs that can run o
 In order to develop for ARM-based microcontrollers you will need to install LLVM 8:
 
 ```shell
-brew install llvm
+brew install llvm@8
 ```
 
 #### AVR (Arduino)
@@ -59,7 +59,7 @@ brew install avrdude
 
 ## Source Install
 
-If you are using Go 1.11 or Go 1.12, make sure that you first turn on Go modules support, like this:
+Make sure that you first turn on Go modules support, like this:
 
 ```shell
 export GO111MODULE=on
@@ -128,7 +128,7 @@ This results in a `tinygo` binary in the `build` directory:
 
 ```shell
 $ ./build/tinygo version
-tinygo version 0.8.0 darwin/amd64
+tinygo version 0.9.0 darwin/amd64
 ```
 
 ### Additional Requirements for Microcontrollers
