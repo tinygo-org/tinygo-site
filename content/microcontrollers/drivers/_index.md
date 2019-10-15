@@ -6,7 +6,7 @@ weight: 90
 
 # Drivers
 
-TinyGo has driver support for 32 different sensors and devices such as digital accelerometers and multicolor LEDs.
+TinyGo has driver support for 33 different sensors and devices such as digital accelerometers and multicolor LEDs.
 
 All of the drivers code is in the TinyGo Drivers repository located at [https://github.com/tinygo-org/drivers/](https://github.com/tinygo-org/drivers/).
 
@@ -40,6 +40,7 @@ All of the drivers code is in the TinyGo Drivers repository located at [https://
 | [ST7735 TFT color display](https://www.crystalfontz.com/controllers/Sitronix/ST7735R/319/) | SPI |
 | [ST7789 TFT color display](https://cdn-shop.adafruit.com/product-files/3787/3787_tft_QT154H2201__________20190228182902.pdf) | SPI |
 | [Thermistor](https://www.farnell.com/datasheets/33552.pdf) | ADC |
+| [VEML6070 UV light sensor](https://www.vishay.com/docs/84277/veml6070.pdf) | I2C |
 | [VL53L1X time-of-flight distance sensor](https://www.st.com/resource/en/datasheet/vl53l1x.pdf) | I2C |
 | [Waveshare 2.13" e-paper display](https://www.waveshare.com/w/upload/e/e6/2.13inch_e-Paper_Datasheet.pdf) | SPI |
 | [Waveshare 2.13" (B & C) e-paper display](https://www.waveshare.com/w/upload/d/d3/2.13inch-e-paper-b-Specification.pdf) | SPI |
