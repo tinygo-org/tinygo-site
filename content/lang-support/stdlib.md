@@ -21,13 +21,14 @@ compress/zlib |  <span style="color: green">✔</span> yes  |
 container/heap |  <span style="color: green">✔</span> yes  | 
 container/list |  <span style="color: green">✔</span> yes  | 
 container/ring |  <span style="color: green">✔</span> yes  | 
-context |  <span style="color: green">✔</span> yes  | 
+context |  [<span style="color: red">✗</span> no](#context)  | 
 crypto |  <span style="color: green">✔</span> yes  | 
 crypto/aes |  <span style="color: green">✔</span> yes  | 
 crypto/cipher |  <span style="color: green">✔</span> yes  | 
 crypto/des |  <span style="color: green">✔</span> yes  | 
 crypto/dsa |  [<span style="color: red">✗</span> no](#crypto-dsa)  | 
 crypto/ecdsa |  [<span style="color: red">✗</span> no](#crypto-ecdsa)  | 
+crypto/ed25519 |  [<span style="color: red">✗</span> no](#crypto-ed25519)  | 
 crypto/elliptic |  [<span style="color: red">✗</span> no](#crypto-elliptic)  | 
 crypto/hmac |  <span style="color: green">✔</span> yes  | 
 crypto/md5 |  <span style="color: green">✔</span> yes  | 
@@ -52,14 +53,14 @@ debug/plan9obj |  [<span style="color: red">✗</span> no](#debug-plan9obj)  |
 encoding |  <span style="color: green">✔</span> yes  | 
 encoding/ascii85 |  <span style="color: green">✔</span> yes  | 
 encoding/asn1 |  [<span style="color: red">✗</span> no](#encoding-asn1)  | 
-encoding/base32 |  [<span style="color: red">✗</span> no](#encoding-base32)  | 
-encoding/base64 |  [<span style="color: red">✗</span> no](#encoding-base64)  | 
+encoding/base32 |  <span style="color: green">✔</span> yes  | 
+encoding/base64 |  <span style="color: green">✔</span> yes  | 
 encoding/binary |  <span style="color: green">✔</span> yes  | 
 encoding/csv |  <span style="color: green">✔</span> yes  | 
 encoding/gob |  [<span style="color: red">✗</span> no](#encoding-gob)  | 
 encoding/hex |  <span style="color: green">✔</span> yes  | 
 encoding/json |  [<span style="color: red">✗</span> no](#encoding-json)  | 
-encoding/pem |  [<span style="color: red">✗</span> no](#encoding-pem)  | 
+encoding/pem |  <span style="color: green">✔</span> yes  | 
 encoding/xml |  [<span style="color: red">✗</span> no](#encoding-xml)  | 
 errors |  <span style="color: green">✔</span> yes  | 
 expvar |  [<span style="color: red">✗</span> no](#expvar)  | 
@@ -147,6 +148,23 @@ unicode |  <span style="color: green">✔</span> yes  |
 unicode/utf16 |  <span style="color: green">✔</span> yes  | 
 unicode/utf8 |  <span style="color: green">✔</span> yes  | 
 unsafe |  <span style="color: green">✔</span> yes  | 
+vendor/golang.org/x/crypto/chacha20poly1305 |  <span style="color: green">✔</span> yes  | 
+vendor/golang.org/x/crypto/cryptobyte |  [<span style="color: red">✗</span> no](#vendor-golang.org-x-crypto-cryptobyte)  | 
+vendor/golang.org/x/crypto/cryptobyte/asn1 |  <span style="color: green">✔</span> yes  | 
+vendor/golang.org/x/crypto/curve25519 |  <span style="color: green">✔</span> yes  | 
+vendor/golang.org/x/crypto/hkdf |  <span style="color: green">✔</span> yes  | 
+vendor/golang.org/x/crypto/poly1305 |  <span style="color: green">✔</span> yes  | 
+vendor/golang.org/x/net/dns/dnsmessage |  <span style="color: green">✔</span> yes  | 
+vendor/golang.org/x/net/http/httpguts |  [<span style="color: red">✗</span> no](#vendor-golang.org-x-net-http-httpguts)  | 
+vendor/golang.org/x/net/http/httpproxy |  [<span style="color: red">✗</span> no](#vendor-golang.org-x-net-http-httpproxy)  | 
+vendor/golang.org/x/net/http2/hpack |  [<span style="color: red">✗</span> no](#vendor-golang.org-x-net-http2-hpack)  | 
+vendor/golang.org/x/net/idna |  <span style="color: green">✔</span> yes  | 
+vendor/golang.org/x/net/nettest |  [<span style="color: red">✗</span> no](#vendor-golang.org-x-net-nettest)  | 
+vendor/golang.org/x/sys/cpu |  <span style="color: green">✔</span> yes  | 
+vendor/golang.org/x/text/secure/bidirule |  <span style="color: green">✔</span> yes  | 
+vendor/golang.org/x/text/transform |  <span style="color: green">✔</span> yes  | 
+vendor/golang.org/x/text/unicode/bidi |  <span style="color: green">✔</span> yes  | 
+vendor/golang.org/x/text/unicode/norm |  <span style="color: green">✔</span> yes  | 
 
 
 
@@ -156,11 +174,11 @@ unsafe |  <span style="color: green">✔</span> yes  |
 The compiler gave the following error when this package was imported:
 
 <pre># archive/tar
-../../../../../usr/local/go/src/archive/tar/common.go:636:15: fi.ModTime undefined (type os.FileInfo has no field or method ModTime)
-../../../../../usr/local/go/src/archive/tar/common.go:637:21: fm.Perm undefined (type os.FileMode has no field or method Perm)
-../../../../../usr/local/go/src/archive/tar/common.go:640:10: fm.IsRegular undefined (type os.FileMode has no field or method IsRegular)
-../../../../../usr/local/go/src/archive/tar/common.go:554:32: os.FileMode(fi.h.Mode).Perm undefined (type os.FileMode has no field or method Perm)
-../../../../../usr/local/go/src/archive/tar/common.go:445:15: DeepEqual not declared by package reflect
+../../../.gvm/gos/go1.13/src/archive/tar/common.go:636:15: fi.ModTime undefined (type os.FileInfo has no field or method ModTime)
+../../../.gvm/gos/go1.13/src/archive/tar/common.go:637:21: fm.Perm undefined (type os.FileMode has no field or method Perm)
+../../../.gvm/gos/go1.13/src/archive/tar/common.go:640:10: fm.IsRegular undefined (type os.FileMode has no field or method IsRegular)
+../../../.gvm/gos/go1.13/src/archive/tar/common.go:554:32: os.FileMode(fi.h.Mode).Perm undefined (type os.FileMode has no field or method Perm)
+../../../.gvm/gos/go1.13/src/archive/tar/common.go:445:15: DeepEqual not declared by package reflect
 </pre>
 
 
@@ -173,10 +191,10 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when this package was imported:
 
 <pre># archive/zip
-../../../../../usr/local/go/src/archive/zip/register.go:106:21: Map not declared by package sync
-../../../../../usr/local/go/src/archive/zip/register.go:107:21: Map not declared by package sync
-../../../../../usr/local/go/src/archive/zip/struct.go:175:19: fi.ModTime undefined (type os.FileInfo has no field or method ModTime)
-../../../../../usr/local/go/src/archive/zip/reader.go:61:19: cannot use f (variable of type *os.File) as io.ReaderAt value in argument to r.init: missing method ReadAt
+../../../.gvm/gos/go1.13/src/archive/zip/register.go:106:21: Map not declared by package sync
+../../../.gvm/gos/go1.13/src/archive/zip/register.go:107:21: Map not declared by package sync
+../../../.gvm/gos/go1.13/src/archive/zip/struct.go:180:19: fi.ModTime undefined (type os.FileInfo has no field or method ModTime)
+../../../.gvm/gos/go1.13/src/archive/zip/reader.go:61:19: cannot use f (variable of type *os.File) as io.ReaderAt value in argument to r.init: missing method ReadAt
 </pre>
 
 
@@ -200,6 +218,30 @@ The compiler gave the following error when this package was imported:
 
 
 
+
+
+
+## context
+
+
+The compiler gave the following error when this package was imported:
+
+<pre>panic: todo: store
+
+goroutine 1 [running]:
+github.com/tinygo-org/tinygo/interp.(*Eval).hasLocalSideEffects(0xc0013c37d0, 0xc0014463d0, 0x7fb84c0fd230, 0xc001697500)
+	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/scan.go:181 +0x1cf
+github.com/tinygo-org/tinygo/interp.(*Eval).hasSideEffects(0xc0013c37d0, 0x7fb84c019e98, 0x7fb84c019e98)
+	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/scan.go:108 +0x550
+github.com/tinygo-org/tinygo/interp.(*Eval).hasSideEffects(0xc0013c37d0, 0x7fb84c003c08, 0x7fb84c003c08)
+	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/scan.go:102 +0x4ed
+github.com/tinygo-org/tinygo/interp.(*Eval).hasSideEffects(0xc0013c37d0, 0x7fb84c0209b8, 0x1)
+	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/scan.go:102 +0x4ed
+github.com/tinygo-org/tinygo/interp.(*frame).evalBasicBlock(0xc0014471e0, 0x7fb84c0d4300, 0x0, 0x0, 0x0, 0xc04c3caec0, 0x10, 0x10, 0xc001823b80, 0x5fc4c1, ...)
+	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/frame.go:469 +0x581d
+github.com/tinygo-org/tinygo/interp.(*Eval).function(0xc0013c37d0, 0x7fb84c0208f8, 0xc001447328, 0x2, 0x2, 0xc001827b60, 0x7, 0x0, 0x0, 0x0, ...)
+	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/interp.go:104 +0x208
+[...more lines following...]</pre>
 
 
 
@@ -232,6 +274,17 @@ This package cannot be imported because the following dependencies cannot be com
   * [crypto/elliptic](#crypto-elliptic)
   * [encoding/asn1](#encoding-asn1)
   * [math/big](#math-big)
+
+
+
+
+
+## crypto/ed25519
+
+
+This package cannot be imported because the following dependencies cannot be compiled:
+
+  * [crypto/rand](#crypto-rand)
 
 
 
@@ -291,12 +344,13 @@ This package cannot be imported because the following dependencies cannot be com
 This package cannot be imported because the following dependencies cannot be compiled:
 
   * [crypto/ecdsa](#crypto-ecdsa)
+  * [crypto/ed25519](#crypto-ed25519)
   * [crypto/elliptic](#crypto-elliptic)
   * [crypto/rand](#crypto-rand)
   * [crypto/rsa](#crypto-rsa)
   * [crypto/x509](#crypto-x509)
   * [encoding/asn1](#encoding-asn1)
-  * [encoding/pem](#encoding-pem)
+  * [vendor/golang.org/x/crypto/cryptobyte](#vendor-golang.org-x-crypto-cryptobyte)
   * [math/big](#math-big)
   * [net](#net)
 
@@ -311,11 +365,12 @@ This package cannot be imported because the following dependencies cannot be com
 
   * [crypto/dsa](#crypto-dsa)
   * [crypto/ecdsa](#crypto-ecdsa)
+  * [crypto/ed25519](#crypto-ed25519)
   * [crypto/elliptic](#crypto-elliptic)
   * [crypto/rsa](#crypto-rsa)
   * [crypto/x509/pkix](#crypto-x509-pkix)
   * [encoding/asn1](#encoding-asn1)
-  * [encoding/pem](#encoding-pem)
+  * [vendor/golang.org/x/crypto/cryptobyte](#vendor-golang.org-x-crypto-cryptobyte)
   * [math/big](#math-big)
   * [net](#net)
 
@@ -340,6 +395,7 @@ This package cannot be imported because the following dependencies cannot be com
 
 This package cannot be imported because the following dependencies cannot be compiled:
 
+  * [context](#context)
   * [database/sql/driver](#database-sql-driver)
 
 
@@ -349,11 +405,9 @@ This package cannot be imported because the following dependencies cannot be com
 ## database/sql/driver
 
 
-The compiler gave the following error when this package was imported:
+This package cannot be imported because the following dependencies cannot be compiled:
 
-<pre># database/sql/driver
-../../../../../usr/local/go/src/database/sql/driver/types.go:227:20: rv.Type().Elem().Implements undefined (type reflect.Type has no field or method Implements)
-</pre>
+  * [context](#context)
 
 
 
@@ -367,9 +421,9 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when this package was imported:
 
 <pre># debug/elf
-../../../../../usr/local/go/src/debug/elf/reader.go:73:16: ErrInvalid not declared by package os
-../../../../../usr/local/go/src/debug/elf/reader.go:81:16: ErrInvalid not declared by package os
-../../../../../usr/local/go/src/debug/elf/file.go:201:21: cannot use f (variable of type *os.File) as io.ReaderAt value in argument to NewFile: missing method ReadAt
+../../../.gvm/gos/go1.13/src/debug/elf/reader.go:73:16: ErrInvalid not declared by package os
+../../../.gvm/gos/go1.13/src/debug/elf/reader.go:81:16: ErrInvalid not declared by package os
+../../../.gvm/gos/go1.13/src/debug/elf/file.go:206:21: cannot use f (variable of type *os.File) as io.ReaderAt value in argument to NewFile: missing method ReadAt
 </pre>
 
 
@@ -384,8 +438,8 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when this package was imported:
 
 <pre># debug/macho
-../../../../../usr/local/go/src/debug/macho/file.go:205:21: cannot use f (variable of type *os.File) as io.ReaderAt value in argument to NewFile: missing method ReadAt
-../../../../../usr/local/go/src/debug/macho/fat.go:130:24: cannot use f (variable of type *os.File) as io.ReaderAt value in argument to NewFatFile: missing method ReadAt
+../../../.gvm/gos/go1.13/src/debug/macho/file.go:205:21: cannot use f (variable of type *os.File) as io.ReaderAt value in argument to NewFile: missing method ReadAt
+../../../.gvm/gos/go1.13/src/debug/macho/fat.go:130:24: cannot use f (variable of type *os.File) as io.ReaderAt value in argument to NewFatFile: missing method ReadAt
 </pre>
 
 
@@ -398,7 +452,7 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when this package was imported:
 
 <pre># debug/pe
-../../../../../usr/local/go/src/debug/pe/file.go:40:21: cannot use f (variable of type *os.File) as io.ReaderAt value in argument to NewFile: missing method ReadAt
+../../../.gvm/gos/go1.13/src/debug/pe/file.go:40:21: cannot use f (variable of type *os.File) as io.ReaderAt value in argument to NewFile: missing method ReadAt
 </pre>
 
 
@@ -411,7 +465,7 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when this package was imported:
 
 <pre># debug/plan9obj
-../../../../../usr/local/go/src/debug/plan9obj/file.go:103:21: cannot use f (variable of type *os.File) as io.ReaderAt value in argument to NewFile: missing method ReadAt
+../../../.gvm/gos/go1.13/src/debug/plan9obj/file.go:103:21: cannot use f (variable of type *os.File) as io.ReaderAt value in argument to NewFile: missing method ReadAt
 </pre>
 
 
@@ -433,26 +487,6 @@ This package cannot be imported because the following dependencies cannot be com
 
 
 
-## encoding/base32
-
-
-The compiler gave the following error when this package was imported:
-
-<pre>error: interp: branch on a non-const-propagated constant expression
-</pre>
-
-
-
-
-
-## encoding/base64
-
-
-The compiler gave the following error when this package was imported:
-
-<pre>error: interp: branch on a non-const-propagated constant expression
-</pre>
-
 
 
 
@@ -467,20 +501,20 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when this package was imported:
 
 <pre># encoding/gob
-../../../../../usr/local/go/src/encoding/gob/type.go:39:24: Map not declared by package sync
-../../../../../usr/local/go/src/encoding/gob/type.go:801:26: Map not declared by package sync
-../../../../../usr/local/go/src/encoding/gob/type.go:802:26: Map not declared by package sync
-../../../../../usr/local/go/src/encoding/gob/type.go:844:8: rt.Name undefined (type reflect.Type has no field or method Name)
-../../../../../usr/local/go/src/encoding/gob/type.go:866:8: rt.Name undefined (type reflect.Type has no field or method Name)
-../../../../../usr/local/go/src/encoding/gob/type.go:867:9: rt.PkgPath undefined (type reflect.Type has no field or method PkgPath)
-../../../../../usr/local/go/src/encoding/gob/type.go:868:21: rt.Name undefined (type reflect.Type has no field or method Name)
-../../../../../usr/local/go/src/encoding/gob/type.go:870:21: rt.PkgPath undefined (type reflect.Type has no field or method PkgPath)
-../../../../../usr/local/go/src/encoding/gob/type.go:870:42: rt.Name undefined (type reflect.Type has no field or method Name)
-../../../../../usr/local/go/src/encoding/gob/type.go:715:28: rt.Name undefined (type reflect.Type has no field or method Name)
-../../../../../usr/local/go/src/encoding/gob/type.go:722:31: rt.Name undefined (type reflect.Type has no field or method Name)
-../../../../../usr/local/go/src/encoding/gob/type.go:496:34: t.Key undefined (type reflect.Type has no field or method Key)
-../../../../../usr/local/go/src/encoding/gob/type.go:514:37: t.Elem().Name undefined (type reflect.Type has no field or method Name)
-../../../../../usr/local/go/src/encoding/gob/type.go:531:17: typ.Name undefined (type reflect.Type has no field or method Name)
+../../../.gvm/gos/go1.13/src/encoding/gob/type.go:39:24: Map not declared by package sync
+../../../.gvm/gos/go1.13/src/encoding/gob/type.go:801:26: Map not declared by package sync
+../../../.gvm/gos/go1.13/src/encoding/gob/type.go:802:26: Map not declared by package sync
+../../../.gvm/gos/go1.13/src/encoding/gob/type.go:844:8: rt.Name undefined (type reflect.Type has no field or method Name)
+../../../.gvm/gos/go1.13/src/encoding/gob/type.go:866:8: rt.Name undefined (type reflect.Type has no field or method Name)
+../../../.gvm/gos/go1.13/src/encoding/gob/type.go:867:9: rt.PkgPath undefined (type reflect.Type has no field or method PkgPath)
+../../../.gvm/gos/go1.13/src/encoding/gob/type.go:868:21: rt.Name undefined (type reflect.Type has no field or method Name)
+../../../.gvm/gos/go1.13/src/encoding/gob/type.go:870:21: rt.PkgPath undefined (type reflect.Type has no field or method PkgPath)
+../../../.gvm/gos/go1.13/src/encoding/gob/type.go:870:42: rt.Name undefined (type reflect.Type has no field or method Name)
+../../../.gvm/gos/go1.13/src/encoding/gob/type.go:715:28: rt.Name undefined (type reflect.Type has no field or method Name)
+../../../.gvm/gos/go1.13/src/encoding/gob/type.go:722:31: rt.Name undefined (type reflect.Type has no field or method Name)
+../../../.gvm/gos/go1.13/src/encoding/gob/type.go:496:34: t.Key undefined (type reflect.Type has no field or method Key)
+../../../.gvm/gos/go1.13/src/encoding/gob/type.go:514:37: t.Elem().Name undefined (type reflect.Type has no field or method Name)
+../../../.gvm/gos/go1.13/src/encoding/gob/type.go:531:17: typ.Name undefined (type reflect.Type has no field or method Name)
 [...more lines following...]</pre>
 
 
@@ -492,20 +526,26 @@ The compiler gave the following error when this package was imported:
 ## encoding/json
 
 
-This package cannot be imported because the following dependencies cannot be compiled:
+The compiler gave the following error when this package was imported:
 
-  * [encoding/base64](#encoding-base64)
+<pre># encoding/json
+../../../.gvm/gos/go1.13/src/encoding/json/encode.go:349:23: Map not declared by package sync
+../../../.gvm/gos/go1.13/src/encoding/json/encode.go:1271:21: Map not declared by package sync
+../../../.gvm/gos/go1.13/src/encoding/json/encode.go:1120:19: sf.Tag.Get undefined (type string has no field or method Get)
+../../../.gvm/gos/go1.13/src/encoding/json/encode.go:1133:11: ft.Name undefined (type reflect.Type has no field or method Name)
+../../../.gvm/gos/go1.13/src/encoding/json/encode.go:1190:41: ft.Name undefined (type reflect.Type has no field or method Name)
+../../../.gvm/gos/go1.13/src/encoding/json/encode.go:771:16: PtrTo not declared by package reflect
+../../../.gvm/gos/go1.13/src/encoding/json/encode.go:712:11: t.Key undefined (type reflect.Type has no field or method Key)
+../../../.gvm/gos/go1.13/src/encoding/json/encode.go:717:9: t.Key undefined (type reflect.Type has no field or method Key)
+../../../.gvm/gos/go1.13/src/encoding/json/encode.go:398:53: PtrTo not declared by package reflect
+../../../.gvm/gos/go1.13/src/encoding/json/encode.go:405:53: PtrTo not declared by package reflect
+../../../.gvm/gos/go1.13/src/encoding/json/encode.go:368:11: WaitGroup not declared by package sync
+../../../.gvm/gos/go1.13/src/encoding/json/decode.go:979:9: v.NumMethod undefined (type reflect.Value has no field or method NumMethod)
+../../../.gvm/gos/go1.13/src/encoding/json/decode.go:1008:6: v.SetBytes undefined (type reflect.Value has no field or method SetBytes)
+../../../.gvm/gos/go1.13/src/encoding/json/decode.go:1012:9: v.NumMethod undefined (type reflect.Value has no field or method NumMethod)
+[...more lines following...]</pre>
 
 
-
-
-
-## encoding/pem
-
-
-This package cannot be imported because the following dependencies cannot be compiled:
-
-  * [encoding/base64](#encoding-base64)
 
 
 
@@ -517,20 +557,20 @@ This package cannot be imported because the following dependencies cannot be com
 The compiler gave the following error when this package was imported:
 
 <pre># encoding/xml
-../../../../../usr/local/go/src/encoding/xml/typeinfo.go:47:19: Map not declared by package sync
-../../../../../usr/local/go/src/encoding/xml/typeinfo.go:318:14: typ.FieldByIndex undefined (type reflect.Type has no field or method FieldByIndex)
-../../../../../usr/local/go/src/encoding/xml/typeinfo.go:319:14: typ.FieldByIndex undefined (type reflect.Type has no field or method FieldByIndex)
-../../../../../usr/local/go/src/encoding/xml/typeinfo.go:114:29: f.Index undefined (type *reflect.StructField has no field or method Index)
-../../../../../usr/local/go/src/encoding/xml/typeinfo.go:117:15: f.Tag.Get undefined (type string has no field or method Get)
-../../../../../usr/local/go/src/encoding/xml/typeinfo.go:168:24: f.Tag.Get undefined (type string has no field or method Get)
-../../../../../usr/local/go/src/encoding/xml/typeinfo.go:175:23: f.Tag.Get undefined (type string has no field or method Get)
-../../../../../usr/local/go/src/encoding/xml/typeinfo.go:63:50: f.Tag.Get undefined (type string has no field or method Get)
-../../../../../usr/local/go/src/encoding/xml/read.go:665:7: dst.SetBytes undefined (type reflect.Value has no field or method SetBytes)
-../../../../../usr/local/go/src/encoding/xml/read.go:339:38: val.Type().Implements undefined (type reflect.Type has no field or method Implements)
-../../../../../usr/local/go/src/encoding/xml/read.go:347:37: pv.Type().Implements undefined (type reflect.Type has no field or method Implements)
-../../../../../usr/local/go/src/encoding/xml/read.go:352:38: val.Type().Implements undefined (type reflect.Type has no field or method Implements)
-../../../../../usr/local/go/src/encoding/xml/read.go:358:37: pv.Type().Implements undefined (type reflect.Type has no field or method Implements)
-../../../../../usr/local/go/src/encoding/xml/read.go:398:17: Append not declared by package reflect
+../../../.gvm/gos/go1.13/src/encoding/xml/typeinfo.go:47:19: Map not declared by package sync
+../../../.gvm/gos/go1.13/src/encoding/xml/typeinfo.go:318:14: typ.FieldByIndex undefined (type reflect.Type has no field or method FieldByIndex)
+../../../.gvm/gos/go1.13/src/encoding/xml/typeinfo.go:319:14: typ.FieldByIndex undefined (type reflect.Type has no field or method FieldByIndex)
+../../../.gvm/gos/go1.13/src/encoding/xml/typeinfo.go:114:29: f.Index undefined (type *reflect.StructField has no field or method Index)
+../../../.gvm/gos/go1.13/src/encoding/xml/typeinfo.go:117:15: f.Tag.Get undefined (type string has no field or method Get)
+../../../.gvm/gos/go1.13/src/encoding/xml/typeinfo.go:168:24: f.Tag.Get undefined (type string has no field or method Get)
+../../../.gvm/gos/go1.13/src/encoding/xml/typeinfo.go:175:23: f.Tag.Get undefined (type string has no field or method Get)
+../../../.gvm/gos/go1.13/src/encoding/xml/typeinfo.go:63:50: f.Tag.Get undefined (type string has no field or method Get)
+../../../.gvm/gos/go1.13/src/encoding/xml/read.go:665:7: dst.SetBytes undefined (type reflect.Value has no field or method SetBytes)
+../../../.gvm/gos/go1.13/src/encoding/xml/read.go:398:17: Append not declared by package reflect
+../../../.gvm/gos/go1.13/src/encoding/xml/read.go:402:6: v.SetLen undefined (type reflect.Value has no field or method SetLen)
+../../../.gvm/gos/go1.13/src/encoding/xml/read.go:282:19: Append not declared by package reflect
+../../../.gvm/gos/go1.13/src/encoding/xml/read.go:286:8: val.SetLen undefined (type reflect.Value has no field or method SetLen)
+../../../.gvm/gos/go1.13/src/encoding/xml/read.go:193:7: t.Name undefined (type reflect.Type has no field or method Name)
 [...more lines following...]</pre>
 
 
@@ -557,9 +597,9 @@ This package cannot be imported because the following dependencies cannot be com
 The compiler gave the following error when this package was imported:
 
 <pre># flag
-../../../../../usr/local/go/src/flag/flag.go:1009:33: Args not declared by package os
-../../../../../usr/local/go/src/flag/flag.go:998:23: Args not declared by package os
-../../../../../usr/local/go/src/flag/flag.go:581:57: Args not declared by package os
+../../../.gvm/gos/go1.13/src/flag/flag.go:1007:33: Args not declared by package os
+../../../.gvm/gos/go1.13/src/flag/flag.go:996:23: Args not declared by package os
+../../../.gvm/gos/go1.13/src/flag/flag.go:579:57: Args not declared by package os
 </pre>
 
 
@@ -691,18 +731,18 @@ The compiler gave the following error when this package was imported:
 <pre>panic: interface conversion: interp.Value is *interp.LocalValue, not *interp.MapValue
 
 goroutine 1 [running]:
-github.com/tinygo-org/tinygo/interp.(*frame).evalBasicBlock(0xc002538798, 0x7fd5b1033e90, 0x7fd5b1033b10, 0x847752, 0x4, 0x0, 0x0, 0xc0034d38f8, 0x1, 0x1, ...)
-	/home/ayke/src/github.com/tinygo-org/tinygo/interp/frame.go:279 +0x9174
-github.com/tinygo-org/tinygo/interp.(*Eval).function(0xc002512780, 0x7fd5b0031e58, 0xc003500960, 0x2, 0x2, 0xc0034f4e50, 0x8, 0x847752, 0x4, 0x8da760, ...)
-	/home/ayke/src/github.com/tinygo-org/tinygo/interp/interp.go:104 +0x208
-github.com/tinygo-org/tinygo/interp.(*frame).evalBasicBlock(0xc0025392b8, 0x7fd5b1032970, 0x7fd5b1032380, 0x0, 0x0, 0x0, 0x0, 0xc0034d38c0, 0x1, 0x1, ...)
-	/home/ayke/src/github.com/tinygo-org/tinygo/interp/frame.go:449 +0x51b3
-github.com/tinygo-org/tinygo/interp.(*Eval).function(0xc002512780, 0x7fd5b0031d68, 0xc0025393f8, 0x2, 0x2, 0xc0034f4e50, 0x8, 0x0, 0x0, 0x0, ...)
-	/home/ayke/src/github.com/tinygo-org/tinygo/interp/interp.go:104 +0x208
+github.com/tinygo-org/tinygo/interp.(*frame).evalBasicBlock(0xc002b8c608, 0x69642b0, 0x6963f30, 0x86b381, 0x4, 0x0, 0x0, 0xc004547f60, 0x1, 0x1, ...)
+	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/frame.go:279 +0x9c7a
+github.com/tinygo-org/tinygo/interp.(*Eval).function(0xc002528060, 0x29c07b8, 0xc0045c7200, 0x2, 0x2, 0xc0045c20b0, 0x8, 0x86b381, 0x4, 0x902640, ...)
+	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/interp.go:104 +0x208
+github.com/tinygo-org/tinygo/interp.(*frame).evalBasicBlock(0xc002b8d1e0, 0x6962da0, 0x69627b0, 0x0, 0x0, 0x0, 0x0, 0xc004547f28, 0x1, 0x1, ...)
+	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/frame.go:492 +0x5c15
+github.com/tinygo-org/tinygo/interp.(*Eval).function(0xc002528060, 0x29c06c8, 0xc002b8d328, 0x2, 0x2, 0xc0045c20b0, 0x8, 0x0, 0x0, 0x0, ...)
+	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/interp.go:104 +0x208
 github.com/tinygo-org/tinygo/interp.(*Eval).Function(...)
-	/home/ayke/src/github.com/tinygo-org/tinygo/interp/interp.go:87
-github.com/tinygo-org/tinygo/interp.Run(0x2acf080, 0x2ac4f90, 0x0, 0x0, 0x0)
-	/home/ayke/src/github.com/tinygo-org/tinygo/interp/interp.go:74 +0x672
+	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/interp.go:87
+github.com/tinygo-org/tinygo/interp.Run(0x298b0d0, 0x7ffe00000000, 0x0, 0x0)
+	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/interp.go:74 +0x6b2
 [...more lines following...]</pre>
 
 
@@ -769,19 +809,19 @@ This package cannot be imported because the following dependencies cannot be com
 The compiler gave the following error when this package was imported:
 
 <pre>Use of instruction is not an instruction!
-  %7 = insertvalue %runtime._interface { i32 ptrtoint (%runtime.typeInInterface* @"typeInInterface:reflect/types.type:named:image/color.RGBA" to i32), i8* undef }, i8* %6, 1, !dbg !1580
+  %7 = insertvalue %runtime._interface { i32 ptrtoint (%runtime.typeInInterface* @"typeInInterface:reflect/types.type:named:image/color.RGBA" to i32), i8* undef }, i8* %6, 1, !dbg !1662
 Use of instruction is not an instruction!
-  %11 = insertvalue %runtime._interface { i32 ptrtoint (%runtime.typeInInterface* @"typeInInterface:reflect/types.type:named:image/color.RGBA" to i32), i8* undef }, i8* %10, 1, !dbg !1580
+  %11 = insertvalue %runtime._interface { i32 ptrtoint (%runtime.typeInInterface* @"typeInInterface:reflect/types.type:named:image/color.RGBA" to i32), i8* undef }, i8* %10, 1, !dbg !1662
 Use of instruction is not an instruction!
-  %15 = insertvalue %runtime._interface { i32 ptrtoint (%runtime.typeInInterface* @"typeInInterface:reflect/types.type:named:image/color.RGBA" to i32), i8* undef }, i8* %14, 1, !dbg !1580
+  %15 = insertvalue %runtime._interface { i32 ptrtoint (%runtime.typeInInterface* @"typeInInterface:reflect/types.type:named:image/color.RGBA" to i32), i8* undef }, i8* %14, 1, !dbg !1662
 Use of instruction is not an instruction!
-  %19 = insertvalue %runtime._interface { i32 ptrtoint (%runtime.typeInInterface* @"typeInInterface:reflect/types.type:named:image/color.RGBA" to i32), i8* undef }, i8* %18, 1, !dbg !1580
+  %19 = insertvalue %runtime._interface { i32 ptrtoint (%runtime.typeInInterface* @"typeInInterface:reflect/types.type:named:image/color.RGBA" to i32), i8* undef }, i8* %18, 1, !dbg !1662
 Use of instruction is not an instruction!
-  %23 = insertvalue %runtime._interface { i32 ptrtoint (%runtime.typeInInterface* @"typeInInterface:reflect/types.type:named:image/color.RGBA" to i32), i8* undef }, i8* %22, 1, !dbg !1580
+  %23 = insertvalue %runtime._interface { i32 ptrtoint (%runtime.typeInInterface* @"typeInInterface:reflect/types.type:named:image/color.RGBA" to i32), i8* undef }, i8* %22, 1, !dbg !1662
 Use of instruction is not an instruction!
-  %27 = insertvalue %runtime._interface { i32 ptrtoint (%runtime.typeInInterface* @"typeInInterface:reflect/types.type:named:image/color.RGBA" to i32), i8* undef }, i8* %26, 1, !dbg !1580
+  %27 = insertvalue %runtime._interface { i32 ptrtoint (%runtime.typeInInterface* @"typeInInterface:reflect/types.type:named:image/color.RGBA" to i32), i8* undef }, i8* %26, 1, !dbg !1662
 Use of instruction is not an instruction!
-  %31 = insertvalue %runtime._interface { i32 ptrtoint (%runtime.typeInInterface* @"typeInInterface:reflect/types.type:named:image/color.RGBA" to i32), i8* undef }, i8* %30, 1, !dbg !1580
+  %31 = insertvalue %runtime._interface { i32 ptrtoint (%runtime.typeInInterface* @"typeInInterface:reflect/types.type:named:image/color.RGBA" to i32), i8* undef }, i8* %30, 1, !dbg !1662
 Use of instruction is not an instruction!
 [...more lines following...]</pre>
 
@@ -810,18 +850,18 @@ The compiler gave the following error when this package was imported:
 <pre>panic: todo: store
 
 goroutine 1 [running]:
-github.com/tinygo-org/tinygo/interp.(*Eval).hasLocalSideEffects(0xc0023f5e90, 0xc002694560, 0x7fece019a910, 0xc004304200)
-	/home/ayke/src/github.com/tinygo-org/tinygo/interp/scan.go:179 +0x1d2
-github.com/tinygo-org/tinygo/interp.(*Eval).hasSideEffects(0xc0023f5e90, 0x7fecec017cd8, 0x7fecec017cd8)
-	/home/ayke/src/github.com/tinygo-org/tinygo/interp/scan.go:95 +0x4aa
-github.com/tinygo-org/tinygo/interp.(*Eval).hasSideEffects(0xc0023f5e90, 0x7fecec020a88, 0x7fecec020a88)
-	/home/ayke/src/github.com/tinygo-org/tinygo/interp/scan.go:100 +0x4f2
-github.com/tinygo-org/tinygo/interp.(*Eval).hasSideEffects(0xc0023f5e90, 0x7fecec021518, 0x1)
-	/home/ayke/src/github.com/tinygo-org/tinygo/interp/scan.go:100 +0x4f2
-github.com/tinygo-org/tinygo/interp.(*frame).evalBasicBlock(0xc0026952b8, 0x7fecefeb3060, 0x7fecefeb2cc0, 0x0, 0x0, 0x0, 0x0, 0xc003094f90, 0x1, 0x1, ...)
-	/home/ayke/src/github.com/tinygo-org/tinygo/interp/frame.go:426 +0x4dc4
-github.com/tinygo-org/tinygo/interp.(*Eval).function(0xc0023f5e90, 0x7fecec021428, 0xc0026953f8, 0x2, 0x2, 0xc005452640, 0xa, 0x0, 0x0, 0x0, ...)
-	/home/ayke/src/github.com/tinygo-org/tinygo/interp/interp.go:104 +0x208
+github.com/tinygo-org/tinygo/interp.(*Eval).hasLocalSideEffects(0xc000d70960, 0xc0030c83d0, 0x7fbae41b58f0, 0xc0017f4100)
+	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/scan.go:181 +0x1cf
+github.com/tinygo-org/tinygo/interp.(*Eval).hasSideEffects(0xc000d70960, 0x7fbae002e288, 0x7fbae002e288)
+	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/scan.go:97 +0x4a5
+github.com/tinygo-org/tinygo/interp.(*Eval).hasSideEffects(0xc000d70960, 0x7fbae00221e8, 0x7fbae00221e8)
+	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/scan.go:102 +0x4ed
+github.com/tinygo-org/tinygo/interp.(*Eval).hasSideEffects(0xc000d70960, 0x7fbae0022c78, 0x1)
+	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/scan.go:102 +0x4ed
+github.com/tinygo-org/tinygo/interp.(*frame).evalBasicBlock(0xc0030c91e0, 0x7fbae3ed0260, 0x7fbae3ecfec0, 0x0, 0x0, 0x0, 0x0, 0xc00292e668, 0x1, 0x1, ...)
+	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/frame.go:469 +0x581d
+github.com/tinygo-org/tinygo/interp.(*Eval).function(0xc000d70960, 0x7fbae0022b88, 0xc0030c9328, 0x2, 0x2, 0xc0022e8a70, 0xa, 0x0, 0x0, 0x0, ...)
+	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/interp.go:104 +0x208
 [...more lines following...]</pre>
 
 
@@ -836,18 +876,18 @@ The compiler gave the following error when this package was imported:
 <pre>panic: todo: store
 
 goroutine 1 [running]:
-github.com/tinygo-org/tinygo/interp.(*Eval).hasLocalSideEffects(0xc004288720, 0xc006988560, 0x7f672cb55190, 0xc0043f6600)
-	/home/ayke/src/github.com/tinygo-org/tinygo/interp/scan.go:179 +0x1d2
-github.com/tinygo-org/tinygo/interp.(*Eval).hasSideEffects(0xc004288720, 0x7f67380598f8, 0x7f67380598f8)
-	/home/ayke/src/github.com/tinygo-org/tinygo/interp/scan.go:95 +0x4aa
-github.com/tinygo-org/tinygo/interp.(*Eval).hasSideEffects(0xc004288720, 0x7f673803c9c8, 0x7f673803c9c8)
-	/home/ayke/src/github.com/tinygo-org/tinygo/interp/scan.go:100 +0x4f2
-github.com/tinygo-org/tinygo/interp.(*Eval).hasSideEffects(0xc004288720, 0x7f673803d348, 0x1)
-	/home/ayke/src/github.com/tinygo-org/tinygo/interp/scan.go:100 +0x4f2
-github.com/tinygo-org/tinygo/interp.(*frame).evalBasicBlock(0xc0069892b8, 0x7f672c394330, 0x7f672c393f30, 0x0, 0x0, 0x0, 0x0, 0xc006f738a8, 0x1, 0x1, ...)
-	/home/ayke/src/github.com/tinygo-org/tinygo/interp/frame.go:426 +0x4dc4
-github.com/tinygo-org/tinygo/interp.(*Eval).function(0xc004288720, 0x7f673803d258, 0xc0069893f8, 0x2, 0x2, 0xc006f92650, 0x9, 0x0, 0x0, 0x0, ...)
-	/home/ayke/src/github.com/tinygo-org/tinygo/interp/interp.go:104 +0x208
+github.com/tinygo-org/tinygo/interp.(*Eval).hasLocalSideEffects(0xc0041dcba0, 0xc002d1e3d0, 0x7ff7dcbd73f0, 0xc006140000)
+	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/scan.go:181 +0x1cf
+github.com/tinygo-org/tinygo/interp.(*Eval).hasSideEffects(0xc0041dcba0, 0x7ff7ec05b5b8, 0x7ff7ec05b5b8)
+	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/scan.go:97 +0x4a5
+github.com/tinygo-org/tinygo/interp.(*Eval).hasSideEffects(0xc0041dcba0, 0x7ff7ec03e6a8, 0x7ff7ec03e6a8)
+	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/scan.go:102 +0x4ed
+github.com/tinygo-org/tinygo/interp.(*Eval).hasSideEffects(0xc0041dcba0, 0x7ff7ec03f028, 0x1)
+	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/scan.go:102 +0x4ed
+github.com/tinygo-org/tinygo/interp.(*frame).evalBasicBlock(0xc002d1f1e0, 0x7ff7dc417d30, 0x7ff7dc417930, 0x0, 0x0, 0x0, 0x0, 0xc006bff500, 0x1, 0x1, ...)
+	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/frame.go:469 +0x581d
+github.com/tinygo-org/tinygo/interp.(*Eval).function(0xc0041dcba0, 0x7ff7ec03ef38, 0xc002d1f328, 0x2, 0x2, 0xc006c1ae20, 0x9, 0x0, 0x0, 0x0, ...)
+	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/interp.go:104 +0x208
 [...more lines following...]</pre>
 
 
@@ -883,18 +923,18 @@ The compiler gave the following error when this package was imported:
 <pre>panic: todo: store
 
 goroutine 1 [running]:
-github.com/tinygo-org/tinygo/interp.(*Eval).hasLocalSideEffects(0xc004ebea20, 0xc0035f1b10, 0x32162a0, 0xdc6c00)
-	/home/ayke/src/github.com/tinygo-org/tinygo/interp/scan.go:179 +0x1d2
-github.com/tinygo-org/tinygo/interp.(*Eval).hasSideEffects(0xc004ebea20, 0x7f5c5003a158, 0x7f5c5003a158)
-	/home/ayke/src/github.com/tinygo-org/tinygo/interp/scan.go:95 +0x4aa
-github.com/tinygo-org/tinygo/interp.(*Eval).hasSideEffects(0xc004ebea20, 0x7f5c5003a098, 0x7f5c5003a098)
-	/home/ayke/src/github.com/tinygo-org/tinygo/interp/scan.go:100 +0x4f2
-github.com/tinygo-org/tinygo/interp.(*Eval).hasSideEffects(0xc004ebea20, 0x7f5c5003a338, 0x7f5c5003a338)
-	/home/ayke/src/github.com/tinygo-org/tinygo/interp/scan.go:100 +0x4f2
-github.com/tinygo-org/tinygo/interp.(*Eval).hasSideEffects(0xc004ebea20, 0x7f5c5003a658, 0x7f5c5003a658)
-	/home/ayke/src/github.com/tinygo-org/tinygo/interp/scan.go:100 +0x4f2
-github.com/tinygo-org/tinygo/interp.(*Eval).hasSideEffects(0xc004ebea20, 0x7f5c50037358, 0x7f5c50037358)
-	/home/ayke/src/github.com/tinygo-org/tinygo/interp/scan.go:100 +0x4f2
+github.com/tinygo-org/tinygo/interp.(*Eval).hasLocalSideEffects(0xc004373cb0, 0xc00246d980, 0x6b3c9d0, 0xdb8200)
+	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/scan.go:181 +0x1cf
+github.com/tinygo-org/tinygo/interp.(*Eval).hasSideEffects(0xc004373cb0, 0x25e6c38, 0x25e6c38)
+	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/scan.go:97 +0x4a5
+github.com/tinygo-org/tinygo/interp.(*Eval).hasSideEffects(0xc004373cb0, 0x25e6b78, 0x25e6b78)
+	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/scan.go:102 +0x4ed
+github.com/tinygo-org/tinygo/interp.(*Eval).hasSideEffects(0xc004373cb0, 0x25e6e18, 0x25e6e18)
+	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/scan.go:102 +0x4ed
+github.com/tinygo-org/tinygo/interp.(*Eval).hasSideEffects(0xc004373cb0, 0x25e7138, 0x25e7138)
+	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/scan.go:102 +0x4ed
+github.com/tinygo-org/tinygo/interp.(*Eval).hasSideEffects(0xc004373cb0, 0x25e3e38, 0x25e3e38)
+	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/scan.go:102 +0x4ed
 [...more lines following...]</pre>
 
 
@@ -910,9 +950,14 @@ github.com/tinygo-org/tinygo/interp.(*Eval).hasSideEffects(0xc004ebea20, 0x7f5c5
 ## mime
 
 
-This package cannot be imported because the following dependencies cannot be compiled:
+The compiler gave the following error when this package was imported:
 
-  * [encoding/base64](#encoding-base64)
+<pre># mime
+../../../.gvm/gos/go1.13/src/mime/type.go:15:22: Map not declared by package sync
+../../../.gvm/gos/go1.13/src/mime/type.go:16:22: Map not declared by package sync
+../../../.gvm/gos/go1.13/src/mime/type.go:21:20: Map not declared by package sync
+../../../.gvm/gos/go1.13/src/mime/type.go:24:27: Map not declared by package sync
+</pre>
 
 
 
@@ -936,11 +981,9 @@ This package cannot be imported because the following dependencies cannot be com
 ## net
 
 
-The compiler gave the following error when this package was imported:
+This package cannot be imported because the following dependencies cannot be compiled:
 
-<pre># internal/singleflight
-../../../../../usr/local/go/src/internal/singleflight/singleflight.go:13:10: WaitGroup not declared by package sync
-</pre>
+  * [context](#context)
 
 
 
@@ -951,9 +994,12 @@ The compiler gave the following error when this package was imported:
 
 This package cannot be imported because the following dependencies cannot be compiled:
 
+  * [context](#context)
   * [crypto/rand](#crypto-rand)
   * [crypto/tls](#crypto-tls)
-  * [encoding/base64](#encoding-base64)
+  * [vendor/golang.org/x/net/http/httpguts](#vendor-golang.org-x-net-http-httpguts)
+  * [vendor/golang.org/x/net/http/httpproxy](#vendor-golang.org-x-net-http-httpproxy)
+  * [vendor/golang.org/x/net/http2/hpack](#vendor-golang.org-x-net-http2-hpack)
   * [mime](#mime)
   * [mime/multipart](#mime-multipart)
   * [net](#net)
@@ -995,6 +1041,7 @@ This package cannot be imported because the following dependencies cannot be com
 
 This package cannot be imported because the following dependencies cannot be compiled:
 
+  * [context](#context)
   * [net](#net)
   * [net/http](#net-http)
   * [net/http/cgi](#net-http-cgi)
@@ -1011,6 +1058,7 @@ This package cannot be imported because the following dependencies cannot be com
   * [crypto/tls](#crypto-tls)
   * [crypto/x509](#crypto-x509)
   * [flag](#flag)
+  * [vendor/golang.org/x/net/http/httpguts](#vendor-golang.org-x-net-http-httpguts)
   * [net](#net)
   * [net/http](#net-http)
 
@@ -1023,6 +1071,7 @@ This package cannot be imported because the following dependencies cannot be com
 
 This package cannot be imported because the following dependencies cannot be compiled:
 
+  * [context](#context)
   * [crypto/tls](#crypto-tls)
   * [net](#net)
   * [net/textproto](#net-textproto)
@@ -1036,6 +1085,8 @@ This package cannot be imported because the following dependencies cannot be com
 
 This package cannot be imported because the following dependencies cannot be compiled:
 
+  * [context](#context)
+  * [vendor/golang.org/x/net/http/httpguts](#vendor-golang.org-x-net-http-httpguts)
   * [net](#net)
   * [net/http](#net-http)
   * [net/textproto](#net-textproto)
@@ -1074,6 +1125,7 @@ This package cannot be imported because the following dependencies cannot be com
 This package cannot be imported because the following dependencies cannot be compiled:
 
   * [encoding/gob](#encoding-gob)
+  * [go/token](#go-token)
   * [html/template](#html-template)
   * [net](#net)
   * [net/http](#net-http)
@@ -1101,7 +1153,6 @@ This package cannot be imported because the following dependencies cannot be com
 This package cannot be imported because the following dependencies cannot be compiled:
 
   * [crypto/tls](#crypto-tls)
-  * [encoding/base64](#encoding-base64)
   * [net](#net)
   * [net/textproto](#net-textproto)
 
@@ -1127,23 +1178,9 @@ This package cannot be imported because the following dependencies cannot be com
 ## os/exec
 
 
-The compiler gave the following error when this package was imported:
+This package cannot be imported because the following dependencies cannot be compiled:
 
-<pre># os/exec
-../../../../../usr/local/go/src/os/exec/exec.go:125:14: Process not declared by package os
-../../../../../usr/local/go/src/os/exec/exec.go:129:19: ProcessState not declared by package os
-../../../../../usr/local/go/src/os/exec/exec.go:429:6: ProcessState not declared by package os
-../../../../../usr/local/go/src/os/exec/exec.go:618:20: Pipe not declared by package os
-../../../../../usr/local/go/src/os/exec/exec.go:593:20: Pipe not declared by package os
-../../../../../usr/local/go/src/os/exec/exec.go:551:20: Pipe not declared by package os
-../../../../../usr/local/go/src/os/exec/exec.go:392:22: StartProcess not declared by package os
-../../../../../usr/local/go/src/os/exec/exec.go:392:57: ProcAttr not declared by package os
-../../../../../usr/local/go/src/os/exec/exec.go:268:27: DevNull not declared by package os
-../../../../../usr/local/go/src/os/exec/exec.go:280:20: Pipe not declared by package os
-../../../../../usr/local/go/src/os/exec/exec.go:223:23: DevNull not declared by package os
-../../../../../usr/local/go/src/os/exec/exec.go:235:20: Pipe not declared by package os
-../../../../../usr/local/go/src/os/exec/exec.go:206:12: Environ not declared by package os
-</pre>
+  * [context](#context)
 
 
 
@@ -1155,18 +1192,18 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when this package was imported:
 
 <pre># os/signal
-../../../../../usr/local/go/src/os/signal/signal.go:15:18: Signal not declared by package os
-../../../../../usr/local/go/src/os/signal/signal.go:27:14: Signal not declared by package os
-../../../../../usr/local/go/src/os/signal/signal.go:50:23: Signal not declared by package os
-../../../../../usr/local/go/src/os/signal/signal.go:85:23: Signal not declared by package os
-../../../../../usr/local/go/src/os/signal/signal.go:90:21: Signal not declared by package os
-../../../../../usr/local/go/src/os/signal/signal.go:111:25: Signal not declared by package os
-../../../../../usr/local/go/src/os/signal/signal.go:111:43: Signal not declared by package os
-../../../../../usr/local/go/src/os/signal/signal.go:155:22: Signal not declared by package os
-../../../../../usr/local/go/src/os/signal/signal.go:162:23: Signal not declared by package os
-../../../../../usr/local/go/src/os/signal/signal.go:214:21: Signal not declared by package os
-../../../../../usr/local/go/src/os/signal/signal_unix.go:36:20: Signal not declared by package os
-../../../../../usr/local/go/src/os/signal/signal.go:122:36: Signal not declared by package os
+../../../.gvm/gos/go1.13/src/os/signal/signal.go:15:18: Signal not declared by package os
+../../../.gvm/gos/go1.13/src/os/signal/signal.go:27:14: Signal not declared by package os
+../../../.gvm/gos/go1.13/src/os/signal/signal.go:50:23: Signal not declared by package os
+../../../.gvm/gos/go1.13/src/os/signal/signal.go:85:23: Signal not declared by package os
+../../../.gvm/gos/go1.13/src/os/signal/signal.go:90:21: Signal not declared by package os
+../../../.gvm/gos/go1.13/src/os/signal/signal.go:111:25: Signal not declared by package os
+../../../.gvm/gos/go1.13/src/os/signal/signal.go:111:43: Signal not declared by package os
+../../../.gvm/gos/go1.13/src/os/signal/signal.go:155:22: Signal not declared by package os
+../../../.gvm/gos/go1.13/src/os/signal/signal.go:162:23: Signal not declared by package os
+../../../.gvm/gos/go1.13/src/os/signal/signal.go:214:21: Signal not declared by package os
+../../../.gvm/gos/go1.13/src/os/signal/signal_unix.go:36:20: Signal not declared by package os
+../../../.gvm/gos/go1.13/src/os/signal/signal.go:122:36: Signal not declared by package os
 </pre>
 
 
@@ -1179,12 +1216,12 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when this package was imported:
 
 <pre># os/user
-../../../../../usr/local/go/src/os/user/lookup.go:62:9: undeclared name: listGroups
-../../../../../usr/local/go/src/os/user/lookup.go:57:9: undeclared name: lookupGroupId
-../../../../../usr/local/go/src/os/user/lookup.go:51:9: undeclared name: lookupGroup
-../../../../../usr/local/go/src/os/user/lookup.go:45:9: undeclared name: lookupUserId
-../../../../../usr/local/go/src/os/user/lookup.go:36:9: undeclared name: lookupUser
-../../../../../usr/local/go/src/os/user/lookup.go:15:41: undeclared name: current
+../../../.gvm/gos/go1.13/src/os/user/lookup.go:62:9: undeclared name: listGroups
+../../../.gvm/gos/go1.13/src/os/user/lookup.go:57:9: undeclared name: lookupGroupId
+../../../.gvm/gos/go1.13/src/os/user/lookup.go:51:9: undeclared name: lookupGroup
+../../../.gvm/gos/go1.13/src/os/user/lookup.go:45:9: undeclared name: lookupUserId
+../../../.gvm/gos/go1.13/src/os/user/lookup.go:36:9: undeclared name: lookupUser
+../../../.gvm/gos/go1.13/src/os/user/lookup.go:15:41: undeclared name: current
 </pre>
 
 
@@ -1262,8 +1299,92 @@ This package cannot be imported because the following dependencies cannot be com
 The compiler gave the following error when this package was imported:
 
 <pre># text/template/parse
-../../../../../usr/local/go/src/text/template/parse/parse.go:193:26: Error not declared by package runtime
+../../../.gvm/gos/go1.13/src/text/template/parse/parse.go:193:26: Error not declared by package runtime
 </pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## vendor/golang.org/x/crypto/cryptobyte
+
+
+This package cannot be imported because the following dependencies cannot be compiled:
+
+  * [encoding/asn1](#encoding-asn1)
+  * [math/big](#math-big)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## vendor/golang.org/x/net/http/httpguts
+
+
+This package cannot be imported because the following dependencies cannot be compiled:
+
+  * [net](#net)
+  * [net/textproto](#net-textproto)
+
+
+
+
+
+## vendor/golang.org/x/net/http/httpproxy
+
+
+This package cannot be imported because the following dependencies cannot be compiled:
+
+  * [net](#net)
+
+
+
+
+
+## vendor/golang.org/x/net/http2/hpack
+
+
+The compiler gave the following error when this package was imported:
+
+<pre>../../../.gvm/gos/go1.13/src/vendor/golang.org/x/net/http2/hpack/tables.go:59:15: only strings, bools, ints, pointers or structs of bools/ints are supported as map keys, but got: struct{name string; value string}
+</pre>
+
+
+
+
+
+
+
+## vendor/golang.org/x/net/nettest
+
+
+This package cannot be imported because the following dependencies cannot be compiled:
+
+  * [net](#net)
+  * [os/exec](#os-exec)
+  * [testing](#testing)
 
 
 
