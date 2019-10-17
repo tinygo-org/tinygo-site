@@ -44,3 +44,9 @@ Clean the cache directory, normally stored in `$HOME/.cache/tinygo`. This is not
 
 ### help
 Print a short summary of the available commands, plus a list of command flags.
+
+### version
+Print the version of the command and the version of the used `$GOROOT`.
+
+### env
+Print a list of environment variables that affect TinyGo (as a shell script). If one or more variable names are given as arguments, env prints the value of each on a new line.
