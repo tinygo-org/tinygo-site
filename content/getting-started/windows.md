@@ -48,3 +48,49 @@ VERY IMPORTANT NOTE: You cannot yet create Windows binary programs using TinyGo,
     ```
     tinygo version
     ```
+
+### Flashing boards
+
+The `tinygo flash` command does not work correctly yet. However you can use `tinygo build` and then manually flash the binary to the target board. See the following examples.
+
+#### Adafruit Circuit Playground Express
+
+- First build the binary in `UF2` format:
+
+    ```shell
+    tinygo build -o flash.uf2 -target circuitplay-express path\to\code
+    ```
+
+- Plug in the Circuit Playground Express board to the USB port.
+
+- Double tap the "RESET" button.
+
+- Once the Circuit Playground Express board appears as a flash drive, copy the `flash.uf2` file to the `CPLAYBOOT` folder.
+
+#### Arduino Nano33 IoT
+
+- You must install the "BOSSA" flashing utility first. You can download it from https://github.com/shumatech/BOSSA/releases/download/1.9.1/bossa-x64-1.9.1.msi
+
+- During the installation, you should choose to put it into `c:\Program Files`
+
+- After the installation, you must add it to your PATH:
+
+    ```shell
+    set PATH=%PATH%;"c:\Program Files";
+    ```
+
+- Now you can build the binary in `BIN` format:
+
+    ```shell
+    tinygo build -o flash.bin -target arduino-nano33 path\to\code
+    ```
+
+- Plug in the Circuit Playground Express board to the USB port.
+
+- Double tap the "RESET" button.
+
+- Flash the binary to your Arduino Nano33 board by running this command:
+
+    ```shell
+    bossac -d -i -e -w -v -R --port=COM4 --offset=0x2000 flash.bin
+    ```
