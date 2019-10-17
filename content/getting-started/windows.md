@@ -85,9 +85,11 @@ The `tinygo flash` command does not work correctly yet. However you can use `tin
     tinygo build -o flash.bin -target arduino-nano33 path\to\code
     ```
 
-- Plug in the Circuit Playground Express board to the USB port.
+- Plug in the Arduino Nano33 IoT board to the USB port.
 
 - Double tap the "RESET" button.
+
+- Windows 10 should display a notification with the name of the COM port that the board has been assigned to. For example `COM4`.
 
 - Flash the binary to your Arduino Nano33 board by running this command:
 
