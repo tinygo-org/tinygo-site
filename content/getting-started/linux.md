@@ -5,7 +5,7 @@ draft: false
 weight: 1
 ---
 
-This page has information on how to install and use TinyGo on Ubuntu, as well as other Linux distros.
+This page has information on how to install and use TinyGo on Ubuntu, as well as other Linux distributions.
 
 If you want to use TinyGo to compile your own or sample code, you can install the release version directly on your machine by following the "Quick Install" instructions below.
 
@@ -15,20 +15,22 @@ The third option is to use the Docker image. This has the benefit of making no c
 
 ## Quick Install
 
-You must have Go v1.11+ already installed on your machine in order to install TinyGo. We recommend Go v1.12+
+### Ubuntu/Debian
+
+You must have Go already installed on your machine in order to install TinyGo. We recommend Go v1.13 or above.
 
 If you are using Ubuntu or another Debian based Linux on an Intel processor, download the DEB file from Github and install it using the following commands:
 
 ```shell
-wget https://github.com/tinygo-org/tinygo/releases/download/v0.8.0/tinygo_0.8.0_amd64.deb
-sudo dpkg -i tinygo_0.8.0_amd64.deb
+wget https://github.com/tinygo-org/tinygo/releases/download/v0.9.0/tinygo_0.9.0_amd64.deb
+sudo dpkg -i tinygo_0.9.0_amd64.deb
 ```
 
 If you are on a Raspberry Pi or other ARM-based Linux computer, you should use this command instead:
 
 ```shell
-wget https://github.com/tinygo-org/tinygo/releases/download/v0.8.0/tinygo_0.8.0_armhf.deb
-sudo dpkg -i tinygo_0.8.0_armhf.deb
+wget https://github.com/tinygo-org/tinygo/releases/download/v0.9.0/tinygo_0.9.0_armhf.deb
+sudo dpkg -i tinygo_0.9.0_armhf.deb
 ```
 
 You will need to ensure that the path to the `tinygo` executable file is in your `PATH` variable.
@@ -41,7 +43,7 @@ You can test that the installation is working properly by running this code whic
 
 ```shell
 $ tinygo version
-tinygo version 0.8.0 linux/amd64
+tinygo version 0.9.0 linux/amd64
 ```
 
 If you are only interested in compiling TinyGo code for WebAssembly then you are done with the installation.
@@ -61,11 +63,11 @@ sudo dnf install tinygo
 There is an [AUR package](https://aur.archlinux.org/packages/tinygo-bin/)
 (`tinygo-bin`) available for the latest TinyGo release.
 
-### Additional Requirements for Microcontrollers
+## Additional Requirements for Microcontrollers
 
 There are some additional requirements to compile TinyGo programs that can run on microcontrollers.
 
-#### ARM Cortex-M
+### ARM Cortex-M
 
 To compile TinyGo programs for ARM based processors you must also install Clang 8 (`clang-8`) for building assembly files and the compiler runtime library [https://compiler-rt.llvm.org/](https://compiler-rt.llvm.org/).
 
@@ -87,7 +89,7 @@ sudo apt-get install clang-8
 
 Some boards also require a special flashing tool for that particular chip, like `openocd` or `nrfjprog`. See the documentation page for your board as listed [here](../../microcontrollers/) to see which flashing tool is required for your target board.
 
-#### AVR (Arduino)
+### AVR (Arduino)
 
 To compile and flash TinyGo programs for AVR based processors you must install some extra tools:
 
@@ -101,7 +103,7 @@ This should allow you to compile and flash TinyGo programs on an Arduino or othe
 
 ## Source Install
 
-If you are using Go 1.11 or Go 1.12, make sure that you first turn on Go modules support, like this:
+Before installing make sure that you first turn on Go modules support, like this:
 
 ```shell
 export GO111MODULE=on
@@ -176,7 +178,7 @@ This results in a `tinygo` binary in the `build` directory:
 
 ```shell
 $ ./build/tinygo version
-tinygo version 0.8.0 linux/amd64
+tinygo version 0.9.0 linux/amd64
 ```
 
 ### Additional Requirements for Microcontrollers

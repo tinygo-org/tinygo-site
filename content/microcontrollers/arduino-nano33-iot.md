@@ -46,27 +46,57 @@ make
 
 Once you have installed the needed BOSSA command line utility, as in the previous section, you are ready to build and flash code to your Arduino Nano33 IoT board.
 
+### CLI Flashing on Linux
+
 - Plug your Arduino Nano33 IoT board into your computer's USB port.
-- Press the "RESET" button on the board two times to get the Arduino Nano33 IoT board ready to receive code.
 - Build and flash your TinyGo code using the `tinygo flash` command. This command flashes the Arduino Nano33 IoT with the blinky1 example:
 
-```
-tinygo flash -target=arduino-nano33 examples/blinky1
-```
+    ```
+    tinygo flash -target=arduino-nano33 examples/blinky1
+    ```
 
 - The Arduino Nano33 IoT board should restart and then begin running your program.
 
-### CLI Flashing
+### CLI Flashing on macOS
 
-Once you have updated your Arduino Nano33 IoT board the first time, after that you should be able to flash it entirely from the command line using the `stty` command like this:
+In order to talk to flash the board using macOS, you need to discover how macOS system has named the serial port.
 
-```
-stty -F /dev/ttyACM0 1200 hupcl; tinygo flash -target=arduino-nano33 examples/blinky1
-```
+- Plug your Arduino Nano33 IoT into your computer's USB port.
+- Run this command to display the connected USB devices:
 
-Replace `/dev/ttyACM0` in the command above with the correct USB port name for your board.
+    ```shell
+    ls /dev | grep usb
+    ```
+
+    The above command should result in output like this:
+
+    ```shell
+    /dev/cu.usbmodem141201
+    /dev/tty.usbmodem141201
+    ```
+
+- Using this information, you should now be able to flash your TinyGo program to the board using this command:
+
+    ```shell
+    tinygo flash -target=arduino-nano33 -port=[PORT TO YOUR BOARD] [PATH TO YOUR PROGRAM]
+    ```
+
+    Replace `[PORT TO YOUR BOARD]` in the command above with the correct USB port name for your board.
 
 - The Arduino Nano33 IoT board should restart and then begin running your program.
+
+### Troubleshooting
+
+If you have troubles getting your Arduino Nano33 IoTboard to receive code, try this:
+
+- Press the "RESET" button on the board two times to get the Arduino Nano33 IoT board ready to receive code.
+- Now try running the `tinygo flash` command as above:
+
+    ```shell
+    tinygo flash -target=arduino-nano33 [PATH TO YOUR PROGRAM]
+    ```
+
+Once you have updated your Arduino Nano33 IoT board the first time, after that you should be able to flash it entirely from the command line.
 
 ## Notes
 
