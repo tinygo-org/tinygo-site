@@ -32,10 +32,13 @@ The top-left pixel of the built-in LED matrix on the micro:bit board should star
 
 ### Building/flashing a "blink" program for Arduino
 
-To build and then flash a basic blink program for an Arduino Uno, plug in the board to your computer's USB port and then run the following command:
+To build and then flash a basic blink program for an Arduino Uno,
+
+- Plug in the board to your computer's USB port.
+- Run the following command, specifiying the serial port if needed. (It defaults to `/dev/ttyACM0` as that is the default port on Linux.)
 
 ```shell
-tinygo flash -target=arduino examples/blinky1
+tinygo flash -target=arduino -port=[PORT] examples/blinky1
 ```
 
 The built-in LED on the board should start to blink.

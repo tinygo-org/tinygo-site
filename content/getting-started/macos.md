@@ -49,7 +49,7 @@ brew install llvm@8
 
 #### AVR (Arduino)
 
-If you want to compile code for AVR-based microcontrollers such as Arduino, you will need to install gcc-avr:
+If you want to compile code for AVR-based microcontrollers such as Arduino, you will need to install some extra tools:
 
 ```shell
 brew tap osx-cross/avr
