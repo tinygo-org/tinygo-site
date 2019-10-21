@@ -7,7 +7,7 @@ Rust is another "new" and safer language that is now made ready for embedded pro
 
 However, apart from personal language preference, Go has a few advantages:
 
-* Subjective, but in general Go is [easier to learn](https://matthias-endler.de/2017/go-vs-rust/). Rust is in general far more complicated than Go, with difficult-to-grasp ownership rules, traits, generics, etc. Go prides itself on being a simple and slightly dumb language, sacrificing some expressiveness for readability.
+* Subjective, but in general Go is [easier to learn](https://endler.dev/2017/go-vs-rust/). Rust is in general far more complicated than Go, with difficult-to-grasp ownership rules, traits, generics, etc. Go prides itself on being a simple and slightly dumb language, sacrificing some expressiveness for readability.
 
 * Built-in support for concurrency with goroutines and channels that do not rely on a particular implementation threads. This avoids the need for a custom [RTOS-like framework](https://blog.japaric.io/rtfm-v2/) or a [full-blown RTOS](https://github.com/rust-embedded/wg/issues/45) with the associated API one has to learn. In Go, everything is handled by goroutines which are built into the language itself.
 
