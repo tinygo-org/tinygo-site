@@ -37,7 +37,7 @@ Run the program, either directly on the host or in an emulated environment (depe
 Flash the program to a microcontroller.
 
 ### gdb
-Compile the program, optionally flash it to a microcontroller if it is a remote target, and drop into a GDB shell. From here you can break the current program (Ctrl-C), single-step, show a backtrace, etc. A debugger must be specified for your particular target in the target .json file and the required tools (like GDB for your target) must be installed as well.
+Compile the program, optionally flash it to a microcontroller if it is a remote target, and drop into a GDB shell. From there you can set breakpoints, start the program with `run` or `continue` (`run` for a local program, `continue` for on-chip debugging), single-step, show a backtrace, break and resume the program with Ctrl-C/`continue`, etc. You may need to install extra tools (like `openocd` and `arm-none-eabi-gdb`) to be able to do this. Also, you may need a dedicated debugger to be able to debug certain boards if no debugger is integrated. Some boards (like the BBC micro:bit and most professional evaluation boards) have an integrated debugger.
 
 ### clean
 Clean the cache directory, normally stored in `$HOME/.cache/tinygo`. This is not normally needed.
