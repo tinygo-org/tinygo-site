@@ -29,6 +29,12 @@ Make sure to connect the SWD and power pins. For example, if you're using the [J
 | 3.3V VCC     | Vref       |
 | GND          | GND        |
 
+If you get the following error:
+
+    Error: Could not find MEM-AP to control the core
+
+it means the chip is locked. See below for how to unlock and erase it.
+
 ### Unlock chip using nrfjprog
 
 If you have `nrfjprog` installed, you can easily unlock the chip using the following command:
