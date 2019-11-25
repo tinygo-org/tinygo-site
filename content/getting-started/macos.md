@@ -41,15 +41,17 @@ There are some additional requirements to compile TinyGo programs that can run o
 
 #### ARM Cortex-M
 
-In order to develop for ARM-based microcontrollers you will need to install LLVM 8:
+In order to develop for ARM-based microcontrollers you will need to install LLVM 9:
 
 ```shell
-brew install llvm@8
+brew install llvm
 ```
 
-#### AVR (Arduino)
+If you are only interested in compiling TinyGo code for ARM microcontrollers then you are now done with the installation.
 
-If you want to compile code for AVR-based microcontrollers such as Arduino, you will need to install some extra tools:
+#### AVR (e.g. Arduino Uno)
+
+To compile and flash TinyGo programs for AVR based processors such as the original Arduino Uno you must install some extra tools:
 
 ```shell
 brew tap osx-cross/avr
@@ -57,7 +59,11 @@ brew install avr-gcc
 brew install avrdude
 ```
 
+### You are now done with the TinyGo "Quick Install" for macOS
+
 ## Source Install
+
+***If you have already followed the "Quick Install" instructions above, you do not need to perform a source install. You are now done with the needed installation. The "Source Install" is for when you want to contribute to TinyGo.***
 
 Make sure that you first turn on Go modules support, like this:
 
@@ -83,7 +89,7 @@ The easiest way to install LLVM on macOS is through
 [Homebrew](https://formulae.brew.sh/formula/llvm). Make sure you install LLVM 8:
 
 ```shell
-brew install llvm@8
+brew install llvm
 ```
 
 Installing TinyGo should now be as easy as:

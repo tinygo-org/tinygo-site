@@ -15,6 +15,12 @@ The third option is to use the Docker image. This has the benefit of making no c
 
 ## Quick Install
 
+[Ubuntu/Debian](#ubuntu-debian)
+
+[Fedora Linux](#fedora-linux)
+
+[Arch Linux](#arch-linux)
+
 ### Ubuntu/Debian
 
 You must have Go already installed on your machine in order to install TinyGo. We recommend Go v1.13 or above.
@@ -46,30 +52,17 @@ $ tinygo version
 tinygo version 0.9.0 linux/amd64
 ```
 
-If you are only interested in compiling TinyGo code for WebAssembly then you are done with the installation.
+If you are only interested in compiling TinyGo code for WebAssembly then you are now done with the installation.
 
 Otherwise, please continue with the installation of the additional requirements for your desired microcontroller.
 
-### Fedora Linux
-
-There is an [Fedora 30 package](https://apps.fedoraproject.org/packages/tinygo) available for the latest TinyGo release. To install it:
-
-```shell
-sudo dnf install tinygo
-```
-
-### Arch Linux
-
-There is an [AUR package](https://aur.archlinux.org/packages/tinygo-bin/)
-(`tinygo-bin`) available for the latest TinyGo release.
-
-## Additional Requirements for Microcontrollers
+### Additional Requirements for Microcontrollers on Ubuntu/Debian
 
 There are some additional requirements to compile TinyGo programs that can run on microcontrollers.
 
-### ARM Cortex-M
+#### ARM Cortex-M
 
-To compile TinyGo programs for ARM based processors you must also install Clang 8 (`clang-8`) for building assembly files and the compiler runtime library [https://compiler-rt.llvm.org/](https://compiler-rt.llvm.org/).
+To compile TinyGo programs for ARM based processors you must also install Clang 9 (`clang-9`) for building assembly files and the compiler runtime library [https://compiler-rt.llvm.org/](https://compiler-rt.llvm.org/).
 
 One way to do this is to use the LLVM Debian/Ubuntu packages.
 
@@ -77,21 +70,23 @@ First, you must add the LLVM package repository to your system. Note that if you
 
 ```shell
 wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add -
-sudo add-apt-repository "deb http://apt.llvm.org/$(lsb_release -s -c)/ llvm-toolchain-$(lsb_release -s -c)-8 main"
+sudo add-apt-repository "deb http://apt.llvm.org/$(lsb_release -s -c)/ llvm-toolchain-$(lsb_release -s -c)-9 main"
 sudo apt-get update
 ```
 
-Now you can install Clang 8 by running this command:
+Now you can install Clang 9 by running this command:
 
 ```shell
-sudo apt-get install clang-8
+sudo apt-get install clang-9
 ```
 
 Some boards also require a special flashing tool for that particular chip, like `openocd` or `nrfjprog`. See the documentation page for your board as listed [here](../../microcontrollers/) to see which flashing tool is required for your target board.
 
-### AVR (Arduino)
+If you are only interested in compiling TinyGo code for ARM microcontrollers then you are now done with the installation.
 
-To compile and flash TinyGo programs for AVR based processors you must install some extra tools:
+#### AVR (e.g. Arduino Uno)
+
+To compile and flash TinyGo programs for AVR based processors such as the original Arduino Uno you must install some extra tools:
 
 ```shell
 sudo apt-get install gcc-avr
@@ -101,7 +96,82 @@ sudo apt-get install avrdude
 
 This should allow you to compile and flash TinyGo programs on an Arduino or other supported AVR-based board.
 
+#### You are now done with the TinyGo "Quick Install" for Ubuntu/Debian
+
+### Fedora Linux
+
+There is an [Fedora 30 package](https://apps.fedoraproject.org/packages/tinygo) available for the latest TinyGo release. To install it:
+
+```shell
+sudo dnf install tinygo
+```
+
+If you are only interested in compiling TinyGo code for WebAssembly then you are now done with the installation.
+
+Otherwise, please continue with the installation of the additional requirements for your desired microcontroller
+
+### Additional Requirements for Microcontrollers on Fedora Linux
+
+There are some additional requirements to compile TinyGo programs that can run on microcontrollers.
+
+#### ARM Cortex-M
+
+To compile TinyGo programs for ARM based processors you must also install Clang 9 (`clang-9`) for building assembly files and the compiler runtime library [https://compiler-rt.llvm.org/](https://compiler-rt.llvm.org/).
+
+```shell
+sudo dnf install clang
+sudo dnf install compiler-rt
+```
+
+#### AVR (e.g. Arduino Uno)
+
+To compile and flash TinyGo programs for AVR based processors such as the original Arduino Uno you must install some extra tools:
+
+```shell
+sudo dnf install avr-gcc
+sudo dnf install avr-libc
+sudo dnf install avrdude
+```
+
+This should allow you to compile and flash TinyGo programs on an Arduino or other supported AVR-based board.
+
+#### You are now done with the TinyGo "Quick Install" for Fedora Linux
+
+### Arch Linux
+
+There is an [AUR package](https://aur.archlinux.org/packages/tinygo-bin/) available for the latest TinyGo release.
+
+If you are only interested in compiling TinyGo code for WebAssembly then you are now done with the installation.
+
+Otherwise, please continue with the installation of the additional requirements for your desired microcontroller
+
+### Additional Requirements for Microcontrollers on Arch Linux
+
+There are some additional requirements to compile TinyGo programs that can run on microcontrollers.
+
+#### ARM Cortex-M
+
+To compile TinyGo programs for ARM based processors you must also install Clang 9 (`clang-9`) for building assembly files and the compiler runtime library [https://compiler-rt.llvm.org/](https://compiler-rt.llvm.org/).
+
+[clang and llvm AUR package](https://aur.archlinux.org/packages/clang%2Bllvm-binaries/)
+
+#### AVR (e.g. Arduino Uno)
+
+To compile and flash TinyGo programs for AVR based processors such as the original Arduino Uno you must install some extra tools:
+
+[avr-gcc AUR package](https://www.archlinux.org/packages/community/x86_64/avr-gcc/)
+
+[avr-libc AUR package](https://www.archlinux.org/packages/community/any/avr-libc/)
+
+[avrdude AUR package](https://www.archlinux.org/packages/community/x86_64/avrdude/)
+
+This should allow you to compile and flash TinyGo programs on an Arduino or other supported AVR-based board.
+
+#### You are now done with the TinyGo "Quick Install" for Arch Linux
+
 ## Source Install
+
+***If you have already followed the "Quick Install" instructions above for your distro, you do not need to perform a source install. You are now done with the needed installation. The "Source Install" is for when you want to contribute to TinyGo.***
 
 Before installing make sure that you first turn on Go modules support, like this:
 
