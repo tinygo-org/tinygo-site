@@ -16,6 +16,10 @@ The [Adafruit Feather M4](https://www.adafruit.com/product/3857) is a tiny ARM d
 | ADC      | YES | YES |
 | PWM      | YES | YES |
 
+## Machine Package Docs
+
+[Documentation for the machine package for the Adafruit Feather M4](../machine/feather-m4)
+
 ## Flashing
 
 ### UF2

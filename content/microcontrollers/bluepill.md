@@ -16,6 +16,10 @@ The [Bluepill](http://wiki.stm32duino.com/index.php?title=Blue_Pill) is a popula
 | ADC      | YES | Not yet |
 | PWM      | YES | Not yet |
 
+## Machine Package Docs
+
+[Documentation for the machine package for the Bluepill](../machine/bluepill)
+
 ## Flashing
 
 ### OpenOCD

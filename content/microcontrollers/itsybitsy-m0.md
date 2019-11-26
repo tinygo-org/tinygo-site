@@ -16,6 +16,10 @@ The [Adafruit ItsyBitsy M0](https://www.adafruit.com/product/3727) is very compa
 | ADC      | YES | YES |
 | PWM      | YES | YES |
 
+## Machine Package Docs
+
+[Documentation for the machine package for the Adafruit ItsyBitsy M0](../machine/itsybitsy-m0)
+
 ## Flashing
 
 ### UF2

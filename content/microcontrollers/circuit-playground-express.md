@@ -16,6 +16,10 @@ The [Adafruit Circuit Playground Express](https://www.adafruit.com/product/3333)
 | ADC      | YES | YES |
 | PWM      | YES | YES |
 
+## Machine Package Docs
+
+[Documentation for the machine package for the Circuit Playground Express](../machine/circuitplay-express)
+
 ## Flashing
 
 ### UF2

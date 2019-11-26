@@ -16,6 +16,10 @@ The [PineTime](https://wiki.pine64.org/index.php/PineTime) is a smartwatch by [P
 | ADC      | YES | YES |
 | PWM      | YES | YES |
 
+## Machine Package Docs
+
+[Documentation for the machine package for the PineTime](../machine/pinetime-devkit0)
+
 ## Flashing
 
 The PineTime comes with some (proprietary?) default firmware and has the flash locked. This means that to flash this smartwatch, the chip must be unlocked (which erases all flash). There are two options for that, OpenOCD or nrfjprog.

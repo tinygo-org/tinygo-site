@@ -20,6 +20,10 @@ Note: the AVR backend of LLVM is still experimental so you may encounter bugs.
 | ADC      | YES | Not yet |
 | PWM      | ? | Not yet |
 
+## Machine Package Docs
+
+[Documentation for the machine package for the Digispark](../machine/digispark)
+
 ## Flashing
 
 ### Micronucleus

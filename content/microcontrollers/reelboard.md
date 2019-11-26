@@ -18,6 +18,10 @@ It is equipped with an Electrophoretic (electronic ink) Display (EPD), along wit
 | ADC      | YES | Not yet |
 | PWM      | YES | Not yet |
 
+## Machine Package Docs
+
+[Documentation for the machine package for the reel board](../machine/reelboard)
+
 ## Flashing
 
 ### MSD Flashing

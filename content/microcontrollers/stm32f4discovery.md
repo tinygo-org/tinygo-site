@@ -19,6 +19,10 @@ CS43L22 audio DAC, 2 user buttons, and 4 user LEDs.
 | ADC      | YES | Not yet |
 | PWM      | YES | Not yet |
 
+## Machine Package Docs
+
+[Documentation for the machine package for the STM32F4 Discovery](../machine/stm32f4disco)
+
 ## Flashing
 
 ### OpenOCD

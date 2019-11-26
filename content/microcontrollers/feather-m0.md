@@ -16,6 +16,10 @@ The [Adafruit Feather M0](https://www.adafruit.com/product/3403) is a tiny ARM d
 | ADC      | YES | YES |
 | PWM      | YES | YES |
 
+## Machine Package Docs
+
+[Documentation for the machine package for the Adafruit Feather M0](../machine/feather-m0)
+
 ## Flashing
 
 ### UF2

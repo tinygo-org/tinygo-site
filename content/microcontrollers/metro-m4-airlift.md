@@ -16,6 +16,10 @@ The [Adafruit Metro M4 Express AirLift](https://www.adafruit.com/product/4000) i
 | ADC      | YES | YES |
 | PWM      | YES | YES |
 
+## Machine Package Docs
+
+[Documentation for the machine package for the Adafruit Metro M4 Airlift](../machine/metro-m4-airlift)
+
 ## Flashing
 
 ### UF2
