@@ -16,6 +16,10 @@ The [Game Boy Advance](https://en.wikipedia.org/wiki/Game_Boy_Advance) is a hand
 | ADC      | ? | ? |
 | PWM      | ? | ? |
 
+## Machine Package Docs
+
+[Documentation for the machine package for the Gameboy Advance](../machine/gameboy-advance)
+
 ## Installing dependencies
 
 You can use a Game Boy Advance software emulator such as MGBA (https://mgba.io) to test your programs.

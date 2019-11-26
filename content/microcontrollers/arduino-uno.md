@@ -18,6 +18,10 @@ Note: the AVR backend of LLVM is still experimental so you may encounter bugs.
 | ADC      | YES | YES |
 | PWM      | YES | YES |
 
+## Machine Package Docs
+
+[Documentation for the machine package for the Arduino Uno](../machine/arduino)
+
 ## Installing dependencies
 
 The Arduino Uno needs a few extra dependencies to work, for example, if you get an error like this:

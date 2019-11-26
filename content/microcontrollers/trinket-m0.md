@@ -16,6 +16,10 @@ The [Adafruit Trinket M0](https://www.adafruit.com/product/3500) is a tiny ARM d
 | ADC      | YES | YES |
 | PWM      | YES | YES |
 
+## Machine Package Docs
+
+[Documentation for the machine package for the Adafruit Trinket M0](../machine/trinket-m0)
+
 ## Flashing
 
 ### UF2

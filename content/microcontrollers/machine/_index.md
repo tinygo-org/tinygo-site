@@ -1,7 +1,7 @@
 ---
 title: "Machine package"
 chapter: true
-weight: 3
+weight: 0
 ---
 
 # The `machine` package

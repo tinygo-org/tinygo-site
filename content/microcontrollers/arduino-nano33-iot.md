@@ -16,6 +16,10 @@ The [Arduino Nano33 IoT](https://store.arduino.cc/nano-33-iot) is a very small A
 | ADC      | YES | YES |
 | PWM      | YES | YES |
 
+## Machine Package Docs
+
+[Documentation for the machine package for the Arduino Nano33 IoT](../machine/arduino-nano33)
+
 ## Pin Mapping
 
 Since the pin labels are located on the other side of the board, here is a picture showing the pin numbering from the front side perspective:

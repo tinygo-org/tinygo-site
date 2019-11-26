@@ -16,6 +16,10 @@ The [Nucleo F103RB](https://www.st.com/en/evaluation-tools/nucleo-f103rb.html) i
 | ADC       | YES | Not yet |
 | PWM       | YES | Not yet |
 
+## Machine Package Docs
+
+[Documentation for the machine package for the Nucleo F103RB](../machine/nucleo-f103rb)
+
 ## Flashing
 
 ### OpenOCD

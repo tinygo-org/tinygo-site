@@ -16,6 +16,10 @@ The BBC [micro:bit](https://microbit.org) is a tiny programmable computer design
 | ADC      | YES | Not yet |
 | PWM      | Software support | Not yet |
 
+## Machine Package Docs
+
+[Documentation for the machine package for the BBC micro:bit](../machine/microbit)
+
 ## Flashing
 
 ### DAPLink

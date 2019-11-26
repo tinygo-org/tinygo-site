@@ -11,10 +11,14 @@ The [HiFive1 Rev B](https://www.sifive.com/boards/hifive1-rev-b) is low-cost, Ar
 | --------- | ------------- | ----- |
 | GPIO      | YES | YES |
 | UART      | YES | YES |
-| SPI      | YES | Not yet |
+| SPI      | YES | Write only |
 | I2C      | YES | Not yet |
 | ADC      | NO | NO |
 | PWM      | YES | Not yet |
+
+## Machine Package Docs
+
+[Documentation for the machine package for the SiFive HiFive1b](../machine/hifive1b)
 
 ## Flashing
 

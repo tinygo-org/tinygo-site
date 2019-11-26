@@ -5,15 +5,17 @@ DEVICES = \
     nrf52840-mdk \
     pca10031 \
     bluepill \
-    reelboard \
+    arduino \
+    digispark \
     reelboard \
     pca10056 \
-    pca10056 \
+    arduino-nano33 \
     itsybitsy-m0 \
     feather-m0 \
+    feather-m4 \
     trinket-m0 \
+    metro-m4-airlift \
     circuitplay-express \
-    stm32f4disco \
     stm32f4disco \
     circuitplay-express \
     gameboy-advance \
