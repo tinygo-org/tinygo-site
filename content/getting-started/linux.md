@@ -28,15 +28,15 @@ You must have Go already installed on your machine in order to install TinyGo. W
 If you are using Ubuntu or another Debian based Linux on an Intel processor, download the DEB file from Github and install it using the following commands:
 
 ```shell
-wget https://github.com/tinygo-org/tinygo/releases/download/v0.9.0/tinygo_0.9.0_amd64.deb
-sudo dpkg -i tinygo_0.9.0_amd64.deb
+wget https://github.com/tinygo-org/tinygo/releases/download/v0.10.0/tinygo_0.10.0_amd64.deb
+sudo dpkg -i tinygo_0.10.0_amd64.deb
 ```
 
 If you are on a Raspberry Pi or other ARM-based Linux computer, you should use this command instead:
 
 ```shell
-wget https://github.com/tinygo-org/tinygo/releases/download/v0.9.0/tinygo_0.9.0_armhf.deb
-sudo dpkg -i tinygo_0.9.0_armhf.deb
+wget https://github.com/tinygo-org/tinygo/releases/download/v0.10.0/tinygo_0.10.0_armhf.deb
+sudo dpkg -i tinygo_0.10.0_armhf.deb
 ```
 
 You will need to ensure that the path to the `tinygo` executable file is in your `PATH` variable.
@@ -49,7 +49,7 @@ You can test that the installation is working properly by running this code whic
 
 ```shell
 $ tinygo version
-tinygo version 0.9.0 linux/amd64
+tinygo version 0.10.0 linux/amd64
 ```
 
 If you are only interested in compiling TinyGo code for WebAssembly then you are now done with the installation.
@@ -198,13 +198,13 @@ different distribution, please let us know how so we can add it here.
 
 For Debian and Ubuntu, you can install the binaries provided by LLVM on
 [apt.llvm.org](http://apt.llvm.org/). For example, the following commands can be
-used to install LLVM 8 on Debian Stretch:
+used to install LLVM 9 on Debian Stretch:
 
 ```shell
-echo 'deb http://apt.llvm.org/stretch/ llvm-toolchain-stretch-8 main' | sudo tee /etc/apt/sources.list.d/llvm.list
+echo 'deb http://apt.llvm.org/stretch/ llvm-toolchain-stretch-9 main' | sudo tee /etc/apt/sources.list.d/llvm.list
 wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
 sudo apt-get update
-sudo apt-get install clang-8 llvm-8-dev lld-8 libclang-8-dev
+sudo apt-get install clang-9 llvm-9-dev lld-9 libclang-9-dev
 ```
 
 Note that you should not use `make` when you want to build using a
@@ -248,7 +248,7 @@ This results in a `tinygo` binary in the `build` directory:
 
 ```shell
 $ ./build/tinygo version
-tinygo version 0.9.0 linux/amd64
+tinygo version 0.10.0 linux/amd64
 ```
 
 ### Additional Requirements for Microcontrollers
