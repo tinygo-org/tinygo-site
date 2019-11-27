@@ -15,11 +15,11 @@ Here is a list of features that are supported:
 
 ## Concurrency
 
-At the time of writing (2019-07-05), support for goroutines and channels has not been fully realized but simple programs usually work. There may be problems with function pointers or starting more than two goroutines. Also, some things may unexpectedly allocate heap memory like calling a function that blocks. This situation should certainly improve in the future: at the moment, you should treat goroutines as an experimental feature.
+At the time of writing (2019-11-27), support for goroutines and channels works for the most part. Support for concurrency on ARM microcontrollers is complete but may have some edge cases that don't work. Support for other platforms (such as WebAssembly) is a bit more limited: calling a blocking function may for example allocate heap memory.
 
 ## Cgo
 
-While TinyGo embeds the [Clang](https://clang.llvm.org/) compiler to parse `import "C"` blocks, many features of Cgo are still unsupported. For example, `#cgo` statements are currently ignored.
+While TinyGo embeds the [Clang](https://clang.llvm.org/) compiler to parse `import "C"` blocks, many features of Cgo are still unsupported. For example, `#cgo` statements are only partially supported.
 
 ## Reflection
 
@@ -29,7 +29,7 @@ Many packages, especially in the standard library, rely on reflection to work. T
 
 Support for maps is not yet complete but is usable. You can use any type as a value, but only some types are acceptable as map keys. Also, they have not been optimized for performance and will cause linear lookup times in some cases.
 
-Types supported as map keys include strings, integers, pointers, and structs/arrays that contain only these types. More complex types will depend on better reflection support.
+Types supported as map keys include strings, integers, pointers, and structs/arrays that contain only these types.
 
 ## Standard library
 
