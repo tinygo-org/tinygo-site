@@ -21,7 +21,7 @@ compress/zlib |  <span style="color: green">✔</span> yes  |
 container/heap |  <span style="color: green">✔</span> yes  | 
 container/list |  <span style="color: green">✔</span> yes  | 
 container/ring |  <span style="color: green">✔</span> yes  | 
-context |  [<span style="color: red">✗</span> no](#context)  | 
+context |  <span style="color: green">✔</span> yes  | 
 crypto |  <span style="color: green">✔</span> yes  | 
 crypto/aes |  <span style="color: green">✔</span> yes  | 
 crypto/cipher |  <span style="color: green">✔</span> yes  | 
@@ -43,7 +43,7 @@ crypto/tls |  [<span style="color: red">✗</span> no](#crypto-tls)  |
 crypto/x509 |  [<span style="color: red">✗</span> no](#crypto-x509)  | 
 crypto/x509/pkix |  [<span style="color: red">✗</span> no](#crypto-x509-pkix)  | 
 database/sql |  [<span style="color: red">✗</span> no](#database-sql)  | 
-database/sql/driver |  [<span style="color: red">✗</span> no](#database-sql-driver)  | 
+database/sql/driver |  <span style="color: green">✔</span> yes  | 
 debug/dwarf |  <span style="color: green">✔</span> yes  | 
 debug/elf |  [<span style="color: red">✗</span> no](#debug-elf)  | 
 debug/gosym |  <span style="color: green">✔</span> yes  | 
@@ -86,11 +86,11 @@ html |  [<span style="color: red">✗</span> no](#html)  |
 html/template |  [<span style="color: red">✗</span> no](#html-template)  | 
 image |  <span style="color: green">✔</span> yes  | 
 image/color |  <span style="color: green">✔</span> yes  | 
-image/color/palette |  [<span style="color: red">✗</span> no](#image-color-palette)  | 
+image/color/palette |  <span style="color: green">✔</span> yes  | 
 image/draw |  <span style="color: green">✔</span> yes  | 
 image/gif |  [<span style="color: red">✗</span> no](#image-gif)  | 
 image/jpeg |  [<span style="color: red">✗</span> no](#image-jpeg)  | 
-image/png |  [<span style="color: red">✗</span> no](#image-png)  | 
+image/png |  <span style="color: green">✔</span> yes  | 
 index/suffixarray |  <span style="color: green">✔</span> yes  | 
 io |  <span style="color: green">✔</span> yes  | 
 io/ioutil |  <span style="color: green">✔</span> yes  | 
@@ -218,30 +218,6 @@ The compiler gave the following error when this package was imported:
 
 
 
-
-
-
-## context
-
-
-The compiler gave the following error when this package was imported:
-
-<pre>panic: todo: store
-
-goroutine 1 [running]:
-github.com/tinygo-org/tinygo/interp.(*Eval).hasLocalSideEffects(0xc0013c37d0, 0xc0014463d0, 0x7fb84c0fd230, 0xc001697500)
-	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/scan.go:181 +0x1cf
-github.com/tinygo-org/tinygo/interp.(*Eval).hasSideEffects(0xc0013c37d0, 0x7fb84c019e98, 0x7fb84c019e98)
-	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/scan.go:108 +0x550
-github.com/tinygo-org/tinygo/interp.(*Eval).hasSideEffects(0xc0013c37d0, 0x7fb84c003c08, 0x7fb84c003c08)
-	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/scan.go:102 +0x4ed
-github.com/tinygo-org/tinygo/interp.(*Eval).hasSideEffects(0xc0013c37d0, 0x7fb84c0209b8, 0x1)
-	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/scan.go:102 +0x4ed
-github.com/tinygo-org/tinygo/interp.(*frame).evalBasicBlock(0xc0014471e0, 0x7fb84c0d4300, 0x0, 0x0, 0x0, 0xc04c3caec0, 0x10, 0x10, 0xc001823b80, 0x5fc4c1, ...)
-	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/frame.go:469 +0x581d
-github.com/tinygo-org/tinygo/interp.(*Eval).function(0xc0013c37d0, 0x7fb84c0208f8, 0xc001447328, 0x2, 0x2, 0xc001827b60, 0x7, 0x0, 0x0, 0x0, ...)
-	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/interp.go:104 +0x208
-[...more lines following...]</pre>
 
 
 
@@ -393,21 +369,26 @@ This package cannot be imported because the following dependencies cannot be com
 ## database/sql
 
 
-This package cannot be imported because the following dependencies cannot be compiled:
+The compiler gave the following error when this package was imported:
 
-  * [context](#context)
-  * [database/sql/driver](#database-sql-driver)
+<pre># database/sql
+../../../.gvm/gos/go1.13/src/database/sql/sql.go:590:7: Locker not declared by package sync
+../../../.gvm/gos/go1.13/src/database/sql/sql.go:3159:7: Locker not declared by package sync
+../../../.gvm/gos/go1.13/src/database/sql/sql.go:3181:23: Locker not declared by package sync
+../../../.gvm/gos/go1.13/src/database/sql/sql.go:3177:29: Stack not declared by package runtime
+../../../.gvm/gos/go1.13/src/database/sql/sql.go:3170:5: dr.Lock undefined (type driverResult has no field or method Lock)
+../../../.gvm/gos/go1.13/src/database/sql/sql.go:3171:11: dr.Unlock undefined (type driverResult has no field or method Unlock)
+../../../.gvm/gos/go1.13/src/database/sql/sql.go:3164:5: dr.Lock undefined (type driverResult has no field or method Lock)
+../../../.gvm/gos/go1.13/src/database/sql/sql.go:3165:11: dr.Unlock undefined (type driverResult has no field or method Unlock)
+../../../.gvm/gos/go1.13/src/database/sql/sql.go:2744:22: rs.closemu.RLocker undefined (type sync.RWMutex has no field or method RLocker)
+../../../.gvm/gos/go1.13/src/database/sql/sql.go:2598:5: ds.Lock undefined (type *driverStmt has no field or method Lock)
+../../../.gvm/gos/go1.13/src/database/sql/sql.go:2599:11: ds.Unlock undefined (type *driverStmt has no field or method Unlock)
+../../../.gvm/gos/go1.13/src/database/sql/sql.go:2427:5: ds.Lock undefined (type *driverStmt has no field or method Lock)
+../../../.gvm/gos/go1.13/src/database/sql/sql.go:2428:11: ds.Unlock undefined (type *driverStmt has no field or method Unlock)
+../../../.gvm/gos/go1.13/src/database/sql/sql.go:599:5: ds.Lock undefined (type *driverStmt has no field or method Lock)
+[...more lines following...]</pre>
 
 
-
-
-
-## database/sql/driver
-
-
-This package cannot be imported because the following dependencies cannot be compiled:
-
-  * [context](#context)
 
 
 
@@ -728,22 +709,9 @@ This package cannot be imported because the following dependencies cannot be com
 
 The compiler gave the following error when this package was imported:
 
-<pre>panic: interface conversion: interp.Value is *interp.LocalValue, not *interp.MapValue
-
-goroutine 1 [running]:
-github.com/tinygo-org/tinygo/interp.(*frame).evalBasicBlock(0xc002b8c608, 0x69642b0, 0x6963f30, 0x86b381, 0x4, 0x0, 0x0, 0xc004547f60, 0x1, 0x1, ...)
-	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/frame.go:279 +0x9c7a
-github.com/tinygo-org/tinygo/interp.(*Eval).function(0xc002528060, 0x29c07b8, 0xc0045c7200, 0x2, 0x2, 0xc0045c20b0, 0x8, 0x86b381, 0x4, 0x902640, ...)
-	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/interp.go:104 +0x208
-github.com/tinygo-org/tinygo/interp.(*frame).evalBasicBlock(0xc002b8d1e0, 0x6962da0, 0x69627b0, 0x0, 0x0, 0x0, 0x0, 0xc004547f28, 0x1, 0x1, ...)
-	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/frame.go:492 +0x5c15
-github.com/tinygo-org/tinygo/interp.(*Eval).function(0xc002528060, 0x29c06c8, 0xc002b8d328, 0x2, 0x2, 0xc0045c20b0, 0x8, 0x0, 0x0, 0x0, ...)
-	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/interp.go:104 +0x208
-github.com/tinygo-org/tinygo/interp.(*Eval).Function(...)
-	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/interp.go:87
-github.com/tinygo-org/tinygo/interp.Run(0x298b0d0, 0x7ffe00000000, 0x0, 0x0)
-	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/interp.go:74 +0x6b2
-[...more lines following...]</pre>
+<pre># go/token
+../../../.gvm/gos/go1.13/src/go/token/token.go:282:17: could not update map with string key
+</pre>
 
 
 
@@ -778,7 +746,8 @@ This package cannot be imported because the following dependencies cannot be com
 
 The compiler gave the following error when this package was imported:
 
-<pre>error: interp: branch on a non-const-propagated constant expression
+<pre># html
+../../../.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/src/runtime/runtime.go: interp: branch on a non-const-propagated constant expression
 </pre>
 
 
@@ -803,30 +772,6 @@ This package cannot be imported because the following dependencies cannot be com
 
 
 
-## image/color/palette
-
-
-The compiler gave the following error when this package was imported:
-
-<pre>Use of instruction is not an instruction!
-  %7 = insertvalue %runtime._interface { i32 ptrtoint (%runtime.typeInInterface* @"typeInInterface:reflect/types.type:named:image/color.RGBA" to i32), i8* undef }, i8* %6, 1, !dbg !1662
-Use of instruction is not an instruction!
-  %11 = insertvalue %runtime._interface { i32 ptrtoint (%runtime.typeInInterface* @"typeInInterface:reflect/types.type:named:image/color.RGBA" to i32), i8* undef }, i8* %10, 1, !dbg !1662
-Use of instruction is not an instruction!
-  %15 = insertvalue %runtime._interface { i32 ptrtoint (%runtime.typeInInterface* @"typeInInterface:reflect/types.type:named:image/color.RGBA" to i32), i8* undef }, i8* %14, 1, !dbg !1662
-Use of instruction is not an instruction!
-  %19 = insertvalue %runtime._interface { i32 ptrtoint (%runtime.typeInInterface* @"typeInInterface:reflect/types.type:named:image/color.RGBA" to i32), i8* undef }, i8* %18, 1, !dbg !1662
-Use of instruction is not an instruction!
-  %23 = insertvalue %runtime._interface { i32 ptrtoint (%runtime.typeInInterface* @"typeInInterface:reflect/types.type:named:image/color.RGBA" to i32), i8* undef }, i8* %22, 1, !dbg !1662
-Use of instruction is not an instruction!
-  %27 = insertvalue %runtime._interface { i32 ptrtoint (%runtime.typeInInterface* @"typeInInterface:reflect/types.type:named:image/color.RGBA" to i32), i8* undef }, i8* %26, 1, !dbg !1662
-Use of instruction is not an instruction!
-  %31 = insertvalue %runtime._interface { i32 ptrtoint (%runtime.typeInInterface* @"typeInInterface:reflect/types.type:named:image/color.RGBA" to i32), i8* undef }, i8* %30, 1, !dbg !1662
-Use of instruction is not an instruction!
-[...more lines following...]</pre>
-
-
-
 
 
 
@@ -834,9 +779,16 @@ Use of instruction is not an instruction!
 ## image/gif
 
 
-This package cannot be imported because the following dependencies cannot be compiled:
+The compiler gave the following error when this package was imported:
 
-  * [image/color/palette](#image-color-palette)
+<pre>Instruction does not dominate all uses!
+  %339 = call %runtime._interface @"compress/lzw.NewReader"(i32 %337, i8* %338, i32 0, i32 %333, i8* undef, i8* undef), !dbg !40321
+  %invoke.typecode468 = extractvalue %runtime._interface %339, 0, !dbg !40240
+Instruction does not dominate all uses!
+  %339 = call %runtime._interface @"compress/lzw.NewReader"(i32 %337, i8* %338, i32 0, i32 %333, i8* undef, i8* undef), !dbg !40321
+  %invoke.func.receiver471 = extractvalue %runtime._interface %339, 1, !dbg !40240
+error: verification error after IR construction
+</pre>
 
 
 
@@ -847,48 +799,11 @@ This package cannot be imported because the following dependencies cannot be com
 
 The compiler gave the following error when this package was imported:
 
-<pre>panic: todo: store
-
-goroutine 1 [running]:
-github.com/tinygo-org/tinygo/interp.(*Eval).hasLocalSideEffects(0xc000d70960, 0xc0030c83d0, 0x7fbae41b58f0, 0xc0017f4100)
-	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/scan.go:181 +0x1cf
-github.com/tinygo-org/tinygo/interp.(*Eval).hasSideEffects(0xc000d70960, 0x7fbae002e288, 0x7fbae002e288)
-	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/scan.go:97 +0x4a5
-github.com/tinygo-org/tinygo/interp.(*Eval).hasSideEffects(0xc000d70960, 0x7fbae00221e8, 0x7fbae00221e8)
-	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/scan.go:102 +0x4ed
-github.com/tinygo-org/tinygo/interp.(*Eval).hasSideEffects(0xc000d70960, 0x7fbae0022c78, 0x1)
-	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/scan.go:102 +0x4ed
-github.com/tinygo-org/tinygo/interp.(*frame).evalBasicBlock(0xc0030c91e0, 0x7fbae3ed0260, 0x7fbae3ecfec0, 0x0, 0x0, 0x0, 0x0, 0xc00292e668, 0x1, 0x1, ...)
-	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/frame.go:469 +0x581d
-github.com/tinygo-org/tinygo/interp.(*Eval).function(0xc000d70960, 0x7fbae0022b88, 0xc0030c9328, 0x2, 0x2, 0xc0022e8a70, 0xa, 0x0, 0x0, 0x0, ...)
-	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/interp.go:104 +0x208
-[...more lines following...]</pre>
+<pre># image/jpeg
+../../../.gvm/gos/go1.13/src/image/jpeg/writer.go:206:25: interp: branch on a non-constant
+</pre>
 
 
-
-
-
-## image/png
-
-
-The compiler gave the following error when this package was imported:
-
-<pre>panic: todo: store
-
-goroutine 1 [running]:
-github.com/tinygo-org/tinygo/interp.(*Eval).hasLocalSideEffects(0xc0041dcba0, 0xc002d1e3d0, 0x7ff7dcbd73f0, 0xc006140000)
-	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/scan.go:181 +0x1cf
-github.com/tinygo-org/tinygo/interp.(*Eval).hasSideEffects(0xc0041dcba0, 0x7ff7ec05b5b8, 0x7ff7ec05b5b8)
-	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/scan.go:97 +0x4a5
-github.com/tinygo-org/tinygo/interp.(*Eval).hasSideEffects(0xc0041dcba0, 0x7ff7ec03e6a8, 0x7ff7ec03e6a8)
-	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/scan.go:102 +0x4ed
-github.com/tinygo-org/tinygo/interp.(*Eval).hasSideEffects(0xc0041dcba0, 0x7ff7ec03f028, 0x1)
-	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/scan.go:102 +0x4ed
-github.com/tinygo-org/tinygo/interp.(*frame).evalBasicBlock(0xc002d1f1e0, 0x7ff7dc417d30, 0x7ff7dc417930, 0x0, 0x0, 0x0, 0x0, 0xc006bff500, 0x1, 0x1, ...)
-	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/frame.go:469 +0x581d
-github.com/tinygo-org/tinygo/interp.(*Eval).function(0xc0041dcba0, 0x7ff7ec03ef38, 0xc002d1f328, 0x2, 0x2, 0xc006c1ae20, 0x9, 0x0, 0x0, 0x0, ...)
-	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/interp.go:104 +0x208
-[...more lines following...]</pre>
 
 
 
@@ -920,22 +835,9 @@ This package cannot be imported because the following dependencies cannot be com
 
 The compiler gave the following error when this package was imported:
 
-<pre>panic: todo: store
-
-goroutine 1 [running]:
-github.com/tinygo-org/tinygo/interp.(*Eval).hasLocalSideEffects(0xc004373cb0, 0xc00246d980, 0x6b3c9d0, 0xdb8200)
-	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/scan.go:181 +0x1cf
-github.com/tinygo-org/tinygo/interp.(*Eval).hasSideEffects(0xc004373cb0, 0x25e6c38, 0x25e6c38)
-	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/scan.go:97 +0x4a5
-github.com/tinygo-org/tinygo/interp.(*Eval).hasSideEffects(0xc004373cb0, 0x25e6b78, 0x25e6b78)
-	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/scan.go:102 +0x4ed
-github.com/tinygo-org/tinygo/interp.(*Eval).hasSideEffects(0xc004373cb0, 0x25e6e18, 0x25e6e18)
-	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/scan.go:102 +0x4ed
-github.com/tinygo-org/tinygo/interp.(*Eval).hasSideEffects(0xc004373cb0, 0x25e7138, 0x25e7138)
-	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/scan.go:102 +0x4ed
-github.com/tinygo-org/tinygo/interp.(*Eval).hasSideEffects(0xc004373cb0, 0x25e3e38, 0x25e3e38)
-	/home/ron/.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/interp/scan.go:102 +0x4ed
-[...more lines following...]</pre>
+<pre># math/big
+../../../.gvm/gos/go1.13/src/math/big/float.go:559:4: interp: branch on a non-constant
+</pre>
 
 
 
@@ -981,9 +883,11 @@ This package cannot be imported because the following dependencies cannot be com
 ## net
 
 
-This package cannot be imported because the following dependencies cannot be compiled:
+The compiler gave the following error when this package was imported:
 
-  * [context](#context)
+<pre># internal/singleflight
+../../../.gvm/gos/go1.13/src/internal/singleflight/singleflight.go:13:10: WaitGroup not declared by package sync
+</pre>
 
 
 
@@ -994,7 +898,6 @@ This package cannot be imported because the following dependencies cannot be com
 
 This package cannot be imported because the following dependencies cannot be compiled:
 
-  * [context](#context)
   * [crypto/rand](#crypto-rand)
   * [crypto/tls](#crypto-tls)
   * [vendor/golang.org/x/net/http/httpguts](#vendor-golang.org-x-net-http-httpguts)
@@ -1041,7 +944,6 @@ This package cannot be imported because the following dependencies cannot be com
 
 This package cannot be imported because the following dependencies cannot be compiled:
 
-  * [context](#context)
   * [net](#net)
   * [net/http](#net-http)
   * [net/http/cgi](#net-http-cgi)
@@ -1071,7 +973,6 @@ This package cannot be imported because the following dependencies cannot be com
 
 This package cannot be imported because the following dependencies cannot be compiled:
 
-  * [context](#context)
   * [crypto/tls](#crypto-tls)
   * [net](#net)
   * [net/textproto](#net-textproto)
@@ -1085,7 +986,6 @@ This package cannot be imported because the following dependencies cannot be com
 
 This package cannot be imported because the following dependencies cannot be compiled:
 
-  * [context](#context)
   * [vendor/golang.org/x/net/http/httpguts](#vendor-golang.org-x-net-http-httpguts)
   * [net](#net)
   * [net/http](#net-http)
@@ -1178,9 +1078,24 @@ This package cannot be imported because the following dependencies cannot be com
 ## os/exec
 
 
-This package cannot be imported because the following dependencies cannot be compiled:
+The compiler gave the following error when this package was imported:
 
-  * [context](#context)
+<pre># os/exec
+../../../.gvm/gos/go1.13/src/os/exec/exec.go:129:14: Process not declared by package os
+../../../.gvm/gos/go1.13/src/os/exec/exec.go:133:19: ProcessState not declared by package os
+../../../.gvm/gos/go1.13/src/os/exec/exec.go:456:6: ProcessState not declared by package os
+../../../.gvm/gos/go1.13/src/os/exec/exec.go:782:38: Getenv not declared by package os
+../../../.gvm/gos/go1.13/src/os/exec/exec.go:645:20: Pipe not declared by package os
+../../../.gvm/gos/go1.13/src/os/exec/exec.go:620:20: Pipe not declared by package os
+../../../.gvm/gos/go1.13/src/os/exec/exec.go:578:20: Pipe not declared by package os
+../../../.gvm/gos/go1.13/src/os/exec/exec.go:416:22: StartProcess not declared by package os
+../../../.gvm/gos/go1.13/src/os/exec/exec.go:416:57: ProcAttr not declared by package os
+../../../.gvm/gos/go1.13/src/os/exec/exec.go:291:27: DevNull not declared by package os
+../../../.gvm/gos/go1.13/src/os/exec/exec.go:303:20: Pipe not declared by package os
+../../../.gvm/gos/go1.13/src/os/exec/exec.go:246:23: DevNull not declared by package os
+../../../.gvm/gos/go1.13/src/os/exec/exec.go:258:20: Pipe not declared by package os
+../../../.gvm/gos/go1.13/src/os/exec/exec.go:229:12: Environ not declared by package os
+[...more lines following...]</pre>
 
 
 
