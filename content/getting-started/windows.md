@@ -13,11 +13,19 @@ We now have a native install for Windows 10.
 
 VERY IMPORTANT NOTE: You cannot yet create Windows binary programs using TinyGo, only MCU and WASM targets.
 
-- You MUST use Go 1.13.x with the Windows 10 native install of TinyGo.
+- You MUST use Go 1.13.x+ with the Windows 10 native install of TinyGo.
+
+    - If you have not installed it yet, you can get it from https://golang.org/dl/
+
+    - Choose the download link for Microsoft Windows, Windows 7 or later, Intel 64-bit processor.
 
 - Install LLVM 9 from http://releases.llvm.org/download.html
 
     - Choose the pre-built binary for Windows (64-bit).
+
+    - If you already have a previous version of LLVM installed, you should choose the option to uninstall it that you will be presented with during the LLVM 9 install.
+
+    - Make sure to choose "C:\Program Files\LLVM\" as the destination folder during the install.
 
     - During the installation make sure you choose the option to add LLVM to your PATH.
 
@@ -25,14 +33,16 @@ VERY IMPORTANT NOTE: You cannot yet create Windows binary programs using TinyGo,
 
 - Decompress the file like this:
 
-    ```shell
-    PowerShell Expand-Archive -Path "c:\Downloads\tinygo0.10.0.windows-amd64.zip" -DestinationPath "c:\tinygo"
-    ```
+    - First double click on the downloaded ZIP file to open it.
+
+    - Now drag the "tinygo" folder in the ZIP file window onto your "C:" drive.
+
+    - When the folder is finished extracting, you can close the ZIP file window.
 
 - You will need to add `C:\tinygo\bin` to your PATH.
 
     ```shell
-    set PATH=%PATH%;C:\tinygo\bin;
+    set PATH=%PATH%;"C:\tinygo\bin";
     ```
 
 - Now you should be able to run the TinyGo command:
@@ -50,7 +60,7 @@ The `tinygo flash` command does not work correctly yet. However you can use `tin
 - First build the binary in `UF2` format:
 
     ```shell
-    tinygo build -o flash.uf2 -target circuitplay-express path\to\code
+    tinygo build -o flash.uf2 -target circuitplay-express examples/blinky1
     ```
 
 - Plug in the Circuit Playground Express board to the USB port.
@@ -68,7 +78,13 @@ The `tinygo flash` command does not work correctly yet. However you can use `tin
 - After the installation, you must add it to your PATH:
 
     ```shell
-    set PATH=%PATH%;"c:\Program Files";
+    set PATH=%PATH%;"c:\Program Files\BOSSA";
+    ```
+
+- Test that you have installed "BOSSA" correctly by running this command:
+
+    ```shell
+    bossac --help
     ```
 
 - Now you can build the binary in `BIN` format:
