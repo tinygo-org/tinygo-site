@@ -32,9 +32,15 @@ In order to flash your TinyGo programs onto the Arduino Nano33 IoT board, you wi
 
 ### macOS
 
-On macOS, download the installer from https://github.com/shumatech/BOSSA/releases/download/1.9.1/bossa-1.9.1.dmg
+You can use Homebrew to install the BOSSA command line interface by using the following command:
 
-One you have downloaded it, double click on the .dmg file to perform the installation.
+```shell
+brew cask install bossa
+```
+
+Or if you  prefer, you can also download the installer from https://github.com/shumatech/BOSSA/releases/download/1.9.1/bossa-1.9.1.dmg
+
+Once you have downloaded it, double click on the .dmg file to perform the installation.
 
 ### Linux
 
