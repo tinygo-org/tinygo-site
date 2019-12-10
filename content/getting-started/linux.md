@@ -159,11 +159,11 @@ To compile TinyGo programs for ARM based processors you must also install Clang 
 
 To compile and flash TinyGo programs for AVR based processors such as the original Arduino Uno you must install some extra tools:
 
-[avr-gcc AUR package](https://www.archlinux.org/packages/community/x86_64/avr-gcc/)
+[avr-gcc package](https://www.archlinux.org/packages/community/x86_64/avr-gcc/)
 
-[avr-libc AUR package](https://www.archlinux.org/packages/community/any/avr-libc/)
+[avr-libc package](https://www.archlinux.org/packages/community/any/avr-libc/)
 
-[avrdude AUR package](https://www.archlinux.org/packages/community/x86_64/avrdude/)
+[avrdude package](https://www.archlinux.org/packages/community/x86_64/avrdude/)
 
 This should allow you to compile and flash TinyGo programs on an Arduino or other supported AVR-based board.
 
