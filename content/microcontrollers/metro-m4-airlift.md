@@ -39,29 +39,25 @@ The Metro M4 Express comes with the [UF2 bootloader](https://github.com/Microsof
 
 ### CLI Flashing on macOS
 
-In order to talk to flash the board using macOS, you need to discover how macOS system has named the serial port.
+- Plug your Metro M4 Express into your computer's USB port.
+- Flash your TinyGo program to the board using this command:
+
+    ```shell
+    tinygo flash -target=metro-m4-airlift [PATH TO YOUR PROGRAM]
+    ```
+
+- The Metro M4 Express board should restart and then begin running your program.
+
+### CLI Flashing on Windows
 
 - Plug your Metro M4 Express into your computer's USB port.
-- Run this command to display the connected USB devices:
+- Double tap the "RESET" button on the board.
+- Wait until the Metro M4 Express board appears as a flash drive.
+- Flash your TinyGo program to the board using this command:
 
     ```shell
-    ls /dev | grep usb
+    tinygo flash -target=metro-m4-airlift [PATH TO YOUR PROGRAM]
     ```
-
-    The above command should result in output like this:
-
-    ```shell
-    /dev/cu.usbmodem141201
-    /dev/tty.usbmodem141201
-    ```
-
-- Using this information, you should now be able to flash your TinyGo program to the board using this command:
-
-    ```shell
-    tinygo flash -target=metro-m4-airlift -port=[PORT TO YOUR BOARD] [PATH TO YOUR PROGRAM]
-    ```
-
-    Replace `[PORT TO YOUR BOARD]` in the command above with the correct USB port name for your board.
 
 - The Metro M4 Express board should restart and then begin running your program.
 

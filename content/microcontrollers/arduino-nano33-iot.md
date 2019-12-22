@@ -52,6 +52,24 @@ cd BOSSA
 make
 ```
 
+### Windows
+
+You can download BOSSA from https://github.com/shumatech/BOSSA/releases/download/1.9.1/bossa-x64-1.9.1.msi
+
+*VERY IMPORTANT*: During the installation, you much choose to install into `c:\Program Files`. The installer might have the wrong path, so edit it to match  `c:\Program Files`.
+
+After the installation, you must add BOSSA to your PATH:
+
+```shell
+set PATH=%PATH%;"c:\Program Files\BOSSA";
+```
+
+Test that you have installed "BOSSA" correctly by running this command:
+
+```shell
+bossac --help
+```
+
 ## Flashing
 
 Once you have installed the needed BOSSA command line utility, as in the previous section, you are ready to build and flash code to your Arduino Nano33 IoT board.
@@ -69,29 +87,25 @@ Once you have installed the needed BOSSA command line utility, as in the previou
 
 ### CLI Flashing on macOS
 
-In order to talk to flash the board using macOS, you need to discover how macOS system has named the serial port.
+- Plug your Arduino Nano33 IoT board into your computer's USB port.
+- Build and flash your TinyGo code using the `tinygo flash` command. This command flashes the Arduino Nano33 IoT with the blinky1 example:
 
-- Plug your Arduino Nano33 IoT into your computer's USB port.
-- Run this command to display the connected USB devices:
-
-    ```shell
-    ls /dev | grep usb
+    ```
+    tinygo flash -target=arduino-nano33 examples/blinky1
     ```
 
-    The above command should result in output like this:
+- The Arduino Nano33 IoT board should restart and then begin running your program.
 
-    ```shell
-    /dev/cu.usbmodem141201
-    /dev/tty.usbmodem141201
+### CLI Flashing on Windows
+
+- Plug your Arduino Nano33 IoT board into your computer's USB port.
+- Double tap the "RESET" button on the board.
+- Wait until the Arduino Nano33 IoT board appears as a serial drive.
+- Build and flash your TinyGo code using the `tinygo flash` command. This command flashes the Arduino Nano33 IoT with the blinky1 example:
+
     ```
-
-- Using this information, you should now be able to flash your TinyGo program to the board using this command:
-
-    ```shell
-    tinygo flash -target=arduino-nano33 -port=[PORT TO YOUR BOARD] [PATH TO YOUR PROGRAM]
+    tinygo flash -target=arduino-nano33 examples/blinky1
     ```
-
-    Replace `[PORT TO YOUR BOARD]` in the command above with the correct USB port name for your board.
 
 - The Arduino Nano33 IoT board should restart and then begin running your program.
 
