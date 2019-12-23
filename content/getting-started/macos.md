@@ -37,15 +37,7 @@ Otherwise, please continue with the installation of the additional requirements 
 
 ### Additional Requirements for Microcontrollers
 
-There are some additional requirements to compile TinyGo programs that can run on microcontrollers.
-
-#### ARM Cortex-M
-
-In order to develop for ARM-based microcontrollers you will need to install LLVM 9:
-
-```shell
-brew install llvm
-```
+Some boards require a special flashing tool for that particular chip, like `openocd` or `nrfjprog`. See the documentation page for your board as listed [here](../../microcontrollers/) to see which flashing tool is required for your target board.
 
 If you are only interested in compiling TinyGo code for ARM microcontrollers then you are now done with the installation.
 

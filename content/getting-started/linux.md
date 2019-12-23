@@ -58,29 +58,7 @@ Otherwise, please continue with the installation of the additional requirements 
 
 ### Additional Requirements for Microcontrollers on Ubuntu/Debian
 
-There are some additional requirements to compile TinyGo programs that can run on microcontrollers.
-
-#### ARM Cortex-M
-
-To compile TinyGo programs for ARM based processors you must also install Clang 9 (`clang-9`) for building assembly files and the compiler runtime library [https://compiler-rt.llvm.org/](https://compiler-rt.llvm.org/).
-
-One way to do this is to use the LLVM Debian/Ubuntu packages.
-
-First, you must add the LLVM package repository to your system. Note that if you have already done this once, you do not need to do it again.
-
-```shell
-wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add -
-sudo add-apt-repository "deb http://apt.llvm.org/$(lsb_release -s -c)/ llvm-toolchain-$(lsb_release -s -c)-9 main"
-sudo apt-get update
-```
-
-Now you can install Clang 9 by running this command:
-
-```shell
-sudo apt-get install clang-9
-```
-
-Some boards also require a special flashing tool for that particular chip, like `openocd` or `nrfjprog`. See the documentation page for your board as listed [here](../../microcontrollers/) to see which flashing tool is required for your target board.
+Some boards require a special flashing tool for that particular chip, like `openocd` or `nrfjprog`. See the documentation page for your board as listed [here](../../microcontrollers/) to see which flashing tool is required for your target board.
 
 If you are only interested in compiling TinyGo code for ARM microcontrollers then you are now done with the installation.
 
@@ -114,15 +92,6 @@ Otherwise, please continue with the installation of the additional requirements 
 
 There are some additional requirements to compile TinyGo programs that can run on microcontrollers.
 
-#### ARM Cortex-M
-
-To compile TinyGo programs for ARM based processors you must also install Clang 9 (`clang-9`) for building assembly files and the compiler runtime library [https://compiler-rt.llvm.org/](https://compiler-rt.llvm.org/).
-
-```shell
-sudo dnf install clang
-sudo dnf install compiler-rt
-```
-
 #### AVR (e.g. Arduino Uno)
 
 To compile and flash TinyGo programs for AVR based processors such as the original Arduino Uno you must install some extra tools:
@@ -148,12 +117,6 @@ Otherwise, please continue with the installation of the additional requirements 
 ### Additional Requirements for Microcontrollers on Arch Linux
 
 There are some additional requirements to compile TinyGo programs that can run on microcontrollers.
-
-#### ARM Cortex-M
-
-To compile TinyGo programs for ARM based processors you must also install Clang 9 (`clang-9`) for building assembly files and the compiler runtime library [https://compiler-rt.llvm.org/](https://compiler-rt.llvm.org/).
-
-[clang and llvm AUR package](https://aur.archlinux.org/packages/clang%2Bllvm-binaries/)
 
 #### AVR (e.g. Arduino Uno)
 

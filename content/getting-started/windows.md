@@ -19,17 +19,7 @@ VERY IMPORTANT NOTE: You cannot yet create Windows binary programs using TinyGo,
 
     - Choose the download link for Microsoft Windows, Windows 7 or later, Intel 64-bit processor.
 
-- Install LLVM 9 from http://releases.llvm.org/download.html
-
-    - Choose the pre-built binary for Windows (64-bit).
-
-    - If you already have a previous version of LLVM installed, you should choose the option to uninstall it that you will be presented with during the LLVM 9 install.
-
-    - Make sure to choose "C:\Program Files\LLVM\" as the destination folder during the install.
-
-    - During the installation make sure you choose the option to add LLVM to your PATH.
-
-- Now, download the TinyGo binary for Windows file from https://github.com/tinygo-org/tinygo/releases/download/v0.10.0/tinygo0.10.0.windows-amd64.zip
+- Download the TinyGo binary for Windows file from https://github.com/tinygo-org/tinygo/releases/download/v0.10.0/tinygo0.10.0.windows-amd64.zip
 
 - Decompress the file like this:
 
@@ -53,29 +43,29 @@ VERY IMPORTANT NOTE: You cannot yet create Windows binary programs using TinyGo,
 
 ### Flashing boards
 
-The `tinygo flash` command does not work correctly yet. However you can use `tinygo build` to build the binary, and then manually flash the binary to the target board. See the following examples.
-
 #### Adafruit Circuit Playground Express
 
-- First build the binary in `UF2` format:
-
-    ```shell
-    tinygo build -o flash.uf2 -target circuitplay-express examples/blinky1
-    ```
+Many boards from Adafruit, such as the Circuit Playground Express, use the `UF2` format. This binary format does not require installing any additional flashing tools.
 
 - Plug in the Circuit Playground Express board to the USB port.
 
 - Double tap the "RESET" button.
 
-- Once the Circuit Playground Express board appears as a flash drive, copy the `flash.uf2` file to the `CPLAYBOOT` folder.
+- Once the Circuit Playground Express board appears as a flash drive, run the following command:
+
+    ```shell
+    tinygo flash -target circuitplay-express examples/blinky1
+    ```
+
+The board should restart and begin running your program.
 
 #### Arduino Nano33 IoT
 
 - You must install the "BOSSA" flashing utility first. You can download it from https://github.com/shumatech/BOSSA/releases/download/1.9.1/bossa-x64-1.9.1.msi
 
-- During the installation, you should choose to put it into `c:\Program Files`
+- During the installation, many sure that you choose to put it into `c:\Program Files`. The default in the installer will not work correct, you must choose `c:\Program Files`.
 
-- After the installation, you must add it to your PATH:
+- After the installation, you must add BOSSA to your PATH:
 
     ```shell
     set PATH=%PATH%;"c:\Program Files\BOSSA";
@@ -87,11 +77,7 @@ The `tinygo flash` command does not work correctly yet. However you can use `tin
     bossac --help
     ```
 
-- Now you can build the binary in `BIN` format:
-
-    ```shell
-    tinygo build -o flash.bin -target arduino-nano33 path\to\code
-    ```
+Now you can flash your Arduino Nano33 board like this:
 
 - Plug in the Arduino Nano33 IoT board to the USB port.
 
@@ -99,11 +85,13 @@ The `tinygo flash` command does not work correctly yet. However you can use `tin
 
 - Windows 10 should display a notification with the name of the COM port that the board has been assigned to. For example `COM4`.
 
-- Flash the binary to your Arduino Nano33 board by running this command:
+- Run the following command:
 
     ```shell
-    bossac -d -i -e -w -v -R --port=COM4 --offset=0x2000 flash.bin
+    tinygo flash -target arduino-nano33 path\to\code
     ```
+
+The board should restart and begin running your program.
 
 ## WSL Install
 
