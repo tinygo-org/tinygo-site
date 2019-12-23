@@ -19,7 +19,7 @@ VERY IMPORTANT NOTE: You cannot yet create Windows binary programs using TinyGo,
 
     - Choose the download link for Microsoft Windows, Windows 7 or later, Intel 64-bit processor.
 
-- Download the TinyGo binary for Windows file from https://github.com/tinygo-org/tinygo/releases/download/v0.10.0/tinygo0.10.0.windows-amd64.zip
+- Download the TinyGo binary for Windows file from https://github.com/tinygo-org/tinygo/releases/download/v0.11.0/tinygo0.11.0.windows-amd64.zip
 
 - Decompress the file like this:
 
