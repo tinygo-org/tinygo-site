@@ -66,16 +66,16 @@ errors |  <span style="color: green">✔</span> yes  |
 expvar |  [<span style="color: red">✗</span> no](#expvar)  | 
 flag |  [<span style="color: red">✗</span> no](#flag)  | 
 fmt |  <span style="color: green">✔</span> yes  | 
-go/ast |  [<span style="color: red">✗</span> no](#go-ast)  | 
+go/ast |  <span style="color: green">✔</span> yes  | 
 go/build |  [<span style="color: red">✗</span> no](#go-build)  | 
 go/constant |  [<span style="color: red">✗</span> no](#go-constant)  | 
 go/doc |  [<span style="color: red">✗</span> no](#go-doc)  | 
-go/format |  [<span style="color: red">✗</span> no](#go-format)  | 
+go/format |  <span style="color: green">✔</span> yes  | 
 go/importer |  [<span style="color: red">✗</span> no](#go-importer)  | 
-go/parser |  [<span style="color: red">✗</span> no](#go-parser)  | 
-go/printer |  [<span style="color: red">✗</span> no](#go-printer)  | 
-go/scanner |  [<span style="color: red">✗</span> no](#go-scanner)  | 
-go/token |  [<span style="color: red">✗</span> no](#go-token)  | 
+go/parser |  <span style="color: green">✔</span> yes  | 
+go/printer |  <span style="color: green">✔</span> yes  | 
+go/scanner |  <span style="color: green">✔</span> yes  | 
+go/token |  <span style="color: green">✔</span> yes  | 
 go/types |  [<span style="color: red">✗</span> no](#go-types)  | 
 hash |  <span style="color: green">✔</span> yes  | 
 hash/adler32 |  <span style="color: green">✔</span> yes  | 
@@ -89,7 +89,7 @@ image/color |  <span style="color: green">✔</span> yes  |
 image/color/palette |  <span style="color: green">✔</span> yes  | 
 image/draw |  <span style="color: green">✔</span> yes  | 
 image/gif |  [<span style="color: red">✗</span> no](#image-gif)  | 
-image/jpeg |  [<span style="color: red">✗</span> no](#image-jpeg)  | 
+image/jpeg |  <span style="color: green">✔</span> yes  | 
 image/png |  <span style="color: green">✔</span> yes  | 
 index/suffixarray |  <span style="color: green">✔</span> yes  | 
 io |  <span style="color: green">✔</span> yes  | 
@@ -589,16 +589,6 @@ The compiler gave the following error when this package was imported:
 
 
 
-## go/ast
-
-
-This package cannot be imported because the following dependencies cannot be compiled:
-
-  * [go/scanner](#go-scanner)
-  * [go/token](#go-token)
-
-
-
 
 
 ## go/build
@@ -606,10 +596,7 @@ This package cannot be imported because the following dependencies cannot be com
 
 This package cannot be imported because the following dependencies cannot be compiled:
 
-  * [go/ast](#go-ast)
   * [go/doc](#go-doc)
-  * [go/parser](#go-parser)
-  * [go/token](#go-token)
   * [os/exec](#os-exec)
 
 
@@ -621,7 +608,6 @@ This package cannot be imported because the following dependencies cannot be com
 
 This package cannot be imported because the following dependencies cannot be compiled:
 
-  * [go/token](#go-token)
   * [math/big](#math-big)
 
 
@@ -633,23 +619,9 @@ This package cannot be imported because the following dependencies cannot be com
 
 This package cannot be imported because the following dependencies cannot be compiled:
 
-  * [go/ast](#go-ast)
-  * [go/token](#go-token)
   * [text/template](#text-template)
 
 
-
-
-
-## go/format
-
-
-This package cannot be imported because the following dependencies cannot be compiled:
-
-  * [go/ast](#go-ast)
-  * [go/parser](#go-parser)
-  * [go/printer](#go-printer)
-  * [go/token](#go-token)
 
 
 
@@ -661,57 +633,15 @@ This package cannot be imported because the following dependencies cannot be com
 This package cannot be imported because the following dependencies cannot be compiled:
 
   * [go/build](#go-build)
-  * [go/token](#go-token)
   * [go/types](#go-types)
 
 
 
 
 
-## go/parser
-
-
-This package cannot be imported because the following dependencies cannot be compiled:
-
-  * [go/ast](#go-ast)
-  * [go/scanner](#go-scanner)
-  * [go/token](#go-token)
 
 
 
-
-
-## go/printer
-
-
-This package cannot be imported because the following dependencies cannot be compiled:
-
-  * [go/ast](#go-ast)
-  * [go/token](#go-token)
-
-
-
-
-
-## go/scanner
-
-
-This package cannot be imported because the following dependencies cannot be compiled:
-
-  * [go/token](#go-token)
-
-
-
-
-
-## go/token
-
-
-The compiler gave the following error when this package was imported:
-
-<pre># go/token
-../../../.gvm/gos/go1.13/src/go/token/token.go:282:17: could not update map with string key
-</pre>
 
 
 
@@ -722,10 +652,7 @@ The compiler gave the following error when this package was imported:
 
 This package cannot be imported because the following dependencies cannot be compiled:
 
-  * [go/ast](#go-ast)
   * [go/constant](#go-constant)
-  * [go/parser](#go-parser)
-  * [go/token](#go-token)
 
 
 
@@ -791,17 +718,6 @@ error: verification error after IR construction
 </pre>
 
 
-
-
-
-## image/jpeg
-
-
-The compiler gave the following error when this package was imported:
-
-<pre># image/jpeg
-../../../.gvm/gos/go1.13/src/image/jpeg/writer.go:206:25: interp: branch on a non-constant
-</pre>
 
 
 
@@ -1025,7 +941,6 @@ This package cannot be imported because the following dependencies cannot be com
 This package cannot be imported because the following dependencies cannot be compiled:
 
   * [encoding/gob](#encoding-gob)
-  * [go/token](#go-token)
   * [html/template](#html-template)
   * [net](#net)
   * [net/http](#net-http)
