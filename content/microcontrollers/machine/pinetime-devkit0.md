@@ -122,12 +122,6 @@ const (
 
 
 
-```go
-const CPU_FREQUENCY = 64000000
-```
-
-
-
 
 
 
@@ -182,6 +176,14 @@ var (
 There are 2 SPI interfaces on the NRF5x.
 
 
+
+
+
+### func CPUFrequency
+
+```go
+func CPUFrequency() uint32
+```
 
 
 

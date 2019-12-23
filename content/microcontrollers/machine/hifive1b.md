@@ -120,12 +120,6 @@ of the pins in a peripheral unconfigured (if supported by the hardware).
 
 
 ```go
-const CPU_FREQUENCY = 16000000
-```
-
-
-
-```go
 const (
 	PinInput	PinMode	= iota
 	PinOutput
@@ -180,6 +174,14 @@ var (
 
 
 
+
+
+
+### func CPUFrequency
+
+```go
+func CPUFrequency() uint32
+```
 
 
 

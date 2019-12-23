@@ -7,12 +7,6 @@ title: arduino
 ## Constants
 
 ```go
-const CPU_FREQUENCY = 16000000
-```
-
-
-
-```go
 const LED Pin = 13
 ```
 
@@ -104,6 +98,15 @@ UART
 
 
 
+
+
+### func CPUFrequency
+
+```go
+func CPUFrequency() uint32
+```
+
+Return the current CPU frequency in hertz.
 
 
 ### func InitADC

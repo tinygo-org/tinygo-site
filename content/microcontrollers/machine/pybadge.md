@@ -1,10 +1,249 @@
 
 ---
-title: trinket-m0
+title: pybadge
 ---
 
 
 ## Constants
+
+```go
+const RESET_MAGIC_VALUE = 0xf01669ef
+```
+
+used to reset into bootloader
+
+
+```go
+const (
+	D0	= PB17	// UART0 RX/PWM available
+	D1	= PB16	// UART0 TX/PWM available
+	D2	= PB03
+	D3	= PB02
+	D4	= PA14	// PWM available
+	D5	= PA16	// PWM available
+	D6	= PA18	// PWM available
+	D7	= PB14
+	D8	= PA15	// built-in neopixel
+	D9	= PA19	// PWM available
+	D10	= PA20	// can be used for PWM or UART1 TX
+	D11	= PA21	// can be used for PWM or UART1 RX
+	D12	= PA22	// PWM available
+	D13	= PA23	// PWM available
+)
+```
+
+GPIO Pins
+
+
+```go
+const (
+	A0	= PA02	// ADC/AIN[0]
+	A1	= PA05	// ADC/AIN[2]
+	A2	= PB08	// ADC/AIN[3]
+	A3	= PB09	// ADC/AIN[4]
+	A4	= PA04	// ADC/AIN[5]
+	A5	= PA06	// ADC/AIN[6]
+	A6	= PB01	// ADC/AIN[12]/VMEAS
+	A7	= PB04	// ADC/AIN[6]/LIGHT
+	A8	= D2	// ADC/AIN[14]
+	A9	= D3	// ADC/AIN[15]
+)
+```
+
+Analog pins
+
+
+```go
+const (
+	LED		= D13
+	NEOPIXELS	= D8
+
+	LIGHTSENSOR	= A7
+
+	BUTTON_LATCH	= PB00
+	BUTTON_OUT	= PB30
+	BUTTON_CLK	= PB31
+
+	TFT_DC		= PB05
+	TFT_CS		= PB07
+	TFT_RST		= PA00
+	TFT_LITE	= PA01
+
+	SPEAKER_ENABLE	= PA27
+
+	QSPI_SCK	= PB10
+	QSPI_CS		= PB11
+	QSPI_DATA_1	= PA08
+	QSPI_DATA_2	= PA09
+	QSPI_DATA_3	= PA10
+	QSPI_DATA_4	= PA11
+)
+```
+
+
+
+```go
+const (
+	BUTTON_LEFT_MASK	= 1
+	BUTTON_UP_MASK		= 2
+	BUTTON_DOWN_MASK	= 4
+	BUTTON_RIGHT_MASK	= 8
+	BUTTON_SELECT_MASK	= 16
+	BUTTON_START_MASK	= 32
+	BUTTON_A_MASK		= 64
+	BUTTON_B_MASK		= 128
+)
+```
+
+
+
+```go
+const (
+	USBCDC_DM_PIN	= PA24
+	USBCDC_DP_PIN	= PA25
+)
+```
+
+UART0 aka USBCDC pins
+
+
+```go
+const (
+	UART_TX_PIN	= D1
+	UART_RX_PIN	= D0
+)
+```
+
+UART1 pins
+
+
+```go
+const (
+	UART2_TX_PIN	= A4
+	UART2_RX_PIN	= A5
+)
+```
+
+UART2 pins
+
+
+```go
+const (
+	SDA_PIN	= PA12	// SDA: SERCOM2/PAD[0]
+	SCL_PIN	= PA13	// SCL: SERCOM2/PAD[1]
+)
+```
+
+I2C pins
+
+
+```go
+const (
+	SPI0_SCK_PIN	= PA17	// SCK: SERCOM1/PAD[1]
+	SPI0_MOSI_PIN	= PB23	// MOSI: SERCOM1/PAD[3]
+	SPI0_MISO_PIN	= PB22	// MISO: SERCOM1/PAD[2]
+)
+```
+
+SPI pins
+
+
+```go
+const (
+	SPI1_SCK_PIN	= PB13	// SCK: SERCOM4/PAD[1]
+	SPI1_MOSI_PIN	= PB15	// MOSI: SERCOM4/PAD[3]
+)
+```
+
+TFT SPI pins
+
+
+```go
+const (
+	TWI_FREQ_100KHZ	= 100000
+	TWI_FREQ_400KHZ	= 400000
+)
+```
+
+TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-speed bus.
+
+
+```go
+const (
+	I2SModeMaster	I2SMode	= iota
+	I2SModeSlave
+	I2SModePDM
+)
+```
+
+
+
+```go
+const (
+	I2StandardPhilips	I2SStandard	= iota
+	I2SStandardMSB
+	I2SStandardLSB
+)
+```
+
+
+
+```go
+const (
+	I2SClockSourceInternal	I2SClockSource	= iota
+	I2SClockSourceExternal
+)
+```
+
+
+
+```go
+const (
+	I2SDataFormatDefault	I2SDataFormat	= 0
+	I2SDataFormat8bit			= 8
+	I2SDataFormat16bit			= 16
+	I2SDataFormat24bit			= 24
+	I2SDataFormat32bit			= 32
+)
+```
+
+
+
+```go
+const NoPin = Pin(-1)
+```
+
+NoPin explicitly indicates "not a pin". Use this pin if you want to leave one
+of the pins in a peripheral unconfigured (if supported by the hardware).
+
+
+```go
+const (
+	PinAnalog		PinMode	= 1
+	PinSERCOM		PinMode	= 2
+	PinSERCOMAlt		PinMode	= 3
+	PinTimer		PinMode	= 4
+	PinTimerAlt		PinMode	= 5
+	PinTCCPDEC		PinMode	= 6
+	PinCom			PinMode	= 7
+	PinSDHC			PinMode	= 8
+	PinI2S			PinMode	= 9
+	PinPCC			PinMode	= 10
+	PinGMAC			PinMode	= 11
+	PinACCLK		PinMode	= 12
+	PinCCL			PinMode	= 13
+	PinDigital		PinMode	= 14
+	PinInput		PinMode	= 15
+	PinInputPullup		PinMode	= 16
+	PinOutput		PinMode	= 17
+	PinPWME			PinMode	= PinTimer
+	PinPWMF			PinMode	= PinTimerAlt
+	PinPWMG			PinMode	= PinTCCPDEC
+	PinInputPulldown	PinMode	= 18
+)
+```
+
+
 
 ```go
 const (
@@ -79,174 +318,24 @@ Hardware pins
 
 
 ```go
-const RESET_MAGIC_VALUE = 0xf01669ef
-```
-
-used to reset into bootloader
-
-
-```go
 const (
-	D0	= PA08	// PWM available
-	D1	= PA02
-	D2	= PA09	// PWM available
-	D3	= PA07	// PWM available / UART0 RX
-	D4	= PA06	// PWM available / UART0 TX
-	D13	= PA10	// LED
-)
-```
+	// SERCOM_FREQ_REF is always reference frequency on SAMD51 regardless of CPU speed.
+	SERCOM_FREQ_REF	= 48000000
 
-GPIO Pins
+	// Default rise time in nanoseconds, based on 4.7K ohm pull up resistors
+	riseTimeNanoseconds	= 125
 
+	// wire bus states
+	wireUnknownState	= 0
+	wireIdleState		= 1
+	wireOwnerState		= 2
+	wireBusyState		= 3
 
-```go
-const (
-	A0	= D1
-	A1	= D2
-	A2	= D0
-	A3	= D3
-	A4	= D4
-)
-```
-
-Analog pins
-
-
-```go
-const (
-	LED = D13
-)
-```
-
-
-
-```go
-const (
-	USBCDC_DM_PIN	= PA24
-	USBCDC_DP_PIN	= PA25
-)
-```
-
-UART0 aka USBCDC pins
-
-
-```go
-const (
-	UART_TX_PIN	= D4
-	UART_RX_PIN	= D3
-)
-```
-
-UART1 pins
-
-
-```go
-const (
-	SPI0_SCK_PIN	= D3
-	SPI0_MOSI_PIN	= D4
-	SPI0_MISO_PIN	= D2
-)
-```
-
-SPI pins
-
-
-```go
-const (
-	SDA_PIN	= D0	// SDA
-	SCL_PIN	= D2	// SCL
-)
-```
-
-I2C pins
-
-
-```go
-const (
-	I2S_SCK_PIN	= PA10
-	I2S_SD_PIN	= PA08
-	I2S_WS_PIN	= NoPin	// TODO: figure out what this is on Trinket M0.
-)
-```
-
-I2S pins
-
-
-```go
-const (
-	TWI_FREQ_100KHZ	= 100000
-	TWI_FREQ_400KHZ	= 400000
-)
-```
-
-TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-speed bus.
-
-
-```go
-const (
-	I2SModeMaster	I2SMode	= iota
-	I2SModeSlave
-	I2SModePDM
-)
-```
-
-
-
-```go
-const (
-	I2StandardPhilips	I2SStandard	= iota
-	I2SStandardMSB
-	I2SStandardLSB
-)
-```
-
-
-
-```go
-const (
-	I2SClockSourceInternal	I2SClockSource	= iota
-	I2SClockSourceExternal
-)
-```
-
-
-
-```go
-const (
-	I2SDataFormatDefault	I2SDataFormat	= 0
-	I2SDataFormat8bit			= 8
-	I2SDataFormat16bit			= 16
-	I2SDataFormat24bit			= 24
-	I2SDataFormat32bit			= 32
-)
-```
-
-
-
-```go
-const NoPin = Pin(-1)
-```
-
-NoPin explicitly indicates "not a pin". Use this pin if you want to leave one
-of the pins in a peripheral unconfigured (if supported by the hardware).
-
-
-```go
-const (
-	PinAnalog	PinMode	= 1
-	PinSERCOM	PinMode	= 2
-	PinSERCOMAlt	PinMode	= 3
-	PinTimer	PinMode	= 4
-	PinTimerAlt	PinMode	= 5
-	PinCom		PinMode	= 6
-	//PinAC_CLK        PinMode = 7
-	PinDigital		PinMode	= 8
-	PinInput		PinMode	= 9
-	PinInputPullup		PinMode	= 10
-	PinOutput		PinMode	= 11
-	PinPWM			PinMode	= PinTimer
-	PinPWMAlt		PinMode	= PinTimerAlt
-	PinInputPulldown	PinMode	= 12
+	// wire commands
+	wireCmdNoAction		= 0
+	wireCmdRepeatStart	= 1
+	wireCmdRead		= 2
+	wireCmdStop		= 3
 )
 ```
 
@@ -259,39 +348,47 @@ const (
 
 ```go
 var (
-	UART1 = UART{
-		Buffer:	NewRingBuffer(),
-		Bus:	sam.SERCOM0_USART,
-		SERCOM:	0,
-	}
+	I2C0 = I2C{Bus: sam.SERCOM2_I2CM,
+		SDA:		SDA_PIN,
+		SCL:		SCL_PIN,
+		PinMode:	PinSERCOM}
 )
 ```
 
-UART1 on the Trinket M0.
+I2C on the ItsyBitsy M4.
 
 
 ```go
 var (
-	SPI0 = SPI{
-		Bus:	sam.SERCOM0_SPI,
-		SERCOM:	0,
+	SPI0 = SPI{Bus: sam.SERCOM1_SPIM,
+		SCK:		SPI0_SCK_PIN,
+		MOSI:		SPI0_MOSI_PIN,
+		MISO:		SPI0_MISO_PIN,
+		DOpad:		spiTXPad3SCK1,
+		DIpad:		sercomRXPad2,
+		MISOPinMode:	PinSERCOM,
+		MOSIPinMode:	PinSERCOM,
+		SCKPinMode:	PinSERCOM,
 	}
 )
 ```
 
-SPI on the Trinket M0.
+SPI on the PyBadge.
 
 
 ```go
 var (
-	I2C0 = I2C{
-		Bus:	sam.SERCOM2_I2CM,
-		SERCOM:	2,
+	SPI1 = SPI{Bus: sam.SERCOM4_SPIM,
+		SCK:		SPI1_SCK_PIN,
+		MOSI:		SPI1_MOSI_PIN,
+		DOpad:		spiTXPad3SCK1,
+		MOSIPinMode:	PinSERCOM,
+		SCKPinMode:	PinSERCOM,
 	}
 )
 ```
 
-I2C on the Trinket M0.
+TFT SPI on the PyBadge.
 
 
 ```go
@@ -308,7 +405,20 @@ var (
 ```go
 var (
 	// UART0 is actually a USB CDC interface.
-	UART0 = USBCDC{Buffer: NewRingBuffer()}
+	UART0	= USBCDC{Buffer: NewRingBuffer()}
+
+	// The first hardware serial port on the SAMD51. Uses the SERCOM3 interface.
+	UART1	= UART{Bus: sam.SERCOM3_USART_INT,
+		Buffer:	NewRingBuffer(),
+		Mode:	PinSERCOMAlt,
+	}
+
+	// The second hardware serial port on the SAMD51. Uses the SERCOM0 interface.
+	UART2	= UART{
+		Buffer:	NewRingBuffer(),
+		Bus:	sam.SERCOM0_USART_INT,
+		Mode:	PinSERCOMAlt,
+	}
 )
 ```
 
@@ -331,7 +441,6 @@ var (
 func CPUFrequency() uint32
 ```
 
-Return the current CPU frequency in hertz.
 
 
 ### func InitADC
@@ -721,18 +830,20 @@ Bytes returns EndpointDescriptor data.
 ```go
 type I2C struct {
 	Bus	*sam.SERCOM_I2CM_Type
-	SERCOM	uint8
+	SCL	Pin
+	SDA	Pin
+	PinMode	PinMode
 }
 ```
 
-I2C on the SAMD21.
+I2C on the SAMD51.
 
 
 
 ### func (I2C) Configure
 
 ```go
-func (i2c I2C) Configure(config I2CConfig) error
+func (i2c I2C) Configure(config I2CConfig)
 ```
 
 Configure is intended to setup the I2C interface.
@@ -809,59 +920,6 @@ type I2CConfig struct {
 
 I2CConfig is used to store config info for I2C.
 
-
-
-
-
-## type I2S
-
-```go
-type I2S struct {
-	Bus *sam.I2S_Type
-}
-```
-
-I2S
-
-
-
-### func (I2S) Close
-
-```go
-func (i2s I2S) Close() error
-```
-
-Close the I2S bus.
-
-
-### func (I2S) Configure
-
-```go
-func (i2s I2S) Configure(config I2SConfig)
-```
-
-Configure is used to configure the I2S interface. You must call this
-before you can use the I2S bus.
-
-
-### func (I2S) Read
-
-```go
-func (i2s I2S) Read(p []uint32) (n int, err error)
-```
-
-Read data from the I2S bus into the provided slice.
-The I2S bus must already have been configured correctly.
-
-
-### func (I2S) Write
-
-```go
-func (i2s I2S) Write(p []uint32) (n int, err error)
-```
-
-Write data to the I2S bus from the provided slice.
-The I2S bus must already have been configured correctly.
 
 
 
@@ -1132,6 +1190,16 @@ Set the pin to high or low.
 Warning: only use this on an output pin!
 
 
+### func (Pin) Toggle
+
+```go
+func (p Pin) Toggle()
+```
+
+Toggle switches an output pin from low to high or from high to low.
+Warning: only use this on an output pin!
+
+
 
 
 ## type PinConfig
@@ -1212,8 +1280,15 @@ Used returns how many bytes in buffer have been used.
 
 ```go
 type SPI struct {
-	Bus	*sam.SERCOM_SPI_Type
-	SERCOM	uint8
+	Bus		*sam.SERCOM_SPIM_Type
+	SCK		Pin
+	MOSI		Pin
+	MISO		Pin
+	DOpad		int
+	DIpad		int
+	SCKPinMode	PinMode
+	MOSIPinMode	PinMode
+	MISOPinMode	PinMode
 }
 ```
 
@@ -1224,7 +1299,7 @@ SPI
 ### func (SPI) Configure
 
 ```go
-func (spi SPI) Configure(config SPIConfig) error
+func (spi SPI) Configure(config SPIConfig)
 ```
 
 Configure is intended to setup the SPI interface.
@@ -1290,12 +1365,12 @@ SPIConfig is used to store config info for SPI.
 ```go
 type UART struct {
 	Buffer	*RingBuffer
-	Bus	*sam.SERCOM_USART_Type
-	SERCOM	uint8
+	Bus	*sam.SERCOM_USART_INT_Type
+	Mode	PinMode
 }
 ```
 
-UART on the SAMD21.
+UART on the SAMD51.
 
 
 
@@ -1311,7 +1386,7 @@ Buffered returns the number of bytes currently stored in the RX buffer.
 ### func (UART) Configure
 
 ```go
-func (uart UART) Configure(config UARTConfig) error
+func (uart UART) Configure(config UARTConfig)
 ```
 
 Configure the UART.

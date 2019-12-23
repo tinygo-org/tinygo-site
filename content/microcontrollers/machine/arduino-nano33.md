@@ -94,9 +94,9 @@ I2C pins
 
 ```go
 const (
-	SPI0_SCK_PIN	Pin	= A2	// SCK: SERCOM0/PAD[3]
-	SPI0_MOSI_PIN	Pin	= A3	// MOSI: SERCOM0/PAD[2]
-	SPI0_MISO_PIN	Pin	= A6	// MISO: SERCOM0/PAD[1]
+	SPI0_SCK_PIN	Pin	= D13	// SCK: SERCOM1/PAD[1]
+	SPI0_MOSI_PIN	Pin	= D11	// MOSI: SERCOM1/PAD[0]
+	SPI0_MISO_PIN	Pin	= D12	// MISO: SERCOM1/PAD[3]
 )
 ```
 
@@ -129,92 +129,6 @@ const (
 ```
 
 I2S pins
-
-
-```go
-const (
-	TWI_FREQ_100KHZ	= 100000
-	TWI_FREQ_400KHZ	= 400000
-)
-```
-
-TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-speed bus.
-
-
-```go
-const (
-	I2SModeMaster	I2SMode	= iota
-	I2SModeSlave
-	I2SModePDM
-)
-```
-
-
-
-```go
-const (
-	I2StandardPhilips	I2SStandard	= iota
-	I2SStandardMSB
-	I2SStandardLSB
-)
-```
-
-
-
-```go
-const (
-	I2SClockSourceInternal	I2SClockSource	= iota
-	I2SClockSourceExternal
-)
-```
-
-
-
-```go
-const (
-	I2SDataFormatDefault	I2SDataFormat	= 0
-	I2SDataFormat8bit			= 8
-	I2SDataFormat16bit			= 16
-	I2SDataFormat24bit			= 24
-	I2SDataFormat32bit			= 32
-)
-```
-
-
-
-```go
-const NoPin = Pin(-1)
-```
-
-NoPin explicitly indicates "not a pin". Use this pin if you want to leave one
-of the pins in a peripheral unconfigured (if supported by the hardware).
-
-
-```go
-const CPU_FREQUENCY = 48000000
-```
-
-
-
-```go
-const (
-	PinAnalog	PinMode	= 1
-	PinSERCOM	PinMode	= 2
-	PinSERCOMAlt	PinMode	= 3
-	PinTimer	PinMode	= 4
-	PinTimerAlt	PinMode	= 5
-	PinCom		PinMode	= 6
-	//PinAC_CLK        PinMode = 7
-	PinDigital		PinMode	= 8
-	PinInput		PinMode	= 9
-	PinInputPullup		PinMode	= 10
-	PinOutput		PinMode	= 11
-	PinPWM			PinMode	= PinTimer
-	PinPWMAlt		PinMode	= PinTimerAlt
-	PinInputPulldown	PinMode	= 12
-)
-```
-
 
 
 ```go
@@ -289,6 +203,86 @@ const (
 Hardware pins
 
 
+```go
+const (
+	TWI_FREQ_100KHZ	= 100000
+	TWI_FREQ_400KHZ	= 400000
+)
+```
+
+TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-speed bus.
+
+
+```go
+const (
+	I2SModeMaster	I2SMode	= iota
+	I2SModeSlave
+	I2SModePDM
+)
+```
+
+
+
+```go
+const (
+	I2StandardPhilips	I2SStandard	= iota
+	I2SStandardMSB
+	I2SStandardLSB
+)
+```
+
+
+
+```go
+const (
+	I2SClockSourceInternal	I2SClockSource	= iota
+	I2SClockSourceExternal
+)
+```
+
+
+
+```go
+const (
+	I2SDataFormatDefault	I2SDataFormat	= 0
+	I2SDataFormat8bit			= 8
+	I2SDataFormat16bit			= 16
+	I2SDataFormat24bit			= 24
+	I2SDataFormat32bit			= 32
+)
+```
+
+
+
+```go
+const NoPin = Pin(-1)
+```
+
+NoPin explicitly indicates "not a pin". Use this pin if you want to leave one
+of the pins in a peripheral unconfigured (if supported by the hardware).
+
+
+```go
+const (
+	PinAnalog	PinMode	= 1
+	PinSERCOM	PinMode	= 2
+	PinSERCOMAlt	PinMode	= 3
+	PinTimer	PinMode	= 4
+	PinTimerAlt	PinMode	= 5
+	PinCom		PinMode	= 6
+	//PinAC_CLK        PinMode = 7
+	PinDigital		PinMode	= 8
+	PinInput		PinMode	= 9
+	PinInputPullup		PinMode	= 10
+	PinOutput		PinMode	= 11
+	PinPWM			PinMode	= PinTimer
+	PinPWMAlt		PinMode	= PinTimerAlt
+	PinInputPulldown	PinMode	= 12
+)
+```
+
+
+
 
 
 
@@ -335,8 +329,8 @@ I2C on the Arduino Nano 33.
 ```go
 var (
 	SPI0 = SPI{
-		Bus:	sam.SERCOM0_SPI,
-		SERCOM:	0,
+		Bus:	sam.SERCOM1_SPI,
+		SERCOM:	1,
 	}
 )
 ```
@@ -395,6 +389,15 @@ var (
 
 
 
+
+
+### func CPUFrequency
+
+```go
+func CPUFrequency() uint32
+```
+
+Return the current CPU frequency in hertz.
 
 
 ### func InitADC

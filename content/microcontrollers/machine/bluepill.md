@@ -109,12 +109,6 @@ of the pins in a peripheral unconfigured (if supported by the hardware).
 
 
 ```go
-const CPU_FREQUENCY = 72000000
-```
-
-
-
-```go
 const (
 	PinInput	PinMode	= 0	// Input mode
 	PinOutput10MHz	PinMode	= 1	// Output mode, max speed 10MHz
@@ -199,6 +193,14 @@ var (
 
 
 
+
+
+
+### func CPUFrequency
+
+```go
+func CPUFrequency() uint32
+```
 
 
 

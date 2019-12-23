@@ -14,6 +14,7 @@ DEVICES = \
     feather-m0 \
     feather-m4 \
     trinket-m0 \
+    pybadge \
     metro-m4-airlift \
     circuitplay-express \
     stm32f4disco \

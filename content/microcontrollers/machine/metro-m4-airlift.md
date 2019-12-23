@@ -189,12 +189,6 @@ of the pins in a peripheral unconfigured (if supported by the hardware).
 
 
 ```go
-const CPU_FREQUENCY = 120000000
-```
-
-
-
-```go
 const (
 	PinAnalog		PinMode	= 1
 	PinSERCOM		PinMode	= 2
@@ -415,6 +409,14 @@ var (
 
 
 
+
+
+
+### func CPUFrequency
+
+```go
+func CPUFrequency() uint32
+```
 
 
 
