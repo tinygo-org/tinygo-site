@@ -28,7 +28,7 @@ TinyGo, however, uses a register based calling convention. In fact it is somewha
 
     This is the calling convention as implemented by LLVM, with the extension that `i64` return values are returned in the same way as aggregate types.
 
-  * Non-exported functions have two extra `i8` (roughly equivalent to
+  * Non-exported functions have two extra `i8*` (roughly equivalent to
     `unsafe.Pointer`) parameters appended at the end of the argument list. The
     first extra parameter is the context for when the function is a function
     pointer. If it is known not to be a closure, this value may be left
