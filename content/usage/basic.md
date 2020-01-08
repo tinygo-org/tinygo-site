@@ -48,7 +48,7 @@ The built-in LED on the board should start to blink.
 To build and then flash a basic blink program for an Circuit Playground Express,
 
 - Plug your Circuit Playground Express into your computer's USB port.
-- Press the "RESET" button on the board two times to get the Circuit Playground Express board ready to receive code.
+- Press the "RESET" button on the board two times to get the Circuit Playground Express board ready to receive code. If you just received the board, it will be running MakeCode, so press the "RESET" button just once. Either way, the NeoPixel LEDs should turn all green.
 - The Circuit Playground Express board will appear to your computer like a USB drive. Determine the path to the board, for example on Linux it will be something like `/media/[USERNAME]/[NAME OF THE BOARD]`.
 - Run the following command, substituing the correct name for the board from the previous step:
 
