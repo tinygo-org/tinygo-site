@@ -1,6 +1,6 @@
 ---
 title: "Calling convention"
-weight: 4
+weight: 7
 ---
 
 Go uses a stack-based calling convention and passes a pointer to the argument list as the first argument in the function. There were/are [plans to switch to a register-based calling convention](https://github.com/golang/go/issues/18597) but they're now on hold.

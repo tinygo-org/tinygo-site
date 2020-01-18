@@ -1,6 +1,6 @@
 ---
 title: "Differences from Go"
-weight: 2
+weight: 8
 ---
 
 * A whole program is compiled in a single step, without intermediate linking. This makes incremental development much slower for large programs but enables far more optimization opportunities. We are actively working on build caching so that at least part of the work does not need to be redone on every compilation.

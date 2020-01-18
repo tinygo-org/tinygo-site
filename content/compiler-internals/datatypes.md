@@ -1,6 +1,6 @@
 ---
 title: "Datatypes"
-weight: 3
+weight: 6
 ---
 
 TinyGo uses a different representation for some data types than standard Go.

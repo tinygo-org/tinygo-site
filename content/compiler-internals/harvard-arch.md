@@ -1,6 +1,6 @@
 ---
 title: "Harvard architectures (AVR)"
-weight: 5
+weight: 10
 ---
 
 The AVR architecture is a modified Harvard architecture, which means that flash and RAM live in different address spaces. In practice, this means that any given pointer may either point to RAM or flash, but this is not visible from the pointer itself.
