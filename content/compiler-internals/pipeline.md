@@ -1,6 +1,6 @@
 ---
 title: "Pipeline"
-weight: 5
+weight: 11
 ---
 
 Like most compilers, TinyGo is a compiler built as a pipeline of transformations

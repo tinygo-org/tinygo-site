@@ -1,6 +1,6 @@
 ---
 title: "Microcontroller Targets"
-weight: 5
+weight: 1
 ---
 
 TinyGo was designed to run on microcontrollers, but the Go language wasn't. This means there are a few challenges to writing Go code for microcontrollers.

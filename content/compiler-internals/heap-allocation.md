@@ -1,6 +1,6 @@
 ---
 title: "Heap allocation"
-weight: 2
+weight: 5
 ---
 
 Many operations in Go rely on heap allocation. TinyGo will try to optimize them away using escape analysis, but that is not always possible in practice.
