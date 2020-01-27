@@ -1,30 +1,31 @@
 
 DEVICES = \
-    pca10040 \
-    microbit \
-    nrf52840-mdk \
-    pca10031 \
-    bluepill \
     arduino \
     arduino-nano \
-    digispark \
-    reelboard \
-    pca10056 \
     arduino-nano33 \
-    itsybitsy-m0 \
+    bluepill \
+    circuitplay-bluefruit \
+    circuitplay-express \
+    digispark \
     feather-m0 \
     feather-m4 \
-    trinket-m0 \
-    pybadge \
-    metro-m4-airlift \
-    circuitplay-express \
-    stm32f4disco \
-    circuitplay-express \
     gameboy-advance \
-    itsybitsy-m4 \
-    nucleo-f103rb \
     hifive1b \
+    itsybitsy-m0 \
+    itsybitsy-m4 \
+    metro-m4-airlift \
+    microbit \
+    nrf52840-mdk \
+    nucleo-f103rb \
+    pca10031 \
+    pca10040 \
+    pca10056 \
     pinetime-devkit0 \
+    pybadge \
+    pyportal \
+    reelboard \
+    stm32f4disco \
+    trinket-m0 \
     x9pro
 
 all:
