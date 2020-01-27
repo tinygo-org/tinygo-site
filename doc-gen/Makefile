@@ -6,6 +6,7 @@ DEVICES = \
     pca10031 \
     bluepill \
     arduino \
+    arduino-nano \
     digispark \
     reelboard \
     pca10056 \
