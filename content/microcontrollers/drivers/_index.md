@@ -6,12 +6,15 @@ weight: 90
 
 # Drivers
 
-TinyGo has driver support for 35 different sensors and devices such as digital accelerometers and multicolor LEDs.
+TinyGo has driver support for 44 different sensors and devices such as digital accelerometers and multicolor LEDs.
 
 All of the drivers code is in the TinyGo Drivers repository located at [https://github.com/tinygo-org/drivers/](https://github.com/tinygo-org/drivers/).
 
+The following 44 devices are supported.
+
 | Device Name | Interface Type |
 |----------|-------------|
+| [ADT7410 I2C Temperature Sensor](https://www.analog.com/media/en/technical-documentation/data-sheets/ADT7410.pdf) | I2C |
 | [ADXL345 accelerometer](http://www.analog.com/media/en/technical-documentation/data-sheets/ADXL345.pdf) | I2C |
 | [APA102 RGB LED](https://cdn-shop.adafruit.com/product-files/2343/APA102C.pdf) | SPI |
 | [AT24CX 2-wire serial EEPROM](https://www.openimpulse.com/blog/wp-content/uploads/wpsc/downloadables/24C32-Datasheet.pdf) | I2C |
@@ -26,7 +29,11 @@ All of the drivers code is in the TinyGo Drivers repository located at [https://
 | [ESP32 as WiFi Coprocessor with Arduino nina-fw](https://github.com/arduino/nina-fw) | SPI |
 | [ESP8266/ESP32 AT Command set for WiFi/TCP/UDP](https://github.com/espressif/esp32-at) | UART |
 | [GPS module](https://www.u-blox.com/en/product/neo-6-series) | I2C/UART |
+| [HD44780 LCD controller](https://www.sparkfun.com/datasheets/LCD/HD44780.pdf) | GPIO |
 | [HUB75 RGB led matrix](https://cdn-learn.adafruit.com/downloads/pdf/32x16-32x32-rgb-led-matrix.pdf) | SPI |
+| [ILI9341 TFT color display](https://cdn-shop.adafruit.com/datasheets/ILI9341.pdf) | SPI |
+| [L293x motor driver](https://www.ti.com/lit/ds/symlink/l293d.pdf) | GPIO/PWM |
+| [L9110x motor driver](https://www.elecrow.com/download/datasheet-l9110.pdf) | GPIO/PWM |
 | [LIS3DH accelerometer](https://www.st.com/resource/en/datasheet/lis3dh.pdf) | I2C |
 | [LSM6DS3 accelerometer](https://www.st.com/resource/en/datasheet/lsm6ds3.pdf) | I2C |
 | [MAG3110 magnetometer](https://www.nxp.com/docs/en/data-sheet/MAG3110.pdf) | I2C |
@@ -36,6 +43,8 @@ All of the drivers code is in the TinyGo Drivers repository located at [https://
 | [MMA8653 accelerometer](https://www.nxp.com/docs/en/data-sheet/MMA8653FC.pdf) | I2C |
 | [MPU6050 accelerometer/gyroscope](https://store.invensense.com/datasheets/invensense/MPU-6050_DataSheet_V3%204.pdf) | I2C |
 | [PCD8544 display](http://eia.udg.edu/~forest/PCD8544_1.pdf) | SPI |
+| [Resistive Touchscreen (4-wire)](http://ww1.microchip.com/downloads/en/Appnotes/doc8091.pdf) | GPIO |
+| [Semihosting](https://wiki.segger.com/Semihosting) | Debug |
 | [Shift register](https://en.wikipedia.org/wiki/Shift_register#Parallel-in_serial-out_\(PISO\)) | GPIO |
 | [SHT3x Digital Humidity Sensor](https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/0_Datasheets/Humidity/Sensirion_Humidity_Sensors_SHT3x_Datasheet_digital.pdf) | I2C |
 | [SSD1306 OLED display](https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf) | I2C / SPI |
