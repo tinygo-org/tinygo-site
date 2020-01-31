@@ -185,7 +185,6 @@ var (
 	UART0	= UART{
 		Buffer:	NewRingBuffer(),
 		Bus:	stm32.USART2,
-		IRQVal:	stm32.IRQ_USART2,
 	}
 	UART2	= &UART0
 )
@@ -594,9 +593,9 @@ SPIConfig is used to store config info for SPI.
 
 ```go
 type UART struct {
-	Buffer	*RingBuffer
-	Bus	*stm32.USART_Type
-	IRQVal	uint32
+	Buffer		*RingBuffer
+	Bus		*stm32.USART_Type
+	Interrupt	interrupt.Interrupt
 }
 ```
 

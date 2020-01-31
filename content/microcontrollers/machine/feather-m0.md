@@ -1298,9 +1298,10 @@ SPIConfig is used to store config info for SPI.
 
 ```go
 type UART struct {
-	Buffer	*RingBuffer
-	Bus	*sam.SERCOM_USART_Type
-	SERCOM	uint8
+	Buffer		*RingBuffer
+	Bus		*sam.SERCOM_USART_Type
+	SERCOM		uint8
+	Interrupt	interrupt.Interrupt
 }
 ```
 

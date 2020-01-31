@@ -152,6 +152,7 @@ SPI pins
 const (
 	SPI1_SCK_PIN	= PB13	// SCK: SERCOM4/PAD[1]
 	SPI1_MOSI_PIN	= PB15	// MOSI: SERCOM4/PAD[3]
+	SPI1_MISO_PIN	= NoPin
 )
 ```
 
@@ -341,6 +342,12 @@ const (
 
 
 
+```go
+const HSRAM_SIZE = 0x00030000
+```
+
+
+
 
 
 
@@ -348,10 +355,10 @@ const (
 
 ```go
 var (
-	I2C0 = I2C{Bus: sam.SERCOM2_I2CM,
-		SDA:		SDA_PIN,
-		SCL:		SCL_PIN,
-		PinMode:	PinSERCOM}
+	I2C0 = I2C{
+		Bus:	sam.SERCOM2_I2CM,
+		SERCOM:	2,
+	}
 )
 ```
 
@@ -360,15 +367,9 @@ I2C on the ItsyBitsy M4.
 
 ```go
 var (
-	SPI0 = SPI{Bus: sam.SERCOM1_SPIM,
-		SCK:		SPI0_SCK_PIN,
-		MOSI:		SPI0_MOSI_PIN,
-		MISO:		SPI0_MISO_PIN,
-		DOpad:		spiTXPad3SCK1,
-		DIpad:		sercomRXPad2,
-		MISOPinMode:	PinSERCOM,
-		MOSIPinMode:	PinSERCOM,
-		SCKPinMode:	PinSERCOM,
+	SPI0 = SPI{
+		Bus:	sam.SERCOM1_SPIM,
+		SERCOM:	1,
 	}
 )
 ```
@@ -378,12 +379,9 @@ SPI on the PyBadge.
 
 ```go
 var (
-	SPI1 = SPI{Bus: sam.SERCOM4_SPIM,
-		SCK:		SPI1_SCK_PIN,
-		MOSI:		SPI1_MOSI_PIN,
-		DOpad:		spiTXPad3SCK1,
-		MOSIPinMode:	PinSERCOM,
-		SCKPinMode:	PinSERCOM,
+	SPI1 = SPI{
+		Bus:	sam.SERCOM4_SPIM,
+		SERCOM:	4,
 	}
 )
 ```
@@ -408,16 +406,19 @@ var (
 	UART0	= USBCDC{Buffer: NewRingBuffer()}
 
 	// The first hardware serial port on the SAMD51. Uses the SERCOM3 interface.
-	UART1	= UART{Bus: sam.SERCOM3_USART_INT,
+	UART1	= UART{
 		Buffer:	NewRingBuffer(),
-		Mode:	PinSERCOMAlt,
+		Bus:	sam.SERCOM3_USART_INT,
+		SERCOM:	3,
+		IRQVal:	sam.IRQ_SERCOM3_2,
 	}
 
 	// The second hardware serial port on the SAMD51. Uses the SERCOM0 interface.
 	UART2	= UART{
 		Buffer:	NewRingBuffer(),
 		Bus:	sam.SERCOM0_USART_INT,
-		Mode:	PinSERCOMAlt,
+		SERCOM:	0,
+		IRQVal:	sam.IRQ_SERCOM0_2,
 	}
 )
 ```
@@ -564,7 +565,7 @@ NewRingBuffer returns a new ring buffer.
 func ResetProcessor()
 ```
 
-ResetProcessor should perform a system reset in preperation
+ResetProcessor should perform a system reset in preparation
 to switch to the bootloader to flash new firmware.
 
 
@@ -830,9 +831,7 @@ Bytes returns EndpointDescriptor data.
 ```go
 type I2C struct {
 	Bus	*sam.SERCOM_I2CM_Type
-	SCL	Pin
-	SDA	Pin
-	PinMode	PinMode
+	SERCOM	uint8
 }
 ```
 
@@ -843,7 +842,7 @@ I2C on the SAMD51.
 ### func (I2C) Configure
 
 ```go
-func (i2c I2C) Configure(config I2CConfig)
+func (i2c I2C) Configure(config I2CConfig) error
 ```
 
 Configure is intended to setup the I2C interface.
@@ -1280,15 +1279,8 @@ Used returns how many bytes in buffer have been used.
 
 ```go
 type SPI struct {
-	Bus		*sam.SERCOM_SPIM_Type
-	SCK		Pin
-	MOSI		Pin
-	MISO		Pin
-	DOpad		int
-	DIpad		int
-	SCKPinMode	PinMode
-	MOSIPinMode	PinMode
-	MISOPinMode	PinMode
+	Bus	*sam.SERCOM_SPIM_Type
+	SERCOM	uint8
 }
 ```
 
@@ -1299,7 +1291,7 @@ SPI
 ### func (SPI) Configure
 
 ```go
-func (spi SPI) Configure(config SPIConfig)
+func (spi SPI) Configure(config SPIConfig) error
 ```
 
 Configure is intended to setup the SPI interface.
@@ -1366,7 +1358,8 @@ SPIConfig is used to store config info for SPI.
 type UART struct {
 	Buffer	*RingBuffer
 	Bus	*sam.SERCOM_USART_INT_Type
-	Mode	PinMode
+	SERCOM	uint8
+	IRQVal	uint32	// RXC interrupt
 }
 ```
 
@@ -1386,7 +1379,7 @@ Buffered returns the number of bytes currently stored in the RX buffer.
 ### func (UART) Configure
 
 ```go
-func (uart UART) Configure(config UARTConfig)
+func (uart UART) Configure(config UARTConfig) error
 ```
 
 Configure the UART.

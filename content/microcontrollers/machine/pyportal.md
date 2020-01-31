@@ -1,6 +1,6 @@
 
 ---
-title: metro-m4-airlift
+title: pyportal
 ---
 
 
@@ -15,23 +15,68 @@ used to reset into bootloader
 
 ```go
 const (
-	D0	= PA23	// UART0 RX/PWM available
-	D1	= PA22	// UART0 TX/PWM available
-	D2	= PB17	// PWM available
-	D3	= PB16	// PWM available
-	D4	= PB13	// PWM available
-	D5	= PB14	// PWM available
-	D6	= PB15	// PWM available
-	D7	= PB12	// PWM available
+	D0	= PB13	// NINA_RX
+	D1	= PB12	// NINA_TX
+	D2	= PB22	// built-in neopixel
+	D3	= PA04	// PWM available
+	D4	= PA05	// PWM available
+	D5	= PB16	// NINA_ACK
+	D6	= PB15	// NINA_GPIO0
+	D7	= PB17	// NINA_RESETN
+	D8	= PB14	// NINA_CS
+	D9	= PB04	// TFT_RD
+	D10	= PB05	// TFT_DC
+	D11	= PB06	// TFT_CS
+	D12	= PB07	// TFT_TE
+	D13	= PB23	// built-in LED
+	D24	= PA00	// TFT_RESET
+	D25	= PB31	// TFT_BACKLIGHT
+	D26	= PB09	// TFT_WR
+	D27	= PB02	// SDA
+	D28	= PB03	// SCL
+	D29	= PA12	// MOSI
+	D30	= PA13	// SCK
+	D31	= PA14	// MISO
+	D32	= PB30	// SD_CS
+	D33	= PA01	// SD_CARD_DETECT
+	D34	= PA16	// LCD_DATA0
+	D35	= PA17	// LCD_DATA1
+	D36	= PA18	// LCD_DATA2
+	D37	= PA19	// LCD_DATA3
+	D38	= PA20	// LCD_DATA4
+	D39	= PA21	// LCD_DATA5
+	D40	= PA22	// LCD_DATA6
+	D41	= PA23	// LCD_DATA7
+	D42	= PB10	// QSPI
+	D43	= PB11	// QSPI
+	D44	= PA08	// QSPI
+	D45	= PA09	// QSPI
+	D46	= PA10	// QSPI
+	D47	= PA11	// QSPI
+	D50	= PA02	// speaker amplifier shutdown
+	D51	= PA15	// NINA_RTS
 
-	D8	= PA21	// PWM available
-	D9	= PA20	// PWM available
-	D10	= PA18	// can be used for PWM or UART1 TX
-	D11	= PA19	// can be used for PWM or UART1 RX
-	D12	= PA17	// PWM available
-	D13	= PA16	// PWM available
+	NINA_CS		= D8
+	NINA_ACK	= D5
+	NINA_GPIO0	= D6
+	NINA_RESETN	= D7
 
-	D40	= PB22	// built-in neopixel
+	NINA_TX		= D1
+	NINA_RX		= D0
+	NINA_RTS	= D51
+
+	LCD_DATA0	= D34
+
+	TFT_RD		= D9
+	TFT_DC		= D10
+	TFT_CS		= D11
+	TFT_TE		= D12
+	TFT_RESET	= D24
+	TFT_BACKLIGHT	= D25
+	TFT_WR		= D26
+
+	NEOPIXEL	= D2
+	SPK_SD		= D50
 )
 ```
 
@@ -40,12 +85,21 @@ GPIO Pins
 
 ```go
 const (
-	A0	= PA02	// ADC/AIN[0]
-	A1	= PA05	// ADC/AIN[2]
-	A2	= PB06	// ADC/AIN[3]
-	A3	= PB00	// ADC/AIN[4] // NOTE: different between "airlift" and non-airlift versions
-	A4	= PB08	// ADC/AIN[5]
-	A5	= PB09	// ADC/AIN[10]
+	A0	= PA02	// ADC0/AIN[0]
+	A1	= D3	// ADC0/AIN[4]
+	A2	= PA07	// ADC0/AIN[7]
+	A3	= D4	// ADC0/AIN[5]
+	A4	= PB00	// ADC0/AIN[12]
+	A5	= PB01	// ADC0/AIN[13]
+	A6	= PA06	// ADC0/AIN[6]
+	A7	= PB08	// ADC1/AIN[0]
+
+	AUDIO_OUT	= A0
+	LIGHT		= A2
+	TOUCH_YD	= A4
+	TOUCH_XL	= A5
+	TOUCH_YU	= A6
+	TOUCH_XR	= A7
 )
 ```
 
@@ -72,32 +126,18 @@ UART0 aka USBCDC pins
 
 ```go
 const (
-	UART_TX_PIN	= D1
-	UART_RX_PIN	= D0
+	UART_TX_PIN	= NoPin
+	UART_RX_PIN	= NoPin
 )
 ```
 
+TODO: add configuration for UART on SERCOM4 that is connected to TX/RX of ESP32
 
 
 ```go
 const (
-	NINA_CS		= PA15
-	NINA_ACK	= PB04
-	NINA_GPIO0	= PB01
-	NINA_RESETN	= PB05
-
-	NINA_TX		= PA04
-	NINA_RX		= PA07
-	NINA_RTS	= PB23
-)
-```
-
-
-
-```go
-const (
-	SDA_PIN	= PB02	// SDA: SERCOM5/PAD[0]
-	SCL_PIN	= PB03	// SCL: SERCOM5/PAD[1]
+	SDA_PIN	= PB02	// SDA: SERCOM2/PAD[0]
+	SCL_PIN	= PB03	// SCL: SERCOM2/PAD[1]
 )
 ```
 
@@ -106,9 +146,9 @@ I2C pins
 
 ```go
 const (
-	SPI0_SCK_PIN	= PA13	// SCK:  SERCOM2/PAD[1]
-	SPI0_MOSI_PIN	= PA12	// MOSI: SERCOM2/PAD[0]
-	SPI0_MISO_PIN	= PA14	// MISO: SERCOM2/PAD[2]
+	SPI0_SCK_PIN	= PA13	// SCK: SERCOM1/PAD[1]
+	SPI0_MOSI_PIN	= PA12	// MOSI: SERCOM1/PAD[3]
+	SPI0_MISO_PIN	= PA14	// MISO: SERCOM1/PAD[2]
 
 	NINA_MOSI	= SPI0_MOSI_PIN
 	NINA_MISO	= SPI0_MISO_PIN
@@ -117,16 +157,6 @@ const (
 ```
 
 SPI pins
-
-
-```go
-const (
-	SPI1_SCK_PIN	= D12	// MISO: SERCOM1/PAD[1]
-	SPI1_MOSI_PIN	= D11	// MOSI: SERCOM1/PAD[3]
-	SPI1_MISO_PIN	= D13	// SCK:  SERCOM1/PAD[0]
-)
-```
-
 
 
 ```go
@@ -313,7 +343,7 @@ const (
 
 
 ```go
-const HSRAM_SIZE = 0x00030000
+const HSRAM_SIZE = 0x00040000
 ```
 
 
@@ -332,7 +362,7 @@ var (
 )
 ```
 
-I2C on the Metro M4.
+I2C on the PyPortal.
 
 
 ```go
@@ -345,19 +375,7 @@ var (
 )
 ```
 
-SPI on the Metro M4.
-
-
-```go
-var (
-	SPI1 = SPI{
-		Bus:	sam.SERCOM1_SPIM,
-		SERCOM:	1,
-	}
-)
-```
-
-SPI1 on the Metro M4 on pins 11,12,13
+SPI on the PyPortal.
 
 
 ```go

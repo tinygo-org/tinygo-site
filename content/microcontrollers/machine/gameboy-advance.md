@@ -14,6 +14,29 @@ NoPin explicitly indicates "not a pin". Use this pin if you want to leave one
 of the pins in a peripheral unconfigured (if supported by the hardware).
 
 
+```go
+const (
+	IRQ_VBLANK	= 0
+	IRQ_HBLANK	= 1
+	IRQ_VCOUNT	= 2
+	IRQ_TIMER0	= 3
+	IRQ_TIMER1	= 4
+	IRQ_TIMER2	= 5
+	IRQ_TIMER3	= 6
+	IRQ_COM		= 7
+	IRQ_DMA0	= 8
+	IRQ_DMA1	= 9
+	IRQ_DMA2	= 10
+	IRQ_DMA3	= 11
+	IRQ_KEYPAD	= 12
+	IRQ_GAMEPAK	= 13
+)
+```
+
+Interrupt numbers as used on the GameBoy Advance. Register them with
+runtime/interrupt.New.
+
+
 
 
 

@@ -292,8 +292,8 @@ const (
 var (
 	UART1 = UART{
 		Buffer:	NewRingBuffer(),
-		Bus:	sam.SERCOM5_USART,
-		SERCOM:	5,
+		Bus:	sam.SERCOM3_USART,
+		SERCOM:	3,
 	}
 )
 ```
@@ -305,8 +305,8 @@ UART1 on the Arduino Nano 33 connects to the onboard NINA-W102 WiFi chip.
 var (
 	UART2 = UART{
 		Buffer:	NewRingBuffer(),
-		Bus:	sam.SERCOM3_USART,
-		SERCOM:	3,
+		Bus:	sam.SERCOM5_USART,
+		SERCOM:	5,
 	}
 )
 ```
@@ -1355,9 +1355,10 @@ SPIConfig is used to store config info for SPI.
 
 ```go
 type UART struct {
-	Buffer	*RingBuffer
-	Bus	*sam.SERCOM_USART_Type
-	SERCOM	uint8
+	Buffer		*RingBuffer
+	Bus		*sam.SERCOM_USART_Type
+	SERCOM		uint8
+	Interrupt	interrupt.Interrupt
 }
 ```
 
