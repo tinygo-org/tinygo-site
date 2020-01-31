@@ -28,7 +28,7 @@ You can test that the installation is working properly by running this code whic
 
 ```shell
 $ tinygo version
-tinygo version 0.11.0 darwin/amd64
+tinygo version 0.12.0 darwin/amd64
 ```
 
 If you are only interested in compiling TinyGo code for WebAssembly then you are done with the installation.
@@ -126,7 +126,7 @@ This results in a `tinygo` binary in the `build` directory:
 
 ```shell
 $ ./build/tinygo version
-tinygo version 0.11.0 darwin/amd64
+tinygo version 0.12.0 darwin/amd64
 ```
 
 ### Additional Requirements for Microcontrollers
