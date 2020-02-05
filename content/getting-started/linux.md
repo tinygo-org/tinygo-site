@@ -146,7 +146,7 @@ Now, obtain the TinyGo source code, which should also obtain the various needed 
 
 ```shell
 go get -d -u github.com/tinygo-org/tinygo
-cd $GOPATH/src/github.com/tinygo-org/tinygo
+cd $(go env GOPATH)/src/github.com/tinygo-org/tinygo
 ```
 
 You now have two options: build LLVM manually or use a LLVM distributed with
