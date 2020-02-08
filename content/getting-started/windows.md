@@ -63,7 +63,7 @@ The board should restart and begin running your program.
 
 - You must install the "BOSSA" flashing utility first. You can download it from https://github.com/shumatech/BOSSA/releases/download/1.9.1/bossa-x64-1.9.1.msi
 
-- During the installation, many sure that you choose to put it into `c:\Program Files`. The default in the installer will not work correct, you must choose `c:\Program Files`.
+- During the installation, make sure that you choose to put it into `c:\Program Files`. The default in the installer will not work correct, you must choose `c:\Program Files`.
 
 - After the installation, you must add BOSSA to your PATH:
 
