@@ -17,6 +17,9 @@ DEVICES = \
     microbit \
     nrf52840-mdk \
     nucleo-f103rb \
+    particle-argon \
+    particle-boron \
+    particle-xenon \
     pca10031 \
     pca10040 \
     pca10056 \
