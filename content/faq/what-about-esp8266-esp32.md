@@ -9,6 +9,4 @@ For the discussion of this see [this forum thread](https://www.esp32.com/viewtop
 
 The repository that contains the Xtensa fork of LLVM is located at [https://github.com/espressif/llvm-project](https://github.com/espressif/llvm-project)
 
-The repository that contains the Xtensa fork of Clang is located at [https://github.com/espressif/clang-xtensa](https://github.com/espressif/clang-xtensa).
-
 It is not yet in a usable state, but once it is we will start the process of supporting it in TinyGo.
