@@ -5,6 +5,13 @@ weight: 1
 
 Here will go some basic examples of using TinyGo in the most common scenarios.
 
+The examples can be obtained from the TinyGo source code on Github.
+
+```shell
+go get -d -u github.com/tinygo-org/tinygo
+cd $GOPATH/src/github.com/tinygo-org/tinygo/src/examples
+```
+
 ### Building "Hello, World" program for WebAssembly
 
 To build the WASM example, run the following command:
