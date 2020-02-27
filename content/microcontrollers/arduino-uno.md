@@ -47,4 +47,4 @@ To fix this, see the installation guide for [Linux](../../getting-started/linux/
 Programs are loaded onto the Arduino Uno using the `avrdude` command line utility program. You must install this program before you will be able to flash the Arduino Uno board with your TinyGo code.
 
 - Plug your Arduino Uno into your computer's USB port.
-- Build and flash your TinyGo program using `tinygo flash -target=arduino`
+- Build and flash your TinyGo program using `tinygo flash -target arduino /path/to/code`
