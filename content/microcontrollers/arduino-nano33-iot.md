@@ -47,9 +47,11 @@ Once you have downloaded it, double click on the .dmg file to perform the instal
 On Linux, install from source:
 
 ```shell
+sudo apt install libreadline-dev libwxgtk3.0-* 
 git clone https://github.com/shumatech/BOSSA.git
 cd BOSSA
 make
+sudo cp bin/bossac /usr/local/bin
 ```
 
 ### Windows
