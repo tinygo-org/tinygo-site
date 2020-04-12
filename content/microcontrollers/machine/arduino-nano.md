@@ -405,10 +405,6 @@ type RingBuffer struct {
 RingBuffer is ring buffer implementation inspired by post at
 https://www.embeddedrelated.com/showthread/comp.arch.embedded/77084-1.php
 
-It has some limitations currently due to how "volatile" variables that are
-members of a struct are not compiled correctly by TinyGo.
-See https://github.com/tinygo-org/tinygo/issues/151 for details.
-
 
 
 ### func (*RingBuffer) Get

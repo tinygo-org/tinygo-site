@@ -12,7 +12,7 @@ The [HiFive1 Rev B](https://www.sifive.com/boards/hifive1-rev-b) is low-cost, Ar
 | GPIO      | YES | YES |
 | UART      | YES | YES |
 | SPI      | YES | Write only |
-| I2C      | YES | Not yet |
+| I2C      | YES | YES |
 | ADC      | NO | NO |
 | PWM      | YES | Not yet |
 

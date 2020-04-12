@@ -128,6 +128,31 @@ UART pins
 
 
 ```go
+const (
+	SPI1_SCK_PIN	= PA5
+	SPI1_MISO_PIN	= PA6
+	SPI1_MOSI_PIN	= PA7
+	SPI0_SCK_PIN	= SPI1_SCK_PIN
+	SPI0_MISO_PIN	= SPI1_MISO_PIN
+	SPI0_MOSI_PIN	= SPI1_MOSI_PIN
+)
+```
+
+SPI pins
+
+
+```go
+const (
+	MEMS_ACCEL_CS	= PE3
+	MEMS_ACCEL_INT1	= PE0
+	MEMS_ACCEL_INT2	= PE1
+)
+```
+
+MEMs accelerometer
+
+
+```go
 const NoPin = Pin(-1)
 ```
 
@@ -145,38 +170,68 @@ const (
 	PinInputPullup		PinMode	= 3
 
 	// for UART
-	PinModeUartTX	PinMode	= 4
-	PinModeUartRX	PinMode	= 5
+	PinModeUARTTX	PinMode	= 4
+	PinModeUARTRX	PinMode	= 5
 
-	//GPIOx_MODER
-	GPIO_MODE_INPUT			= 0
-	GPIO_MODE_GENERAL_OUTPUT	= 1
-	GPIO_MODE_ALTERNABTIVE		= 2
-	GPIO_MODE_ANALOG		= 3
+	// for I2C
+	PinModeI2CSCL	PinMode	= 6
+	PinModeI2CSDA	PinMode	= 7
 
-	//GPIOx_OTYPER
-	GPIO_OUTPUT_MODE_PUSH_PULL	= 0
-	GPIO_OUTPUT_MODE_OPEN_DRAIN	= 1
+	// for SPI
+	PinModeSPICLK	PinMode	= 8
+	PinModeSPIMOSI	PinMode	= 9
+	PinModeSPIMISO	PinMode	= 10
 
-	// GPIOx_OSPEEDR
-	GPIO_SPEED_LOW		= 0
-	GPIO_SPEED_MID		= 1
-	GPIO_SPEED_HI		= 2
-	GPIO_SPEED_VERY_HI	= 3
-
-	// GPIOx_PUPDR
-	GPIO_FLOATING	= 0
-	GPIO_PULL_UP	= 1
-	GPIO_PULL_DOWN	= 2
+	// for analog/ADC
+	PinInputAnalog	PinMode	= 11
 )
 ```
 
+
+
+```go
+const (
+	Mode0	= 0
+	Mode1	= 1
+	Mode2	= 2
+	Mode3	= 3
+)
+```
+
+SPI phase and polarity configs CPOL and CPHA
 
 
 
 
 
 ## Variables
+
+```go
+var (
+	UART0	= UART{
+		Buffer:			NewRingBuffer(),
+		Bus:			stm32.USART2,
+		AltFuncSelector:	stm32.AF7_USART1_2_3,
+	}
+	UART1	= &UART0
+)
+```
+
+
+
+```go
+var (
+	SPI0	= SPI{
+		Bus:			stm32.SPI1,
+		AltFuncSelector:	stm32.AF5_SPI1_SPI2,
+	}
+	SPI1	= &SPI0
+)
+```
+
+Since the first interface is named SPI1, both SPI0 and SPI1 refer to SPI1.
+TODO: implement SPI2 and SPI3.
+
 
 ```go
 var (
@@ -191,9 +246,7 @@ var (
 
 ```go
 var (
-	// Both UART0 and UART1 refer to USART2.
-	UART0	= UART{Buffer: NewRingBuffer()}
-	UART1	= &UART0
+	ErrTxInvalidSliceSize = errors.New("SPI write and read slices must be same size")
 )
 ```
 
@@ -265,7 +318,26 @@ other peripherals like ADC, I2C, etc.
 func (p Pin) Configure(config PinConfig)
 ```
 
-Configure this pin with the given configuration.
+Configure this pin with the given configuration
+
+
+### func (Pin) ConfigureAltFunc
+
+```go
+func (p Pin) ConfigureAltFunc(config PinConfig, altFunc stm32.AltFunc)
+```
+
+Configure this pin with the given configuration including alternate
+ function mapping if necessary.
+
+
+### func (Pin) Get
+
+```go
+func (p Pin) Get() bool
+```
+
+Get returns the current value of a GPIO pin.
 
 
 ### func (Pin) High
@@ -298,6 +370,15 @@ func (p Pin) Set(high bool)
 
 Set the pin to high or low.
 Warning: only use this on an output pin!
+
+
+### func (Pin) SetAltFunc
+
+```go
+func (p Pin) SetAltFunc(af stm32.AltFunc)
+```
+
+SetAltFunc maps the given alternative function to the I/O pin
 
 
 
@@ -339,10 +420,6 @@ type RingBuffer struct {
 RingBuffer is ring buffer implementation inspired by post at
 https://www.embeddedrelated.com/showthread/comp.arch.embedded/77084-1.php
 
-It has some limitations currently due to how "volatile" variables that are
-members of a struct are not compiled correctly by TinyGo.
-See https://github.com/tinygo-org/tinygo/issues/151 for details.
-
 
 
 ### func (*RingBuffer) Get
@@ -376,15 +453,100 @@ Used returns how many bytes in buffer have been used.
 
 
 
+## type SPI
+
+```go
+type SPI struct {
+	Bus		*stm32.SPI_Type
+	AltFuncSelector	stm32.AltFunc
+}
+```
+
+SPI on the STM32Fxxx using MODER / alternate function pins
+
+
+
+### func (SPI) Configure
+
+```go
+func (spi SPI) Configure(config SPIConfig)
+```
+
+Configure is intended to setup the STM32 SPI1 interface.
+Features still TODO:
+- support SPI2 and SPI3
+- allow setting data size to 16 bits?
+- allow setting direction in HW for additional optimization?
+- hardware SS pin?
+
+
+### func (SPI) Transfer
+
+```go
+func (spi SPI) Transfer(w byte) (byte, error)
+```
+
+Transfer writes/reads a single byte using the SPI interface.
+
+
+### func (SPI) Tx
+
+```go
+func (spi SPI) Tx(w, r []byte) error
+```
+
+Tx handles read/write operation for SPI interface. Since SPI is a syncronous write/read
+interface, there must always be the same number of bytes written as bytes read.
+The Tx method knows about this, and offers a few different ways of calling it.
+
+This form sends the bytes in tx buffer, putting the resulting bytes read into the rx buffer.
+Note that the tx and rx buffers must be the same size:
+
+		spi.Tx(tx, rx)
+
+This form sends the tx buffer, ignoring the result. Useful for sending "commands" that return zeros
+until all the bytes in the command packet have been received:
+
+		spi.Tx(tx, nil)
+
+This form sends zeros, putting the result into the rx buffer. Good for reading a "result packet":
+
+		spi.Tx(nil, rx)
+
+
+
+
+## type SPIConfig
+
+```go
+type SPIConfig struct {
+	Frequency	uint32
+	SCK		Pin
+	MOSI		Pin
+	MISO		Pin
+	LSBFirst	bool
+	Mode		uint8
+}
+```
+
+SPIConfig is used to store config info for SPI.
+
+
+
+
+
 ## type UART
 
 ```go
 type UART struct {
-	Buffer *RingBuffer
+	Buffer		*RingBuffer
+	Bus		*stm32.USART_Type
+	Interrupt	interrupt.Interrupt
+	AltFuncSelector	stm32.AltFunc
 }
 ```
 
-UART
+UART representation
 
 
 
@@ -433,6 +595,16 @@ func (uart UART) Receive(data byte)
 
 Receive handles adding data to the UART's data buffer.
 Usually called by the IRQ handler for a machine.
+
+
+### func (UART) SetBaudRate
+
+```go
+func (uart UART) SetBaudRate(br uint32)
+```
+
+SetBaudRate sets the communication speed for the UART. Defer to chip-specific
+routines for calculation
 
 
 ### func (UART) Write

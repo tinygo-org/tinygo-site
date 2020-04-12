@@ -112,6 +112,26 @@ SPI pins
 
 
 ```go
+const (
+	I2C0_SDA_PIN	= D18
+	I2C0_SCL_PIN	= D19
+)
+```
+
+I2C pins
+
+
+```go
+const (
+	TWI_FREQ_100KHZ	= 100000
+	TWI_FREQ_400KHZ	= 400000
+)
+```
+
+TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-speed bus.
+
+
+```go
 const NoPin = Pin(-1)
 ```
 
@@ -131,6 +151,18 @@ const (
 
 
 
+```go
+const (
+	Mode0	= 0
+	Mode1	= 1
+	Mode2	= 2
+	Mode3	= 3
+)
+```
+
+SPI phase and polarity configs CPOL and CPHA
+
+
 
 
 
@@ -145,6 +177,17 @@ var (
 ```
 
 SPI on the HiFive1.
+
+
+```go
+var (
+	I2C0 = I2C{
+		Bus: sifive.I2C0,
+	}
+)
+```
+
+I2C on the HiFive1 rev B.
 
 
 ```go
@@ -204,6 +247,84 @@ type ADC struct {
 }
 ```
 
+
+
+
+
+
+## type I2C
+
+```go
+type I2C struct {
+	Bus *sifive.I2C_Type
+}
+```
+
+I2C on the FE310-G002.
+
+
+
+### func (I2C) Configure
+
+```go
+func (i2c I2C) Configure(config I2CConfig) error
+```
+
+Configure is intended to setup the I2C interface.
+
+
+### func (I2C) ReadRegister
+
+```go
+func (i2c I2C) ReadRegister(address uint8, register uint8, data []byte) error
+```
+
+ReadRegister transmits the register, restarts the connection as a read
+operation, and reads the response.
+
+Many I2C-compatible devices are organized in terms of registers. This method
+is a shortcut to easily read such registers. Also, it only works for devices
+with 7-bit addresses, which is the vast majority.
+
+
+### func (I2C) Tx
+
+```go
+func (i2c I2C) Tx(addr uint16, w, r []byte) error
+```
+
+Tx does a single I2C transaction at the specified address.
+It clocks out the given address, writes the bytes in w, reads back len(r)
+bytes and stores them in r, and generates a stop condition on the bus.
+
+
+### func (I2C) WriteRegister
+
+```go
+func (i2c I2C) WriteRegister(address uint8, register uint8, data []byte) error
+```
+
+WriteRegister transmits first the register and then the data to the
+peripheral device.
+
+Many I2C-compatible devices are organized in terms of registers. This method
+is a shortcut to easily write to such registers. Also, it only works for
+devices with 7-bit addresses, which is the vast majority.
+
+
+
+
+## type I2CConfig
+
+```go
+type I2CConfig struct {
+	Frequency	uint32
+	SCL		Pin
+	SDA		Pin
+}
+```
+
+I2CConfig is used to store config info for I2C.
 
 
 
@@ -321,10 +442,6 @@ type RingBuffer struct {
 
 RingBuffer is ring buffer implementation inspired by post at
 https://www.embeddedrelated.com/showthread/comp.arch.embedded/77084-1.php
-
-It has some limitations currently due to how "volatile" variables that are
-members of a struct are not compiled correctly by TinyGo.
-See https://github.com/tinygo-org/tinygo/issues/151 for details.
 
 
 

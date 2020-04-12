@@ -294,9 +294,35 @@ const (
 
 
 ```go
+const (
+	QSPI_SCK	= PB10
+	QSPI_CS		= PB11
+	QSPI_DATA0	= PA08
+	QSPI_DATA1	= PA09
+	QSPI_DATA2	= PA10
+	QSPI_DATA3	= PA11
+)
+```
+
+The QSPI peripheral on ATSAMD51 is only available on the following pins
+
+
+```go
 const HSRAM_SIZE = 0x00030000
 ```
 
+
+
+```go
+const (
+	Mode0	= 0
+	Mode1	= 1
+	Mode2	= 2
+	Mode3	= 3
+)
+```
+
+SPI phase and polarity configs CPOL and CPHA
 
 
 
@@ -349,7 +375,6 @@ var (
 		Buffer:	NewRingBuffer(),
 		Bus:	sam.SERCOM3_USART_INT,
 		SERCOM:	3,
-		IRQVal:	sam.IRQ_SERCOM3_2,
 	}
 
 	// The second hardware serial port on the SAMD51. Uses the SERCOM0 interface.
@@ -357,7 +382,6 @@ var (
 		Buffer:	NewRingBuffer(),
 		Bus:	sam.SERCOM0_USART_INT,
 		SERCOM:	0,
-		IRQVal:	sam.IRQ_SERCOM0_2,
 	}
 )
 ```
@@ -1177,10 +1201,6 @@ type RingBuffer struct {
 RingBuffer is ring buffer implementation inspired by post at
 https://www.embeddedrelated.com/showthread/comp.arch.embedded/77084-1.php
 
-It has some limitations currently due to how "volatile" variables that are
-members of a struct are not compiled correctly by TinyGo.
-See https://github.com/tinygo-org/tinygo/issues/151 for details.
-
 
 
 ### func (*RingBuffer) Get
@@ -1295,10 +1315,10 @@ SPIConfig is used to store config info for SPI.
 
 ```go
 type UART struct {
-	Buffer	*RingBuffer
-	Bus	*sam.SERCOM_USART_INT_Type
-	SERCOM	uint8
-	IRQVal	uint32	// RXC interrupt
+	Buffer		*RingBuffer
+	Bus		*sam.SERCOM_USART_INT_Type
+	SERCOM		uint8
+	Interrupt	interrupt.Interrupt	// RXC interrupt
 }
 ```
 
