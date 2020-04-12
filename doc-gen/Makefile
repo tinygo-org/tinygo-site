@@ -1,11 +1,13 @@
 
 DEVICES = \
     arduino \
+    arduino-mega2560 \
     arduino-nano \
     arduino-nano33 \
     bluepill \
     circuitplay-bluefruit \
     circuitplay-express \
+    clue_alpha \
     digispark \
     feather-m0 \
     feather-m4 \

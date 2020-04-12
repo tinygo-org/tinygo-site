@@ -18,7 +18,7 @@ The [Adafruit Circuit Playground Bluefruit](https://www.adafruit.com/product/433
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Circuit Playground Express](../machine/circuitplay-bluefruit)
+[Documentation for the machine package for the Circuit Playground Bluefruit](../machine/circuitplay-bluefruit)
 
 ## Flashing
 
@@ -77,7 +77,7 @@ Once you have updated your Circuit Playground Bluefruit board the first time, af
 
 ## Notes
 
-The USB port to the Circuit Playground Bluefruit cannot yet be used as a serial port. Eventually `UART0` will refer to this connection.
+You can use the USB port to the Circuit Playground Bluefruit as a serial port. `UART0` refers to this connection.
 
 For an example that uses the built-in Neopixel LEDs, take a look at the TinyGo drivers repository located at [https://github.com/tinygo-org/drivers/tree/master/examples](https://github.com/tinygo-org/drivers)
 

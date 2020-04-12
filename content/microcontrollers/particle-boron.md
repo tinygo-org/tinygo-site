@@ -28,3 +28,9 @@ Programs are loaded onto the Particle Boron board using the `openocd` command li
 
 - Plug your [Particle Debugger](https://store.particle.io/collections/accessories/products/particle-debugger) to Boron's debugging connector
 - Build and flash your TinyGo program using `tinygo flash -target=particle-boron`
+
+## Notes
+
+You can use the USB port to the Particle Boron as a serial port. `UART0` refers to this connection.
+
+Bluetooth support is in development but not yet completed.

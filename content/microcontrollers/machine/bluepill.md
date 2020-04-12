@@ -130,6 +130,18 @@ const (
 
 
 
+```go
+const (
+	Mode0	= 0
+	Mode1	= 1
+	Mode2	= 2
+	Mode3	= 3
+)
+```
+
+SPI phase and polarity configs CPOL and CPHA
+
+
 
 
 
@@ -235,7 +247,6 @@ type I2C struct {
 }
 ```
 
-I2C on the STM32F103xx.
 
 
 
@@ -345,7 +356,8 @@ other peripherals like ADC, I2C, etc.
 func (p Pin) Configure(config PinConfig)
 ```
 
-Configure this pin with the given configuration.
+Configure this pin with the given I/O settings.
+stm32f1xx uses different technique for setting the GPIO pins than the stm32f407
 
 
 ### func (Pin) Get
@@ -428,10 +440,6 @@ type RingBuffer struct {
 RingBuffer is ring buffer implementation inspired by post at
 https://www.embeddedrelated.com/showthread/comp.arch.embedded/77084-1.php
 
-It has some limitations currently due to how "volatile" variables that are
-members of a struct are not compiled correctly by TinyGo.
-See https://github.com/tinygo-org/tinygo/issues/151 for details.
-
 
 
 ### func (*RingBuffer) Get
@@ -473,7 +481,6 @@ type SPI struct {
 }
 ```
 
-SPI on the STM32.
 
 
 
@@ -556,7 +563,7 @@ type UART struct {
 }
 ```
 
-UART
+UART representation
 
 
 
@@ -613,7 +620,8 @@ Usually called by the IRQ handler for a machine.
 func (uart UART) SetBaudRate(br uint32)
 ```
 
-SetBaudRate sets the communication speed for the UART.
+SetBaudRate sets the communication speed for the UART. Defer to chip-specific
+routines for calculation
 
 
 ### func (UART) Write

@@ -65,7 +65,7 @@ of the pins in a peripheral unconfigured (if supported by the hardware).
 const (
 	PinInput		PinMode	= (nrf.GPIO_PIN_CNF_DIR_Input << nrf.GPIO_PIN_CNF_DIR_Pos) | (nrf.GPIO_PIN_CNF_INPUT_Connect << nrf.GPIO_PIN_CNF_INPUT_Pos)
 	PinInputPullup		PinMode	= PinInput | (nrf.GPIO_PIN_CNF_PULL_Pullup << nrf.GPIO_PIN_CNF_PULL_Pos)
-	PinInputPulldown	PinMode	= PinOutput | (nrf.GPIO_PIN_CNF_PULL_Pulldown << nrf.GPIO_PIN_CNF_PULL_Pos)
+	PinInputPulldown	PinMode	= PinInput | (nrf.GPIO_PIN_CNF_PULL_Pulldown << nrf.GPIO_PIN_CNF_PULL_Pos)
 	PinOutput		PinMode	= (nrf.GPIO_PIN_CNF_DIR_Output << nrf.GPIO_PIN_CNF_DIR_Pos) | (nrf.GPIO_PIN_CNF_INPUT_Disconnect << nrf.GPIO_PIN_CNF_INPUT_Pos)
 )
 ```
@@ -98,8 +98,8 @@ var (
 
 ```go
 var (
-	// UART0 is the hardware serial port on the NRF.
-	UART0 = UART{Buffer: NewRingBuffer()}
+	// NRF_UART0 is the hardware UART on the NRF SoC.
+	NRF_UART0 = UART{Buffer: NewRingBuffer()}
 )
 ```
 
@@ -124,6 +124,14 @@ var (
 ```
 
 There are 2 SPI interfaces on the NRF5x.
+
+
+```go
+var (
+	UART0 = NRF_UART0
+)
+```
+
 
 
 
@@ -426,10 +434,6 @@ type RingBuffer struct {
 
 RingBuffer is ring buffer implementation inspired by post at
 https://www.embeddedrelated.com/showthread/comp.arch.embedded/77084-1.php
-
-It has some limitations currently due to how "volatile" variables that are
-members of a struct are not compiled correctly by TinyGo.
-See https://github.com/tinygo-org/tinygo/issues/151 for details.
 
 
 

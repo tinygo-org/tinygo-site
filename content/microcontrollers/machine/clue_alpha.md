@@ -1,6 +1,6 @@
 
 ---
-title: particle-xenon
+title: clue_alpha
 ---
 
 
@@ -14,48 +14,104 @@ const HasLowFrequencyCrystal = true
 
 ```go
 const (
-	LED		Pin	= 44
-	LED_GREEN	Pin	= 14
-	LED_RED		Pin	= 13
-	LED_BLUE	Pin	= 15
+	D0	= P0_04
+	D1	= P0_05
+	D2	= P0_03
+	D3	= P0_28
+	D4	= P0_02
+	D5	= P1_02
+	D6	= P1_09
+	D7	= P0_07
+	D8	= P1_07
+	D9	= P0_27
+	D10	= P0_30
+	D11	= P1_10
+	D12	= P0_31
+	D13	= P0_08
+	D14	= P0_06
+	D15	= P0_26
+	D16	= P0_29
+	D17	= P1_01
+	D18	= P0_16
+	D19	= P0_25
+	D20	= P0_24
+	D21	= A0
+	D22	= A1
+	D23	= A2
+	D24	= A3
+	D25	= A4
+	D26	= A5
+	D27	= A6
+	D28	= A7
+	D29	= P0_14
+	D30	= P0_15
+	D31	= P0_12
+	D32	= P0_13
+	D33	= P1_03
+	D34	= P1_05
+	D35	= P0_00
+	D36	= P0_01
+	D37	= P0_19
+	D38	= P0_20
+	D39	= P0_17
+	D40	= P0_22
+	D41	= P0_23
+	D42	= P0_21
+	D43	= P0_10
+	D44	= P0_09
+	D45	= P1_06
+	D46	= P1_00
 )
 ```
 
-LEDs
+GPIO Pins
 
 
 ```go
 const (
-	A0	Pin	= 3
-	A1	Pin	= 4
-	A2	Pin	= 28
-	A3	Pin	= 29
-	A4	Pin	= 30
-	A5	Pin	= 31
-	D0	Pin	= 26	// Also SDA
-	D1	Pin	= 27	// Also SCL
-	D2	Pin	= 33
-	D3	Pin	= 34
-	D4	Pin	= 40
-	D5	Pin	= 42
-	D6	Pin	= 43
-	D7	Pin	= 44	// Also LED
-	D8	Pin	= 35
-	D9	Pin	= 6	// Also TX
-	D10	Pin	= 8	// Also RX
-	D11	Pin	= 46	// Also MISO
-	D12	Pin	= 45	// Also MOSI
-	D13	Pin	= 47	// Also SCK
+	A0	= D12
+	A1	= D16
+	A2	= D0
+	A3	= D1
+	A4	= D2
+	A5	= D3
+	A6	= D4
+	A7	= D10
 )
 ```
 
-GPIOs
+Analog Pins
 
 
 ```go
 const (
-	UART_TX_PIN	Pin	= 6
-	UART_RX_PIN	Pin	= 8
+	LED		= D17
+	LED1		= LED
+	LED2		= D43
+	NEOPIXEL	= D18
+
+	BUTTON_LEFT	= D5
+	BUTTON_RIGHT	= D11
+
+	// 240x240 ST7789 display is connected to these pins (use RowOffset = 80)
+	TFT_SCK		= D29
+	TFT_MOSI	= D30
+	TFT_CS		= D31
+	TFT_DC		= D32
+	TFT_RESET	= D33
+	TFT_LITE	= D34
+
+	PDM_DAT	= D35
+	PDM_CLK	= D36
+
+	QSPI_SCK	= D37
+	QSPI_CS		= D38
+	QSPI_DATA0	= D39
+	QSPI_DATA1	= D40
+	QSPI_DATA2	= D41
+	QSPI_DATA3	= D42
+
+	SPEAKER	= D46
 )
 ```
 
@@ -63,8 +119,18 @@ const (
 
 ```go
 const (
-	SDA_PIN	Pin	= 26
-	SCL_PIN	Pin	= 27
+	UART_RX_PIN	= D0
+	UART_TX_PIN	= D1
+)
+```
+
+UART0 pins (logical UART1)
+
+
+```go
+const (
+	SDA_PIN	= D20	// I2C0 external
+	SCL_PIN	= D19	// I2C0 external
 )
 ```
 
@@ -73,42 +139,13 @@ I2C pins
 
 ```go
 const (
-	SPI0_SCK_PIN	Pin	= 47
-	SPI0_MOSI_PIN	Pin	= 45
-	SPI0_MISO_PIN	Pin	= 46
+	SPI0_SCK_PIN	= D13	// SCK
+	SPI0_MOSI_PIN	= D15	// MOSI
+	SPI0_MISO_PIN	= D14	// MISO
 )
 ```
 
 SPI pins
-
-
-```go
-const (
-	SPI1_SCK_PIN	Pin	= 19
-	SPI1_MOSI_PIN	Pin	= 20
-	SPI1_MISO_PIN	Pin	= 21
-	SPI1_CS_PIN	Pin	= 17
-	SPI1_WP_PIN	Pin	= 22
-	SPI1_HOLD_PIN	Pin	= 23
-)
-```
-
-Internal 4MB SPI Flash
-
-
-```go
-const (
-	MODE_BUTTON_PIN		Pin	= 11
-	CHARGE_STATUS_PIN	Pin	= 41
-	LIPO_VOLTAGE_PIN	Pin	= 5
-	PCB_ANTENNA_PIN		Pin	= 24
-	EXTERNAL_UFL_PIN	Pin	= 25
-	NFC1_PIN		Pin	= 9
-	NFC2_PIN		Pin	= 10
-)
-```
-
-Other peripherals
 
 
 ```go
@@ -196,6 +233,16 @@ const (
 Hardware pins
 
 
+```go
+const (
+	DFU_MAGIC_SERIAL_ONLY_RESET	= 0x4e
+	DFU_MAGIC_UF2_RESET		= 0x57
+	DFU_MAGIC_OTA_RESET		= 0xA8
+)
+```
+
+
+
 
 
 
@@ -203,12 +250,11 @@ Hardware pins
 
 ```go
 var (
-	Serial	= USB
-	UART0	= NRF_UART0
+	UART0 = USB
 )
 ```
 
-UART
+UART0 is the USB device
 
 
 ```go
@@ -301,6 +347,36 @@ var (
 func CPUFrequency() uint32
 ```
 
+
+
+### func EnterOTABootloader
+
+```go
+func EnterOTABootloader()
+```
+
+EnterOTABootloader resets the chip into the bootloader so that it can be
+flashed via an OTA update
+
+
+### func EnterSerialBootloader
+
+```go
+func EnterSerialBootloader()
+```
+
+EnterSerialBootloader resets the chip into the serial bootloader. After
+reset, it can be flashed using serial/nrfutil.
+
+
+### func EnterUF2Bootloader
+
+```go
+func EnterUF2Bootloader()
+```
+
+EnterUF2Bootloader resets the chip into the UF2 bootloader. After reset, it
+can be flashed via nrfutil or by copying a UF2 file to the mass storage device
 
 
 ### func InitADC
