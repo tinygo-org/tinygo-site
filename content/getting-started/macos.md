@@ -15,7 +15,7 @@ The third option is to use the Docker image. This has the benefit of making no c
 
 ## Quick Install
 
-You must have Go v1.12+ already installed on your machine in order to install TinyGo.
+You must have Go v1.12+ already installed on your machine in order to install TinyGo. We recommend Go v1.14+.
 
 You can use Homebrew to install TinyGo using the following commands:
 
@@ -78,7 +78,7 @@ AVR-based boards, you can use Homebrew.
 ### With LLVM from Homebrew
 
 The easiest way to install LLVM on macOS is through
-[Homebrew](https://formulae.brew.sh/formula/llvm). Make sure you install LLVM 8:
+[Homebrew](https://formulae.brew.sh/formula/llvm). Make sure you install LLVM 10:
 
 ```shell
 brew install llvm

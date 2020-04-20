@@ -13,7 +13,7 @@ We now have a native install for Windows 10.
 
 VERY IMPORTANT NOTE: You cannot yet create Windows binary programs using TinyGo, only MCU and WASM targets.
 
-- You MUST use Go 1.13.x+ with the Windows 10 native install of TinyGo.
+- You MUST use Go 1.14.x+ with the Windows 10 native install of TinyGo.
 
     - If you have not installed it yet, you can get it from https://golang.org/dl/
 

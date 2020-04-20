@@ -23,7 +23,7 @@ The third option is to use the Docker image. This has the benefit of making no c
 
 ### Ubuntu/Debian
 
-You must have Go already installed on your machine in order to install TinyGo. We recommend Go v1.13 or above.
+You must have Go already installed on your machine in order to install TinyGo. We recommend Go v1.14 or above.
 
 If you are using Ubuntu or another Debian based Linux on an Intel processor, download the DEB file from Github and install it using the following commands:
 
@@ -164,10 +164,10 @@ For Debian and Ubuntu, you can install the binaries provided by LLVM on
 used to install LLVM 9 on Debian Stretch:
 
 ```shell
-echo 'deb http://apt.llvm.org/stretch/ llvm-toolchain-stretch-9 main' | sudo tee /etc/apt/sources.list.d/llvm.list
+echo 'deb http://apt.llvm.org/stretch/ llvm-toolchain-stretch-10 main' | sudo tee /etc/apt/sources.list.d/llvm.list
 wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
 sudo apt-get update
-sudo apt-get install clang-9 llvm-9-dev lld-9 libclang-9-dev
+sudo apt-get install clang-10 llvm-10-dev lld-10 libclang-10-dev
 ```
 
 Note that you should not use `make` when you want to build using a
