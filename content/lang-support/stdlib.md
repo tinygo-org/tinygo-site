@@ -82,13 +82,13 @@ hash/adler32 |  <span style="color: green">✔</span> yes  |
 hash/crc32 |  <span style="color: green">✔</span> yes  | 
 hash/crc64 |  <span style="color: green">✔</span> yes  | 
 hash/fnv |  <span style="color: green">✔</span> yes  | 
-html |  [<span style="color: red">✗</span> no](#html)  | 
+html |  <span style="color: green">✔</span> yes | 
 html/template |  [<span style="color: red">✗</span> no](#html-template)  | 
 image |  <span style="color: green">✔</span> yes  | 
 image/color |  <span style="color: green">✔</span> yes  | 
 image/color/palette |  <span style="color: green">✔</span> yes  | 
 image/draw |  <span style="color: green">✔</span> yes  | 
-image/gif |  [<span style="color: red">✗</span> no](#image-gif)  | 
+image/gif |  <span style="color: green">✔</span> yes  | 
 image/jpeg |  <span style="color: green">✔</span> yes  | 
 image/png |  <span style="color: green">✔</span> yes  | 
 index/suffixarray |  <span style="color: green">✔</span> yes  | 
@@ -174,12 +174,11 @@ vendor/golang.org/x/text/unicode/norm |  <span style="color: green">✔</span> y
 The compiler gave the following error when this package was imported:
 
 <pre># archive/tar
-../../../.gvm/gos/go1.13/src/archive/tar/common.go:636:15: fi.ModTime undefined (type os.FileInfo has no field or method ModTime)
-../../../.gvm/gos/go1.13/src/archive/tar/common.go:637:21: fm.Perm undefined (type os.FileMode has no field or method Perm)
-../../../.gvm/gos/go1.13/src/archive/tar/common.go:640:10: fm.IsRegular undefined (type os.FileMode has no field or method IsRegular)
-../../../.gvm/gos/go1.13/src/archive/tar/common.go:554:32: os.FileMode(fi.h.Mode).Perm undefined (type os.FileMode has no field or method Perm)
-../../../.gvm/gos/go1.13/src/archive/tar/common.go:445:15: DeepEqual not declared by package reflect
-</pre>
+../../.gvm/gos/go1.14/src/archive/tar/common.go:445:15: DeepEqual not declared by package reflect
+../../.gvm/gos/go1.14/src/archive/tar/common.go:554:32: os.FileMode(fi.h.Mode).Perm undefined (type os.FileMode has no field or method Perm)
+../../.gvm/gos/go1.14/src/archive/tar/common.go:636:15: fi.ModTime undefined (type os.FileInfo has no field or method ModTime)
+../../.gvm/gos/go1.14/src/archive/tar/common.go:637:21: fm.Perm undefined (type os.FileMode has no field or method Perm)
+../../.gvm/gos/go1.14/src/archive/tar/common.go:640:10: fm.IsRegular undefined (type os.FileMode has no field or method IsRegular)</pre>
 
 
 
@@ -191,10 +190,8 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when this package was imported:
 
 <pre># archive/zip
-../../../.gvm/gos/go1.13/src/archive/zip/register.go:106:21: Map not declared by package sync
-../../../.gvm/gos/go1.13/src/archive/zip/register.go:107:21: Map not declared by package sync
-../../../.gvm/gos/go1.13/src/archive/zip/struct.go:180:19: fi.ModTime undefined (type os.FileInfo has no field or method ModTime)
-../../../.gvm/gos/go1.13/src/archive/zip/reader.go:61:19: cannot use f (variable of type *os.File) as io.ReaderAt value in argument to r.init: missing method ReadAt
+../../.gvm/gos/go1.14/src/archive/zip/reader.go:60:19: cannot use f (variable of type *os.File) as io.ReaderAt value in argument to r.init: missing method ReadAt
+../../.gvm/gos/go1.14/src/archive/zip/struct.go:180:19: fi.ModTime undefined (type os.FileInfo has no field or method ModTime)
 </pre>
 
 
@@ -372,21 +369,23 @@ This package cannot be imported because the following dependencies cannot be com
 The compiler gave the following error when this package was imported:
 
 <pre># database/sql
-../../../.gvm/gos/go1.13/src/database/sql/sql.go:590:7: Locker not declared by package sync
-../../../.gvm/gos/go1.13/src/database/sql/sql.go:3159:7: Locker not declared by package sync
-../../../.gvm/gos/go1.13/src/database/sql/sql.go:3181:23: Locker not declared by package sync
-../../../.gvm/gos/go1.13/src/database/sql/sql.go:3177:29: Stack not declared by package runtime
-../../../.gvm/gos/go1.13/src/database/sql/sql.go:3170:5: dr.Lock undefined (type driverResult has no field or method Lock)
-../../../.gvm/gos/go1.13/src/database/sql/sql.go:3171:11: dr.Unlock undefined (type driverResult has no field or method Unlock)
-../../../.gvm/gos/go1.13/src/database/sql/sql.go:3164:5: dr.Lock undefined (type driverResult has no field or method Lock)
-../../../.gvm/gos/go1.13/src/database/sql/sql.go:3165:11: dr.Unlock undefined (type driverResult has no field or method Unlock)
-../../../.gvm/gos/go1.13/src/database/sql/sql.go:2744:22: rs.closemu.RLocker undefined (type sync.RWMutex has no field or method RLocker)
-../../../.gvm/gos/go1.13/src/database/sql/sql.go:2598:5: ds.Lock undefined (type *driverStmt has no field or method Lock)
-../../../.gvm/gos/go1.13/src/database/sql/sql.go:2599:11: ds.Unlock undefined (type *driverStmt has no field or method Unlock)
-../../../.gvm/gos/go1.13/src/database/sql/sql.go:2427:5: ds.Lock undefined (type *driverStmt has no field or method Lock)
-../../../.gvm/gos/go1.13/src/database/sql/sql.go:2428:11: ds.Unlock undefined (type *driverStmt has no field or method Unlock)
-../../../.gvm/gos/go1.13/src/database/sql/sql.go:599:5: ds.Lock undefined (type *driverStmt has no field or method Lock)
-[...more lines following...]</pre>
+../../.gvm/gos/go1.14/src/database/sql/sql.go:590:7: Locker not declared by package sync
+../../.gvm/gos/go1.14/src/database/sql/sql.go:3159:7: Locker not declared by package sync
+../../.gvm/gos/go1.14/src/database/sql/sql.go:3181:23: Locker not declared by package sync
+../../.gvm/gos/go1.14/src/database/sql/convert.go:411:41: sv.Type().ConvertibleTo undefined (type reflect.Type has no field or method ConvertibleTo)
+../../.gvm/gos/go1.14/src/database/sql/convert.go:412:13: sv.Convert undefined (type reflect.Value has no field or method Convert)
+../../.gvm/gos/go1.14/src/database/sql/sql.go:599:5: ds.Lock undefined (type *driverStmt has no field or method Lock)
+../../.gvm/gos/go1.14/src/database/sql/sql.go:600:11: ds.Unlock undefined (type *driverStmt has no field or method Unlock)
+../../.gvm/gos/go1.14/src/database/sql/sql.go:2427:5: ds.Lock undefined (type *driverStmt has no field or method Lock)
+../../.gvm/gos/go1.14/src/database/sql/sql.go:2428:11: ds.Unlock undefined (type *driverStmt has no field or method Unlock)
+../../.gvm/gos/go1.14/src/database/sql/sql.go:2598:5: ds.Lock undefined (type *driverStmt has no field or method Lock)
+../../.gvm/gos/go1.14/src/database/sql/sql.go:2599:11: ds.Unlock undefined (type *driverStmt has no field or method Unlock)
+../../.gvm/gos/go1.14/src/database/sql/sql.go:2744:22: rs.closemu.RLocker undefined (type sync.RWMutex has no field or method RLocker)
+../../.gvm/gos/go1.14/src/database/sql/sql.go:3164:5: dr.Lock undefined (type driverResult has no field or method Lock)
+../../.gvm/gos/go1.14/src/database/sql/sql.go:3165:11: dr.Unlock undefined (type driverResult has no field or method Unlock)
+../../.gvm/gos/go1.14/src/database/sql/sql.go:3170:5: dr.Lock undefined (type driverResult has no field or method Lock)
+../../.gvm/gos/go1.14/src/database/sql/sql.go:3171:11: dr.Unlock undefined (type driverResult has no field or method Unlock)
+../../.gvm/gos/go1.14/src/database/sql/sql.go:3177:29: Stack not declared by package runtime</pre>
 
 
 
@@ -402,9 +401,9 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when this package was imported:
 
 <pre># debug/elf
-../../../.gvm/gos/go1.13/src/debug/elf/reader.go:73:16: ErrInvalid not declared by package os
-../../../.gvm/gos/go1.13/src/debug/elf/reader.go:81:16: ErrInvalid not declared by package os
-../../../.gvm/gos/go1.13/src/debug/elf/file.go:206:21: cannot use f (variable of type *os.File) as io.ReaderAt value in argument to NewFile: missing method ReadAt
+../../.gvm/gos/go1.14/src/debug/elf/file.go:206:21: cannot use f (variable of type *os.File) as io.ReaderAt value in argument to NewFile: missing method ReadAt
+../../.gvm/gos/go1.14/src/debug/elf/reader.go:73:16: ErrInvalid not declared by package os
+../../.gvm/gos/go1.14/src/debug/elf/reader.go:81:16: ErrInvalid not declared by package os
 </pre>
 
 
@@ -419,8 +418,8 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when this package was imported:
 
 <pre># debug/macho
-../../../.gvm/gos/go1.13/src/debug/macho/file.go:205:21: cannot use f (variable of type *os.File) as io.ReaderAt value in argument to NewFile: missing method ReadAt
-../../../.gvm/gos/go1.13/src/debug/macho/fat.go:130:24: cannot use f (variable of type *os.File) as io.ReaderAt value in argument to NewFatFile: missing method ReadAt
+../../.gvm/gos/go1.14/src/debug/macho/fat.go:130:24: cannot use f (variable of type *os.File) as io.ReaderAt value in argument to NewFatFile: missing method ReadAt
+../../.gvm/gos/go1.14/src/debug/macho/file.go:205:21: cannot use f (variable of type *os.File) as io.ReaderAt value in argument to NewFile: missing method ReadAt
 </pre>
 
 
@@ -433,7 +432,7 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when this package was imported:
 
 <pre># debug/pe
-../../../.gvm/gos/go1.13/src/debug/pe/file.go:40:21: cannot use f (variable of type *os.File) as io.ReaderAt value in argument to NewFile: missing method ReadAt
+../../.gvm/gos/go1.14/src/debug/pe/file.go:40:21: cannot use f (variable of type *os.File) as io.ReaderAt value in argument to NewFile: missing method ReadAt
 </pre>
 
 
@@ -446,7 +445,7 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when this package was imported:
 
 <pre># debug/plan9obj
-../../../.gvm/gos/go1.13/src/debug/plan9obj/file.go:103:21: cannot use f (variable of type *os.File) as io.ReaderAt value in argument to NewFile: missing method ReadAt
+../../.gvm/gos/go1.14/src/debug/plan9obj/file.go:103:21: cannot use f (variable of type *os.File) as io.ReaderAt value in argument to NewFile: missing method ReadAt
 </pre>
 
 
@@ -482,20 +481,26 @@ This package cannot be imported because the following dependencies cannot be com
 The compiler gave the following error when this package was imported:
 
 <pre># encoding/gob
-../../../.gvm/gos/go1.13/src/encoding/gob/type.go:39:24: Map not declared by package sync
-../../../.gvm/gos/go1.13/src/encoding/gob/type.go:801:26: Map not declared by package sync
-../../../.gvm/gos/go1.13/src/encoding/gob/type.go:802:26: Map not declared by package sync
-../../../.gvm/gos/go1.13/src/encoding/gob/type.go:844:8: rt.Name undefined (type reflect.Type has no field or method Name)
-../../../.gvm/gos/go1.13/src/encoding/gob/type.go:866:8: rt.Name undefined (type reflect.Type has no field or method Name)
-../../../.gvm/gos/go1.13/src/encoding/gob/type.go:867:9: rt.PkgPath undefined (type reflect.Type has no field or method PkgPath)
-../../../.gvm/gos/go1.13/src/encoding/gob/type.go:868:21: rt.Name undefined (type reflect.Type has no field or method Name)
-../../../.gvm/gos/go1.13/src/encoding/gob/type.go:870:21: rt.PkgPath undefined (type reflect.Type has no field or method PkgPath)
-../../../.gvm/gos/go1.13/src/encoding/gob/type.go:870:42: rt.Name undefined (type reflect.Type has no field or method Name)
-../../../.gvm/gos/go1.13/src/encoding/gob/type.go:715:28: rt.Name undefined (type reflect.Type has no field or method Name)
-../../../.gvm/gos/go1.13/src/encoding/gob/type.go:722:31: rt.Name undefined (type reflect.Type has no field or method Name)
-../../../.gvm/gos/go1.13/src/encoding/gob/type.go:496:34: t.Key undefined (type reflect.Type has no field or method Key)
-../../../.gvm/gos/go1.13/src/encoding/gob/type.go:514:37: t.Elem().Name undefined (type reflect.Type has no field or method Name)
-../../../.gvm/gos/go1.13/src/encoding/gob/type.go:531:17: typ.Name undefined (type reflect.Type has no field or method Name)
+../../.gvm/gos/go1.14/src/encoding/gob/decode.go:466:18: value.FieldByIndex undefined (type reflect.Value has no field or method FieldByIndex)
+../../.gvm/gos/go1.14/src/encoding/gob/decode.go:562:21: MakeMapWithSize not declared by package reflect
+../../.gvm/gos/go1.14/src/encoding/gob/decode.go:564:19: mtyp.Key undefined (type reflect.Type has no field or method Key)
+../../.gvm/gos/go1.14/src/encoding/gob/decode.go:568:27: mtyp.Key undefined (type reflect.Type has no field or method Key)
+../../.gvm/gos/go1.14/src/encoding/gob/decode.go:569:28: mtyp.Key undefined (type reflect.Type has no field or method Key)
+../../.gvm/gos/go1.14/src/encoding/gob/decode.go:575:9: value.SetMapIndex undefined (type reflect.Value has no field or method SetMapIndex)
+../../.gvm/gos/go1.14/src/encoding/gob/decode.go:825:35: t.Key undefined (type reflect.Type has no field or method Key)
+../../.gvm/gos/go1.14/src/encoding/gob/decode.go:948:22: PtrTo not declared by package reflect
+../../.gvm/gos/go1.14/src/encoding/gob/decode.go:1019:31: t.Key undefined (type reflect.Type has no field or method Key)
+../../.gvm/gos/go1.14/src/encoding/gob/decode.go:1118:30: srt.FieldByName undefined (type reflect.Type has no field or method FieldByName)
+../../.gvm/gos/go1.14/src/encoding/gob/decode.go:1202:17: base.Name undefined (type reflect.Type has no field or method Name)
+../../.gvm/gos/go1.14/src/encoding/gob/encode.go:320:18: value.FieldByIndex undefined (type reflect.Value has no field or method FieldByIndex)
+../../.gvm/gos/go1.14/src/encoding/gob/encode.go:562:34: t.Key undefined (type reflect.Type has no field or method Key)
+../../.gvm/gos/go1.14/src/encoding/gob/encode.go:603:16: PtrTo not declared by package reflect
+../../.gvm/gos/go1.14/src/encoding/gob/encode.go:643:70: f.Index undefined (type reflect.StructField has no field or method Index)
+../../.gvm/gos/go1.14/src/encoding/gob/encoder.go:128:29: st.Key undefined (type reflect.Type has no field or method Key)
+../../.gvm/gos/go1.14/src/encoding/gob/type.go:119:12: cannot convert nil (untyped nil value) to reflect.Type
+../../.gvm/gos/go1.14/src/encoding/gob/type.go:142:14: PtrTo not declared by package reflect
+../../.gvm/gos/go1.14/src/encoding/gob/type.go:496:34: t.Key undefined (type reflect.Type has no field or method Key)
+../../.gvm/gos/go1.14/src/encoding/gob/type.go:514:37: t.Elem().Name undefined (type reflect.Type has no field or method Name)
 [...more lines following...]</pre>
 
 
@@ -510,20 +515,23 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when this package was imported:
 
 <pre># encoding/json
-../../../.gvm/gos/go1.13/src/encoding/json/encode.go:349:23: Map not declared by package sync
-../../../.gvm/gos/go1.13/src/encoding/json/encode.go:1271:21: Map not declared by package sync
-../../../.gvm/gos/go1.13/src/encoding/json/encode.go:1120:19: sf.Tag.Get undefined (type string has no field or method Get)
-../../../.gvm/gos/go1.13/src/encoding/json/encode.go:1133:11: ft.Name undefined (type reflect.Type has no field or method Name)
-../../../.gvm/gos/go1.13/src/encoding/json/encode.go:1190:41: ft.Name undefined (type reflect.Type has no field or method Name)
-../../../.gvm/gos/go1.13/src/encoding/json/encode.go:771:16: PtrTo not declared by package reflect
-../../../.gvm/gos/go1.13/src/encoding/json/encode.go:712:11: t.Key undefined (type reflect.Type has no field or method Key)
-../../../.gvm/gos/go1.13/src/encoding/json/encode.go:717:9: t.Key undefined (type reflect.Type has no field or method Key)
-../../../.gvm/gos/go1.13/src/encoding/json/encode.go:398:53: PtrTo not declared by package reflect
-../../../.gvm/gos/go1.13/src/encoding/json/encode.go:405:53: PtrTo not declared by package reflect
-../../../.gvm/gos/go1.13/src/encoding/json/encode.go:368:11: WaitGroup not declared by package sync
-../../../.gvm/gos/go1.13/src/encoding/json/decode.go:979:9: v.NumMethod undefined (type reflect.Value has no field or method NumMethod)
-../../../.gvm/gos/go1.13/src/encoding/json/decode.go:1008:6: v.SetBytes undefined (type reflect.Value has no field or method SetBytes)
-../../../.gvm/gos/go1.13/src/encoding/json/decode.go:1012:9: v.NumMethod undefined (type reflect.Value has no field or method NumMethod)
+../../.gvm/gos/go1.14/src/encoding/json/decode.go:160:15: cannot convert nil (untyped nil value) to reflect.Type
+../../.gvm/gos/go1.14/src/encoding/json/decode.go:235:26: cannot convert nil (untyped nil value) to reflect.Type
+../../.gvm/gos/go1.14/src/encoding/json/decode.go:252:30: cannot convert nil (untyped nil value) to reflect.Type
+../../.gvm/gos/go1.14/src/encoding/json/decode.go:255:39: d.errorContext.Struct.Name undefined (type reflect.Type has no field or method Name)
+../../.gvm/gos/go1.14/src/encoding/json/decode.go:457:41: v.Type().Name undefined (type reflect.Type has no field or method Name)
+../../.gvm/gos/go1.14/src/encoding/json/decode.go:491:15: v.Type().NumMethod undefined (type reflect.Type has no field or method NumMethod)
+../../.gvm/gos/go1.14/src/encoding/json/decode.go:532:8: v.NumMethod undefined (type reflect.Value has no field or method NumMethod)
+../../.gvm/gos/go1.14/src/encoding/json/decode.go:565:13: Copy not declared by package reflect
+../../.gvm/gos/go1.14/src/encoding/json/decode.go:569:7: v.SetLen undefined (type reflect.Value has no field or method SetLen)
+../../.gvm/gos/go1.14/src/encoding/json/decode.go:606:6: v.SetLen undefined (type reflect.Value has no field or method SetLen)
+../../.gvm/gos/go1.14/src/encoding/json/decode.go:637:40: v.NumMethod undefined (type reflect.Value has no field or method NumMethod)
+../../.gvm/gos/go1.14/src/encoding/json/decode.go:653:12: t.Key undefined (type reflect.Type has no field or method Key)
+../../.gvm/gos/go1.14/src/encoding/json/decode.go:658:16: PtrTo not declared by package reflect
+../../.gvm/gos/go1.14/src/encoding/json/decode.go:658:24: t.Key undefined (type reflect.Type has no field or method Key)
+../../.gvm/gos/go1.14/src/encoding/json/decode.go:665:18: MakeMap not declared by package reflect
+../../.gvm/gos/go1.14/src/encoding/json/decode.go:790:12: t.Key undefined (type reflect.Type has no field or method Key)
+../../.gvm/gos/go1.14/src/encoding/json/decode.go:793:17: PtrTo not declared by package reflect
 [...more lines following...]</pre>
 
 
@@ -538,20 +546,19 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when this package was imported:
 
 <pre># encoding/xml
-../../../.gvm/gos/go1.13/src/encoding/xml/typeinfo.go:47:19: Map not declared by package sync
-../../../.gvm/gos/go1.13/src/encoding/xml/typeinfo.go:318:14: typ.FieldByIndex undefined (type reflect.Type has no field or method FieldByIndex)
-../../../.gvm/gos/go1.13/src/encoding/xml/typeinfo.go:319:14: typ.FieldByIndex undefined (type reflect.Type has no field or method FieldByIndex)
-../../../.gvm/gos/go1.13/src/encoding/xml/typeinfo.go:114:29: f.Index undefined (type *reflect.StructField has no field or method Index)
-../../../.gvm/gos/go1.13/src/encoding/xml/typeinfo.go:117:15: f.Tag.Get undefined (type string has no field or method Get)
-../../../.gvm/gos/go1.13/src/encoding/xml/typeinfo.go:168:24: f.Tag.Get undefined (type string has no field or method Get)
-../../../.gvm/gos/go1.13/src/encoding/xml/typeinfo.go:175:23: f.Tag.Get undefined (type string has no field or method Get)
-../../../.gvm/gos/go1.13/src/encoding/xml/typeinfo.go:63:50: f.Tag.Get undefined (type string has no field or method Get)
-../../../.gvm/gos/go1.13/src/encoding/xml/read.go:665:7: dst.SetBytes undefined (type reflect.Value has no field or method SetBytes)
-../../../.gvm/gos/go1.13/src/encoding/xml/read.go:398:17: Append not declared by package reflect
-../../../.gvm/gos/go1.13/src/encoding/xml/read.go:402:6: v.SetLen undefined (type reflect.Value has no field or method SetLen)
-../../../.gvm/gos/go1.13/src/encoding/xml/read.go:282:19: Append not declared by package reflect
-../../../.gvm/gos/go1.13/src/encoding/xml/read.go:286:8: val.SetLen undefined (type reflect.Value has no field or method SetLen)
-../../../.gvm/gos/go1.13/src/encoding/xml/read.go:193:7: t.Name undefined (type reflect.Type has no field or method Name)
+../../.gvm/gos/go1.14/src/encoding/xml/marshal.go:490:15: typ.Name undefined (type reflect.Type has no field or method Name)
+../../.gvm/gos/go1.14/src/encoding/xml/marshal.go:642:16: typ.Name undefined (type reflect.Type has no field or method Name)
+../../.gvm/gos/go1.14/src/encoding/xml/marshal.go:643:26: typ.Name undefined (type reflect.Type has no field or method Name)
+../../.gvm/gos/go1.14/src/encoding/xml/marshal.go:647:33: typ.Elem().Name undefined (type reflect.Type has no field or method Name)
+../../.gvm/gos/go1.14/src/encoding/xml/marshal.go:770:12: Copy not declared by package reflect
+../../.gvm/gos/go1.14/src/encoding/xml/read.go:193:7: t.Name undefined (type reflect.Type has no field or method Name)
+../../.gvm/gos/go1.14/src/encoding/xml/read.go:282:19: Append not declared by package reflect
+../../.gvm/gos/go1.14/src/encoding/xml/read.go:286:8: val.SetLen undefined (type reflect.Value has no field or method SetLen)
+../../.gvm/gos/go1.14/src/encoding/xml/read.go:398:17: Append not declared by package reflect
+../../.gvm/gos/go1.14/src/encoding/xml/read.go:402:6: v.SetLen undefined (type reflect.Value has no field or method SetLen)
+../../.gvm/gos/go1.14/src/encoding/xml/read.go:665:7: dst.SetBytes undefined (type reflect.Value has no field or method SetBytes)
+../../.gvm/gos/go1.14/src/encoding/xml/typeinfo.go:63:50: f.Tag.Get undefined (type string has no field or method Get)
+../../.gvm/gos/go1.14/src/encoding/xml/typeinfo.go:114:29: f.Index undefined (type *reflect.StructField has no field or method Index)
 [...more lines following...]</pre>
 
 
@@ -578,9 +585,9 @@ This package cannot be imported because the following dependencies cannot be com
 The compiler gave the following error when this package was imported:
 
 <pre># flag
-../../../.gvm/gos/go1.13/src/flag/flag.go:1007:33: Args not declared by package os
-../../../.gvm/gos/go1.13/src/flag/flag.go:996:23: Args not declared by package os
-../../../.gvm/gos/go1.13/src/flag/flag.go:579:57: Args not declared by package os
+../../.gvm/gos/go1.14/src/flag/flag.go:1010:33: Args not declared by package os
+../../.gvm/gos/go1.14/src/flag/flag.go:582:57: Args not declared by package os
+../../.gvm/gos/go1.14/src/flag/flag.go:999:23: Args not declared by package os
 </pre>
 
 
@@ -668,16 +675,6 @@ This package cannot be imported because the following dependencies cannot be com
 
 
 
-## html
-
-
-The compiler gave the following error when this package was imported:
-
-<pre># html
-../../../.gvm/pkgsets/go1.13/global/src/github.com/tinygo-org/tinygo/src/runtime/runtime.go: interp: branch on a non-const-propagated constant expression
-</pre>
-
-
 
 
 
@@ -687,35 +684,12 @@ The compiler gave the following error when this package was imported:
 This package cannot be imported because the following dependencies cannot be compiled:
 
   * [encoding/json](#encoding-json)
-  * [html](#html)
   * [text/template](#text-template)
   * [text/template/parse](#text-template-parse)
 
 
 
 
-
-
-
-
-
-
-
-
-
-## image/gif
-
-
-The compiler gave the following error when this package was imported:
-
-<pre>Instruction does not dominate all uses!
-  %339 = call %runtime._interface @"compress/lzw.NewReader"(i32 %337, i8* %338, i32 0, i32 %333, i8* undef, i8* undef), !dbg !40321
-  %invoke.typecode468 = extractvalue %runtime._interface %339, 0, !dbg !40240
-Instruction does not dominate all uses!
-  %339 = call %runtime._interface @"compress/lzw.NewReader"(i32 %337, i8* %338, i32 0, i32 %333, i8* undef, i8* undef), !dbg !40321
-  %invoke.func.receiver471 = extractvalue %runtime._interface %339, 1, !dbg !40240
-error: verification error after IR construction
-</pre>
 
 
 
@@ -752,7 +726,7 @@ This package cannot be imported because the following dependencies cannot be com
 The compiler gave the following error when this package was imported:
 
 <pre># math/big
-../../../.gvm/gos/go1.13/src/math/big/float.go:559:4: interp: branch on a non-constant
+../../.gvm/gos/go1.14/src/math/bits.go: interp: branch on a non-constant
 </pre>
 
 
@@ -771,10 +745,7 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when this package was imported:
 
 <pre># mime
-../../../.gvm/gos/go1.13/src/mime/type.go:15:22: Map not declared by package sync
-../../../.gvm/gos/go1.13/src/mime/type.go:16:22: Map not declared by package sync
-../../../.gvm/gos/go1.13/src/mime/type.go:21:20: Map not declared by package sync
-../../../.gvm/gos/go1.13/src/mime/type.go:24:27: Map not declared by package sync
+../../.gvm/gos/go1.14/src/mime/type.go:25:4: m.Range undefined (type *sync.Map has no field or method Range)
 </pre>
 
 
@@ -802,7 +773,7 @@ This package cannot be imported because the following dependencies cannot be com
 The compiler gave the following error when this package was imported:
 
 <pre># internal/singleflight
-../../../.gvm/gos/go1.13/src/internal/singleflight/singleflight.go:13:10: WaitGroup not declared by package sync
+../../.gvm/gos/go1.14/src/internal/singleflight/singleflight.go:13:10: WaitGroup not declared by package sync
 </pre>
 
 
@@ -996,21 +967,21 @@ This package cannot be imported because the following dependencies cannot be com
 The compiler gave the following error when this package was imported:
 
 <pre># os/exec
-../../../.gvm/gos/go1.13/src/os/exec/exec.go:129:14: Process not declared by package os
-../../../.gvm/gos/go1.13/src/os/exec/exec.go:133:19: ProcessState not declared by package os
-../../../.gvm/gos/go1.13/src/os/exec/exec.go:456:6: ProcessState not declared by package os
-../../../.gvm/gos/go1.13/src/os/exec/exec.go:782:38: Getenv not declared by package os
-../../../.gvm/gos/go1.13/src/os/exec/exec.go:645:20: Pipe not declared by package os
-../../../.gvm/gos/go1.13/src/os/exec/exec.go:620:20: Pipe not declared by package os
-../../../.gvm/gos/go1.13/src/os/exec/exec.go:578:20: Pipe not declared by package os
-../../../.gvm/gos/go1.13/src/os/exec/exec.go:416:22: StartProcess not declared by package os
-../../../.gvm/gos/go1.13/src/os/exec/exec.go:416:57: ProcAttr not declared by package os
-../../../.gvm/gos/go1.13/src/os/exec/exec.go:291:27: DevNull not declared by package os
-../../../.gvm/gos/go1.13/src/os/exec/exec.go:303:20: Pipe not declared by package os
-../../../.gvm/gos/go1.13/src/os/exec/exec.go:246:23: DevNull not declared by package os
-../../../.gvm/gos/go1.13/src/os/exec/exec.go:258:20: Pipe not declared by package os
-../../../.gvm/gos/go1.13/src/os/exec/exec.go:229:12: Environ not declared by package os
-[...more lines following...]</pre>
+../../.gvm/gos/go1.14/src/os/exec/exec.go:129:14: Process not declared by package os
+../../.gvm/gos/go1.14/src/os/exec/exec.go:133:19: ProcessState not declared by package os
+../../.gvm/gos/go1.14/src/os/exec/exec.go:457:6: ProcessState not declared by package os
+../../.gvm/gos/go1.14/src/os/exec/exec.go:229:12: Environ not declared by package os
+../../.gvm/gos/go1.14/src/os/exec/exec.go:245:23: DevNull not declared by package os
+../../.gvm/gos/go1.14/src/os/exec/exec.go:257:20: Pipe not declared by package os
+../../.gvm/gos/go1.14/src/os/exec/exec.go:290:27: DevNull not declared by package os
+../../.gvm/gos/go1.14/src/os/exec/exec.go:302:20: Pipe not declared by package os
+../../.gvm/gos/go1.14/src/os/exec/exec.go:417:22: StartProcess not declared by package os
+../../.gvm/gos/go1.14/src/os/exec/exec.go:417:57: ProcAttr not declared by package os
+../../.gvm/gos/go1.14/src/os/exec/exec.go:579:20: Pipe not declared by package os
+../../.gvm/gos/go1.14/src/os/exec/exec.go:621:20: Pipe not declared by package os
+../../.gvm/gos/go1.14/src/os/exec/exec.go:646:20: Pipe not declared by package os
+../../.gvm/gos/go1.14/src/os/exec/exec.go:783:38: Getenv not declared by package os
+</pre>
 
 
 
@@ -1022,18 +993,18 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when this package was imported:
 
 <pre># os/signal
-../../../.gvm/gos/go1.13/src/os/signal/signal.go:15:18: Signal not declared by package os
-../../../.gvm/gos/go1.13/src/os/signal/signal.go:27:14: Signal not declared by package os
-../../../.gvm/gos/go1.13/src/os/signal/signal.go:50:23: Signal not declared by package os
-../../../.gvm/gos/go1.13/src/os/signal/signal.go:85:23: Signal not declared by package os
-../../../.gvm/gos/go1.13/src/os/signal/signal.go:90:21: Signal not declared by package os
-../../../.gvm/gos/go1.13/src/os/signal/signal.go:111:25: Signal not declared by package os
-../../../.gvm/gos/go1.13/src/os/signal/signal.go:111:43: Signal not declared by package os
-../../../.gvm/gos/go1.13/src/os/signal/signal.go:155:22: Signal not declared by package os
-../../../.gvm/gos/go1.13/src/os/signal/signal.go:162:23: Signal not declared by package os
-../../../.gvm/gos/go1.13/src/os/signal/signal.go:214:21: Signal not declared by package os
-../../../.gvm/gos/go1.13/src/os/signal/signal_unix.go:36:20: Signal not declared by package os
-../../../.gvm/gos/go1.13/src/os/signal/signal.go:122:36: Signal not declared by package os
+../../.gvm/gos/go1.14/src/os/signal/signal.go:15:18: Signal not declared by package os
+../../.gvm/gos/go1.14/src/os/signal/signal.go:27:14: Signal not declared by package os
+../../.gvm/gos/go1.14/src/os/signal/signal.go:50:23: Signal not declared by package os
+../../.gvm/gos/go1.14/src/os/signal/signal.go:85:23: Signal not declared by package os
+../../.gvm/gos/go1.14/src/os/signal/signal.go:90:21: Signal not declared by package os
+../../.gvm/gos/go1.14/src/os/signal/signal.go:120:25: Signal not declared by package os
+../../.gvm/gos/go1.14/src/os/signal/signal.go:120:43: Signal not declared by package os
+../../.gvm/gos/go1.14/src/os/signal/signal.go:170:22: Signal not declared by package os
+../../.gvm/gos/go1.14/src/os/signal/signal.go:177:23: Signal not declared by package os
+../../.gvm/gos/go1.14/src/os/signal/signal.go:229:21: Signal not declared by package os
+../../.gvm/gos/go1.14/src/os/signal/signal_unix.go:37:20: Signal not declared by package os
+../../.gvm/gos/go1.14/src/os/signal/signal.go:137:36: Signal not declared by package os
 </pre>
 
 
@@ -1046,12 +1017,12 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when this package was imported:
 
 <pre># os/user
-../../../.gvm/gos/go1.13/src/os/user/lookup.go:62:9: undeclared name: listGroups
-../../../.gvm/gos/go1.13/src/os/user/lookup.go:57:9: undeclared name: lookupGroupId
-../../../.gvm/gos/go1.13/src/os/user/lookup.go:51:9: undeclared name: lookupGroup
-../../../.gvm/gos/go1.13/src/os/user/lookup.go:45:9: undeclared name: lookupUserId
-../../../.gvm/gos/go1.13/src/os/user/lookup.go:36:9: undeclared name: lookupUser
-../../../.gvm/gos/go1.13/src/os/user/lookup.go:15:41: undeclared name: current
+../../.gvm/gos/go1.14/src/os/user/lookup.go:15:41: undeclared name: current
+../../.gvm/gos/go1.14/src/os/user/lookup.go:36:9: undeclared name: lookupUser
+../../.gvm/gos/go1.14/src/os/user/lookup.go:45:9: undeclared name: lookupUserId
+../../.gvm/gos/go1.14/src/os/user/lookup.go:51:9: undeclared name: lookupGroup
+../../.gvm/gos/go1.14/src/os/user/lookup.go:57:9: undeclared name: lookupGroupId
+../../.gvm/gos/go1.14/src/os/user/lookup.go:62:9: undeclared name: listGroups
 </pre>
 
 
@@ -1129,7 +1100,7 @@ This package cannot be imported because the following dependencies cannot be com
 The compiler gave the following error when this package was imported:
 
 <pre># text/template/parse
-../../../.gvm/gos/go1.13/src/text/template/parse/parse.go:193:26: Error not declared by package runtime
+../../.gvm/gos/go1.14/src/text/template/parse/parse.go:188:26: Error not declared by package runtime
 </pre>
 
 
@@ -1198,7 +1169,7 @@ This package cannot be imported because the following dependencies cannot be com
 
 The compiler gave the following error when this package was imported:
 
-<pre>../../../.gvm/gos/go1.13/src/vendor/golang.org/x/net/http2/hpack/tables.go:59:15: only strings, bools, ints, pointers or structs of bools/ints are supported as map keys, but got: struct{name string; value string}
+<pre>../../.gvm/gos/go1.14/src/vendor/golang.org/x/net/http2/hpack/tables.go:56:28: interp: unknown GEP
 </pre>
 
 
