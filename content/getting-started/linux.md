@@ -136,17 +136,11 @@ This should allow you to compile and flash TinyGo programs on an Arduino or othe
 
 ***If you have already followed the "Quick Install" instructions above for your distro, you do not need to perform a source install. You are now done with the needed installation. The "Source Install" is for when you want to contribute to TinyGo.***
 
-Before installing make sure that you first turn on Go modules support, like this:
+Start with getting the source code:
 
 ```shell
-export GO111MODULE=on
-```
-
-Now, obtain the TinyGo source code, which should also obtain the various needed dependencies:
-
-```shell
-go get -d -u github.com/tinygo-org/tinygo
-cd $(go env GOPATH)/src/github.com/tinygo-org/tinygo
+git clone --recursive https://github.com/tinygo-org/tinygo.git
+cd tinygo
 ```
 
 You now have two options: build LLVM manually or use a LLVM distributed with
@@ -161,13 +155,19 @@ different distribution, please let us know how so we can add it here.
 
 For Debian and Ubuntu, you can install the binaries provided by LLVM on
 [apt.llvm.org](http://apt.llvm.org/). For example, the following commands can be
-used to install LLVM 9 on Debian Stretch:
+used to install LLVM 10 on Debian Buster:
 
 ```shell
-echo 'deb http://apt.llvm.org/stretch/ llvm-toolchain-stretch-10 main' | sudo tee /etc/apt/sources.list.d/llvm.list
+echo 'deb http://apt.llvm.org/buster/ llvm-toolchain-buster-10 main' | sudo tee /etc/apt/sources.list.d/llvm.list
 wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
 sudo apt-get update
 sudo apt-get install clang-10 llvm-10-dev lld-10 libclang-10-dev
+```
+
+Installing TinyGo should now be as easy as:
+
+```shell
+go install
 ```
 
 Note that you should not use `make` when you want to build using a

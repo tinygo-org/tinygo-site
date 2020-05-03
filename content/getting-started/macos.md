@@ -57,17 +57,11 @@ brew install avrdude
 
 ***If you have already followed the "Quick Install" instructions above, you do not need to perform a source install. You are now done with the needed installation. The "Source Install" is for when you want to contribute to TinyGo.***
 
-Make sure that you first turn on Go modules support, like this:
+Start with getting the source code:
 
 ```shell
-export GO111MODULE=on
-```
-
-Now, obtain the TinyGo source code, which should also obtain the various needed dependencies:
-
-```shell
-go get -d -u github.com/tinygo-org/tinygo
-cd $GOPATH/src/github.com/tinygo-org/tinygo
+git clone --recursive https://github.com/tinygo-org/tinygo.git
+cd tinygo
 ```
 
 You now have two options: build LLVM manually or use LLVM from Homebrew. The
