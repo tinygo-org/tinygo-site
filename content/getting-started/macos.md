@@ -103,8 +103,8 @@ brew install cmake ninja
 ```
 
 The following command takes care of downloading and building LLVM. It places the
-source code in `llvm-build/` and the build output in `llvm/`. It only needs to
-be done once until the next LLVM release.
+source code in `llvm-project/` and the build output in `llvm-build/`. It only
+needs to be done once until the next LLVM release.
 
 ```shell
 make llvm-build
