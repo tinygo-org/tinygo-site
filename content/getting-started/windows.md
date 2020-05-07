@@ -99,4 +99,73 @@ If you want to use TinyGo to compile your own or sample code, you should be able
 
 ## Docker Install
 
-The other option is to use the Docker image. This has the benefit of making no changes to your system but has a large download and installation size. For instructions on using the Docker image, please see the page [here](../using-docker).
+Another option is to use the Docker image. This has the benefit of making no changes to your system but has a large download and installation size. For instructions on using the Docker image, please see the page [here](../using-docker).
+
+## Source Install
+
+***If you have already followed the "Windows Native Install" instructions above, you do not need to perform a source install. You are now done with the needed installation. The "Source Install" is for when you want to contribute to TinyGo.***
+
+Be warned that building TinyGo on Windows is not tested as well as building TinyGo on other operating systems (such as Linux). If you want to contribute to TinyGo but don't need to run natively on Windows, it may be easier and faster to do development within [WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10). See the [Linux page](../linux) for how to build TinyGo on Linux.
+
+### Dependencies
+
+You will need to have the following programs installed on your Windows system and configured to be accessible in your PATH variable:
+
+  * Git
+  * Go 1.14
+  * [TDM-GCC](https://jmeubank.github.io/tdm-gcc/) or MinGW-w64 (tested TDM-GCC but MinGW probably works too)
+  * GNU Make
+  * CMake
+  * Ninja
+  * Python
+
+The easiest way to install all these dependencies is through [Chocolatey](https://chocolatey.org/). Install Chocolatey first, and then run the following command in a command prompt or PowerShell with administrative privileges:
+
+    choco install --confirm git golang mingw make cmake ninja python
+
+Now open a Git Bash window for the remaining steps. The Git Bash window provides a Bash shell with some standard Unix utilities for convenience.
+
+The first thing to do is download the source code:
+
+```shell
+git clone --recursive https://github.com/tinygo-org/tinygo.git
+cd tinygo
+```
+
+Unfortunately there is no way to use a binary release of LLVM to build against (like on Linux and MacOS) so we'll have to build LLVM from scratch. This is a long process which takes at least one hour on most machines.
+
+The following command takes care of downloading and building LLVM. It places the
+source code in `llvm-project/` and the build output in `llvm-build/`. It only needs to
+be done once until the next LLVM release.
+
+```shell
+make llvm-build
+```
+
+Once this is finished, you can build TinyGo against this manually built LLVM:
+
+```shell
+make
+```
+
+This results in a `tinygo.exe` binary in the `build` directory:
+
+```text
+$ ./build/tinygo version
+tinygo version 0.13.1 windows/amd64 (using go version go1.14.1 and LLVM version 10.0.1)
+```
+
+### Additional Requirements for Microcontrollers
+
+Before anything can be built for a bare-metal target, you need to generate some
+files first:
+
+```shell
+make gen-device
+```
+
+This will generate register descriptions, interrupt vectors, and linker scripts
+for various devices. Also, you may need to re-run this command after updates,
+as some updates cause changes to the generated files.
+
+The same additional requirements to compile TinyGo programs that can run on microcontrollers must be fulfilled when installing TinyGo from source. Please follow [these instructions](#additional-requirements-for-microcontrollers) above.
