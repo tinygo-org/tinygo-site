@@ -191,9 +191,10 @@ sudo apt-get install build-essential git cmake ninja
 ```
 
 The following command takes care of downloading and building LLVM. It places the
-source code in `llvm-build/` and the build output in `llvm/`. It only needs to
-be done once until the next LLVM release. Note that the `export` lines are
-optional, but using Clang during the build speeds up the build significantly.
+source code in `llvm-project/` and the build output in `llvm-build/`. It only
+needs to be done once until the next LLVM release. Note that the `export` lines
+are optional, but using Clang during the build speeds up the build
+significantly.
 
 ```shell
 export CC=clang
