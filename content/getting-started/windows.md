@@ -117,11 +117,11 @@ You will need to have the following programs installed on your Windows system an
   * GNU Make
   * CMake
   * Ninja
-  * Python
+  * Python2
 
 The easiest way to install all these dependencies is through [Chocolatey](https://chocolatey.org/). Install Chocolatey first, and then run the following command in a command prompt or PowerShell with administrative privileges:
 
-    choco install --confirm git golang mingw make cmake ninja python
+    choco install --confirm git golang mingw make cmake ninja python2
 
 Now open a Git Bash window for the remaining steps. The Git Bash window provides a Bash shell with some standard Unix utilities for convenience.
 
