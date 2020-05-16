@@ -29,7 +29,7 @@ Of course, it is possible to use ``gccgo``, but that has different problems (see
 
 * The ABI was fixed, so could not be optimized for speed. Also, the ABI didn't seem to be documented anywhere.
 
-* Working arount limitations in the `go` toolchain was rather burdensome and quite a big hack.
+* Working around limitations in the `go` toolchain was rather burdensome and quite a big hack.
 
 * The binaries produced were quite bloated, for various reasons:
 
