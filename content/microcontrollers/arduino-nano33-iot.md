@@ -16,6 +16,33 @@ The [Arduino Nano33 IoT](https://store.arduino.cc/nano-33-iot) is a very small A
 | ADC      | YES | YES |
 | PWM      | YES | YES |
 
+## Pins
+
+| Pin          | Hardware pin | PWM
+| ------------ | ------------ | ----------------
+| `RX0`        | `PB23`       |
+| `TX1`        | `PB22`       |
+| `D2`         | `PB10`       | `TCC0`
+| `D3`         | `PB11`       | `TCC0`
+| `D4`         | `PA07`       | `TCC1`
+| `D5`         | `PA05`       | `TCC0`
+| `D6`         | `PA04`       | `TCC0`
+| `D7`         | `PA06`       | `TCC1`
+| `D8`         | `PA18`       | `TCC0`
+| `D9`         | `PA20`       | `TCC0`
+| `D10`        | `PA21`       | `TCC0`
+| `D11`        | `PA16`       | `TCC2`, `TCC0`
+| `D12`        | `PA19`       | `TCC0`
+| `D13`, `LED` | `PA17`       | `TCC2`, `TCC0`
+| `A0`         | `PA02`       |
+| `A1`         | `PB02`       |
+| `A2`         | `PA11`       | `TCC1`, `TCC0`
+| `A3`         | `PA10`       | `TCC1`, `TCC0`
+| `A4`         | `PB08`       |
+| `A5`         | `PB09`       |
+| `A6`         | `PA09`       | `TCC0`, `TCC1`
+| `A7`         | `PB03`       |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the Arduino Nano33 IoT](../machine/arduino-nano33)

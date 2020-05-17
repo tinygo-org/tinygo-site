@@ -18,6 +18,33 @@ It has many built-in devices, such as a 1.8" 160x128 Color TFT Display, 8 x butt
 | ADC      | YES | YES |
 | PWM      | YES | YES |
 
+## Pins
+
+| Pin          | Hardware pin | PWM
+| ------------ | ------------ | ----------------
+| `D0`         | `PB17`       | TCC3, TCC0
+| `D1`         | `PB16`       | TCC3, TCC0
+| `D2`, `A8`   | `PB03`       |
+| `D3`, `A9`   | `PB02`       | TCC2
+| `D4`         | `PA14`       | TCC2, TCC1
+| `D5`         | `PA16`       | TCC1, TCC0
+| `D6`         | `PA18`       | TCC1, TCC0
+| `D7`         | `PB14`       | TCC4, TCC0
+| `D8`         | `PA15`       | TCC2, TCC1
+| `D9`         | `PA19`       | TCC1, TCC0
+| `D10`        | `PA20`       | TCC1, TCC0
+| `D11`        | `PA21`       | TCC1, TCC0
+| `D12`        | `PA22`       | TCC1, TCC0
+| `D13`, `LED` | `PA23`       | TCC1, TCC0
+| `A0`         | `PA02`       |
+| `A1`         | `PA05`       |
+| `A2`         | `PB08`       |
+| `A3`         | `PB09`       |
+| `A4`         | `PA04`       |
+| `A5`         | `PA06`       |
+| `A6`         | `PB01`       |
+| `A7`         | `PB04`       |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the Adafruit PyBadge](../machine/pybadge)
