@@ -38,13 +38,15 @@ The micro:bit comes with the [DAPLink bootloader](https://tech.microbit.org/soft
 
 - The micro:bit should restart and begin running your program.
 
+Note that if you want to use the Nordic SoftDevice, you cannot use this flashing method. Instead you need to flash programs using OpenOCD (see below). The command is `tinygo flash -target=microbit-s110v8 -programmer=cmsis-dap`.
+
 ### OpenOCD
 
 An alternative approach to load programs onto the micro:bit is by using the `openocd` command line utility program. You must install [OpenOCD](http://openocd.org/) before you will be able to flash the micro:bit board with your TinyGo code.
 
 - Plug your micro:bit into your computer's USB port.
 
-- Build and flash your TinyGo program using `tinygo flash -target=microbit`
+- Build and flash your TinyGo program using `tinygo flash -target=microbit -programmer=cmsis-dap`
 
 ## Notes
 
