@@ -20,7 +20,7 @@ func add(x, y int) int
 
 // This function is exported to JavaScript, so can be called using
 // exports.multiply() in JavaScript.
-//go:export multiply
+//export multiply
 func multiply(x, y int) int {
     return x * y;
 }
