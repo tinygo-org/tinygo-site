@@ -53,8 +53,6 @@ The PyPortal comes with the [UF2 bootloader](https://github.com/Microsoft/uf2) a
 ### CLI Flashing on Windows
 
 - Plug your PyPortal into your computer's USB port.
-- Double tap the "RESET" button on the board.
-- Wait until the PyPortal board appears as a flash drive.
 - Flash your TinyGo program to the board using this command:
 
     ```shell

@@ -51,8 +51,6 @@ The Feather M4 comes with the [UF2 bootloader](https://github.com/Microsoft/uf2)
 ### CLI Flashing on Windows
 
 - Plug your Feather M4 into your computer's USB port.
-- Double tap the "RESET" button on the board.
-- Wait until the Feather M4 board appears as a flash drive.
 - Flash your TinyGo program to the board using this command:
 
     ```shell

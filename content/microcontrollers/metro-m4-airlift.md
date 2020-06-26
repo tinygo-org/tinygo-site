@@ -51,8 +51,6 @@ The Metro M4 Express comes with the [UF2 bootloader](https://github.com/Microsof
 ### CLI Flashing on Windows
 
 - Plug your Metro M4 Express into your computer's USB port.
-- Double tap the "RESET" button on the board.
-- Wait until the Metro M4 Express board appears as a flash drive.
 - Flash your TinyGo program to the board using this command:
 
     ```shell

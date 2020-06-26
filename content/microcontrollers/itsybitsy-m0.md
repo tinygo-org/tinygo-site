@@ -51,8 +51,6 @@ The ItsyBitsy M0 comes with the [UF2 bootloader](https://github.com/Microsoft/uf
 ### CLI Flashing on Windows
 
 - Plug your ItsyBitsy M0 into your computer's USB port.
-- Double tap the "RESET" button on the board.
-- Wait until the ItsyBitsy M0 board appears as a flash drive.
 - Flash your TinyGo program to the board using this command:
 
     ```shell
