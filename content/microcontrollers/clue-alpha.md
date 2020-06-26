@@ -51,8 +51,6 @@ The CLUE comes with the [UF2 bootloader](https://github.com/Microsoft/uf2) alrea
 ### CLI Flashing on Windows
 
 - Plug your CLUE into your computer's USB port.
-- Double tap the "RESET" button on the board.
-- Wait until the CLUE board appears as a flash drive.
 - Flash your TinyGo program to the board using this command:
 
     ```shell

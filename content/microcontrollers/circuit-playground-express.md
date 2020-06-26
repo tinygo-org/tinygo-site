@@ -51,8 +51,6 @@ The Circuit Playground Express comes with the [UF2 bootloader](https://github.co
 ### CLI Flashing on Windows
 
 - Plug your Circuit Playground Express into your computer's USB port.
-- Double tap the "RESET" button on the board.
-- Wait until the Circuit Playground Express board appears as a flash drive.
 - Flash your TinyGo program to the board using this command:
 
     ```shell

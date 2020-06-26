@@ -101,8 +101,6 @@ Once you have installed the needed BOSSA command line utility, as in the previou
 ### CLI Flashing on Windows
 
 - Plug your Arduino Nano33 IoT board into your computer's USB port.
-- Double tap the "RESET" button on the board.
-- Wait until the Arduino Nano33 IoT board appears as a serial drive.
 - Build and flash your TinyGo code using the `tinygo flash` command. This command flashes the Arduino Nano33 IoT with the blinky1 example:
 
     ```

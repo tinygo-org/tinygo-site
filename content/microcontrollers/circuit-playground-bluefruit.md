@@ -51,8 +51,6 @@ The Circuit Playground Bluefruit comes with the [UF2 bootloader](https://github.
 ### CLI Flashing on Windows
 
 - Plug your Circuit Playground Bluefruit into your computer's USB port.
-- Double tap the "RESET" button on the board.
-- Wait until the Circuit Playground Bluefruit board appears as a flash drive.
 - Flash your TinyGo program to the board using this command:
 
     ```shell
