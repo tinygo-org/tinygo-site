@@ -55,6 +55,7 @@ const (
 ```go
 const (
 	PinInput	PinMode	= iota
+	PinInputPullup
 	PinOutput
 )
 ```
@@ -72,6 +73,7 @@ var (
 	ErrInvalidOutputPin	= errors.New("machine: invalid output pin")
 	ErrInvalidClockPin	= errors.New("machine: invalid clock pin")
 	ErrInvalidDataPin	= errors.New("machine: invalid data pin")
+	ErrNoPinChangeChannel	= errors.New("machine: no channel available for pin interrupt")
 )
 ```
 

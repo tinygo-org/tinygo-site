@@ -89,8 +89,8 @@ const (
 ```go
 const (
 	// TODO: figure out the pin numbers for these.
-	UART_TX_PIN	= NoPin
-	UART_RX_PIN	= NoPin
+	UART_TX_PIN	= D1
+	UART_RX_PIN	= D0
 )
 ```
 
@@ -196,6 +196,7 @@ var (
 	ErrInvalidOutputPin	= errors.New("machine: invalid output pin")
 	ErrInvalidClockPin	= errors.New("machine: invalid clock pin")
 	ErrInvalidDataPin	= errors.New("machine: invalid data pin")
+	ErrNoPinChangeChannel	= errors.New("machine: no channel available for pin interrupt")
 )
 ```
 

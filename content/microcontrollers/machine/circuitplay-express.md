@@ -283,6 +283,17 @@ const (
 
 ```go
 const (
+	PinRising	PinChange	= sam.EIC_CONFIG_SENSE0_RISE
+	PinFalling	PinChange	= sam.EIC_CONFIG_SENSE0_FALL
+	PinToggle	PinChange	= sam.EIC_CONFIG_SENSE0_BOTH
+)
+```
+
+Pin change interrupt constants for SetInterrupt.
+
+
+```go
+const (
 	Mode0	= 0
 	Mode1	= 1
 	Mode2	= 2
@@ -356,6 +367,7 @@ var (
 	ErrInvalidOutputPin	= errors.New("machine: invalid output pin")
 	ErrInvalidClockPin	= errors.New("machine: invalid clock pin")
 	ErrInvalidDataPin	= errors.New("machine: invalid data pin")
+	ErrNoPinChangeChannel	= errors.New("machine: no channel available for pin interrupt")
 )
 ```
 
@@ -1089,7 +1101,7 @@ type PWM struct {
 ### func (PWM) Configure
 
 ```go
-func (pwm PWM) Configure()
+func (pwm PWM) Configure() error
 ```
 
 Configure configures a PWM pin for output.
@@ -1186,6 +1198,31 @@ func (p Pin) Set(high bool)
 
 Set the pin to high or low.
 Warning: only use this on an output pin!
+
+
+### func (Pin) SetInterrupt
+
+```go
+func (p Pin) SetInterrupt(change PinChange, callback func(Pin)) error
+```
+
+SetInterrupt sets an interrupt to be executed when a particular pin changes
+state.
+
+This call will replace a previously set callback on this pin. You can pass a
+nil func to unset the pin change interrupt. If you do so, the change
+parameter is ignored and can be set to any value (such as 0).
+
+
+
+
+## type PinChange
+
+```go
+type PinChange uint8
+```
+
+
 
 
 

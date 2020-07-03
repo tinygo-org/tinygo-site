@@ -204,6 +204,7 @@ const (
 ```go
 const (
 	PinInput	PinMode	= iota
+	PinInputPullup
 	PinOutput
 )
 ```
@@ -221,6 +222,7 @@ var (
 	ErrInvalidOutputPin	= errors.New("machine: invalid output pin")
 	ErrInvalidClockPin	= errors.New("machine: invalid clock pin")
 	ErrInvalidDataPin	= errors.New("machine: invalid data pin")
+	ErrNoPinChangeChannel	= errors.New("machine: no channel available for pin interrupt")
 )
 ```
 
@@ -262,15 +264,6 @@ func InitADC()
 ```
 
 InitADC initializes the registers needed for ADC.
-
-
-### func InitPWM
-
-```go
-func InitPWM()
-```
-
-InitPWM initializes the registers needed for PWM.
 
 
 ### func NewRingBuffer
@@ -400,25 +393,6 @@ type PWM struct {
 ```
 
 
-
-
-### func (PWM) Configure
-
-```go
-func (pwm PWM) Configure()
-```
-
-Configure configures a PWM pin for output.
-
-
-### func (PWM) Set
-
-```go
-func (pwm PWM) Set(value uint16)
-```
-
-Set turns on the duty cycle for a PWM pin using the provided value. On the AVR this is normally a
-8-bit value ranging from 0 to 255.
 
 
 

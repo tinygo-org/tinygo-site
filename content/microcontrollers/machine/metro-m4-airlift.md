@@ -81,6 +81,15 @@ const (
 
 ```go
 const (
+	UART2_TX_PIN	= PA04
+	UART2_RX_PIN	= PA07
+)
+```
+
+
+
+```go
+const (
 	NINA_CS		= PA15
 	NINA_ACK	= PB04
 	NINA_GPIO0	= PB01
@@ -218,6 +227,17 @@ const (
 
 ```go
 const (
+	PinRising	PinChange	= sam.EIC_CONFIG_SENSE0_RISE
+	PinFalling	PinChange	= sam.EIC_CONFIG_SENSE0_FALL
+	PinToggle	PinChange	= sam.EIC_CONFIG_SENSE0_BOTH
+)
+```
+
+Pin change interrupt constants for SetInterrupt.
+
+
+```go
+const (
 	PA00	Pin	= 0
 	PA01	Pin	= 1
 	PA02	Pin	= 2
@@ -282,6 +302,70 @@ const (
 	PB29	Pin	= 61
 	PB30	Pin	= 62
 	PB31	Pin	= 63
+	PC00	Pin	= 64
+	PC01	Pin	= 65
+	PC02	Pin	= 66
+	PC03	Pin	= 67
+	PC04	Pin	= 68
+	PC05	Pin	= 69
+	PC06	Pin	= 70
+	PC07	Pin	= 71
+	PC08	Pin	= 72
+	PC09	Pin	= 73
+	PC10	Pin	= 74
+	PC11	Pin	= 75
+	PC12	Pin	= 76
+	PC13	Pin	= 77
+	PC14	Pin	= 78
+	PC15	Pin	= 79
+	PC16	Pin	= 80
+	PC17	Pin	= 81
+	PC18	Pin	= 82
+	PC19	Pin	= 83
+	PC20	Pin	= 84
+	PC21	Pin	= 85
+	PC22	Pin	= 86
+	PC23	Pin	= 87
+	PC24	Pin	= 88
+	PC25	Pin	= 89
+	PC26	Pin	= 90
+	PC27	Pin	= 91
+	PC28	Pin	= 92
+	PC29	Pin	= 93
+	PC30	Pin	= 94
+	PC31	Pin	= 95
+	PD00	Pin	= 96
+	PD01	Pin	= 97
+	PD02	Pin	= 98
+	PD03	Pin	= 99
+	PD04	Pin	= 100
+	PD05	Pin	= 101
+	PD06	Pin	= 102
+	PD07	Pin	= 103
+	PD08	Pin	= 104
+	PD09	Pin	= 105
+	PD10	Pin	= 106
+	PD11	Pin	= 107
+	PD12	Pin	= 108
+	PD13	Pin	= 109
+	PD14	Pin	= 110
+	PD15	Pin	= 111
+	PD16	Pin	= 112
+	PD17	Pin	= 113
+	PD18	Pin	= 114
+	PD19	Pin	= 115
+	PD20	Pin	= 116
+	PD21	Pin	= 117
+	PD22	Pin	= 118
+	PD23	Pin	= 119
+	PD24	Pin	= 120
+	PD25	Pin	= 121
+	PD26	Pin	= 122
+	PD27	Pin	= 123
+	PD28	Pin	= 124
+	PD29	Pin	= 125
+	PD30	Pin	= 126
+	PD31	Pin	= 127
 )
 ```
 
@@ -351,6 +435,24 @@ SPI phase and polarity configs CPOL and CPHA
 
 ```go
 var (
+	UART1	= UART{
+		Buffer:	NewRingBuffer(),
+		Bus:	sam.SERCOM3_USART_INT,
+		SERCOM:	3,
+	}
+
+	UART2	= UART{
+		Buffer:	NewRingBuffer(),
+		Bus:	sam.SERCOM0_USART_INT,
+		SERCOM:	0,
+	}
+)
+```
+
+
+
+```go
+var (
 	I2C0 = I2C{
 		Bus:	sam.SERCOM5_I2CM,
 		SERCOM:	5,
@@ -392,6 +494,7 @@ var (
 	ErrInvalidOutputPin	= errors.New("machine: invalid output pin")
 	ErrInvalidClockPin	= errors.New("machine: invalid clock pin")
 	ErrInvalidDataPin	= errors.New("machine: invalid data pin")
+	ErrNoPinChangeChannel	= errors.New("machine: no channel available for pin interrupt")
 )
 ```
 
@@ -400,21 +503,7 @@ var (
 ```go
 var (
 	// UART0 is actually a USB CDC interface.
-	UART0	= USBCDC{Buffer: NewRingBuffer()}
-
-	// The first hardware serial port on the SAMD51. Uses the SERCOM3 interface.
-	UART1	= UART{
-		Buffer:	NewRingBuffer(),
-		Bus:	sam.SERCOM3_USART_INT,
-		SERCOM:	3,
-	}
-
-	// The second hardware serial port on the SAMD51. Uses the SERCOM0 interface.
-	UART2	= UART{
-		Buffer:	NewRingBuffer(),
-		Bus:	sam.SERCOM0_USART_INT,
-		SERCOM:	0,
-	}
+	UART0 = USBCDC{Buffer: NewRingBuffer()}
 )
 ```
 
@@ -1085,7 +1174,7 @@ type PWM struct {
 ### func (PWM) Configure
 
 ```go
-func (pwm PWM) Configure()
+func (pwm PWM) Configure() error
 ```
 
 Configure configures a PWM pin for output.
@@ -1184,6 +1273,20 @@ Set the pin to high or low.
 Warning: only use this on an output pin!
 
 
+### func (Pin) SetInterrupt
+
+```go
+func (p Pin) SetInterrupt(change PinChange, callback func(Pin)) error
+```
+
+SetInterrupt sets an interrupt to be executed when a particular pin changes
+state.
+
+This call will replace a previously set callback on this pin. You can pass a
+nil func to unset the pin change interrupt. If you do so, the change
+parameter is ignored and can be set to any value (such as 0).
+
+
 ### func (Pin) Toggle
 
 ```go
@@ -1192,6 +1295,17 @@ func (p Pin) Toggle()
 
 Toggle switches an output pin from low to high or from high to low.
 Warning: only use this on an output pin!
+
+
+
+
+## type PinChange
+
+```go
+type PinChange uint8
+```
+
+
 
 
 
