@@ -1,10 +1,488 @@
 
 ---
-title: feather-m0
+title: wioterminal
 ---
 
 
 ## Constants
+
+```go
+const RESET_MAGIC_VALUE = 0xf01669ef
+```
+
+used to reset into bootloader
+
+
+```go
+const (
+	ADC0	= A0
+	ADC1	= A1
+	ADC2	= A2
+	ADC3	= A3
+	ADC4	= A4
+	ADC5	= A5
+	ADC6	= A6
+	ADC7	= A7
+	ADC8	= A8
+
+	LED	= PIN_LED
+	BUTTON	= BUTTON_1
+)
+```
+
+
+
+```go
+const (
+
+	// LEDs
+	PIN_LED_13	= PA15
+	PIN_LED_RXL	= PA15
+	PIN_LED_TXL	= PA15
+	PIN_LED		= PIN_LED_13
+	PIN_LED2	= PIN_LED_RXL
+	PIN_LED3	= PIN_LED_TXL
+	LED_BUILTIN	= PIN_LED_13
+	PIN_NEOPIXEL	= PA15
+
+	//Digital PINs
+	D0	= PB08
+	D1	= PB09
+	D2	= PA07
+	D3	= PB04
+	D4	= PB05
+	D5	= PB06
+	D6	= PA04
+	D7	= PB07
+	D8	= PA06
+
+	//Analog PINs
+	A0	= PB08	// ADC/AIN[0]
+	A1	= PB09	// ADC/AIN[2]
+	A2	= PA07	// ADC/AIN[3]
+	A3	= PB04	// ADC/AIN[4]
+	A4	= PB05	// ADC/AIN[5]
+	A5	= PB06	// ADC/AIN[10]
+	A6	= PA04	// ADC/AIN[10]
+	A7	= PB07	// ADC/AIN[10]
+	A8	= PA06	// ADC/AIN[10]
+
+	//PIN DEFINE FOR RPI
+	BCM0	= PA13	// I2C Wire1
+	BCM1	= PA12	// I2C Wire1
+	BCM2	= PA17	// I2C Wire2
+	BCM3	= PA16	// I2C Wire2
+	BCM4	= PB14	// GCLK
+	BCM5	= PB12	// GCLK
+	BCM6	= PB13	// GCLK
+	BCM7	= PA05	// DAC1
+	BCM8	= PB01	// SPI SS
+	BCM9	= PB00	// SPI MISO
+	BCM10	= PB02	// SPI MOSI
+	BCM11	= PB03	// SPI SCK
+	BCM12	= PB06
+	BCM13	= PA07
+	BCM14	= PB27	// UART Serial1
+	BCM15	= PB26	// UART Serial1
+	BCM16	= PB07
+	BCM17	= PA02	// DAC0
+	BCM18	= PB28	// FPC Digital & AD pins
+	BCM19	= PA20	// WIO_IR
+	BCM20	= PA21	// I2S SDO
+	BCM21	= PA22	// I2S SDI
+	BCM22	= PB09
+	BCM23	= PA07
+	BCM24	= PB04
+	BCM25	= PB05
+	BCM26	= PA06
+	BCM27	= PB08
+
+	// FPC NEW DEFINE
+	FPC1	= PB28	// FPC Digital & AD pins
+	FPC2	= PB17
+	FPC3	= PB29
+	FPC4	= PA14
+	FPC5	= PC01
+	FPC6	= PC02
+	FPC7	= PC03
+	FPC8	= PC04
+	FPC9	= PC31
+	FPC10	= PD00
+
+	// RPI Analog RPIs
+	RPI_A0	= PB08
+	RPI_A1	= PB09
+	RPI_A2	= PA07
+	RPI_A3	= PB04
+	RPI_A4	= PB05
+	RPI_A5	= PB06
+	RPI_A6	= PA04
+	RPI_A7	= PB07
+	RPI_A8	= PA06
+
+	PIN_DAC0	= PA02
+	PIN_DAC1	= PA05
+
+	DAC0	= PIN_DAC0
+	DAC1	= PIN_DAC1
+
+	// USB
+	PIN_USB_DM		= PA24
+	PIN_USB_DP		= PA25
+	PIN_USB_HOST_ENABLE	= PA27
+
+	// BUTTON
+	BUTTON_1	= PC26
+	BUTTON_2	= PC27
+	BUTTON_3	= PC28
+	WIO_KEY_A	= PC26
+	WIO_KEY_B	= PC27
+	WIO_KEY_C	= PC28
+
+	// SWITCH
+	SWITCH_X	= PD20
+	SWITCH_Y	= PD12
+	SWITCH_Z	= PD09
+	SWITCH_B	= PD08
+	SWITCH_U	= PD10
+
+	WIO_5S_UP	= PD20
+	WIO_5S_LEFT	= PD12
+	WIO_5S_RIGHT	= PD09
+	WIO_5S_DOWN	= PD08
+	WIO_5S_PRESS	= PD10
+
+	// IRQ0 : RTL8720D
+	IRQ0	= PC20
+
+	// BUZZER_CTR
+	BUZZER_CTR	= PD11
+	WIO_BUZZER	= PD11
+
+	// MIC_INPUT
+	MIC_INPUT	= PC30
+	WIO_MIC		= PC30
+
+	// GCLK
+	GCLK0	= PB14
+	GCLK1	= PB12
+	GCLK2	= PB13
+
+	// Serial interfaces
+	// Serial1
+	PIN_SERIAL1_RX	= PB27
+	PIN_SERIAL1_TX	= PB26
+
+	// Serial2 : RTL8720D
+	PIN_SERIAL2_RX	= PC23
+	PIN_SERIAL2_TX	= PC22
+
+	// Wire Interfaces
+	// I2C Wire2
+	// I2C1
+	PIN_WIRE_SDA	= PA17
+	PIN_WIRE_SCL	= PA16
+	SDA		= PIN_WIRE_SDA
+	SCL		= PIN_WIRE_SCL
+
+	// I2C Wire1
+	// I2C0 : LIS3DHTR and ATECC608
+	PIN_WIRE1_SDA	= PA13
+	PIN_WIRE1_SCL	= PA12
+
+	SDA1	= PIN_WIRE1_SDA
+	SCL1	= PIN_WIRE1_SCL
+
+	PIN_GYROSCOPE_WIRE_SDA	= PIN_WIRE1_SDA
+	PIN_GYROSCOPE_WIRE_SCL	= PIN_WIRE1_SCL
+	GYROSCOPE_INT1		= PC21
+
+	WIO_LIS3DH_SDA	= PIN_WIRE1_SDA
+	WIO_LIS3DH_SCL	= PIN_WIRE1_SCL
+	WIO_LIS3DH_INT	= PC21
+
+	// SPI
+	PIN_SPI_MISO	= PB00
+	PIN_SPI_MOSI	= PB02
+	PIN_SPI_SCK	= PB03
+	PIN_SPI_SS	= PB01
+
+	SS	= PIN_SPI_SS
+	MOSI	= PIN_SPI_MOSI
+	MISO	= PIN_SPI_MISO
+	SCK	= PIN_SPI_SCK
+
+	// SPI1 RTL8720D_SPI
+	PIN_SPI1_MISO	= PC24
+	PIN_SPI1_MOSI	= PB24
+	PIN_SPI1_SCK	= PB25
+	PIN_SPI1_SS	= PC25
+
+	SS1	= PIN_SPI1_SS
+	MOSI1	= PIN_SPI1_MOSI
+	MISO1	= PIN_SPI1_MISO
+	SCK1	= PIN_SPI1_SCK
+
+	// SPI2 SD_SPI
+	PIN_SPI2_MISO	= PC18
+	PIN_SPI2_MOSI	= PC16
+	PIN_SPI2_SCK	= PC17
+	PIN_SPI2_SS	= PC19
+
+	SS2	= PIN_SPI2_SS
+	MOSI2	= PIN_SPI2_MOSI
+	MISO2	= PIN_SPI2_MISO
+	SCK2	= PIN_SPI2_SCK
+
+	// SPI3 LCD_SPI
+	PIN_SPI3_MISO	= PB18
+	PIN_SPI3_MOSI	= PB19
+	PIN_SPI3_SCK	= PB20
+	PIN_SPI3_SS	= PB21
+
+	SS3	= PIN_SPI3_SS
+	MOSI3	= PIN_SPI3_MOSI
+	MISO3	= PIN_SPI3_MISO
+	SCK3	= PIN_SPI3_SCK
+
+	// Needed for SD library
+	SDCARD_MISO_PIN	= PIN_SPI2_MISO
+	SDCARD_MOSI_PIN	= PIN_SPI2_MOSI
+	SDCARD_SCK_PIN	= PIN_SPI2_SCK
+	SDCARD_SS_PIN	= PIN_SPI2_SS
+	SDCARD_DET_PIN	= PD21
+
+	LCD_MISO_PIN	= PIN_SPI3_MISO
+	LCD_MOSI_PIN	= PIN_SPI3_MOSI
+	LCD_SCK_PIN	= PIN_SPI3_SCK
+	LCD_SS_PIN	= PIN_SPI3_SS
+	LCD_DC		= PC06
+	LCD_RESET	= PC07
+	LCD_BACKLIGHT	= PC05
+
+	// 4 WIRE LCD TOUCH
+	LCD_XL	= PC10
+	LCD_YU	= PC11
+	LCD_XR	= PC12
+	LCD_YD	= PC13
+
+	// Needed for RTL8720D
+	RTL8720D_MISO_PIN	= PIN_SPI1_MISO
+	RTL8720D_MOSI_PIN	= PIN_SPI1_MOSI
+	RTL8720D_SCK_PIN	= PIN_SPI1_SCK
+	RTL8720D_SS_PIN		= PIN_SPI1_SS
+
+	//QSPI Pins
+	PIN_QSPI_IO0	= PA08
+	PIN_QSPI_IO1	= PA09
+	PIN_QSPI_IO2	= PA10
+	PIN_QSPI_IO3	= PA11
+	PIN_QSPI_SCK	= PB10
+	PIN_QSPI_CS	= PB11
+
+	// I2S Interfaces
+	PIN_I2S_FS	= PA20
+	PIN_I2S_SCK	= PB16
+	PIN_I2S_SDO	= PA22
+	PIN_I2S_SDI	= PA21
+
+	I2S_LRCLK	= PA20
+	I2S_BLCK	= PB16
+	I2S_SDOUT	= PA22
+	I2S_SDIN	= PA21
+
+	// RTL8720D Interfaces
+	RTL8720D_CHIP_PU	= PA18
+	RTL8720D_GPIO0		= PA19	// SYNC
+
+	// SWD
+	SWDCLK	= PA30
+	SWDIO	= PA31
+	SWO	= PB30
+
+	// light sensor
+	WIO_LIGHT	= PD01
+
+	// ir sensor
+	WIO_IR	= PB31
+
+	// OUTPUT_CTR
+	OUTPUT_CTR_5V	= PC14
+	OUTPUT_CTR_3V3	= PC15
+)
+```
+
+
+
+```go
+const (
+	USBCDC_DM_PIN	= PIN_USB_DM
+	USBCDC_DP_PIN	= PIN_USB_DP
+)
+```
+
+UART0 aka USBCDC pins
+
+
+```go
+const (
+	UART_TX_PIN	= PIN_SERIAL1_TX
+	UART_RX_PIN	= PIN_SERIAL1_RX
+)
+```
+
+UART1 pins
+
+
+```go
+const (
+	UART2_TX_PIN	= PIN_SERIAL2_TX
+	UART2_RX_PIN	= PIN_SERIAL2_RX
+)
+```
+
+UART2 pins RTL8720D
+
+
+```go
+const (
+	SDA0_PIN	= PIN_WIRE_SDA	// SDA: SERCOM3/PAD[0]
+	SCL0_PIN	= PIN_WIRE_SCL	// SCL: SERCOM3/PAD[1]
+
+	SDA1_PIN	= PIN_WIRE1_SDA	// SDA: SERCOM4/PAD[0]
+	SCL1_PIN	= PIN_WIRE1_SCL	// SCL: SERCOM4/PAD[1]
+
+	SDA_PIN	= SDA0_PIN
+	SCL_PIN	= SCL0_PIN
+)
+```
+
+I2C pins
+
+
+```go
+const (
+	SPI0_SCK_PIN	= SCK	// SCK:  SERCOM5/PAD[1]
+	SPI0_MOSI_PIN	= MOSI	// MOSI: SERCOM5/PAD[0]
+	SPI0_MISO_PIN	= MISO	// MISO: SERCOM5/PAD[2]
+
+	// RTL8720D
+	SPI1_SCK_PIN	= SCK1	// SCK:  SERCOM0/PAD[1]
+	SPI1_MOSI_PIN	= MOSI1	// MOSI: SERCOM0/PAD[0]
+	SPI1_MISO_PIN	= MISO1	// MISO: SERCOM0/PAD[2]
+
+	// SD
+	SPI2_SCK_PIN	= SCK2	// SCK:  SERCOM6/PAD[1]
+	SPI2_MOSI_PIN	= MOSI2	// MOSI: SERCOM6/PAD[0]
+	SPI2_MISO_PIN	= MISO2	// MISO: SERCOM6/PAD[2]
+
+	// LCD
+	SPI3_SCK_PIN	= SCK3	// SCK:  SERCOM7/PAD[1]
+	SPI3_MOSI_PIN	= MOSI3	// MOSI: SERCOM7/PAD[3]
+	SPI3_MISO_PIN	= MISO3	// MISO: SERCOM7/PAD[2]
+)
+```
+
+SPI pins
+
+
+```go
+const (
+	TWI_FREQ_100KHZ	= 100000
+	TWI_FREQ_400KHZ	= 400000
+)
+```
+
+TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-speed bus.
+
+
+```go
+const (
+	I2SModeMaster	I2SMode	= iota
+	I2SModeSlave
+	I2SModePDM
+)
+```
+
+
+
+```go
+const (
+	I2StandardPhilips	I2SStandard	= iota
+	I2SStandardMSB
+	I2SStandardLSB
+)
+```
+
+
+
+```go
+const (
+	I2SClockSourceInternal	I2SClockSource	= iota
+	I2SClockSourceExternal
+)
+```
+
+
+
+```go
+const (
+	I2SDataFormatDefault	I2SDataFormat	= 0
+	I2SDataFormat8bit			= 8
+	I2SDataFormat16bit			= 16
+	I2SDataFormat24bit			= 24
+	I2SDataFormat32bit			= 32
+)
+```
+
+
+
+```go
+const NoPin = Pin(-1)
+```
+
+NoPin explicitly indicates "not a pin". Use this pin if you want to leave one
+of the pins in a peripheral unconfigured (if supported by the hardware).
+
+
+```go
+const (
+	PinAnalog		PinMode	= 1
+	PinSERCOM		PinMode	= 2
+	PinSERCOMAlt		PinMode	= 3
+	PinTimer		PinMode	= 4
+	PinTimerAlt		PinMode	= 5
+	PinTCCPDEC		PinMode	= 6
+	PinCom			PinMode	= 7
+	PinSDHC			PinMode	= 8
+	PinI2S			PinMode	= 9
+	PinPCC			PinMode	= 10
+	PinGMAC			PinMode	= 11
+	PinACCLK		PinMode	= 12
+	PinCCL			PinMode	= 13
+	PinDigital		PinMode	= 14
+	PinInput		PinMode	= 15
+	PinInputPullup		PinMode	= 16
+	PinOutput		PinMode	= 17
+	PinPWME			PinMode	= PinTimer
+	PinPWMF			PinMode	= PinTimerAlt
+	PinPWMG			PinMode	= PinTCCPDEC
+	PinInputPulldown	PinMode	= 18
+)
+```
+
+
+
+```go
+const (
+	PinRising	PinChange	= sam.EIC_CONFIG_SENSE0_RISE
+	PinFalling	PinChange	= sam.EIC_CONFIG_SENSE0_FALL
+	PinToggle	PinChange	= sam.EIC_CONFIG_SENSE0_BOTH
+)
+```
+
+Pin change interrupt constants for SetInterrupt.
+
 
 ```go
 const (
@@ -72,6 +550,70 @@ const (
 	PB29	Pin	= 61
 	PB30	Pin	= 62
 	PB31	Pin	= 63
+	PC00	Pin	= 64
+	PC01	Pin	= 65
+	PC02	Pin	= 66
+	PC03	Pin	= 67
+	PC04	Pin	= 68
+	PC05	Pin	= 69
+	PC06	Pin	= 70
+	PC07	Pin	= 71
+	PC08	Pin	= 72
+	PC09	Pin	= 73
+	PC10	Pin	= 74
+	PC11	Pin	= 75
+	PC12	Pin	= 76
+	PC13	Pin	= 77
+	PC14	Pin	= 78
+	PC15	Pin	= 79
+	PC16	Pin	= 80
+	PC17	Pin	= 81
+	PC18	Pin	= 82
+	PC19	Pin	= 83
+	PC20	Pin	= 84
+	PC21	Pin	= 85
+	PC22	Pin	= 86
+	PC23	Pin	= 87
+	PC24	Pin	= 88
+	PC25	Pin	= 89
+	PC26	Pin	= 90
+	PC27	Pin	= 91
+	PC28	Pin	= 92
+	PC29	Pin	= 93
+	PC30	Pin	= 94
+	PC31	Pin	= 95
+	PD00	Pin	= 96
+	PD01	Pin	= 97
+	PD02	Pin	= 98
+	PD03	Pin	= 99
+	PD04	Pin	= 100
+	PD05	Pin	= 101
+	PD06	Pin	= 102
+	PD07	Pin	= 103
+	PD08	Pin	= 104
+	PD09	Pin	= 105
+	PD10	Pin	= 106
+	PD11	Pin	= 107
+	PD12	Pin	= 108
+	PD13	Pin	= 109
+	PD14	Pin	= 110
+	PD15	Pin	= 111
+	PD16	Pin	= 112
+	PD17	Pin	= 113
+	PD18	Pin	= 114
+	PD19	Pin	= 115
+	PD20	Pin	= 116
+	PD21	Pin	= 117
+	PD22	Pin	= 118
+	PD23	Pin	= 119
+	PD24	Pin	= 120
+	PD25	Pin	= 121
+	PD26	Pin	= 122
+	PD27	Pin	= 123
+	PD28	Pin	= 124
+	PD29	Pin	= 125
+	PD30	Pin	= 126
+	PD31	Pin	= 127
 )
 ```
 
@@ -79,51 +621,24 @@ Hardware pins
 
 
 ```go
-const RESET_MAGIC_VALUE = 0xf01669ef
-```
-
-used to reset into bootloader
-
-
-```go
 const (
-	D0	= PA11	// UART0 RX
-	D1	= PA10	// UART0 TX
-	D2	= NoPin	// does not seem to exist
-	D3	= PA09
-	D4	= PA08
-	D5	= PA15	// PWM available
-	D6	= PA20	// PWM available
-	D7	= NoPin	// does not seem to exist
-	D8	= PA06
-	D9	= PA07	// PWM available
-	D10	= PA18	// can be used for PWM or UART1 TX
-	D11	= PA16	// can be used for PWM or UART1 RX
-	D12	= PA19	// PWM available
-	D13	= PA17	// PWM available
-)
-```
+	// SERCOM_FREQ_REF is always reference frequency on SAMD51 regardless of CPU speed.
+	SERCOM_FREQ_REF	= 48000000
 
-GPIO Pins
+	// Default rise time in nanoseconds, based on 4.7K ohm pull up resistors
+	riseTimeNanoseconds	= 125
 
+	// wire bus states
+	wireUnknownState	= 0
+	wireIdleState		= 1
+	wireOwnerState		= 2
+	wireBusyState		= 3
 
-```go
-const (
-	A0	= PA02	// ADC/AIN[0]
-	A1	= PB08	// ADC/AIN[2]
-	A2	= PB09	// ADC/AIN[3]
-	A3	= PA04	// ADC/AIN[4]
-	A4	= PA05	// ADC/AIN[5]
-	A5	= PB02	// ADC/AIN[10]
-)
-```
-
-Analog pins
-
-
-```go
-const (
-	LED = D13
+	// wire commands
+	wireCmdNoAction		= 0
+	wireCmdRepeatStart	= 1
+	wireCmdRead		= 2
+	wireCmdStop		= 3
 )
 ```
 
@@ -131,145 +646,22 @@ const (
 
 ```go
 const (
-	USBCDC_DM_PIN	= PA24
-	USBCDC_DP_PIN	= PA25
+	QSPI_SCK	= PB10
+	QSPI_CS		= PB11
+	QSPI_DATA0	= PA08
+	QSPI_DATA1	= PA09
+	QSPI_DATA2	= PA10
+	QSPI_DATA3	= PA11
 )
 ```
 
-UART0 aka USBCDC pins
+The QSPI peripheral on ATSAMD51 is only available on the following pins
 
 
 ```go
-const (
-	UART_TX_PIN	= D10
-	UART_RX_PIN	= D11
-)
+const HSRAM_SIZE = 0x00030000
 ```
 
-UART1 pins
-
-
-```go
-const (
-	SDA_PIN	= PA22	// SDA: SERCOM3/PAD[0]
-	SCL_PIN	= PA23	// SCL: SERCOM3/PAD[1]
-)
-```
-
-I2C pins
-
-
-```go
-const (
-	SPI0_SCK_PIN	= PB11	// SCK: SERCOM4/PAD[3]
-	SPI0_MOSI_PIN	= PB10	// MOSI: SERCOM4/PAD[2]
-	SPI0_MISO_PIN	= PA12	// MISO: SERCOM4/PAD[0]
-)
-```
-
-SPI pins
-
-
-```go
-const (
-	I2S_SCK_PIN	= PA10
-	I2S_SD_PIN	= PA08
-	I2S_WS_PIN	= NoPin	// TODO: figure out what this is on Feather M0.
-)
-```
-
-I2S pins
-
-
-```go
-const (
-	TWI_FREQ_100KHZ	= 100000
-	TWI_FREQ_400KHZ	= 400000
-)
-```
-
-TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-speed bus.
-
-
-```go
-const (
-	I2SModeMaster	I2SMode	= iota
-	I2SModeSlave
-	I2SModePDM
-)
-```
-
-
-
-```go
-const (
-	I2StandardPhilips	I2SStandard	= iota
-	I2SStandardMSB
-	I2SStandardLSB
-)
-```
-
-
-
-```go
-const (
-	I2SClockSourceInternal	I2SClockSource	= iota
-	I2SClockSourceExternal
-)
-```
-
-
-
-```go
-const (
-	I2SDataFormatDefault	I2SDataFormat	= 0
-	I2SDataFormat8bit			= 8
-	I2SDataFormat16bit			= 16
-	I2SDataFormat24bit			= 24
-	I2SDataFormat32bit			= 32
-)
-```
-
-
-
-```go
-const NoPin = Pin(-1)
-```
-
-NoPin explicitly indicates "not a pin". Use this pin if you want to leave one
-of the pins in a peripheral unconfigured (if supported by the hardware).
-
-
-```go
-const (
-	PinAnalog	PinMode	= 1
-	PinSERCOM	PinMode	= 2
-	PinSERCOMAlt	PinMode	= 3
-	PinTimer	PinMode	= 4
-	PinTimerAlt	PinMode	= 5
-	PinCom		PinMode	= 6
-	//PinAC_CLK        PinMode = 7
-	PinDigital		PinMode	= 8
-	PinInput		PinMode	= 9
-	PinInputPullup		PinMode	= 10
-	PinOutput		PinMode	= 11
-	PinPWM			PinMode	= PinTimer
-	PinPWMAlt		PinMode	= PinTimerAlt
-	PinInputPulldown	PinMode	= 12
-)
-```
-
-
-
-```go
-const (
-	PinRising	PinChange	= sam.EIC_CONFIG_SENSE0_RISE
-	PinFalling	PinChange	= sam.EIC_CONFIG_SENSE0_FALL
-	PinToggle	PinChange	= sam.EIC_CONFIG_SENSE0_BOTH
-)
-```
-
-Pin change interrupt constants for SetInterrupt.
 
 
 ```go
@@ -291,39 +683,68 @@ SPI phase and polarity configs CPOL and CPHA
 
 ```go
 var (
-	UART1 = UART{
+	UART1	= UART{
 		Buffer:	NewRingBuffer(),
-		Bus:	sam.SERCOM1_USART,
+		Bus:	sam.SERCOM2_USART_INT,
+		SERCOM:	2,
+	}
+
+	// RTL8720D
+	UART2	= UART{
+		Buffer:	NewRingBuffer(),
+		Bus:	sam.SERCOM1_USART_INT,
 		SERCOM:	1,
 	}
 )
 ```
 
-UART1 on the Feather M0.
 
 
 ```go
 var (
-	I2C0 = I2C{
-		Bus:	sam.SERCOM3_I2CM,
-		SERCOM:	3,
+	I2C0	= I2C{
+		Bus:	sam.SERCOM4_I2CM,
+		SERCOM:	4,
 	}
-)
-```
 
-I2C on the Feather M0.
-
-
-```go
-var (
-	SPI0 = SPI{
-		Bus:	sam.SERCOM4_SPI,
+	I2C1	= I2C{
+		Bus:	sam.SERCOM4_I2CM,
 		SERCOM:	4,
 	}
 )
 ```
 
-SPI on the Feather M0.
+I2C on the Wio Terminal
+
+
+```go
+var (
+	SPI0	= SPI{
+		Bus:	sam.SERCOM5_SPIM,
+		SERCOM:	5,
+	}
+
+	// RTL8720D
+	SPI1	= SPI{
+		Bus:	sam.SERCOM0_SPIM,
+		SERCOM:	0,
+	}
+
+	// SD
+	SPI2	= SPI{
+		Bus:	sam.SERCOM6_SPIM,
+		SERCOM:	6,
+	}
+
+	// LCD
+	SPI3	= SPI{
+		Bus:	sam.SERCOM7_SPIM,
+		SERCOM:	7,
+	}
+)
+```
+
+SPI on the Wio Terminal
 
 
 ```go
@@ -364,7 +785,6 @@ var (
 func CPUFrequency() uint32
 ```
 
-Return the current CPU frequency in hertz.
 
 
 ### func InitADC
@@ -488,7 +908,7 @@ NewRingBuffer returns a new ring buffer.
 func ResetProcessor()
 ```
 
-ResetProcessor should perform a system reset in preperation
+ResetProcessor should perform a system reset in preparation
 to switch to the bootloader to flash new firmware.
 
 
@@ -758,7 +1178,7 @@ type I2C struct {
 }
 ```
 
-I2C on the SAMD21.
+I2C on the SAMD51.
 
 
 
@@ -842,59 +1262,6 @@ type I2CConfig struct {
 
 I2CConfig is used to store config info for I2C.
 
-
-
-
-
-## type I2S
-
-```go
-type I2S struct {
-	Bus *sam.I2S_Type
-}
-```
-
-I2S
-
-
-
-### func (I2S) Close
-
-```go
-func (i2s I2S) Close() error
-```
-
-Close the I2S bus.
-
-
-### func (I2S) Configure
-
-```go
-func (i2s I2S) Configure(config I2SConfig)
-```
-
-Configure is used to configure the I2S interface. You must call this
-before you can use the I2S bus.
-
-
-### func (I2S) Read
-
-```go
-func (i2s I2S) Read(p []uint32) (n int, err error)
-```
-
-Read data from the I2S bus into the provided slice.
-The I2S bus must already have been configured correctly.
-
-
-### func (I2S) Write
-
-```go
-func (i2s I2S) Write(p []uint32) (n int, err error)
-```
-
-Write data to the I2S bus from the provided slice.
-The I2S bus must already have been configured correctly.
 
 
 
@@ -1179,6 +1546,16 @@ nil func to unset the pin change interrupt. If you do so, the change
 parameter is ignored and can be set to any value (such as 0).
 
 
+### func (Pin) Toggle
+
+```go
+func (p Pin) Toggle()
+```
+
+Toggle switches an output pin from low to high or from high to low.
+Warning: only use this on an output pin!
+
+
 
 
 ## type PinChange
@@ -1266,7 +1643,7 @@ Used returns how many bytes in buffer have been used.
 
 ```go
 type SPI struct {
-	Bus	*sam.SERCOM_SPI_Type
+	Bus	*sam.SERCOM_SPIM_Type
 	SERCOM	uint8
 }
 ```
@@ -1344,13 +1721,13 @@ SPIConfig is used to store config info for SPI.
 ```go
 type UART struct {
 	Buffer		*RingBuffer
-	Bus		*sam.SERCOM_USART_Type
+	Bus		*sam.SERCOM_USART_INT_Type
 	SERCOM		uint8
-	Interrupt	interrupt.Interrupt
+	Interrupt	interrupt.Interrupt	// RXC interrupt
 }
 ```
 
-UART on the SAMD21.
+UART on the SAMD51.
 
 
 

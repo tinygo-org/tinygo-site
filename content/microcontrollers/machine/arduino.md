@@ -7,7 +7,29 @@ title: arduino
 ## Constants
 
 ```go
-const LED Pin = 13
+const (
+	D0	= PD0	// RX
+	D1	= PD1	// TX
+	D2	= PD2
+	D3	= PD3
+	D4	= PD4
+	D5	= PD5
+	D6	= PD6
+	D7	= PD7
+	D8	= PB0
+	D9	= PB1
+	D10	= PB2
+	D11	= PB3
+	D12	= PB4
+	D13	= PB5
+)
+```
+
+Digital pins, marked as plain numbers on the board.
+
+
+```go
+const LED Pin = D13
 ```
 
 LED on the Arduino
@@ -15,12 +37,12 @@ LED on the Arduino
 
 ```go
 const (
-	ADC0	Pin	= 0
-	ADC1	Pin	= 1
-	ADC2	Pin	= 2
-	ADC3	Pin	= 3
-	ADC4	Pin	= 4	// Used by TWI for SDA
-	ADC5	Pin	= 5	// Used by TWI for SCL
+	ADC0	Pin	= PC0
+	ADC1	Pin	= PC1
+	ADC2	Pin	= PC2
+	ADC3	Pin	= PC3
+	ADC4	Pin	= PC4	// Used by TWI for SDA
+	ADC5	Pin	= PC5	// Used by TWI for SCL
 )
 ```
 
@@ -29,12 +51,43 @@ ADC on the Arduino
 
 ```go
 const (
-	UART_TX_PIN	Pin	= 1
-	UART_RX_PIN	Pin	= 0
+	UART_TX_PIN	Pin	= PD1
+	UART_RX_PIN	Pin	= PD0
 )
 ```
 
 UART pins
+
+
+```go
+const (
+	PB0	= portB + 0
+	PB1	= portB + 1
+	PB2	= portB + 2
+	PB3	= portB + 3
+	PB4	= portB + 4
+	PB5	= portB + 5
+	PB6	= portB + 6
+	PB7	= portB + 7
+	PC0	= portC + 0
+	PC1	= portC + 1
+	PC2	= portC + 2
+	PC3	= portC + 3
+	PC4	= portC + 4
+	PC5	= portC + 5
+	PC6	= portC + 6
+	PC7	= portC + 7
+	PD0	= portD + 0
+	PD1	= portD + 1
+	PD2	= portD + 2
+	PD3	= portD + 3
+	PD4	= portD + 4
+	PD5	= portD + 5
+	PD6	= portD + 6
+	PD7	= portD + 7
+)
+```
+
 
 
 ```go
@@ -58,6 +111,7 @@ of the pins in a peripheral unconfigured (if supported by the hardware).
 ```go
 const (
 	PinInput	PinMode	= iota
+	PinInputPullup
 	PinOutput
 )
 ```
@@ -75,6 +129,7 @@ var (
 	ErrInvalidOutputPin	= errors.New("machine: invalid output pin")
 	ErrInvalidClockPin	= errors.New("machine: invalid clock pin")
 	ErrInvalidDataPin	= errors.New("machine: invalid data pin")
+	ErrNoPinChangeChannel	= errors.New("machine: no channel available for pin interrupt")
 )
 ```
 
@@ -259,7 +314,7 @@ type PWM struct {
 ### func (PWM) Configure
 
 ```go
-func (pwm PWM) Configure()
+func (pwm PWM) Configure() error
 ```
 
 Configure configures a PWM pin for output.

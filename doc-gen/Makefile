@@ -27,11 +27,14 @@ DEVICES = \
     pca10056 \
     pinetime-devkit0 \
     pybadge \
+    pygamer \
     pyportal \
     reelboard \
     stm32f4disco \
     trinket-m0 \
-    x9pro
+    wioterminal \
+    x9pro \
+    xiao
 
 all:
 	go run . $(DEVICES)

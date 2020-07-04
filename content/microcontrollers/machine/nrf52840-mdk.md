@@ -86,6 +86,17 @@ const (
 
 ```go
 const (
+	PinRising	PinChange	= nrf.GPIOTE_CONFIG_POLARITY_LoToHi
+	PinFalling	PinChange	= nrf.GPIOTE_CONFIG_POLARITY_HiToLo
+	PinToggle	PinChange	= nrf.GPIOTE_CONFIG_POLARITY_Toggle
+)
+```
+
+Pin change interrupt constants for SetInterrupt.
+
+
+```go
+const (
 	P0_00	Pin	= 0
 	P0_01	Pin	= 1
 	P0_02	Pin	= 2
@@ -160,6 +171,7 @@ var (
 	ErrInvalidOutputPin	= errors.New("machine: invalid output pin")
 	ErrInvalidClockPin	= errors.New("machine: invalid clock pin")
 	ErrInvalidDataPin	= errors.New("machine: invalid data pin")
+	ErrNoPinChangeChannel	= errors.New("machine: no channel available for pin interrupt")
 )
 ```
 
@@ -403,7 +415,7 @@ type ADC struct {
 ### func (ADC) Configure
 
 ```go
-func (a ADC) Configure()
+func (a ADC) Configure() error
 ```
 
 Configure configures an ADC pin to be able to read analog data.
@@ -893,6 +905,31 @@ func (p Pin) Set(high bool)
 
 Set the pin to high or low.
 Warning: only use this on an output pin!
+
+
+### func (Pin) SetInterrupt
+
+```go
+func (p Pin) SetInterrupt(change PinChange, callback func(Pin)) error
+```
+
+SetInterrupt sets an interrupt to be executed when a particular pin changes
+state.
+
+This call will replace a previously set callback on this pin. You can pass a
+nil func to unset the pin change interrupt. If you do so, the change
+parameter is ignored and can be set to any value (such as 0).
+
+
+
+
+## type PinChange
+
+```go
+type PinChange uint8
+```
+
+
 
 
 

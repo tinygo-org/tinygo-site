@@ -1,6 +1,6 @@
 
 ---
-title: feather-m0
+title: xiao
 ---
 
 
@@ -87,20 +87,17 @@ used to reset into bootloader
 
 ```go
 const (
-	D0	= PA11	// UART0 RX
-	D1	= PA10	// UART0 TX
-	D2	= NoPin	// does not seem to exist
-	D3	= PA09
-	D4	= PA08
-	D5	= PA15	// PWM available
-	D6	= PA20	// PWM available
-	D7	= NoPin	// does not seem to exist
-	D8	= PA06
-	D9	= PA07	// PWM available
-	D10	= PA18	// can be used for PWM or UART1 TX
-	D11	= PA16	// can be used for PWM or UART1 RX
-	D12	= PA19	// PWM available
-	D13	= PA17	// PWM available
+	D0	= PA02	// can be used for PWM or DAC
+	D1	= PA04	// PWM available
+	D2	= PA10	// PWM available
+	D3	= PA11	// PWM available
+	D4	= PA08	// can be used for PWM or I2C SDA
+	D5	= PA09	// can be used for PWM or I2C SCL
+	D6	= PB08	// can be used for PWM or UART1 TX
+	D7	= PB09	// can be used for PWM or UART1 RX
+	D8	= PA07	// can be used for PWM or SPI SCK
+	D9	= PA05	// can be used for PWM or SPI MISO
+	D10	= PA06	// can be used for PWM or SPI MOSI
 )
 ```
 
@@ -110,11 +107,16 @@ GPIO Pins
 ```go
 const (
 	A0	= PA02	// ADC/AIN[0]
-	A1	= PB08	// ADC/AIN[2]
-	A2	= PB09	// ADC/AIN[3]
-	A3	= PA04	// ADC/AIN[4]
-	A4	= PA05	// ADC/AIN[5]
-	A5	= PB02	// ADC/AIN[10]
+	A1	= PA04	// ADC/AIN[4]
+	A2	= PA10	// ADC/AIN[18]
+	A3	= PA11	// ADC/AIN[19]
+	A4	= PA08	// ADC/AIN[16]
+	A5	= PA09	// ADC/AIN[17]
+	A6	= PB08	// ADC/AIN[2]
+	A7	= PB09	// ADC/AIN[3]
+	A8	= PA07	// ADC/AIN[7]
+	A9	= PA05	// ADC/AIN[6]
+	A10	= PA06	// ADC/AIN[5]
 )
 ```
 
@@ -123,7 +125,11 @@ Analog pins
 
 ```go
 const (
-	LED = D13
+	LED	= PA17
+	LED_RXL	= PA18
+	LED_TXL	= PA19
+	LED2	= LED_RXL
+	LED3	= LED_TXL
 )
 ```
 
@@ -141,8 +147,8 @@ UART0 aka USBCDC pins
 
 ```go
 const (
-	UART_TX_PIN	= D10
-	UART_RX_PIN	= D11
+	UART_TX_PIN	= D6
+	UART_RX_PIN	= D7
 )
 ```
 
@@ -151,8 +157,8 @@ UART1 pins
 
 ```go
 const (
-	SDA_PIN	= PA22	// SDA: SERCOM3/PAD[0]
-	SCL_PIN	= PA23	// SCL: SERCOM3/PAD[1]
+	SDA_PIN	= PA08	// SDA: SERCOM2/PAD[0]
+	SCL_PIN	= PA09	// SCL: SERCOM2/PAD[1]
 )
 ```
 
@@ -161,9 +167,9 @@ I2C pins
 
 ```go
 const (
-	SPI0_SCK_PIN	= PB11	// SCK: SERCOM4/PAD[3]
-	SPI0_MOSI_PIN	= PB10	// MOSI: SERCOM4/PAD[2]
-	SPI0_MISO_PIN	= PA12	// MISO: SERCOM4/PAD[0]
+	SPI0_SCK_PIN	= PA07	// SCK: SERCOM0/PAD[3]
+	SPI0_MOSI_PIN	= PA06	// MOSI: SERCOM0/PAD[2]
+	SPI0_MISO_PIN	= PA05	// MISO: SERCOM0/PAD[1]
 )
 ```
 
@@ -174,7 +180,7 @@ SPI pins
 const (
 	I2S_SCK_PIN	= PA10
 	I2S_SD_PIN	= PA08
-	I2S_WS_PIN	= NoPin	// TODO: figure out what this is on Feather M0.
+	I2S_WS_PIN	= NoPin	// TODO: figure out what this is on Xiao
 )
 ```
 
@@ -293,37 +299,46 @@ SPI phase and polarity configs CPOL and CPHA
 var (
 	UART1 = UART{
 		Buffer:	NewRingBuffer(),
-		Bus:	sam.SERCOM1_USART,
-		SERCOM:	1,
-	}
-)
-```
-
-UART1 on the Feather M0.
-
-
-```go
-var (
-	I2C0 = I2C{
-		Bus:	sam.SERCOM3_I2CM,
-		SERCOM:	3,
-	}
-)
-```
-
-I2C on the Feather M0.
-
-
-```go
-var (
-	SPI0 = SPI{
-		Bus:	sam.SERCOM4_SPI,
+		Bus:	sam.SERCOM4_USART,
 		SERCOM:	4,
 	}
 )
 ```
 
-SPI on the Feather M0.
+UART1 on the Xiao
+
+
+```go
+var (
+	I2C0 = I2C{
+		Bus:	sam.SERCOM2_I2CM,
+		SERCOM:	2,
+	}
+)
+```
+
+I2C on the Xiao
+
+
+```go
+var (
+	SPI0 = SPI{
+		Bus:	sam.SERCOM0_SPI,
+		SERCOM:	0,
+	}
+)
+```
+
+SPI on the Xiao
+
+
+```go
+var (
+	I2S0 = I2S{Bus: sam.I2S}
+)
+```
+
+I2S on the Xiao
 
 
 ```go
