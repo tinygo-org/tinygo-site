@@ -63,8 +63,8 @@ The Feather M4 comes with the [UF2 bootloader](https://github.com/Microsoft/uf2)
 
 If you have troubles getting your Feather M4 board to receive code, try this:
 
-- Press the "RESET" button on the board two times to get the Feather M0 board ready to receive code.
-- The Feather M0 board will appear to your computer like a USB drive.
+- Press the "RESET" button on the board two times to get the Feather M4 board ready to receive code.
+- The Feather M4 board will appear to your computer like a USB drive.
 - Now try running the command as above:
 
 
