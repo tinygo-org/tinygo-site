@@ -34,7 +34,8 @@ DEVICES = \
     trinket-m0 \
     wioterminal \
     x9pro \
-    xiao
+    xiao \
+    maixbit
 
 all:
 	go run . $(DEVICES)
