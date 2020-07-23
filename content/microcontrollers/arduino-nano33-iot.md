@@ -126,4 +126,4 @@ Once you have updated your Arduino Nano33 IoT board the first time, after that y
 
 You can use the USB port to the Arduino Nano33 IoT as a serial port. `UART0` refers to this connection.
 
-For information on how to use the built-in NINA-W102 wireless chip, please see the "espat" driver in the TinyGo drivers repository located at [https://github.com/tinygo-org/drivers/tree/master/espat](https://github.com/tinygo-org/drivers/tree/master/espat).
+For information on how to use the built-in NINA-W102 wireless chip, please see the "espat" driver in the TinyGo drivers repository located at [https://github.com/tinygo-org/drivers/tree/release/espat](https://github.com/tinygo-org/drivers/tree/release/espat).

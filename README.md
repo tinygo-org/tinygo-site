@@ -36,7 +36,7 @@ Once the site code is running locally, you can navigate to it by going to http:/
 
 ## Deploy to Netlify
 
-Pushing to the `master` branch automatically deploys the latest site to Netlify.
+Pushing to the `release` branch automatically deploys the latest site to Netlify.
 
 That's it.
 

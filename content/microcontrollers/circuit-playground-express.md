@@ -77,4 +77,4 @@ Once you have updated your Circuit Playground Express board the first time, afte
 
 You can use the USB port to the Circuit Playground Express as a serial port. `UART0` refers to this connection.
 
-For an example that uses the built-in Neopixel LEDs, take a look at the TinyGo drivers repository located at [https://github.com/tinygo-org/drivers/tree/master/examples](https://github.com/tinygo-org/drivers)
+For an example that uses the built-in Neopixel LEDs, take a look at the TinyGo drivers repository located at [https://github.com/tinygo-org/drivers/tree/release/examples](https://github.com/tinygo-org/drivers)
