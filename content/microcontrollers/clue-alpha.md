@@ -77,6 +77,6 @@ Once you have updated your CLUE board the first time, after that you should be a
 
 You can use the USB port to the CLUE as a serial port. `UART0` refers to this connection.
 
-For an example that uses the built-in Neopixel LEDs, take a look at the TinyGo drivers repository located at [https://github.com/tinygo-org/drivers/tree/master/examples](https://github.com/tinygo-org/drivers)
+For an example that uses the built-in Neopixel LEDs, take a look at the TinyGo drivers repository located at [https://github.com/tinygo-org/drivers/tree/release/examples](https://github.com/tinygo-org/drivers)
 
 Bluetooth support is in development but not yet completed.

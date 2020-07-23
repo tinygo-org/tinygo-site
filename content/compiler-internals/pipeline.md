@@ -28,7 +28,7 @@ This is roughly the pipeline for TinyGo:
   * Go does a lot of initialization at runtime, which is really bad for
     code size. This includes all global variables: they are all initialized at
     runtime, not at compile time like C. So TinyGo
-    [interprets these functions at compile time](https://github.com/tinygo-org/tinygo/tree/master/interp)
+    [interprets these functions at compile time](https://github.com/tinygo-org/tinygo/tree/release/interp)
     as far as it is able to.
   * The resulting IR is then first optimized by a mixture of handpicked LLVM
     optimization passes, TinyGo-specific

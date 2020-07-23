@@ -8,7 +8,7 @@ theme = "learn"
 themeVariant = "blue"
 # Disable search function. It will hide search bar
 disableSearch = true
-editURL = "https://github.com/tinygo-org/tinygo-site/edit/master/content/"
+editURL = "https://github.com/tinygo-org/tinygo-site/edit/release/content/"
 disableInlineCopyToClipBoard = true
 
 [[menu.shortcuts]] 
