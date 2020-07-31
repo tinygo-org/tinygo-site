@@ -1,98 +1,10 @@
 
 ---
-title: pca10040
+title: nintendoswitch
 ---
 
 
 ## Constants
-
-```go
-const HasLowFrequencyCrystal = true
-```
-
-The PCA10040 has a low-frequency (32kHz) crystal oscillator on board.
-
-
-```go
-const (
-	LED	Pin	= LED1
-	LED1	Pin	= 17
-	LED2	Pin	= 18
-	LED3	Pin	= 19
-	LED4	Pin	= 20
-)
-```
-
-LEDs on the PCA10040 (nRF52832 dev board)
-
-
-```go
-const (
-	BUTTON	Pin	= BUTTON1
-	BUTTON1	Pin	= 13
-	BUTTON2	Pin	= 14
-	BUTTON3	Pin	= 15
-	BUTTON4	Pin	= 16
-)
-```
-
-Buttons on the PCA10040 (nRF52832 dev board)
-
-
-```go
-const (
-	UART_TX_PIN	Pin	= 6
-	UART_RX_PIN	Pin	= 8
-)
-```
-
-UART pins for NRF52840-DK
-
-
-```go
-const (
-	ADC0	Pin	= 3
-	ADC1	Pin	= 4
-	ADC2	Pin	= 28
-	ADC3	Pin	= 29
-	ADC4	Pin	= 30
-	ADC5	Pin	= 31
-)
-```
-
-ADC pins
-
-
-```go
-const (
-	SDA_PIN	Pin	= 26
-	SCL_PIN	Pin	= 27
-)
-```
-
-I2C pins
-
-
-```go
-const (
-	SPI0_SCK_PIN	Pin	= 25
-	SPI0_SDO_PIN	Pin	= 23
-	SPI0_SDI_PIN	Pin	= 24
-)
-```
-
-SPI pins
-
-
-```go
-const (
-	TWI_FREQ_100KHZ	= 100000
-	TWI_FREQ_400KHZ	= 400000
-)
-```
-
-TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-speed bus.
-
 
 ```go
 const NoPin = Pin(0xff)
@@ -104,10 +16,10 @@ of the pins in a peripheral unconfigured (if supported by the hardware).
 
 ```go
 const (
-	PinInput		PinMode	= (nrf.GPIO_PIN_CNF_DIR_Input << nrf.GPIO_PIN_CNF_DIR_Pos) | (nrf.GPIO_PIN_CNF_INPUT_Connect << nrf.GPIO_PIN_CNF_INPUT_Pos)
-	PinInputPullup		PinMode	= PinInput | (nrf.GPIO_PIN_CNF_PULL_Pullup << nrf.GPIO_PIN_CNF_PULL_Pos)
-	PinInputPulldown	PinMode	= PinInput | (nrf.GPIO_PIN_CNF_PULL_Pulldown << nrf.GPIO_PIN_CNF_PULL_Pos)
-	PinOutput		PinMode	= (nrf.GPIO_PIN_CNF_DIR_Output << nrf.GPIO_PIN_CNF_DIR_Pos) | (nrf.GPIO_PIN_CNF_INPUT_Disconnect << nrf.GPIO_PIN_CNF_INPUT_Pos)
+	PinInput	PinMode	= iota
+	PinOutput
+	PinInputPullup
+	PinInputPulldown
 )
 ```
 
@@ -115,13 +27,14 @@ const (
 
 ```go
 const (
-	PinRising	PinChange	= nrf.GPIOTE_CONFIG_POLARITY_LoToHi
-	PinFalling	PinChange	= nrf.GPIOTE_CONFIG_POLARITY_HiToLo
-	PinToggle	PinChange	= nrf.GPIOTE_CONFIG_POLARITY_Toggle
+	Mode0	= 0
+	Mode1	= 1
+	Mode2	= 2
+	Mode3	= 3
 )
 ```
 
-Pin change interrupt constants for SetInterrupt.
+SPI phase and polarity configs CPOL and CPHA
 
 
 
@@ -143,58 +56,22 @@ var (
 
 ```go
 var (
+	SPI0	= SPI{0}
+	I2C0	= I2C{0}
+	UART0	= UART{0}
+)
+```
+
+
+
+```go
+var (
 	ErrTxInvalidSliceSize = errors.New("SPI write and read slices must be same size")
 )
 ```
 
 
 
-```go
-var (
-	// NRF_UART0 is the hardware UART on the NRF SoC.
-	NRF_UART0 = UART{Buffer: NewRingBuffer()}
-)
-```
-
-UART
-
-
-```go
-var (
-	I2C0	= I2C{Bus: nrf.TWI0}
-	I2C1	= I2C{Bus: nrf.TWI1}
-)
-```
-
-There are 2 I2C interfaces on the NRF.
-
-
-```go
-var (
-	SPI0	= SPI{Bus: nrf.SPI0}
-	SPI1	= SPI{Bus: nrf.SPI1}
-)
-```
-
-There are 2 SPI interfaces on the NRF5x.
-
-
-```go
-var (
-	UART0 = NRF_UART0
-)
-```
-
-
-
-
-
-
-### func CPUFrequency
-
-```go
-func CPUFrequency() uint32
-```
 
 
 
@@ -204,7 +81,7 @@ func CPUFrequency() uint32
 func InitADC()
 ```
 
-InitADC initializes the registers needed for ADC.
+InitADC enables support for ADC peripherals.
 
 
 ### func InitPWM
@@ -213,7 +90,7 @@ InitADC initializes the registers needed for ADC.
 func InitPWM()
 ```
 
-InitPWM initializes the registers needed for PWM.
+InitPWM enables support for PWM peripherals.
 
 
 ### func NewRingBuffer
@@ -241,19 +118,19 @@ type ADC struct {
 ### func (ADC) Configure
 
 ```go
-func (a ADC) Configure()
+func (adc ADC) Configure()
 ```
 
-Configure configures an ADC pin to be able to read analog data.
+Configure configures an ADC pin to be able to be used to read data.
 
 
 ### func (ADC) Get
 
 ```go
-func (a ADC) Get() uint16
+func (adc ADC) Get() uint16
 ```
 
-Get returns the current value of a ADC pin in the range 0..0xffff.
+Get reads the current analog value from this ADC peripheral.
 
 
 
@@ -262,11 +139,11 @@ Get returns the current value of a ADC pin in the range 0..0xffff.
 
 ```go
 type I2C struct {
-	Bus *nrf.TWI_Type
+	Bus uint8
 }
 ```
 
-I2C on the NRF.
+I2C is a generic implementation of the Inter-IC communication protocol.
 
 
 
@@ -279,20 +156,6 @@ func (i2c I2C) Configure(config I2CConfig)
 Configure is intended to setup the I2C interface.
 
 
-### func (I2C) ReadRegister
-
-```go
-func (i2c I2C) ReadRegister(address uint8, register uint8, data []byte) error
-```
-
-ReadRegister transmits the register, restarts the connection as a read
-operation, and reads the response.
-
-Many I2C-compatible devices are organized in terms of registers. This method
-is a shortcut to easily read such registers. Also, it only works for devices
-with 7-bit addresses, which is the vast majority.
-
-
 ### func (I2C) Tx
 
 ```go
@@ -300,22 +163,6 @@ func (i2c I2C) Tx(addr uint16, w, r []byte) error
 ```
 
 Tx does a single I2C transaction at the specified address.
-It clocks out the given address, writes the bytes in w, reads back len(r)
-bytes and stores them in r, and generates a stop condition on the bus.
-
-
-### func (I2C) WriteRegister
-
-```go
-func (i2c I2C) WriteRegister(address uint8, register uint8, data []byte) error
-```
-
-WriteRegister transmits first the register and then the data to the
-peripheral device.
-
-Many I2C-compatible devices are organized in terms of registers. This method
-is a shortcut to easily write to such registers. Also, it only works for
-devices with 7-bit addresses, which is the vast majority.
 
 
 
@@ -385,7 +232,6 @@ other peripherals like ADC, I2C, etc.
 func (p Pin) Configure(config PinConfig)
 ```
 
-Configure this pin with the given configuration.
 
 
 ### func (Pin) Get
@@ -394,7 +240,6 @@ Configure this pin with the given configuration.
 func (p Pin) Get() bool
 ```
 
-Get returns the current value of a GPIO pin.
 
 
 ### func (Pin) High
@@ -419,58 +264,11 @@ pin. It is hardware dependent (and often undefined) what happens if you set a
 pin to low that is not configured as an output pin.
 
 
-### func (Pin) PortMaskClear
-
-```go
-func (p Pin) PortMaskClear() (*uint32, uint32)
-```
-
-Return the register and mask to disable a given port. This can be used to
-implement bit-banged drivers.
-
-
-### func (Pin) PortMaskSet
-
-```go
-func (p Pin) PortMaskSet() (*uint32, uint32)
-```
-
-Return the register and mask to enable a given GPIO pin. This can be used to
-implement bit-banged drivers.
-
-
 ### func (Pin) Set
 
 ```go
-func (p Pin) Set(high bool)
+func (p Pin) Set(value bool)
 ```
-
-Set the pin to high or low.
-Warning: only use this on an output pin!
-
-
-### func (Pin) SetInterrupt
-
-```go
-func (p Pin) SetInterrupt(change PinChange, callback func(Pin)) error
-```
-
-SetInterrupt sets an interrupt to be executed when a particular pin changes
-state.
-
-This call will replace a previously set callback on this pin. You can pass a
-nil func to unset the pin change interrupt. If you do so, the change
-parameter is ignored and can be set to any value (such as 0).
-
-
-
-
-## type PinChange
-
-```go
-type PinChange uint8
-```
-
 
 
 
@@ -559,11 +357,10 @@ Used returns how many bytes in buffer have been used.
 
 ```go
 type SPI struct {
-	Bus *nrf.SPI_Type
+	Bus uint8
 }
 ```
 
-SPI on the NRF.
 
 
 
@@ -573,7 +370,6 @@ SPI on the NRF.
 func (spi SPI) Configure(config SPIConfig)
 ```
 
-Configure is intended to setup the SPI interface.
 
 
 ### func (SPI) Transfer
@@ -620,12 +416,10 @@ type SPIConfig struct {
 	SCK		Pin
 	SDO		Pin
 	SDI		Pin
-	LSBFirst	bool
 	Mode		uint8
 }
 ```
 
-SPIConfig is used to store config info for SPI.
 
 
 
@@ -635,11 +429,10 @@ SPIConfig is used to store config info for SPI.
 
 ```go
 type UART struct {
-	Buffer *RingBuffer
+	Bus uint8
 }
 ```
 
-UART on the NRF.
 
 
 
@@ -667,7 +460,7 @@ Configure the UART.
 func (uart UART) Read(data []byte) (n int, err error)
 ```
 
-Read from the RX buffer.
+Read from the UART.
 
 
 ### func (UART) ReadByte
@@ -676,27 +469,7 @@ Read from the RX buffer.
 func (uart UART) ReadByte() (byte, error)
 ```
 
-ReadByte reads a single byte from the RX buffer.
-If there is no data in the buffer, returns an error.
-
-
-### func (UART) Receive
-
-```go
-func (uart UART) Receive(data byte)
-```
-
-Receive handles adding data to the UART's data buffer.
-Usually called by the IRQ handler for a machine.
-
-
-### func (UART) SetBaudRate
-
-```go
-func (uart UART) SetBaudRate(br uint32)
-```
-
-SetBaudRate sets the communication speed for the UART.
+ReadByte reads a single byte from the UART.
 
 
 ### func (UART) Write
@@ -705,16 +478,16 @@ SetBaudRate sets the communication speed for the UART.
 func (uart UART) Write(data []byte) (n int, err error)
 ```
 
-Write data to the UART.
+Write to the UART.
 
 
 ### func (UART) WriteByte
 
 ```go
-func (uart UART) WriteByte(c byte) error
+func (uart UART) WriteByte(b byte) error
 ```
 
-WriteByte writes a byte of data to the UART.
+WriteByte writes a single byte to the UART.
 
 
 

@@ -95,7 +95,7 @@ const (
 
 	// 240x240 ST7789 display is connected to these pins (use RowOffset = 80)
 	TFT_SCK		= D29
-	TFT_MOSI	= D30
+	TFT_SDO		= D30
 	TFT_CS		= D31
 	TFT_DC		= D32
 	TFT_RESET	= D33
@@ -140,8 +140,8 @@ I2C pins
 ```go
 const (
 	SPI0_SCK_PIN	= D13	// SCK
-	SPI0_MOSI_PIN	= D15	// MOSI
-	SPI0_MISO_PIN	= D14	// MISO
+	SPI0_SDO_PIN	= D15	// SDO
+	SPI0_SDI_PIN	= D14	// SDI
 )
 ```
 
@@ -159,7 +159,7 @@ TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-spee
 
 
 ```go
-const NoPin = Pin(-1)
+const NoPin = Pin(0xff)
 ```
 
 NoPin explicitly indicates "not a pin". Use this pin if you want to leave one
@@ -961,7 +961,7 @@ Set turns on the duty cycle for a PWM pin using the provided value.
 ## type Pin
 
 ```go
-type Pin int8
+type Pin uint8
 ```
 
 Pin is a single pin on a chip, which may be connected to other hardware
@@ -1106,6 +1106,15 @@ https://www.embeddedrelated.com/showthread/comp.arch.embedded/77084-1.php
 
 
 
+### func (*RingBuffer) Clear
+
+```go
+func (rb *RingBuffer) Clear()
+```
+
+Clear resets the head and tail pointer to zero.
+
+
 ### func (*RingBuffer) Get
 
 ```go
@@ -1200,8 +1209,8 @@ This form sends zeros, putting the result into the rx buffer. Good for reading a
 type SPIConfig struct {
 	Frequency	uint32
 	SCK		Pin
-	MOSI		Pin
-	MISO		Pin
+	SDO		Pin
+	SDI		Pin
 	LSBFirst	bool
 	Mode		uint8
 }

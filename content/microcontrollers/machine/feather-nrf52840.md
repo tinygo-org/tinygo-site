@@ -1,37 +1,53 @@
 
 ---
-title: arduino-nano33
+title: feather-nrf52840
 ---
 
 
 ## Constants
 
 ```go
-const RESET_MAGIC_VALUE = 0x07738135
+const HasLowFrequencyCrystal = true
 ```
 
-used to reset into bootloader
 
 
 ```go
 const (
-	RX0	Pin	= PB23	// UART2 RX
-	TX1	Pin	= PB22	// UART2 TX
-
-	D2	Pin	= PB10	// PWM available
-	D3	Pin	= PB11	// PWM available
-	D4	Pin	= PA07
-	D5	Pin	= PA05	// PWM available
-	D6	Pin	= PA04	// PWM available
-	D7	Pin	= PA06
-
-	D8	Pin	= PA18
-	D9	Pin	= PA20	// PWM available
-	D10	Pin	= PA21	// PWM available
-	D11	Pin	= PA16	// PWM available
-	D12	Pin	= PA19	// PWM available
-
-	D13	Pin	= PA17
+	D0	= P0_25	// UART TX
+	D1	= P0_24	// UART RX
+	D2	= P0_10	// NFC2
+	D3	= P1_15	// LED1
+	D4	= P1_10	// LED2
+	D5	= P1_08
+	D6	= P0_07
+	D7	= P1_02	// Button
+	D8	= P0_16	// NeoPixel
+	D9	= P0_26
+	D10	= P0_27
+	D11	= P0_06
+	D12	= P0_08
+	D13	= P1_09
+	D14	= P0_04	// A0
+	D15	= P0_05	// A1
+	D16	= P0_30	// A2
+	D17	= P0_28	// A3
+	D18	= P0_02	// A4
+	D19	= P0_03	// A5
+	D20	= P0_29	// Battery
+	D21	= P0_31	// AREF
+	D22	= P0_12	// I2C SDA
+	D23	= P0_11	// I2C SCL
+	D24	= P0_15	// SPI MISO
+	D25	= P0_13	// SPI MOSI
+	D26	= P0_14	// SPI SCK
+	D27	= P0_19	// QSPI CLK
+	D28	= P0_20	// QSPI CS
+	D29	= P0_17	// QSPI Data 0
+	D30	= P0_22	// QSPI Data 1
+	D31	= P0_23	// QSPI Data 2
+	D32	= P0_21	// QSPI Data 3
+	D33	= P0_09	// NFC1 (test point on bottom of board)
 )
 ```
 
@@ -40,23 +56,34 @@ GPIO Pins
 
 ```go
 const (
-	A0	Pin	= PA02	// ADC/AIN[0]
-	A1	Pin	= PB02	// ADC/AIN[10]
-	A2	Pin	= PA11	// ADC/AIN[19]
-	A3	Pin	= PA10	// ADC/AIN[18],
-	A4	Pin	= PB08	// ADC/AIN[2], SCL:  SERCOM2/PAD[1]
-	A5	Pin	= PB09	// ADC/AIN[3], SDA:  SERCOM2/PAD[1]
-	A6	Pin	= PA09	// ADC/AIN[17]
-	A7	Pin	= PB03	// ADC/AIN[11]
+	A0	= D14
+	A1	= D15
+	A2	= D16
+	A3	= D17
+	A4	= D18
+	A5	= D19
+	A6	= D20	// Battery
+	A7	= D21	// ARef
 )
 ```
 
-Analog pins
+Analog Pins
 
 
 ```go
 const (
-	LED = D13
+	LED		= D3
+	LED1		= LED
+	LED2		= D4
+	NEOPIXEL	= D8
+	BUTTON		= D7
+
+	QSPI_SCK	= D27
+	QSPI_CS		= D28
+	QSPI_DATA0	= D29
+	QSPI_DATA1	= D30
+	QSPI_DATA2	= D31
+	QSPI_DATA3	= D32
 )
 ```
 
@@ -64,28 +91,18 @@ const (
 
 ```go
 const (
-	USBCDC_DM_PIN	Pin	= PA24
-	USBCDC_DP_PIN	Pin	= PA25
+	UART_RX_PIN	= D0
+	UART_TX_PIN	= D1
 )
 ```
 
-UART0 aka USBCDC pins
+UART0 pins (logical UART1)
 
 
 ```go
 const (
-	UART_TX_PIN	Pin	= PA22
-	UART_RX_PIN	Pin	= PA23
-)
-```
-
-UART1 pins
-
-
-```go
-const (
-	SDA_PIN	Pin	= A4	// SDA: SERCOM4/PAD[1]
-	SCL_PIN	Pin	= A5	// SCL: SERCOM4/PAD[1]
+	SDA_PIN	= D22	// I2C0 external
+	SCL_PIN	= D23	// I2C0 external
 )
 ```
 
@@ -94,113 +111,13 @@ I2C pins
 
 ```go
 const (
-	SPI0_SCK_PIN	Pin	= D13	// SCK: SERCOM1/PAD[1]
-	SPI0_SDO_PIN	Pin	= D11	// SDO: SERCOM1/PAD[0]
-	SPI0_SDI_PIN	Pin	= D12	// SDI: SERCOM1/PAD[3]
+	SPI0_SCK_PIN	= D26	// SCK
+	SPI0_SDO_PIN	= D25	// SDO
+	SPI0_SDI_PIN	= D24	// SDI
 )
 ```
 
 SPI pins
-
-
-```go
-const (
-	NINA_SDO	Pin	= PA12
-	NINA_SDI	Pin	= PA13
-	NINA_CS		Pin	= PA14
-	NINA_SCK	Pin	= PA15
-	NINA_GPIO0	Pin	= PA27
-	NINA_RESETN	Pin	= PA08
-	NINA_ACK	Pin	= PA28
-	NINA_TX		Pin	= PA22
-	NINA_RX		Pin	= PA23
-)
-```
-
-NINA-W102 Pins
-
-
-```go
-const (
-	I2S_SCK_PIN	Pin	= PA10
-	I2S_SD_PIN	Pin	= PA08
-	I2S_WS_PIN		= NoPin	// TODO: figure out what this is on Arduino Nano 33.
-)
-```
-
-I2S pins
-
-
-```go
-const (
-	PA00	Pin	= 0
-	PA01	Pin	= 1
-	PA02	Pin	= 2
-	PA03	Pin	= 3
-	PA04	Pin	= 4
-	PA05	Pin	= 5
-	PA06	Pin	= 6
-	PA07	Pin	= 7
-	PA08	Pin	= 8
-	PA09	Pin	= 9
-	PA10	Pin	= 10
-	PA11	Pin	= 11
-	PA12	Pin	= 12
-	PA13	Pin	= 13
-	PA14	Pin	= 14
-	PA15	Pin	= 15
-	PA16	Pin	= 16
-	PA17	Pin	= 17
-	PA18	Pin	= 18
-	PA19	Pin	= 19
-	PA20	Pin	= 20
-	PA21	Pin	= 21
-	PA22	Pin	= 22
-	PA23	Pin	= 23
-	PA24	Pin	= 24
-	PA25	Pin	= 25
-	PA26	Pin	= 26
-	PA27	Pin	= 27
-	PA28	Pin	= 28
-	PA29	Pin	= 29
-	PA30	Pin	= 30
-	PA31	Pin	= 31
-	PB00	Pin	= 32
-	PB01	Pin	= 33
-	PB02	Pin	= 34
-	PB03	Pin	= 35
-	PB04	Pin	= 36
-	PB05	Pin	= 37
-	PB06	Pin	= 38
-	PB07	Pin	= 39
-	PB08	Pin	= 40
-	PB09	Pin	= 41
-	PB10	Pin	= 42
-	PB11	Pin	= 43
-	PB12	Pin	= 44
-	PB13	Pin	= 45
-	PB14	Pin	= 46
-	PB15	Pin	= 47
-	PB16	Pin	= 48
-	PB17	Pin	= 49
-	PB18	Pin	= 50
-	PB19	Pin	= 51
-	PB20	Pin	= 52
-	PB21	Pin	= 53
-	PB22	Pin	= 54
-	PB23	Pin	= 55
-	PB24	Pin	= 56
-	PB25	Pin	= 57
-	PB26	Pin	= 58
-	PB27	Pin	= 59
-	PB28	Pin	= 60
-	PB29	Pin	= 61
-	PB30	Pin	= 62
-	PB31	Pin	= 63
-)
-```
-
-Hardware pins
 
 
 ```go
@@ -214,47 +131,6 @@ TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-spee
 
 
 ```go
-const (
-	I2SModeSource	I2SMode	= iota
-	I2SModeReceiver
-	I2SModePDM
-)
-```
-
-
-
-```go
-const (
-	I2StandardPhilips	I2SStandard	= iota
-	I2SStandardMSB
-	I2SStandardLSB
-)
-```
-
-
-
-```go
-const (
-	I2SClockSourceInternal	I2SClockSource	= iota
-	I2SClockSourceExternal
-)
-```
-
-
-
-```go
-const (
-	I2SDataFormatDefault	I2SDataFormat	= 0
-	I2SDataFormat8bit			= 8
-	I2SDataFormat16bit			= 16
-	I2SDataFormat24bit			= 24
-	I2SDataFormat32bit			= 32
-)
-```
-
-
-
-```go
 const NoPin = Pin(0xff)
 ```
 
@@ -264,20 +140,10 @@ of the pins in a peripheral unconfigured (if supported by the hardware).
 
 ```go
 const (
-	PinAnalog	PinMode	= 1
-	PinSERCOM	PinMode	= 2
-	PinSERCOMAlt	PinMode	= 3
-	PinTimer	PinMode	= 4
-	PinTimerAlt	PinMode	= 5
-	PinCom		PinMode	= 6
-	//PinAC_CLK        PinMode = 7
-	PinDigital		PinMode	= 8
-	PinInput		PinMode	= 9
-	PinInputPullup		PinMode	= 10
-	PinOutput		PinMode	= 11
-	PinPWM			PinMode	= PinTimer
-	PinPWMAlt		PinMode	= PinTimerAlt
-	PinInputPulldown	PinMode	= 12
+	PinInput		PinMode	= (nrf.GPIO_PIN_CNF_DIR_Input << nrf.GPIO_PIN_CNF_DIR_Pos) | (nrf.GPIO_PIN_CNF_INPUT_Connect << nrf.GPIO_PIN_CNF_INPUT_Pos)
+	PinInputPullup		PinMode	= PinInput | (nrf.GPIO_PIN_CNF_PULL_Pullup << nrf.GPIO_PIN_CNF_PULL_Pos)
+	PinInputPulldown	PinMode	= PinInput | (nrf.GPIO_PIN_CNF_PULL_Pulldown << nrf.GPIO_PIN_CNF_PULL_Pos)
+	PinOutput		PinMode	= (nrf.GPIO_PIN_CNF_DIR_Output << nrf.GPIO_PIN_CNF_DIR_Pos) | (nrf.GPIO_PIN_CNF_INPUT_Disconnect << nrf.GPIO_PIN_CNF_INPUT_Pos)
 )
 ```
 
@@ -285,9 +151,9 @@ const (
 
 ```go
 const (
-	PinRising	PinChange	= sam.EIC_CONFIG_SENSE0_RISE
-	PinFalling	PinChange	= sam.EIC_CONFIG_SENSE0_FALL
-	PinToggle	PinChange	= sam.EIC_CONFIG_SENSE0_BOTH
+	PinRising	PinChange	= nrf.GPIOTE_CONFIG_POLARITY_LoToHi
+	PinFalling	PinChange	= nrf.GPIOTE_CONFIG_POLARITY_HiToLo
+	PinToggle	PinChange	= nrf.GPIOTE_CONFIG_POLARITY_Toggle
 )
 ```
 
@@ -296,14 +162,68 @@ Pin change interrupt constants for SetInterrupt.
 
 ```go
 const (
-	Mode0	= 0
-	Mode1	= 1
-	Mode2	= 2
-	Mode3	= 3
+	P0_00	Pin	= 0
+	P0_01	Pin	= 1
+	P0_02	Pin	= 2
+	P0_03	Pin	= 3
+	P0_04	Pin	= 4
+	P0_05	Pin	= 5
+	P0_06	Pin	= 6
+	P0_07	Pin	= 7
+	P0_08	Pin	= 8
+	P0_09	Pin	= 9
+	P0_10	Pin	= 10
+	P0_11	Pin	= 11
+	P0_12	Pin	= 12
+	P0_13	Pin	= 13
+	P0_14	Pin	= 14
+	P0_15	Pin	= 15
+	P0_16	Pin	= 16
+	P0_17	Pin	= 17
+	P0_18	Pin	= 18
+	P0_19	Pin	= 19
+	P0_20	Pin	= 20
+	P0_21	Pin	= 21
+	P0_22	Pin	= 22
+	P0_23	Pin	= 23
+	P0_24	Pin	= 24
+	P0_25	Pin	= 25
+	P0_26	Pin	= 26
+	P0_27	Pin	= 27
+	P0_28	Pin	= 28
+	P0_29	Pin	= 29
+	P0_30	Pin	= 30
+	P0_31	Pin	= 31
+	P1_00	Pin	= 32
+	P1_01	Pin	= 33
+	P1_02	Pin	= 34
+	P1_03	Pin	= 35
+	P1_04	Pin	= 36
+	P1_05	Pin	= 37
+	P1_06	Pin	= 38
+	P1_07	Pin	= 39
+	P1_08	Pin	= 40
+	P1_09	Pin	= 41
+	P1_10	Pin	= 42
+	P1_11	Pin	= 43
+	P1_12	Pin	= 44
+	P1_13	Pin	= 45
+	P1_14	Pin	= 46
+	P1_15	Pin	= 47
 )
 ```
 
-SPI phase and polarity configs CPOL and CPHA
+Hardware pins
+
+
+```go
+const (
+	DFU_MAGIC_SERIAL_ONLY_RESET	= 0x4e
+	DFU_MAGIC_UF2_RESET		= 0x57
+	DFU_MAGIC_OTA_RESET		= 0xA8
+)
+```
+
 
 
 
@@ -313,74 +233,11 @@ SPI phase and polarity configs CPOL and CPHA
 
 ```go
 var (
-	UART1 = UART{
-		Buffer:	NewRingBuffer(),
-		Bus:	sam.SERCOM3_USART,
-		SERCOM:	3,
-	}
+	UART0 = USB
 )
 ```
 
-UART1 on the Arduino Nano 33 connects to the onboard NINA-W102 WiFi chip.
-
-
-```go
-var (
-	UART2 = UART{
-		Buffer:	NewRingBuffer(),
-		Bus:	sam.SERCOM5_USART,
-		SERCOM:	5,
-	}
-)
-```
-
-UART2 on the Arduino Nano 33 connects to the normal TX/RX pins.
-
-
-```go
-var (
-	I2C0 = I2C{
-		Bus:	sam.SERCOM4_I2CM,
-		SERCOM:	4,
-	}
-)
-```
-
-I2C on the Arduino Nano 33.
-
-
-```go
-var (
-	SPI0 = SPI{
-		Bus:	sam.SERCOM1_SPI,
-		SERCOM:	1,
-	}
-)
-```
-
-SPI on the Arduino Nano 33.
-
-
-```go
-var (
-	SPI1	= SPI{
-		Bus:	sam.SERCOM2_SPI,
-		SERCOM:	2,
-	}
-	NINA_SPI	= SPI1
-)
-```
-
-SPI1 is connected to the NINA-W102 chip on the Arduino Nano 33.
-
-
-```go
-var (
-	I2S0 = I2S{Bus: sam.I2S}
-)
-```
-
-I2S on the Arduino Nano 33.
+UART0 is the USB device
 
 
 ```go
@@ -397,24 +254,69 @@ var (
 
 ```go
 var (
-	// UART0 is actually a USB CDC interface.
-	UART0 = USBCDC{Buffer: NewRingBuffer()}
-)
-```
-
-
-
-```go
-var (
-	DAC0 = DAC{}
-)
-```
-
-
-
-```go
-var (
 	ErrTxInvalidSliceSize = errors.New("SPI write and read slices must be same size")
+)
+```
+
+
+
+```go
+var (
+	// NRF_UART0 is the hardware UART on the NRF SoC.
+	NRF_UART0 = UART{Buffer: NewRingBuffer()}
+)
+```
+
+UART
+
+
+```go
+var (
+	I2C0	= I2C{Bus: nrf.TWI0}
+	I2C1	= I2C{Bus: nrf.TWI1}
+)
+```
+
+There are 2 I2C interfaces on the NRF.
+
+
+```go
+var (
+	SPI0	= SPI{Bus: nrf.SPI0}
+	SPI1	= SPI{Bus: nrf.SPI1}
+)
+```
+
+There are 2 SPI interfaces on the NRF5x.
+
+
+```go
+var (
+	USB	= USBCDC{Buffer: NewRingBuffer()}
+
+	usbEndpointDescriptors	[8]usbDeviceDescriptor
+
+	udd_ep_in_cache_buffer	[7][128]uint8
+	udd_ep_out_cache_buffer	[7][128]uint8
+
+	sendOnEP0DATADONE	struct {
+		ptr	*byte
+		count	int
+	}
+	isEndpointHalt		= false
+	isRemoteWakeUpEnabled	= false
+	endPoints		= []uint32{usb_ENDPOINT_TYPE_CONTROL,
+		(usb_ENDPOINT_TYPE_INTERRUPT | usbEndpointIn),
+		(usb_ENDPOINT_TYPE_BULK | usbEndpointOut),
+		(usb_ENDPOINT_TYPE_BULK | usbEndpointIn)}
+
+	usbConfiguration		uint8
+	usbSetInterface			uint8
+	usbLineInfo			= cdcLineInfo{115200, 0x00, 0x00, 0x08, 0x00}
+	epinen				uint32
+	epouten				uint32
+	easyDMABusy			volatile.Register8
+	epout0data_setlinecoding	bool
 )
 ```
 
@@ -429,7 +331,36 @@ var (
 func CPUFrequency() uint32
 ```
 
-Return the current CPU frequency in hertz.
+
+
+### func EnterOTABootloader
+
+```go
+func EnterOTABootloader()
+```
+
+EnterOTABootloader resets the chip into the bootloader so that it can be
+flashed via an OTA update
+
+
+### func EnterSerialBootloader
+
+```go
+func EnterSerialBootloader()
+```
+
+EnterSerialBootloader resets the chip into the serial bootloader. After
+reset, it can be flashed using serial/nrfutil.
+
+
+### func EnterUF2Bootloader
+
+```go
+func EnterUF2Bootloader()
+```
+
+EnterUF2Bootloader resets the chip into the UF2 bootloader. After reset, it
+can be flashed via nrfutil or by copying a UF2 file to the mass storage device
 
 
 ### func InitADC
@@ -438,7 +369,7 @@ Return the current CPU frequency in hertz.
 func InitADC()
 ```
 
-InitADC initializes the ADC.
+InitADC initializes the registers needed for ADC.
 
 
 ### func InitPWM
@@ -447,7 +378,7 @@ InitADC initializes the ADC.
 func InitPWM()
 ```
 
-InitPWM initializes the PWM interface.
+InitPWM initializes the registers needed for PWM.
 
 
 ### func NewACMFunctionalDescriptor
@@ -547,16 +478,6 @@ func NewRingBuffer() *RingBuffer
 NewRingBuffer returns a new ring buffer.
 
 
-### func ResetProcessor
-
-```go
-func ResetProcessor()
-```
-
-ResetProcessor should perform a system reset in preperation
-to switch to the bootloader to flash new firmware.
-
-
 
 
 ## type ACMFunctionalDescriptor
@@ -599,10 +520,10 @@ type ADC struct {
 ### func (ADC) Configure
 
 ```go
-func (a ADC) Configure()
+func (a ADC) Configure() error
 ```
 
-Configure configures a ADCPin to be able to be used to read data.
+Configure configures an ADC pin to be able to read analog data.
 
 
 ### func (ADC) Get
@@ -611,7 +532,7 @@ Configure configures a ADCPin to be able to be used to read data.
 func (a ADC) Get() uint16
 ```
 
-Get returns the current value of a ADC pin, in the range 0..0xffff.
+Get returns the current value of a ADC pin in the range 0..0xffff.
 
 
 
@@ -743,52 +664,6 @@ Bytes returns ConfigDescriptor data.
 
 
 
-## type DAC
-
-```go
-type DAC struct {
-}
-```
-
-DAC on the SAMD21.
-
-
-
-### func (DAC) Configure
-
-```go
-func (dac DAC) Configure(config DACConfig)
-```
-
-Configure the DAC.
-output pin must already be configured.
-
-
-### func (DAC) Set
-
-```go
-func (dac DAC) Set(value uint16) error
-```
-
-Set writes a single 16-bit value to the DAC.
-Since the ATSAMD21 only has a 10-bit DAC, the passed-in value will be scaled down.
-
-
-
-
-## type DACConfig
-
-```go
-type DACConfig struct {
-}
-```
-
-DACConfig placeholder for future expansion.
-
-
-
-
-
 ## type DeviceDescriptor
 
 ```go
@@ -864,19 +739,18 @@ Bytes returns EndpointDescriptor data.
 
 ```go
 type I2C struct {
-	Bus	*sam.SERCOM_I2CM_Type
-	SERCOM	uint8
+	Bus *nrf.TWI_Type
 }
 ```
 
-I2C on the SAMD21.
+I2C on the NRF.
 
 
 
 ### func (I2C) Configure
 
 ```go
-func (i2c I2C) Configure(config I2CConfig) error
+func (i2c I2C) Configure(config I2CConfig)
 ```
 
 Configure is intended to setup the I2C interface.
@@ -896,15 +770,6 @@ is a shortcut to easily read such registers. Also, it only works for devices
 with 7-bit addresses, which is the vast majority.
 
 
-### func (I2C) SetBaudRate
-
-```go
-func (i2c I2C) SetBaudRate(br uint32)
-```
-
-SetBaudRate sets the communication speed for the I2C.
-
-
 ### func (I2C) Tx
 
 ```go
@@ -914,15 +779,6 @@ func (i2c I2C) Tx(addr uint16, w, r []byte) error
 Tx does a single I2C transaction at the specified address.
 It clocks out the given address, writes the bytes in w, reads back len(r)
 bytes and stores them in r, and generates a stop condition on the bus.
-
-
-### func (I2C) WriteByte
-
-```go
-func (i2c I2C) WriteByte(data byte) error
-```
-
-WriteByte writes a single byte to the I2C bus.
 
 
 ### func (I2C) WriteRegister
@@ -952,126 +808,6 @@ type I2CConfig struct {
 ```
 
 I2CConfig is used to store config info for I2C.
-
-
-
-
-
-## type I2S
-
-```go
-type I2S struct {
-	Bus *sam.I2S_Type
-}
-```
-
-I2S
-
-
-
-### func (I2S) Close
-
-```go
-func (i2s I2S) Close() error
-```
-
-Close the I2S bus.
-
-
-### func (I2S) Configure
-
-```go
-func (i2s I2S) Configure(config I2SConfig)
-```
-
-Configure is used to configure the I2S interface. You must call this
-before you can use the I2S bus.
-
-
-### func (I2S) Read
-
-```go
-func (i2s I2S) Read(p []uint32) (n int, err error)
-```
-
-Read data from the I2S bus into the provided slice.
-The I2S bus must already have been configured correctly.
-
-
-### func (I2S) Write
-
-```go
-func (i2s I2S) Write(p []uint32) (n int, err error)
-```
-
-Write data to the I2S bus from the provided slice.
-The I2S bus must already have been configured correctly.
-
-
-
-
-## type I2SClockSource
-
-```go
-type I2SClockSource uint8
-```
-
-
-
-
-
-
-## type I2SConfig
-
-```go
-type I2SConfig struct {
-	SCK		Pin
-	WS		Pin
-	SD		Pin
-	Mode		I2SMode
-	Standard	I2SStandard
-	ClockSource	I2SClockSource
-	DataFormat	I2SDataFormat
-	AudioFrequency	uint32
-	MainClockOutput	bool
-	Stereo		bool
-}
-```
-
-All fields are optional and may not be required or used on a particular platform.
-
-
-
-
-
-## type I2SDataFormat
-
-```go
-type I2SDataFormat uint8
-```
-
-
-
-
-
-
-## type I2SMode
-
-```go
-type I2SMode uint8
-```
-
-
-
-
-
-
-## type I2SStandard
-
-```go
-type I2SStandard uint8
-```
-
 
 
 
@@ -1177,7 +913,7 @@ type PWM struct {
 ### func (PWM) Configure
 
 ```go
-func (pwm PWM) Configure() error
+func (pwm PWM) Configure()
 ```
 
 Configure configures a PWM pin for output.
@@ -1386,19 +1122,18 @@ Used returns how many bytes in buffer have been used.
 
 ```go
 type SPI struct {
-	Bus	*sam.SERCOM_SPI_Type
-	SERCOM	uint8
+	Bus *nrf.SPI_Type
 }
 ```
 
-SPI
+SPI on the NRF.
 
 
 
 ### func (SPI) Configure
 
 ```go
-func (spi SPI) Configure(config SPIConfig) error
+func (spi SPI) Configure(config SPIConfig)
 ```
 
 Configure is intended to setup the SPI interface.
@@ -1463,14 +1198,11 @@ SPIConfig is used to store config info for SPI.
 
 ```go
 type UART struct {
-	Buffer		*RingBuffer
-	Bus		*sam.SERCOM_USART_Type
-	SERCOM		uint8
-	Interrupt	interrupt.Interrupt
+	Buffer *RingBuffer
 }
 ```
 
-UART on the SAMD21.
+UART on the NRF.
 
 
 
@@ -1486,7 +1218,7 @@ Buffered returns the number of bytes currently stored in the RX buffer.
 ### func (UART) Configure
 
 ```go
-func (uart UART) Configure(config UARTConfig) error
+func (uart UART) Configure(config UARTConfig)
 ```
 
 Configure the UART.
@@ -1569,11 +1301,12 @@ type UARTConfig struct {
 
 ```go
 type USBCDC struct {
-	Buffer *RingBuffer
+	Buffer		*RingBuffer
+	interrupt	interrupt.Interrupt
 }
 ```
 
-USBCDC is the USB CDC aka serial over USB interface on the SAMD21.
+USBCDC is the USB CDC aka serial over USB interface on the nRF52840
 
 
 
@@ -1586,10 +1319,10 @@ func (usbcdc USBCDC) Buffered() int
 Buffered returns the number of bytes currently stored in the RX buffer.
 
 
-### func (USBCDC) Configure
+### func (*USBCDC) Configure
 
 ```go
-func (usbcdc USBCDC) Configure(config UARTConfig)
+func (usbcdc *USBCDC) Configure(config UARTConfig)
 ```
 
 Configure the USB CDC interface. The config is here for compatibility with the UART interface.

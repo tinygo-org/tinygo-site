@@ -43,8 +43,8 @@ const (
 	D8	Pin	= 35
 	D9	Pin	= 6	// Also TX
 	D10	Pin	= 8	// Also RX
-	D11	Pin	= 46	// Also MISO
-	D12	Pin	= 45	// Also MOSI
+	D11	Pin	= 46	// Also SDI
+	D12	Pin	= 45	// Also SDO
 	D13	Pin	= 47	// Also SCK
 )
 ```
@@ -74,8 +74,8 @@ I2C pins
 ```go
 const (
 	SPI0_SCK_PIN	Pin	= 47
-	SPI0_MOSI_PIN	Pin	= 45
-	SPI0_MISO_PIN	Pin	= 46
+	SPI0_SDO_PIN	Pin	= 45
+	SPI0_SDI_PIN	Pin	= 46
 )
 ```
 
@@ -85,8 +85,8 @@ SPI pins
 ```go
 const (
 	SPI1_SCK_PIN	Pin	= 19
-	SPI1_MOSI_PIN	Pin	= 20
-	SPI1_MISO_PIN	Pin	= 21
+	SPI1_SDO_PIN	Pin	= 20
+	SPI1_SDI_PIN	Pin	= 21
 	SPI1_CS_PIN	Pin	= 17
 	SPI1_WP_PIN	Pin	= 22
 	SPI1_HOLD_PIN	Pin	= 23
@@ -122,7 +122,7 @@ TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-spee
 
 
 ```go
-const NoPin = Pin(-1)
+const NoPin = Pin(0xff)
 ```
 
 NoPin explicitly indicates "not a pin". Use this pin if you want to leave one
@@ -885,7 +885,7 @@ Set turns on the duty cycle for a PWM pin using the provided value.
 ## type Pin
 
 ```go
-type Pin int8
+type Pin uint8
 ```
 
 Pin is a single pin on a chip, which may be connected to other hardware
@@ -1030,6 +1030,15 @@ https://www.embeddedrelated.com/showthread/comp.arch.embedded/77084-1.php
 
 
 
+### func (*RingBuffer) Clear
+
+```go
+func (rb *RingBuffer) Clear()
+```
+
+Clear resets the head and tail pointer to zero.
+
+
 ### func (*RingBuffer) Get
 
 ```go
@@ -1124,8 +1133,8 @@ This form sends zeros, putting the result into the rx buffer. Good for reading a
 type SPIConfig struct {
 	Frequency	uint32
 	SCK		Pin
-	MOSI		Pin
-	MISO		Pin
+	SDO		Pin
+	SDI		Pin
 	LSBFirst	bool
 	Mode		uint8
 }
