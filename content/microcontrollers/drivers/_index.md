@@ -10,7 +10,7 @@ TinyGo has driver support for 44 different sensors and devices such as digital a
 
 All of the drivers code is in the TinyGo Drivers repository located at [https://github.com/tinygo-org/drivers/](https://github.com/tinygo-org/drivers/).
 
-The following 48 devices are supported.
+The following 51 devices are supported.
 
 | Device Name | Interface Type |
 |----------|-------------|
@@ -24,6 +24,7 @@ The following 48 devices are supported.
 | [BlinkM RGB LED](http://thingm.com/fileadmin/thingm/downloads/BlinkM_datasheet.pdf) | I2C |
 | [BME280 humidity/pressure sensor](https://cdn-shop.adafruit.com/datasheets/BST-BME280_DS001-10.pdf) | I2C |
 | [BMP180 barometer](https://cdn-shop.adafruit.com/datasheets/BST-BMP180-DS000-09.pdf) | I2C |
+| [BMP280 temperature/barometer](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp280-ds001.pdf) | I2C |
 | [Buzzer](https://en.wikipedia.org/wiki/Buzzer#Piezoelectric) | GPIO |
 | [DS1307 real time clock](https://datasheets.maximintegrated.com/en/ds/DS1307.pdf) | I2C |
 | [DS3231 real time clock](https://datasheets.maximintegrated.com/en/ds/DS3231.pdf) | I2C |
@@ -31,6 +32,7 @@ The following 48 devices are supported.
 | [ESP8266/ESP32 AT Command set for WiFi/TCP/UDP](https://github.com/espressif/esp32-at) | UART |
 | [GPS module](https://www.u-blox.com/en/product/neo-6-series) | I2C/UART |
 | [HC-SR04 Ultrasonic distance sensor](https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf) | GPIO |
+| [HD44780 LCD controller with I2C interface](https://www.sparkfun.com/datasheets/LCD/HD44780.pdf) | I2C |
 | [HD44780 LCD controller](https://www.sparkfun.com/datasheets/LCD/HD44780.pdf) | GPIO |
 | [HUB75 RGB led matrix](https://cdn-learn.adafruit.com/downloads/pdf/32x16-32x32-rgb-led-matrix.pdf) | SPI |
 | [ILI9341 TFT color display](https://cdn-shop.adafruit.com/datasheets/ILI9341.pdf) | SPI |
@@ -52,6 +54,7 @@ The following 48 devices are supported.
 | [SPI NOR Flash Memory](https://en.wikipedia.org/wiki/Flash_memory#NOR_flash) | SPI/QSPI |
 | [SSD1306 OLED display](https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf) | I2C / SPI |
 | [SSD1331 TFT color display](https://www.crystalfontz.com/controllers/SolomonSystech/SSD1331/381/) | SPI |
+| [SSD1351 OLED display](https://download.mikroe.com/documents/datasheets/ssd1351-revision-1.3.pdf) | SPI |
 | [ST7735 TFT color display](https://www.crystalfontz.com/controllers/Sitronix/ST7735R/319/) | SPI |
 | [ST7789 TFT color display](https://cdn-shop.adafruit.com/product-files/3787/3787_tft_QT154H2201__________20190228182902.pdf) | SPI |
 | [Stepper motor "Easystepper" controller](https://en.wikipedia.org/wiki/Stepper_motor) | GPIO |
