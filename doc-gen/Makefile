@@ -11,12 +11,14 @@ DEVICES = \
     digispark \
     feather-m0 \
     feather-m4 \
+    feather-nrf52840 \
     gameboy-advance \
     hifive1b \
     itsybitsy-m0 \
     itsybitsy-m4 \
     metro-m4-airlift \
     microbit \
+    nintendoswitch \
     nrf52840-mdk \
     nucleo-f103rb \
     particle-argon \
@@ -31,6 +33,7 @@ DEVICES = \
     pyportal \
     reelboard \
     stm32f4disco \
+    teensy36 \
     trinket-m0 \
     wioterminal \
     x9pro \

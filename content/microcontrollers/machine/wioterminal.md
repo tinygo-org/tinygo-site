@@ -77,8 +77,8 @@ const (
 	BCM6	= PB13	// GCLK
 	BCM7	= PA05	// DAC1
 	BCM8	= PB01	// SPI SS
-	BCM9	= PB00	// SPI MISO
-	BCM10	= PB02	// SPI MOSI
+	BCM9	= PB00	// SPI SDI
+	BCM10	= PB02	// SPI SDO
 	BCM11	= PB03	// SPI SCK
 	BCM12	= PB06
 	BCM13	= PA07
@@ -122,9 +122,6 @@ const (
 
 	PIN_DAC0	= PA02
 	PIN_DAC1	= PA05
-
-	DAC0	= PIN_DAC0
-	DAC1	= PIN_DAC1
 
 	// USB
 	PIN_USB_DM		= PA24
@@ -202,58 +199,58 @@ const (
 	WIO_LIS3DH_INT	= PC21
 
 	// SPI
-	PIN_SPI_MISO	= PB00
-	PIN_SPI_MOSI	= PB02
+	PIN_SPI_SDI	= PB00
+	PIN_SPI_SDO	= PB02
 	PIN_SPI_SCK	= PB03
 	PIN_SPI_SS	= PB01
 
 	SS	= PIN_SPI_SS
-	MOSI	= PIN_SPI_MOSI
-	MISO	= PIN_SPI_MISO
+	SDO	= PIN_SPI_SDO
+	SDI	= PIN_SPI_SDI
 	SCK	= PIN_SPI_SCK
 
 	// SPI1 RTL8720D_SPI
-	PIN_SPI1_MISO	= PC24
-	PIN_SPI1_MOSI	= PB24
+	PIN_SPI1_SDI	= PC24
+	PIN_SPI1_SDO	= PB24
 	PIN_SPI1_SCK	= PB25
 	PIN_SPI1_SS	= PC25
 
 	SS1	= PIN_SPI1_SS
-	MOSI1	= PIN_SPI1_MOSI
-	MISO1	= PIN_SPI1_MISO
+	SDO1	= PIN_SPI1_SDO
+	SDI1	= PIN_SPI1_SDI
 	SCK1	= PIN_SPI1_SCK
 
 	// SPI2 SD_SPI
-	PIN_SPI2_MISO	= PC18
-	PIN_SPI2_MOSI	= PC16
+	PIN_SPI2_SDI	= PC18
+	PIN_SPI2_SDO	= PC16
 	PIN_SPI2_SCK	= PC17
 	PIN_SPI2_SS	= PC19
 
 	SS2	= PIN_SPI2_SS
-	MOSI2	= PIN_SPI2_MOSI
-	MISO2	= PIN_SPI2_MISO
+	SDO2	= PIN_SPI2_SDO
+	SDI2	= PIN_SPI2_SDI
 	SCK2	= PIN_SPI2_SCK
 
 	// SPI3 LCD_SPI
-	PIN_SPI3_MISO	= PB18
-	PIN_SPI3_MOSI	= PB19
+	PIN_SPI3_SDI	= PB18
+	PIN_SPI3_SDO	= PB19
 	PIN_SPI3_SCK	= PB20
 	PIN_SPI3_SS	= PB21
 
 	SS3	= PIN_SPI3_SS
-	MOSI3	= PIN_SPI3_MOSI
-	MISO3	= PIN_SPI3_MISO
+	SDO3	= PIN_SPI3_SDO
+	SDI3	= PIN_SPI3_SDI
 	SCK3	= PIN_SPI3_SCK
 
 	// Needed for SD library
-	SDCARD_MISO_PIN	= PIN_SPI2_MISO
-	SDCARD_MOSI_PIN	= PIN_SPI2_MOSI
+	SDCARD_SDI_PIN	= PIN_SPI2_SDI
+	SDCARD_SDO_PIN	= PIN_SPI2_SDO
 	SDCARD_SCK_PIN	= PIN_SPI2_SCK
 	SDCARD_SS_PIN	= PIN_SPI2_SS
 	SDCARD_DET_PIN	= PD21
 
-	LCD_MISO_PIN	= PIN_SPI3_MISO
-	LCD_MOSI_PIN	= PIN_SPI3_MOSI
+	LCD_SDI_PIN	= PIN_SPI3_SDI
+	LCD_SDO_PIN	= PIN_SPI3_SDO
 	LCD_SCK_PIN	= PIN_SPI3_SCK
 	LCD_SS_PIN	= PIN_SPI3_SS
 	LCD_DC		= PC06
@@ -267,8 +264,8 @@ const (
 	LCD_YD	= PC13
 
 	// Needed for RTL8720D
-	RTL8720D_MISO_PIN	= PIN_SPI1_MISO
-	RTL8720D_MOSI_PIN	= PIN_SPI1_MOSI
+	RTL8720D_SDI_PIN	= PIN_SPI1_SDI
+	RTL8720D_SDO_PIN	= PIN_SPI1_SDO
 	RTL8720D_SCK_PIN	= PIN_SPI1_SCK
 	RTL8720D_SS_PIN		= PIN_SPI1_SS
 
@@ -363,23 +360,23 @@ I2C pins
 ```go
 const (
 	SPI0_SCK_PIN	= SCK	// SCK:  SERCOM5/PAD[1]
-	SPI0_MOSI_PIN	= MOSI	// MOSI: SERCOM5/PAD[0]
-	SPI0_MISO_PIN	= MISO	// MISO: SERCOM5/PAD[2]
+	SPI0_SDO_PIN	= SDO	// SDO: SERCOM5/PAD[0]
+	SPI0_SDI_PIN	= SDI	// SDI: SERCOM5/PAD[2]
 
 	// RTL8720D
 	SPI1_SCK_PIN	= SCK1	// SCK:  SERCOM0/PAD[1]
-	SPI1_MOSI_PIN	= MOSI1	// MOSI: SERCOM0/PAD[0]
-	SPI1_MISO_PIN	= MISO1	// MISO: SERCOM0/PAD[2]
+	SPI1_SDO_PIN	= SDO1	// SDO: SERCOM0/PAD[0]
+	SPI1_SDI_PIN	= SDI1	// SDI: SERCOM0/PAD[2]
 
 	// SD
 	SPI2_SCK_PIN	= SCK2	// SCK:  SERCOM6/PAD[1]
-	SPI2_MOSI_PIN	= MOSI2	// MOSI: SERCOM6/PAD[0]
-	SPI2_MISO_PIN	= MISO2	// MISO: SERCOM6/PAD[2]
+	SPI2_SDO_PIN	= SDO2	// SDO: SERCOM6/PAD[0]
+	SPI2_SDI_PIN	= SDI2	// SDI: SERCOM6/PAD[2]
 
 	// LCD
 	SPI3_SCK_PIN	= SCK3	// SCK:  SERCOM7/PAD[1]
-	SPI3_MOSI_PIN	= MOSI3	// MOSI: SERCOM7/PAD[3]
-	SPI3_MISO_PIN	= MISO3	// MISO: SERCOM7/PAD[2]
+	SPI3_SDO_PIN	= SDO3	// SDO: SERCOM7/PAD[3]
+	SPI3_SDI_PIN	= SDI3	// SDI: SERCOM7/PAD[2]
 )
 ```
 
@@ -398,8 +395,8 @@ TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-spee
 
 ```go
 const (
-	I2SModeMaster	I2SMode	= iota
-	I2SModeSlave
+	I2SModeSource	I2SMode	= iota
+	I2SModeReceiver
 	I2SModePDM
 )
 ```
@@ -438,7 +435,7 @@ const (
 
 
 ```go
-const NoPin = Pin(-1)
+const NoPin = Pin(0xff)
 ```
 
 NoPin explicitly indicates "not a pin". Use this pin if you want to leave one
@@ -763,6 +760,14 @@ var (
 var (
 	// UART0 is actually a USB CDC interface.
 	UART0 = USBCDC{Buffer: NewRingBuffer()}
+)
+```
+
+
+
+```go
+var (
+	DAC0 = DAC{}
 )
 ```
 
@@ -1098,6 +1103,52 @@ Bytes returns ConfigDescriptor data.
 
 
 
+## type DAC
+
+```go
+type DAC struct {
+}
+```
+
+DAC on the SAMD51.
+
+
+
+### func (DAC) Configure
+
+```go
+func (dac DAC) Configure(config DACConfig)
+```
+
+Configure the DAC.
+output pin must already be configured.
+
+
+### func (DAC) Set
+
+```go
+func (dac DAC) Set(value uint16) error
+```
+
+Set writes a single 16-bit value to the DAC.
+Since the ATSAMD51 only has a 12-bit DAC, the passed-in value will be scaled down.
+
+
+
+
+## type DACConfig
+
+```go
+type DACConfig struct {
+}
+```
+
+DACConfig placeholder for future expansion.
+
+
+
+
+
 ## type DeviceDescriptor
 
 ```go
@@ -1281,16 +1332,16 @@ type I2SClockSource uint8
 
 ```go
 type I2SConfig struct {
-	SCK			Pin
-	WS			Pin
-	SD			Pin
-	Mode			I2SMode
-	Standard		I2SStandard
-	ClockSource		I2SClockSource
-	DataFormat		I2SDataFormat
-	AudioFrequency		uint32
-	MasterClockOutput	bool
-	Stereo			bool
+	SCK		Pin
+	WS		Pin
+	SD		Pin
+	Mode		I2SMode
+	Standard	I2SStandard
+	ClockSource	I2SClockSource
+	DataFormat	I2SDataFormat
+	AudioFrequency	uint32
+	MainClockOutput	bool
+	Stereo		bool
 }
 ```
 
@@ -1453,7 +1504,7 @@ Set turns on the duty cycle for a PWM pin using the provided value.
 ## type Pin
 
 ```go
-type Pin int8
+type Pin uint8
 ```
 
 Pin is a single pin on a chip, which may be connected to other hardware
@@ -1608,6 +1659,15 @@ https://www.embeddedrelated.com/showthread/comp.arch.embedded/77084-1.php
 
 
 
+### func (*RingBuffer) Clear
+
+```go
+func (rb *RingBuffer) Clear()
+```
+
+Clear resets the head and tail pointer to zero.
+
+
 ### func (*RingBuffer) Get
 
 ```go
@@ -1703,8 +1763,8 @@ This form sends zeros, putting the result into the rx buffer. Good for reading a
 type SPIConfig struct {
 	Frequency	uint32
 	SCK		Pin
-	MOSI		Pin
-	MISO		Pin
+	SDO		Pin
+	SDI		Pin
 	LSBFirst	bool
 	Mode		uint8
 }

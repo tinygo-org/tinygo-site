@@ -32,7 +32,7 @@ TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-spee
 
 
 ```go
-const NoPin = Pin(-1)
+const NoPin = Pin(0xff)
 ```
 
 NoPin explicitly indicates "not a pin". Use this pin if you want to leave one
@@ -227,7 +227,7 @@ type PWM struct {
 ## type Pin
 
 ```go
-type Pin int8
+type Pin uint8
 ```
 
 Pin is a single pin on a chip, which may be connected to other hardware
@@ -352,6 +352,15 @@ type RingBuffer struct {
 RingBuffer is ring buffer implementation inspired by post at
 https://www.embeddedrelated.com/showthread/comp.arch.embedded/77084-1.php
 
+
+
+### func (*RingBuffer) Clear
+
+```go
+func (rb *RingBuffer) Clear()
+```
+
+Clear resets the head and tail pointer to zero.
 
 
 ### func (*RingBuffer) Get

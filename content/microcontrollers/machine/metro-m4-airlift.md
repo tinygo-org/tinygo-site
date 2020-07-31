@@ -116,11 +116,11 @@ I2C pins
 ```go
 const (
 	SPI0_SCK_PIN	= PA13	// SCK:  SERCOM2/PAD[1]
-	SPI0_MOSI_PIN	= PA12	// MOSI: SERCOM2/PAD[0]
-	SPI0_MISO_PIN	= PA14	// MISO: SERCOM2/PAD[2]
+	SPI0_SDO_PIN	= PA12	// SDO: SERCOM2/PAD[0]
+	SPI0_SDI_PIN	= PA14	// SDI: SERCOM2/PAD[2]
 
-	NINA_MOSI	= SPI0_MOSI_PIN
-	NINA_MISO	= SPI0_MISO_PIN
+	NINA_SDO	= SPI0_SDO_PIN
+	NINA_SDI	= SPI0_SDI_PIN
 	NINA_SCK	= SPI0_SCK_PIN
 )
 ```
@@ -130,9 +130,9 @@ SPI pins
 
 ```go
 const (
-	SPI1_SCK_PIN	= D12	// MISO: SERCOM1/PAD[1]
-	SPI1_MOSI_PIN	= D11	// MOSI: SERCOM1/PAD[3]
-	SPI1_MISO_PIN	= D13	// SCK:  SERCOM1/PAD[0]
+	SPI1_SCK_PIN	= D12	// SDI: SERCOM1/PAD[1]
+	SPI1_SDO_PIN	= D11	// SDO: SERCOM1/PAD[3]
+	SPI1_SDI_PIN	= D13	// SCK:  SERCOM1/PAD[0]
 )
 ```
 
@@ -150,8 +150,8 @@ TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-spee
 
 ```go
 const (
-	I2SModeMaster	I2SMode	= iota
-	I2SModeSlave
+	I2SModeSource	I2SMode	= iota
+	I2SModeReceiver
 	I2SModePDM
 )
 ```
@@ -190,7 +190,7 @@ const (
 
 
 ```go
-const NoPin = Pin(-1)
+const NoPin = Pin(0xff)
 ```
 
 NoPin explicitly indicates "not a pin". Use this pin if you want to leave one
@@ -504,6 +504,14 @@ var (
 var (
 	// UART0 is actually a USB CDC interface.
 	UART0 = USBCDC{Buffer: NewRingBuffer()}
+)
+```
+
+
+
+```go
+var (
+	DAC0 = DAC{}
 )
 ```
 
@@ -839,6 +847,52 @@ Bytes returns ConfigDescriptor data.
 
 
 
+## type DAC
+
+```go
+type DAC struct {
+}
+```
+
+DAC on the SAMD51.
+
+
+
+### func (DAC) Configure
+
+```go
+func (dac DAC) Configure(config DACConfig)
+```
+
+Configure the DAC.
+output pin must already be configured.
+
+
+### func (DAC) Set
+
+```go
+func (dac DAC) Set(value uint16) error
+```
+
+Set writes a single 16-bit value to the DAC.
+Since the ATSAMD51 only has a 12-bit DAC, the passed-in value will be scaled down.
+
+
+
+
+## type DACConfig
+
+```go
+type DACConfig struct {
+}
+```
+
+DACConfig placeholder for future expansion.
+
+
+
+
+
 ## type DeviceDescriptor
 
 ```go
@@ -1022,16 +1076,16 @@ type I2SClockSource uint8
 
 ```go
 type I2SConfig struct {
-	SCK			Pin
-	WS			Pin
-	SD			Pin
-	Mode			I2SMode
-	Standard		I2SStandard
-	ClockSource		I2SClockSource
-	DataFormat		I2SDataFormat
-	AudioFrequency		uint32
-	MasterClockOutput	bool
-	Stereo			bool
+	SCK		Pin
+	WS		Pin
+	SD		Pin
+	Mode		I2SMode
+	Standard	I2SStandard
+	ClockSource	I2SClockSource
+	DataFormat	I2SDataFormat
+	AudioFrequency	uint32
+	MainClockOutput	bool
+	Stereo		bool
 }
 ```
 
@@ -1194,7 +1248,7 @@ Set turns on the duty cycle for a PWM pin using the provided value.
 ## type Pin
 
 ```go
-type Pin int8
+type Pin uint8
 ```
 
 Pin is a single pin on a chip, which may be connected to other hardware
@@ -1349,6 +1403,15 @@ https://www.embeddedrelated.com/showthread/comp.arch.embedded/77084-1.php
 
 
 
+### func (*RingBuffer) Clear
+
+```go
+func (rb *RingBuffer) Clear()
+```
+
+Clear resets the head and tail pointer to zero.
+
+
 ### func (*RingBuffer) Get
 
 ```go
@@ -1444,8 +1507,8 @@ This form sends zeros, putting the result into the rx buffer. Good for reading a
 type SPIConfig struct {
 	Frequency	uint32
 	SCK		Pin
-	MOSI		Pin
-	MISO		Pin
+	SDO		Pin
+	SDI		Pin
 	LSBFirst	bool
 	Mode		uint8
 }
