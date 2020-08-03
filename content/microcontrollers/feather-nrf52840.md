@@ -64,7 +64,7 @@ The Adafruit Feather nRF52840 comes with the [UF2 bootloader](https://github.com
 If you have troubles getting your Adafruit Feather nRF52840 board to receive code, try this:
 
 - Press the "RESET" button on the board two times to get the Adafruit Feather nRF52840 board ready to receive code.
-- The CLUE board will appear to your computer like a USB drive.
+- The Adafruit Feather nRF52840 board will appear to your computer like a USB drive.
 - Now try running the command:
 
     ```shell
