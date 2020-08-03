@@ -177,6 +177,11 @@ func shouldTestPackage(path string) bool {
 		return false
 	}
 
+	if strings.HasPrefix(path, "vendor/") {
+		// vendored package.
+		return false
+	}
+
 	if strings.HasPrefix(path, "cmd/") {
 		// Contains commands and not packages, and should not be importable
 		// anyway.
