@@ -149,24 +149,6 @@ unicode |  <span style="color: green">✔</span> yes  |
 unicode/utf16 |  <span style="color: green">✔</span> yes  | 
 unicode/utf8 |  <span style="color: green">✔</span> yes  | 
 unsafe |  <span style="color: green">✔</span> yes  | 
-vendor/golang.org/x/crypto/chacha20 |  [<span style="color: red">✗</span> no](#vendor-golang.org-x-crypto-chacha20)  | 
-vendor/golang.org/x/crypto/chacha20poly1305 |  [<span style="color: red">✗</span> no](#vendor-golang.org-x-crypto-chacha20poly1305)  | 
-vendor/golang.org/x/crypto/cryptobyte |  [<span style="color: red">✗</span> no](#vendor-golang.org-x-crypto-cryptobyte)  | 
-vendor/golang.org/x/crypto/cryptobyte/asn1 |  [<span style="color: red">✗</span> no](#vendor-golang.org-x-crypto-cryptobyte-asn1)  | 
-vendor/golang.org/x/crypto/curve25519 |  [<span style="color: red">✗</span> no](#vendor-golang.org-x-crypto-curve25519)  | 
-vendor/golang.org/x/crypto/hkdf |  [<span style="color: red">✗</span> no](#vendor-golang.org-x-crypto-hkdf)  | 
-vendor/golang.org/x/crypto/poly1305 |  [<span style="color: red">✗</span> no](#vendor-golang.org-x-crypto-poly1305)  | 
-vendor/golang.org/x/net/dns/dnsmessage |  [<span style="color: red">✗</span> no](#vendor-golang.org-x-net-dns-dnsmessage)  | 
-vendor/golang.org/x/net/http/httpguts |  [<span style="color: red">✗</span> no](#vendor-golang.org-x-net-http-httpguts)  | 
-vendor/golang.org/x/net/http/httpproxy |  [<span style="color: red">✗</span> no](#vendor-golang.org-x-net-http-httpproxy)  | 
-vendor/golang.org/x/net/http2/hpack |  [<span style="color: red">✗</span> no](#vendor-golang.org-x-net-http2-hpack)  | 
-vendor/golang.org/x/net/idna |  [<span style="color: red">✗</span> no](#vendor-golang.org-x-net-idna)  | 
-vendor/golang.org/x/net/nettest |  [<span style="color: red">✗</span> no](#vendor-golang.org-x-net-nettest)  | 
-vendor/golang.org/x/sys/cpu |  [<span style="color: red">✗</span> no](#vendor-golang.org-x-sys-cpu)  | 
-vendor/golang.org/x/text/secure/bidirule |  [<span style="color: red">✗</span> no](#vendor-golang.org-x-text-secure-bidirule)  | 
-vendor/golang.org/x/text/transform |  [<span style="color: red">✗</span> no](#vendor-golang.org-x-text-transform)  | 
-vendor/golang.org/x/text/unicode/bidi |  [<span style="color: red">✗</span> no](#vendor-golang.org-x-text-unicode-bidi)  | 
-vendor/golang.org/x/text/unicode/norm |  [<span style="color: red">✗</span> no](#vendor-golang.org-x-text-unicode-norm)  | 
 
 
 
@@ -324,10 +306,6 @@ This package cannot be imported because the following dependencies cannot be com
   * [crypto/rsa](#crypto-rsa)
   * [crypto/x509](#crypto-x509)
   * [encoding/asn1](#encoding-asn1)
-  * [vendor/golang.org/x/crypto/chacha20poly1305](#vendor-golang.org-x-crypto-chacha20poly1305)
-  * [vendor/golang.org/x/crypto/cryptobyte](#vendor-golang.org-x-crypto-cryptobyte)
-  * [vendor/golang.org/x/crypto/curve25519](#vendor-golang.org-x-crypto-curve25519)
-  * [vendor/golang.org/x/crypto/hkdf](#vendor-golang.org-x-crypto-hkdf)
   * [math/big](#math-big)
   * [net](#net)
 
@@ -347,8 +325,6 @@ This package cannot be imported because the following dependencies cannot be com
   * [crypto/rsa](#crypto-rsa)
   * [crypto/x509/pkix](#crypto-x509-pkix)
   * [encoding/asn1](#encoding-asn1)
-  * [vendor/golang.org/x/crypto/cryptobyte](#vendor-golang.org-x-crypto-cryptobyte)
-  * [vendor/golang.org/x/crypto/cryptobyte/asn1](#vendor-golang.org-x-crypto-cryptobyte-asn1)
   * [math/big](#math-big)
   * [net](#net)
 
@@ -674,9 +650,11 @@ This package cannot be imported because the following dependencies cannot be com
 ## net
 
 
-This package cannot be imported because the following dependencies cannot be compiled:
+The compiler gave the following error when this package was imported:
 
-  * [vendor/golang.org/x/net/dns/dnsmessage](#vendor-golang.org-x-net-dns-dnsmessage)
+<pre># net
+/home/ron/.gvm/gos/go1.14.2/src/net/parse.go:80:12: st.ModTime undefined (type os.FileInfo has no field or method ModTime)
+</pre>
 
 
 
@@ -689,10 +667,6 @@ This package cannot be imported because the following dependencies cannot be com
 
   * [crypto/rand](#crypto-rand)
   * [crypto/tls](#crypto-tls)
-  * [vendor/golang.org/x/net/http/httpguts](#vendor-golang.org-x-net-http-httpguts)
-  * [vendor/golang.org/x/net/http/httpproxy](#vendor-golang.org-x-net-http-httpproxy)
-  * [vendor/golang.org/x/net/http2/hpack](#vendor-golang.org-x-net-http2-hpack)
-  * [vendor/golang.org/x/net/idna](#vendor-golang.org-x-net-idna)
   * [mime/multipart](#mime-multipart)
   * [net](#net)
   * [net/http/httptrace](#net-http-httptrace)
@@ -748,7 +722,6 @@ This package cannot be imported because the following dependencies cannot be com
 
   * [crypto/tls](#crypto-tls)
   * [crypto/x509](#crypto-x509)
-  * [vendor/golang.org/x/net/http/httpguts](#vendor-golang.org-x-net-http-httpguts)
   * [net](#net)
   * [net/http](#net-http)
 
@@ -774,7 +747,6 @@ This package cannot be imported because the following dependencies cannot be com
 
 This package cannot be imported because the following dependencies cannot be compiled:
 
-  * [vendor/golang.org/x/net/http/httpguts](#vendor-golang.org-x-net-http-httpguts)
   * [net](#net)
   * [net/http](#net-http)
   * [net/textproto](#net-textproto)
@@ -1000,234 +972,6 @@ The compiler gave the following error when this package was imported:
 
 
 
-
-
-
-
-
-## vendor/golang.org/x/crypto/chacha20
-
-
-The compiler gave the following error when this package was imported:
-
-<pre># vendor/golang.org/x/crypto/chacha20
-../../../../../tmp/tinygo-test.go:2:8: use of vendored package not allowed
-</pre>
-
-
-
-
-
-## vendor/golang.org/x/crypto/chacha20poly1305
-
-
-This package cannot be imported because the following dependencies cannot be compiled:
-
-  * [vendor/golang.org/x/crypto/chacha20](#vendor-golang.org-x-crypto-chacha20)
-  * [vendor/golang.org/x/crypto/poly1305](#vendor-golang.org-x-crypto-poly1305)
-
-
-
-
-
-## vendor/golang.org/x/crypto/cryptobyte
-
-
-This package cannot be imported because the following dependencies cannot be compiled:
-
-  * [encoding/asn1](#encoding-asn1)
-  * [vendor/golang.org/x/crypto/cryptobyte/asn1](#vendor-golang.org-x-crypto-cryptobyte-asn1)
-  * [math/big](#math-big)
-
-
-
-
-
-## vendor/golang.org/x/crypto/cryptobyte/asn1
-
-
-The compiler gave the following error when this package was imported:
-
-<pre># vendor/golang.org/x/crypto/cryptobyte/asn1
-../../../../../tmp/tinygo-test.go:2:8: use of vendored package not allowed
-</pre>
-
-
-
-
-
-## vendor/golang.org/x/crypto/curve25519
-
-
-The compiler gave the following error when this package was imported:
-
-<pre># vendor/golang.org/x/crypto/curve25519
-../../../../../tmp/tinygo-test.go:2:8: use of vendored package not allowed
-</pre>
-
-
-
-
-
-## vendor/golang.org/x/crypto/hkdf
-
-
-The compiler gave the following error when this package was imported:
-
-<pre># vendor/golang.org/x/crypto/hkdf
-../../../../../tmp/tinygo-test.go:2:8: use of vendored package not allowed
-</pre>
-
-
-
-
-
-## vendor/golang.org/x/crypto/poly1305
-
-
-The compiler gave the following error when this package was imported:
-
-<pre># vendor/golang.org/x/crypto/poly1305
-../../../../../tmp/tinygo-test.go:2:8: use of vendored package not allowed
-</pre>
-
-
-
-
-
-## vendor/golang.org/x/net/dns/dnsmessage
-
-
-The compiler gave the following error when this package was imported:
-
-<pre># vendor/golang.org/x/net/dns/dnsmessage
-../../../../../tmp/tinygo-test.go:2:8: use of vendored package not allowed
-</pre>
-
-
-
-
-
-## vendor/golang.org/x/net/http/httpguts
-
-
-This package cannot be imported because the following dependencies cannot be compiled:
-
-  * [vendor/golang.org/x/net/idna](#vendor-golang.org-x-net-idna)
-  * [net](#net)
-  * [net/textproto](#net-textproto)
-
-
-
-
-
-## vendor/golang.org/x/net/http/httpproxy
-
-
-This package cannot be imported because the following dependencies cannot be compiled:
-
-  * [vendor/golang.org/x/net/idna](#vendor-golang.org-x-net-idna)
-  * [net](#net)
-
-
-
-
-
-## vendor/golang.org/x/net/http2/hpack
-
-
-The compiler gave the following error when this package was imported:
-
-<pre># vendor/golang.org/x/net/http2/hpack
-../../../../../tmp/tinygo-test.go:2:8: use of vendored package not allowed
-</pre>
-
-
-
-
-
-## vendor/golang.org/x/net/idna
-
-
-This package cannot be imported because the following dependencies cannot be compiled:
-
-  * [vendor/golang.org/x/text/secure/bidirule](#vendor-golang.org-x-text-secure-bidirule)
-  * [vendor/golang.org/x/text/unicode/bidi](#vendor-golang.org-x-text-unicode-bidi)
-  * [vendor/golang.org/x/text/unicode/norm](#vendor-golang.org-x-text-unicode-norm)
-
-
-
-
-
-## vendor/golang.org/x/net/nettest
-
-
-This package cannot be imported because the following dependencies cannot be compiled:
-
-  * [net](#net)
-  * [os/exec](#os-exec)
-
-
-
-
-
-## vendor/golang.org/x/sys/cpu
-
-
-The compiler gave the following error when this package was imported:
-
-<pre># vendor/golang.org/x/sys/cpu
-../../../../../tmp/tinygo-test.go:2:8: use of vendored package not allowed
-</pre>
-
-
-
-
-
-## vendor/golang.org/x/text/secure/bidirule
-
-
-This package cannot be imported because the following dependencies cannot be compiled:
-
-  * [vendor/golang.org/x/text/transform](#vendor-golang.org-x-text-transform)
-  * [vendor/golang.org/x/text/unicode/bidi](#vendor-golang.org-x-text-unicode-bidi)
-
-
-
-
-
-## vendor/golang.org/x/text/transform
-
-
-The compiler gave the following error when this package was imported:
-
-<pre># vendor/golang.org/x/text/transform
-../../../../../tmp/tinygo-test.go:2:8: use of vendored package not allowed
-</pre>
-
-
-
-
-
-## vendor/golang.org/x/text/unicode/bidi
-
-
-The compiler gave the following error when this package was imported:
-
-<pre># vendor/golang.org/x/text/unicode/bidi
-../../../../../tmp/tinygo-test.go:2:8: use of vendored package not allowed
-</pre>
-
-
-
-
-
-## vendor/golang.org/x/text/unicode/norm
-
-
-This package cannot be imported because the following dependencies cannot be compiled:
-
-  * [vendor/golang.org/x/text/transform](#vendor-golang.org-x-text-transform)
 
 
 
