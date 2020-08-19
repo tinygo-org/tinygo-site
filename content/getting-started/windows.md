@@ -19,7 +19,7 @@ VERY IMPORTANT NOTE: You cannot yet create Windows binary programs using TinyGo,
 
     - Choose the download link for Microsoft Windows, Windows 7 or later, Intel 64-bit processor.
 
-- Download the TinyGo binary for Windows file from https://github.com/tinygo-org/tinygo/releases/download/v0.14.0/tinygo0.14.0.windows-amd64.zip
+- Download the TinyGo binary for Windows file from https://github.com/tinygo-org/tinygo/releases/download/v0.14.1/tinygo0.14.1.windows-amd64.zip
 
 - Decompress the file like this:
 
@@ -39,6 +39,7 @@ VERY IMPORTANT NOTE: You cannot yet create Windows binary programs using TinyGo,
 
     ```
     tinygo version
+    tinygo version 0.14.1 windows/amd64 (using go version go1.15 and LLVM version 10.0.1)
     ```
 
 ### Flashing boards
@@ -152,7 +153,7 @@ This results in a `tinygo.exe` binary in the `build` directory:
 
 ```text
 $ ./build/tinygo version
-tinygo version 0.14.0 windows/amd64 (using go version go1.14.1 and LLVM version 10.0.1)
+tinygo version 0.14.1 windows/amd64 (using go version go1.15 and LLVM version 10.0.1)
 ```
 
 ### Additional Requirements for Microcontrollers
