@@ -8,6 +8,18 @@ Here are some of the videos, podcasts, and blog posts written about TinyGo.
 
 ### Podcasts/Videos
 
+**QCon 2020 London - "Tiny Go: Small is Going Big"** - *March 3, 2020*
+https://videoh.infoq.com/presentations/20-mar-tinygosmallisgoingbig.mp4
+
+**FOSDEM 2020 - "Lightning talk: LED cube using TinyGo"** (start at 51:00) - *February 2, 2020*
+https://video.fosdem.org/2020/UB2.252A/golightning.mp4
+
+**FOSDEM 2020 - "TinyGo: Fast, Small, Concurrent: Choose Three"** - *February 2, 2020*
+https://video.fosdem.org/2020/UD2.218A/iottinygo.mp4
+
+**FOSDEM 2020 - "Build real-world gaming hardware with TinyGo"** - *February 2, 2020*
+https://video.fosdem.org/2020/UB2.252A/tinygotoys.mp4
+
 **Gophercon 2019 - "Small is Going Big: Go on Microcontrollers"** - *July 26, 2019*
 https://www.youtube.com/watch?v=EiB9ZVrvrz0
 
@@ -23,20 +35,11 @@ https://www.youtube.com/watch?v=osVHH7rjpxs
 **FOSDEM 2019 - "Go On Microcontrollers"** - *February 3, 2019*
 https://video.fosdem.org/2019/K.1.105/go_on_microcontrollers.mp4
 
-**FOSDEM 2020 - "Build real-world gaming hardware with TinyGo"** - *February 2, 2020*
-https://video.fosdem.org/2020/UB2.252A/tinygotoys.mp4
-
-**FOSDEM 2020 - "TinyGo: Fast, Small, Concurrent: Choose Three"** - *February 2, 2020*
-https://video.fosdem.org/2020/UD2.218A/iottinygo.mp4
-
-**FOSDEM 2020 - "Lightning talk: LED cube using TinyGo"** (start at 51:00) - *February 2, 2020*
-https://video.fosdem.org/2020/UB2.252A/golightning.mp4
-
-**QCon 2020 London - "Tiny Go: Small is Going Big"** - *March 3, 2020*
-https://videoh.infoq.com/presentations/20-mar-tinygosmallisgoingbig.mp4
-
 
 ### Blog posts
+
+**Alan Wang - "TinyGo on Arduino Uno: An Introduction"** - *February 5, 2020*
+https://create.arduino.cc/projecthub/alankrantas/tinygo-on-arduino-uno-an-introduction-6130f6
 
 **Arduino - "TinyGo on Arduino"** - *August 23, 2019*
 https://blog.arduino.cc/2019/08/23/tinygo-on-arduino/
@@ -64,6 +67,3 @@ https://blog.adafruit.com/2019/03/12/tinygo-go-on-microcontrollers-tinygolang-ti
 
 **Ayke van Laëthem - "Goroutines in TinyGo"** - *February 25, 2019*
 https://aykevl.nl/2019/02/tinygo-goroutines
-
-**Alan Wang - "TinyGo on Arduino Uno: An Introduction"** - *February 5, 2020*
-https://create.arduino.cc/projecthub/alankrantas/tinygo-on-arduino-uno-an-introduction-6130f6
