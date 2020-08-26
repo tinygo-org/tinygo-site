@@ -10,3 +10,11 @@ For the discussion of this see [this forum thread](https://www.esp32.com/viewtop
 The repository that contains the Xtensa fork of LLVM is located at [https://github.com/espressif/llvm-project](https://github.com/espressif/llvm-project)
 
 It is not yet in a usable state, but once it is we will start the process of supporting it in TinyGo.
+
+There currently are 2 PullRequests, which add basic support based on the Xtensa fork.
+
+See this one for ESP32 support
+https://github.com/tinygo-org/tinygo/pull/1289
+
+And this one for ESP8266 support. 
+https://github.com/tinygo-org/tinygo/pull/900
