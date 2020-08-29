@@ -18,7 +18,7 @@ weight = 10
 
 [[menu.shortcuts]] 
 name = "<i class='fa fa-book'></i> Godoc"
-url = "https://godoc.org/github.com/tinygo-org/tinygo"
+url = "https://pkg.go.dev/github.com/tinygo-org/tinygo?tab=doc"
 weight = 20
 
 [[menu.shortcuts]] 
