@@ -2,11 +2,11 @@ package main
 
 import (
 	"bytes"
-	"errors"
 	"fmt"
 	"io/ioutil"
 	"os"
 	"os/exec"
+	"path/filepath"
 	"runtime"
 	"strings"
 	"text/template"
@@ -52,6 +52,7 @@ type Package struct {
 	Imports       []*Package
 	Output        string
 	CanBeCompiled bool
+	Compiling     bool
 }
 
 func (p *Package) AllImportsCanCompile() bool {
@@ -67,6 +68,14 @@ func (p *Package) AllImportsCanCompile() bool {
 // slashes with dashes so we emulate that behavior.
 func (p *Package) Link() string {
 	return strings.Replace(p.Path, "/", "-", -1)
+}
+
+// testResult is returned by runTest. It's necessary to communicate the test
+// result back over a channel from a separate test runner goroutine.
+type testResult struct {
+	pkg            *Package
+	compiles       bool
+	compilerOutput string
 }
 
 func checkPackages(goroot string) error {
@@ -121,50 +130,111 @@ func checkPackages(goroot string) error {
 		}
 	}
 
+	testInput := make(chan *Package, 1)
+	testOutput := make(chan testResult)
+	for i := runtime.NumCPU(); i != 0; i-- {
+		go func() {
+			for pkg := range testInput {
+				testOutput <- pkg.runTest()
+			}
+		}()
+	}
+
+	// Keep track how many tests are in flight, reaching zero means all tests
+	// have been run.
+	var testsInFlights int
+
 	// Try to compile each package of which all imports can be compiled.
-	hasProgress := true
-	for hasProgress {
-		// Continue looping until no progress can be made. At that point, all
-		// packages have been checked.
-		hasProgress = false
-		for _, pkg := range pkgs {
-			if pkg.CanBeCompiled || pkg.Output != "" || !pkg.AllImportsCanCompile() {
-				// Already tested or one of the dependencies failed.
-				continue
+	for {
+		// Fill pipeline of packages, as far as possible (possibly zero at the
+		// end).
+		for {
+			inputPkg := nextPackageToTest(pkgs)
+			if inputPkg == nil {
+				// All packages have been tested.
+				break
 			}
 
-			hasProgress = true
-
-			fmt.Fprintf(os.Stderr, "%-30s", pkg.Path)
-			temporaryGoFile := "/tmp/tinygo-test.go"
-			ioutil.WriteFile(temporaryGoFile, []byte(fmt.Sprintf("package main\nimport _ \"%s\"\nfunc main(){}\n", pkg.Path)), 0600)
-
-			cmd := exec.Command("tinygo", "build", "-o", "/tmp/tinygo-test-build.wasm", temporaryGoFile)
-			buf := new(bytes.Buffer)
-			cmd.Stdout = buf
-			cmd.Stderr = buf
-			if cmd.Run() != nil {
-				// There was an error importing this package.
-				fmt.Fprintf(os.Stderr, "fail\n")
-				msg := string(buf.Bytes())
-				if len(msg) == 0 {
-					return errors.New("tinygo exited with error but without any output!")
-				}
-				lines := strings.Split(msg, "\n")
-				if len(lines) > 15 {
-					msg = strings.Join(lines[:15], "\n") + "\n[...more lines following...]"
-				}
-				pkg.Output = msg
-			} else {
-				// This package could be compiled!
-				fmt.Fprintf(os.Stderr, "ok\n")
-				pkg.CanBeCompiled = true
+			success := false
+			select {
+			case testInput <- inputPkg:
+				inputPkg.Compiling = true
+				success = true
+				testsInFlights++
+			default:
 			}
+			if !success {
+				break
+			}
+		}
+
+		if testsInFlights == 0 {
+			break
+		}
+
+		// Receive one result and process it.
+		result := <-testOutput
+		result.pkg.Compiling = false
+		testsInFlights--
+		if !result.compiles {
+			// There was an error importing this package.
+			fmt.Fprintf(os.Stderr, "%-30s fail\n", result.pkg.Path)
+			msg := result.compilerOutput
+			if len(msg) == 0 {
+				msg = "[...no output...]"
+			}
+			lines := strings.Split(msg, "\n")
+			if len(lines) > 15 {
+				msg = strings.Join(lines[:15], "\n") + "\n[...more lines following...]"
+			}
+			result.pkg.Output = msg
+		} else {
+			// This package could be compiled!
+			fmt.Fprintf(os.Stderr, "%-30s ok\n", result.pkg.Path)
+			result.pkg.CanBeCompiled = true
 		}
 	}
 
 	// Print the output to stdout.
 	return markdownTemplate.Execute(os.Stdout, pkgMap)
+}
+
+func (pkg *Package) runTest() (result testResult) {
+	result.pkg = pkg
+
+	// Prepare test files.
+	dir, err := ioutil.TempDir("", "tinygo-test-*")
+	if err != nil {
+		panic("could not create temporary directory: " + err.Error())
+	}
+	defer os.RemoveAll(dir)
+	temporaryGoFile := filepath.Join(dir, "main.go")
+	ioutil.WriteFile(temporaryGoFile, []byte(fmt.Sprintf("package main\nimport _ \"%s\"\nfunc main(){}\n", pkg.Path)), 0600)
+	temporaryWasmFile := filepath.Join(dir, "main.wasm")
+
+	// Run the test.
+	cmd := exec.Command("tinygo", "build", "-o", temporaryWasmFile, temporaryGoFile)
+	buf := new(bytes.Buffer)
+	cmd.Stdout = buf
+	cmd.Stderr = buf
+	result.compiles = cmd.Run() == nil
+	result.compilerOutput = string(buf.Bytes())
+	return
+}
+
+// nextPackageToTest returns the next package to test, or nil if there is no
+// available package to test.
+// While there are tests in flight, this function might return nil even though
+// there are packages available for testing.
+func nextPackageToTest(pkgs []*Package) *Package {
+	for _, pkg := range pkgs {
+		if pkg.CanBeCompiled || pkg.Compiling || pkg.Output != "" || !pkg.AllImportsCanCompile() {
+			// Already tested or one of the dependencies failed.
+			continue
+		}
+		return pkg
+	}
+	return nil
 }
 
 func shouldTestPackage(path string) bool {
