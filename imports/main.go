@@ -13,7 +13,7 @@ import (
 )
 
 // The environment to pass to `go` commands when they are invoked.
-var commandEnv = []string{"GOPATH=/does-not-exist", "GOOS=js", "GOARCH=wasm", "GO111MODULE=off"}
+var commandEnv = []string{"GOPATH=/does-not-exist", "GO111MODULE=off"}
 
 var markdownTemplate = template.Must(template.New("markdown").Parse(`
 ---
@@ -24,18 +24,22 @@ The following table shows all Go standard library packages and whether they can 
 
 Note that the fact they can be imported, does not mean that all functions and types in the program can be used. For example, sometimes using some functions or types of the package will still trigger compiler errors.
 
-Package | Importable
---- | --- |{{ range .}}
-{{.Path}} | {{if .CanBeCompiled}} <span style="color: green">✔</span> yes {{else}} [<span style="color: red">✗</span> no](#{{.Link}}) {{end}} | {{ end }}
+Package | Importable | Passes tests
+--- | --- | --- |{{ range .}}
+{{.Path}} | {{if .CanBeCompiled}} <span style="color: green">✔</span> yes {{else}} [<span style="color: red">✗</span> no](#{{.Link}}) {{end}} | {{if .PassesTests}} <span style="color: green">✔</span> yes {{else if .CanBeCompiled}} [<span style="color: red">✗</span> no](#{{.Link}}) {{else}} <span style="color: gray">✗</span> no {{end}} | {{ end }}
 
 {{range .}}
-{{if not .CanBeCompiled}}
+{{if not .PassesTests }}
 ## {{.Path}}
 
 {{if .Output}}
+{{if .CanBeCompiled}}
+The compiler gave the following error when running the tests for this package:
+{{else}}
 The compiler gave the following error when this package was imported:
+{{end}}
 
-<pre>{{.Output}}</pre>
+{{.IndentedOutput}}
 {{else if .Imports}}
 This package cannot be imported because the following dependencies cannot be compiled:
 {{range .Imports}}{{if not .CanBeCompiled}}
@@ -52,6 +56,7 @@ type Package struct {
 	Imports       []*Package
 	Output        string
 	CanBeCompiled bool
+	PassesTests   bool
 	Compiling     bool
 }
 
@@ -70,12 +75,27 @@ func (p *Package) Link() string {
 	return strings.Replace(p.Path, "/", "", -1)
 }
 
+// IndentedOutput returns the Output variable but indented by 4 characters, so
+// that it is valid Markdown raw output.
+func (p *Package) IndentedOutput() string {
+	// Remove last newline.
+	output := strings.TrimSpace(p.Output)
+	// Add indentation for all lines (except the last of course).
+	output = "    " + strings.ReplaceAll(output, "\n", "\n    ")
+	// Add last newline again.
+	output += "\n"
+
+	return output
+}
+
 // testResult is returned by runTest. It's necessary to communicate the test
 // result back over a channel from a separate test runner goroutine.
 type testResult struct {
 	pkg            *Package
 	compiles       bool
 	compilerOutput string
+	passesTest     bool
+	testOutput     string
 }
 
 func checkPackages(goroot string) error {
@@ -85,7 +105,7 @@ func checkPackages(goroot string) error {
 
 	// Get a list of all standard library packages.
 	pkgsList := new(bytes.Buffer)
-	cmd := exec.Command("go", "list", "all")
+	cmd := exec.Command("go", "list", "std")
 	cmd.Env = append(os.Environ(), commandEnv...)
 	cmd.Dir = baseDir
 	cmd.Stdout = pkgsList
@@ -182,20 +202,34 @@ func checkPackages(goroot string) error {
 		testsInFlights--
 		if !result.compiles {
 			// There was an error importing this package.
-			fmt.Fprintf(os.Stderr, "%-30s fail\n", result.pkg.Path)
+			fmt.Fprintf(os.Stderr, "%-30s does not compile\n", result.pkg.Path)
 			msg := result.compilerOutput
 			if len(msg) == 0 {
-				msg = "[...no output...]"
+				msg = "[...no output...]" // should not happen
 			}
 			lines := strings.Split(msg, "\n")
 			if len(lines) > 15 {
 				msg = strings.Join(lines[:15], "\n") + "\n[...more lines following...]"
 			}
 			result.pkg.Output = msg
+		} else if !result.passesTest {
+			// There was an error running the tests for this package.
+			fmt.Fprintf(os.Stderr, "%-30s fails tests\n", result.pkg.Path)
+			msg := result.testOutput
+			if len(msg) == 0 {
+				msg = "[...no test output...]" // should definitely not happen
+			}
+			lines := strings.Split(msg, "\n")
+			if len(lines) > 15 {
+				msg = strings.Join(lines[:15], "\n") + "\n[...more lines following...]"
+			}
+			result.pkg.Output = msg
+			result.pkg.CanBeCompiled = true
 		} else {
-			// This package could be compiled!
+			// This package passes all tests!
 			fmt.Fprintf(os.Stderr, "%-30s ok\n", result.pkg.Path)
 			result.pkg.CanBeCompiled = true
+			result.pkg.PassesTests = true
 		}
 	}
 
@@ -214,15 +248,26 @@ func (pkg *Package) runTest() (result testResult) {
 	defer os.RemoveAll(dir)
 	temporaryGoFile := filepath.Join(dir, "main.go")
 	ioutil.WriteFile(temporaryGoFile, []byte(fmt.Sprintf("package main\nimport _ \"%s\"\nfunc main(){}\n", pkg.Path)), 0600)
-	temporaryWasmFile := filepath.Join(dir, "main.wasm")
+	temporaryExecutableFile := filepath.Join(dir, "main")
 
-	// Run the test.
-	cmd := exec.Command("tinygo", "build", "-o", temporaryWasmFile, temporaryGoFile)
+	// Run the compile test.
+	cmd := exec.Command("tinygo", "build", "-o", temporaryExecutableFile, temporaryGoFile)
 	buf := new(bytes.Buffer)
 	cmd.Stdout = buf
 	cmd.Stderr = buf
 	result.compiles = cmd.Run() == nil
 	result.compilerOutput = string(buf.Bytes())
+
+	// Run the actual test.
+	if result.compiles {
+		cmd := exec.Command("tinygo", "test", pkg.Path)
+		buf := new(bytes.Buffer)
+		cmd.Stdout = buf
+		cmd.Stderr = buf
+		result.passesTest = cmd.Run() == nil
+		result.testOutput = string(buf.Bytes())
+	}
+
 	return
 }
 
@@ -243,6 +288,11 @@ func nextPackageToTest(pkgs []*Package) *Package {
 
 func shouldTestPackage(path string) bool {
 	if path == "" {
+		return false
+	}
+
+	if path == "C" {
+		// Skip CGo pseudo-package.
 		return false
 	}
 
