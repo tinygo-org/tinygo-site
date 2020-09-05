@@ -59,10 +59,16 @@ And then do `go mod init`
 
 ## GoPath
 
-In order to get IDE support like autocomplete you have to add the tinygo src path to your [GOPATH](https://github.com/golang/go/wiki/GOPATH).
+In order to get IDE support like autocomplete you have to add the tinygo src path to your [GOPATH](https://github.com/golang/go/wiki/GOPATH). So setup your Gopath first.
 After adding the tinygo source path to the GOPATH go will know, where to look for the packages like `machine`
 
 ### Ubuntu Example
+
+#### Check if GOPATH is set
+
+> echo $GOPATH
+
+If you result is empty, you need to set the GOPATH fist
 
 You can just append the path to your tinygo installation in your GOPATH.
 
@@ -73,6 +79,13 @@ You can just append the path to your tinygo installation in your GOPATH.
 Windows uses a semicolon to separate the different paths. So you can just append the path to your tinygo using the example below.
 
 > set GOPATH=%GOPATH%;C:\path\to\your\tinygo
+
+At this point, if you are in src/examples/bliny1/blinky.go, machine.Output can be handled by gopls.
+You may want to prompt them to check it once.
+
+At this point, machine.LED cannot be processed by gopls.
+This is because you do not have build-tag or other settings in place.
+
 
 ## Starting your editor with variables
 
