@@ -86,7 +86,6 @@ You may want to prompt them to check it once.
 At this point, machine.LED cannot be processed by gopls.
 This is because you do not have build-tag or other settings in place.
 
-
 ## Starting your editor with variables
 
 The last step needed to get full code completion support is to start your editor with environment variables.
@@ -135,6 +134,18 @@ VSCode Example:
 ### Using tinygo-edit
 
 There is a CLI tool called [tinygo-edit](https://github.com/sago35/tinygo-edit) you can use it to Gather the needed build flags and starting the editor using the correct environment variables. Using the CLI you don't need to do the steps manualy.
+
+### Using an alias
+
+Another alternative to automate the process of fetching the needed environment variables and starting your editor, you could also create an alias.
+
+#### Ubuntu Example using vscode
+
+```bash
+export VISUAL=code
+export EDITOR="$VISUAL"
+alias startTinyGoArduino="GOOS=linux GOARCH=arm GOFLAGS=-tags=$(tinygo info arduino|grep 'build tags'|awk -F: '{print $2}' | sed -e 's/^[[:space:]]*//'|sed -e 's/[[:space:]]/,/g') $EDITOR"
+```
 
 ### Note
 
