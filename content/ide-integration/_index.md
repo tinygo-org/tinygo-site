@@ -67,6 +67,12 @@ You can just append the path to your tinygo installation in your GOPATH.
 
 > export GOPATH=$GOPATH:/path/to/your/tinygo
 
+### Windows Example
+
+Windows uses a semicolon to separate the different paths. So you can just append the path to your tinygo using the example below.
+
+> set GOPATH=%GOPATH%;C:\path\to\your\tinygo
+
 ## Starting your editor with variables
 
 The last step needed to get full code completion support is to start your editor with environment variables.
