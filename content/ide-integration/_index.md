@@ -46,7 +46,8 @@ require (
 
 In order to get your package resolved, you also have to add a go mod file for the packages.
 
-So navigate to `/path/to/tinygo/src`
+So navigate to `/path/to/tinygo/src/neededpackage`
+
 And then do `go mod init`
 
 ### Example
