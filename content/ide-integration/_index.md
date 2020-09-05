@@ -118,6 +118,10 @@ VSCode Example:
 
 > export GOOS=linux; export GOARCH=arm; export GOFLAGS=-tags=avr,baremetal,linux,arm,atmega328p,atmega,avr5,arduino,tinygo,gc.conservative,scheduler.none; code
 
+### Using tinygo-edit
+
+There is a CLI tool called [tinygo-edit](https://github.com/sago35/tinygo-edit) you can use it to Gather the needed build flags and starting the editor using the correct environment variables. Using the CLI you don't need to do the steps manualy.
+
 ### Note
 
 This process has only been tested with the [gopls](https://github.com/golang/tools/blob/master/gopls/doc/user.md) language server. It might or might not work with other language servers.
