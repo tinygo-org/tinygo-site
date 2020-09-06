@@ -3,15 +3,155 @@ title: "IDE Integration"
 weight: 8
 ---
 
+
+## Downloading the source
+
+Either git clone the tinygo source from.
+
+> https://github.com/tinygo-org/tinygo
+
+## Go mod init in your project
+
+Navigate to your project and type:
+
+> go mod init
+
+## Replace needed imports
+
+Replace each std package you need using the replace keyword in the go.mod file.
+
+So if you want the machine package to be resolved replace it using.
+
+> replace machine => /path/to/tinygo/machine
+
+Repeat this step for every package, which needs to be resolved in your project.
+
+### Example
+
+```go
+module github.com/Nerzal/tinygo-playground
+
+go 1.14
+
+replace machine => /home/tobias/go/src/github.com/tinygo-org/tinygo/src/machine
+
+require (
+    machine v0.0.0-00010101000000-000000000000
+    tinygo.org/x/drivers v0.13.0
+)
+
+```
+
+## Add go module files to the packages
+
+In order to get your package resolved, you also have to add a go mod file for the packages.
+
+So navigate to `/path/to/tinygo/src/neededpackage`
+
+And then do `go mod init`
+
+### Example
+
+```bash
+ cd ~/go/src/github.com/tinygo-org/tinygo/src/machine
+ go mod init
+```
+
 ## GoPath
 
-In order to get IDE support like autocomplete you have to add the tinygo src path to your [GOPATH](https://github.com/golang/go/wiki/GOPATH).
+In order to get IDE support like autocomplete you have to add the tinygo src path to your [GOPATH](https://github.com/golang/go/wiki/GOPATH). So setup your Gopath first.
 After adding the tinygo source path to the GOPATH go will know, where to look for the packages like `machine`
 
 ### Ubuntu Example
+
+#### Check if GOPATH is set
+
+> echo $GOPATH
+
+If you result is empty, you need to set the GOPATH fist
+
 You can just append the path to your tinygo installation in your GOPATH.
 
->  export GOPATH=$GOPATH:/path/to/your/tinygo
+> export GOPATH=$GOPATH:/path/to/your/tinygo
+
+### Windows Example
+
+Windows uses a semicolon to separate the different paths. So you can just append the path to your tinygo using the example below.
+
+> set GOPATH=%GOPATH%;C:\path\to\your\tinygo
+
+At this point, if you are in src/examples/bliny1/blinky.go, machine.Output can be handled by gopls.
+You may want to prompt them to check it once.
+
+At this point, machine.LED cannot be processed by gopls.
+This is because you do not have build-tag or other settings in place.
+
+## Starting your editor with variables
+
+The last step needed to get full code completion support is to start your editor with environment variables.
+
+You could also just set the environment variables for your complete environment, but this would interfere you when, writing normal go code.
+
+So we use another way.
+
+### Gather the needed information
+
+We need different environment variables for different microcontrollers.
+
+You can use `tinygo info controllerName`
+
+**Example**
+To gather information needed to work with an Arduino use:
+
+> tinygo info arduino
+
+```bash
+$ tinygo info arduino
+LLVM triple:       avr-unknown-unknown
+GOOS:              linux
+GOARCH:            arm
+build tags:        avr baremetal linux arm atmega328p atmega avr5 arduino tinygo gc.conservative scheduler.none
+garbage collector: conservative
+scheduler:         none
+```
+
+So now you now, that.
+
+1. GOOS needs to be set to linux
+2. GOARCH needs to be set to arm
+3. GOFLAGS needs to be set to `-tags=avr,baremetal,linux,arm,atmega328p,atmega,avr5,arduino,tinygo,gc.conservative,scheduler.none`
+
+Important is that you need to comma separate the tags.
+
+### Start the editor
+
+The following example should work for all editors. And more or less all operating systems. The syntax may vary depending on your os/shell.
+
+VSCode Example:
+
+> export GOOS=linux; export GOARCH=arm; export GOFLAGS=-tags=avr,baremetal,linux,arm,atmega328p,atmega,avr5,arduino,tinygo,gc.conservative,scheduler.none; code
+
+### Using tinygo-edit
+
+There is a CLI tool called [tinygo-edit](https://github.com/sago35/tinygo-edit) you can use it to Gather the needed build flags and starting the editor using the correct environment variables. Using the CLI you don't need to do the steps manualy.
+
+### Using an alias
+
+Another alternative to automate the process of fetching the needed environment variables and starting your editor, you could also create an alias.
+
+#### Ubuntu Example using vscode
+
+```bash
+export VISUAL=code
+export EDITOR="$VISUAL"
+alias startTinyGoArduino="GOOS=linux GOARCH=arm GOFLAGS=-tags=$(tinygo info arduino|grep 'build tags'|awk -F: '{print $2}' | sed -e 's/^[[:space:]]*//'|sed -e 's/[[:space:]]/,/g') $EDITOR"
+```
+
+### Note
+
+This process has only been tested with the [gopls](https://github.com/golang/tools/blob/master/gopls/doc/user.md) language server. It might or might not work with other language servers.
+
+To install gopls follow the instructions in the link above.
 
 ## TinyGo Drivers
 
