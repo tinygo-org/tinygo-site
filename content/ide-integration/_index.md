@@ -3,133 +3,51 @@ title: "IDE Integration"
 weight: 8
 ---
 
+IDEs need to have certain environment variables set before they work with TinyGo: `GOROOT` and `GOFLAGS`. You can determine the correct values from the `tinygo info` command (starting with TinyGo 0.15).
 
-## Downloading the source
-
-Either git clone the tinygo source from.
-
-> https://github.com/tinygo-org/tinygo
-
-## Go mod init in your project
-
-Navigate to your project and type:
-
-> go mod init
-
-## Replace needed imports
-
-Replace each std package you need using the replace keyword in the go.mod file.
-
-So if you want the machine package to be resolved replace it using.
-
-> replace machine => /path/to/tinygo/machine
-
-Repeat this step for every package, which needs to be resolved in your project.
-
-### Example
-
-```go
-module github.com/Nerzal/tinygo-playground
-
-go 1.14
-
-replace machine => /home/tobias/go/src/github.com/tinygo-org/tinygo/src/machine
-
-require (
-    machine v0.0.0-00010101000000-000000000000
-    tinygo.org/x/drivers v0.13.0
-)
-
-```
-
-## Add go module files to the packages
-
-In order to get your package resolved, you also have to add a go mod file for the packages.
-
-So navigate to `/path/to/tinygo/src/neededpackage`
-
-And then do `go mod init`
-
-### Example
-
+To get the correct values for these flags, run the following command. Here it is for `microbit`, replace it with something else if you need it.
+    
 ```bash
- cd ~/go/src/github.com/tinygo-org/tinygo/src/machine
- go mod init
-```
-
-## GoPath
-
-In order to get IDE support like autocomplete you have to add the tinygo src path to your [GOPATH](https://github.com/golang/go/wiki/GOPATH). So setup your Gopath first.
-After adding the tinygo source path to the GOPATH go will know, where to look for the packages like `machine`
-
-### Ubuntu Example
-
-#### Check if GOPATH is set
-
-> echo $GOPATH
-
-If you result is empty, you need to set the GOPATH fist
-
-You can just append the path to your tinygo installation in your GOPATH.
-
-> export GOPATH=$GOPATH:/path/to/your/tinygo
-
-### Windows Example
-
-Windows uses a semicolon to separate the different paths. So you can just append the path to your tinygo using the example below.
-
-> set GOPATH=%GOPATH%;C:\path\to\your\tinygo
-
-At this point, if you are in src/examples/bliny1/blinky.go, machine.Output can be handled by gopls.
-You may want to prompt them to check it once.
-
-At this point, machine.LED cannot be processed by gopls.
-This is because you do not have build-tag or other settings in place.
-
-## Starting your editor with variables
-
-The last step needed to get full code completion support is to start your editor with environment variables.
-
-You could also just set the environment variables for your complete environment, but this would interfere you when, writing normal go code.
-
-So we use another way.
-
-### Gather the needed information
-
-We need different environment variables for different microcontrollers.
-
-You can use `tinygo info controllerName`
-
-**Example**
-To gather information needed to work with an Arduino use:
-
-> tinygo info arduino
-
-```bash
-$ tinygo info arduino
-LLVM triple:       avr-unknown-unknown
+$ tinygo info microbit
+LLVM triple:       armv6m-none-eabi
 GOOS:              linux
 GOARCH:            arm
-build tags:        avr baremetal linux arm atmega328p atmega avr5 arduino tinygo gc.conservative scheduler.none
+build tags:        cortexm baremetal linux arm nrf51822 nrf51 nrf microbit tinygo gc.conservative scheduler.tasks
 garbage collector: conservative
-scheduler:         none
+scheduler:         tasks
+cached GOROOT:     /home/user/.cache/tinygo/goroot-go1.14-f930d5b5f36579e8cbd1c139012b3d702281417fb6bdf67303c4697195b9ef1f-syscall
 ```
 
-So now you now, that.
+  * The `GOROOT` value needed is the cached GOROOT given in the output (`/home/user/.cache/tinygo/goroot-go1.14-f930d5b5f36579e8cbd1c139012b3d702281417fb6bdf67303c4697195b9ef1f-syscall` in the example).
 
-1. GOOS needs to be set to linux
-2. GOARCH needs to be set to arm
-3. GOFLAGS needs to be set to `-tags=avr,baremetal,linux,arm,atmega328p,atmega,avr5,arduino,tinygo,gc.conservative,scheduler.none`
+  * The `GOFLAGS` value can be determined from the build tags. Take the entire list of build tags, replace spaces with commas, and add `-tags=` in front. For this example, the output would be `-tags=cortexm,baremetal,linux,arm,nrf51822,nrf51,nrf,microbit,tinygo,gc.conservative,scheduler.tasks`.
 
-Important is that you need to comma separate the tags.
+Now you need to configure your IDE with these values.
 
-### Start the editor
+### Visual Studio Code
 
-The following example should work for all editors. And more or less all operating systems. The syntax may vary depending on your os/shell.
+In VS Code, you can edit the file `.vscode/settings.json` in the root of your project. If the `.vscode` directory does not yet exist, create it. It's a normal JSON file where you need to set the `go.toolsEnvVars` property. An example file (again, using the above configuration) is the following:
 
-VSCode Example:
+```json
+{
+    "go.toolsEnvVars": {
+        "GOROOT": "/home/user/.cache/tinygo/goroot-go1.14-f930d5b5f36579e8cbd1c139012b3d702281417fb6bdf67303c4697195b9ef1f-syscall",
+        "GOFLAGS": "-tags=cortexm,baremetal,linux,arm,nrf51822,nrf51,nrf,microbit,tinygo,gc.conservative,scheduler.tasks"
+    }
+}
+```
 
-> export GOOS=linux; export GOARCH=arm; export GOFLAGS=-tags=avr,baremetal,linux,arm,atmega328p,atmega,avr5,arduino,tinygo,gc.conservative,scheduler.none; code
+After creating or modifying this file, you will likely need to restart VS Code to apply these settings.
+
+### Other IDEs
+
+Other IDEs will likely need a different setup. You can try starting them with these environment variables set in your shell or configuring these environment variables somewhere in your Go language server settings.
+
+As an example, this is an alternative way to start VS Code with the settings above (using `bash`):
+
+```
+GOROOT=/home/user/.cache/tinygo/goroot-go1.14-f930d5b5f36579e8cbd1c139012b3d702281417fb6bdf67303c4697195b9ef1f-syscall GOFLAGS=-tags=cortexm,baremetal,linux,arm,nrf51822,nrf51,nrf,microbit,tinygo,gc.conservative,scheduler.tasks code
+```
 
 ### Using tinygo-edit
 
@@ -147,16 +65,16 @@ export EDITOR="$VISUAL"
 alias startTinyGoArduino="GOOS=linux GOARCH=arm GOFLAGS=-tags=$(tinygo info arduino|grep 'build tags'|awk -F: '{print $2}' | sed -e 's/^[[:space:]]*//'|sed -e 's/[[:space:]]/,/g') $EDITOR"
 ```
 
-### Note
-
-This process has only been tested with the [gopls](https://github.com/golang/tools/blob/master/gopls/doc/user.md) language server. It might or might not work with other language servers.
-
-To install gopls follow the instructions in the link above.
-
 ## TinyGo Drivers
 
 There are already lot's of drivers for common hardware. See [this](https://github.com/tinygo-org/drivers) for more information.
 
-### Install drivers
+### Using drivers with Go modules
 
-> go get tinygo.org/x/drivers
+When you're using Go modules, drivers are automatically added when you import a driver (such as `tinygo.org/x/drivers/ws2812`).
+
+### Install drivers using GOPATH
+
+When you're not using Go modules, you need to download the drivers separately. This works like any Go package:
+
+> go get -d tinygo.org/x/drivers
