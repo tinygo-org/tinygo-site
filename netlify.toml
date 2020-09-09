@@ -3,9 +3,9 @@
 [[redirects]]
   from = "/bluetooth"
   to = "https://github.com/tinygo-org/bluetooth#go-bluetooth"
-  status = 200
+  status = 301
 
 [[redirects]]
   from = "https://bluetooth.tinygo.org"
   to = "https://github.com/tinygo-org/bluetooth#go-bluetooth"
-  status = 200
+  status = 301
