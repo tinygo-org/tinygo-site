@@ -11,31 +11,41 @@ This page has information on how to install and use TinyGo on Windows 10.
 
 We now have a native install for Windows 10.
 
-VERY IMPORTANT NOTE: You cannot yet create Windows binary programs using TinyGo, only MCU and WASM targets.
+> **VERY IMPORTANT NOTE:** 
+> You cannot yet create Windows binary programs using TinyGo, only MCU and WASM targets.
+
+TinyGo requires Go v1.14+ to be already installed on your machine.
 
 ### Quick Install via Scoop
 
 You can use [Scoop](https://scoop.sh/) to install TinyGo and dependencies.
 
-You must have Go v1.14+ already installed on your machine in order to install TinyGo. If you haven't installed Go already, you can do so with the following commands:
+If you haven't installed Go already, you can do so with the following command:
 
 ```shell
-scoop install go
+> scoop install go
 ```
 
-Then install TinyGo using the following command - this will also update the PATH variable to point to the installed package:
+Followed by TinyGo itself:
 
 ```shell
-scoop install tinygo
+> scoop install tinygo
 ```
 
-You can test that the installation is working properly by running this code which should display the version number:
+Your `$PATH` environment variable will be updated via the scoop package. By default a shim is created in `~/scoop/shims/tinygo`.
+
+You can test that the installation was successful by running the `version` command which should display the version number:
 
 ```shell
-tinygo version
+> tinygo version
 tinygo version 0.14.1 windows/amd64 (using go version go1.15 and LLVM version 10.0.1)
 ```
 
+Upgrading to the latest TinyGo version can be done via scoop with:
+
+```shell
+> scoop update tinygo
+```
 
 ### Manual Install
 
@@ -58,13 +68,13 @@ tinygo version 0.14.1 windows/amd64 (using go version go1.15 and LLVM version 10
 - You will need to add `C:\tinygo\bin` to your PATH.
 
     ```shell
-    set PATH=%PATH%;"C:\tinygo\bin";
+    > set PATH=%PATH%;"C:\tinygo\bin";
     ```
 
 - Now you should be able to run the TinyGo command:
 
     ```
-    tinygo version
+    > tinygo version
     tinygo version 0.14.1 windows/amd64 (using go version go1.15 and LLVM version 10.0.1)
     ```
 
