@@ -23,7 +23,7 @@ You must have Go v1.14+ already installed on your machine in order to install Ti
 scoop install go
 ```
 
-Then install TinyGo using the following commands:
+Then install TinyGo using the following command - this will also update the PATH variable to point to the installed package:
 
 ```shell
 scoop install tinygo
