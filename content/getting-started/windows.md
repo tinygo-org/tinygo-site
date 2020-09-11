@@ -13,6 +13,32 @@ We now have a native install for Windows 10.
 
 VERY IMPORTANT NOTE: You cannot yet create Windows binary programs using TinyGo, only MCU and WASM targets.
 
+### Quick Install via Scoop
+
+You can use [Scoop](https://scoop.sh/) to install TinyGo and dependencies.
+
+You must have Go v1.14+ already installed on your machine in order to install TinyGo. If you haven't installed Go already, you can do so with the following commands:
+
+```shell
+scoop install go
+```
+
+Then install TinyGo using the following commands:
+
+```shell
+scoop install tinygo
+```
+
+You can test that the installation is working properly by running this code which should display the version number:
+
+```shell
+tinygo version
+tinygo version 0.14.1 windows/amd64 (using go version go1.15 and LLVM version 10.0.1)
+```
+
+
+### Manual Install
+
 - You MUST use Go 1.14.x+ with the Windows 10 native install of TinyGo.
 
     - If you have not installed it yet, you can get it from https://golang.org/dl/
