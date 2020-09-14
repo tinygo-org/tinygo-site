@@ -3,7 +3,7 @@ title: "Adafruit Circuit Playground Bluefruit"
 weight: 3
 ---
 
-The [Adafruit Circuit Playground Bluefruit](https://www.adafruit.com/product/4333) is small ARM development board based on the Nordic Semiconductor [nrf52840](https://www.nordicsemi.com/eng/Products/nRF52840)  processor. It has several built-in devices such as WS2812 "NeoPixel" LEDs, buttons, an accelerometer, and some other sensors.
+The [Adafruit Circuit Playground Bluefruit](https://www.adafruit.com/product/4333) is small ARM development board based on the Nordic Semiconductor [nrf52840](https://www.nordicsemi.com/eng/Products/nRF52840) processor. It has several built-in devices such as WS2812 "NeoPixel" LEDs, buttons, an accelerometer, and some other sensors.
 
 ## Interfaces
 
@@ -15,6 +15,7 @@ The [Adafruit Circuit Playground Bluefruit](https://www.adafruit.com/product/433
 | I2C      | YES | YES |
 | ADC      | YES | YES |
 | PWM      | YES | YES |
+| Bluetooth      | YES | YES |
 
 ## Machine Package Docs
 
@@ -79,4 +80,5 @@ You can use the USB port to the Circuit Playground Bluefruit as a serial port. `
 
 For an example that uses the built-in Neopixel LEDs, take a look at the TinyGo drivers repository located at [https://github.com/tinygo-org/drivers/tree/release/examples](https://github.com/tinygo-org/drivers)
 
-Bluetooth support is also in development but not yet completed.
+Bluetooth support is now available for the Circuit Playground Bluefruit board. See https://github.com/tinygo-org/bluetooth for more information.
+
