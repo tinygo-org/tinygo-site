@@ -3,7 +3,7 @@ title: "Adafruit Feather nRF52840"
 weight: 3
 ---
 
-The [Adafruit Feather nRF52840](https://www.adafruit.com/product/4500) is small ARM development board based on the Nordic Semiconductor [nrf52840](https://www.nordicsemi.com/eng/Products/nRF52840) processor.
+The [Adafruit Feather nRF52840](https://www.adafruit.com/product/4500) is a small ARM development board based on the Nordic Semiconductor [nrf52840](https://www.nordicsemi.com/eng/Products/nRF52840) processor.
 
 ## Interfaces
 
@@ -15,6 +15,7 @@ The [Adafruit Feather nRF52840](https://www.adafruit.com/product/4500) is small 
 | I2C      | YES | YES |
 | ADC      | YES | YES |
 | PWM      | YES | YES |
+| Bluetooth      | YES | YES |
 
 ## Machine Package Docs
 
@@ -77,4 +78,4 @@ Once you have updated your Adafruit Feather nRF52840 board the first time, after
 
 You can use the USB port to the Adafruit Feather nRF52840 as a serial port. `UART0` refers to this connection.
 
-Bluetooth support is in development but not yet completed.
+Bluetooth support is now available for the Adafruit Feather nRF52840 board. See https://github.com/tinygo-org/bluetooth for more information.
