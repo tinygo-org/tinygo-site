@@ -15,6 +15,7 @@ The [nRF52840-MDK](https://wiki.makerdiary.com/nrf52840-mdk/) is an open-source,
 | I2C      | YES | YES |
 | ADC      | YES | Not yet |
 | PWM      | YES | Not yet |
+| Bluetooth      | YES | YES |
 
 ## Machine Package Docs
 
@@ -28,3 +29,7 @@ Programs are loaded onto the nRF52840-MDK board using the `openocd` command line
 
 - Plug your nRF52840-MDK into your computer's USB port.
 - Build and flash your TinyGo program using `tinygo flash -target=nrf52840-mdk`
+
+## Notes
+
+Bluetooth support is now available for nRF52840 boards. See https://github.com/tinygo-org/bluetooth for more information.

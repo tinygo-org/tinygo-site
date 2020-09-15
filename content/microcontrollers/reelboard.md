@@ -17,6 +17,7 @@ It is equipped with an Electrophoretic (electronic ink) Display (EPD), along wit
 | I2C      | YES | YES |
 | ADC      | YES | Not yet |
 | PWM      | YES | Not yet |
+| Bluetooth      | YES | YES |
 
 ## Machine Package Docs
 
@@ -44,3 +45,5 @@ Programs can also be loaded onto the reelboard using the `openocd` command line 
 
 - Plug your reelboard into your computer's USB port.
 - Build and flash your TinyGo program using `tinygo flash -target=reelboard`
+
+Bluetooth support is now available for reelboard. See https://github.com/tinygo-org/bluetooth for more information.

@@ -24,15 +24,66 @@ The [Espressif ESP32]() is a tiny development board based on the Xtensa [ESP32](
 
 ### CLI Flashing on Linux
 
-Goes here
+You need to install the Espressif toolchain for Linux to use TinyGo with the ESP32: 
+
+https://docs.espressif.com/projects/esp-idf/en/release-v3.0/get-started/linux-setup.html#standard-setup-of-toolchain-for-linux
+
+In addition, you must install the `esptool` flashing tool:
+
+https://github.com/espressif/esptool#easy-installation
+
+Now you should be able to flash your board as follows:
+
+- Plug your ESP32 board into your computer's USB port.
+- Build and flash your TinyGo code using the `tinygo flash` command. This command flashes the ESP32 with the blinky1 example:
+
+    ```
+    tinygo flash -target=esp32-wroom-32 examples/blinky1
+    ```
+
+- The ESP32 board should restart and then begin running your program.
 
 ### CLI Flashing on macOS
 
-Goes here
+You need to install the Espressif toolchain for macOS to use TinyGo with the ESP32: 
+
+https://docs.espressif.com/projects/esp-idf/en/release-v3.0/get-started/macos-setup.html
+
+In addition, you must install the `esptool` flashing tool:
+
+https://github.com/espressif/esptool#easy-installation
+
+Now you should be able to flash your board as follows:
+
+- Plug your ESP32 board into your computer's USB port.
+- Build and flash your TinyGo code using the `tinygo flash` command. This command flashes the ESP32 with the blinky1 example:
+
+    ```
+    tinygo flash -target=esp32-wroom-32 examples/blinky1
+    ```
+
+- The ESP32 board should restart and then begin running your program.
 
 ### CLI Flashing on Windows
 
-Goes here
+You need to install the Espressif toolchain for Windows to use TinyGo with the ESP32: 
+
+https://docs.espressif.com/projects/esp-idf/en/release-v3.0/get-started/windows-setup.html
+
+In addition, you must install the `esptool` flashing tool:
+
+https://github.com/espressif/esptool#easy-installation
+
+Now you should be able to flash your board as follows:
+
+- Plug your ESP32 board into your computer's USB port.
+- Build and flash your TinyGo code using the `tinygo flash` command. This command flashes the ESP32 with the blinky1 example:
+
+    ```
+    tinygo flash -target=esp32-wroom-32 examples/blinky1
+    ```
+
+- The ESP32 board should restart and then begin running your program.
 
 ### Troubleshooting
 
