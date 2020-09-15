@@ -3,7 +3,7 @@ title: "ESP32"
 weight: 3
 ---
 
-The [Espressif ESP32]() is a tiny development board based on the Xtensa [ESP32]() family of SoC.
+The [Espressif ESP32](https://www.espressif.com/en/products/socs/esp32) is a powerful chip that is used on many different development boards. It includes a built-in radio that can be used for WiFi or Bluetooth wireless connections.
 
 ## Interfaces
 
@@ -15,6 +15,8 @@ The [Espressif ESP32]() is a tiny development board based on the Xtensa [ESP32](
 | I2C      | YES | Not Yet |
 | ADC      | YES | Not Yet |
 | PWM      | YES | Not Yet |
+| WiFi      | YES | Not Yet |
+| Bluetooth      | YES | Not Yet |
 
 ## Machine Package Docs
 
@@ -38,7 +40,7 @@ Now you should be able to flash your board as follows:
 - Build and flash your TinyGo code using the `tinygo flash` command. This command flashes the ESP32 with the blinky1 example:
 
     ```
-    tinygo flash -target=esp32-wroom-32 examples/blinky1
+    tinygo flash -target=esp32-wroom-32 -port=/dev/ttyUSB0 examples/blinky1
     ```
 
 - The ESP32 board should restart and then begin running your program.
