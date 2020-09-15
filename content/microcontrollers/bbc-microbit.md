@@ -15,6 +15,7 @@ The BBC [micro:bit](https://microbit.org) is a tiny programmable computer design
 | I2C      | YES | YES |
 | ADC      | YES | Not yet |
 | PWM      | Software support | Not yet |
+| Bluetooth      | YES | YES |
 
 ## Machine Package Docs
 
@@ -68,3 +69,5 @@ machine.SPI1.Configure(machine.SPIConfig{
 // use I2C0 as normally do
 machine.I2C0.Configure(machine.I2CConfig{})
 ```
+
+Bluetooth support is now available for the BBC micro:bit board. See https://github.com/tinygo-org/bluetooth for more information.

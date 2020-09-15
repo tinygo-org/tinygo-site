@@ -15,6 +15,7 @@ The [Adafruit CLUE](https://www.adafruit.com/product/4500) is small ARM developm
 | I2C      | YES | YES |
 | ADC      | YES | YES |
 | PWM      | YES | YES |
+| Bluetooth      | YES | YES |
 
 ## Machine Package Docs
 
@@ -79,4 +80,4 @@ You can use the USB port to the CLUE as a serial port. `UART0` refers to this co
 
 For an example that uses the built-in Neopixel LEDs, take a look at the TinyGo drivers repository located at [https://github.com/tinygo-org/drivers/tree/release/examples](https://github.com/tinygo-org/drivers)
 
-Bluetooth support is in development but not yet completed.
+Bluetooth support is now available for the Adafruit CLUE board. See https://github.com/tinygo-org/bluetooth for more information.
