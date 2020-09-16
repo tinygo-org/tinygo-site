@@ -51,7 +51,6 @@ You must first install the `dfu-util` program in order to flash the Adafruit Fea
 
 If you run into trouble getting dfu-util installed and working on Windows, see the blog post at https://www.hanselman.com/blog/HowToFixDfuutilSTMWinUSBZadigBootloadersAndOtherFirmwareFlashingIssuesOnWindows.aspx
 
-
 ## Notes
 
 Goes here
