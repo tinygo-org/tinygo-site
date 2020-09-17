@@ -138,7 +138,7 @@ sync/atomic |  <span style="color: green">✔</span> yes  |
 syscall |  <span style="color: green">✔</span> yes  | 
 syscall/js |  <span style="color: green">✔</span> yes  | 
 testing |  <span style="color: green">✔</span> yes  | 
-testing/iotest |  [<span style="color: red">✗</span> no](#testing-iotest)  | 
+testing/iotest |  <span style="color: green">✔</span> yes  | 
 testing/quick |  [<span style="color: red">✗</span> no](#testing-quick)  | 
 text/scanner |  <span style="color: green">✔</span> yes  | 
 text/tabwriter |  <span style="color: green">✔</span> yes  | 
@@ -221,6 +221,10 @@ The compiler gave the following error when this package was imported:
 
 <pre># encoding/asn1
 encoding/asn1/<init>: interp: unknown GEP
+
+traceback:
+encoding/asn1/<init>:
+  %12 = getelementptr inbounds { %"encoding/asn1.BitString" }, { %"encoding/asn1.BitString" }* %11, i32 0, i32 0, !dbg !1934
 </pre>
 
 
@@ -248,6 +252,8 @@ The compiler gave the following error when this package was imported:
 /home/ron/.gvm/gos/go1.15/src/math/big/nat.go:74:11: interp: unknown GEP
 
 traceback:
+/home/ron/.gvm/gos/go1.15/src/math/big/nat.go:74:11:
+  %16 = getelementptr inbounds i32, i32* %4, i32 0, !dbg !1742
 /home/ron/.gvm/gos/go1.15/src/math/big/nat.go:84:19:
   %9 = call { i32*, i32, i32 } @"(math/big.nat).setWord"(i32* %6, i32 %7, i32 %8, i32 %3, i8* undef, i8* undef), !dbg !1749
 /home/ron/.gvm/gos/go1.15/src/math/big/int.go:55:25:
@@ -337,6 +343,10 @@ The compiler gave the following error when this package was imported:
 
 <pre># encoding/asn1
 encoding/asn1/<init>: interp: unknown GEP
+
+traceback:
+encoding/asn1/<init>:
+  %12 = getelementptr inbounds { %"encoding/asn1.BitString" }, { %"encoding/asn1.BitString" }* %11, i32 0, i32 0, !dbg !1837
 </pre>
 
 
@@ -492,22 +502,19 @@ This package cannot be imported because the following dependencies cannot be com
 
 The compiler gave the following error when this package was imported:
 
-<pre>panic: interp: load from a bitcast
+<pre># go/types
+/home/ron/Development/tinygo/tinygo/src/runtime/hashmap.go:203:21: interp: load from a bitcast
 
-goroutine 1 [running]:
-github.com/tinygo-org/tinygo/interp.(*LocalValue).Load(0xc00b2a3010, 0xc00b2a3010)
-	/home/ron/Development/tinygo/tinygo/interp/values.go:61 +0x226
-github.com/tinygo-org/tinygo/interp.(*LocalValue).Load(0xc00b2a3000, 0x7f040000001d)
-	/home/ron/Development/tinygo/tinygo/interp/values.go:58 +0x135
-github.com/tinygo-org/tinygo/interp.(*frame).evalBasicBlock(0xc0092349b0, 0x7f0434e8cd00, 0x7f0434e8c870, 0xc00b2a4970, 0xc, 0x0, 0x0, 0xc00b205600, 0x1, 0x1, ...)
-	/home/ron/Development/tinygo/tinygo/interp/frame.go:98 +0xd785
-github.com/tinygo-org/tinygo/interp.(*evalPackage).function(0xc0092374e0, 0x7f0428022488, 0xc007db5800, 0x9, 0x10, 0xc00b2a4970, 0xc, 0x10, 0xc00b2a2560, 0x0)
-	/home/ron/Development/tinygo/tinygo/interp/interp.go:113 +0x249
-github.com/tinygo-org/tinygo/interp.(*frame).evalBasicBlock(0xc009235768, 0x7f0434ef43d0, 0x7f0434ef4040, 0xc00b29b9b8, 0x8, 0x0, 0x0, 0xc00b205458, 0x1, 0x1, ...)
-	/home/ron/Development/tinygo/tinygo/interp/frame.go:570 +0x6c7e
-github.com/tinygo-org/tinygo/interp.(*evalPackage).function(0xc0092374e0, 0x7f0428023338, 0xc007f17880, 0x7, 0x8, 0xc00b29b9b8, 0x8, 0x8, 0xc00b289c40, 0x0)
-	/home/ron/Development/tinygo/tinygo/interp/interp.go:113 +0x249
-[...more lines following...]</pre>
+traceback:
+/home/ron/Development/tinygo/tinygo/src/runtime/hashmap.go:203:21:
+  %83 = load i8, i8* %82, !dbg !2170
+/home/ron/Development/tinygo/tinygo/src/runtime/hashmap.go:335:19:
+  %13 = call i1 @runtime.hashmapGet(%runtime.hashmap* %m, i8* %12, i8* %value, i32 %valueSize, i32 %11, i8* undef, i32 ptrtoint (%runtime.funcValueWithSignature* @"runtime.hashmapStringEqual$withSignature" to i32), i8* undef, i8* undef), !dbg !2059
+/home/ron/.gvm/gos/go1.15/src/go/types/sizes.go:184:6:
+  %13 = call i1 @runtime.hashmapStringGet(%runtime.hashmap* %9, i8* %11, i32 %12, i8* %hashmap.value.bitcast, i32 4, i8* undef, i8* null), !dbg !2055
+go/types/<init>:202:24:
+  %359 = call %runtime._interface @"go/types.SizesFor"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @"go/types.init$string.1271", i32 0, i32 0), i32 2, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @"go/types.init$string.1272", i32 0, i32 0), i32 5, i8* undef, i8* undef), !dbg !2199
+</pre>
 
 
 
@@ -860,19 +867,6 @@ The compiler gave the following error when this package was imported:
 
 
 
-## testing/iotest
-
-
-The compiler gave the following error when this package was imported:
-
-<pre># testing/iotest
-../../../../../tmp/tinygo-test.go:2:8: cannot find package "testing/iotest" in any of:
-	/home/ron/.cache/tinygo/goroot-go1.15-7afa574ac889bbfe1ced1698a5a8cef44acba21596cd94a64313a8cd1019f95d/src/testing/iotest (from $GOROOT)
-	/home/ron/.gvm/pkgsets/go1.15/global/src/testing/iotest (from $GOPATH)
-</pre>
-
-
-
 
 
 ## testing/quick
@@ -881,9 +875,15 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when this package was imported:
 
 <pre># testing/quick
-../../../../../tmp/tinygo-test.go:2:8: cannot find package "testing/quick" in any of:
-	/home/ron/.cache/tinygo/goroot-go1.15-7afa574ac889bbfe1ced1698a5a8cef44acba21596cd94a64313a8cd1019f95d/src/testing/quick (from $GOROOT)
-	/home/ron/.gvm/pkgsets/go1.15/global/src/testing/quick (from $GOPATH)
+/home/ron/.gvm/gos/go1.15/src/testing/quick/quick.go:273:11: fType.NumOut undefined (type reflect.Type has no field or method NumOut)
+/home/ron/.gvm/gos/go1.15/src/testing/quick/quick.go:276:11: fType.Out undefined (type reflect.Type has no field or method Out)
+/home/ron/.gvm/gos/go1.15/src/testing/quick/quick.go:280:43: fType.NumIn undefined (type reflect.Type has no field or method NumIn)
+/home/ron/.gvm/gos/go1.15/src/testing/quick/quick.go:290:12: fVal.Call undefined (type reflect.Value has no field or method Call)
+/home/ron/.gvm/gos/go1.15/src/testing/quick/quick.go:320:43: xType.NumIn undefined (type reflect.Type has no field or method NumIn)
+/home/ron/.gvm/gos/go1.15/src/testing/quick/quick.go:330:26: x.Call undefined (type reflect.Value has no field or method Call)
+/home/ron/.gvm/gos/go1.15/src/testing/quick/quick.go:331:26: y.Call undefined (type reflect.Value has no field or method Call)
+/home/ron/.gvm/gos/go1.15/src/testing/quick/quick.go:351:25: f.In undefined (type reflect.Type has no field or method In)
+/home/ron/.gvm/gos/go1.15/src/testing/quick/quick.go:353:95: f.In undefined (type reflect.Type has no field or method In)
 </pre>
 
 
