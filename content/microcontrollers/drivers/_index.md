@@ -6,11 +6,11 @@ weight: 90
 
 # Drivers
 
-TinyGo has driver support for 44 different sensors and devices such as digital accelerometers and multicolor LEDs.
+TinyGo has driver support for 53 different sensors and devices such as digital accelerometers and multicolor LEDs.
 
 All of the drivers code is in the TinyGo Drivers repository located at [https://github.com/tinygo-org/drivers/](https://github.com/tinygo-org/drivers/).
 
-The following 51 devices are supported.
+The following 53 devices are supported.
 
 | Device Name | Interface Type |
 |----------|-------------|
@@ -38,6 +38,7 @@ The following 51 devices are supported.
 | [ILI9341 TFT color display](https://cdn-shop.adafruit.com/datasheets/ILI9341.pdf) | SPI |
 | [L293x motor driver](https://www.ti.com/lit/ds/symlink/l293d.pdf) | GPIO/PWM |
 | [L9110x motor driver](https://www.elecrow.com/download/datasheet-l9110.pdf) | GPIO/PWM |
+| [LIS2MDL magnetometer](https://www.st.com/resource/en/datasheet/lis2mdl.pdf) | I2C |
 | [LIS3DH accelerometer](https://www.st.com/resource/en/datasheet/lis3dh.pdf) | I2C |
 | [LSM6DS3 accelerometer](https://www.st.com/resource/en/datasheet/lsm6ds3.pdf) | I2C |
 | [MAG3110 magnetometer](https://www.nxp.com/docs/en/data-sheet/MAG3110.pdf) | I2C |
@@ -64,6 +65,7 @@ The following 51 devices are supported.
 | [VL53L1X time-of-flight distance sensor](https://www.st.com/resource/en/datasheet/vl53l1x.pdf) | I2C |
 | [Waveshare 2.13" (B & C) e-paper display](https://www.waveshare.com/w/upload/d/d3/2.13inch-e-paper-b-Specification.pdf) | SPI |
 | [Waveshare 2.13" e-paper display](https://www.waveshare.com/w/upload/e/e6/2.13inch_e-Paper_Datasheet.pdf) | SPI |
+| [Waveshare 4.2" e-paper B/W display](https://www.waveshare.com/w/upload/6/6a/4.2inch-e-paper-specification.pdf) | SPI |
 | [WS2812 RGB LED](https://cdn-shop.adafruit.com/datasheets/WS2812.pdf) | GPIO |
 
 We also give you the ability to add new drivers. If your device isn't listed here, please raise an issue in the [issue tracker](https://github.com/tinygo-org/drivers/issues).
