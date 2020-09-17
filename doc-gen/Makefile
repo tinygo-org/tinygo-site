@@ -4,18 +4,24 @@ DEVICES = \
     arduino-mega2560 \
     arduino-nano \
     arduino-nano33 \
+    arduino-zero \
     bluepill \
     circuitplay-bluefruit \
     circuitplay-express \
     clue_alpha \
     digispark \
+    esp32 \
+    esp8266 \
     feather-m0 \
     feather-m4 \
     feather-nrf52840 \
+    feather-stm32f405 \
     gameboy-advance \
     hifive1b \
     itsybitsy-m0 \
     itsybitsy-m4 \
+    itsybitsy-nrf52840 \
+    maixbit \
     metro-m4-airlift \
     microbit \
     nintendoswitch \
@@ -37,8 +43,7 @@ DEVICES = \
     trinket-m0 \
     wioterminal \
     x9pro \
-    xiao \
-    maixbit
+    xiao
 
 all:
 	go run . $(DEVICES)
