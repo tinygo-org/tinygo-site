@@ -11,7 +11,7 @@ Here is a list of features that are supported:
 * Slices are well supported.
 * Interfaces are quite stable and should work well in almost all cases. Type switches and type asserts are also supported, as well as calling methods on interfaces. The only exception is comparing two interface values (but comparing against `nil` works).
 * Closures and bound methods are supported, for example inline anonymous (lambda-like) functions.
-* The `defer` keyword is supported, with the exception of a deferred call on an interface. This happens very infrequently in practice.
+* The `defer` keyword is almost entirely supported, with the exception of deferring some builtin functions.
 
 ## Concurrency
 
@@ -33,18 +33,18 @@ Types supported as map keys include strings, integers, pointers, and structs/arr
 
 ## Standard library
 
-Due to the above missing pieces and because parts of the standard library depend on the particular compiler/runtime in use, many packages do not yet compile. See the [list of compiling packages here]({{<ref "stdlib.md">}}).
+Due to the above missing pieces and because parts of the standard library depend on the particular compiler/runtime in use, many packages do not yet compile. See the [list of compiling packages here]({{<ref "stdlib.md">}}) (but note that "compiling" does not imply that works entirely).
 
 ## Garbage collection
 
 While not directly a language feature (the Go spec doesn't mention it), garbage collection is important for most Go programs to make sure their memory usage stays in reasonable bounds.
 
-Garbage collection is currently supported on all platforms except AVR. A simple conservative mark-sweep collector is used that will trigger a collection cycle when the heap runs out (that is fixed at compile time) or when requested manually using `runtime.GC()`.
+Garbage collection is currently supported on all platforms, although it works best on 32-bit chips. A simple conservative mark-sweep collector is used that will trigger a collection cycle when the heap runs out (that is fixed at compile time) or when requested manually using `runtime.GC()`. Some other collector designs are used for other targets, TinyGo will automatically pick a good GC for a given target.
 
 Careful design may avoid memory allocations in main loops. You may want to compile with `-gc=none` and look at link errors to find out where allocations happen: the compiler inserts calls to `runtime.alloc` to allocate memory. For more information, see [heap allocation]({{<ref "heap-allocation.md">}}).
 
-## Little used features
+## A note on the `recover` builtin
 
-Some features are little used and there hasn't been a real need to implement them yet. These include:
+The `recover` builtin is not yet supported. Instead, a `panic` will always terminate a program and `recover` simply returns nil.
 
-* `recover()`: this can be useful sometimes but in general most programs work just fine with a `panic()` that simply aborts. Supporting `recover()` will also likely increase code size so it has also been left out at the moment for that reason. When `recover()` gets implemented, it will likely be disabled by default and can be enabled with a compiler flag.
+This is a deviation from the Go spec but so far works well in practice. While there are no immediate plans to implement `recover`, if it can be shown to be necessary for compatibility it will be implemented. Please note that this comes at a cost: it means that every `defer` call will need some extra memory (both code and stack), so this feature is not free. It might also be architecture dependent. If it gets implemented, it will likely be opt-in to not increase code size for existing projects.
