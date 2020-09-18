@@ -27,29 +27,7 @@ The [Adafruit ItsyBitsy-nRF52840](https://www.adafruit.com/product/4333) is a sm
 
 The ItsyBitsy-nRF52840 comes with the [UF2 bootloader](https://github.com/Microsoft/uf2) already installed.
 
-### CLI Flashing on Linux
-
-- Plug your ItsyBitsy-nRF52840 into your computer's USB port.
-- Flash your TinyGo program to the board using this command:
-
-    ```shell
-    tinygo flash -target=itsybitsy-nrf52840 [PATH TO YOUR PROGRAM]
-    ```
-
-- The ItsyBitsy-nRF52840 board should restart and then begin running your program.
-
-### CLI Flashing on macOS
-
-- Plug your ItsyBitsy-nRF52840 into your computer's USB port.
-- Flash your TinyGo program to the board using this command:
-
-    ```shell
-    tinygo flash -target=itsybitsy-nrf52840 [PATH TO YOUR PROGRAM]
-    ```
-
-- The ItsyBitsy-nRF52840 board should restart and then begin running your program.
-
-### CLI Flashing on Windows
+### CLI Flashing
 
 - Plug your ItsyBitsy-nRF52840 into your computer's USB port.
 - Flash your TinyGo program to the board using this command:

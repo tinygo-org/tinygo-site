@@ -28,29 +28,7 @@ It has many built-in devices, such as a 1.8" 160x128 Color TFT Display, 8 x butt
 
 The PyBadge comes with the [UF2 bootloader](https://github.com/Microsoft/uf2) already installed.
 
-### CLI Flashing on Linux
-
-- Plug your PyBadge into your computer's USB port.
-- Flash your TinyGo program to the board using this command:
-
-    ```shell
-    tinygo flash -target=pybadge [PATH TO YOUR PROGRAM]
-    ```
-
-- The PyBadge board should restart and then begin running your program.
-
-### CLI Flashing on macOS
-
-- Plug your PyBadge into your computer's USB port.
-- Flash your TinyGo program to the board using this command:
-
-    ```shell
-    tinygo flash -target=pybadge [PATH TO YOUR PROGRAM]
-    ```
-
-- The PyBadge board should restart and then begin running your program.
-
-### CLI Flashing on Windows
+### CLI Flashing
 
 - Plug your PyBadge into your computer's USB port.
 - Flash your TinyGo program to the board using this command:
