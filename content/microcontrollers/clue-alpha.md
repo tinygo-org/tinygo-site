@@ -27,29 +27,7 @@ The [Adafruit CLUE](https://www.adafruit.com/product/4500) is small ARM developm
 
 The CLUE comes with the [UF2 bootloader](https://github.com/Microsoft/uf2) already installed.
 
-### CLI Flashing on Linux
-
-- Plug your CLUE into your computer's USB port.
-- Flash your TinyGo program to the board using this command:
-
-    ```shell
-    tinygo flash -target=clue-alpha [PATH TO YOUR PROGRAM]
-    ```
-
-- The CLUE board should restart and then begin running your program.
-
-### CLI Flashing on macOS
-
-- Plug your CLUE into your computer's USB port.
-- Flash your TinyGo program to the board using this command:
-
-    ```shell
-    tinygo flash -target=clue-alpha [PATH TO YOUR PROGRAM]
-    ```
-
-- The CLUE board should restart and then begin running your program.
-
-### CLI Flashing on Windows
+### CLI Flashing
 
 - Plug your CLUE into your computer's USB port.
 - Flash your TinyGo program to the board using this command:

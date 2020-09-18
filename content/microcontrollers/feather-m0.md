@@ -26,29 +26,7 @@ The [Adafruit Feather M0](https://www.adafruit.com/product/3403) is a tiny ARM d
 
 The Feather M0 comes with the [UF2 bootloader](https://github.com/Microsoft/uf2) already installed.
 
-### CLI Flashing on Linux
-
-- Plug your Feather M0 into your computer's USB port.
-- Flash your TinyGo program to the board using this command:
-
-    ```shell
-    tinygo flash -target=feather-m0 [PATH TO YOUR PROGRAM]
-    ```
-
-- The Feather M0 board should restart and then begin running your program.
-
-### CLI Flashing on macOS
-
-- Plug your Feather M0 into your computer's USB port.
-- Flash your TinyGo program to the board using this command:
-
-    ```shell
-    tinygo flash -target=feather-m0 [PATH TO YOUR PROGRAM]
-    ```
-
-- The Feather M0 board should restart and then begin running your program.
-
-### CLI Flashing on Windows
+### CLI Flashing
 
 - Plug your Feather M0 into your computer's USB port.
 - Flash your TinyGo program to the board using this command:
