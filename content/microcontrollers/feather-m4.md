@@ -26,7 +26,7 @@ The [Adafruit Feather M4](https://www.adafruit.com/product/3857) is a tiny ARM d
 
 The Feather M4 comes with the [UF2 bootloader](https://github.com/Microsoft/uf2) already installed.
 
-### CLI Flashing on Linux
+### CLI Flashing
 
 - Plug your Feather M4 into your computer's USB port.
 - Flash your TinyGo program to the board using this command:
@@ -37,27 +37,22 @@ The Feather M4 comes with the [UF2 bootloader](https://github.com/Microsoft/uf2)
 
 - The Feather M4 board should restart and then begin running your program.
 
-### CLI Flashing on macOS
+### CLI Flashing with openocd
 
 - Plug your Feather M4 into your computer's USB port.
+- Plug the openocd debugger into your computer's USB port and connect it to the Feather M4.
 - Flash your TinyGo program to the board using this command:
 
     ```shell
-    tinygo flash -target=feather-m4 [PATH TO YOUR PROGRAM]
+    tinygo flash -target=feather-m4 -programmer cmsis-dap   [PATH TO YOUR PROGRAM]
+    tinygo flash -target=feather-m4 -programmer jnlik       [PATH TO YOUR PROGRAM]
+    tinygo flash -target=feather-m4 -programmer stlink-v2   [PATH TO YOUR PROGRAM]
+    tinygo flash -target=feather-m4 -programmer stlink-v2-1 [PATH TO YOUR PROGRAM]
     ```
 
 - The Feather M4 board should restart and then begin running your program.
-
-### CLI Flashing on Windows
-
-- Plug your Feather M4 into your computer's USB port.
-- Flash your TinyGo program to the board using this command:
-
-    ```shell
-    tinygo flash -target=feather-m4 [PATH TO YOUR PROGRAM]
-    ```
-
-- The Feather M4 board should restart and then begin running your program.
+    - In some cases, restart fails on TinyGo 0.15, but when you press reset, begin running your program.
+    - This issue will be fixed in TinyGo 0.16
 
 ### Troubleshooting
 
