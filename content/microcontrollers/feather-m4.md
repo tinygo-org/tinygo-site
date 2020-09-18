@@ -26,7 +26,7 @@ The [Adafruit Feather M4](https://www.adafruit.com/product/3857) is a tiny ARM d
 
 The Feather M4 comes with the [UF2 bootloader](https://github.com/Microsoft/uf2) already installed.
 
-### CLI Flashing on Linux
+### CLI Flashing
 
 - Plug your Feather M4 into your computer's USB port.
 - Flash your TinyGo program to the board using this command:
@@ -37,27 +37,6 @@ The Feather M4 comes with the [UF2 bootloader](https://github.com/Microsoft/uf2)
 
 - The Feather M4 board should restart and then begin running your program.
 
-### CLI Flashing on macOS
-
-- Plug your Feather M4 into your computer's USB port.
-- Flash your TinyGo program to the board using this command:
-
-    ```shell
-    tinygo flash -target=feather-m4 [PATH TO YOUR PROGRAM]
-    ```
-
-- The Feather M4 board should restart and then begin running your program.
-
-### CLI Flashing on Windows
-
-- Plug your Feather M4 into your computer's USB port.
-- Flash your TinyGo program to the board using this command:
-
-    ```shell
-    tinygo flash -target=feather-m4 [PATH TO YOUR PROGRAM]
-    ```
-
-- The Feather M4 board should restart and then begin running your program.
 
 ### Troubleshooting
 
