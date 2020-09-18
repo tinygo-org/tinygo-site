@@ -26,29 +26,7 @@ The [Seeed Seeeduino XIAO](https://www.seeedstudio.com/Seeeduino-XIAO-Arduino-Mi
 
 The XIAO comes with the [UF2 bootloader](https://github.com/Microsoft/uf2) already installed.
 
-### CLI Flashing on Linux
-
-- Plug your XIAO into your computer's USB port.
-- Flash your TinyGo program to the board using this command:
-
-    ```shell
-    tinygo flash -target=xiao [PATH TO YOUR PROGRAM]
-    ```
-
-- The XIAO board should restart and then begin running your program.
-
-### CLI Flashing on macOS
-
-- Plug your XIAO into your computer's USB port.
-- Flash your TinyGo program to the board using this command:
-
-    ```shell
-    tinygo flash -target=xiao [PATH TO YOUR PROGRAM]
-    ```
-
-- The XIAO board should restart and then begin running your program.
-
-### CLI Flashing on Windows
+### CLI Flashing
 
 - Plug your XIAO into your computer's USB port.
 - Flash your TinyGo program to the board using this command:

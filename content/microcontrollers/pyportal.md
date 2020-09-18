@@ -28,29 +28,7 @@ The PyPortal also has an Espressif ESP32 Wi-Fi coprocessor with TLS/SSL support 
 
 The PyPortal comes with the [UF2 bootloader](https://github.com/Microsoft/uf2) already installed.
 
-### CLI Flashing on Linux
-
-- Plug your PyPortal into your computer's USB port.
-- Flash your TinyGo program to the board using this command:
-
-    ```shell
-    tinygo flash -target=pyportal [PATH TO YOUR PROGRAM]
-    ```
-
-- The PyPortal board should restart and then begin running your program.
-
-### CLI Flashing on macOS
-
-- Plug your PyPortal into your computer's USB port.
-- Flash your TinyGo program to the board using this command:
-
-    ```shell
-    tinygo flash -target=pyportal [PATH TO YOUR PROGRAM]
-    ```
-
-- The PyPortal board should restart and then begin running your program.
-
-### CLI Flashing on Windows
+### CLI Flashing
 
 - Plug your PyPortal into your computer's USB port.
 - Flash your TinyGo program to the board using this command:
