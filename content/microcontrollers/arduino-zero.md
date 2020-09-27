@@ -70,7 +70,7 @@ bossac --help
 
 Once you have installed the needed BOSSA command line utility, as in the previous section, you are ready to build and flash code to your Arduino Zero board.
 
-### CLI Flashing on Linux
+### CLI Flashing
 
 - Plug your Arduino Zero board into your computer's USB port.
 - Build and flash your TinyGo code using the `tinygo flash` command. This command flashes the Arduino Zero with the blinky1 example:
@@ -81,27 +81,6 @@ Once you have installed the needed BOSSA command line utility, as in the previou
 
 - The Arduino Zero board should restart and then begin running your program.
 
-### CLI Flashing on macOS
-
-- Plug your Arduino Zero board into your computer's USB port.
-- Build and flash your TinyGo code using the `tinygo flash` command. This command flashes the Arduino Zero with the blinky1 example:
-
-    ```
-    tinygo flash -target=arduino-zero examples/blinky1
-    ```
-
-- The Arduino Zero board should restart and then begin running your program.
-
-### CLI Flashing on Windows
-
-- Plug your Arduino Zero board into your computer's USB port.
-- Build and flash your TinyGo code using the `tinygo flash` command. This command flashes the Arduino Zero with the blinky1 example:
-
-    ```
-    tinygo flash -target=arduino-zero examples/blinky1
-    ```
-
-- The Arduino Zero board should restart and then begin running your program.
 
 ### Troubleshooting
 
