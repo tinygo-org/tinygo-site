@@ -76,29 +76,7 @@ bossac --help
 
 Once you have installed the needed BOSSA command line utility, as in the previous section, you are ready to build and flash code to your Arduino Nano33 IoT board.
 
-### CLI Flashing on Linux
-
-- Plug your Arduino Nano33 IoT board into your computer's USB port.
-- Build and flash your TinyGo code using the `tinygo flash` command. This command flashes the Arduino Nano33 IoT with the blinky1 example:
-
-    ```
-    tinygo flash -target=arduino-nano33 examples/blinky1
-    ```
-
-- The Arduino Nano33 IoT board should restart and then begin running your program.
-
-### CLI Flashing on macOS
-
-- Plug your Arduino Nano33 IoT board into your computer's USB port.
-- Build and flash your TinyGo code using the `tinygo flash` command. This command flashes the Arduino Nano33 IoT with the blinky1 example:
-
-    ```
-    tinygo flash -target=arduino-nano33 examples/blinky1
-    ```
-
-- The Arduino Nano33 IoT board should restart and then begin running your program.
-
-### CLI Flashing on Windows
+### CLI Flashing
 
 - Plug your Arduino Nano33 IoT board into your computer's USB port.
 - Build and flash your TinyGo code using the `tinygo flash` command. This command flashes the Arduino Nano33 IoT with the blinky1 example:

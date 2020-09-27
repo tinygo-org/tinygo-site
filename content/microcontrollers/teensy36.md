@@ -26,29 +26,7 @@ The [PJRC Teensy 3.6](https://www.pjrc.com/store/teensy36.html) is a small ARM d
 
 In order to flash your TinyGo programs onto the Teensy 3.6 board, you will need to install the `teensy_loader_cli` (https://github.com/PaulStoffregen/teensy_loader_cli) on your machine.
 
-### CLI Flashing on Linux
-
-- Plug your Teensy 3.6 into your computer's USB port.
-- Flash your TinyGo program to the board using this command:
-
-    ```shell
-    tinygo flash -target=teensy36 [PATH TO YOUR PROGRAM]
-    ```
-
-- The Teensy 3.6 board should restart and then begin running your program.
-
-### CLI Flashing on macOS
-
-- Plug your Teensy 3.6 into your computer's USB port.
-- Flash your TinyGo program to the board using this command:
-
-    ```shell
-    tinygo flash -target=teensy36 [PATH TO YOUR PROGRAM]
-    ```
-
-- The Teensy 3.6 board should restart and then begin running your program.
-
-### CLI Flashing on Windows
+### CLI Flashing
 
 - Plug your Teensy 3.6 into your computer's USB port.
 - Flash your TinyGo program to the board using this command:
