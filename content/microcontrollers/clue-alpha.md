@@ -19,7 +19,7 @@ The [Adafruit CLUE](https://www.adafruit.com/product/4500) is small ARM developm
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Adafruit CLUE](../machine/clue-alpha)
+[Documentation for the machine package for the Adafruit CLUE](../machine/clue_alpha)
 
 ## Flashing
 
@@ -33,7 +33,7 @@ The CLUE comes with the [UF2 bootloader](https://github.com/Microsoft/uf2) alrea
 - Flash your TinyGo program to the board using this command:
 
     ```shell
-    tinygo flash -target=clue-alpha [PATH TO YOUR PROGRAM]
+    tinygo flash -target=clue_alpha [PATH TO YOUR PROGRAM]
     ```
 
 - The CLUE board should restart and then begin running your program.
@@ -44,7 +44,7 @@ The CLUE comes with the [UF2 bootloader](https://github.com/Microsoft/uf2) alrea
 - Flash your TinyGo program to the board using this command:
 
     ```shell
-    tinygo flash -target=clue-alpha [PATH TO YOUR PROGRAM]
+    tinygo flash -target=clue_alpha [PATH TO YOUR PROGRAM]
     ```
 
 - The CLUE board should restart and then begin running your program.
@@ -55,7 +55,7 @@ The CLUE comes with the [UF2 bootloader](https://github.com/Microsoft/uf2) alrea
 - Flash your TinyGo program to the board using this command:
 
     ```shell
-    tinygo flash -target=clue-alpha [PATH TO YOUR PROGRAM]
+    tinygo flash -target=clue_alpha [PATH TO YOUR PROGRAM]
     ```
 
 - The CLUE board should restart and then begin running your program.
@@ -69,7 +69,7 @@ If you have troubles getting your CLUE board to receive code, try this:
 - Now try running the command:
 
     ```shell
-    tinygo flash -target=clue-alpha [PATH TO YOUR PROGRAM]
+    tinygo flash -target=clue_alpha [PATH TO YOUR PROGRAM]
     ```
 
 Once you have updated your CLUE board the first time, after that you should be able to flash it entirely from the command line.
