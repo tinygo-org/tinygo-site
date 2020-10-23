@@ -9,7 +9,7 @@ Here are some of the videos, podcasts, and blog posts written about TinyGo.
 ### Podcasts/Videos
 
 **QCon 2020 London - "Tiny Go: Small is Going Big"** - *March 3, 2020*
-https://videoh.infoq.com/presentations/20-mar-tinygosmallisgoingbig.mp4
+https://www.infoq.com/presentations/tiny-go/
 
 **FOSDEM 2020 - "Lightning talk: LED cube using TinyGo"** (start at 51:00) - *February 2, 2020*
 https://video.fosdem.org/2020/UB2.252A/golightning.mp4
