@@ -39,6 +39,8 @@ In VS Code, you can edit the file `.vscode/settings.json` in the root of your pr
 
 After creating or modifying this file, you will likely need to restart VS Code to apply these settings.
 
+Alternatively, there is a [VSCode addon](https://marketplace.visualstudio.com/items?itemName=tinygo.vscode-tinygo) that will create these settings for you.
+
 ### Other IDEs
 
 Other IDEs will likely need a different setup. You can try starting them with these environment variables set in your shell or configuring these environment variables somewhere in your Go language server settings.
