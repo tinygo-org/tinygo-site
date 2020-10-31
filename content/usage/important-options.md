@@ -9,7 +9,7 @@ There are a few flags to control how binaries are built:
 Output filename, see the ``build`` command.
 
 - `-target`
-Select the target you want to use. Leave it empty to compile for the host. This switch also configures the emulator, flash tool and debugger to use so you don't have to fiddle with those options. Read [supported targets]() for a list of supported targets. Example targets:
+Select the target you want to use. Leave it empty to compile for the host. This switch also configures the emulator, flash tool and debugger to use so you don't have to fiddle with those options. Read [supported targets](../../microcontrollers/) for a list of supported targets. Example targets:
 
  - wasm
 WebAssembly target. Creates .wasm files that can be run in a web browser.
