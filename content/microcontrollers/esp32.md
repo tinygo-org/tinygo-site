@@ -26,13 +26,15 @@ The [Espressif ESP32](https://www.espressif.com/en/products/socs/esp32) is a pow
 
 ### CLI Flashing on Linux
 
-You need to install the Espressif toolchain for Linux to use TinyGo with the ESP32: 
+You need to install the Espressif toolchain for Linux to use TinyGo with the ESP32:
 
 https://docs.espressif.com/projects/esp-idf/en/release-v3.0/get-started/linux-setup.html#standard-setup-of-toolchain-for-linux
 
-In addition, you must install the `esptool` flashing tool:
+In addition, you must install the `esptool` flashing tool and clone the tinygo repo where you'll find the examples folder:
 
 https://github.com/espressif/esptool#easy-installation
+
+https://github.com/tinygo-org/tinygo
 
 Now you should be able to flash your board as follows:
 
@@ -47,7 +49,7 @@ Now you should be able to flash your board as follows:
 
 ### CLI Flashing on macOS
 
-You need to install the Espressif toolchain for macOS to use TinyGo with the ESP32: 
+You need to install the Espressif toolchain for macOS to use TinyGo with the ESP32:
 
 https://docs.espressif.com/projects/esp-idf/en/release-v3.0/get-started/macos-setup.html
 
@@ -68,7 +70,7 @@ Now you should be able to flash your board as follows:
 
 ### CLI Flashing on Windows
 
-You need to install the Espressif toolchain for Windows to use TinyGo with the ESP32: 
+You need to install the Espressif toolchain for Windows to use TinyGo with the ESP32:
 
 https://docs.espressif.com/projects/esp-idf/en/release-v3.0/get-started/windows-setup.html
 
