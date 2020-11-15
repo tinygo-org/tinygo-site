@@ -190,6 +190,8 @@ tools this way:
 sudo apt-get install build-essential git cmake ninja
 ```
 
+On Debian use `ninja-build` package instead of `ninja`.
+
 The following command takes care of downloading and building LLVM. It places the
 source code in `llvm-project/` and the build output in `llvm-build/`. It only
 needs to be done once until the next LLVM release. Note that the `export` lines
