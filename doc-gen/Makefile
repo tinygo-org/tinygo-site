@@ -1,52 +1,5 @@
-
-DEVICES = \
-    arduino \
-    arduino-mega2560 \
-    arduino-nano \
-    arduino-nano33 \
-    arduino-zero \
-    bluepill \
-    circuitplay-bluefruit \
-    circuitplay-express \
-    clue_alpha \
-    digispark \
-    esp32 \
-    esp8266 \
-    feather-m0 \
-    feather-m4 \
-    feather-nrf52840 \
-    feather-stm32f405 \
-    gameboy-advance \
-    hifive1b \
-    itsybitsy-m0 \
-    itsybitsy-m4 \
-    itsybitsy-nrf52840 \
-    maixbit \
-    metro-m4-airlift \
-    microbit \
-    nintendoswitch \
-    nrf52840-mdk \
-    nucleo-f103rb \
-    particle-argon \
-    particle-boron \
-    particle-xenon \
-    pca10031 \
-    pca10040 \
-    pca10056 \
-    pinetime-devkit0 \
-    pybadge \
-    pygamer \
-    pyportal \
-    reelboard \
-    stm32f4disco \
-    teensy36 \
-    trinket-m0 \
-    wioterminal \
-    x9pro \
-    xiao
-
 all:
-	go run . $(DEVICES)
+	go run . `tinygo targets`
 
 
 #all:
