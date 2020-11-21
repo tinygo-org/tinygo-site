@@ -1,9 +1,9 @@
 ---
-title: "ESP8266"
+title: "ESP8266 - NodeMCU"
 weight: 3
 ---
 
-The [Espressif ESP8266](https://www.espressif.com/en/products/socs/esp8266) is small yet powerful SoC that is usually used for WiFi applications thanks to its built-in radio.
+The [Espressif ESP8266](https://www.espressif.com/en/products/socs/esp8266) NodeMCU is a small yet powerful SoC that is usually used for WiFi applications thanks to its built-in radio.
 
 ## Interfaces
 
@@ -19,7 +19,7 @@ The [Espressif ESP8266](https://www.espressif.com/en/products/socs/esp8266) is s
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the ESP8266](../machine/esp8266)
+[Documentation for the machine package for the ESP8266 NodeMCU](../machine/nodemcu)
 
 ## Flashing
 
@@ -39,7 +39,7 @@ Now you should be able to flash your board as follows:
 - Build and flash your TinyGo code using the `tinygo flash` command. This command flashes the ESP8266 with the blinky1 example:
 
     ```
-    tinygo flash -target=esp8266 -port=/dev/ttyUSB examples/blinky1
+    tinygo flash -target=nodemcu -port=/dev/ttyUSB examples/blinky1
     ```
 
 - The ESP8266 board should restart and then begin running your program.
@@ -60,7 +60,7 @@ Now you should be able to flash your board as follows:
 - Build and flash your TinyGo code using the `tinygo flash` command. This command flashes the ESP8266 with the blinky1 example:
 
     ```
-    tinygo flash -target=esp8266 examples/blinky1
+    tinygo flash -target=nodemcu examples/blinky1
     ```
 
 - The ESP826 board should restart and then begin running your program.
@@ -81,7 +81,7 @@ Now you should be able to flash your board as follows:
 - Build and flash your TinyGo code using the `tinygo flash` command. This command flashes the ESP826 with the blinky1 example:
 
     ```
-    tinygo flash -target=esp8266 examples/blinky1
+    tinygo flash -target=nodemcu examples/blinky1
     ```
 
 - The ESP826 board should restart and then begin running your program.

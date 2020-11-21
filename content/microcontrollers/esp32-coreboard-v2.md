@@ -1,9 +1,9 @@
 ---
-title: "ESP32"
+title: "ESP32 - Core board"
 weight: 3
 ---
 
-The [Espressif ESP32](https://www.espressif.com/en/products/socs/esp32) is a powerful chip that is used on many different development boards. It includes a built-in radio that can be used for WiFi or Bluetooth wireless connections.
+The esp32-coreboard-v2 is a development board based on the [Espressif ESP32](https://www.espressif.com/en/products/socs/esp32) a powerful chip that is used on many different board mostly because of the built-in radio that can be used for WiFi or Bluetooth wireless connections.
 
 ## Interfaces
 
@@ -20,7 +20,7 @@ The [Espressif ESP32](https://www.espressif.com/en/products/socs/esp32) is a pow
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the ESP32](../machine/esp32)
+[Documentation for the machine package for the ESP32 Core board v2](../machine/esp32-coreboard-v2)
 
 ## Flashing
 
@@ -40,7 +40,7 @@ Now you should be able to flash your board as follows:
 - Build and flash your TinyGo code using the `tinygo flash` command. This command flashes the ESP32 with the blinky1 example:
 
     ```
-    tinygo flash -target=esp32-wroom-32 -port=/dev/ttyUSB0 examples/blinky1
+    tinygo flash -target=esp32-coreboard-v2 -port=/dev/ttyUSB0 examples/blinky1
     ```
 
 - The ESP32 board should restart and then begin running your program.
@@ -61,7 +61,7 @@ Now you should be able to flash your board as follows:
 - Build and flash your TinyGo code using the `tinygo flash` command. This command flashes the ESP32 with the blinky1 example:
 
     ```
-    tinygo flash -target=esp32-wroom-32 examples/blinky1
+    tinygo flash -target=esp32-coreboard-v2 examples/blinky1
     ```
 
 - The ESP32 board should restart and then begin running your program.
@@ -82,7 +82,7 @@ Now you should be able to flash your board as follows:
 - Build and flash your TinyGo code using the `tinygo flash` command. This command flashes the ESP32 with the blinky1 example:
 
     ```
-    tinygo flash -target=esp32-wroom-32 examples/blinky1
+    tinygo flash -target=esp32-coreboard-v2 examples/blinky1
     ```
 
 - The ESP32 board should restart and then begin running your program.
