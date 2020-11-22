@@ -133,7 +133,7 @@ func writeDoc(out io.Writer, target string, buildTags []string, goos, goarch str
 	pkgs, err := packages.Load(&packages.Config{
 		Mode:       packages.NeedName | packages.NeedFiles | packages.NeedCompiledGoFiles,
 		BuildFlags: []string{"-tags=" + strings.Join(buildTags, " ")},
-		Env:        append(os.Environ(), "GOOS="+goos, "GOARCH="+goarch),
+		Env:        append(os.Environ(), "GOOS="+goos, "GOARCH="+goarch, "GO111MODULE=off"),
 	}, "github.com/tinygo-org/tinygo/src/machine")
 	if err != nil {
 		log.Fatal(err)
