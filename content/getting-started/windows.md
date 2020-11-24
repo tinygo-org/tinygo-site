@@ -38,7 +38,7 @@ You can test that the installation was successful by running the `version` comma
 
 ```shell
 > tinygo version
-tinygo version 0.15.0 windows/amd64 (using go version go1.15 and LLVM version 10.0.1)
+tinygo version 0.16.0 windows/amd64 (using go version go1.15 and LLVM version 10.0.1)
 ```
 
 Upgrading to the latest TinyGo version can be done via scoop with:
@@ -55,7 +55,7 @@ Upgrading to the latest TinyGo version can be done via scoop with:
 
     - Choose the download link for Microsoft Windows, Windows 7 or later, Intel 64-bit processor.
 
-- Download the TinyGo binary for Windows file from https://github.com/tinygo-org/tinygo/releases/download/v0.15.0/tinygo0.15.0.windows-amd64.zip
+- Download the TinyGo binary for Windows file from https://github.com/tinygo-org/tinygo/releases/download/v0.16.0/tinygo0.16.0.windows-amd64.zip
 
 - Decompress the file like this:
 
@@ -75,7 +75,7 @@ Upgrading to the latest TinyGo version can be done via scoop with:
 
     ```
     > tinygo version
-    tinygo version 0.15.0 windows/amd64 (using go version go1.15 and LLVM version 10.0.1)
+    tinygo version 0.16.0 windows/amd64 (using go version go1.15 and LLVM version 10.0.1)
     ```
 
 ### Flashing boards
@@ -189,7 +189,7 @@ This results in a `tinygo.exe` binary in the `build` directory:
 
 ```text
 $ ./build/tinygo version
-tinygo version 0.15.0 windows/amd64 (using go version go1.15 and LLVM version 10.0.1)
+tinygo version 0.16.0 windows/amd64 (using go version go1.15 and LLVM version 10.0.1)
 ```
 
 ### Additional Requirements for Microcontrollers
