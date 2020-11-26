@@ -139,6 +139,18 @@ func writeDoc(out io.Writer, target string, buildTags []string, goos, goarch str
 		log.Fatal(err)
 	}
 
+	// Do some sanity checking.
+	if len(pkgs[0].Errors) != 0 {
+		for _, err := range pkgs[0].Errors {
+			fmt.Fprintln(os.Stderr, err)
+		}
+		os.Exit(1)
+	}
+	if len(pkgs[0].CompiledGoFiles) == 0 {
+		fmt.Fprintln(os.Stderr, "no compiled Go files found for target:", target)
+		os.Exit(1)
+	}
+
 	// Parse all to-be-compiled files.
 	syntax := make([]*ast.File, len(pkgs[0].CompiledGoFiles))
 	fset := token.NewFileSet()
