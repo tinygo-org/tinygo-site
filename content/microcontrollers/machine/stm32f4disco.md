@@ -483,11 +483,6 @@ func (spi SPI) Configure(config SPIConfig)
 ```
 
 Configure is intended to setup the STM32 SPI1 interface.
-Features still TODO:
-- support SPI2 and SPI3
-- allow setting data size to 16 bits?
-- allow setting direction in HW for additional optimization?
-- hardware SS pin?
 
 
 ### func (SPI) Transfer

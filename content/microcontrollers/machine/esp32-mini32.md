@@ -1,10 +1,127 @@
 
 ---
-title: esp8266
+title: esp32-mini32
 ---
 
 
 ## Constants
+
+```go
+const LED = IO2
+```
+
+Built-in LED on some ESP32 boards.
+
+
+```go
+const (
+	CLK	Pin	= 6
+	CMD	Pin	= 11
+	IO0	Pin	= 0
+	IO1	Pin	= 1
+	IO10	Pin	= 10
+	IO16	Pin	= 16
+	IO17	Pin	= 17
+	IO18	Pin	= 18
+	IO19	Pin	= 19
+	IO2	Pin	= 2
+	IO21	Pin	= 21
+	IO22	Pin	= 22
+	IO23	Pin	= 23
+	IO25	Pin	= 25
+	IO26	Pin	= 26
+	IO27	Pin	= 27
+	IO3	Pin	= 3
+	IO32	Pin	= 32
+	IO33	Pin	= 33
+	IO34	Pin	= 34
+	IO35	Pin	= 35
+	IO36	Pin	= 36
+	IO39	Pin	= 39
+	IO4	Pin	= 4
+	IO5	Pin	= 5
+	IO9	Pin	= 9
+	RXD	Pin	= 3
+	SD0	Pin	= 7
+	SD1	Pin	= 8
+	SD2	Pin	= 9
+	SD3	Pin	= 10
+	SVN	Pin	= 39
+	SVP	Pin	= 36
+	TCK	Pin	= 13
+	TD0	Pin	= 15
+	TDI	Pin	= 12
+	TMS	Pin	= 14
+	TXD	Pin	= 1
+)
+```
+
+
+
+```go
+const (
+	SPI0_SCK_PIN	= IO18
+	SPI0_SDO_PIN	= IO23
+	SPI0_SDI_PIN	= IO19
+	SPI0_CS0_PIN	= IO5
+)
+```
+
+SPI pins
+
+
+```go
+const (
+	SDA_PIN	= IO21
+	SCL_PIN	= IO22
+)
+```
+
+I2C pins
+
+
+```go
+const (
+	ADC0	Pin	= IO34
+	ADC1	Pin	= IO35
+	ADC2	Pin	= IO36
+	ADC3	Pin	= IO39
+)
+```
+
+ADC pins
+
+
+```go
+const (
+	UART_TX_PIN	= IO1
+	UART_RX_PIN	= IO3
+)
+```
+
+UART0 pins
+
+
+```go
+const (
+	UART1_TX_PIN	= IO9
+	UART1_RX_PIN	= IO10
+)
+```
+
+UART1 pins
+
+
+```go
+const (
+	PWM0_PIN	Pin	= IO2
+	PWM1_PIN	Pin	= IO0
+	PWM2_PIN	Pin	= IO4
+)
+```
+
+PWM pins
+
 
 ```go
 const NoPin = Pin(0xff)
@@ -18,19 +135,11 @@ of the pins in a peripheral unconfigured (if supported by the hardware).
 const (
 	PinOutput	PinMode	= iota
 	PinInput
+	PinInputPullup
+	PinInputPulldown
 )
 ```
 
-
-
-```go
-const (
-	UART_TX_PIN	Pin	= 1
-	UART_RX_PIN	Pin	= 3
-)
-```
-
-Pins that are fixed by the chip.
 
 
 
@@ -51,10 +160,31 @@ var (
 
 
 ```go
-var UART0 = UART{Buffer: NewRingBuffer()}
+var (
+	ErrInvalidSPIBus = errors.New("machine: invalid SPI bus")
+)
 ```
 
-UART0 is a hardware UART that supports both TX and RX.
+
+
+```go
+var (
+	UART0	= UART{Bus: esp.UART0, Buffer: NewRingBuffer()}
+	UART1	= UART{Bus: esp.UART1, Buffer: NewRingBuffer()}
+	UART2	= UART{Bus: esp.UART2, Buffer: NewRingBuffer()}
+)
+```
+
+
+
+```go
+var (
+	// SPI0 and SPI1 are reserved for use by the caching system etc.
+	SPI2	= SPI{esp.SPI2}
+	SPI3	= SPI{esp.SPI3}
+)
+```
+
 
 
 
@@ -66,6 +196,8 @@ UART0 is a hardware UART that supports both TX and RX.
 func CPUFrequency() uint32
 ```
 
+CPUFrequency returns the current CPU frequency of the chip.
+Currently it is a fixed frequency but it may allow changing in the future.
 
 
 ### func NewRingBuffer
@@ -123,7 +255,7 @@ other peripherals like ADC, I2C, etc.
 func (p Pin) Configure(config PinConfig)
 ```
 
-Configure sets the given pin as output or input pin.
+Configure this pin with the given configuration.
 
 
 ### func (Pin) Get
@@ -188,7 +320,8 @@ Warning: only use this on an output pin!
 func (p Pin) Set(value bool)
 ```
 
-Set sets the output value of this pin to high (true) or low (false).
+Set the pin to high or low.
+Warning: only use this on an output pin!
 
 
 
@@ -272,11 +405,81 @@ Used returns how many bytes in buffer have been used.
 
 
 
+## type SPI
+
+```go
+type SPI struct {
+	Bus *esp.SPI_Type
+}
+```
+
+Serial Peripheral Interface on the ESP32.
+
+
+
+### func (SPI) Configure
+
+```go
+func (spi SPI) Configure(config SPIConfig) error
+```
+
+Configure and make the SPI peripheral ready to use.
+
+
+### func (SPI) Transfer
+
+```go
+func (spi SPI) Transfer(w byte) (byte, error)
+```
+
+Transfer writes/reads a single byte using the SPI interface. If you need to
+transfer larger amounts of data, Tx will be faster.
+
+
+### func (SPI) Tx
+
+```go
+func (spi SPI) Tx(w, r []byte) error
+```
+
+Tx handles read/write operation for SPI interface. Since SPI is a syncronous write/read
+interface, there must always be the same number of bytes written as bytes read.
+This is accomplished by sending zero bits if r is bigger than w or discarding
+the incoming data if w is bigger than r.
+
+
+
+
+## type SPIConfig
+
+```go
+type SPIConfig struct {
+	Frequency	uint32
+	SCK		Pin
+	SDO		Pin
+	SDI		Pin
+	LSBFirst	bool
+	Mode		uint8
+}
+```
+
+SPIConfig configures a SPI peripheral on the ESP32. Make sure to set at least
+SCK, SDO and SDI (possibly to NoPin if not in use). The default for LSBFirst
+(false) and Mode (0) are good for most applications. The frequency defaults
+to 1MHz if not set but can be configured up to 40MHz. Possible values are
+40MHz and integer divisions from 40MHz such as 20MHz, 13.3MHz, 10MHz, 8MHz,
+etc.
+
+
+
+
+
 ## type UART
 
 ```go
 type UART struct {
-	Buffer *RingBuffer
+	Bus	*esp.UART_Type
+	Buffer	*RingBuffer
 }
 ```
 
@@ -298,8 +501,6 @@ Buffered returns the number of bytes currently stored in the RX buffer.
 func (uart UART) Configure(config UARTConfig)
 ```
 
-Configure the UART baud rate. TX and RX pins are fixed by the hardware so
-cannot be modified and will be ignored.
 
 
 ### func (UART) Read
@@ -343,11 +544,9 @@ Write data to the UART.
 ### func (UART) WriteByte
 
 ```go
-func (uart UART) WriteByte(c byte) error
+func (uart UART) WriteByte(b byte) error
 ```
 
-WriteByte writes a single byte to the output buffer. Note that the hardware
-includes a buffer of 128 bytes which will be used first.
 
 
 

@@ -166,11 +166,11 @@ const (
 	// #===========#==========#==============#==============#=======#=======#
 	// | Interface | Hardware |  Bus(Freq)   | SDA/SCL Pins | AltFn | Alias |
 	// #===========#==========#==============#==============#=======#=======#
-	// |   I2C1    |   I2C1   |              |   D14/D15    |       |   ~   |
-	// |   I2C2    |   I2C2   |              |    D0/D1     |       |   ~   |
-	// |   I2C3    |   I2C1   |              |    D9/D10    |       |   ~   |
+	// |   I2C1    |   I2C1   | APB1(42 MHz) |   D14/D15    |   4   |   ~   |
+	// |   I2C2    |   I2C2   | APB1(42 MHz) |    D0/D1     |   4   |   ~   |
+	// |   I2C3    |   I2C1   | APB1(42 MHz) |    D9/D10    |   4   |   ~   |
 	// | --------- | -------- | ------------ | ------------ | ----- | ----- |
-	// |   I2C0    |   I2C1   |              |   D14/D15    |       | I2C1  |
+	// |   I2C0    |   I2C1   | APB1(42 MHz) |   D14/D15    |   4   | I2C1  |
 	// #===========#==========#==============#==============#=======#=======#
 	NUM_I2C_INTERFACES	= 3
 
@@ -194,11 +194,31 @@ const (
 
 
 ```go
+const (
+	TWI_FREQ_100KHZ	= 100000
+	TWI_FREQ_400KHZ	= 400000
+)
+```
+
+TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-speed bus.
+
+
+```go
 const NoPin = Pin(0xff)
 ```
 
 NoPin explicitly indicates "not a pin". Use this pin if you want to leave one
 of the pins in a peripheral unconfigured (if supported by the hardware).
+
+
+```go
+const (
+	DutyCycle2	= 0
+	DutyCycle16x9	= 1
+)
+```
+
+I2C fast mode (Fm) duty cycle
 
 
 ```go
@@ -366,6 +386,46 @@ var (
 
 ```go
 var (
+	SPI1	= SPI{
+		Bus:			stm32.SPI2,
+		AltFuncSelector:	stm32.AF5_SPI1_SPI2,
+	}
+	SPI2	= SPI{
+		Bus:			stm32.SPI3,
+		AltFuncSelector:	stm32.AF6_SPI3,
+	}
+	SPI3	= SPI{
+		Bus:			stm32.SPI1,
+		AltFuncSelector:	stm32.AF5_SPI1_SPI2,
+	}
+	SPI0	= SPI1
+)
+```
+
+
+
+```go
+var (
+	I2C1	= I2C{
+		Bus:			stm32.I2C1,
+		AltFuncSelector:	stm32.AF4_I2C1_2_3,
+	}
+	I2C2	= I2C{
+		Bus:			stm32.I2C2,
+		AltFuncSelector:	stm32.AF4_I2C1_2_3,
+	}
+	I2C3	= I2C{
+		Bus:			stm32.I2C1,
+		AltFuncSelector:	stm32.AF4_I2C1_2_3,
+	}
+	I2C0	= I2C1
+)
+```
+
+
+
+```go
+var (
 	ErrInvalidInputPin	= errors.New("machine: invalid input pin")
 	ErrInvalidOutputPin	= errors.New("machine: invalid output pin")
 	ErrInvalidClockPin	= errors.New("machine: invalid clock pin")
@@ -428,6 +488,68 @@ type I2C struct {
 }
 ```
 
+
+
+
+### func (I2C) Configure
+
+```go
+func (i2c I2C) Configure(config I2CConfig)
+```
+
+Configure is intended to setup the STM32 I2C interface.
+
+
+### func (I2C) ReadRegister
+
+```go
+func (i2c I2C) ReadRegister(address uint8, register uint8, data []byte) error
+```
+
+ReadRegister transmits the register, restarts the connection as a read
+operation, and reads the response.
+
+Many I2C-compatible devices are organized in terms of registers. This method
+is a shortcut to easily read such registers. Also, it only works for devices
+with 7-bit addresses, which is the vast majority.
+
+
+### func (I2C) Tx
+
+```go
+func (i2c I2C) Tx(addr uint16, w, r []byte) error
+```
+
+
+
+### func (I2C) WriteRegister
+
+```go
+func (i2c I2C) WriteRegister(address uint8, register uint8, data []byte) error
+```
+
+WriteRegister transmits first the register and then the data to the
+peripheral device.
+
+Many I2C-compatible devices are organized in terms of registers. This method
+is a shortcut to easily write to such registers. Also, it only works for
+devices with 7-bit addresses, which is the vast majority.
+
+
+
+
+## type I2CConfig
+
+```go
+type I2CConfig struct {
+	Frequency	uint32
+	SCL		Pin
+	SDA		Pin
+	DutyCycle	uint8
+}
+```
+
+I2CConfig is used to store config info for I2C.
 
 
 
@@ -627,11 +749,6 @@ func (spi SPI) Configure(config SPIConfig)
 ```
 
 Configure is intended to setup the STM32 SPI1 interface.
-Features still TODO:
-- support SPI2 and SPI3
-- allow setting data size to 16 bits?
-- allow setting direction in HW for additional optimization?
-- hardware SS pin?
 
 
 ### func (SPI) Transfer

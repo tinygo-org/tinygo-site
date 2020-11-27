@@ -1,115 +1,10 @@
 
 ---
-title: microbit
+title: atmega1284p
 ---
 
 
 ## Constants
-
-```go
-const HasLowFrequencyCrystal = false
-```
-
-The micro:bit does not have a 32kHz crystal on board.
-
-
-```go
-const (
-	BUTTON	Pin	= BUTTONA
-	BUTTONA	Pin	= 17
-	BUTTONB	Pin	= 26
-)
-```
-
-Buttons on the micro:bit (A and B)
-
-
-```go
-const (
-	UART_TX_PIN	Pin	= 24
-	UART_RX_PIN	Pin	= 25
-)
-```
-
-UART pins
-
-
-```go
-const (
-	ADC0	Pin	= 3	// P0 on the board
-	ADC1	Pin	= 2	// P1 on the board
-	ADC2	Pin	= 1	// P2 on the board
-)
-```
-
-ADC pins
-
-
-```go
-const (
-	SDA_PIN	Pin	= 30	// P20 on the board
-	SCL_PIN	Pin	= 0	// P19 on the board
-)
-```
-
-I2C pins
-
-
-```go
-const (
-	SPI0_SCK_PIN	Pin	= 23	// P13 on the board
-	SPI0_SDO_PIN	Pin	= 21	// P15 on the board
-	SPI0_SDI_PIN	Pin	= 22	// P14 on the board
-)
-```
-
-SPI pins
-
-
-```go
-const (
-	P0	Pin	= 3
-	P1	Pin	= 2
-	P2	Pin	= 1
-	P3	Pin	= 4
-	P4	Pin	= 5
-	P5	Pin	= 17
-	P6	Pin	= 12
-	P7	Pin	= 11
-	P8	Pin	= 18
-	P9	Pin	= 10
-	P10	Pin	= 6
-	P11	Pin	= 26
-	P12	Pin	= 20
-	P13	Pin	= 23
-	P14	Pin	= 22
-	P15	Pin	= 21
-	P16	Pin	= 16
-)
-```
-
-GPIO/Analog pins
-
-
-```go
-const (
-	LED_COL_1	Pin	= 4
-	LED_COL_2	Pin	= 5
-	LED_COL_3	Pin	= 6
-	LED_COL_4	Pin	= 7
-	LED_COL_5	Pin	= 8
-	LED_COL_6	Pin	= 9
-	LED_COL_7	Pin	= 10
-	LED_COL_8	Pin	= 11
-	LED_COL_9	Pin	= 12
-	LED_ROW_1	Pin	= 13
-	LED_ROW_2	Pin	= 14
-	LED_ROW_3	Pin	= 15
-)
-```
-
-LED matrix pins
-
 
 ```go
 const (
@@ -131,10 +26,38 @@ of the pins in a peripheral unconfigured (if supported by the hardware).
 
 ```go
 const (
-	PinInput		PinMode	= (nrf.GPIO_PIN_CNF_DIR_Input << nrf.GPIO_PIN_CNF_DIR_Pos) | (nrf.GPIO_PIN_CNF_INPUT_Connect << nrf.GPIO_PIN_CNF_INPUT_Pos)
-	PinInputPullup		PinMode	= PinInput | (nrf.GPIO_PIN_CNF_PULL_Pullup << nrf.GPIO_PIN_CNF_PULL_Pos)
-	PinInputPulldown	PinMode	= PinInput | (nrf.GPIO_PIN_CNF_PULL_Pulldown << nrf.GPIO_PIN_CNF_PULL_Pos)
-	PinOutput		PinMode	= (nrf.GPIO_PIN_CNF_DIR_Output << nrf.GPIO_PIN_CNF_DIR_Pos) | (nrf.GPIO_PIN_CNF_INPUT_Disconnect << nrf.GPIO_PIN_CNF_INPUT_Pos)
+	PA0	= portA + 0
+	PA1	= portA + 1
+	PA2	= portA + 2
+	PA3	= portA + 3
+	PA4	= portA + 4
+	PA5	= portA + 5
+	PA6	= portA + 6
+	PA7	= portA + 7
+	PB0	= portB + 0
+	PB1	= portB + 1
+	PB2	= portB + 2
+	PB3	= portB + 3
+	PB4	= portB + 4
+	PB5	= portB + 5
+	PB6	= portB + 6
+	PB7	= portB + 7
+	PC0	= portC + 0
+	PC1	= portC + 1
+	PC2	= portC + 2
+	PC3	= portC + 3
+	PC4	= portC + 4
+	PC5	= portC + 5
+	PC6	= portC + 6
+	PC7	= portC + 7
+	PD0	= portD + 0
+	PD1	= portD + 1
+	PD2	= portD + 2
+	PD3	= portD + 3
+	PD4	= portD + 4
+	PD5	= portD + 5
+	PD6	= portD + 6
+	PD7	= portD + 7
 )
 ```
 
@@ -142,13 +65,12 @@ const (
 
 ```go
 const (
-	PinRising	PinChange	= nrf.GPIOTE_CONFIG_POLARITY_LoToHi
-	PinFalling	PinChange	= nrf.GPIOTE_CONFIG_POLARITY_HiToLo
-	PinToggle	PinChange	= nrf.GPIOTE_CONFIG_POLARITY_Toggle
+	PinInput	PinMode	= iota
+	PinInputPullup
+	PinOutput
 )
 ```
 
-Pin change interrupt constants for SetInterrupt.
 
 
 
@@ -169,49 +91,20 @@ var (
 
 
 ```go
-var (
-	ErrTxInvalidSliceSize = errors.New("SPI write and read slices must be same size")
-)
+var I2C0 = I2C{}
 ```
 
+I2C0 is the only I2C interface on most AVRs.
 
 
 ```go
 var (
-	// NRF_UART0 is the hardware UART on the NRF SoC.
-	NRF_UART0 = UART{Buffer: NewRingBuffer()}
+	// UART0 is the hardware serial port on the AVR.
+	UART0 = UART{Buffer: NewRingBuffer()}
 )
 ```
 
 UART
-
-
-```go
-var (
-	I2C0	= I2C{Bus: nrf.TWI0}
-	I2C1	= I2C{Bus: nrf.TWI1}
-)
-```
-
-There are 2 I2C interfaces on the NRF.
-
-
-```go
-var (
-	SPI0	= SPI{Bus: nrf.SPI0}
-	SPI1	= SPI{Bus: nrf.SPI1}
-)
-```
-
-There are 2 SPI interfaces on the NRF5x.
-
-
-```go
-var (
-	UART0 = NRF_UART0
-)
-```
-
 
 
 
@@ -223,6 +116,16 @@ var (
 func CPUFrequency() uint32
 ```
 
+Return the current CPU frequency in hertz.
+
+
+### func InitADC
+
+```go
+func InitADC()
+```
+
+InitADC initializes the registers needed for ADC.
 
 
 ### func NewRingBuffer
@@ -247,17 +150,35 @@ type ADC struct {
 
 
 
+### func (ADC) Configure
+
+```go
+func (a ADC) Configure()
+```
+
+Configure configures a ADCPin to be able to be used to read data.
+
+
+### func (ADC) Get
+
+```go
+func (a ADC) Get() uint16
+```
+
+Get returns the current value of a ADC pin, in the range 0..0xffff. The AVR
+has an ADC of 10 bits precision so the lower 6 bits will be zero.
+
+
 
 
 ## type I2C
 
 ```go
 type I2C struct {
-	Bus *nrf.TWI_Type
 }
 ```
 
-I2C on the NRF.
+I2C on AVR.
 
 
 
@@ -287,7 +208,7 @@ with 7-bit addresses, which is the vast majority.
 ### func (I2C) Tx
 
 ```go
-func (i2c I2C) Tx(addr uint16, w, r []byte) (err error)
+func (i2c I2C) Tx(addr uint16, w, r []byte) error
 ```
 
 Tx does a single I2C transaction at the specified address.
@@ -315,9 +236,7 @@ devices with 7-bit addresses, which is the vast majority.
 
 ```go
 type I2CConfig struct {
-	Frequency	uint32
-	SCL		Pin
-	SDA		Pin
+	Frequency uint32
 }
 ```
 
@@ -358,7 +277,7 @@ other peripherals like ADC, I2C, etc.
 func (p Pin) Configure(config PinConfig)
 ```
 
-Configure this pin with the given configuration.
+Configure sets the pin to input or output.
 
 
 ### func (Pin) Get
@@ -395,57 +314,38 @@ pin to low that is not configured as an output pin.
 ### func (Pin) PortMaskClear
 
 ```go
-func (p Pin) PortMaskClear() (*uint32, uint32)
+func (p Pin) PortMaskClear() (*volatile.Register8, uint8)
 ```
 
 Return the register and mask to disable a given port. This can be used to
 implement bit-banged drivers.
 
+Warning: there are no separate pin set/clear registers on the AVR. The
+returned mask is only valid as long as no other pin in the same port has been
+changed.
+
 
 ### func (Pin) PortMaskSet
 
 ```go
-func (p Pin) PortMaskSet() (*uint32, uint32)
+func (p Pin) PortMaskSet() (*volatile.Register8, uint8)
 ```
 
 Return the register and mask to enable a given GPIO pin. This can be used to
 implement bit-banged drivers.
 
+Warning: there are no separate pin set/clear registers on the AVR. The
+returned mask is only valid as long as no other pin in the same port has been
+changed.
+
 
 ### func (Pin) Set
 
 ```go
-func (p Pin) Set(high bool)
+func (p Pin) Set(value bool)
 ```
 
-Set the pin to high or low.
-Warning: only use this on an output pin!
-
-
-### func (Pin) SetInterrupt
-
-```go
-func (p Pin) SetInterrupt(change PinChange, callback func(Pin)) error
-```
-
-SetInterrupt sets an interrupt to be executed when a particular pin changes
-state. The pin should already be configured as an input, including a pull up
-or down if no external pull is provided.
-
-This call will replace a previously set callback on this pin. You can pass a
-nil func to unset the pin change interrupt. If you do so, the change
-parameter is ignored and can be set to any value (such as 0).
-
-
-
-
-## type PinChange
-
-```go
-type PinChange uint8
-```
-
-
+Set changes the value of the GPIO pin. The pin must be configured as output.
 
 
 
@@ -529,82 +429,6 @@ Used returns how many bytes in buffer have been used.
 
 
 
-## type SPI
-
-```go
-type SPI struct {
-	Bus *nrf.SPI_Type
-}
-```
-
-SPI on the NRF.
-
-
-
-### func (SPI) Configure
-
-```go
-func (spi SPI) Configure(config SPIConfig)
-```
-
-Configure is intended to setup the SPI interface.
-
-
-### func (SPI) Transfer
-
-```go
-func (spi SPI) Transfer(w byte) (byte, error)
-```
-
-Transfer writes/reads a single byte using the SPI interface.
-
-
-### func (SPI) Tx
-
-```go
-func (spi SPI) Tx(w, r []byte) error
-```
-
-Tx handles read/write operation for SPI interface. Since SPI is a syncronous write/read
-interface, there must always be the same number of bytes written as bytes read.
-The Tx method knows about this, and offers a few different ways of calling it.
-
-This form sends the bytes in tx buffer, putting the resulting bytes read into the rx buffer.
-Note that the tx and rx buffers must be the same size:
-
-		spi.Tx(tx, rx)
-
-This form sends the tx buffer, ignoring the result. Useful for sending "commands" that return zeros
-until all the bytes in the command packet have been received:
-
-		spi.Tx(tx, nil)
-
-This form sends zeros, putting the result into the rx buffer. Good for reading a "result packet":
-
-		spi.Tx(nil, rx)
-
-
-
-
-## type SPIConfig
-
-```go
-type SPIConfig struct {
-	Frequency	uint32
-	SCK		Pin
-	SDO		Pin
-	SDI		Pin
-	LSBFirst	bool
-	Mode		uint8
-}
-```
-
-SPIConfig is used to store config info for SPI.
-
-
-
-
-
 ## type UART
 
 ```go
@@ -613,7 +437,7 @@ type UART struct {
 }
 ```
 
-UART on the NRF.
+UART on the AVR.
 
 
 
@@ -632,7 +456,7 @@ Buffered returns the number of bytes currently stored in the RX buffer.
 func (uart UART) Configure(config UARTConfig)
 ```
 
-Configure the UART.
+Configure the UART on the AVR. Defaults to 9600 baud on Arduino.
 
 
 ### func (UART) Read
@@ -662,15 +486,6 @@ func (uart UART) Receive(data byte)
 
 Receive handles adding data to the UART's data buffer.
 Usually called by the IRQ handler for a machine.
-
-
-### func (UART) SetBaudRate
-
-```go
-func (uart UART) SetBaudRate(br uint32)
-```
-
-SetBaudRate sets the communication speed for the UART.
 
 
 ### func (UART) Write

@@ -1,33 +1,32 @@
 
 ---
-title: microbit
+title: stm32f4disco-1
 ---
 
 
 ## Constants
 
 ```go
-const HasLowFrequencyCrystal = false
-```
-
-The micro:bit does not have a 32kHz crystal on board.
-
-
-```go
 const (
-	BUTTON	Pin	= BUTTONA
-	BUTTONA	Pin	= 17
-	BUTTONB	Pin	= 26
+	LED		= LED_BUILTIN
+	LED1		= LED_GREEN
+	LED2		= LED_ORANGE
+	LED3		= LED_RED
+	LED4		= LED_BLUE
+	LED_BUILTIN	= LED_GREEN
+	LED_GREEN	= PD12
+	LED_ORANGE	= PD13
+	LED_RED		= PD14
+	LED_BLUE	= PD15
 )
 ```
 
-Buttons on the micro:bit (A and B)
 
 
 ```go
 const (
-	UART_TX_PIN	Pin	= 24
-	UART_RX_PIN	Pin	= 25
+	UART_TX_PIN	= PA2
+	UART_RX_PIN	= PA3
 )
 ```
 
@@ -36,30 +35,12 @@ UART pins
 
 ```go
 const (
-	ADC0	Pin	= 3	// P0 on the board
-	ADC1	Pin	= 2	// P1 on the board
-	ADC2	Pin	= 1	// P2 on the board
-)
-```
-
-ADC pins
-
-
-```go
-const (
-	SDA_PIN	Pin	= 30	// P20 on the board
-	SCL_PIN	Pin	= 0	// P19 on the board
-)
-```
-
-I2C pins
-
-
-```go
-const (
-	SPI0_SCK_PIN	Pin	= 23	// P13 on the board
-	SPI0_SDO_PIN	Pin	= 21	// P15 on the board
-	SPI0_SDI_PIN	Pin	= 22	// P14 on the board
+	SPI1_SCK_PIN	= PA5
+	SPI1_SDI_PIN	= PA6
+	SPI1_SDO_PIN	= PA7
+	SPI0_SCK_PIN	= SPI1_SCK_PIN
+	SPI0_SDI_PIN	= SPI1_SDI_PIN
+	SPI0_SDO_PIN	= SPI1_SDO_PIN
 )
 ```
 
@@ -68,57 +49,13 @@ SPI pins
 
 ```go
 const (
-	P0	Pin	= 3
-	P1	Pin	= 2
-	P2	Pin	= 1
-	P3	Pin	= 4
-	P4	Pin	= 5
-	P5	Pin	= 17
-	P6	Pin	= 12
-	P7	Pin	= 11
-	P8	Pin	= 18
-	P9	Pin	= 10
-	P10	Pin	= 6
-	P11	Pin	= 26
-	P12	Pin	= 20
-	P13	Pin	= 23
-	P14	Pin	= 22
-	P15	Pin	= 21
-	P16	Pin	= 16
+	MEMS_ACCEL_CS	= PE3
+	MEMS_ACCEL_INT1	= PE0
+	MEMS_ACCEL_INT2	= PE1
 )
 ```
 
-GPIO/Analog pins
-
-
-```go
-const (
-	LED_COL_1	Pin	= 4
-	LED_COL_2	Pin	= 5
-	LED_COL_3	Pin	= 6
-	LED_COL_4	Pin	= 7
-	LED_COL_5	Pin	= 8
-	LED_COL_6	Pin	= 9
-	LED_COL_7	Pin	= 10
-	LED_COL_8	Pin	= 11
-	LED_COL_9	Pin	= 12
-	LED_ROW_1	Pin	= 13
-	LED_ROW_2	Pin	= 14
-	LED_ROW_3	Pin	= 15
-)
-```
-
-LED matrix pins
-
-
-```go
-const (
-	TWI_FREQ_100KHZ	= 100000
-	TWI_FREQ_400KHZ	= 400000
-)
-```
-
-TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-speed bus.
+MEMs accelerometer
 
 
 ```go
@@ -131,10 +68,28 @@ of the pins in a peripheral unconfigured (if supported by the hardware).
 
 ```go
 const (
-	PinInput		PinMode	= (nrf.GPIO_PIN_CNF_DIR_Input << nrf.GPIO_PIN_CNF_DIR_Pos) | (nrf.GPIO_PIN_CNF_INPUT_Connect << nrf.GPIO_PIN_CNF_INPUT_Pos)
-	PinInputPullup		PinMode	= PinInput | (nrf.GPIO_PIN_CNF_PULL_Pullup << nrf.GPIO_PIN_CNF_PULL_Pos)
-	PinInputPulldown	PinMode	= PinInput | (nrf.GPIO_PIN_CNF_PULL_Pulldown << nrf.GPIO_PIN_CNF_PULL_Pos)
-	PinOutput		PinMode	= (nrf.GPIO_PIN_CNF_DIR_Output << nrf.GPIO_PIN_CNF_DIR_Pos) | (nrf.GPIO_PIN_CNF_INPUT_Disconnect << nrf.GPIO_PIN_CNF_INPUT_Pos)
+	// Mode Flag
+	PinOutput		PinMode	= 0
+	PinInput		PinMode	= PinInputFloating
+	PinInputFloating	PinMode	= 1
+	PinInputPulldown	PinMode	= 2
+	PinInputPullup		PinMode	= 3
+
+	// for UART
+	PinModeUARTTX	PinMode	= 4
+	PinModeUARTRX	PinMode	= 5
+
+	// for I2C
+	PinModeI2CSCL	PinMode	= 6
+	PinModeI2CSDA	PinMode	= 7
+
+	// for SPI
+	PinModeSPICLK	PinMode	= 8
+	PinModeSPISDO	PinMode	= 9
+	PinModeSPISDI	PinMode	= 10
+
+	// for analog/ADC
+	PinInputAnalog	PinMode	= 11
 )
 ```
 
@@ -142,19 +97,141 @@ const (
 
 ```go
 const (
-	PinRising	PinChange	= nrf.GPIOTE_CONFIG_POLARITY_LoToHi
-	PinFalling	PinChange	= nrf.GPIOTE_CONFIG_POLARITY_HiToLo
-	PinToggle	PinChange	= nrf.GPIOTE_CONFIG_POLARITY_Toggle
+	PA0	= portA + 0
+	PA1	= portA + 1
+	PA2	= portA + 2
+	PA3	= portA + 3
+	PA4	= portA + 4
+	PA5	= portA + 5
+	PA6	= portA + 6
+	PA7	= portA + 7
+	PA8	= portA + 8
+	PA9	= portA + 9
+	PA10	= portA + 10
+	PA11	= portA + 11
+	PA12	= portA + 12
+	PA13	= portA + 13
+	PA14	= portA + 14
+	PA15	= portA + 15
+
+	PB0	= portB + 0
+	PB1	= portB + 1
+	PB2	= portB + 2
+	PB3	= portB + 3
+	PB4	= portB + 4
+	PB5	= portB + 5
+	PB6	= portB + 6
+	PB7	= portB + 7
+	PB8	= portB + 8
+	PB9	= portB + 9
+	PB10	= portB + 10
+	PB11	= portB + 11
+	PB12	= portB + 12
+	PB13	= portB + 13
+	PB14	= portB + 14
+	PB15	= portB + 15
+
+	PC0	= portC + 0
+	PC1	= portC + 1
+	PC2	= portC + 2
+	PC3	= portC + 3
+	PC4	= portC + 4
+	PC5	= portC + 5
+	PC6	= portC + 6
+	PC7	= portC + 7
+	PC8	= portC + 8
+	PC9	= portC + 9
+	PC10	= portC + 10
+	PC11	= portC + 11
+	PC12	= portC + 12
+	PC13	= portC + 13
+	PC14	= portC + 14
+	PC15	= portC + 15
+
+	PD0	= portD + 0
+	PD1	= portD + 1
+	PD2	= portD + 2
+	PD3	= portD + 3
+	PD4	= portD + 4
+	PD5	= portD + 5
+	PD6	= portD + 6
+	PD7	= portD + 7
+	PD8	= portD + 8
+	PD9	= portD + 9
+	PD10	= portD + 10
+	PD11	= portD + 11
+	PD12	= portD + 12
+	PD13	= portD + 13
+	PD14	= portD + 14
+	PD15	= portD + 15
+
+	PE0	= portE + 0
+	PE1	= portE + 1
+	PE2	= portE + 2
+	PE3	= portE + 3
+	PE4	= portE + 4
+	PE5	= portE + 5
+	PE6	= portE + 6
+	PE7	= portE + 7
+	PE8	= portE + 8
+	PE9	= portE + 9
+	PE10	= portE + 10
+	PE11	= portE + 11
+	PE12	= portE + 12
+	PE13	= portE + 13
+	PE14	= portE + 14
+	PE15	= portE + 15
+
+	PH0	= portH + 0
+	PH1	= portH + 1
 )
 ```
 
-Pin change interrupt constants for SetInterrupt.
+
+
+```go
+const (
+	Mode0	= 0
+	Mode1	= 1
+	Mode2	= 2
+	Mode3	= 3
+)
+```
+
+SPI phase and polarity configs CPOL and CPHA
 
 
 
 
 
 ## Variables
+
+```go
+var (
+	UART0	= UART{
+		Buffer:			NewRingBuffer(),
+		Bus:			stm32.USART2,
+		AltFuncSelector:	stm32.AF7_USART1_2_3,
+	}
+	UART1	= &UART0
+)
+```
+
+
+
+```go
+var (
+	SPI0	= SPI{
+		Bus:			stm32.SPI1,
+		AltFuncSelector:	stm32.AF5_SPI1_SPI2,
+	}
+	SPI1	= &SPI0
+)
+```
+
+Since the first interface is named SPI1, both SPI0 and SPI1 refer to SPI1.
+TODO: implement SPI2 and SPI3.
+
 
 ```go
 var (
@@ -171,44 +248,6 @@ var (
 ```go
 var (
 	ErrTxInvalidSliceSize = errors.New("SPI write and read slices must be same size")
-)
-```
-
-
-
-```go
-var (
-	// NRF_UART0 is the hardware UART on the NRF SoC.
-	NRF_UART0 = UART{Buffer: NewRingBuffer()}
-)
-```
-
-UART
-
-
-```go
-var (
-	I2C0	= I2C{Bus: nrf.TWI0}
-	I2C1	= I2C{Bus: nrf.TWI1}
-)
-```
-
-There are 2 I2C interfaces on the NRF.
-
-
-```go
-var (
-	SPI0	= SPI{Bus: nrf.SPI0}
-	SPI1	= SPI{Bus: nrf.SPI1}
-)
-```
-
-There are 2 SPI interfaces on the NRF5x.
-
-
-```go
-var (
-	UART0 = NRF_UART0
 )
 ```
 
@@ -249,84 +288,6 @@ type ADC struct {
 
 
 
-## type I2C
-
-```go
-type I2C struct {
-	Bus *nrf.TWI_Type
-}
-```
-
-I2C on the NRF.
-
-
-
-### func (I2C) Configure
-
-```go
-func (i2c I2C) Configure(config I2CConfig)
-```
-
-Configure is intended to setup the I2C interface.
-
-
-### func (I2C) ReadRegister
-
-```go
-func (i2c I2C) ReadRegister(address uint8, register uint8, data []byte) error
-```
-
-ReadRegister transmits the register, restarts the connection as a read
-operation, and reads the response.
-
-Many I2C-compatible devices are organized in terms of registers. This method
-is a shortcut to easily read such registers. Also, it only works for devices
-with 7-bit addresses, which is the vast majority.
-
-
-### func (I2C) Tx
-
-```go
-func (i2c I2C) Tx(addr uint16, w, r []byte) (err error)
-```
-
-Tx does a single I2C transaction at the specified address.
-It clocks out the given address, writes the bytes in w, reads back len(r)
-bytes and stores them in r, and generates a stop condition on the bus.
-
-
-### func (I2C) WriteRegister
-
-```go
-func (i2c I2C) WriteRegister(address uint8, register uint8, data []byte) error
-```
-
-WriteRegister transmits first the register and then the data to the
-peripheral device.
-
-Many I2C-compatible devices are organized in terms of registers. This method
-is a shortcut to easily write to such registers. Also, it only works for
-devices with 7-bit addresses, which is the vast majority.
-
-
-
-
-## type I2CConfig
-
-```go
-type I2CConfig struct {
-	Frequency	uint32
-	SCL		Pin
-	SDA		Pin
-}
-```
-
-I2CConfig is used to store config info for I2C.
-
-
-
-
-
 ## type PWM
 
 ```go
@@ -358,7 +319,17 @@ other peripherals like ADC, I2C, etc.
 func (p Pin) Configure(config PinConfig)
 ```
 
-Configure this pin with the given configuration.
+Configure this pin with the given configuration
+
+
+### func (Pin) ConfigureAltFunc
+
+```go
+func (p Pin) ConfigureAltFunc(config PinConfig, altFunc stm32.AltFunc)
+```
+
+Configure this pin with the given configuration including alternate
+ function mapping if necessary.
 
 
 ### func (Pin) Get
@@ -392,26 +363,6 @@ pin. It is hardware dependent (and often undefined) what happens if you set a
 pin to low that is not configured as an output pin.
 
 
-### func (Pin) PortMaskClear
-
-```go
-func (p Pin) PortMaskClear() (*uint32, uint32)
-```
-
-Return the register and mask to disable a given port. This can be used to
-implement bit-banged drivers.
-
-
-### func (Pin) PortMaskSet
-
-```go
-func (p Pin) PortMaskSet() (*uint32, uint32)
-```
-
-Return the register and mask to enable a given GPIO pin. This can be used to
-implement bit-banged drivers.
-
-
 ### func (Pin) Set
 
 ```go
@@ -422,30 +373,13 @@ Set the pin to high or low.
 Warning: only use this on an output pin!
 
 
-### func (Pin) SetInterrupt
+### func (Pin) SetAltFunc
 
 ```go
-func (p Pin) SetInterrupt(change PinChange, callback func(Pin)) error
+func (p Pin) SetAltFunc(af stm32.AltFunc)
 ```
 
-SetInterrupt sets an interrupt to be executed when a particular pin changes
-state. The pin should already be configured as an input, including a pull up
-or down if no external pull is provided.
-
-This call will replace a previously set callback on this pin. You can pass a
-nil func to unset the pin change interrupt. If you do so, the change
-parameter is ignored and can be set to any value (such as 0).
-
-
-
-
-## type PinChange
-
-```go
-type PinChange uint8
-```
-
-
+SetAltFunc maps the given alternative function to the I/O pin
 
 
 
@@ -533,11 +467,12 @@ Used returns how many bytes in buffer have been used.
 
 ```go
 type SPI struct {
-	Bus *nrf.SPI_Type
+	Bus		*stm32.SPI_Type
+	AltFuncSelector	stm32.AltFunc
 }
 ```
 
-SPI on the NRF.
+SPI on the STM32Fxxx using MODER / alternate function pins
 
 
 
@@ -547,7 +482,7 @@ SPI on the NRF.
 func (spi SPI) Configure(config SPIConfig)
 ```
 
-Configure is intended to setup the SPI interface.
+Configure is intended to setup the STM32 SPI1 interface.
 
 
 ### func (SPI) Transfer
@@ -609,11 +544,14 @@ SPIConfig is used to store config info for SPI.
 
 ```go
 type UART struct {
-	Buffer *RingBuffer
+	Buffer		*RingBuffer
+	Bus		*stm32.USART_Type
+	Interrupt	interrupt.Interrupt
+	AltFuncSelector	stm32.AltFunc
 }
 ```
 
-UART on the NRF.
+UART representation
 
 
 
@@ -670,7 +608,8 @@ Usually called by the IRQ handler for a machine.
 func (uart UART) SetBaudRate(br uint32)
 ```
 
-SetBaudRate sets the communication speed for the UART.
+SetBaudRate sets the communication speed for the UART. Defer to chip-specific
+routines for calculation
 
 
 ### func (UART) Write
