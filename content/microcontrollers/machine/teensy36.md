@@ -299,31 +299,31 @@ var (
 
 
 ```go
-var UART0 = UARTData{UART_Type: nxp.UART0, SCGC: &nxp.SIM.SCGC4, SCGCMask: nxp.SIM_SCGC4_UART0, DefaultRX: defaultUART0RX, DefaultTX: defaultUART0TX}
+var UART0 = UART{UART_Type: nxp.UART0, SCGC: &nxp.SIM.SCGC4, SCGCMask: nxp.SIM_SCGC4_UART0, DefaultRX: defaultUART0RX, DefaultTX: defaultUART0TX}
 ```
 
 
 
 ```go
-var UART1 = UARTData{UART_Type: nxp.UART1, SCGC: &nxp.SIM.SCGC4, SCGCMask: nxp.SIM_SCGC4_UART1, DefaultRX: defaultUART1RX, DefaultTX: defaultUART1TX}
+var UART1 = UART{UART_Type: nxp.UART1, SCGC: &nxp.SIM.SCGC4, SCGCMask: nxp.SIM_SCGC4_UART1, DefaultRX: defaultUART1RX, DefaultTX: defaultUART1TX}
 ```
 
 
 
 ```go
-var UART2 = UARTData{UART_Type: nxp.UART2, SCGC: &nxp.SIM.SCGC4, SCGCMask: nxp.SIM_SCGC4_UART2, DefaultRX: defaultUART2RX, DefaultTX: defaultUART2TX}
+var UART2 = UART{UART_Type: nxp.UART2, SCGC: &nxp.SIM.SCGC4, SCGCMask: nxp.SIM_SCGC4_UART2, DefaultRX: defaultUART2RX, DefaultTX: defaultUART2TX}
 ```
 
 
 
 ```go
-var UART3 = UARTData{UART_Type: nxp.UART3, SCGC: &nxp.SIM.SCGC4, SCGCMask: nxp.SIM_SCGC4_UART3, DefaultRX: defaultUART3RX, DefaultTX: defaultUART3TX}
+var UART3 = UART{UART_Type: nxp.UART3, SCGC: &nxp.SIM.SCGC4, SCGCMask: nxp.SIM_SCGC4_UART3, DefaultRX: defaultUART3RX, DefaultTX: defaultUART3TX}
 ```
 
 
 
 ```go
-var UART4 = UARTData{UART_Type: nxp.UART4, SCGC: &nxp.SIM.SCGC1, SCGCMask: nxp.SIM_SCGC1_UART4, DefaultRX: defaultUART4RX, DefaultTX: defaultUART4TX}
+var UART4 = UART{UART_Type: nxp.UART4, SCGC: &nxp.SIM.SCGC1, SCGCMask: nxp.SIM_SCGC1_UART4, DefaultRX: defaultUART4RX, DefaultTX: defaultUART4TX}
 ```
 
 
@@ -361,7 +361,7 @@ NewRingBuffer returns a new ring buffer.
 ### func PollUART
 
 ```go
-func PollUART(u UART)
+func PollUART(u *UART)
 ```
 
 PollUART manually checks a UART status and calls the ISR. This should only be
@@ -371,7 +371,7 @@ called by runtime.abort.
 ### func PutcharUART
 
 ```go
-func PutcharUART(u UART, c byte)
+func PutcharUART(u *UART, c byte)
 ```
 
 PutcharUART writes a byte to the UART synchronously, without using interrupts
@@ -625,7 +625,21 @@ Used returns how many bytes in buffer have been used.
 ## type UART
 
 ```go
-type UART = *UARTData
+type UART struct {
+	*nxp.UART_Type
+	SCGC		*volatile.Register32
+	SCGCMask	uint32
+
+	DefaultRX	Pin
+	DefaultTX	Pin
+
+	// state
+	Buffer		RingBuffer	// RX Buffer
+	TXBuffer	RingBuffer
+	Configured	bool
+	Transmitting	volatile.Register8
+	Interrupt	interrupt.Interrupt
+}
 ```
 
 
@@ -640,27 +654,27 @@ func (uart UART) Buffered() int
 Buffered returns the number of bytes currently stored in the RX buffer.
 
 
-### func (UART) Configure
+### func (*UART) Configure
 
 ```go
-func (u UART) Configure(config UARTConfig)
+func (u *UART) Configure(config UARTConfig)
 ```
 
 Configure the UART.
 
 
-### func (UART) Disable
+### func (*UART) Disable
 
 ```go
-func (u UART) Disable()
+func (u *UART) Disable()
 ```
 
 
 
-### func (UART) Flush
+### func (*UART) Flush
 
 ```go
-func (u UART) Flush()
+func (u *UART) Flush()
 ```
 
 
@@ -703,10 +717,10 @@ func (uart UART) Write(data []byte) (n int, err error)
 Write data to the UART.
 
 
-### func (UART) WriteByte
+### func (*UART) WriteByte
 
 ```go
-func (u UART) WriteByte(c byte) error
+func (u *UART) WriteByte(c byte) error
 ```
 
 WriteByte writes a byte of data to the UART.
@@ -721,31 +735,6 @@ type UARTConfig struct {
 	BaudRate	uint32
 	TX		Pin
 	RX		Pin
-}
-```
-
-
-
-
-
-
-## type UARTData
-
-```go
-type UARTData struct {
-	*nxp.UART_Type
-	SCGC		*volatile.Register32
-	SCGCMask	uint32
-
-	DefaultRX	Pin
-	DefaultTX	Pin
-
-	// state
-	Buffer		RingBuffer	// RX Buffer
-	TXBuffer	RingBuffer
-	Configured	bool
-	Transmitting	volatile.Register8
-	Interrupt	interrupt.Interrupt
 }
 ```
 

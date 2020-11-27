@@ -758,7 +758,8 @@ func (p Pin) SetInterrupt(change PinChange, callback func(Pin)) error
 ```
 
 SetInterrupt sets an interrupt to be executed when a particular pin changes
-state.
+state. The pin should already be configured as an input, including a pull up
+or down if no external pull is provided.
 
 You can pass a nil func to unset the pin change interrupt. If you do so,
 the change parameter is ignored and can be set to any value (such as 0).

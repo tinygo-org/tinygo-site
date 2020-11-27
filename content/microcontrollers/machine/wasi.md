@@ -1,6 +1,6 @@
 
 ---
-title: esp8266
+title: wasi
 ---
 
 
@@ -16,8 +16,10 @@ of the pins in a peripheral unconfigured (if supported by the hardware).
 
 ```go
 const (
-	PinOutput	PinMode	= iota
-	PinInput
+	PinInput	PinMode	= iota
+	PinOutput
+	PinInputPullup
+	PinInputPulldown
 )
 ```
 
@@ -25,12 +27,14 @@ const (
 
 ```go
 const (
-	UART_TX_PIN	Pin	= 1
-	UART_RX_PIN	Pin	= 3
+	Mode0	= 0
+	Mode1	= 1
+	Mode2	= 2
+	Mode3	= 3
 )
 ```
 
-Pins that are fixed by the chip.
+SPI phase and polarity configs CPOL and CPHA
 
 
 
@@ -51,21 +55,42 @@ var (
 
 
 ```go
-var UART0 = UART{Buffer: NewRingBuffer()}
+var (
+	SPI0	= SPI{0}
+	I2C0	= I2C{0}
+	UART0	= UART{0}
+)
 ```
 
-UART0 is a hardware UART that supports both TX and RX.
 
-
-
-
-
-### func CPUFrequency
 
 ```go
-func CPUFrequency() uint32
+var (
+	ErrTxInvalidSliceSize = errors.New("SPI write and read slices must be same size")
+)
 ```
 
+
+
+
+
+
+### func InitADC
+
+```go
+func InitADC()
+```
+
+InitADC enables support for ADC peripherals.
+
+
+### func InitPWM
+
+```go
+func InitPWM()
+```
+
+InitPWM enables support for PWM peripherals.
 
 
 ### func NewRingBuffer
@@ -90,6 +115,72 @@ type ADC struct {
 
 
 
+### func (ADC) Configure
+
+```go
+func (adc ADC) Configure()
+```
+
+Configure configures an ADC pin to be able to be used to read data.
+
+
+### func (ADC) Get
+
+```go
+func (adc ADC) Get() uint16
+```
+
+Get reads the current analog value from this ADC peripheral.
+
+
+
+
+## type I2C
+
+```go
+type I2C struct {
+	Bus uint8
+}
+```
+
+I2C is a generic implementation of the Inter-IC communication protocol.
+
+
+
+### func (I2C) Configure
+
+```go
+func (i2c I2C) Configure(config I2CConfig)
+```
+
+Configure is intended to setup the I2C interface.
+
+
+### func (I2C) Tx
+
+```go
+func (i2c I2C) Tx(addr uint16, w, r []byte) error
+```
+
+Tx does a single I2C transaction at the specified address.
+
+
+
+
+## type I2CConfig
+
+```go
+type I2CConfig struct {
+	Frequency	uint32
+	SCL		Pin
+	SDA		Pin
+}
+```
+
+I2CConfig is used to store config info for I2C.
+
+
+
 
 
 ## type PWM
@@ -101,6 +192,24 @@ type PWM struct {
 ```
 
 
+
+
+### func (PWM) Configure
+
+```go
+func (pwm PWM) Configure() error
+```
+
+Configure configures a PWM pin for output.
+
+
+### func (PWM) Set
+
+```go
+func (pwm PWM) Set(value uint16)
+```
+
+Set turns on the duty cycle for a PWM pin using the provided value.
 
 
 
@@ -123,7 +232,6 @@ other peripherals like ADC, I2C, etc.
 func (p Pin) Configure(config PinConfig)
 ```
 
-Configure sets the given pin as output or input pin.
 
 
 ### func (Pin) Get
@@ -132,8 +240,6 @@ Configure sets the given pin as output or input pin.
 func (p Pin) Get() bool
 ```
 
-Get returns the current value of a GPIO pin when the pin is configured as an
-input.
 
 
 ### func (Pin) High
@@ -158,37 +264,12 @@ pin. It is hardware dependent (and often undefined) what happens if you set a
 pin to low that is not configured as an output pin.
 
 
-### func (Pin) PortMaskClear
-
-```go
-func (p Pin) PortMaskClear() (*uint32, uint32)
-```
-
-Return the register and mask to disable a given GPIO pin. This can be used to
-implement bit-banged drivers.
-
-Warning: only use this on an output pin!
-
-
-### func (Pin) PortMaskSet
-
-```go
-func (p Pin) PortMaskSet() (*uint32, uint32)
-```
-
-Return the register and mask to enable a given GPIO pin. This can be used to
-implement bit-banged drivers.
-
-Warning: only use this on an output pin!
-
-
 ### func (Pin) Set
 
 ```go
 func (p Pin) Set(value bool)
 ```
 
-Set sets the output value of this pin to high (true) or low (false).
 
 
 
@@ -272,11 +353,83 @@ Used returns how many bytes in buffer have been used.
 
 
 
+## type SPI
+
+```go
+type SPI struct {
+	Bus uint8
+}
+```
+
+
+
+
+### func (SPI) Configure
+
+```go
+func (spi SPI) Configure(config SPIConfig)
+```
+
+
+
+### func (SPI) Transfer
+
+```go
+func (spi SPI) Transfer(w byte) (byte, error)
+```
+
+Transfer writes/reads a single byte using the SPI interface.
+
+
+### func (SPI) Tx
+
+```go
+func (spi SPI) Tx(w, r []byte) error
+```
+
+Tx handles read/write operation for SPI interface. Since SPI is a syncronous write/read
+interface, there must always be the same number of bytes written as bytes read.
+The Tx method knows about this, and offers a few different ways of calling it.
+
+This form sends the bytes in tx buffer, putting the resulting bytes read into the rx buffer.
+Note that the tx and rx buffers must be the same size:
+
+		spi.Tx(tx, rx)
+
+This form sends the tx buffer, ignoring the result. Useful for sending "commands" that return zeros
+until all the bytes in the command packet have been received:
+
+		spi.Tx(tx, nil)
+
+This form sends zeros, putting the result into the rx buffer. Good for reading a "result packet":
+
+		spi.Tx(nil, rx)
+
+
+
+
+## type SPIConfig
+
+```go
+type SPIConfig struct {
+	Frequency	uint32
+	SCK		Pin
+	SDO		Pin
+	SDI		Pin
+	Mode		uint8
+}
+```
+
+
+
+
+
+
 ## type UART
 
 ```go
 type UART struct {
-	Buffer *RingBuffer
+	Bus uint8
 }
 ```
 
@@ -298,8 +451,7 @@ Buffered returns the number of bytes currently stored in the RX buffer.
 func (uart UART) Configure(config UARTConfig)
 ```
 
-Configure the UART baud rate. TX and RX pins are fixed by the hardware so
-cannot be modified and will be ignored.
+Configure the UART.
 
 
 ### func (UART) Read
@@ -308,7 +460,7 @@ cannot be modified and will be ignored.
 func (uart UART) Read(data []byte) (n int, err error)
 ```
 
-Read from the RX buffer.
+Read from the UART.
 
 
 ### func (UART) ReadByte
@@ -317,18 +469,7 @@ Read from the RX buffer.
 func (uart UART) ReadByte() (byte, error)
 ```
 
-ReadByte reads a single byte from the RX buffer.
-If there is no data in the buffer, returns an error.
-
-
-### func (UART) Receive
-
-```go
-func (uart UART) Receive(data byte)
-```
-
-Receive handles adding data to the UART's data buffer.
-Usually called by the IRQ handler for a machine.
+ReadByte reads a single byte from the UART.
 
 
 ### func (UART) Write
@@ -337,17 +478,16 @@ Usually called by the IRQ handler for a machine.
 func (uart UART) Write(data []byte) (n int, err error)
 ```
 
-Write data to the UART.
+Write to the UART.
 
 
 ### func (UART) WriteByte
 
 ```go
-func (uart UART) WriteByte(c byte) error
+func (uart UART) WriteByte(b byte) error
 ```
 
-WriteByte writes a single byte to the output buffer. Note that the hardware
-includes a buffer of 128 bytes which will be used first.
+WriteByte writes a single byte to the UART.
 
 
 

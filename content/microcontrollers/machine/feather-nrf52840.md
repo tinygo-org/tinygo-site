@@ -773,7 +773,7 @@ with 7-bit addresses, which is the vast majority.
 ### func (I2C) Tx
 
 ```go
-func (i2c I2C) Tx(addr uint16, w, r []byte) error
+func (i2c I2C) Tx(addr uint16, w, r []byte) (err error)
 ```
 
 Tx does a single I2C transaction at the specified address.
@@ -1019,7 +1019,8 @@ func (p Pin) SetInterrupt(change PinChange, callback func(Pin)) error
 ```
 
 SetInterrupt sets an interrupt to be executed when a particular pin changes
-state.
+state. The pin should already be configured as an input, including a pull up
+or down if no external pull is provided.
 
 This call will replace a previously set callback on this pin. You can pass a
 nil func to unset the pin change interrupt. If you do so, the change

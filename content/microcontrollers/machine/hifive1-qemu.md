@@ -1,65 +1,110 @@
 
 ---
-title: microbit
+title: hifive1-qemu
 ---
 
 
 ## Constants
 
 ```go
-const HasLowFrequencyCrystal = false
-```
-
-The micro:bit does not have a 32kHz crystal on board.
-
-
-```go
 const (
-	BUTTON	Pin	= BUTTONA
-	BUTTONA	Pin	= 17
-	BUTTONB	Pin	= 26
+	P00	Pin	= 0
+	P01	Pin	= 1
+	P02	Pin	= 2
+	P03	Pin	= 3
+	P04	Pin	= 4
+	P05	Pin	= 5
+	P06	Pin	= 6
+	P07	Pin	= 7
+	P08	Pin	= 8
+	P09	Pin	= 9
+	P10	Pin	= 10
+	P11	Pin	= 11
+	P12	Pin	= 12
+	P13	Pin	= 13
+	P14	Pin	= 14
+	P15	Pin	= 15
+	P16	Pin	= 16
+	P17	Pin	= 17
+	P18	Pin	= 18
+	P19	Pin	= 19
+	P20	Pin	= 20
+	P21	Pin	= 21
+	P22	Pin	= 22
+	P23	Pin	= 23
+	P24	Pin	= 24
+	P25	Pin	= 25
+	P26	Pin	= 26
+	P27	Pin	= 27
+	P28	Pin	= 28
+	P29	Pin	= 29
+	P30	Pin	= 30
+	P31	Pin	= 31
 )
 ```
 
-Buttons on the micro:bit (A and B)
 
 
 ```go
 const (
-	UART_TX_PIN	Pin	= 24
-	UART_RX_PIN	Pin	= 25
+	D0	= P16
+	D1	= P17
+	D2	= P18
+	D3	= P19	// Green LED/PWM (PWM1_PWM1)
+	D4	= P20	// PWM (PWM1_PWM0)
+	D5	= P21	// Blue LED/PWM (PWM1_PWM2)
+	D6	= P22	// Red LED/PWM (PWM1_PWM3)
+	D7	= P16
+	D8	= NoPin	// PWM?
+	D9	= P01
+	D10	= P02	// SPI1_CS0
+	D11	= P03	// SPI1_DQ0
+	D12	= P04	// SPI1_DQ1
+	D13	= P05	// SPI1_SCK
+	D14	= NoPin	// not connected
+	D15	= P09	// does not seem to work?
+	D16	= P10	// PWM (PWM2_PWM0)
+	D17	= P11	// PWM (PWM2_PWM1)
+	D18	= P12	// SDA (I2C0_SDA)/PWM (PWM2_PWM2)
+	D19	= P13	// SDL (I2C0_SCL)/PWM (PWM2_PWM3)
 )
 ```
 
-UART pins
 
 
 ```go
 const (
-	ADC0	Pin	= 3	// P0 on the board
-	ADC1	Pin	= 2	// P1 on the board
-	ADC2	Pin	= 1	// P2 on the board
+	LED		= LED1
+	LED1		= LED_RED
+	LED2		= LED_GREEN
+	LED3		= LED_BLUE
+	LED_RED		= P22
+	LED_GREEN	= P19
+	LED_BLUE	= P21
 )
 ```
 
-ADC pins
 
 
 ```go
 const (
-	SDA_PIN	Pin	= 30	// P20 on the board
-	SCL_PIN	Pin	= 0	// P19 on the board
+	// TODO: figure out the pin numbers for these.
+	UART_TX_PIN	= D1
+	UART_RX_PIN	= D0
 )
 ```
 
-I2C pins
 
 
 ```go
 const (
-	SPI0_SCK_PIN	Pin	= 23	// P13 on the board
-	SPI0_SDO_PIN	Pin	= 21	// P15 on the board
-	SPI0_SDI_PIN	Pin	= 22	// P14 on the board
+	SPI0_SCK_PIN	= NoPin
+	SPI0_SDO_PIN	= NoPin
+	SPI0_SDI_PIN	= NoPin
+
+	SPI1_SCK_PIN	= D13
+	SPI1_SDO_PIN	= D11
+	SPI1_SDI_PIN	= D12
 )
 ```
 
@@ -68,47 +113,12 @@ SPI pins
 
 ```go
 const (
-	P0	Pin	= 3
-	P1	Pin	= 2
-	P2	Pin	= 1
-	P3	Pin	= 4
-	P4	Pin	= 5
-	P5	Pin	= 17
-	P6	Pin	= 12
-	P7	Pin	= 11
-	P8	Pin	= 18
-	P9	Pin	= 10
-	P10	Pin	= 6
-	P11	Pin	= 26
-	P12	Pin	= 20
-	P13	Pin	= 23
-	P14	Pin	= 22
-	P15	Pin	= 21
-	P16	Pin	= 16
+	I2C0_SDA_PIN	= D18
+	I2C0_SCL_PIN	= D19
 )
 ```
 
-GPIO/Analog pins
-
-
-```go
-const (
-	LED_COL_1	Pin	= 4
-	LED_COL_2	Pin	= 5
-	LED_COL_3	Pin	= 6
-	LED_COL_4	Pin	= 7
-	LED_COL_5	Pin	= 8
-	LED_COL_6	Pin	= 9
-	LED_COL_7	Pin	= 10
-	LED_COL_8	Pin	= 11
-	LED_COL_9	Pin	= 12
-	LED_ROW_1	Pin	= 13
-	LED_ROW_2	Pin	= 14
-	LED_ROW_3	Pin	= 15
-)
-```
-
-LED matrix pins
+I2C pins
 
 
 ```go
@@ -131,10 +141,11 @@ of the pins in a peripheral unconfigured (if supported by the hardware).
 
 ```go
 const (
-	PinInput		PinMode	= (nrf.GPIO_PIN_CNF_DIR_Input << nrf.GPIO_PIN_CNF_DIR_Pos) | (nrf.GPIO_PIN_CNF_INPUT_Connect << nrf.GPIO_PIN_CNF_INPUT_Pos)
-	PinInputPullup		PinMode	= PinInput | (nrf.GPIO_PIN_CNF_PULL_Pullup << nrf.GPIO_PIN_CNF_PULL_Pos)
-	PinInputPulldown	PinMode	= PinInput | (nrf.GPIO_PIN_CNF_PULL_Pulldown << nrf.GPIO_PIN_CNF_PULL_Pos)
-	PinOutput		PinMode	= (nrf.GPIO_PIN_CNF_DIR_Output << nrf.GPIO_PIN_CNF_DIR_Pos) | (nrf.GPIO_PIN_CNF_INPUT_Disconnect << nrf.GPIO_PIN_CNF_INPUT_Pos)
+	PinInput	PinMode	= iota
+	PinOutput
+	PinPWM
+	PinSPI
+	PinI2C	= PinSPI
 )
 ```
 
@@ -142,19 +153,42 @@ const (
 
 ```go
 const (
-	PinRising	PinChange	= nrf.GPIOTE_CONFIG_POLARITY_LoToHi
-	PinFalling	PinChange	= nrf.GPIOTE_CONFIG_POLARITY_HiToLo
-	PinToggle	PinChange	= nrf.GPIOTE_CONFIG_POLARITY_Toggle
+	Mode0	= 0
+	Mode1	= 1
+	Mode2	= 2
+	Mode3	= 3
 )
 ```
 
-Pin change interrupt constants for SetInterrupt.
+SPI phase and polarity configs CPOL and CPHA
 
 
 
 
 
 ## Variables
+
+```go
+var (
+	SPI1 = SPI{
+		Bus: sifive.QSPI1,
+	}
+)
+```
+
+SPI on the HiFive1.
+
+
+```go
+var (
+	I2C0 = I2C{
+		Bus: sifive.I2C0,
+	}
+)
+```
+
+I2C on the HiFive1 rev B.
+
 
 ```go
 var (
@@ -170,45 +204,15 @@ var (
 
 ```go
 var (
+	UART0 = UART{Bus: sifive.UART0, Buffer: NewRingBuffer()}
+)
+```
+
+
+
+```go
+var (
 	ErrTxInvalidSliceSize = errors.New("SPI write and read slices must be same size")
-)
-```
-
-
-
-```go
-var (
-	// NRF_UART0 is the hardware UART on the NRF SoC.
-	NRF_UART0 = UART{Buffer: NewRingBuffer()}
-)
-```
-
-UART
-
-
-```go
-var (
-	I2C0	= I2C{Bus: nrf.TWI0}
-	I2C1	= I2C{Bus: nrf.TWI1}
-)
-```
-
-There are 2 I2C interfaces on the NRF.
-
-
-```go
-var (
-	SPI0	= SPI{Bus: nrf.SPI0}
-	SPI1	= SPI{Bus: nrf.SPI1}
-)
-```
-
-There are 2 SPI interfaces on the NRF5x.
-
-
-```go
-var (
-	UART0 = NRF_UART0
 )
 ```
 
@@ -253,18 +257,18 @@ type ADC struct {
 
 ```go
 type I2C struct {
-	Bus *nrf.TWI_Type
+	Bus *sifive.I2C_Type
 }
 ```
 
-I2C on the NRF.
+I2C on the FE310-G002.
 
 
 
 ### func (I2C) Configure
 
 ```go
-func (i2c I2C) Configure(config I2CConfig)
+func (i2c I2C) Configure(config I2CConfig) error
 ```
 
 Configure is intended to setup the I2C interface.
@@ -287,7 +291,7 @@ with 7-bit addresses, which is the vast majority.
 ### func (I2C) Tx
 
 ```go
-func (i2c I2C) Tx(addr uint16, w, r []byte) (err error)
+func (i2c I2C) Tx(addr uint16, w, r []byte) error
 ```
 
 Tx does a single I2C transaction at the specified address.
@@ -392,26 +396,6 @@ pin. It is hardware dependent (and often undefined) what happens if you set a
 pin to low that is not configured as an output pin.
 
 
-### func (Pin) PortMaskClear
-
-```go
-func (p Pin) PortMaskClear() (*uint32, uint32)
-```
-
-Return the register and mask to disable a given port. This can be used to
-implement bit-banged drivers.
-
-
-### func (Pin) PortMaskSet
-
-```go
-func (p Pin) PortMaskSet() (*uint32, uint32)
-```
-
-Return the register and mask to enable a given GPIO pin. This can be used to
-implement bit-banged drivers.
-
-
 ### func (Pin) Set
 
 ```go
@@ -419,33 +403,6 @@ func (p Pin) Set(high bool)
 ```
 
 Set the pin to high or low.
-Warning: only use this on an output pin!
-
-
-### func (Pin) SetInterrupt
-
-```go
-func (p Pin) SetInterrupt(change PinChange, callback func(Pin)) error
-```
-
-SetInterrupt sets an interrupt to be executed when a particular pin changes
-state. The pin should already be configured as an input, including a pull up
-or down if no external pull is provided.
-
-This call will replace a previously set callback on this pin. You can pass a
-nil func to unset the pin change interrupt. If you do so, the change
-parameter is ignored and can be set to any value (such as 0).
-
-
-
-
-## type PinChange
-
-```go
-type PinChange uint8
-```
-
-
 
 
 
@@ -533,18 +490,19 @@ Used returns how many bytes in buffer have been used.
 
 ```go
 type SPI struct {
-	Bus *nrf.SPI_Type
+	Bus *sifive.QSPI_Type
 }
 ```
 
-SPI on the NRF.
+SPI on the FE310. The normal SPI0 is actually a quad-SPI meant for flash, so it is best
+to use SPI1 or SPI2 port for most applications.
 
 
 
 ### func (SPI) Configure
 
 ```go
-func (spi SPI) Configure(config SPIConfig)
+func (spi SPI) Configure(config SPIConfig) error
 ```
 
 Configure is intended to setup the SPI interface.
@@ -609,11 +567,11 @@ SPIConfig is used to store config info for SPI.
 
 ```go
 type UART struct {
-	Buffer *RingBuffer
+	Bus	*sifive.UART_Type
+	Buffer	*RingBuffer
 }
 ```
 
-UART on the NRF.
 
 
 
@@ -632,7 +590,6 @@ Buffered returns the number of bytes currently stored in the RX buffer.
 func (uart UART) Configure(config UARTConfig)
 ```
 
-Configure the UART.
 
 
 ### func (UART) Read
@@ -664,15 +621,6 @@ Receive handles adding data to the UART's data buffer.
 Usually called by the IRQ handler for a machine.
 
 
-### func (UART) SetBaudRate
-
-```go
-func (uart UART) SetBaudRate(br uint32)
-```
-
-SetBaudRate sets the communication speed for the UART.
-
-
 ### func (UART) Write
 
 ```go
@@ -685,10 +633,9 @@ Write data to the UART.
 ### func (UART) WriteByte
 
 ```go
-func (uart UART) WriteByte(c byte) error
+func (uart UART) WriteByte(c byte)
 ```
 
-WriteByte writes a byte of data to the UART.
 
 
 

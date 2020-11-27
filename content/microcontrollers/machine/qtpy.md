@@ -1,210 +1,10 @@
 
 ---
-title: feather-m4
+title: qtpy
 ---
 
 
 ## Constants
-
-```go
-const RESET_MAGIC_VALUE = 0xf01669ef
-```
-
-used to reset into bootloader
-
-
-```go
-const (
-	D0	= PB17	// UART0 RX/PWM available
-	D1	= PB16	// UART0 TX/PWM available
-	D4	= PA14	// PWM available
-	D5	= PA16	// PWM available
-	D6	= PA18	// PWM available
-	D8	= PB03	// built-in neopixel
-	D9	= PA19	// PWM available
-	D10	= PA20	// can be used for PWM or UART1 TX
-	D11	= PA21	// can be used for PWM or UART1 RX
-	D12	= PA22	// PWM available
-	D13	= PA23	// PWM available
-	D21	= PA13	// PWM available
-	D22	= PA12	// PWM available
-	D23	= PB22	// PWM available
-	D24	= PB23	// PWM available
-	D25	= PA17	// PWM available
-)
-```
-
-GPIO Pins
-
-
-```go
-const (
-	A0	= PA02	// ADC/AIN[0]
-	A1	= PA05	// ADC/AIN[2]
-	A2	= PB08	// ADC/AIN[3]
-	A3	= PB09	// ADC/AIN[4]
-	A4	= PA04	// ADC/AIN[5]
-	A5	= PA06	// ADC/AIN[10]
-)
-```
-
-Analog pins
-
-
-```go
-const (
-	LED = D13
-)
-```
-
-
-
-```go
-const (
-	USBCDC_DM_PIN	= PA24
-	USBCDC_DP_PIN	= PA25
-)
-```
-
-UART0 aka USBCDC pins
-
-
-```go
-const (
-	UART_TX_PIN	= D1
-	UART_RX_PIN	= D0
-)
-```
-
-
-
-```go
-const (
-	UART2_TX_PIN	= A4
-	UART2_RX_PIN	= A5
-)
-```
-
-
-
-```go
-const (
-	SDA_PIN	= D22	// SDA: SERCOM2/PAD[0]
-	SCL_PIN	= D21	// SCL: SERCOM2/PAD[1]
-)
-```
-
-I2C pins
-
-
-```go
-const (
-	SPI0_SCK_PIN	= D25	// SCK: SERCOM1/PAD[1]
-	SPI0_SDO_PIN	= D24	// SDO: SERCOM1/PAD[3]
-	SPI0_SDI_PIN	= D23	// SDI: SERCOM1/PAD[2]
-)
-```
-
-SPI pins
-
-
-```go
-const (
-	TWI_FREQ_100KHZ	= 100000
-	TWI_FREQ_400KHZ	= 400000
-)
-```
-
-TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-speed bus.
-
-
-```go
-const (
-	I2SModeSource	I2SMode	= iota
-	I2SModeReceiver
-	I2SModePDM
-)
-```
-
-
-
-```go
-const (
-	I2StandardPhilips	I2SStandard	= iota
-	I2SStandardMSB
-	I2SStandardLSB
-)
-```
-
-
-
-```go
-const (
-	I2SClockSourceInternal	I2SClockSource	= iota
-	I2SClockSourceExternal
-)
-```
-
-
-
-```go
-const (
-	I2SDataFormatDefault	I2SDataFormat	= 0
-	I2SDataFormat8bit			= 8
-	I2SDataFormat16bit			= 16
-	I2SDataFormat24bit			= 24
-	I2SDataFormat32bit			= 32
-)
-```
-
-
-
-```go
-const NoPin = Pin(0xff)
-```
-
-NoPin explicitly indicates "not a pin". Use this pin if you want to leave one
-of the pins in a peripheral unconfigured (if supported by the hardware).
-
-
-```go
-const (
-	PinAnalog		PinMode	= 1
-	PinSERCOM		PinMode	= 2
-	PinSERCOMAlt		PinMode	= 3
-	PinTimer		PinMode	= 4
-	PinTimerAlt		PinMode	= 5
-	PinTCCPDEC		PinMode	= 6
-	PinCom			PinMode	= 7
-	PinSDHC			PinMode	= 8
-	PinI2S			PinMode	= 9
-	PinPCC			PinMode	= 10
-	PinGMAC			PinMode	= 11
-	PinACCLK		PinMode	= 12
-	PinCCL			PinMode	= 13
-	PinDigital		PinMode	= 14
-	PinInput		PinMode	= 15
-	PinInputPullup		PinMode	= 16
-	PinOutput		PinMode	= 17
-	PinPWME			PinMode	= PinTimer
-	PinPWMF			PinMode	= PinTimerAlt
-	PinPWMG			PinMode	= PinTCCPDEC
-	PinInputPulldown	PinMode	= 18
-)
-```
-
-
-
-```go
-const (
-	PinRising	PinChange	= sam.EIC_CONFIG_SENSE0_RISE
-	PinFalling	PinChange	= sam.EIC_CONFIG_SENSE0_FALL
-	PinToggle	PinChange	= sam.EIC_CONFIG_SENSE0_BOTH
-)
-```
-
-Pin change interrupt constants for SetInterrupt.
-
 
 ```go
 const (
@@ -272,70 +72,6 @@ const (
 	PB29	Pin	= 61
 	PB30	Pin	= 62
 	PB31	Pin	= 63
-	PC00	Pin	= 64
-	PC01	Pin	= 65
-	PC02	Pin	= 66
-	PC03	Pin	= 67
-	PC04	Pin	= 68
-	PC05	Pin	= 69
-	PC06	Pin	= 70
-	PC07	Pin	= 71
-	PC08	Pin	= 72
-	PC09	Pin	= 73
-	PC10	Pin	= 74
-	PC11	Pin	= 75
-	PC12	Pin	= 76
-	PC13	Pin	= 77
-	PC14	Pin	= 78
-	PC15	Pin	= 79
-	PC16	Pin	= 80
-	PC17	Pin	= 81
-	PC18	Pin	= 82
-	PC19	Pin	= 83
-	PC20	Pin	= 84
-	PC21	Pin	= 85
-	PC22	Pin	= 86
-	PC23	Pin	= 87
-	PC24	Pin	= 88
-	PC25	Pin	= 89
-	PC26	Pin	= 90
-	PC27	Pin	= 91
-	PC28	Pin	= 92
-	PC29	Pin	= 93
-	PC30	Pin	= 94
-	PC31	Pin	= 95
-	PD00	Pin	= 96
-	PD01	Pin	= 97
-	PD02	Pin	= 98
-	PD03	Pin	= 99
-	PD04	Pin	= 100
-	PD05	Pin	= 101
-	PD06	Pin	= 102
-	PD07	Pin	= 103
-	PD08	Pin	= 104
-	PD09	Pin	= 105
-	PD10	Pin	= 106
-	PD11	Pin	= 107
-	PD12	Pin	= 108
-	PD13	Pin	= 109
-	PD14	Pin	= 110
-	PD15	Pin	= 111
-	PD16	Pin	= 112
-	PD17	Pin	= 113
-	PD18	Pin	= 114
-	PD19	Pin	= 115
-	PD20	Pin	= 116
-	PD21	Pin	= 117
-	PD22	Pin	= 118
-	PD23	Pin	= 119
-	PD24	Pin	= 120
-	PD25	Pin	= 121
-	PD26	Pin	= 122
-	PD27	Pin	= 123
-	PD28	Pin	= 124
-	PD29	Pin	= 125
-	PD30	Pin	= 126
-	PD31	Pin	= 127
 )
 ```
 
@@ -343,24 +79,54 @@ Hardware pins
 
 
 ```go
+const RESET_MAGIC_VALUE = 0xf01669ef
+```
+
+used to reset into bootloader
+
+
+```go
 const (
-	// SERCOM_FREQ_REF is always reference frequency on SAMD51 regardless of CPU speed.
-	SERCOM_FREQ_REF	= 48000000
+	D0	= PA02	// PWM available
+	D1	= PA03
+	D2	= PA04	// PWM available
+	D3	= PA05	// PWM available
+	D4	= PA16	// PWM available
+	D5	= PA17	// PWM available
+	D6	= PA06
+	D7	= PA07
+	D8	= PA11
+	D9	= PA09
+	D10	= PA10
+	D11	= PA18
+	D12	= PA15
+	D13	= PA27
+	D14	= PA23
+	D15	= PA19
+	D16	= PA22
+	D17	= PA08
+)
+```
 
-	// Default rise time in nanoseconds, based on 4.7K ohm pull up resistors
-	riseTimeNanoseconds	= 125
+GPIO Pins
 
-	// wire bus states
-	wireUnknownState	= 0
-	wireIdleState		= 1
-	wireOwnerState		= 2
-	wireBusyState		= 3
 
-	// wire commands
-	wireCmdNoAction		= 0
-	wireCmdRepeatStart	= 1
-	wireCmdRead		= 2
-	wireCmdStop		= 3
+```go
+const (
+	A0	= D1
+	A1	= D1
+	A2	= D2
+	A3	= D3
+	A4	= D4
+)
+```
+
+Analog pins
+
+
+```go
+const (
+	LED = D13
 )
 ```
 
@@ -368,22 +134,145 @@ const (
 
 ```go
 const (
-	QSPI_SCK	= PB10
-	QSPI_CS		= PB11
-	QSPI_DATA0	= PA08
-	QSPI_DATA1	= PA09
-	QSPI_DATA2	= PA10
-	QSPI_DATA3	= PA11
+	USBCDC_DM_PIN	= PA24
+	USBCDC_DP_PIN	= PA25
 )
 ```
 
-The QSPI peripheral on ATSAMD51 is only available on the following pins
+UART0 aka USBCDC pins
 
 
 ```go
-const HSRAM_SIZE = 0x00030000
+const (
+	UART_TX_PIN	= D6
+	UART_RX_PIN	= D7
+)
 ```
 
+UART1 pins
+
+
+```go
+const (
+	SPI0_SCK_PIN	= D8
+	SPI0_SDO_PIN	= D10
+	SPI0_SDI_PIN	= D9
+)
+```
+
+SPI pins
+
+
+```go
+const (
+	SDA_PIN	= D4	// SDA
+	SCL_PIN	= D5	// SCL
+)
+```
+
+I2C pins
+
+
+```go
+const (
+	I2S_SCK_PIN	= PA10
+	I2S_SD_PIN	= PA08
+	I2S_WS_PIN	= NoPin	// TODO: figure out what this is on QT Py M0.
+)
+```
+
+I2S pins
+
+
+```go
+const (
+	TWI_FREQ_100KHZ	= 100000
+	TWI_FREQ_400KHZ	= 400000
+)
+```
+
+TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-speed bus.
+
+
+```go
+const (
+	I2SModeSource	I2SMode	= iota
+	I2SModeReceiver
+	I2SModePDM
+)
+```
+
+
+
+```go
+const (
+	I2StandardPhilips	I2SStandard	= iota
+	I2SStandardMSB
+	I2SStandardLSB
+)
+```
+
+
+
+```go
+const (
+	I2SClockSourceInternal	I2SClockSource	= iota
+	I2SClockSourceExternal
+)
+```
+
+
+
+```go
+const (
+	I2SDataFormatDefault	I2SDataFormat	= 0
+	I2SDataFormat8bit			= 8
+	I2SDataFormat16bit			= 16
+	I2SDataFormat24bit			= 24
+	I2SDataFormat32bit			= 32
+)
+```
+
+
+
+```go
+const NoPin = Pin(0xff)
+```
+
+NoPin explicitly indicates "not a pin". Use this pin if you want to leave one
+of the pins in a peripheral unconfigured (if supported by the hardware).
+
+
+```go
+const (
+	PinAnalog	PinMode	= 1
+	PinSERCOM	PinMode	= 2
+	PinSERCOMAlt	PinMode	= 3
+	PinTimer	PinMode	= 4
+	PinTimerAlt	PinMode	= 5
+	PinCom		PinMode	= 6
+	//PinAC_CLK        PinMode = 7
+	PinDigital		PinMode	= 8
+	PinInput		PinMode	= 9
+	PinInputPullup		PinMode	= 10
+	PinOutput		PinMode	= 11
+	PinPWM			PinMode	= PinTimer
+	PinPWMAlt		PinMode	= PinTimerAlt
+	PinInputPulldown	PinMode	= 12
+)
+```
+
+
+
+```go
+const (
+	PinRising	PinChange	= sam.EIC_CONFIG_SENSE0_RISE
+	PinFalling	PinChange	= sam.EIC_CONFIG_SENSE0_FALL
+	PinToggle	PinChange	= sam.EIC_CONFIG_SENSE0_BOTH
+)
+```
+
+Pin change interrupt constants for SetInterrupt.
 
 
 ```go
@@ -405,20 +294,27 @@ SPI phase and polarity configs CPOL and CPHA
 
 ```go
 var (
-	UART1	= UART{
+	UART1 = UART{
 		Buffer:	NewRingBuffer(),
-		Bus:	sam.SERCOM5_USART_INT,
-		SERCOM:	5,
-	}
-
-	UART2	= UART{
-		Buffer:	NewRingBuffer(),
-		Bus:	sam.SERCOM0_USART_INT,
+		Bus:	sam.SERCOM0_USART,
 		SERCOM:	0,
 	}
 )
 ```
 
+UART1 on the QT Py M0.
+
+
+```go
+var (
+	SPI0 = SPI{
+		Bus:	sam.SERCOM0_SPI,
+		SERCOM:	0,
+	}
+)
+```
+
+SPI on the QT Py M0.
 
 
 ```go
@@ -430,19 +326,7 @@ var (
 )
 ```
 
-I2C on the Feather M4.
-
-
-```go
-var (
-	SPI0 = SPI{
-		Bus:	sam.SERCOM1_SPIM,
-		SERCOM:	1,
-	}
-)
-```
-
-SPI on the Feather M4.
+I2C on the QT Py M0.
 
 
 ```go
@@ -491,6 +375,7 @@ var (
 func CPUFrequency() uint32
 ```
 
+Return the current CPU frequency in hertz.
 
 
 ### func InitADC
@@ -614,7 +499,7 @@ NewRingBuffer returns a new ring buffer.
 func ResetProcessor()
 ```
 
-ResetProcessor should perform a system reset in preparation
+ResetProcessor should perform a system reset in preperation
 to switch to the bootloader to flash new firmware.
 
 
@@ -811,7 +696,7 @@ type DAC struct {
 }
 ```
 
-DAC on the SAMD51.
+DAC on the SAMD21.
 
 
 
@@ -832,7 +717,7 @@ func (dac DAC) Set(value uint16) error
 ```
 
 Set writes a single 16-bit value to the DAC.
-Since the ATSAMD51 only has a 12-bit DAC, the passed-in value will be scaled down.
+Since the ATSAMD21 only has a 10-bit DAC, the passed-in value will be scaled down.
 
 
 
@@ -930,7 +815,7 @@ type I2C struct {
 }
 ```
 
-I2C on the SAMD51.
+I2C on the SAMD21.
 
 
 
@@ -1014,6 +899,59 @@ type I2CConfig struct {
 
 I2CConfig is used to store config info for I2C.
 
+
+
+
+
+## type I2S
+
+```go
+type I2S struct {
+	Bus *sam.I2S_Type
+}
+```
+
+I2S
+
+
+
+### func (I2S) Close
+
+```go
+func (i2s I2S) Close() error
+```
+
+Close the I2S bus.
+
+
+### func (I2S) Configure
+
+```go
+func (i2s I2S) Configure(config I2SConfig)
+```
+
+Configure is used to configure the I2S interface. You must call this
+before you can use the I2S bus.
+
+
+### func (I2S) Read
+
+```go
+func (i2s I2S) Read(p []uint32) (n int, err error)
+```
+
+Read data from the I2S bus into the provided slice.
+The I2S bus must already have been configured correctly.
+
+
+### func (I2S) Write
+
+```go
+func (i2s I2S) Write(p []uint32) (n int, err error)
+```
+
+Write data to the I2S bus from the provided slice.
+The I2S bus must already have been configured correctly.
 
 
 
@@ -1299,16 +1237,6 @@ nil func to unset the pin change interrupt. If you do so, the change
 parameter is ignored and can be set to any value (such as 0).
 
 
-### func (Pin) Toggle
-
-```go
-func (p Pin) Toggle()
-```
-
-Toggle switches an output pin from low to high or from high to low.
-Warning: only use this on an output pin!
-
-
 
 
 ## type PinChange
@@ -1405,7 +1333,7 @@ Used returns how many bytes in buffer have been used.
 
 ```go
 type SPI struct {
-	Bus	*sam.SERCOM_SPIM_Type
+	Bus	*sam.SERCOM_SPI_Type
 	SERCOM	uint8
 }
 ```
@@ -1483,13 +1411,13 @@ SPIConfig is used to store config info for SPI.
 ```go
 type UART struct {
 	Buffer		*RingBuffer
-	Bus		*sam.SERCOM_USART_INT_Type
+	Bus		*sam.SERCOM_USART_Type
 	SERCOM		uint8
-	Interrupt	interrupt.Interrupt	// RXC interrupt
+	Interrupt	interrupt.Interrupt
 }
 ```
 
-UART on the SAMD51.
+UART on the SAMD21.
 
 
 
