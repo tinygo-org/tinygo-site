@@ -47,7 +47,7 @@ Once you have downloaded it, double click on the .dmg file to perform the instal
 On Linux, install from source:
 
 ```shell
-sudo apt install libreadline-dev libwxgtk3.0-* 
+sudo apt install libreadline-dev libwxgtk3.0-gtk3-dev
 git clone https://github.com/shumatech/BOSSA.git
 cd BOSSA
 make
@@ -58,7 +58,7 @@ sudo cp bin/bossac /usr/local/bin
 
 You can download BOSSA from https://github.com/shumatech/BOSSA/releases/download/1.9.1/bossa-x64-1.9.1.msi
 
-*VERY IMPORTANT*: During the installation, you much choose to install into `c:\Program Files`. The installer might have the wrong path, so edit it to match  `c:\Program Files`.
+*VERY IMPORTANT*: During the installation, you must choose to install into `c:\Program Files`. The installer might have the wrong path, so edit it to match  `c:\Program Files`.
 
 After the installation, you must add BOSSA to your PATH:
 
@@ -81,7 +81,7 @@ Once you have installed the needed BOSSA command line utility, as in the previou
 - Plug your Arduino Nano33 IoT board into your computer's USB port.
 - Build and flash your TinyGo code using the `tinygo flash` command. This command flashes the Arduino Nano33 IoT with the blinky1 example:
 
-    ```
+    ```shell
     tinygo flash -target=arduino-nano33 examples/blinky1
     ```
 
