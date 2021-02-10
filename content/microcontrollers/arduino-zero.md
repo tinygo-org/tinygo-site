@@ -16,6 +16,34 @@ The [Arduino Zero](https://store.arduino.cc/arduino-zero) is a very small ARM de
 | ADC      | YES | YES |
 | PWM      | YES | YES |
 
+## Pins
+
+| Pin           | Hardware pin | PWM
+| ------------- | ------------ | ----------------
+| `D0`          | `PA11`       | `TCC1`, `TCC0`
+| `D1`          | `PA10`       | `TCC1`, `TCC0`
+| `D2`          | `PA14`       | `TCC0`
+| `D3`          | `PA09`       | `TCC0`, `TCC1`
+| `D4`          | `PA08`       | `TCC0`, `TCC1`
+| `D5`          | `PA15`       | `TCC0`
+| `D6`          | `PA20`       | `TCC0`
+| `D7`          | `PA21`       | `TCC0`
+| `D8`          | `PA06`       | `TCC1`
+| `D9`          | `PA07`       | `TCC1`
+| `D10`         | `PA18`       | `TCC0`
+| `D11`         | `PA16`       | `TCC2`, `TCC0`
+| `D12`         | `PA19`       | `TCC0`
+| `D13`, `LED`  | `PA17`       | `TCC2`, `TCC0`
+| `LED2`        | `PA27`       |
+| `LED3`        | `PB03`       |
+| `AREF`        | `PA03`       |
+| `A0`          | `PA02`       |
+| `A1`          | `PB08`       |
+| `A2`          | `PB09`       |
+| `A3`          | `PA04`       | `TCC0`
+| `A4`          | `PA05`       | `TCC0`
+| `A5`          | `PA02`       |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the Arduino Zero](../machine/arduino-zero)

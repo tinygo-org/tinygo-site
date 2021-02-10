@@ -30,3 +30,7 @@ weight = 30
 name = "<i class='fab fa-slack'></i> Slack"
 url = "https://gophers.slack.com/messages/CDJD3SUP6/"
 weight = 40
+
+[markup.goldmark.renderer]
+# Allow raw HTML and JavaScript.
+unsafe = true

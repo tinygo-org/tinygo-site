@@ -18,6 +18,31 @@ Note: the AVR backend of LLVM is still experimental so you may encounter bugs.
 | ADC      | YES | YES |
 | PWM      | YES | YES |
 
+## Pins
+
+| Pin          | Hardware pin | PWM
+| ------------ | ------------ | ----------------
+| `D0`         | `PD0`        |
+| `D1`         | `PD1`        |
+| `D2`         | `PD2`        |
+| `D3`         | `PD3`        | `Timer2`
+| `D4`         | `PD4`        |
+| `D5`         | `PD5`        | `Timer0`
+| `D6`         | `PD6`        | `Timer0`
+| `D7`         | `PD7`        |
+| `D8`         | `PB0`        |
+| `D9`         | `PB1`        | `Timer1`
+| `D10`        | `PB2`        | `Timer1`
+| `D11`        | `PB3`        | `Timer2`
+| `D12`        | `PB4`        |
+| `D13`, `LED` | `PB5`        |
+| `ADC0`       | `PC0`        |
+| `ADC1`       | `PC1`        |
+| `ADC2`       | `PC2`        |
+| `ADC3`       | `PC3`        |
+| `ADC4`       | `PC4`        |
+| `ADC5`       | `PC5`        |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the Arduino Nano](../machine/arduino-nano)
