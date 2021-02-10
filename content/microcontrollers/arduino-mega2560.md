@@ -13,7 +13,7 @@ Note: the AVR backend of LLVM is still experimental so you may encounter bugs.
 | --------- | ------------- | ----- |
 | GPIO      | YES | YES |
 | UART      | YES | YES |
-| SPI      | YES | Not yet |
+| SPI      | YES | YES |
 | I2C      | YES | YES |
 | ADC      | YES | YES |
 | PWM      | YES | YES |
