@@ -71,6 +71,6 @@ Use the specified panic strategy. That is, what the compiled program should do w
 - `-scheduler`
 Use the specified scheduler. The default scheduler varies by platform. For example, `AVR` currently defaults to `none` because it has such limited memory while `coroutines` and `tasks` is used for other platforms. Normally you do not need to override the default except on AVR where you can optionally select the tasks scheduler if you want concurrency.
 
-  - `scheduler=coroutines` UThe coroutines scheduler is a portable scheduler based on C++ coroutines that works almost everywhere and is therefore used whenever the tasks scheduler is not available or impossible to implement such as on WebAssembly.
+  - `scheduler=coroutines` The coroutines scheduler is a portable scheduler based on C++ coroutines that works almost everywhere and is therefore used whenever the tasks scheduler is not available or impossible to implement such as on WebAssembly.
   - `scheduler=tasks` The tasks scheduler is a scheduler much like an RTOS available for a limited number of platforms. It currently works on AVR, baremetal ARM (Cortex-M), the ESP8266, and the ESP32. This is usually the preferred scheduler if it is available.
   - `scheduler=none` The none scheduler disables scheduler support, which means that goroutines and channels are not available. It can be used to reduce firmware size and RAM consumption if goroutines and channels are not needed.
