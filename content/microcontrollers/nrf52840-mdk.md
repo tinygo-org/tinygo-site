@@ -3,7 +3,7 @@ title: "nRF52840-MDK"
 weight: 3
 ---
 
-The [nRF52840-MDK](https://wiki.makerdiary.com/nrf52840-mdk/) is an open-source, micro development kit for IoT applications based on the Nordic Semiconductor [nRF52840](https://www.nordicsemi.com/eng/Products/nRF52840) SoC chip.
+The [nRF52840-MDK](https://wiki.makerdiary.com/nrf52840-mdk/) (not to be confused with its sibling, the [nRF52840-MDK-USB-Dongle](https://wiki.makerdiary.com/nrf52840-mdk-usb-dongle/)) is an open-source, micro development kit for IoT applications based on the Nordic Semiconductor [nRF52840](https://www.nordicsemi.com/eng/Products/nRF52840) SoC chip.
 
 ## Interfaces
 
