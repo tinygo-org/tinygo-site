@@ -47,4 +47,6 @@ To install the S140 v6 SoftDevice, please follow the SoftDevice part of the ["Ru
 
 You can use the USB port of the nRF52840 MDK USB Dongle as a serial port. `UART0` refers to this connection.
 
+The button (pin 18) on the nRF52840 MDK USB Dongle can be to be configured as a reset-button or GPIO pin through the `PSELRESET[0]/[1]` UICR registers. When it is configured as reset instead of as GPIO, you won't be able to use the button in your code as pressing it will reset the nrf52840. To set the `PSELRESET[0]/[1]` UICR registers back to their default value (disabled), please flash the [pselreset erase example](https://github.com/makerdiary/nrf52840-mdk-usb-dongle/tree/master/examples/nrf5-sdk/pselreset_erase) using [these instructions](https://wiki.makerdiary.com/nrf52840-mdk-usb-dongle/programming/#dfu-via-uf2-bootloader) on the nRF52840 MDK USB Dongle wiki.
+
 Bluetooth support is now available for nRF52840 boards. See https://github.com/tinygo-org/bluetooth for more information.
