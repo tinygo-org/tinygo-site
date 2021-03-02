@@ -47,6 +47,23 @@ Upgrading to the latest TinyGo version can be done via scoop with:
 > scoop update tinygo
 ```
 
+#### Installing Arduino Dependencies
+
+You can install dependencies required for Arduino Development (`avr-gcc` and `avrdude`) also via Scoop:
+
+```shell
+> scoop install avr-gcc
+> scoop install avrdude
+```
+
+Upgrading to the latest versions can be as easy as:
+
+```shell
+> scoop update avr-gcc
+> scoop update avrdude
+```
+
+
 ### Manual Install
 
 - You MUST use Go 1.14.x+ with the Windows 10 native install of TinyGo.
