@@ -39,6 +39,7 @@ To install the S140 v6 SoftDevice, please follow the SoftDevice part of the ["Ru
 
 - Enter DFU mode by holding the dongle's RESET/USR button while plugging it into your computer's USB port. A flash drive with the name MDK-DONGLE will appear.
 - Flash your TinyGo program to the board using this command:
+
     ```shell
     tinygo flash -target=nrf52840-mdk-usb-dongle [PATH TO YOUR PROGRAM]
     ```
