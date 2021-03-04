@@ -232,6 +232,14 @@ as some updates cause changes to the generated files.
 
 The same additional requirements to compile TinyGo programs that can run on microcontrollers must be fulfilled when installing TinyGo from source. Please follow [these instructions](#additional-requirements-for-microcontrollers) above.
 
+### Additional Requirements for WebAssembly
+
+Before you can build WebAssembly binaries, you will need to compile [wasi-libc](https://github.com/WebAssembly/wasi-libc):
+
+```shell
+make wasi-libc
+```
+
 ## Docker Install
 
 The TinyGo Docker image contains a complete development environment for both WASM and microcontroller development already setup. For instructions on using the Docker image, please see the page [here](../using-docker).

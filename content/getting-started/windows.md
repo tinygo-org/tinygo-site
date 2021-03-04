@@ -206,3 +206,11 @@ for various devices. Also, you may need to re-run this command after updates,
 as some updates cause changes to the generated files.
 
 The same additional requirements to compile TinyGo programs that can run on microcontrollers must be fulfilled when installing TinyGo from source. Please follow [these instructions](#additional-requirements-for-microcontrollers) above.
+
+### Additional Requirements for WebAssembly
+
+Before you can build WebAssembly binaries, you will need to compile [wasi-libc](https://github.com/WebAssembly/wasi-libc):
+
+```shell
+make wasi-libc
+```
