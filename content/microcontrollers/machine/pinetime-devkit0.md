@@ -133,6 +133,46 @@ const (
 Pin change interrupt constants for SetInterrupt.
 
 
+```go
+const (
+	P0_00	Pin	= 0
+	P0_01	Pin	= 1
+	P0_02	Pin	= 2
+	P0_03	Pin	= 3
+	P0_04	Pin	= 4
+	P0_05	Pin	= 5
+	P0_06	Pin	= 6
+	P0_07	Pin	= 7
+	P0_08	Pin	= 8
+	P0_09	Pin	= 9
+	P0_10	Pin	= 10
+	P0_11	Pin	= 11
+	P0_12	Pin	= 12
+	P0_13	Pin	= 13
+	P0_14	Pin	= 14
+	P0_15	Pin	= 15
+	P0_16	Pin	= 16
+	P0_17	Pin	= 17
+	P0_18	Pin	= 18
+	P0_19	Pin	= 19
+	P0_20	Pin	= 20
+	P0_21	Pin	= 21
+	P0_22	Pin	= 22
+	P0_23	Pin	= 23
+	P0_24	Pin	= 24
+	P0_25	Pin	= 25
+	P0_26	Pin	= 26
+	P0_27	Pin	= 27
+	P0_28	Pin	= 28
+	P0_29	Pin	= 29
+	P0_30	Pin	= 30
+	P0_31	Pin	= 31
+)
+```
+
+Hardware pins
+
+
 
 
 
@@ -180,20 +220,21 @@ There are 2 I2C interfaces on the NRF.
 
 ```go
 var (
-	SPI0	= SPI{Bus: nrf.SPI0}
-	SPI1	= SPI{Bus: nrf.SPI1}
-)
-```
-
-There are 2 SPI interfaces on the NRF5x.
-
-
-```go
-var (
 	UART0 = NRF_UART0
 )
 ```
 
+
+
+```go
+var (
+	SPI0	= SPI{Bus: nrf.SPIM0}
+	SPI1	= SPI{Bus: nrf.SPIM1}
+	SPI2	= SPI{Bus: nrf.SPIM2}
+)
+```
+
+There are 3 SPI interfaces on the NRF528xx.
 
 
 
@@ -250,7 +291,7 @@ type ADC struct {
 ### func (ADC) Configure
 
 ```go
-func (a ADC) Configure()
+func (a ADC) Configure(ADCConfig)
 ```
 
 Configure configures an ADC pin to be able to read analog data.
@@ -263,6 +304,23 @@ func (a ADC) Get() uint16
 ```
 
 Get returns the current value of a ADC pin in the range 0..0xffff.
+
+
+
+
+## type ADCConfig
+
+```go
+type ADCConfig struct {
+	Reference	uint32	// analog reference voltage (AREF) in millivolts
+	Resolution	uint32	// number of bits for a single conversion (e.g., 8, 10, 12)
+	Samples		uint32	// number of samples for a single conversion (e.g., 4, 8, 16, 32)
+}
+```
+
+ADCConfig holds ADC configuration parameters. If left unspecified, the zero
+value of each parameter will use the peripheral's default settings.
+
 
 
 
@@ -282,7 +340,7 @@ I2C on the NRF.
 ### func (I2C) Configure
 
 ```go
-func (i2c I2C) Configure(config I2CConfig)
+func (i2c I2C) Configure(config I2CConfig) error
 ```
 
 Configure is intended to setup the I2C interface.
@@ -359,7 +417,7 @@ type PWM struct {
 ### func (PWM) Configure
 
 ```go
-func (pwm PWM) Configure() error
+func (pwm PWM) Configure()
 ```
 
 Configure configures a PWM pin for output.
@@ -569,7 +627,7 @@ Used returns how many bytes in buffer have been used.
 
 ```go
 type SPI struct {
-	Bus *nrf.SPI_Type
+	Bus *nrf.SPIM_Type
 }
 ```
 
@@ -601,23 +659,11 @@ Transfer writes/reads a single byte using the SPI interface.
 func (spi SPI) Tx(w, r []byte) error
 ```
 
-Tx handles read/write operation for SPI interface. Since SPI is a syncronous write/read
-interface, there must always be the same number of bytes written as bytes read.
-The Tx method knows about this, and offers a few different ways of calling it.
-
-This form sends the bytes in tx buffer, putting the resulting bytes read into the rx buffer.
-Note that the tx and rx buffers must be the same size:
-
-		spi.Tx(tx, rx)
-
-This form sends the tx buffer, ignoring the result. Useful for sending "commands" that return zeros
-until all the bytes in the command packet have been received:
-
-		spi.Tx(tx, nil)
-
-This form sends zeros, putting the result into the rx buffer. Good for reading a "result packet":
-
-		spi.Tx(nil, rx)
+Tx handles read/write operation for SPI interface. Since SPI is a syncronous
+write/read interface, there must always be the same number of bytes written
+as bytes read. Therefore, if the number of bytes don't match it will be
+padded until they fit: if len(w) > len(r) the extra bytes received will be
+dropped and if len(w) < len(r) extra 0 bytes will be sent.
 
 
 

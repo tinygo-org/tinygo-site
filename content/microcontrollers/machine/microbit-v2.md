@@ -1,47 +1,42 @@
 
 ---
-title: pca10056-s140v7
+title: microbit-v2
 ---
 
 
 ## Constants
 
 ```go
-const HasLowFrequencyCrystal = true
+const HasLowFrequencyCrystal = false
 ```
 
+The micro:bit does not have a 32kHz crystal on board.
 
 
 ```go
 const (
-	LED	Pin	= LED1
-	LED1	Pin	= 13
-	LED2	Pin	= 14
-	LED3	Pin	= 15
-	LED4	Pin	= 16
+	LED	= P13
+	LED1	= LED
 )
 ```
 
-LEDs on the pca10056
 
 
 ```go
 const (
-	BUTTON	Pin	= BUTTON1
-	BUTTON1	Pin	= 11
-	BUTTON2	Pin	= 12
-	BUTTON3	Pin	= 24
-	BUTTON4	Pin	= 25
+	BUTTON	Pin	= BUTTONA
+	BUTTONA	Pin	= P5
+	BUTTONB	Pin	= P11
 )
 ```
 
-Buttons on the pca10056
+Buttons on the micro:bit v2 (A and B)
 
 
 ```go
 const (
-	UART_TX_PIN	Pin	= 6
-	UART_RX_PIN	Pin	= 8
+	UART_TX_PIN	Pin	= P34
+	UART_RX_PIN	Pin	= P33
 )
 ```
 
@@ -50,12 +45,9 @@ UART pins
 
 ```go
 const (
-	ADC0	Pin	= 3
-	ADC1	Pin	= 4
-	ADC2	Pin	= 28
-	ADC3	Pin	= 29
-	ADC4	Pin	= 30
-	ADC5	Pin	= 31
+	ADC0	Pin	= P0
+	ADC1	Pin	= P1
+	ADC2	Pin	= P2
 )
 ```
 
@@ -64,23 +56,94 @@ ADC pins
 
 ```go
 const (
-	SDA_PIN	Pin	= 26	// P0.26
-	SCL_PIN	Pin	= 27	// P0.27
+	SDA_PIN		Pin	= SDA0_PIN
+	SCL_PIN		Pin	= SCL0_PIN
+	SDA0_PIN	Pin	= P30
+	SCL0_PIN	Pin	= P31
 )
 ```
 
-I2C pins
+I2C0 (internal) pins
 
 
 ```go
 const (
-	SPI0_SCK_PIN	Pin	= 47	// P1.15
-	SPI0_SDO_PIN	Pin	= 45	// P1.13
-	SPI0_SDI_PIN	Pin	= 46	// P1.14
+	SDA1_PIN	Pin	= P20
+	SCL1_PIN	Pin	= P19
+)
+```
+
+I2C1 (external) pins
+
+
+```go
+const (
+	SPI0_SCK_PIN	Pin	= P13
+	SPI0_SDO_PIN	Pin	= P15
+	SPI0_SDI_PIN	Pin	= P14
 )
 ```
 
 SPI pins
+
+
+```go
+const (
+	P0	Pin	= 2
+	P1	Pin	= 3
+	P2	Pin	= 4
+	P3	Pin	= 31
+	P4	Pin	= 28
+	P5	Pin	= 14
+	P6	Pin	= 37
+	P7	Pin	= 11
+	P8	Pin	= 10
+	P9	Pin	= 9
+	P10	Pin	= 30
+	P11	Pin	= 23
+	P12	Pin	= 12
+	P13	Pin	= 17
+	P14	Pin	= 1
+	P15	Pin	= 13
+	P16	Pin	= 34
+	P19	Pin	= 26
+	P20	Pin	= 32
+	P21	Pin	= 21
+	P22	Pin	= 22
+	P23	Pin	= 15
+	P24	Pin	= 24
+	P25	Pin	= 19
+	P26	Pin	= 36
+	P27	Pin	= 0
+	P28	Pin	= 20
+	P29	Pin	= 5
+	P30	Pin	= 16
+	P31	Pin	= 8
+	P32	Pin	= 25
+	P33	Pin	= 40
+	P34	Pin	= 6
+)
+```
+
+GPIO/Analog pins
+
+
+```go
+const (
+	LED_COL_1	Pin	= P0_28
+	LED_COL_2	Pin	= P0_11
+	LED_COL_3	Pin	= P0_31
+	LED_COL_4	Pin	= P1_05
+	LED_COL_5	Pin	= P0_30
+	LED_ROW_1	Pin	= P0_21
+	LED_ROW_2	Pin	= P0_22
+	LED_ROW_3	Pin	= P0_15
+	LED_ROW_4	Pin	= P0_24
+	LED_ROW_5	Pin	= P0_19
+)
+```
+
+LED matrix pins
 
 
 ```go
@@ -186,15 +249,6 @@ Hardware pins
 
 ```go
 var (
-	UART0 = NRF_UART0
-)
-```
-
-UART0 is the NRF UART
-
-
-```go
-var (
 	ErrInvalidInputPin	= errors.New("machine: invalid input pin")
 	ErrInvalidOutputPin	= errors.New("machine: invalid output pin")
 	ErrInvalidClockPin	= errors.New("machine: invalid clock pin")
@@ -235,31 +289,7 @@ There are 2 I2C interfaces on the NRF.
 
 ```go
 var (
-	USB	= USBCDC{Buffer: NewRingBuffer()}
-
-	usbEndpointDescriptors	[8]usbDeviceDescriptor
-
-	udd_ep_in_cache_buffer	[7][128]uint8
-	udd_ep_out_cache_buffer	[7][128]uint8
-
-	sendOnEP0DATADONE	struct {
-		ptr	*byte
-		count	int
-	}
-	isEndpointHalt		= false
-	isRemoteWakeUpEnabled	= false
-	endPoints		= []uint32{usb_ENDPOINT_TYPE_CONTROL,
-		(usb_ENDPOINT_TYPE_INTERRUPT | usbEndpointIn),
-		(usb_ENDPOINT_TYPE_BULK | usbEndpointOut),
-		(usb_ENDPOINT_TYPE_BULK | usbEndpointIn)}
-
-	usbConfiguration		uint8
-	usbSetInterface			uint8
-	usbLineInfo			= cdcLineInfo{115200, 0x00, 0x00, 0x08, 0x00}
-	epinen				uint32
-	epouten				uint32
-	easyDMABusy			volatile.Register8
-	epout0data_setlinecoding	bool
+	UART0 = NRF_UART0
 )
 ```
 
@@ -305,94 +335,6 @@ func InitPWM()
 InitPWM initializes the registers needed for PWM.
 
 
-### func NewACMFunctionalDescriptor
-
-```go
-func NewACMFunctionalDescriptor(subtype, d0 uint8) ACMFunctionalDescriptor
-```
-
-NewACMFunctionalDescriptor returns a new USB ACMFunctionalDescriptor.
-
-
-### func NewCDCCSInterfaceDescriptor
-
-```go
-func NewCDCCSInterfaceDescriptor(subtype, d0, d1 uint8) CDCCSInterfaceDescriptor
-```
-
-NewCDCCSInterfaceDescriptor returns a new USB CDCCSInterfaceDescriptor.
-
-
-### func NewCDCDescriptor
-
-```go
-func NewCDCDescriptor(i IADDescriptor, c InterfaceDescriptor,
-	h CDCCSInterfaceDescriptor,
-	cm ACMFunctionalDescriptor,
-	fd CDCCSInterfaceDescriptor,
-	callm CMFunctionalDescriptor,
-	ci EndpointDescriptor,
-	di InterfaceDescriptor,
-	outp EndpointDescriptor,
-	inp EndpointDescriptor) CDCDescriptor
-```
-
-
-
-### func NewCMFunctionalDescriptor
-
-```go
-func NewCMFunctionalDescriptor(subtype, d0, d1 uint8) CMFunctionalDescriptor
-```
-
-NewCMFunctionalDescriptor returns a new USB CMFunctionalDescriptor.
-
-
-### func NewConfigDescriptor
-
-```go
-func NewConfigDescriptor(totalLength uint16, interfaces uint8) ConfigDescriptor
-```
-
-NewConfigDescriptor returns a new USB ConfigDescriptor.
-
-
-### func NewDeviceDescriptor
-
-```go
-func NewDeviceDescriptor(class, subClass, proto, packetSize0 uint8, vid, pid, version uint16, im, ip, is, configs uint8) DeviceDescriptor
-```
-
-NewDeviceDescriptor returns a USB DeviceDescriptor.
-
-
-### func NewEndpointDescriptor
-
-```go
-func NewEndpointDescriptor(addr, attr uint8, packetSize uint16, interval uint8) EndpointDescriptor
-```
-
-NewEndpointDescriptor returns a new USB EndpointDescriptor.
-
-
-### func NewIADDescriptor
-
-```go
-func NewIADDescriptor(firstInterface, count, class, subClass, protocol uint8) IADDescriptor
-```
-
-NewIADDescriptor returns a new USB IADDescriptor.
-
-
-### func NewInterfaceDescriptor
-
-```go
-func NewInterfaceDescriptor(n, numEndpoints, class, subClass, protocol uint8) InterfaceDescriptor
-```
-
-NewInterfaceDescriptor returns a new USB InterfaceDescriptor.
-
-
 ### func NewRingBuffer
 
 ```go
@@ -400,32 +342,6 @@ func NewRingBuffer() *RingBuffer
 ```
 
 NewRingBuffer returns a new ring buffer.
-
-
-
-
-## type ACMFunctionalDescriptor
-
-```go
-type ACMFunctionalDescriptor struct {
-	len		uint8
-	dtype		uint8	// 0x24
-	subtype		uint8	// 1
-	bmCapabilities	uint8
-}
-```
-
-ACMFunctionalDescriptor is a Abstract Control Model (ACM) USB descriptor.
-
-
-
-### func (ACMFunctionalDescriptor) Bytes
-
-```go
-func (d ACMFunctionalDescriptor) Bytes() []byte
-```
-
-Bytes returns the ACMFunctionalDescriptor data.
 
 
 
@@ -474,204 +390,6 @@ type ADCConfig struct {
 ADCConfig holds ADC configuration parameters. If left unspecified, the zero
 value of each parameter will use the peripheral's default settings.
 
-
-
-
-
-## type CDCCSInterfaceDescriptor
-
-```go
-type CDCCSInterfaceDescriptor struct {
-	len	uint8	// 5
-	dtype	uint8	// 0x24
-	subtype	uint8
-	d0	uint8
-	d1	uint8
-}
-```
-
-CDCCSInterfaceDescriptor is a CDC CS interface descriptor.
-
-
-
-### func (CDCCSInterfaceDescriptor) Bytes
-
-```go
-func (d CDCCSInterfaceDescriptor) Bytes() []byte
-```
-
-Bytes returns CDCCSInterfaceDescriptor data.
-
-
-
-
-## type CDCDescriptor
-
-```go
-type CDCDescriptor struct {
-	//	IAD
-	iad	IADDescriptor	// Only needed on compound device
-
-	//	Control
-	cif	InterfaceDescriptor
-	header	CDCCSInterfaceDescriptor
-
-	// CDC control
-	controlManagement	ACMFunctionalDescriptor		// ACM
-	functionalDescriptor	CDCCSInterfaceDescriptor	// CDC_UNION
-	callManagement		CMFunctionalDescriptor		// Call Management
-	cifin			EndpointDescriptor
-
-	//	CDC Data
-	dif	InterfaceDescriptor
-	in	EndpointDescriptor
-	out	EndpointDescriptor
-}
-```
-
-CDCDescriptor is the Communication Device Class (CDC) descriptor.
-
-
-
-### func (CDCDescriptor) Bytes
-
-```go
-func (d CDCDescriptor) Bytes() []byte
-```
-
-Bytes returns CDCDescriptor data.
-
-
-
-
-## type CMFunctionalDescriptor
-
-```go
-type CMFunctionalDescriptor struct {
-	bFunctionLength		uint8
-	bDescriptorType		uint8	// 0x24
-	bDescriptorSubtype	uint8	// 1
-	bmCapabilities		uint8
-	bDataInterface		uint8
-}
-```
-
-CMFunctionalDescriptor is the functional descriptor general format.
-
-
-
-### func (CMFunctionalDescriptor) Bytes
-
-```go
-func (d CMFunctionalDescriptor) Bytes() []byte
-```
-
-Bytes returns the CMFunctionalDescriptor data.
-
-
-
-
-## type ConfigDescriptor
-
-```go
-type ConfigDescriptor struct {
-	bLength			uint8	// 9
-	bDescriptorType		uint8	// 2
-	wTotalLength		uint16	// total length
-	bNumInterfaces		uint8
-	bConfigurationValue	uint8
-	iConfiguration		uint8
-	bmAttributes		uint8
-	bMaxPower		uint8
-}
-```
-
-ConfigDescriptor implements the standard USB configuration descriptor.
-
-Table 9-10. Standard Configuration Descriptor
-bLength, bDescriptorType, wTotalLength, bNumInterfaces, bConfigurationValue, iConfiguration
-bmAttributes, bMaxPower
-
-
-
-### func (ConfigDescriptor) Bytes
-
-```go
-func (d ConfigDescriptor) Bytes() []byte
-```
-
-Bytes returns ConfigDescriptor data.
-
-
-
-
-## type DeviceDescriptor
-
-```go
-type DeviceDescriptor struct {
-	bLength			uint8	// 18
-	bDescriptorType		uint8	// 1 USB_DEVICE_DESCRIPTOR_TYPE
-	bcdUSB			uint16	// 0x200
-	bDeviceClass		uint8
-	bDeviceSubClass		uint8
-	bDeviceProtocol		uint8
-	bMaxPacketSize0		uint8	// Packet 0
-	idVendor		uint16
-	idProduct		uint16
-	bcdDevice		uint16	// 0x100
-	iManufacturer		uint8
-	iProduct		uint8
-	iSerialNumber		uint8
-	bNumConfigurations	uint8
-}
-```
-
-DeviceDescriptor implements the USB standard device descriptor.
-
-Table 9-8. Standard Device Descriptor
-bLength, bDescriptorType, bcdUSB, bDeviceClass, bDeviceSubClass, bDeviceProtocol, bMaxPacketSize0,
-   idVendor, idProduct, bcdDevice, iManufacturer, iProduct, iSerialNumber, bNumConfigurations */
-
-
-
-### func (DeviceDescriptor) Bytes
-
-```go
-func (d DeviceDescriptor) Bytes() []byte
-```
-
-Bytes returns DeviceDescriptor data
-
-
-
-
-## type EndpointDescriptor
-
-```go
-type EndpointDescriptor struct {
-	bLength			uint8	// 7
-	bDescriptorType		uint8	// 5
-	bEndpointAddress	uint8
-	bmAttributes		uint8
-	wMaxPacketSize		uint16
-	bInterval		uint8
-}
-```
-
-EndpointDescriptor implements the standard USB endpoint descriptor.
-
-Table 9-13. Standard Endpoint Descriptor
-bLength, bDescriptorType, bEndpointAddress, bmAttributes, wMaxPacketSize, bInterval
-
-
-
-### func (EndpointDescriptor) Bytes
-
-```go
-func (d EndpointDescriptor) Bytes() []byte
-```
-
-Bytes returns EndpointDescriptor data.
 
 
 
@@ -749,92 +467,6 @@ type I2CConfig struct {
 ```
 
 I2CConfig is used to store config info for I2C.
-
-
-
-
-
-## type IADDescriptor
-
-```go
-type IADDescriptor struct {
-	bLength			uint8	// 8
-	bDescriptorType		uint8	// 11
-	bFirstInterface		uint8
-	bInterfaceCount		uint8
-	bFunctionClass		uint8
-	bFunctionSubClass	uint8
-	bFunctionProtocol	uint8
-	iFunction		uint8
-}
-```
-
-IADDescriptor is an Interface Association Descriptor, which is used
-to bind 2 interfaces together in CDC composite device.
-
-Standard Interface Association Descriptor:
-bLength, bDescriptorType, bFirstInterface, bInterfaceCount, bFunctionClass, bFunctionSubClass,
-bFunctionProtocol, iFunction
-
-
-
-### func (IADDescriptor) Bytes
-
-```go
-func (d IADDescriptor) Bytes() []byte
-```
-
-Bytes returns IADDescriptor data.
-
-
-
-
-## type InterfaceDescriptor
-
-```go
-type InterfaceDescriptor struct {
-	bLength			uint8	// 9
-	bDescriptorType		uint8	// 4
-	bInterfaceNumber	uint8
-	bAlternateSetting	uint8
-	bNumEndpoints		uint8
-	bInterfaceClass		uint8
-	bInterfaceSubClass	uint8
-	bInterfaceProtocol	uint8
-	iInterface		uint8
-}
-```
-
-InterfaceDescriptor implements the standard USB interface descriptor.
-
-Table 9-12. Standard Interface Descriptor
-bLength, bDescriptorType, bInterfaceNumber, bAlternateSetting, bNumEndpoints, bInterfaceClass,
-bInterfaceSubClass, bInterfaceProtocol, iInterface
-
-
-
-### func (InterfaceDescriptor) Bytes
-
-```go
-func (d InterfaceDescriptor) Bytes() []byte
-```
-
-Bytes returns InterfaceDescriptor data.
-
-
-
-
-## type MSCDescriptor
-
-```go
-type MSCDescriptor struct {
-	msc	InterfaceDescriptor
-	in	EndpointDescriptor
-	out	EndpointDescriptor
-}
-```
-
-MSCDescriptor is not used yet.
 
 
 
@@ -1223,116 +855,6 @@ type UARTConfig struct {
 ```
 
 
-
-
-
-
-## type USBCDC
-
-```go
-type USBCDC struct {
-	Buffer			*RingBuffer
-	interrupt		interrupt.Interrupt
-	initcomplete		bool
-	TxIdx			volatile.Register8
-	waitTxc			bool
-	waitTxcRetryCount	uint8
-	sent			bool
-}
-```
-
-USBCDC is the USB CDC aka serial over USB interface on the nRF52840
-
-
-
-### func (USBCDC) Buffered
-
-```go
-func (usbcdc USBCDC) Buffered() int
-```
-
-Buffered returns the number of bytes currently stored in the RX buffer.
-
-
-### func (*USBCDC) Configure
-
-```go
-func (usbcdc *USBCDC) Configure(config UARTConfig)
-```
-
-Configure the USB CDC interface. The config is here for compatibility with the UART interface.
-
-
-### func (USBCDC) DTR
-
-```go
-func (usbcdc USBCDC) DTR() bool
-```
-
-
-
-### func (*USBCDC) Flush
-
-```go
-func (usbcdc *USBCDC) Flush() error
-```
-
-Flush flushes buffered data.
-
-
-### func (USBCDC) RTS
-
-```go
-func (usbcdc USBCDC) RTS() bool
-```
-
-
-
-### func (USBCDC) Read
-
-```go
-func (usbcdc USBCDC) Read(data []byte) (n int, err error)
-```
-
-Read from the RX buffer.
-
-
-### func (USBCDC) ReadByte
-
-```go
-func (usbcdc USBCDC) ReadByte() (byte, error)
-```
-
-ReadByte reads a single byte from the RX buffer.
-If there is no data in the buffer, returns an error.
-
-
-### func (USBCDC) Receive
-
-```go
-func (usbcdc USBCDC) Receive(data byte)
-```
-
-Receive handles adding data to the UART's data buffer.
-Usually called by the IRQ handler for a machine.
-
-
-### func (USBCDC) Write
-
-```go
-func (usbcdc USBCDC) Write(data []byte) (n int, err error)
-```
-
-Write data to the USBCDC.
-
-
-### func (USBCDC) WriteByte
-
-```go
-func (usbcdc USBCDC) WriteByte(c byte) error
-```
-
-WriteByte writes a byte of data to the USB CDC interface.
 
 
 

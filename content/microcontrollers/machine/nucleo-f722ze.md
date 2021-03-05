@@ -1,6 +1,6 @@
 
 ---
-title: stm32f4disco-1
+title: nucleo-f722ze
 ---
 
 
@@ -9,15 +9,10 @@ title: stm32f4disco-1
 ```go
 const (
 	LED		= LED_BUILTIN
-	LED1		= LED_GREEN
-	LED2		= LED_ORANGE
-	LED3		= LED_RED
-	LED4		= LED_BLUE
 	LED_BUILTIN	= LED_GREEN
-	LED_GREEN	= PD12
-	LED_ORANGE	= PD13
-	LED_RED		= PD14
-	LED_BLUE	= PD15
+	LED_GREEN	= PB0
+	LED_BLUE	= PB7
+	LED_RED		= PB14
 )
 ```
 
@@ -25,8 +20,19 @@ const (
 
 ```go
 const (
-	UART_TX_PIN	= PA2
-	UART_RX_PIN	= PA3
+	BUTTON		= BUTTON_USER
+	BUTTON_USER	= PC13
+)
+```
+
+
+
+```go
+const (
+	// PD8 and PD9 are connected to the ST-Link Virtual Com Port (VCP)
+	UART_TX_PIN	= PD8
+	UART_RX_PIN	= PD9
+	UART_ALT_FN	= 7	// GPIO_AF7_UART3
 )
 ```
 
@@ -35,12 +41,9 @@ UART pins
 
 ```go
 const (
-	SPI1_SCK_PIN	= PA5
-	SPI1_SDI_PIN	= PA6
-	SPI1_SDO_PIN	= PA7
-	SPI0_SCK_PIN	= SPI1_SCK_PIN
-	SPI0_SDI_PIN	= SPI1_SDI_PIN
-	SPI0_SDO_PIN	= SPI1_SDO_PIN
+	SPI0_SCK_PIN	= PA5
+	SPI0_SDI_PIN	= PA6
+	SPI0_SDO_PIN	= PA7
 )
 ```
 
@@ -49,32 +52,12 @@ SPI pins
 
 ```go
 const (
-	MEMS_ACCEL_CS	= PE3
-	MEMS_ACCEL_INT1	= PE0
-	MEMS_ACCEL_INT2	= PE1
+	SCL_PIN	= PB6
+	SDA_PIN	= PB7
 )
 ```
 
-MEMs accelerometer
-
-
-```go
-const (
-	I2C0_SCL_PIN	= PB6
-	I2C0_SDA_PIN	= PB9
-)
-```
-
-
-
-```go
-const (
-	TWI_FREQ_100KHZ	= 100000
-	TWI_FREQ_400KHZ	= 400000
-)
-```
-
-TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-speed bus.
+I2C pins
 
 
 ```go
@@ -83,16 +66,6 @@ const NoPin = Pin(0xff)
 
 NoPin explicitly indicates "not a pin". Use this pin if you want to leave one
 of the pins in a peripheral unconfigured (if supported by the hardware).
-
-
-```go
-const (
-	DutyCycle2	= 0
-	DutyCycle16x9	= 1
-)
-```
-
-I2C fast mode (Fm) duty cycle
 
 
 ```go
@@ -211,47 +184,45 @@ const (
 	PE14	= portE + 14
 	PE15	= portE + 15
 
+	PF0	= portF + 0
+	PF1	= portF + 1
+	PF2	= portF + 2
+	PF3	= portF + 3
+	PF4	= portF + 4
+	PF5	= portF + 5
+	PF6	= portF + 6
+	PF7	= portF + 7
+	PF8	= portF + 8
+	PF9	= portF + 9
+	PF10	= portF + 10
+	PF11	= portF + 11
+	PF12	= portF + 12
+	PF13	= portF + 13
+	PF14	= portF + 14
+	PF15	= portF + 15
+
+	PG0	= portG + 0
+	PG1	= portG + 1
+	PG2	= portG + 2
+	PG3	= portG + 3
+	PG4	= portG + 4
+	PG5	= portG + 5
+	PG6	= portG + 6
+	PG7	= portG + 7
+	PG8	= portG + 8
+	PG9	= portG + 9
+	PG10	= portG + 10
+	PG11	= portG + 11
+	PG12	= portG + 12
+	PG13	= portG + 13
+	PG14	= portG + 14
+	PG15	= portG + 15
+
 	PH0	= portH + 0
 	PH1	= portH + 1
 )
 ```
 
-
-
-```go
-const (
-	AF0_SYSTEM			= 0
-	AF1_TIM1_2			= 1
-	AF2_TIM3_4_5			= 2
-	AF3_TIM8_9_10_11		= 3
-	AF4_I2C1_2_3			= 4
-	AF5_SPI1_SPI2			= 5
-	AF6_SPI3			= 6
-	AF7_USART1_2_3			= 7
-	AF8_USART4_5_6			= 8
-	AF9_CAN1_CAN2_TIM12_13_14	= 9
-	AF10_OTG_FS_OTG_HS		= 10
-	AF11_ETH			= 11
-	AF12_FSMC_SDIO_OTG_HS_1		= 12
-	AF13_DCMI			= 13
-	AF14				= 14
-	AF15_EVENTOUT			= 15
-)
-```
-
-Alternative peripheral pin functions
-
-
-```go
-const (
-	Mode0	= 0
-	Mode1	= 1
-	Mode2	= 2
-	Mode3	= 3
-)
-```
-
-SPI phase and polarity configs CPOL and CPHA
 
 
 
@@ -261,37 +232,15 @@ SPI phase and polarity configs CPOL and CPHA
 
 ```go
 var (
+	// USART3 is the hardware serial port connected to the onboard ST-LINK
+	// debugger to be exposed as virtual COM port over USB on Nucleo boards.
+	// Both UART0 and UART1 refer to USART2.
 	UART0	= UART{
 		Buffer:			NewRingBuffer(),
-		Bus:			stm32.USART2,
-		AltFuncSelector:	AF7_USART1_2_3,
+		Bus:			stm32.USART3,
+		AltFuncSelector:	UART_ALT_FN,
 	}
 	UART1	= &UART0
-)
-```
-
-
-
-```go
-var (
-	SPI0	= SPI{
-		Bus:			stm32.SPI1,
-		AltFuncSelector:	AF5_SPI1_SPI2,
-	}
-	SPI1	= &SPI0
-)
-```
-
-Since the first interface is named SPI1, both SPI0 and SPI1 refer to SPI1.
-TODO: implement SPI2 and SPI3.
-
-
-```go
-var (
-	I2C0 = I2C{
-		Bus:			stm32.I2C1,
-		AltFuncSelector:	AF4_I2C1_2_3,
-	}
 )
 ```
 
@@ -304,15 +253,6 @@ var (
 	ErrInvalidClockPin	= errors.New("machine: invalid clock pin")
 	ErrInvalidDataPin	= errors.New("machine: invalid data pin")
 	ErrNoPinChangeChannel	= errors.New("machine: no channel available for pin interrupt")
-)
-```
-
-
-
-```go
-var (
-	ErrTxInvalidSliceSize		= errors.New("SPI write and read slices must be same size")
-	errSPIInvalidMachineConfig	= errors.New("SPI port was not configured properly by the machine")
 )
 ```
 
@@ -365,82 +305,6 @@ type ADCConfig struct {
 
 ADCConfig holds ADC configuration parameters. If left unspecified, the zero
 value of each parameter will use the peripheral's default settings.
-
-
-
-
-
-## type I2C
-
-```go
-type I2C struct {
-	Bus		*stm32.I2C_Type
-	AltFuncSelector	uint8
-}
-```
-
-
-
-
-### func (I2C) Configure
-
-```go
-func (i2c I2C) Configure(config I2CConfig) error
-```
-
-Configure is intended to setup the STM32 I2C interface.
-
-
-### func (I2C) ReadRegister
-
-```go
-func (i2c I2C) ReadRegister(address uint8, register uint8, data []byte) error
-```
-
-ReadRegister transmits the register, restarts the connection as a read
-operation, and reads the response.
-
-Many I2C-compatible devices are organized in terms of registers. This method
-is a shortcut to easily read such registers. Also, it only works for devices
-with 7-bit addresses, which is the vast majority.
-
-
-### func (I2C) Tx
-
-```go
-func (i2c I2C) Tx(addr uint16, w, r []byte) error
-```
-
-
-
-### func (I2C) WriteRegister
-
-```go
-func (i2c I2C) WriteRegister(address uint8, register uint8, data []byte) error
-```
-
-WriteRegister transmits first the register and then the data to the
-peripheral device.
-
-Many I2C-compatible devices are organized in terms of registers. This method
-is a shortcut to easily write to such registers. Also, it only works for
-devices with 7-bit addresses, which is the vast majority.
-
-
-
-
-## type I2CConfig
-
-```go
-type I2CConfig struct {
-	Frequency	uint32
-	SCL		Pin
-	SDA		Pin
-	DutyCycle	uint8
-}
-```
-
-I2CConfig is used to store config info for I2C.
 
 
 
@@ -617,83 +481,6 @@ func (rb *RingBuffer) Used() uint8
 ```
 
 Used returns how many bytes in buffer have been used.
-
-
-
-
-## type SPI
-
-```go
-type SPI struct {
-	Bus		*stm32.SPI_Type
-	AltFuncSelector	uint8
-}
-```
-
-SPI on the STM32Fxxx using MODER / alternate function pins
-
-
-
-### func (SPI) Configure
-
-```go
-func (spi SPI) Configure(config SPIConfig)
-```
-
-Configure is intended to setup the STM32 SPI1 interface.
-
-
-### func (SPI) Transfer
-
-```go
-func (spi SPI) Transfer(w byte) (byte, error)
-```
-
-Transfer writes/reads a single byte using the SPI interface.
-
-
-### func (SPI) Tx
-
-```go
-func (spi SPI) Tx(w, r []byte) error
-```
-
-Tx handles read/write operation for SPI interface. Since SPI is a syncronous write/read
-interface, there must always be the same number of bytes written as bytes read.
-The Tx method knows about this, and offers a few different ways of calling it.
-
-This form sends the bytes in tx buffer, putting the resulting bytes read into the rx buffer.
-Note that the tx and rx buffers must be the same size:
-
-		spi.Tx(tx, rx)
-
-This form sends the tx buffer, ignoring the result. Useful for sending "commands" that return zeros
-until all the bytes in the command packet have been received:
-
-		spi.Tx(tx, nil)
-
-This form sends zeros, putting the result into the rx buffer. Good for reading a "result packet":
-
-		spi.Tx(nil, rx)
-
-
-
-
-## type SPIConfig
-
-```go
-type SPIConfig struct {
-	Frequency	uint32
-	SCK		Pin
-	SDO		Pin
-	SDI		Pin
-	LSBFirst	bool
-	Mode		uint8
-}
-```
-
-SPIConfig is used to store config info for SPI.
-
 
 
 

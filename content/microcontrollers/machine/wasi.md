@@ -66,7 +66,8 @@ var (
 
 ```go
 var (
-	ErrTxInvalidSliceSize = errors.New("SPI write and read slices must be same size")
+	ErrTxInvalidSliceSize		= errors.New("SPI write and read slices must be same size")
+	errSPIInvalidMachineConfig	= errors.New("SPI port was not configured properly by the machine")
 )
 ```
 
@@ -118,7 +119,7 @@ type ADC struct {
 ### func (ADC) Configure
 
 ```go
-func (adc ADC) Configure()
+func (adc ADC) Configure(ADCConfig)
 ```
 
 Configure configures an ADC pin to be able to be used to read data.
@@ -131,6 +132,23 @@ func (adc ADC) Get() uint16
 ```
 
 Get reads the current analog value from this ADC peripheral.
+
+
+
+
+## type ADCConfig
+
+```go
+type ADCConfig struct {
+	Reference	uint32	// analog reference voltage (AREF) in millivolts
+	Resolution	uint32	// number of bits for a single conversion (e.g., 8, 10, 12)
+	Samples		uint32	// number of samples for a single conversion (e.g., 4, 8, 16, 32)
+}
+```
+
+ADCConfig holds ADC configuration parameters. If left unspecified, the zero
+value of each parameter will use the peripheral's default settings.
+
 
 
 
@@ -150,7 +168,7 @@ I2C is a generic implementation of the Inter-IC communication protocol.
 ### func (I2C) Configure
 
 ```go
-func (i2c I2C) Configure(config I2CConfig)
+func (i2c I2C) Configure(config I2CConfig) error
 ```
 
 Configure is intended to setup the I2C interface.

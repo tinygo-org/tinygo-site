@@ -242,7 +242,8 @@ TODO: implement I2C2.
 
 ```go
 var (
-	ErrTxInvalidSliceSize = errors.New("SPI write and read slices must be same size")
+	ErrTxInvalidSliceSize		= errors.New("SPI write and read slices must be same size")
+	errSPIInvalidMachineConfig	= errors.New("SPI port was not configured properly by the machine")
 )
 ```
 
@@ -283,6 +284,23 @@ type ADC struct {
 
 
 
+## type ADCConfig
+
+```go
+type ADCConfig struct {
+	Reference	uint32	// analog reference voltage (AREF) in millivolts
+	Resolution	uint32	// number of bits for a single conversion (e.g., 8, 10, 12)
+	Samples		uint32	// number of samples for a single conversion (e.g., 4, 8, 16, 32)
+}
+```
+
+ADCConfig holds ADC configuration parameters. If left unspecified, the zero
+value of each parameter will use the peripheral's default settings.
+
+
+
+
+
 ## type I2C
 
 ```go
@@ -297,7 +315,7 @@ type I2C struct {
 ### func (I2C) Configure
 
 ```go
-func (i2c I2C) Configure(config I2CConfig)
+func (i2c I2C) Configure(config I2CConfig) error
 ```
 
 Configure is intended to setup the I2C interface.
@@ -608,6 +626,13 @@ type UART struct {
 	Buffer		*RingBuffer
 	Bus		*stm32.USART_Type
 	Interrupt	interrupt.Interrupt
+	AltFuncSelector	uint8
+
+	// Registers specific to the chip
+	rxReg		*volatile.Register32
+	txReg		*volatile.Register32
+	statusReg	*volatile.Register32
+	txEmptyFlag	uint32
 }
 ```
 
@@ -624,10 +649,10 @@ func (uart UART) Buffered() int
 Buffered returns the number of bytes currently stored in the RX buffer.
 
 
-### func (UART) Configure
+### func (*UART) Configure
 
 ```go
-func (uart UART) Configure(config UARTConfig)
+func (uart *UART) Configure(config UARTConfig)
 ```
 
 Configure the UART.
@@ -662,10 +687,10 @@ Receive handles adding data to the UART's data buffer.
 Usually called by the IRQ handler for a machine.
 
 
-### func (UART) SetBaudRate
+### func (*UART) SetBaudRate
 
 ```go
-func (uart UART) SetBaudRate(br uint32)
+func (uart *UART) SetBaudRate(br uint32)
 ```
 
 SetBaudRate sets the communication speed for the UART. Defer to chip-specific
@@ -681,10 +706,10 @@ func (uart UART) Write(data []byte) (n int, err error)
 Write data to the UART.
 
 
-### func (UART) WriteByte
+### func (*UART) WriteByte
 
 ```go
-func (uart UART) WriteByte(c byte) error
+func (uart *UART) WriteByte(c byte) error
 ```
 
 WriteByte writes a byte of data to the UART.

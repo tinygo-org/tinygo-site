@@ -87,6 +87,23 @@ type ADC struct {
 
 
 
+## type ADCConfig
+
+```go
+type ADCConfig struct {
+	Reference	uint32	// analog reference voltage (AREF) in millivolts
+	Resolution	uint32	// number of bits for a single conversion (e.g., 8, 10, 12)
+	Samples		uint32	// number of samples for a single conversion (e.g., 4, 8, 16, 32)
+}
+```
+
+ADCConfig holds ADC configuration parameters. If left unspecified, the zero
+value of each parameter will use the peripheral's default settings.
+
+
+
+
+
 ## type FramebufDisplay
 
 ```go
