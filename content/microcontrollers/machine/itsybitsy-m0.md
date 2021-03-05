@@ -390,7 +390,8 @@ var (
 
 ```go
 var (
-	ErrTxInvalidSliceSize = errors.New("SPI write and read slices must be same size")
+	ErrTxInvalidSliceSize		= errors.New("SPI write and read slices must be same size")
+	errSPIInvalidMachineConfig	= errors.New("SPI port was not configured properly by the machine")
 )
 ```
 
@@ -575,10 +576,10 @@ type ADC struct {
 ### func (ADC) Configure
 
 ```go
-func (a ADC) Configure()
+func (a ADC) Configure(config ADCConfig)
 ```
 
-Configure configures a ADCPin to be able to be used to read data.
+Configure configures a ADC pin to be able to be used to read data.
 
 
 ### func (ADC) Get
@@ -588,6 +589,23 @@ func (a ADC) Get() uint16
 ```
 
 Get returns the current value of a ADC pin, in the range 0..0xffff.
+
+
+
+
+## type ADCConfig
+
+```go
+type ADCConfig struct {
+	Reference	uint32	// analog reference voltage (AREF) in millivolts
+	Resolution	uint32	// number of bits for a single conversion (e.g., 8, 10, 12)
+	Samples		uint32	// number of samples for a single conversion (e.g., 4, 8, 16, 32)
+}
+```
+
+ADCConfig holds ADC configuration parameters. If left unspecified, the zero
+value of each parameter will use the peripheral's default settings.
+
 
 
 
@@ -1546,7 +1564,11 @@ type UARTConfig struct {
 
 ```go
 type USBCDC struct {
-	Buffer *RingBuffer
+	Buffer			*RingBuffer
+	TxIdx			volatile.Register8
+	waitTxc			bool
+	waitTxcRetryCount	uint8
+	sent			bool
 }
 ```
 
@@ -1578,6 +1600,15 @@ Configure the USB CDC interface. The config is here for compatibility with the U
 func (usbcdc USBCDC) DTR() bool
 ```
 
+
+
+### func (*USBCDC) Flush
+
+```go
+func (usbcdc *USBCDC) Flush() error
+```
+
+Flush flushes buffered data.
 
 
 ### func (USBCDC) RTS
@@ -1626,10 +1657,10 @@ func (usbcdc USBCDC) Write(data []byte) (n int, err error)
 Write data to the USBCDC.
 
 
-### func (USBCDC) WriteByte
+### func (*USBCDC) WriteByte
 
 ```go
-func (usbcdc USBCDC) WriteByte(c byte) error
+func (usbcdc *USBCDC) WriteByte(c byte) error
 ```
 
 WriteByte writes a byte of data to the USB CDC interface.

@@ -198,20 +198,20 @@ There are 2 I2C interfaces on the NRF.
 
 ```go
 var (
+	UART0 = NRF_UART0
+)
+```
+
+
+
+```go
+var (
 	SPI0	= SPI{Bus: nrf.SPI0}
 	SPI1	= SPI{Bus: nrf.SPI1}
 )
 ```
 
-There are 2 SPI interfaces on the NRF5x.
-
-
-```go
-var (
-	UART0 = NRF_UART0
-)
-```
-
+There are 2 SPI interfaces on the NRF51.
 
 
 
@@ -249,6 +249,23 @@ type ADC struct {
 
 
 
+## type ADCConfig
+
+```go
+type ADCConfig struct {
+	Reference	uint32	// analog reference voltage (AREF) in millivolts
+	Resolution	uint32	// number of bits for a single conversion (e.g., 8, 10, 12)
+	Samples		uint32	// number of samples for a single conversion (e.g., 4, 8, 16, 32)
+}
+```
+
+ADCConfig holds ADC configuration parameters. If left unspecified, the zero
+value of each parameter will use the peripheral's default settings.
+
+
+
+
+
 ## type I2C
 
 ```go
@@ -264,7 +281,7 @@ I2C on the NRF.
 ### func (I2C) Configure
 
 ```go
-func (i2c I2C) Configure(config I2CConfig)
+func (i2c I2C) Configure(config I2CConfig) error
 ```
 
 Configure is intended to setup the I2C interface.

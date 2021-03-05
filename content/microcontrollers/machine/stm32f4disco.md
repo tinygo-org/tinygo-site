@@ -59,11 +59,40 @@ MEMs accelerometer
 
 
 ```go
+const (
+	I2C0_SCL_PIN	= PB6
+	I2C0_SDA_PIN	= PB9
+)
+```
+
+
+
+```go
+const (
+	TWI_FREQ_100KHZ	= 100000
+	TWI_FREQ_400KHZ	= 400000
+)
+```
+
+TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-speed bus.
+
+
+```go
 const NoPin = Pin(0xff)
 ```
 
 NoPin explicitly indicates "not a pin". Use this pin if you want to leave one
 of the pins in a peripheral unconfigured (if supported by the hardware).
+
+
+```go
+const (
+	DutyCycle2	= 0
+	DutyCycle16x9	= 1
+)
+```
+
+I2C fast mode (Fm) duty cycle
 
 
 ```go
@@ -191,6 +220,30 @@ const (
 
 ```go
 const (
+	AF0_SYSTEM			= 0
+	AF1_TIM1_2			= 1
+	AF2_TIM3_4_5			= 2
+	AF3_TIM8_9_10_11		= 3
+	AF4_I2C1_2_3			= 4
+	AF5_SPI1_SPI2			= 5
+	AF6_SPI3			= 6
+	AF7_USART1_2_3			= 7
+	AF8_USART4_5_6			= 8
+	AF9_CAN1_CAN2_TIM12_13_14	= 9
+	AF10_OTG_FS_OTG_HS		= 10
+	AF11_ETH			= 11
+	AF12_FSMC_SDIO_OTG_HS_1		= 12
+	AF13_DCMI			= 13
+	AF14				= 14
+	AF15_EVENTOUT			= 15
+)
+```
+
+Alternative peripheral pin functions
+
+
+```go
+const (
 	Mode0	= 0
 	Mode1	= 1
 	Mode2	= 2
@@ -211,7 +264,7 @@ var (
 	UART0	= UART{
 		Buffer:			NewRingBuffer(),
 		Bus:			stm32.USART2,
-		AltFuncSelector:	stm32.AF7_USART1_2_3,
+		AltFuncSelector:	AF7_USART1_2_3,
 	}
 	UART1	= &UART0
 )
@@ -223,7 +276,7 @@ var (
 var (
 	SPI0	= SPI{
 		Bus:			stm32.SPI1,
-		AltFuncSelector:	stm32.AF5_SPI1_SPI2,
+		AltFuncSelector:	AF5_SPI1_SPI2,
 	}
 	SPI1	= &SPI0
 )
@@ -231,6 +284,17 @@ var (
 
 Since the first interface is named SPI1, both SPI0 and SPI1 refer to SPI1.
 TODO: implement SPI2 and SPI3.
+
+
+```go
+var (
+	I2C0 = I2C{
+		Bus:			stm32.I2C1,
+		AltFuncSelector:	AF4_I2C1_2_3,
+	}
+)
+```
+
 
 
 ```go
@@ -247,7 +311,8 @@ var (
 
 ```go
 var (
-	ErrTxInvalidSliceSize = errors.New("SPI write and read slices must be same size")
+	ErrTxInvalidSliceSize		= errors.New("SPI write and read slices must be same size")
+	errSPIInvalidMachineConfig	= errors.New("SPI port was not configured properly by the machine")
 )
 ```
 
@@ -283,6 +348,99 @@ type ADC struct {
 }
 ```
 
+
+
+
+
+
+## type ADCConfig
+
+```go
+type ADCConfig struct {
+	Reference	uint32	// analog reference voltage (AREF) in millivolts
+	Resolution	uint32	// number of bits for a single conversion (e.g., 8, 10, 12)
+	Samples		uint32	// number of samples for a single conversion (e.g., 4, 8, 16, 32)
+}
+```
+
+ADCConfig holds ADC configuration parameters. If left unspecified, the zero
+value of each parameter will use the peripheral's default settings.
+
+
+
+
+
+## type I2C
+
+```go
+type I2C struct {
+	Bus		*stm32.I2C_Type
+	AltFuncSelector	uint8
+}
+```
+
+
+
+
+### func (I2C) Configure
+
+```go
+func (i2c I2C) Configure(config I2CConfig) error
+```
+
+Configure is intended to setup the STM32 I2C interface.
+
+
+### func (I2C) ReadRegister
+
+```go
+func (i2c I2C) ReadRegister(address uint8, register uint8, data []byte) error
+```
+
+ReadRegister transmits the register, restarts the connection as a read
+operation, and reads the response.
+
+Many I2C-compatible devices are organized in terms of registers. This method
+is a shortcut to easily read such registers. Also, it only works for devices
+with 7-bit addresses, which is the vast majority.
+
+
+### func (I2C) Tx
+
+```go
+func (i2c I2C) Tx(addr uint16, w, r []byte) error
+```
+
+
+
+### func (I2C) WriteRegister
+
+```go
+func (i2c I2C) WriteRegister(address uint8, register uint8, data []byte) error
+```
+
+WriteRegister transmits first the register and then the data to the
+peripheral device.
+
+Many I2C-compatible devices are organized in terms of registers. This method
+is a shortcut to easily write to such registers. Also, it only works for
+devices with 7-bit addresses, which is the vast majority.
+
+
+
+
+## type I2CConfig
+
+```go
+type I2CConfig struct {
+	Frequency	uint32
+	SCL		Pin
+	SDA		Pin
+	DutyCycle	uint8
+}
+```
+
+I2CConfig is used to store config info for I2C.
 
 
 
@@ -325,7 +483,7 @@ Configure this pin with the given configuration
 ### func (Pin) ConfigureAltFunc
 
 ```go
-func (p Pin) ConfigureAltFunc(config PinConfig, altFunc stm32.AltFunc)
+func (p Pin) ConfigureAltFunc(config PinConfig, altFunc uint8)
 ```
 
 Configure this pin with the given configuration including alternate
@@ -376,7 +534,7 @@ Warning: only use this on an output pin!
 ### func (Pin) SetAltFunc
 
 ```go
-func (p Pin) SetAltFunc(af stm32.AltFunc)
+func (p Pin) SetAltFunc(af uint8)
 ```
 
 SetAltFunc maps the given alternative function to the I/O pin
@@ -468,7 +626,7 @@ Used returns how many bytes in buffer have been used.
 ```go
 type SPI struct {
 	Bus		*stm32.SPI_Type
-	AltFuncSelector	stm32.AltFunc
+	AltFuncSelector	uint8
 }
 ```
 
@@ -547,7 +705,13 @@ type UART struct {
 	Buffer		*RingBuffer
 	Bus		*stm32.USART_Type
 	Interrupt	interrupt.Interrupt
-	AltFuncSelector	stm32.AltFunc
+	AltFuncSelector	uint8
+
+	// Registers specific to the chip
+	rxReg		*volatile.Register32
+	txReg		*volatile.Register32
+	statusReg	*volatile.Register32
+	txEmptyFlag	uint32
 }
 ```
 
@@ -564,10 +728,10 @@ func (uart UART) Buffered() int
 Buffered returns the number of bytes currently stored in the RX buffer.
 
 
-### func (UART) Configure
+### func (*UART) Configure
 
 ```go
-func (uart UART) Configure(config UARTConfig)
+func (uart *UART) Configure(config UARTConfig)
 ```
 
 Configure the UART.
@@ -602,10 +766,10 @@ Receive handles adding data to the UART's data buffer.
 Usually called by the IRQ handler for a machine.
 
 
-### func (UART) SetBaudRate
+### func (*UART) SetBaudRate
 
 ```go
-func (uart UART) SetBaudRate(br uint32)
+func (uart *UART) SetBaudRate(br uint32)
 ```
 
 SetBaudRate sets the communication speed for the UART. Defer to chip-specific
@@ -621,10 +785,10 @@ func (uart UART) Write(data []byte) (n int, err error)
 Write data to the UART.
 
 
-### func (UART) WriteByte
+### func (*UART) WriteByte
 
 ```go
-func (uart UART) WriteByte(c byte) error
+func (uart *UART) WriteByte(c byte) error
 ```
 
 WriteByte writes a byte of data to the UART.

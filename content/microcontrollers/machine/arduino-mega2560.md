@@ -212,6 +212,18 @@ const (
 
 
 
+```go
+const (
+	Mode0	= 0
+	Mode1	= 1
+	Mode2	= 2
+	Mode3	= 3
+)
+```
+
+SPI phase and polarity configs CPOL and CPHA
+
+
 
 
 
@@ -230,6 +242,20 @@ var (
 
 
 ```go
+var SPI0 = SPI{
+	spcr:	avr.SPCR,
+	spdr:	avr.SPDR,
+	spsr:	avr.SPSR,
+	sck:	PB1,
+	sdo:	PB2,
+	sdi:	PB3,
+	cs:	PB0}
+```
+
+SPI configuration
+
+
+```go
 var I2C0 = I2C{}
 ```
 
@@ -244,6 +270,15 @@ var (
 ```
 
 UART
+
+
+```go
+var (
+	ErrTxInvalidSliceSize		= errors.New("SPI write and read slices must be same size")
+	errSPIInvalidMachineConfig	= errors.New("SPI port was not configured properly by the machine")
+)
+```
+
 
 
 
@@ -292,7 +327,7 @@ type ADC struct {
 ### func (ADC) Configure
 
 ```go
-func (a ADC) Configure()
+func (a ADC) Configure(ADCConfig)
 ```
 
 Configure configures a ADCPin to be able to be used to read data.
@@ -306,6 +341,23 @@ func (a ADC) Get() uint16
 
 Get returns the current value of a ADC pin, in the range 0..0xffff. The AVR
 has an ADC of 10 bits precision so the lower 6 bits will be zero.
+
+
+
+
+## type ADCConfig
+
+```go
+type ADCConfig struct {
+	Reference	uint32	// analog reference voltage (AREF) in millivolts
+	Resolution	uint32	// number of bits for a single conversion (e.g., 8, 10, 12)
+	Samples		uint32	// number of samples for a single conversion (e.g., 4, 8, 16, 32)
+}
+```
+
+ADCConfig holds ADC configuration parameters. If left unspecified, the zero
+value of each parameter will use the peripheral's default settings.
+
 
 
 
@@ -324,7 +376,7 @@ I2C on AVR.
 ### func (I2C) Configure
 
 ```go
-func (i2c I2C) Configure(config I2CConfig)
+func (i2c I2C) Configure(config I2CConfig) error
 ```
 
 Configure is intended to setup the I2C interface.
@@ -564,6 +616,89 @@ func (rb *RingBuffer) Used() uint8
 ```
 
 Used returns how many bytes in buffer have been used.
+
+
+
+
+## type SPI
+
+```go
+type SPI struct {
+	// The registers for the SPIx port set by the chip
+	spcr	*volatile.Register8
+	spdr	*volatile.Register8
+	spsr	*volatile.Register8
+
+	// The io pins for the SPIx port set by the chip
+	sck	Pin
+	sdi	Pin
+	sdo	Pin
+	cs	Pin
+}
+```
+
+SPI is for the Serial Peripheral Interface
+Data is taken from http://ww1.microchip.com/downloads/en/DeviceDoc/ATmega48A-PA-88A-PA-168A-PA-328-P-DS-DS40002061A.pdf page 169 and following
+
+
+
+### func (SPI) Configure
+
+```go
+func (s SPI) Configure(config SPIConfig) error
+```
+
+Configure is intended to setup the SPI interface.
+
+
+### func (SPI) Transfer
+
+```go
+func (s SPI) Transfer(b byte) (byte, error)
+```
+
+Transfer writes the byte into the register and returns the read content
+
+
+### func (SPI) Tx
+
+```go
+func (spi SPI) Tx(w, r []byte) error
+```
+
+Tx handles read/write operation for SPI interface. Since SPI is a syncronous write/read
+interface, there must always be the same number of bytes written as bytes read.
+The Tx method knows about this, and offers a few different ways of calling it.
+
+This form sends the bytes in tx buffer, putting the resulting bytes read into the rx buffer.
+Note that the tx and rx buffers must be the same size:
+
+		spi.Tx(tx, rx)
+
+This form sends the tx buffer, ignoring the result. Useful for sending "commands" that return zeros
+until all the bytes in the command packet have been received:
+
+		spi.Tx(tx, nil)
+
+This form sends zeros, putting the result into the rx buffer. Good for reading a "result packet":
+
+		spi.Tx(nil, rx)
+
+
+
+
+## type SPIConfig
+
+```go
+type SPIConfig struct {
+	Frequency	uint32
+	LSBFirst	bool
+	Mode		uint8
+}
+```
+
+SPIConfig is used to store config info for SPI.
+
 
 
 

@@ -1,13 +1,13 @@
 
 ---
-title: wioterminal
+title: matrixportal-m4
 ---
 
 
 ## Constants
 
 ```go
-const RESET_MAGIC_VALUE = 0xf01669ef
+const RESET_MAGIC_VALUE = 0xF01669EF
 ```
 
 used to reset into bootloader
@@ -15,342 +15,143 @@ used to reset into bootloader
 
 ```go
 const (
-	ADC0	= A0
-	ADC1	= A1
-	ADC2	= A2
-	ADC3	= A3
-	ADC4	= A4
-	ADC5	= A5
-	ADC6	= A6
-	ADC7	= A7
-	ADC8	= A8
-
-	LED	= PIN_LED
-	BUTTON	= BUTTON_1
+	//    Pin   // Function          SERCOM  PWM  Interrupt
+	//    ----  // ----------------  ------  ---  ---------
+	D0	= PA01	// UART RX            1[1]   PWM  EXTI1
+	D1	= PA00	// UART TX            1[0]   PWM  EXTI0
+	D2	= PB22	// Button "Up"                    EXTI6
+	D3	= PB23	// Button "Down"                  EXTI7
+	D4	= PA23	// NeoPixel                       EXTI7
+	D5	= PB31	// I2C SDA            5[1]        EXTI15
+	D6	= PB30	// I2C SCL            5[0]        EXTI14
+	D7	= PB00	// HUB75 R1                       EXTI0
+	D8	= PB01	// HUB75 G1                       EXTI1
+	D9	= PB02	// HUB75 B1                       EXTI2
+	D10	= PB03	// HUB75 R2                       EXTI3
+	D11	= PB04	// HUB75 G2                       EXTI4
+	D12	= PB05	// HUB75 B2                       EXTI5
+	D13	= PA14	// LED                       PWM  EXTI14
+	D14	= PB06	// HUB75 CLK                      EXTI6
+	D15	= PB14	// HUB75 LAT                      EXTI14
+	D16	= PB12	// HUB75 OE                       EXTI12
+	D17	= PB07	// HUB75 ADDR A                   EXTI7
+	D18	= PB08	// HUB75 ADDR B                   EXTI8
+	D19	= PB09	// HUB75 ADDR C                   EXTI9
+	D20	= PB15	// HUB75 ADDR D                   EXTI15
+	D21	= PB13	// HUB75 ADDR E                   EXTI13
+	D22	= PA02	// ADC (A0)                       EXTI2
+	D23	= PA05	// ADC (A1)                       EXTI5
+	D24	= PA04	// ADC (A2)                  PWM  EXTI4
+	D25	= PA06	// ADC (A3)                  PWM  EXTI6
+	D26	= PA07	// ADC (A4)                       EXTI7
+	D27	= PA12	// ESP32 UART RX      4[1]   PWM  EXTI12
+	D28	= PA13	// ESP32 UART TX      4[0]   PWM  EXTI13
+	D29	= PA20	// ESP32 GPIO0               PWM  EXTI4
+	D30	= PA21	// ESP32 Reset               PWM  EXTI5
+	D31	= PA22	// ESP32 Busy                PWM  EXTI6
+	D32	= PA18	// ESP32 RTS                 PWM  EXTI2
+	D33	= PB17	// ESP32 SPI CS              PWM  EXTI1
+	D34	= PA16	// ESP32 SPI SCK      3[1]   PWM  EXTI0
+	D35	= PA17	// ESP32 SPI SDI      3[0]   PWM  EXTI1
+	D36	= PA19	// ESP32 SPI SDO      1[3]   PWM  EXTI3
+	D37	= NoPin	// USB Host enable
+	D38	= PA24	// USB DM
+	D39	= PA27	// USB DP
+	D40	= PA03	// DAC/VREFP
+	D41	= PB10	// Flash QSPI SCK
+	D42	= PB11	// Flash QSPI CS
+	D43	= PA08	// Flash QSPI I00
+	D44	= PA09	// Flash QSPI IO1
+	D45	= PA10	// Flash QSPI IO2
+	D46	= PA11	// Flash QSPI IO3
+	D47	= PA27	// LIS3DH IRQ                     EXTI11
+	D48	= PA05	// SPI SCK            0[1]        EXTI5
+	D49	= PA04	// SPI SDO            0[0]   PWM  EXTI4
+	D50	= PA07	// SPI SDI            0[3]        EXTI7
 )
 ```
 
+Digital pins
 
 
 ```go
 const (
-
-	// LEDs
-	PIN_LED_13	= PA15
-	PIN_LED_RXL	= PA15
-	PIN_LED_TXL	= PA15
-	PIN_LED		= PIN_LED_13
-	PIN_LED2	= PIN_LED_RXL
-	PIN_LED3	= PIN_LED_TXL
-	LED_BUILTIN	= PIN_LED_13
-	PIN_NEOPIXEL	= PA15
-
-	//Digital PINs
-	D0	= PB08
-	D1	= PB09
-	D2	= PA07
-	D3	= PB04
-	D4	= PB05
-	D5	= PB06
-	D6	= PA04
-	D7	= PB07
-	D8	= PA06
-
-	//Analog PINs
-	A0	= PB08	// ADC/AIN[0]
-	A1	= PB09	// ADC/AIN[2]
-	A2	= PA07	// ADC/AIN[3]
-	A3	= PB04	// ADC/AIN[4]
-	A4	= PB05	// ADC/AIN[5]
-	A5	= PB06	// ADC/AIN[10]
-	A6	= PA04	// ADC/AIN[10]
-	A7	= PB07	// ADC/AIN[10]
-	A8	= PA06	// ADC/AIN[10]
-
-	//PIN DEFINE FOR RPI
-	BCM0	= PA13	// I2C Wire1
-	BCM1	= PA12	// I2C Wire1
-	BCM2	= PA17	// I2C Wire2
-	BCM3	= PA16	// I2C Wire2
-	BCM4	= PB14	// GCLK
-	BCM5	= PB12	// GCLK
-	BCM6	= PB13	// GCLK
-	BCM7	= PA05	// DAC1
-	BCM8	= PB01	// SPI SS
-	BCM9	= PB00	// SPI SDI
-	BCM10	= PB02	// SPI SDO
-	BCM11	= PB03	// SPI SCK
-	BCM12	= PB06
-	BCM13	= PA07
-	BCM14	= PB27	// UART Serial1
-	BCM15	= PB26	// UART Serial1
-	BCM16	= PB07
-	BCM17	= PA02	// DAC0
-	BCM18	= PB28	// FPC Digital & AD pins
-	BCM19	= PA20	// WIO_IR
-	BCM20	= PA21	// I2S SDO
-	BCM21	= PA22	// I2S SDI
-	BCM22	= PB09
-	BCM23	= PA07
-	BCM24	= PB04
-	BCM25	= PB05
-	BCM26	= PA06
-	BCM27	= PB08
-
-	// FPC NEW DEFINE
-	FPC1	= PB28	// FPC Digital & AD pins
-	FPC2	= PB17
-	FPC3	= PB29
-	FPC4	= PA14
-	FPC5	= PC01
-	FPC6	= PC02
-	FPC7	= PC03
-	FPC8	= PC04
-	FPC9	= PC31
-	FPC10	= PD00
-
-	// RPI Analog RPIs
-	RPI_A0	= PB08
-	RPI_A1	= PB09
-	RPI_A2	= PA07
-	RPI_A3	= PB04
-	RPI_A4	= PB05
-	RPI_A5	= PB06
-	RPI_A6	= PA04
-	RPI_A7	= PB07
-	RPI_A8	= PA06
-
-	PIN_DAC0	= PA02
-	PIN_DAC1	= PA05
-
-	// USB
-	PIN_USB_DM		= PA24
-	PIN_USB_DP		= PA25
-	PIN_USB_HOST_ENABLE	= PA27
-
-	// BUTTON
-	BUTTON_1	= PC26
-	BUTTON_2	= PC27
-	BUTTON_3	= PC28
-	WIO_KEY_A	= PC26
-	WIO_KEY_B	= PC27
-	WIO_KEY_C	= PC28
-
-	// SWITCH
-	SWITCH_X	= PD20
-	SWITCH_Y	= PD12
-	SWITCH_Z	= PD09
-	SWITCH_B	= PD08
-	SWITCH_U	= PD10
-
-	WIO_5S_UP	= PD20
-	WIO_5S_LEFT	= PD12
-	WIO_5S_RIGHT	= PD09
-	WIO_5S_DOWN	= PD08
-	WIO_5S_PRESS	= PD10
-
-	// IRQ0 : RTL8720D
-	IRQ0	= PC20
-
-	// BUZZER_CTR
-	BUZZER_CTR	= PD11
-	WIO_BUZZER	= PD11
-
-	// MIC_INPUT
-	MIC_INPUT	= PC30
-	WIO_MIC		= PC30
-
-	// GCLK
-	GCLK0	= PB14
-	GCLK1	= PB12
-	GCLK2	= PB13
-
-	// Serial interfaces
-	// Serial1
-	PIN_SERIAL1_RX	= PB27
-	PIN_SERIAL1_TX	= PB26
-
-	// Serial2 : RTL8720D
-	PIN_SERIAL2_RX	= PC23
-	PIN_SERIAL2_TX	= PC22
-
-	// Wire Interfaces
-	// I2C Wire2
-	// I2C1
-	PIN_WIRE_SDA	= PA17
-	PIN_WIRE_SCL	= PA16
-	SDA		= PIN_WIRE_SDA
-	SCL		= PIN_WIRE_SCL
-
-	// I2C Wire1
-	// I2C0 : LIS3DHTR and ATECC608
-	PIN_WIRE1_SDA	= PA13
-	PIN_WIRE1_SCL	= PA12
-
-	SDA1	= PIN_WIRE1_SDA
-	SCL1	= PIN_WIRE1_SCL
-
-	PIN_GYROSCOPE_WIRE_SDA	= PIN_WIRE1_SDA
-	PIN_GYROSCOPE_WIRE_SCL	= PIN_WIRE1_SCL
-	GYROSCOPE_INT1		= PC21
-
-	WIO_LIS3DH_SDA	= PIN_WIRE1_SDA
-	WIO_LIS3DH_SCL	= PIN_WIRE1_SCL
-	WIO_LIS3DH_INT	= PC21
-
-	// SPI
-	PIN_SPI_SDI	= PB00
-	PIN_SPI_SDO	= PB02
-	PIN_SPI_SCK	= PB03
-	PIN_SPI_SS	= PB01
-
-	SS	= PIN_SPI_SS
-	SDO	= PIN_SPI_SDO
-	SDI	= PIN_SPI_SDI
-	SCK	= PIN_SPI_SCK
-
-	// SPI1 RTL8720D_SPI
-	PIN_SPI1_SDI	= PC24
-	PIN_SPI1_SDO	= PB24
-	PIN_SPI1_SCK	= PB25
-	PIN_SPI1_SS	= PC25
-
-	SS1	= PIN_SPI1_SS
-	SDO1	= PIN_SPI1_SDO
-	SDI1	= PIN_SPI1_SDI
-	SCK1	= PIN_SPI1_SCK
-
-	// SPI2 SD_SPI
-	PIN_SPI2_SDI	= PC18
-	PIN_SPI2_SDO	= PC16
-	PIN_SPI2_SCK	= PC17
-	PIN_SPI2_SS	= PC19
-
-	SS2	= PIN_SPI2_SS
-	SDO2	= PIN_SPI2_SDO
-	SDI2	= PIN_SPI2_SDI
-	SCK2	= PIN_SPI2_SCK
-
-	// SPI3 LCD_SPI
-	PIN_SPI3_SDI	= PB18
-	PIN_SPI3_SDO	= PB19
-	PIN_SPI3_SCK	= PB20
-	PIN_SPI3_SS	= PB21
-
-	SS3	= PIN_SPI3_SS
-	SDO3	= PIN_SPI3_SDO
-	SDI3	= PIN_SPI3_SDI
-	SCK3	= PIN_SPI3_SCK
-
-	// Needed for SD library
-	SDCARD_SDI_PIN	= PIN_SPI2_SDI
-	SDCARD_SDO_PIN	= PIN_SPI2_SDO
-	SDCARD_SCK_PIN	= PIN_SPI2_SCK
-	SDCARD_SS_PIN	= PIN_SPI2_SS
-	SDCARD_DET_PIN	= PD21
-
-	LCD_SDI_PIN	= PIN_SPI3_SDI
-	LCD_SDO_PIN	= PIN_SPI3_SDO
-	LCD_SCK_PIN	= PIN_SPI3_SCK
-	LCD_SS_PIN	= PIN_SPI3_SS
-	LCD_DC		= PC06
-	LCD_RESET	= PC07
-	LCD_BACKLIGHT	= PC05
-
-	// 4 WIRE LCD TOUCH
-	LCD_XL	= PC10
-	LCD_YU	= PC11
-	LCD_XR	= PC12
-	LCD_YD	= PC13
-
-	// Needed for RTL8720D
-	RTL8720D_SDI_PIN	= PIN_SPI1_SDI
-	RTL8720D_SDO_PIN	= PIN_SPI1_SDO
-	RTL8720D_SCK_PIN	= PIN_SPI1_SCK
-	RTL8720D_SS_PIN		= PIN_SPI1_SS
-
-	//QSPI Pins
-	PIN_QSPI_IO0	= PA08
-	PIN_QSPI_IO1	= PA09
-	PIN_QSPI_IO2	= PA10
-	PIN_QSPI_IO3	= PA11
-	PIN_QSPI_SCK	= PB10
-	PIN_QSPI_CS	= PB11
-
-	// I2S Interfaces
-	PIN_I2S_FS	= PA20
-	PIN_I2S_SCK	= PB16
-	PIN_I2S_SDO	= PA22
-	PIN_I2S_SDI	= PA21
-
-	I2S_LRCLK	= PA20
-	I2S_BLCK	= PB16
-	I2S_SDOUT	= PA22
-	I2S_SDIN	= PA21
-
-	// RTL8720D Interfaces
-	RTL8720D_CHIP_PU	= PA18
-	RTL8720D_GPIO0		= PA19	// SYNC
-
-	// SWD
-	SWDCLK	= PA30
-	SWDIO	= PA31
-	SWO	= PB30
-
-	// light sensor
-	WIO_LIGHT	= PD01
-
-	// ir sensor
-	WIO_IR	= PB31
-
-	// OUTPUT_CTR
-	OUTPUT_CTR_5V	= PC14
-	OUTPUT_CTR_3V3	= PC15
+	A0	= PA02	// ADC Channel 0
+	A1	= PA05	// ADC Channel 5
+	A2	= PA04	// ADC Channel 4
+	A3	= PA06	// ADC Channel 6
+	A4	= PA07	// ADC Channel 7
 )
 ```
 
+Analog pins
 
 
 ```go
 const (
-	USBCDC_DM_PIN	= PIN_USB_DM
-	USBCDC_DP_PIN	= PIN_USB_DP
+	LED		= D13
+	NEOPIXEL	= D4
 )
 ```
 
-UART0 aka USBCDC pins
+LED pins
 
 
 ```go
 const (
-	UART_TX_PIN	= PIN_SERIAL1_TX
-	UART_RX_PIN	= PIN_SERIAL1_RX
+	BUTTON_UP	= D2
+	BUTTON_DOWN	= D3
 )
 ```
 
-UART1 pins
+Button pins
 
 
 ```go
 const (
-	UART2_TX_PIN	= PIN_SERIAL2_TX
-	UART2_RX_PIN	= PIN_SERIAL2_RX
+	UART1_RX_PIN	= D0	// SERCOM1[1]
+	UART1_TX_PIN	= D1	// SERCOM1[0]
+
+	UART2_RX_PIN	= D27	// SERCOM4[1] (ESP32 RX)
+	UART2_TX_PIN	= D28	// SERCOM4[0] (ESP32 TX)
+
+	UART_RX_PIN	= UART1_RX_PIN
+	UART_TX_PIN	= UART1_TX_PIN
 )
 ```
 
-UART2 pins RTL8720D
+UART pins
 
 
 ```go
 const (
-	SDA0_PIN	= PIN_WIRE_SDA	// SDA: SERCOM3/PAD[0]
-	SCL0_PIN	= PIN_WIRE_SCL	// SCL: SERCOM3/PAD[1]
+	SPI0_SCK_PIN	= D34	// SERCOM3[1] (ESP32 SCK)
+	SPI0_SDO_PIN	= D36	// SERCOM1[3] (ESP32 SDO)
+	SPI0_SDI_PIN	= D35	// SERCOM3[0] (ESP32 SDI)
 
-	SDA1_PIN	= PIN_WIRE1_SDA	// SDA: SERCOM4/PAD[0]
-	SCL1_PIN	= PIN_WIRE1_SCL	// SCL: SERCOM4/PAD[1]
+	SPI1_SCK_PIN	= D48	// SERCOM0[1]
+	SPI1_SDO_PIN	= D49	// SERCOM0[0]
+	SPI1_SDI_PIN	= D50	// SERCOM0[3]
 
-	SDA_PIN	= SDA0_PIN
-	SCL_PIN	= SCL0_PIN
+	SPI_SCK_PIN	= SPI0_SCK_PIN
+	SPI_SDO_PIN	= SPI0_SDO_PIN
+	SPI_SDI_PIN	= SPI0_SDI_PIN
+)
+```
+
+SPI pins
+
+
+```go
+const (
+	I2C0_SDA_PIN	= D5	// SERCOM5[1]
+	I2C0_SCL_PIN	= D6	// SERCOM5[0]
+
+	I2C_SDA_PIN	= I2C0_SDA_PIN
+	I2C_SCL_PIN	= I2C0_SCL_PIN
+
+	SDA_PIN	= I2C_SDA_PIN	// awkward naming required by machine_atsamd51.go
+	SCL_PIN	= I2C_SCL_PIN	//
 )
 ```
 
@@ -359,28 +160,58 @@ I2C pins
 
 ```go
 const (
-	SPI0_SCK_PIN	= SCK	// SCK:  SERCOM5/PAD[1]
-	SPI0_SDO_PIN	= SDO	// SDO: SERCOM5/PAD[0]
-	SPI0_SDI_PIN	= SDI	// SDI: SERCOM5/PAD[2]
+	NINA_ACK	= D31
+	NINA_GPIO0	= D29
+	NINA_RESETN	= D30
 
-	// RTL8720D
-	SPI1_SCK_PIN	= SCK1	// SCK:  SERCOM0/PAD[1]
-	SPI1_SDO_PIN	= SDO1	// SDO: SERCOM0/PAD[0]
-	SPI1_SDI_PIN	= SDI1	// SDI: SERCOM0/PAD[2]
+	NINA_RX		= UART2_RX_PIN
+	NINA_TX		= UART2_TX_PIN
+	NINA_RTS	= D32
 
-	// SD
-	SPI2_SCK_PIN	= SCK2	// SCK:  SERCOM6/PAD[1]
-	SPI2_SDO_PIN	= SDO2	// SDO: SERCOM6/PAD[0]
-	SPI2_SDI_PIN	= SDI2	// SDI: SERCOM6/PAD[2]
-
-	// LCD
-	SPI3_SCK_PIN	= SCK3	// SCK:  SERCOM7/PAD[1]
-	SPI3_SDO_PIN	= SDO3	// SDO: SERCOM7/PAD[3]
-	SPI3_SDI_PIN	= SDI3	// SDI: SERCOM7/PAD[2]
+	NINA_CS		= D33
+	NINA_SDO	= SPI0_SDO_PIN
+	NINA_SDI	= SPI0_SDI_PIN
+	NINA_SCK	= SPI0_SCK_PIN
 )
 ```
 
-SPI pins
+ESP32 pins
+
+
+```go
+const (
+	HUB75_R1	= D7
+	HUB75_G1	= D8
+	HUB75_B1	= D9
+	HUB75_R2	= D10
+	HUB75_G2	= D11
+	HUB75_B2	= D12
+
+	HUB75_CLK	= D14
+	HUB75_LAT	= D15
+	HUB75_OE	= D16
+	HUB75_ADDR_A	= D17
+	HUB75_ADDR_B	= D18
+	HUB75_ADDR_C	= D19
+	HUB75_ADDR_D	= D20
+	HUB75_ADDR_E	= D21
+)
+```
+
+HUB75 pins
+
+
+```go
+const (
+	USBCDC_DM_PIN	= D38
+	USBCDC_DP_PIN	= D39
+
+	UART0_RX_PIN	= USBCDC_DM_PIN
+	UART0_TX_PIN	= USBCDC_DP_PIN
+)
+```
+
+USB CDC pins (UART0)
 
 
 ```go
@@ -682,66 +513,49 @@ SPI phase and polarity configs CPOL and CPHA
 var (
 	UART1	= UART{
 		Buffer:	NewRingBuffer(),
-		Bus:	sam.SERCOM2_USART_INT,
-		SERCOM:	2,
-	}
-
-	// RTL8720D
-	UART2	= UART{
-		Buffer:	NewRingBuffer(),
 		Bus:	sam.SERCOM1_USART_INT,
 		SERCOM:	1,
+	}
+
+	UART2	= UART{
+		Buffer:	NewRingBuffer(),
+		Bus:	sam.SERCOM4_USART_INT,
+		SERCOM:	4,
 	}
 )
 ```
 
+UART on the MatrixPortal M4
 
 
 ```go
 var (
-	I2C0	= I2C{
-		Bus:	sam.SERCOM4_I2CM,
-		SERCOM:	4,
-	}
-
-	I2C1	= I2C{
-		Bus:	sam.SERCOM4_I2CM,
-		SERCOM:	4,
+	I2C0 = I2C{
+		Bus:	sam.SERCOM5_I2CM,
+		SERCOM:	5,
 	}
 )
 ```
 
-I2C on the Wio Terminal
+I2C on the MatrixPortal M4
 
 
 ```go
 var (
 	SPI0	= SPI{
-		Bus:	sam.SERCOM5_SPIM,
-		SERCOM:	5,
+		Bus:	sam.SERCOM3_SPIM,
+		SERCOM:	3,
 	}
+	NINA_SPI	= SPI0
 
-	// RTL8720D
 	SPI1	= SPI{
 		Bus:	sam.SERCOM0_SPIM,
 		SERCOM:	0,
 	}
-
-	// SD
-	SPI2	= SPI{
-		Bus:	sam.SERCOM6_SPIM,
-		SERCOM:	6,
-	}
-
-	// LCD
-	SPI3	= SPI{
-		Bus:	sam.SERCOM7_SPIM,
-		SERCOM:	7,
-	}
 )
 ```
 
-SPI on the Wio Terminal
+SPI on the MatrixPortal M4
 
 
 ```go

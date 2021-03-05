@@ -1,32 +1,117 @@
 
 ---
-title: wioterminal
+title: clue
 ---
 
 
 ## Constants
 
 ```go
-const RESET_MAGIC_VALUE = 0xf01669ef
+const HasLowFrequencyCrystal = false
 ```
 
-used to reset into bootloader
 
 
 ```go
 const (
-	ADC0	= A0
-	ADC1	= A1
-	ADC2	= A2
-	ADC3	= A3
-	ADC4	= A4
-	ADC5	= A5
-	ADC6	= A6
-	ADC7	= A7
-	ADC8	= A8
+	D0	= P0_04
+	D1	= P0_05
+	D2	= P0_03
+	D3	= P0_28
+	D4	= P0_02
+	D5	= P1_02
+	D6	= P1_09
+	D7	= P0_07
+	D8	= P1_07
+	D9	= P0_27
+	D10	= P0_30
+	D11	= P1_10
+	D12	= P0_31
+	D13	= P0_08
+	D14	= P0_06
+	D15	= P0_26
+	D16	= P0_29
+	D17	= P1_01
+	D18	= P0_16
+	D19	= P0_25
+	D20	= P0_24
+	D21	= A0
+	D22	= A1
+	D23	= A2
+	D24	= A3
+	D25	= A4
+	D26	= A5
+	D27	= A6
+	D28	= A7
+	D29	= P0_14
+	D30	= P0_15
+	D31	= P0_12
+	D32	= P0_13
+	D33	= P1_03
+	D34	= P1_05
+	D35	= P0_00
+	D36	= P0_01
+	D37	= P0_19
+	D38	= P0_20
+	D39	= P0_17
+	D40	= P0_22
+	D41	= P0_23
+	D42	= P0_21
+	D43	= P0_10
+	D44	= P0_09
+	D45	= P1_06
+	D46	= P1_00
+)
+```
 
-	LED	= PIN_LED
-	BUTTON	= BUTTON_1
+GPIO Pins
+
+
+```go
+const (
+	A0	= D12
+	A1	= D16
+	A2	= D0
+	A3	= D1
+	A4	= D2
+	A5	= D3
+	A6	= D4
+	A7	= D10
+)
+```
+
+Analog Pins
+
+
+```go
+const (
+	LED		= D17
+	LED1		= LED
+	LED2		= D43
+	NEOPIXEL	= D18
+
+	BUTTON_LEFT	= D5
+	BUTTON_RIGHT	= D11
+
+	// 240x240 ST7789 display is connected to these pins (use RowOffset = 80)
+	TFT_SCK		= D29
+	TFT_SDO		= D30
+	TFT_CS		= D31
+	TFT_DC		= D32
+	TFT_RESET	= D33
+	TFT_LITE	= D34
+
+	PDM_DAT	= D35
+	PDM_CLK	= D36
+
+	QSPI_SCK	= D37
+	QSPI_CS		= D38
+	QSPI_DATA0	= D39
+	QSPI_DATA1	= D40
+	QSPI_DATA2	= D41
+	QSPI_DATA3	= D42
+
+	SPEAKER	= D46
 )
 ```
 
@@ -34,323 +119,18 @@ const (
 
 ```go
 const (
-
-	// LEDs
-	PIN_LED_13	= PA15
-	PIN_LED_RXL	= PA15
-	PIN_LED_TXL	= PA15
-	PIN_LED		= PIN_LED_13
-	PIN_LED2	= PIN_LED_RXL
-	PIN_LED3	= PIN_LED_TXL
-	LED_BUILTIN	= PIN_LED_13
-	PIN_NEOPIXEL	= PA15
-
-	//Digital PINs
-	D0	= PB08
-	D1	= PB09
-	D2	= PA07
-	D3	= PB04
-	D4	= PB05
-	D5	= PB06
-	D6	= PA04
-	D7	= PB07
-	D8	= PA06
-
-	//Analog PINs
-	A0	= PB08	// ADC/AIN[0]
-	A1	= PB09	// ADC/AIN[2]
-	A2	= PA07	// ADC/AIN[3]
-	A3	= PB04	// ADC/AIN[4]
-	A4	= PB05	// ADC/AIN[5]
-	A5	= PB06	// ADC/AIN[10]
-	A6	= PA04	// ADC/AIN[10]
-	A7	= PB07	// ADC/AIN[10]
-	A8	= PA06	// ADC/AIN[10]
-
-	//PIN DEFINE FOR RPI
-	BCM0	= PA13	// I2C Wire1
-	BCM1	= PA12	// I2C Wire1
-	BCM2	= PA17	// I2C Wire2
-	BCM3	= PA16	// I2C Wire2
-	BCM4	= PB14	// GCLK
-	BCM5	= PB12	// GCLK
-	BCM6	= PB13	// GCLK
-	BCM7	= PA05	// DAC1
-	BCM8	= PB01	// SPI SS
-	BCM9	= PB00	// SPI SDI
-	BCM10	= PB02	// SPI SDO
-	BCM11	= PB03	// SPI SCK
-	BCM12	= PB06
-	BCM13	= PA07
-	BCM14	= PB27	// UART Serial1
-	BCM15	= PB26	// UART Serial1
-	BCM16	= PB07
-	BCM17	= PA02	// DAC0
-	BCM18	= PB28	// FPC Digital & AD pins
-	BCM19	= PA20	// WIO_IR
-	BCM20	= PA21	// I2S SDO
-	BCM21	= PA22	// I2S SDI
-	BCM22	= PB09
-	BCM23	= PA07
-	BCM24	= PB04
-	BCM25	= PB05
-	BCM26	= PA06
-	BCM27	= PB08
-
-	// FPC NEW DEFINE
-	FPC1	= PB28	// FPC Digital & AD pins
-	FPC2	= PB17
-	FPC3	= PB29
-	FPC4	= PA14
-	FPC5	= PC01
-	FPC6	= PC02
-	FPC7	= PC03
-	FPC8	= PC04
-	FPC9	= PC31
-	FPC10	= PD00
-
-	// RPI Analog RPIs
-	RPI_A0	= PB08
-	RPI_A1	= PB09
-	RPI_A2	= PA07
-	RPI_A3	= PB04
-	RPI_A4	= PB05
-	RPI_A5	= PB06
-	RPI_A6	= PA04
-	RPI_A7	= PB07
-	RPI_A8	= PA06
-
-	PIN_DAC0	= PA02
-	PIN_DAC1	= PA05
-
-	// USB
-	PIN_USB_DM		= PA24
-	PIN_USB_DP		= PA25
-	PIN_USB_HOST_ENABLE	= PA27
-
-	// BUTTON
-	BUTTON_1	= PC26
-	BUTTON_2	= PC27
-	BUTTON_3	= PC28
-	WIO_KEY_A	= PC26
-	WIO_KEY_B	= PC27
-	WIO_KEY_C	= PC28
-
-	// SWITCH
-	SWITCH_X	= PD20
-	SWITCH_Y	= PD12
-	SWITCH_Z	= PD09
-	SWITCH_B	= PD08
-	SWITCH_U	= PD10
-
-	WIO_5S_UP	= PD20
-	WIO_5S_LEFT	= PD12
-	WIO_5S_RIGHT	= PD09
-	WIO_5S_DOWN	= PD08
-	WIO_5S_PRESS	= PD10
-
-	// IRQ0 : RTL8720D
-	IRQ0	= PC20
-
-	// BUZZER_CTR
-	BUZZER_CTR	= PD11
-	WIO_BUZZER	= PD11
-
-	// MIC_INPUT
-	MIC_INPUT	= PC30
-	WIO_MIC		= PC30
-
-	// GCLK
-	GCLK0	= PB14
-	GCLK1	= PB12
-	GCLK2	= PB13
-
-	// Serial interfaces
-	// Serial1
-	PIN_SERIAL1_RX	= PB27
-	PIN_SERIAL1_TX	= PB26
-
-	// Serial2 : RTL8720D
-	PIN_SERIAL2_RX	= PC23
-	PIN_SERIAL2_TX	= PC22
-
-	// Wire Interfaces
-	// I2C Wire2
-	// I2C1
-	PIN_WIRE_SDA	= PA17
-	PIN_WIRE_SCL	= PA16
-	SDA		= PIN_WIRE_SDA
-	SCL		= PIN_WIRE_SCL
-
-	// I2C Wire1
-	// I2C0 : LIS3DHTR and ATECC608
-	PIN_WIRE1_SDA	= PA13
-	PIN_WIRE1_SCL	= PA12
-
-	SDA1	= PIN_WIRE1_SDA
-	SCL1	= PIN_WIRE1_SCL
-
-	PIN_GYROSCOPE_WIRE_SDA	= PIN_WIRE1_SDA
-	PIN_GYROSCOPE_WIRE_SCL	= PIN_WIRE1_SCL
-	GYROSCOPE_INT1		= PC21
-
-	WIO_LIS3DH_SDA	= PIN_WIRE1_SDA
-	WIO_LIS3DH_SCL	= PIN_WIRE1_SCL
-	WIO_LIS3DH_INT	= PC21
-
-	// SPI
-	PIN_SPI_SDI	= PB00
-	PIN_SPI_SDO	= PB02
-	PIN_SPI_SCK	= PB03
-	PIN_SPI_SS	= PB01
-
-	SS	= PIN_SPI_SS
-	SDO	= PIN_SPI_SDO
-	SDI	= PIN_SPI_SDI
-	SCK	= PIN_SPI_SCK
-
-	// SPI1 RTL8720D_SPI
-	PIN_SPI1_SDI	= PC24
-	PIN_SPI1_SDO	= PB24
-	PIN_SPI1_SCK	= PB25
-	PIN_SPI1_SS	= PC25
-
-	SS1	= PIN_SPI1_SS
-	SDO1	= PIN_SPI1_SDO
-	SDI1	= PIN_SPI1_SDI
-	SCK1	= PIN_SPI1_SCK
-
-	// SPI2 SD_SPI
-	PIN_SPI2_SDI	= PC18
-	PIN_SPI2_SDO	= PC16
-	PIN_SPI2_SCK	= PC17
-	PIN_SPI2_SS	= PC19
-
-	SS2	= PIN_SPI2_SS
-	SDO2	= PIN_SPI2_SDO
-	SDI2	= PIN_SPI2_SDI
-	SCK2	= PIN_SPI2_SCK
-
-	// SPI3 LCD_SPI
-	PIN_SPI3_SDI	= PB18
-	PIN_SPI3_SDO	= PB19
-	PIN_SPI3_SCK	= PB20
-	PIN_SPI3_SS	= PB21
-
-	SS3	= PIN_SPI3_SS
-	SDO3	= PIN_SPI3_SDO
-	SDI3	= PIN_SPI3_SDI
-	SCK3	= PIN_SPI3_SCK
-
-	// Needed for SD library
-	SDCARD_SDI_PIN	= PIN_SPI2_SDI
-	SDCARD_SDO_PIN	= PIN_SPI2_SDO
-	SDCARD_SCK_PIN	= PIN_SPI2_SCK
-	SDCARD_SS_PIN	= PIN_SPI2_SS
-	SDCARD_DET_PIN	= PD21
-
-	LCD_SDI_PIN	= PIN_SPI3_SDI
-	LCD_SDO_PIN	= PIN_SPI3_SDO
-	LCD_SCK_PIN	= PIN_SPI3_SCK
-	LCD_SS_PIN	= PIN_SPI3_SS
-	LCD_DC		= PC06
-	LCD_RESET	= PC07
-	LCD_BACKLIGHT	= PC05
-
-	// 4 WIRE LCD TOUCH
-	LCD_XL	= PC10
-	LCD_YU	= PC11
-	LCD_XR	= PC12
-	LCD_YD	= PC13
-
-	// Needed for RTL8720D
-	RTL8720D_SDI_PIN	= PIN_SPI1_SDI
-	RTL8720D_SDO_PIN	= PIN_SPI1_SDO
-	RTL8720D_SCK_PIN	= PIN_SPI1_SCK
-	RTL8720D_SS_PIN		= PIN_SPI1_SS
-
-	//QSPI Pins
-	PIN_QSPI_IO0	= PA08
-	PIN_QSPI_IO1	= PA09
-	PIN_QSPI_IO2	= PA10
-	PIN_QSPI_IO3	= PA11
-	PIN_QSPI_SCK	= PB10
-	PIN_QSPI_CS	= PB11
-
-	// I2S Interfaces
-	PIN_I2S_FS	= PA20
-	PIN_I2S_SCK	= PB16
-	PIN_I2S_SDO	= PA22
-	PIN_I2S_SDI	= PA21
-
-	I2S_LRCLK	= PA20
-	I2S_BLCK	= PB16
-	I2S_SDOUT	= PA22
-	I2S_SDIN	= PA21
-
-	// RTL8720D Interfaces
-	RTL8720D_CHIP_PU	= PA18
-	RTL8720D_GPIO0		= PA19	// SYNC
-
-	// SWD
-	SWDCLK	= PA30
-	SWDIO	= PA31
-	SWO	= PB30
-
-	// light sensor
-	WIO_LIGHT	= PD01
-
-	// ir sensor
-	WIO_IR	= PB31
-
-	// OUTPUT_CTR
-	OUTPUT_CTR_5V	= PC14
-	OUTPUT_CTR_3V3	= PC15
+	UART_RX_PIN	= D0
+	UART_TX_PIN	= D1
 )
 ```
 
+UART0 pins (logical UART1)
 
 
 ```go
 const (
-	USBCDC_DM_PIN	= PIN_USB_DM
-	USBCDC_DP_PIN	= PIN_USB_DP
-)
-```
-
-UART0 aka USBCDC pins
-
-
-```go
-const (
-	UART_TX_PIN	= PIN_SERIAL1_TX
-	UART_RX_PIN	= PIN_SERIAL1_RX
-)
-```
-
-UART1 pins
-
-
-```go
-const (
-	UART2_TX_PIN	= PIN_SERIAL2_TX
-	UART2_RX_PIN	= PIN_SERIAL2_RX
-)
-```
-
-UART2 pins RTL8720D
-
-
-```go
-const (
-	SDA0_PIN	= PIN_WIRE_SDA	// SDA: SERCOM3/PAD[0]
-	SCL0_PIN	= PIN_WIRE_SCL	// SCL: SERCOM3/PAD[1]
-
-	SDA1_PIN	= PIN_WIRE1_SDA	// SDA: SERCOM4/PAD[0]
-	SCL1_PIN	= PIN_WIRE1_SCL	// SCL: SERCOM4/PAD[1]
-
-	SDA_PIN	= SDA0_PIN
-	SCL_PIN	= SCL0_PIN
+	SDA_PIN	= D20	// I2C0 external
+	SCL_PIN	= D19	// I2C0 external
 )
 ```
 
@@ -359,24 +139,9 @@ I2C pins
 
 ```go
 const (
-	SPI0_SCK_PIN	= SCK	// SCK:  SERCOM5/PAD[1]
-	SPI0_SDO_PIN	= SDO	// SDO: SERCOM5/PAD[0]
-	SPI0_SDI_PIN	= SDI	// SDI: SERCOM5/PAD[2]
-
-	// RTL8720D
-	SPI1_SCK_PIN	= SCK1	// SCK:  SERCOM0/PAD[1]
-	SPI1_SDO_PIN	= SDO1	// SDO: SERCOM0/PAD[0]
-	SPI1_SDI_PIN	= SDI1	// SDI: SERCOM0/PAD[2]
-
-	// SD
-	SPI2_SCK_PIN	= SCK2	// SCK:  SERCOM6/PAD[1]
-	SPI2_SDO_PIN	= SDO2	// SDO: SERCOM6/PAD[0]
-	SPI2_SDI_PIN	= SDI2	// SDI: SERCOM6/PAD[2]
-
-	// LCD
-	SPI3_SCK_PIN	= SCK3	// SCK:  SERCOM7/PAD[1]
-	SPI3_SDO_PIN	= SDO3	// SDO: SERCOM7/PAD[3]
-	SPI3_SDI_PIN	= SDI3	// SDI: SERCOM7/PAD[2]
+	SPI0_SCK_PIN	= D13	// SCK
+	SPI0_SDO_PIN	= D15	// SDO
+	SPI0_SDI_PIN	= D14	// SDI
 )
 ```
 
@@ -394,47 +159,6 @@ TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-spee
 
 
 ```go
-const (
-	I2SModeSource	I2SMode	= iota
-	I2SModeReceiver
-	I2SModePDM
-)
-```
-
-
-
-```go
-const (
-	I2StandardPhilips	I2SStandard	= iota
-	I2SStandardMSB
-	I2SStandardLSB
-)
-```
-
-
-
-```go
-const (
-	I2SClockSourceInternal	I2SClockSource	= iota
-	I2SClockSourceExternal
-)
-```
-
-
-
-```go
-const (
-	I2SDataFormatDefault	I2SDataFormat	= 0
-	I2SDataFormat8bit			= 8
-	I2SDataFormat16bit			= 16
-	I2SDataFormat24bit			= 24
-	I2SDataFormat32bit			= 32
-)
-```
-
-
-
-```go
 const NoPin = Pin(0xff)
 ```
 
@@ -444,27 +168,10 @@ of the pins in a peripheral unconfigured (if supported by the hardware).
 
 ```go
 const (
-	PinAnalog		PinMode	= 1
-	PinSERCOM		PinMode	= 2
-	PinSERCOMAlt		PinMode	= 3
-	PinTimer		PinMode	= 4
-	PinTimerAlt		PinMode	= 5
-	PinTCCPDEC		PinMode	= 6
-	PinCom			PinMode	= 7
-	PinSDHC			PinMode	= 8
-	PinI2S			PinMode	= 9
-	PinPCC			PinMode	= 10
-	PinGMAC			PinMode	= 11
-	PinACCLK		PinMode	= 12
-	PinCCL			PinMode	= 13
-	PinDigital		PinMode	= 14
-	PinInput		PinMode	= 15
-	PinInputPullup		PinMode	= 16
-	PinOutput		PinMode	= 17
-	PinPWME			PinMode	= PinTimer
-	PinPWMF			PinMode	= PinTimerAlt
-	PinPWMG			PinMode	= PinTCCPDEC
-	PinInputPulldown	PinMode	= 18
+	PinInput		PinMode	= (nrf.GPIO_PIN_CNF_DIR_Input << nrf.GPIO_PIN_CNF_DIR_Pos) | (nrf.GPIO_PIN_CNF_INPUT_Connect << nrf.GPIO_PIN_CNF_INPUT_Pos)
+	PinInputPullup		PinMode	= PinInput | (nrf.GPIO_PIN_CNF_PULL_Pullup << nrf.GPIO_PIN_CNF_PULL_Pos)
+	PinInputPulldown	PinMode	= PinInput | (nrf.GPIO_PIN_CNF_PULL_Pulldown << nrf.GPIO_PIN_CNF_PULL_Pos)
+	PinOutput		PinMode	= (nrf.GPIO_PIN_CNF_DIR_Output << nrf.GPIO_PIN_CNF_DIR_Pos) | (nrf.GPIO_PIN_CNF_INPUT_Disconnect << nrf.GPIO_PIN_CNF_INPUT_Pos)
 )
 ```
 
@@ -472,9 +179,9 @@ const (
 
 ```go
 const (
-	PinRising	PinChange	= sam.EIC_CONFIG_SENSE0_RISE
-	PinFalling	PinChange	= sam.EIC_CONFIG_SENSE0_FALL
-	PinToggle	PinChange	= sam.EIC_CONFIG_SENSE0_BOTH
+	PinRising	PinChange	= nrf.GPIOTE_CONFIG_POLARITY_LoToHi
+	PinFalling	PinChange	= nrf.GPIOTE_CONFIG_POLARITY_HiToLo
+	PinToggle	PinChange	= nrf.GPIOTE_CONFIG_POLARITY_Toggle
 )
 ```
 
@@ -483,134 +190,54 @@ Pin change interrupt constants for SetInterrupt.
 
 ```go
 const (
-	PA00	Pin	= 0
-	PA01	Pin	= 1
-	PA02	Pin	= 2
-	PA03	Pin	= 3
-	PA04	Pin	= 4
-	PA05	Pin	= 5
-	PA06	Pin	= 6
-	PA07	Pin	= 7
-	PA08	Pin	= 8
-	PA09	Pin	= 9
-	PA10	Pin	= 10
-	PA11	Pin	= 11
-	PA12	Pin	= 12
-	PA13	Pin	= 13
-	PA14	Pin	= 14
-	PA15	Pin	= 15
-	PA16	Pin	= 16
-	PA17	Pin	= 17
-	PA18	Pin	= 18
-	PA19	Pin	= 19
-	PA20	Pin	= 20
-	PA21	Pin	= 21
-	PA22	Pin	= 22
-	PA23	Pin	= 23
-	PA24	Pin	= 24
-	PA25	Pin	= 25
-	PA26	Pin	= 26
-	PA27	Pin	= 27
-	PA28	Pin	= 28
-	PA29	Pin	= 29
-	PA30	Pin	= 30
-	PA31	Pin	= 31
-	PB00	Pin	= 32
-	PB01	Pin	= 33
-	PB02	Pin	= 34
-	PB03	Pin	= 35
-	PB04	Pin	= 36
-	PB05	Pin	= 37
-	PB06	Pin	= 38
-	PB07	Pin	= 39
-	PB08	Pin	= 40
-	PB09	Pin	= 41
-	PB10	Pin	= 42
-	PB11	Pin	= 43
-	PB12	Pin	= 44
-	PB13	Pin	= 45
-	PB14	Pin	= 46
-	PB15	Pin	= 47
-	PB16	Pin	= 48
-	PB17	Pin	= 49
-	PB18	Pin	= 50
-	PB19	Pin	= 51
-	PB20	Pin	= 52
-	PB21	Pin	= 53
-	PB22	Pin	= 54
-	PB23	Pin	= 55
-	PB24	Pin	= 56
-	PB25	Pin	= 57
-	PB26	Pin	= 58
-	PB27	Pin	= 59
-	PB28	Pin	= 60
-	PB29	Pin	= 61
-	PB30	Pin	= 62
-	PB31	Pin	= 63
-	PC00	Pin	= 64
-	PC01	Pin	= 65
-	PC02	Pin	= 66
-	PC03	Pin	= 67
-	PC04	Pin	= 68
-	PC05	Pin	= 69
-	PC06	Pin	= 70
-	PC07	Pin	= 71
-	PC08	Pin	= 72
-	PC09	Pin	= 73
-	PC10	Pin	= 74
-	PC11	Pin	= 75
-	PC12	Pin	= 76
-	PC13	Pin	= 77
-	PC14	Pin	= 78
-	PC15	Pin	= 79
-	PC16	Pin	= 80
-	PC17	Pin	= 81
-	PC18	Pin	= 82
-	PC19	Pin	= 83
-	PC20	Pin	= 84
-	PC21	Pin	= 85
-	PC22	Pin	= 86
-	PC23	Pin	= 87
-	PC24	Pin	= 88
-	PC25	Pin	= 89
-	PC26	Pin	= 90
-	PC27	Pin	= 91
-	PC28	Pin	= 92
-	PC29	Pin	= 93
-	PC30	Pin	= 94
-	PC31	Pin	= 95
-	PD00	Pin	= 96
-	PD01	Pin	= 97
-	PD02	Pin	= 98
-	PD03	Pin	= 99
-	PD04	Pin	= 100
-	PD05	Pin	= 101
-	PD06	Pin	= 102
-	PD07	Pin	= 103
-	PD08	Pin	= 104
-	PD09	Pin	= 105
-	PD10	Pin	= 106
-	PD11	Pin	= 107
-	PD12	Pin	= 108
-	PD13	Pin	= 109
-	PD14	Pin	= 110
-	PD15	Pin	= 111
-	PD16	Pin	= 112
-	PD17	Pin	= 113
-	PD18	Pin	= 114
-	PD19	Pin	= 115
-	PD20	Pin	= 116
-	PD21	Pin	= 117
-	PD22	Pin	= 118
-	PD23	Pin	= 119
-	PD24	Pin	= 120
-	PD25	Pin	= 121
-	PD26	Pin	= 122
-	PD27	Pin	= 123
-	PD28	Pin	= 124
-	PD29	Pin	= 125
-	PD30	Pin	= 126
-	PD31	Pin	= 127
+	P0_00	Pin	= 0
+	P0_01	Pin	= 1
+	P0_02	Pin	= 2
+	P0_03	Pin	= 3
+	P0_04	Pin	= 4
+	P0_05	Pin	= 5
+	P0_06	Pin	= 6
+	P0_07	Pin	= 7
+	P0_08	Pin	= 8
+	P0_09	Pin	= 9
+	P0_10	Pin	= 10
+	P0_11	Pin	= 11
+	P0_12	Pin	= 12
+	P0_13	Pin	= 13
+	P0_14	Pin	= 14
+	P0_15	Pin	= 15
+	P0_16	Pin	= 16
+	P0_17	Pin	= 17
+	P0_18	Pin	= 18
+	P0_19	Pin	= 19
+	P0_20	Pin	= 20
+	P0_21	Pin	= 21
+	P0_22	Pin	= 22
+	P0_23	Pin	= 23
+	P0_24	Pin	= 24
+	P0_25	Pin	= 25
+	P0_26	Pin	= 26
+	P0_27	Pin	= 27
+	P0_28	Pin	= 28
+	P0_29	Pin	= 29
+	P0_30	Pin	= 30
+	P0_31	Pin	= 31
+	P1_00	Pin	= 32
+	P1_01	Pin	= 33
+	P1_02	Pin	= 34
+	P1_03	Pin	= 35
+	P1_04	Pin	= 36
+	P1_05	Pin	= 37
+	P1_06	Pin	= 38
+	P1_07	Pin	= 39
+	P1_08	Pin	= 40
+	P1_09	Pin	= 41
+	P1_10	Pin	= 42
+	P1_11	Pin	= 43
+	P1_12	Pin	= 44
+	P1_13	Pin	= 45
+	P1_14	Pin	= 46
+	P1_15	Pin	= 47
 )
 ```
 
@@ -619,58 +246,12 @@ Hardware pins
 
 ```go
 const (
-	// SERCOM_FREQ_REF is always reference frequency on SAMD51 regardless of CPU speed.
-	SERCOM_FREQ_REF	= 48000000
-
-	// Default rise time in nanoseconds, based on 4.7K ohm pull up resistors
-	riseTimeNanoseconds	= 125
-
-	// wire bus states
-	wireUnknownState	= 0
-	wireIdleState		= 1
-	wireOwnerState		= 2
-	wireBusyState		= 3
-
-	// wire commands
-	wireCmdNoAction		= 0
-	wireCmdRepeatStart	= 1
-	wireCmdRead		= 2
-	wireCmdStop		= 3
+	DFU_MAGIC_SERIAL_ONLY_RESET	= 0x4e
+	DFU_MAGIC_UF2_RESET		= 0x57
+	DFU_MAGIC_OTA_RESET		= 0xA8
 )
 ```
 
-
-
-```go
-const (
-	QSPI_SCK	= PB10
-	QSPI_CS		= PB11
-	QSPI_DATA0	= PA08
-	QSPI_DATA1	= PA09
-	QSPI_DATA2	= PA10
-	QSPI_DATA3	= PA11
-)
-```
-
-The QSPI peripheral on ATSAMD51 is only available on the following pins
-
-
-```go
-const HSRAM_SIZE = 0x00030000
-```
-
-
-
-```go
-const (
-	Mode0	= 0
-	Mode1	= 1
-	Mode2	= 2
-	Mode3	= 3
-)
-```
-
-SPI phase and polarity configs CPOL and CPHA
 
 
 
@@ -680,68 +261,11 @@ SPI phase and polarity configs CPOL and CPHA
 
 ```go
 var (
-	UART1	= UART{
-		Buffer:	NewRingBuffer(),
-		Bus:	sam.SERCOM2_USART_INT,
-		SERCOM:	2,
-	}
-
-	// RTL8720D
-	UART2	= UART{
-		Buffer:	NewRingBuffer(),
-		Bus:	sam.SERCOM1_USART_INT,
-		SERCOM:	1,
-	}
+	UART0 = &USB
 )
 ```
 
-
-
-```go
-var (
-	I2C0	= I2C{
-		Bus:	sam.SERCOM4_I2CM,
-		SERCOM:	4,
-	}
-
-	I2C1	= I2C{
-		Bus:	sam.SERCOM4_I2CM,
-		SERCOM:	4,
-	}
-)
-```
-
-I2C on the Wio Terminal
-
-
-```go
-var (
-	SPI0	= SPI{
-		Bus:	sam.SERCOM5_SPIM,
-		SERCOM:	5,
-	}
-
-	// RTL8720D
-	SPI1	= SPI{
-		Bus:	sam.SERCOM0_SPIM,
-		SERCOM:	0,
-	}
-
-	// SD
-	SPI2	= SPI{
-		Bus:	sam.SERCOM6_SPIM,
-		SERCOM:	6,
-	}
-
-	// LCD
-	SPI3	= SPI{
-		Bus:	sam.SERCOM7_SPIM,
-		SERCOM:	7,
-	}
-)
-```
-
-SPI on the Wio Terminal
+UART0 is the USB device
 
 
 ```go
@@ -758,8 +282,7 @@ var (
 
 ```go
 var (
-	// UART0 is actually a USB CDC interface.
-	UART0 = USBCDC{Buffer: NewRingBuffer()}
+	ErrTxInvalidSliceSize = errors.New("SPI write and read slices must be same size")
 )
 ```
 
@@ -767,7 +290,51 @@ var (
 
 ```go
 var (
-	DAC0 = DAC{}
+	// NRF_UART0 is the hardware UART on the NRF SoC.
+	NRF_UART0 = UART{Buffer: NewRingBuffer()}
+)
+```
+
+UART
+
+
+```go
+var (
+	I2C0	= I2C{Bus: nrf.TWI0}
+	I2C1	= I2C{Bus: nrf.TWI1}
+)
+```
+
+There are 2 I2C interfaces on the NRF.
+
+
+```go
+var (
+	USB	= USBCDC{Buffer: NewRingBuffer()}
+
+	usbEndpointDescriptors	[8]usbDeviceDescriptor
+
+	udd_ep_in_cache_buffer	[7][128]uint8
+	udd_ep_out_cache_buffer	[7][128]uint8
+
+	sendOnEP0DATADONE	struct {
+		ptr	*byte
+		count	int
+	}
+	isEndpointHalt		= false
+	isRemoteWakeUpEnabled	= false
+	endPoints		= []uint32{usb_ENDPOINT_TYPE_CONTROL,
+		(usb_ENDPOINT_TYPE_INTERRUPT | usbEndpointIn),
+		(usb_ENDPOINT_TYPE_BULK | usbEndpointOut),
+		(usb_ENDPOINT_TYPE_BULK | usbEndpointIn)}
+
+	usbConfiguration		uint8
+	usbSetInterface			uint8
+	usbLineInfo			= cdcLineInfo{115200, 0x00, 0x00, 0x08, 0x00}
+	epinen				uint32
+	epouten				uint32
+	easyDMABusy			volatile.Register8
+	epout0data_setlinecoding	bool
 )
 ```
 
@@ -775,11 +342,13 @@ var (
 
 ```go
 var (
-	ErrTxInvalidSliceSize		= errors.New("SPI write and read slices must be same size")
-	errSPIInvalidMachineConfig	= errors.New("SPI port was not configured properly by the machine")
+	SPI0	= SPI{Bus: nrf.SPIM0}
+	SPI1	= SPI{Bus: nrf.SPIM1}
+	SPI2	= SPI{Bus: nrf.SPIM2}
 )
 ```
 
+There are 3 SPI interfaces on the NRF528xx.
 
 
 
@@ -793,13 +362,43 @@ func CPUFrequency() uint32
 
 
 
+### func EnterOTABootloader
+
+```go
+func EnterOTABootloader()
+```
+
+EnterOTABootloader resets the chip into the bootloader so that it can be
+flashed via an OTA update
+
+
+### func EnterSerialBootloader
+
+```go
+func EnterSerialBootloader()
+```
+
+EnterSerialBootloader resets the chip into the serial bootloader. After
+reset, it can be flashed using serial/nrfutil.
+
+
+### func EnterUF2Bootloader
+
+```go
+func EnterUF2Bootloader()
+```
+
+EnterUF2Bootloader resets the chip into the UF2 bootloader. After reset, it
+can be flashed via nrfutil or by copying a UF2 file to the mass storage device
+
+
 ### func InitADC
 
 ```go
 func InitADC()
 ```
 
-InitADC initializes the ADC.
+InitADC initializes the registers needed for ADC.
 
 
 ### func InitPWM
@@ -808,7 +407,7 @@ InitADC initializes the ADC.
 func InitPWM()
 ```
 
-InitPWM initializes the PWM interface.
+InitPWM initializes the registers needed for PWM.
 
 
 ### func NewACMFunctionalDescriptor
@@ -908,16 +507,6 @@ func NewRingBuffer() *RingBuffer
 NewRingBuffer returns a new ring buffer.
 
 
-### func ResetProcessor
-
-```go
-func ResetProcessor()
-```
-
-ResetProcessor should perform a system reset in preparation
-to switch to the bootloader to flash new firmware.
-
-
 
 
 ## type ACMFunctionalDescriptor
@@ -960,10 +549,10 @@ type ADC struct {
 ### func (ADC) Configure
 
 ```go
-func (a ADC) Configure(config ADCConfig)
+func (a ADC) Configure(ADCConfig)
 ```
 
-Configure configures a ADCPin to be able to be used to read data.
+Configure configures an ADC pin to be able to read analog data.
 
 
 ### func (ADC) Get
@@ -972,7 +561,7 @@ Configure configures a ADCPin to be able to be used to read data.
 func (a ADC) Get() uint16
 ```
 
-Get returns the current value of a ADC pin, in the range 0..0xffff.
+Get returns the current value of a ADC pin in the range 0..0xffff.
 
 
 
@@ -1121,52 +710,6 @@ Bytes returns ConfigDescriptor data.
 
 
 
-## type DAC
-
-```go
-type DAC struct {
-}
-```
-
-DAC on the SAMD51.
-
-
-
-### func (DAC) Configure
-
-```go
-func (dac DAC) Configure(config DACConfig)
-```
-
-Configure the DAC.
-output pin must already be configured.
-
-
-### func (DAC) Set
-
-```go
-func (dac DAC) Set(value uint16) error
-```
-
-Set writes a single 16-bit value to the DAC.
-Since the ATSAMD51 only has a 12-bit DAC, the passed-in value will be scaled down.
-
-
-
-
-## type DACConfig
-
-```go
-type DACConfig struct {
-}
-```
-
-DACConfig placeholder for future expansion.
-
-
-
-
-
 ## type DeviceDescriptor
 
 ```go
@@ -1242,12 +785,11 @@ Bytes returns EndpointDescriptor data.
 
 ```go
 type I2C struct {
-	Bus	*sam.SERCOM_I2CM_Type
-	SERCOM	uint8
+	Bus *nrf.TWI_Type
 }
 ```
 
-I2C on the SAMD51.
+I2C on the NRF.
 
 
 
@@ -1274,33 +816,15 @@ is a shortcut to easily read such registers. Also, it only works for devices
 with 7-bit addresses, which is the vast majority.
 
 
-### func (I2C) SetBaudRate
-
-```go
-func (i2c I2C) SetBaudRate(br uint32)
-```
-
-SetBaudRate sets the communication speed for the I2C.
-
-
 ### func (I2C) Tx
 
 ```go
-func (i2c I2C) Tx(addr uint16, w, r []byte) error
+func (i2c I2C) Tx(addr uint16, w, r []byte) (err error)
 ```
 
 Tx does a single I2C transaction at the specified address.
 It clocks out the given address, writes the bytes in w, reads back len(r)
 bytes and stores them in r, and generates a stop condition on the bus.
-
-
-### func (I2C) WriteByte
-
-```go
-func (i2c I2C) WriteByte(data byte) error
-```
-
-WriteByte writes a single byte to the I2C bus.
 
 
 ### func (I2C) WriteRegister
@@ -1330,73 +854,6 @@ type I2CConfig struct {
 ```
 
 I2CConfig is used to store config info for I2C.
-
-
-
-
-
-## type I2SClockSource
-
-```go
-type I2SClockSource uint8
-```
-
-
-
-
-
-
-## type I2SConfig
-
-```go
-type I2SConfig struct {
-	SCK		Pin
-	WS		Pin
-	SD		Pin
-	Mode		I2SMode
-	Standard	I2SStandard
-	ClockSource	I2SClockSource
-	DataFormat	I2SDataFormat
-	AudioFrequency	uint32
-	MainClockOutput	bool
-	Stereo		bool
-}
-```
-
-All fields are optional and may not be required or used on a particular platform.
-
-
-
-
-
-## type I2SDataFormat
-
-```go
-type I2SDataFormat uint8
-```
-
-
-
-
-
-
-## type I2SMode
-
-```go
-type I2SMode uint8
-```
-
-
-
-
-
-
-## type I2SStandard
-
-```go
-type I2SStandard uint8
-```
-
 
 
 
@@ -1502,7 +959,7 @@ type PWM struct {
 ### func (PWM) Configure
 
 ```go
-func (pwm PWM) Configure() error
+func (pwm PWM) Configure()
 ```
 
 Configure configures a PWM pin for output.
@@ -1616,16 +1073,6 @@ nil func to unset the pin change interrupt. If you do so, the change
 parameter is ignored and can be set to any value (such as 0).
 
 
-### func (Pin) Toggle
-
-```go
-func (p Pin) Toggle()
-```
-
-Toggle switches an output pin from low to high or from high to low.
-Warning: only use this on an output pin!
-
-
 
 
 ## type PinChange
@@ -1722,19 +1169,18 @@ Used returns how many bytes in buffer have been used.
 
 ```go
 type SPI struct {
-	Bus	*sam.SERCOM_SPIM_Type
-	SERCOM	uint8
+	Bus *nrf.SPIM_Type
 }
 ```
 
-SPI
+SPI on the NRF.
 
 
 
 ### func (SPI) Configure
 
 ```go
-func (spi SPI) Configure(config SPIConfig) error
+func (spi SPI) Configure(config SPIConfig)
 ```
 
 Configure is intended to setup the SPI interface.
@@ -1755,23 +1201,11 @@ Transfer writes/reads a single byte using the SPI interface.
 func (spi SPI) Tx(w, r []byte) error
 ```
 
-Tx handles read/write operation for SPI interface. Since SPI is a syncronous write/read
-interface, there must always be the same number of bytes written as bytes read.
-The Tx method knows about this, and offers a few different ways of calling it.
-
-This form sends the bytes in tx buffer, putting the resulting bytes read into the rx buffer.
-Note that the tx and rx buffers must be the same size:
-
-		spi.Tx(tx, rx)
-
-This form sends the tx buffer, ignoring the result. Useful for sending "commands" that return zeros
-until all the bytes in the command packet have been received:
-
-		spi.Tx(tx, nil)
-
-This form sends zeros, putting the result into the rx buffer. Good for reading a "result packet":
-
-		spi.Tx(nil, rx)
+Tx handles read/write operation for SPI interface. Since SPI is a syncronous
+write/read interface, there must always be the same number of bytes written
+as bytes read. Therefore, if the number of bytes don't match it will be
+padded until they fit: if len(w) > len(r) the extra bytes received will be
+dropped and if len(w) < len(r) extra 0 bytes will be sent.
 
 
 
@@ -1799,14 +1233,11 @@ SPIConfig is used to store config info for SPI.
 
 ```go
 type UART struct {
-	Buffer		*RingBuffer
-	Bus		*sam.SERCOM_USART_INT_Type
-	SERCOM		uint8
-	Interrupt	interrupt.Interrupt	// RXC interrupt
+	Buffer *RingBuffer
 }
 ```
 
-UART on the SAMD51.
+UART on the NRF.
 
 
 
@@ -1822,7 +1253,7 @@ Buffered returns the number of bytes currently stored in the RX buffer.
 ### func (UART) Configure
 
 ```go
-func (uart UART) Configure(config UARTConfig) error
+func (uart UART) Configure(config UARTConfig)
 ```
 
 Configure the UART.
@@ -1906,6 +1337,8 @@ type UARTConfig struct {
 ```go
 type USBCDC struct {
 	Buffer			*RingBuffer
+	interrupt		interrupt.Interrupt
+	initcomplete		bool
 	TxIdx			volatile.Register8
 	waitTxc			bool
 	waitTxcRetryCount	uint8
@@ -1913,7 +1346,7 @@ type USBCDC struct {
 }
 ```
 
-USBCDC is the USB CDC aka serial over USB interface on the SAMD21.
+USBCDC is the USB CDC aka serial over USB interface on the nRF52840
 
 
 
@@ -1926,10 +1359,10 @@ func (usbcdc USBCDC) Buffered() int
 Buffered returns the number of bytes currently stored in the RX buffer.
 
 
-### func (USBCDC) Configure
+### func (*USBCDC) Configure
 
 ```go
-func (usbcdc USBCDC) Configure(config UARTConfig)
+func (usbcdc *USBCDC) Configure(config UARTConfig)
 ```
 
 Configure the USB CDC interface. The config is here for compatibility with the UART interface.
@@ -1998,10 +1431,10 @@ func (usbcdc USBCDC) Write(data []byte) (n int, err error)
 Write data to the USBCDC.
 
 
-### func (*USBCDC) WriteByte
+### func (USBCDC) WriteByte
 
 ```go
-func (usbcdc *USBCDC) WriteByte(c byte) error
+func (usbcdc USBCDC) WriteByte(c byte) error
 ```
 
 WriteByte writes a byte of data to the USB CDC interface.

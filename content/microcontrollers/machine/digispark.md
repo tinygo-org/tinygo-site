@@ -142,7 +142,7 @@ type ADC struct {
 ### func (ADC) Configure
 
 ```go
-func (a ADC) Configure()
+func (a ADC) Configure(ADCConfig)
 ```
 
 Configure configures a ADCPin to be able to be used to read data.
@@ -156,6 +156,23 @@ func (a ADC) Get() uint16
 
 Get returns the current value of a ADC pin, in the range 0..0xffff. The AVR
 has an ADC of 10 bits precision so the lower 6 bits will be zero.
+
+
+
+
+## type ADCConfig
+
+```go
+type ADCConfig struct {
+	Reference	uint32	// analog reference voltage (AREF) in millivolts
+	Resolution	uint32	// number of bits for a single conversion (e.g., 8, 10, 12)
+	Samples		uint32	// number of samples for a single conversion (e.g., 4, 8, 16, 32)
+}
+```
+
+ADCConfig holds ADC configuration parameters. If left unspecified, the zero
+value of each parameter will use the peripheral's default settings.
+
 
 
 
