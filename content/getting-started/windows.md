@@ -14,7 +14,7 @@ We now have a native install for Windows 10.
 > **VERY IMPORTANT NOTE:** 
 > You cannot yet create Windows binary programs using TinyGo, only MCU and WASM targets.
 
-TinyGo requires Go v1.14+ to be already installed on your machine.
+TinyGo requires Go v1.16+ to be already installed on your machine.
 
 ### Quick Install via Scoop
 
@@ -38,7 +38,7 @@ You can test that the installation was successful by running the `version` comma
 
 ```shell
 > tinygo version
-tinygo version 0.16.0 windows/amd64 (using go version go1.15 and LLVM version 10.0.1)
+tinygo version 0.17.0 windows/amd64 (using go version go1.16 and LLVM version 11.0.0)
 ```
 
 Upgrading to the latest TinyGo version can be done via scoop with:
@@ -66,13 +66,13 @@ Upgrading to the latest versions can be as easy as:
 
 ### Manual Install
 
-- You MUST use Go 1.14.x+ with the Windows 10 native install of TinyGo.
+- You MUST use Go 1.16.x+ with the Windows 10 native install of TinyGo.
 
     - If you have not installed it yet, you can get it from https://golang.org/dl/
 
     - Choose the download link for Microsoft Windows, Windows 7 or later, Intel 64-bit processor.
 
-- Download the TinyGo binary for Windows file from https://github.com/tinygo-org/tinygo/releases/download/v0.16.0/tinygo0.16.0.windows-amd64.zip
+- Download the TinyGo binary for Windows file from https://github.com/tinygo-org/tinygo/releases/download/v0.17.0/tinygo0.17.0.windows-amd64.zip
 
 - Decompress the file like this:
 
@@ -92,7 +92,7 @@ Upgrading to the latest versions can be as easy as:
 
     ```
     > tinygo version
-    tinygo version 0.16.0 windows/amd64 (using go version go1.15 and LLVM version 10.0.1)
+    tinygo version 0.17.0 windows/amd64 (using go version go1.16 and LLVM version 11.0.0)
     ```
 
 ### Flashing boards
@@ -166,7 +166,7 @@ Be warned that building TinyGo on Windows is not tested as well as building Tiny
 You will need to have the following programs installed on your Windows system and configured to be accessible in your PATH variable:
 
   * Git
-  * Go 1.14
+  * Go 1.16
   * MinGW-w64
   * GNU Make
   * CMake
@@ -206,7 +206,7 @@ This results in a `tinygo.exe` binary in the `build` directory:
 
 ```text
 $ ./build/tinygo version
-tinygo version 0.16.0 windows/amd64 (using go version go1.15 and LLVM version 10.0.1)
+tinygo version 0.17.0 windows/amd64 (using go version go1.16 and LLVM version 11.0.0)
 ```
 
 ### Additional Requirements for Microcontrollers
