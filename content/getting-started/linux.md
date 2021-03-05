@@ -23,20 +23,20 @@ The third option is to use the Docker image. This has the benefit of making no c
 
 ### Ubuntu/Debian
 
-You must have Go already installed on your machine in order to install TinyGo. We recommend Go v1.14 or above.
+You must have Go already installed on your machine in order to install TinyGo. We recommend Go v1.16 or above.
 
 If you are using Ubuntu or another Debian based Linux on an Intel processor, download the DEB file from Github and install it using the following commands:
 
 ```shell
-wget https://github.com/tinygo-org/tinygo/releases/download/v0.16.0/tinygo_0.16.0_amd64.deb
-sudo dpkg -i tinygo_0.16.0_amd64.deb
+wget https://github.com/tinygo-org/tinygo/releases/download/v0.17.0/tinygo_0.17.0_amd64.deb
+sudo dpkg -i tinygo_0.17.0_amd64.deb
 ```
 
 If you are on a Raspberry Pi or other ARM-based Linux computer, you should use this command instead:
 
 ```shell
-wget https://github.com/tinygo-org/tinygo/releases/download/v0.16.0/tinygo_0.16.0_arm.deb
-sudo dpkg -i tinygo_0.16.0_arm.deb
+wget https://github.com/tinygo-org/tinygo/releases/download/v0.17.0/tinygo_0.17.0_arm.deb
+sudo dpkg -i tinygo_0.17.0_arm.deb
 ```
 
 You will need to ensure that the path to the `tinygo` executable file is in your `PATH` variable.
@@ -49,7 +49,7 @@ You can test that the installation is working properly by running this code whic
 
 ```shell
 $ tinygo version
-tinygo version 0.16.0 linux/amd64 (using go version go1.15 and LLVM version 10.0.1)
+tinygo version 0.17.0 linux/amd64 (using go version go1.16 and LLVM version 11.0.0)
 ```
 
 If you are only interested in compiling TinyGo code for WebAssembly then you are now done with the installation.
@@ -214,7 +214,7 @@ This results in a `tinygo` binary in the `build` directory:
 
 ```shell
 $ ./build/tinygo version
-tinygo version 0.16.0 linux/amd64 (using go version go1.15 and LLVM version 10.0.1)
+tinygo version 0.17.0 linux/amd64 (using go version go1.16 and LLVM version 11.0.0)
 ```
 
 ### Additional Requirements for Microcontrollers

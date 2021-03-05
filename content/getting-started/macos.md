@@ -15,7 +15,7 @@ The third option is to use the Docker image. This has the benefit of making no c
 
 ## Quick Install
 
-You must have Go v1.12+ already installed on your machine in order to install TinyGo. We recommend Go v1.14+.
+You must have Go v1.12+ already installed on your machine in order to install TinyGo. We recommend Go v1.16+.
 
 You can use Homebrew to install TinyGo using the following commands:
 
@@ -28,7 +28,7 @@ You can test that the installation is working properly by running this code whic
 
 ```shell
 $ tinygo version
-tinygo version 0.16.0 darwin/amd64 (using go version go1.15 and LLVM version 10.0.1)
+tinygo version 0.17.0 darwin/amd64 (using go version go1.16 and LLVM version 11.0.0)
 ```
 
 If you are only interested in compiling TinyGo code for WebAssembly then you are done with the installation.
@@ -120,7 +120,7 @@ This results in a `tinygo` binary in the `build` directory:
 
 ```shell
 $ ./build/tinygo version
-tinygo version 0.16.0 darwin/amd64 (using go version go1.15 and LLVM version 10.0.1)
+tinygo version 0.17.0 darwin/amd64 (using go version go1.16 and LLVM version 11.0.0)
 ```
 
 ### Additional Requirements for Microcontrollers
