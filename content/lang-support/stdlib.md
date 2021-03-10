@@ -27,21 +27,21 @@ crypto/aes |  <span style="color: green">✔</span> yes  |
 crypto/cipher |  <span style="color: green">✔</span> yes  | 
 crypto/des |  <span style="color: green">✔</span> yes  | 
 crypto/dsa |  <span style="color: green">✔</span> yes  | 
-crypto/ecdsa |  [<span style="color: red">✗</span> no](#crypto-ecdsa)  | 
+crypto/ecdsa |  <span style="color: green">✔</span> yes  | 
 crypto/ed25519 |  <span style="color: green">✔</span> yes  | 
 crypto/elliptic |  <span style="color: green">✔</span> yes  | 
 crypto/hmac |  <span style="color: green">✔</span> yes  | 
 crypto/md5 |  <span style="color: green">✔</span> yes  | 
 crypto/rand |  <span style="color: green">✔</span> yes  | 
 crypto/rc4 |  <span style="color: green">✔</span> yes  | 
-crypto/rsa |  [<span style="color: red">✗</span> no](#crypto-rsa)  | 
+crypto/rsa |  <span style="color: green">✔</span> yes  | 
 crypto/sha1 |  <span style="color: green">✔</span> yes  | 
 crypto/sha256 |  <span style="color: green">✔</span> yes  | 
 crypto/sha512 |  <span style="color: green">✔</span> yes  | 
 crypto/subtle |  <span style="color: green">✔</span> yes  | 
 crypto/tls |  [<span style="color: red">✗</span> no](#crypto-tls)  | 
 crypto/x509 |  [<span style="color: red">✗</span> no](#crypto-x509)  | 
-crypto/x509/pkix |  [<span style="color: red">✗</span> no](#crypto-x509-pkix)  | 
+crypto/x509/pkix |  <span style="color: green">✔</span> yes  | 
 database/sql |  <span style="color: green">✔</span> yes  | 
 database/sql/driver |  <span style="color: green">✔</span> yes  | 
 debug/dwarf |  <span style="color: green">✔</span> yes  | 
@@ -52,7 +52,7 @@ debug/pe |  <span style="color: green">✔</span> yes  |
 debug/plan9obj |  <span style="color: green">✔</span> yes  | 
 encoding |  <span style="color: green">✔</span> yes  | 
 encoding/ascii85 |  <span style="color: green">✔</span> yes  | 
-encoding/asn1 |  [<span style="color: red">✗</span> no](#encoding-asn1)  | 
+encoding/asn1 |  <span style="color: green">✔</span> yes  | 
 encoding/base32 |  <span style="color: green">✔</span> yes  | 
 encoding/base64 |  <span style="color: green">✔</span> yes  | 
 encoding/binary |  <span style="color: green">✔</span> yes  | 
@@ -76,7 +76,7 @@ go/parser |  <span style="color: green">✔</span> yes  |
 go/printer |  <span style="color: green">✔</span> yes  | 
 go/scanner |  <span style="color: green">✔</span> yes  | 
 go/token |  <span style="color: green">✔</span> yes  | 
-go/types |  [<span style="color: red">✗</span> no](#go-types)  | 
+go/types |  <span style="color: green">✔</span> yes  | 
 hash |  <span style="color: green">✔</span> yes  | 
 hash/adler32 |  <span style="color: green">✔</span> yes  | 
 hash/crc32 |  <span style="color: green">✔</span> yes  | 
@@ -214,18 +214,6 @@ The compiler gave the following error when this package was imported:
 
 
 
-## crypto/ecdsa
-
-
-The compiler gave the following error when this package was imported:
-
-<pre># encoding/asn1
-encoding/asn1/<init>: interp: unknown GEP
-
-traceback:
-encoding/asn1/<init>:
-  %12 = getelementptr inbounds { %"encoding/asn1.BitString" }, { %"encoding/asn1.BitString" }* %11, i32 0, i32 0, !dbg !1934
-</pre>
 
 
 
@@ -237,32 +225,6 @@ encoding/asn1/<init>:
 
 
 
-
-
-
-
-
-
-## crypto/rsa
-
-
-The compiler gave the following error when this package was imported:
-
-<pre># crypto/rsa
-/home/ron/.gvm/gos/go1.15/src/math/big/nat.go:74:11: interp: unknown GEP
-
-traceback:
-/home/ron/.gvm/gos/go1.15/src/math/big/nat.go:74:11:
-  %16 = getelementptr inbounds i32, i32* %4, i32 0, !dbg !1742
-/home/ron/.gvm/gos/go1.15/src/math/big/nat.go:84:19:
-  %9 = call { i32*, i32, i32 } @"(math/big.nat).setWord"(i32* %6, i32 %7, i32 %8, i32 %3, i8* undef, i8* undef), !dbg !1749
-/home/ron/.gvm/gos/go1.15/src/math/big/int.go:55:25:
-  %17 = call { i32*, i32, i32 } @"(math/big.nat).setUint64"(i32* %14, i32 %15, i32 %16, i64 %2, i8* undef, i8* undef), !dbg !1755
-/home/ron/.gvm/gos/go1.15/src/math/big/int.go:69:26:
-  %2 = call %"math/big.Int"* @"(*math/big.Int).SetInt64"(%"math/big.Int"* %0, i64 %x, i8* undef, i8* undef), !dbg !1739
-crypto/rsa/<init>:38:25:
-  %288 = call %"math/big.Int"* @"math/big.NewInt"(i64 0, i8* undef, i8* undef), !dbg !1867
-</pre>
 
 
 
@@ -281,8 +243,6 @@ crypto/rsa/<init>:38:25:
 
 This package cannot be imported because the following dependencies cannot be compiled:
 
-  * [crypto/ecdsa](#crypto-ecdsa)
-  * [crypto/rsa](#crypto-rsa)
   * [crypto/x509](#crypto-x509)
   * [net](#net)
 
@@ -295,22 +255,12 @@ This package cannot be imported because the following dependencies cannot be com
 
 This package cannot be imported because the following dependencies cannot be compiled:
 
-  * [crypto/ecdsa](#crypto-ecdsa)
-  * [crypto/rsa](#crypto-rsa)
-  * [crypto/x509/pkix](#crypto-x509-pkix)
-  * [encoding/asn1](#encoding-asn1)
   * [net](#net)
 
 
 
 
 
-## crypto/x509/pkix
-
-
-This package cannot be imported because the following dependencies cannot be compiled:
-
-  * [encoding/asn1](#encoding-asn1)
 
 
 
@@ -330,24 +280,6 @@ This package cannot be imported because the following dependencies cannot be com
 
 
 
-
-
-
-
-
-
-## encoding/asn1
-
-
-The compiler gave the following error when this package was imported:
-
-<pre># encoding/asn1
-encoding/asn1/<init>: interp: unknown GEP
-
-traceback:
-encoding/asn1/<init>:
-  %12 = getelementptr inbounds { %"encoding/asn1.BitString" }, { %"encoding/asn1.BitString" }* %11, i32 0, i32 0, !dbg !1837
-</pre>
 
 
 
@@ -368,12 +300,9 @@ The compiler gave the following error when this package was imported:
 
 <pre># encoding/gob
 /home/ron/.gvm/gos/go1.15/src/encoding/gob/decode.go:562:21: MakeMapWithSize not declared by package reflect
-/home/ron/.gvm/gos/go1.15/src/encoding/gob/decode.go:948:22: PtrTo not declared by package reflect
 /home/ron/.gvm/gos/go1.15/src/encoding/gob/decode.go:1118:30: srt.FieldByName undefined (type reflect.Type has no field or method FieldByName)
-/home/ron/.gvm/gos/go1.15/src/encoding/gob/encode.go:603:16: PtrTo not declared by package reflect
 /home/ron/.gvm/gos/go1.15/src/encoding/gob/encode.go:643:70: f.Index undefined (type reflect.StructField has no field or method Index)
 /home/ron/.gvm/gos/go1.15/src/encoding/gob/type.go:119:12: cannot convert nil (untyped nil value) to reflect.Type
-/home/ron/.gvm/gos/go1.15/src/encoding/gob/type.go:142:14: PtrTo not declared by package reflect
 /home/ron/.gvm/gos/go1.15/src/encoding/gob/type.go:867:9: rt.PkgPath undefined (type reflect.Type has no field or method PkgPath)
 /home/ron/.gvm/gos/go1.15/src/encoding/gob/type.go:870:21: rt.PkgPath undefined (type reflect.Type has no field or method PkgPath)
 </pre>
@@ -397,14 +326,12 @@ The compiler gave the following error when this package was imported:
 /home/ron/.gvm/gos/go1.15/src/encoding/json/decode.go:552:7: v.SetLen undefined (type reflect.Value has no field or method SetLen)
 /home/ron/.gvm/gos/go1.15/src/encoding/json/decode.go:589:6: v.SetLen undefined (type reflect.Value has no field or method SetLen)
 /home/ron/.gvm/gos/go1.15/src/encoding/json/decode.go:620:40: v.NumMethod undefined (type reflect.Value has no field or method NumMethod)
-/home/ron/.gvm/gos/go1.15/src/encoding/json/decode.go:641:16: PtrTo not declared by package reflect
-/home/ron/.gvm/gos/go1.15/src/encoding/json/decode.go:776:17: PtrTo not declared by package reflect
 /home/ron/.gvm/gos/go1.15/src/encoding/json/decode.go:921:9: v.NumMethod undefined (type reflect.Value has no field or method NumMethod)
 /home/ron/.gvm/gos/go1.15/src/encoding/json/decode.go:950:6: v.SetBytes undefined (type reflect.Value has no field or method SetBytes)
 /home/ron/.gvm/gos/go1.15/src/encoding/json/decode.go:957:9: v.NumMethod undefined (type reflect.Value has no field or method NumMethod)
 /home/ron/.gvm/gos/go1.15/src/encoding/json/decode.go:990:9: v.NumMethod undefined (type reflect.Value has no field or method NumMethod)
 /home/ron/.gvm/gos/go1.15/src/encoding/json/decode.go:1014:23: v.OverflowFloat undefined (type reflect.Value has no field or method OverflowFloat)
-[...more lines following...]</pre>
+</pre>
 
 
 
@@ -483,7 +410,6 @@ This package cannot be imported because the following dependencies cannot be com
 This package cannot be imported because the following dependencies cannot be compiled:
 
   * [go/build](#go-build)
-  * [go/types](#go-types)
 
 
 
@@ -494,27 +420,6 @@ This package cannot be imported because the following dependencies cannot be com
 
 
 
-
-
-
-## go/types
-
-
-The compiler gave the following error when this package was imported:
-
-<pre># go/types
-/home/ron/Development/tinygo/tinygo/src/runtime/hashmap.go:203:21: interp: load from a bitcast
-
-traceback:
-/home/ron/Development/tinygo/tinygo/src/runtime/hashmap.go:203:21:
-  %83 = load i8, i8* %82, !dbg !2170
-/home/ron/Development/tinygo/tinygo/src/runtime/hashmap.go:335:19:
-  %13 = call i1 @runtime.hashmapGet(%runtime.hashmap* %m, i8* %12, i8* %value, i32 %valueSize, i32 %11, i8* undef, i32 ptrtoint (%runtime.funcValueWithSignature* @"runtime.hashmapStringEqual$withSignature" to i32), i8* undef, i8* undef), !dbg !2059
-/home/ron/.gvm/gos/go1.15/src/go/types/sizes.go:184:6:
-  %13 = call i1 @runtime.hashmapStringGet(%runtime.hashmap* %9, i8* %11, i32 %12, i8* %hashmap.value.bitcast, i32 4, i8* undef, i8* null), !dbg !2055
-go/types/<init>:202:24:
-  %359 = call %runtime._interface @"go/types.SizesFor"(i8* getelementptr inbounds ([2 x i8], [2 x i8]* @"go/types.init$string.1271", i32 0, i32 0), i32 2, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @"go/types.init$string.1272", i32 0, i32 0), i32 5, i8* undef, i8* undef), !dbg !2199
-</pre>
 
 
 
