@@ -3,6 +3,9 @@ title = "TinyGo - Go on Microcontrollers and WASM"
 languageCode = "en-us"
 theme = "learn"
 
+[markup.goldmark.renderer]
+unsafe = true
+
 [params]
 # Change default color scheme with a variant one. Can be "red", "blue", "green".
 themeVariant = "blue"
