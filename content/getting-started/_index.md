@@ -1,9 +1,9 @@
 ---
 title: "Getting Started"
-chapter: true
 weight: 1
 ---
 
-# Getting Started
+New to TinyGo? This is the place to get started.
 
-To use TinyGo, you must install it on your system. We have instructions for [Linux](linux), [macOS](macos), [Windows](windows), and [Docker](using-docker). You can also install TinyGo from source.
+  * [Overview](overview): short introduction into TinyGo.
+  * [Quick install guide](install): how to install the last release of TinyGo on various operating systems.
