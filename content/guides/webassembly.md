@@ -1,6 +1,6 @@
 ---
 title: "Using WebAssembly"
-weight: 3
+weight: 2
 ---
 
 You can call a JavaScript function from Go and call a Go function from WebAssembly:
