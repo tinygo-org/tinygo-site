@@ -30,7 +30,8 @@ Related JavaScript would look something like this:
 
 ```javascript
 // Providing the environment object, used in WebAssembly.instantiateStreaming.
-env: {
+// This part goes after "const go = new Go();" declaration.
+go.importObject.env = {
     'main.add': function(x, y) {
         return x + y
     }
