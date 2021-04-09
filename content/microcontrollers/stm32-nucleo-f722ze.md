@@ -5,7 +5,7 @@ weight: 3
 
 The [STM32 Nucleo F722ZE](https://www.st.com/en/evaluation-tools/nucleo-f722ze.html) is an ARM development board based on the ST Micro [STM32F722ZE](https://www.st.com/en/microcontrollers-microprocessors/stm32f722ze.html) SoC.
 
-It has onboard ethernet, 2 user buttons, and 3 user LEDs.
+It has 2 user buttons, and 3 user LEDs.
 
 ## Interfaces
 
@@ -20,7 +20,7 @@ It has onboard ethernet, 2 user buttons, and 3 user LEDs.
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the STM32 Nucleo F722ZE](../machine/stm32nucleof722ze)
+[Documentation for the machine package for the STM32 Nucleo F722ZE](../machine/nucleo-f722ze)
 
 ## Flashing
 
