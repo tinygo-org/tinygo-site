@@ -108,7 +108,7 @@ This should allow you to compile and flash TinyGo programs on an Arduino or othe
 
 ### Arch Linux
 
-There is an [AUR package](https://aur.archlinux.org/packages/tinygo-bin/) available for the latest TinyGo release.
+There is an [Arch Linux package](https://archlinux.org/packages/community/x86_64/tinygo/) available for the latest TinyGo release.
 
 If you are only interested in compiling TinyGo code for WebAssembly then you are now done with the installation.
 
