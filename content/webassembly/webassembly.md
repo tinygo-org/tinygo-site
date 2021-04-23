@@ -84,6 +84,9 @@ loading it into JavaScript with `WebAssembly.instantiateStreaming`, or
 const go = new Go(); // Defined in wasm_exec.js
 const WASM_URL = 'wasm.wasm';
 
+// Define functions that we left undefined
+go.importObject.env["main.add"] = (a, b) => a + b;
+
 var wasm;
 
 if ('instantiateStreaming' in WebAssembly) {
