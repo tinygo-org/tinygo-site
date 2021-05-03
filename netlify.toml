@@ -1,5 +1,14 @@
 # netlify.toml
 
+# Default build settings
+[build]
+  command = "cd themes/docsy && git submodule update -f --init && cd ../.. && hugo"
+
+# "production" environment specific build settings
+[build.environment]
+  HUGO_VERSION = "0.82.0"
+#  HUGO_ENV = "production"
+
 [[redirects]]
   from = "/bluetooth"
   to = "https://github.com/tinygo-org/bluetooth#go-bluetooth"
@@ -8,4 +17,9 @@
 [[redirects]]
   from = "https://bluetooth.tinygo.org"
   to = "https://github.com/tinygo-org/bluetooth#go-bluetooth"
+  status = 301
+
+[[redirects]]
+  from = "/microcontrollers"
+  to = "/docs/reference/microcontrollers"
   status = 301

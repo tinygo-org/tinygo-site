@@ -1,8 +1,10 @@
 ---
 title: "macOS"
-date: 2019-04-15T11:41:45+02:00
-draft: false
-weight: 1
+linkTitle: "macOS"
+type: "docs"
+weight: 45
+description: >
+  macOS install guide
 ---
 
 This page has information on how to install and use TinyGo on macOS. If you wish to build TinyGo from source, for example if you intend to contribute to the project, please take a look [here](../../guides/build).

@@ -1,7 +1,9 @@
 ---
 title: "Media"
-chapter: true
-weight: 8
+linkTitle: "Media"
+menu:
+  main:
+    weight: 40
 ---
 
 Here are some of the videos, podcasts, and blog posts written about TinyGo.
