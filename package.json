@@ -1,0 +1,25 @@
+{
+  "name": "tinygo-site",
+  "version": "1.0.0",
+  "description": "TinyGo website",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "autoprefixer": "^10.2.5",
+    "postcss": "^8.2.13",
+    "postcss-cli": "^8.3.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tinygo-org/tinygo-site.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tinygo-org/tinygo-site/issues"
+  },
+  "homepage": "https://github.com/tinygo-org/tinygo-site#readme"
+}

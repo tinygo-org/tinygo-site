@@ -1,3 +1,3 @@
 
 all:
-	go run . > ../content/lang-support/stdlib.md
+	go run . > ../content/docs/reference/lang-support/stdlib.md

@@ -1,6 +1,8 @@
 ---
 title: "Docker"
-weight: 4
+linkTitle: "Docker"
+type: "docs"
+weight: 55
 ---
 
 You can use our Docker image to be able to run the TinyGo compiler on your computer without having to install all the dependencies. Read on to learn how.

@@ -1,16 +1,51 @@
 ---
-title: "Home"
+title: "TinyGo Home"
 ---
-# TinyGo - A Go Compiler For Small Places
 
-TinyGo is a project to bring the [Go programming language](https://golang.org) to microcontrollers and modern web browsers by creating a new compiler based on [LLVM](https://llvm.org/).
+{{< blocks/cover title="TinyGo - A Go Compiler For Small Places" image_anchor="top" height="full" color="primary" >}}
+
+![TinyGo Logo](images/tinygo-logo.png)
+
+<div class="mx-auto">
+	<a class="btn btn-lg btn-primary mr-3 mb-4" href="{{< relref "/getting-started" >}}">
+		Get Started <i class="fas fa-arrow-alt-circle-right ml-2"></i>
+	</a>
+	<a class="btn btn-lg btn-secondary mr-3 mb-4" href="https://github.com/tinygo-org/tinygo">
+		See the code <i class="fab fa-github ml-2 "></i>
+	</a>
+	<p class="lead mt-5">Go on embedded systems and WebAssembly</p>
+	{{< blocks/link-down color="info" >}}
+</div>
+{{< /blocks/cover >}}
+
+{{% blocks/lead color="secondary" %}}
+TinyGo is a project to bring the [Go programming language](https://golang.org) to embedded systems and the modern web by creating a new compiler based on [LLVM](https://llvm.org/).
 
 You can compile and run TinyGo programs on many different microcontroller boards such as the [BBC micro:bit](https://www.microbit.co.uk/) and the [Arduino Uno](https://store.arduino.cc/usa/arduino-uno-rev3/).
 
 TinyGo can also be used to produce [WebAssembly (WASM)](https://webassembly.org/) code which is very compact in size.
+{{% /blocks/lead %}}
 
-Just want to see the code? Go to the Github repository at [https://github.com/tinygo-org/tinygo](https://github.com/tinygo-org/tinygo).
+{{< blocks/section color="primary-light" >}}
+{{% blocks/feature icon="fa-lightbulb" title="TinyGo Playground" url="https://play.tinygo.org/" %}}
+Try the TinyGo Playground online
+{{% /blocks/feature %}}
 
+{{% blocks/feature icon="fab fa-github" title="Show me the code!" url="https://github.com/tinygo-org/tinygo" %}}
+Just want to see the code?
+{{% /blocks/feature %}}
+
+
+{{% blocks/feature icon="fab fa-twitter" title="Follow us on Twitter!" url="https://twitter.com/tinygolang" %}}
+For all the latest and greatest
+{{% /blocks/feature %}}
+
+{{< /blocks/section >}}
+
+
+{{< blocks/section color="secondary">}}
 TinyGo also has support for several different devices such as accelerometers and magnetometers. Check out the Github repository at [https://github.com/tinygo-org/drivers](https://github.com/tinygo-org/drivers) for more information.
 
 Ready to get started? [Click here](getting-started).
+
+{{< /blocks/section >}}

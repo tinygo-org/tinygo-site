@@ -8,13 +8,17 @@ Built using Hugo:
 
 http://gohugo.io/
 
-and the Hugo "Learn" theme:
+and the Hugo "Docsy" theme:
 
-https://github.com/matcornic/hugo-theme-learn
+https://github.com/google/docsy
+
+## Prerequisites
+
+Install Hugo command line tool for your operating system with the "extended" option, along with the needed NodeJS modules for processing the site CSS:
+
+https://www.docsy.dev/docs/getting-started/#prerequisites-and-installation
 
 ## Installation
-
-Install Hugo command line tool for your operating system.
 
 Clone this repo using:
 
@@ -24,9 +28,9 @@ Change directories into the tinygo-site directory:
 
     cd tinygo-site
 
-Install the "Learn" theme:
+Install the "Docsy" theme:
 
-    git submodule update --init
+    git submodule update --init --recursive
 
 Now you should be able to run the site locally:
 
@@ -42,7 +46,4 @@ That's it.
 
 ## TODO:
 
-- Generate custom godocs for all tinygo build tags, add to "Documentation" section, and point Godocs links there.
-- Activate search.
-- Custom domain for all packages
 - ?

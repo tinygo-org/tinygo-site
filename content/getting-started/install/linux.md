@@ -1,8 +1,10 @@
 ---
 title: "Linux"
-date: 2019-04-15T11:41:45+02:00
-draft: false
-weight: 1
+linkTitle: "Linux"
+type: "docs"
+weight: 35
+description: >
+  Linux install guide
 ---
 
 This page has information on how to install and use TinyGo on Ubuntu, as well as other Linux distributions.
