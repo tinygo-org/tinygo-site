@@ -21,9 +21,9 @@ title: "TinyGo Home"
 {{% blocks/lead color="secondary" %}}
 TinyGo brings the [Go programming language](https://golang.org) to embedded systems and the modern web by creating a new compiler based on [LLVM](https://llvm.org/).
 
-You can compile and run TinyGo programs on over 50 different microcontroller boards such as the [BBC micro:bit](https://www.microbit.co.uk/) and the [Arduino Uno](https://store.arduino.cc/usa/arduino-uno-rev3/).
+You can compile and run TinyGo programs on over 50 different microcontroller boards such as the [BBC micro:bit](https://www.microbit.co.uk/) and the [Arduino Uno](https://store.arduino.cc/usa/arduino-uno-rev3/). [Click here for the complete list](/docs/reference/microcontrollers)
 
-TinyGo can also produce [WebAssembly (WASM)](https://webassembly.org/) code which is very compact in size for browsers, and for non-browser environments that support [WebAssembly System Interface (WASI)](https://github.com/WebAssembly/WASI).
+TinyGo can also produce [WebAssembly (WASM)](https://webassembly.org/) code which is very compact in size, for web browsers and for non-browser environments that support [WebAssembly System Interface (WASI)](https://github.com/WebAssembly/WASI).
 
 Ready to get started? [Click here](getting-started).
 
@@ -31,16 +31,16 @@ Ready to get started? [Click here](getting-started).
 
 {{< blocks/section color="primary-light" >}}
 {{% blocks/feature icon="fa-lightbulb" title="TinyGo Playground" url="https://play.tinygo.org/" %}}
-Try the TinyGo Playground online
+Try TinyGo online
 {{% /blocks/feature %}}
 
-{{% blocks/feature icon="fab fa-github" title="Show me the code!" url="https://github.com/tinygo-org/tinygo" %}}
-Just want to see the code?
+{{% blocks/feature icon="fab fa-github" title="TinyGo on Github" url="https://github.com/tinygo-org/tinygo" %}}
+See the code here
 {{% /blocks/feature %}}
 
 
-{{% blocks/feature icon="fab fa-twitter" title="Follow us on Twitter!" url="https://twitter.com/tinygolang" %}}
-For all the latest and greatest
+{{% blocks/feature icon="fab fa-twitter" title="TinyGo on Twitter" url="https://twitter.com/tinygolang" %}}
+Follow us for news
 {{% /blocks/feature %}}
 
 {{< /blocks/section >}}
