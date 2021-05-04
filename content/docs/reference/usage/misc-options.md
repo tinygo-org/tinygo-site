@@ -9,27 +9,27 @@ This is not necessary on microcontrollers because debugging symbols are not flas
 Note: while there is some support for debug symbols, only line numbers have been implemented so far. That means single-stepping and stacktraces work just fine, but no variables can be inspected.
 
 - `-size`
-Print size (``none``, ``short``, or ``full``) of the output (linked) binary. Note that the calculated size includes RAM reserved for the stack.
+    Print size (``none``, ``short``, or ``full``) of the output (linked) binary. Note that the calculated size includes RAM reserved for the stack.
 
-- `none` (default)
-Print nothing.
-
-- `short`
-Print size statistics, roughly like what the ``size`` binutils program would print but with useful flash and RAM columns:
-```
-code    data     bss |   flash     ram
-5780     144    2132 |    5924    2276
-```
-
-- `full`
-Try to determine per package how much space is used. Note that these calculations are merely guesses and can somethimes be way off due to various reasons like inlining:
-```
-code  rodata    data     bss |   flash     ram | package
-876        0       4       0 |     880       4 | (bootstrap)
-38         0       0       0 |      38       0 | device/arm
-0          0       0      66 |       0      66 | machine
-2994     440     124       0 |    3558     124 | main
-948      127       4       1 |    1079       5 | runtime
-4856     567     132      67 |    5555     199 | (sum)
-5780       -     144    2132 |    5924    2276 | (all)
-```
+    - `none` (default)
+        Print nothing.
+    
+    - `short`
+        Print size statistics, roughly like what the ``size`` binutils program would print but with useful flash and RAM columns:
+        ```
+        code    data     bss |   flash     ram
+        5780     144    2132 |    5924    2276
+        ```
+    
+    - `full`
+        Try to determine per package how much space is used. Note that these calculations are merely guesses and can somethimes be way off due to various reasons like inlining:
+        ```
+        code  rodata    data     bss |   flash     ram | package
+        876        0       4       0 |     880       4 | (bootstrap)
+        38         0       0       0 |      38       0 | device/arm
+        0          0       0      66 |       0      66 | machine
+        2994     440     124       0 |    3558     124 | main
+        948      127       4       1 |    1079       5 | runtime
+        4856     567     132      67 |    5555     199 | (sum)
+        5780       -     144    2132 |    5924    2276 | (all)
+        ```
