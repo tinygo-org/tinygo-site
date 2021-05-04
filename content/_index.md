@@ -13,17 +13,20 @@ title: "TinyGo Home"
 	<a class="btn btn-lg btn-secondary mr-3 mb-4" href="https://github.com/tinygo-org/tinygo">
 		See the code <i class="fab fa-github ml-2 "></i>
 	</a>
-	<p class="lead mt-5">Go on embedded systems and WebAssembly</p>
+	<p class="h2 mt-5">Go on embedded systems and WebAssembly</p>
 	{{< blocks/link-down color="info" >}}
 </div>
 {{< /blocks/cover >}}
 
 {{% blocks/lead color="secondary" %}}
-TinyGo is a project to bring the [Go programming language](https://golang.org) to embedded systems and the modern web by creating a new compiler based on [LLVM](https://llvm.org/).
+TinyGo brings the [Go programming language](https://golang.org) to embedded systems and the modern web by creating a new compiler based on [LLVM](https://llvm.org/).
 
-You can compile and run TinyGo programs on many different microcontroller boards such as the [BBC micro:bit](https://www.microbit.co.uk/) and the [Arduino Uno](https://store.arduino.cc/usa/arduino-uno-rev3/).
+You can compile and run TinyGo programs on over 50 different microcontroller boards such as the [BBC micro:bit](https://www.microbit.co.uk/) and the [Arduino Uno](https://store.arduino.cc/usa/arduino-uno-rev3/).
 
-TinyGo can also be used to produce [WebAssembly (WASM)](https://webassembly.org/) code which is very compact in size.
+TinyGo can also produce [WebAssembly (WASM)](https://webassembly.org/) code which is very compact in size for browsers, and for non-browser environments that support [WebAssembly System Interface (WASI)](https://github.com/WebAssembly/WASI).
+
+Ready to get started? [Click here](getting-started).
+
 {{% /blocks/lead %}}
 
 {{< blocks/section color="primary-light" >}}
@@ -42,10 +45,3 @@ For all the latest and greatest
 
 {{< /blocks/section >}}
 
-
-{{< blocks/section color="secondary">}}
-TinyGo also has support for several different devices such as accelerometers and magnetometers. Check out the Github repository at [https://github.com/tinygo-org/drivers](https://github.com/tinygo-org/drivers) for more information.
-
-Ready to get started? [Click here](getting-started).
-
-{{< /blocks/section >}}
