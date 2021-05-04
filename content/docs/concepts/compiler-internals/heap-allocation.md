@@ -5,6 +5,8 @@ weight: 5
 
 Many operations in Go rely on heap allocation. TinyGo will try to optimize them away using escape analysis, but that is not always possible in practice.
 
+If you want to know for sure which operations allocate on the heap, you can pass the compiler flag `-print-allocs=.` to show all heap allocations. You can also do this for a subset of functions or packages, for details see [build flags]({{<ref "misc-options.md">}}).
+
 These operations currently do heap allocations:
 
 * Taking the pointer of a local variable. This will result in a heap allocation, unless the compiler can see the resulting pointer never escapes. This causes a heap allocation:

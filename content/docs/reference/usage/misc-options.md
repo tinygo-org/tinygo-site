@@ -35,3 +35,6 @@ Note: while there is some support for debug symbols, only line numbers have been
         4856     567     132      67 |    5555     199 | (sum)
         5780       -     144    2132 |    5924    2276 | (all)
         ```
+
+- `-print-allocs=<regex>`
+    Print heap allocations in the program and why they happen. You can use `-print-allocs=.` if you want to see all heap allocations in the program. You can also match the function name, for example you can use `-print-allocs=strconv` to print heap allocations that contain the `strconv` substring (which includes all functions from the strconv standard library package).

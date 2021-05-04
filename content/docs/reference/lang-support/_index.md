@@ -43,7 +43,7 @@ While not directly a language feature (the Go spec doesn't mention it), garbage 
 
 Garbage collection is currently supported on all platforms, although it works best on 32-bit chips. A simple conservative mark-sweep collector is used that will trigger a collection cycle when the heap runs out (that is fixed at compile time) or when requested manually using `runtime.GC()`. Some other collector designs are used for other targets, TinyGo will automatically pick a good GC for a given target.
 
-Careful design may avoid memory allocations in main loops. You may want to compile with `-gc=none` and look at link errors to find out where allocations happen: the compiler inserts calls to `runtime.alloc` to allocate memory. For more information, see [heap allocation]({{<ref "heap-allocation.md">}}).
+Careful design may avoid memory allocations in main loops. You may want to compile with `-print-allocs=.` to find out where allocations happen and why they happen. For more information, see [heap allocation]({{<ref "heap-allocation.md">}}).
 
 ## A note on the `recover` builtin
 
