@@ -48,16 +48,19 @@ Like ``-opt=s``, but more aggressive about code size. This pass also reduces the
 Print output of the on-chip debugger tool (like OpenOCD) while in a `tinygo gdb` session. This can be useful to diagnose connection problems.
 
 - `-gc`
-Use the specified memory manager:
+Use the specified memory manager. The default is usually the best option, so leave this value at the default unless you know what you're doing. The possible values are:
 
-  - `-gc=none`
-Do not use a memory manager at all. This will cause a link error at every place in the program that tries to allocate memory. The primary use case for this is finding such locations.
+  - `-gc=none`  
+    Do not use a memory manager at all. This will cause a link error at every place in the program that tries to allocate memory. The primary use case for this is finding such locations.
 
-  - `-gc=dumb`
-Only allocate memory, never free it. This is the simplest allocator possible and uses very few resources while being very portable. Also, allocation is very fast. Larger programs will likely need a real garbage collector.
+  - `-gc=leaking`  
+    Only allocate memory, never free it. This is the simplest allocator possible and uses very few resources while being very portable. Also, allocation is very fast. Larger programs will likely need a real garbage collector.
 
-  - `-gc=marksweep`
-Simple conservative mark/sweep garbage collector. This collector does not yet work on all platforms. Also, the performance of the collector is highly unpredictable as any allocation may trigger a garbage collection cycle.
+  - `-gc=marksweep`  
+    Simple conservative mark/sweep garbage collector. This collector does not yet work on all platforms. Also, the performance of the collector is highly unpredictable as any allocation may trigger a garbage collection cycle.
+
+  - `-gc=extalloc`
+    Use an existing `malloc` function to allocate memory, normally provided by the operating system. This allocator is used on Linux and MacOS.
 
 - `-panic`
 Use the specified panic strategy. That is, what the compiled program should do when a panic occurs.
