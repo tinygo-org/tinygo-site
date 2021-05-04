@@ -11,19 +11,19 @@ There are a few flags to control how binaries are built:
 Output filename, see the ``build`` command.
 
 - `-target`
-Select the target you want to use. Leave it empty to compile for the host. This switch also configures the emulator, flash tool and debugger to use so you don't have to fiddle with those options. Read [supported targets](../../microcontrollers/) for a list of supported targets. Example targets:
+    Select the target you want to use. Leave it empty to compile for the host. This switch also configures the emulator, flash tool and debugger to use so you don't have to fiddle with those options. Read [supported targets](../../microcontrollers/) for a list of supported targets. Example targets:
 
-  - wasm
-WebAssembly target. Creates .wasm files that can be run in a web browser.
+  - `-target=wasm`  
+    WebAssembly target. Creates .wasm files that can be run in a web browser.
 
-  - arduino
-Compile using the experimental AVR backend to run Go programs on an Arduino Uno.
+  - `-target=arduino`  
+    Compile using the experimental AVR backend to run Go programs on an Arduino Uno.
 
-  - microbit
-Compile programs for the `BBC micro:bit <https://microbit.org/>`_.
+  - `-target=microbit`  
+    Compile programs for the [BBC micro:bit](https://microbit.org/).
 
-  - qemu
-Run on a Stellaris LM3S as emulated by QEMU.
+  - `-target=cortex-m-qemu`  
+    Run on a Stellaris LM3S as emulated by QEMU. This is mostly useful for testing.
 
 - `-port`
 Specify the serial port used for flashing. This is used for the Arduino Uno, which is flashed over a serial port. It defaults to ``/dev/ttyACM0`` as that is the default port on Linux.
