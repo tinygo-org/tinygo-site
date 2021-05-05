@@ -1,6 +1,8 @@
 ---
 title: "Subcommands"
 weight: 2
+description: |
+  Subcommands like `tinygo flash` and `tinygo version`.
 ---
 
 TinyGo tries to be similar to the main `go` command in usage. It consists of the following main subcommands:

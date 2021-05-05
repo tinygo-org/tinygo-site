@@ -1,6 +1,8 @@
 ---
 title: "Using WebAssembly"
 weight: 3
+description: |
+  How to call WebAssembly from JavaScript in a browser.
 ---
 
 You can call a JavaScript function from Go and call a Go function from WebAssembly:

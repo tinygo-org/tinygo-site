@@ -1,9 +1,10 @@
 ---
 title: "Basic command examples"
 weight: 1
+description: |
+  Here are some basic examples of using TinyGo in the most common scenarios.
 ---
 
-Here will go some basic examples of using TinyGo in the most common scenarios.
 
 ### Building "Hello, World" program for WebAssembly
 
