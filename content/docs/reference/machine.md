@@ -64,3 +64,43 @@ func (p Pin) Get() bool
 Get the input state of a pin. The returned value indicates whether the pin is low or high: `true` means high and `false` means low. `Get` may only be called when the pin has been configured as an input.
 
 Note that if the pin is left floating (not connected to anything) the returned value is unpredictable and may appear random.
+
+## I2C
+
+```go
+type I2CConfig struct {
+    Frequency uint32
+    SCL       Pin
+    SDA       Pin
+}
+```
+
+The `I2CConfig` struct contains the configuration for the I2C peripheral.
+
+  * `Frequency` can be set to either 100kHz (`100e3`), 400kHz (`400e3`), and sometimes to other values depending on the chip. The zero value defaults to 100kHz.
+  * `SCL` and `SDA` can be set as desired, however support for different pins than the default is limited. Some chips are flexible and allow the use of any pin, while other boards only allow a limited range of pins or use fixed SCL/SDA pins. When both pins are left at the zero value, the default for the particular board is used.
+
+```go
+type I2C struct {
+    // values are unexported or vary by chip
+}
+
+var (
+    I2C0 = I2C{...}
+    I2C1 = I2C{...}
+)
+```
+
+The `I2C` object refers to a single (hardware) I2C instance. Depending on chip capabilities, various objects such as `I2C0` and perhaps others are defined.
+
+```go
+func (i2c I2C) Configure(config I2CConfig) error
+```
+
+The `Configure` call enables and configures the hardware I2C for use, setting the pins and frequency. It will return an error when an incorrect configuration is provided (for example, using pins not usable with this I2C instance). See `I2CConfig` for details.
+
+```go
+func (i2c I2C) Tx(addr uint16, w, r []byte) error
+```
+
+The `Tx` call performs the actual I2C transaction. It first writes the bytes in `w` to the peripheral device indicated in `addr` and then reads `r` bytes from the peripheral and stores the read bytes in the `r` slice. It returns an error if the transaction failed. Both `w` and `r` can be `nil`.
