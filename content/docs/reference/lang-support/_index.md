@@ -1,6 +1,8 @@
 ---
 title: "Go language features"
 weight: 6
+description: |
+  Which Go language features are supported by TinyGo and which are still a work in progress.
 ---
 
 While TinyGo supports a big subset of the Go language, not everything is supported yet.

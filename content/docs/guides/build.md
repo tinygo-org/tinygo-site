@@ -1,6 +1,8 @@
 ---
 title: "Build from source"
 weight: 2
+description: |
+  Build a development version of TinyGo from source if you want to help improve TinyGo or want to try the latest features.
 ---
 
 This page details how to build TinyGo from source. If you would like to install a pre-build release, please see our [quick install guide](../../getting-started/install).

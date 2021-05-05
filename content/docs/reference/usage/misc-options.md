@@ -1,6 +1,8 @@
 ---
 title: "Misc. Build Options"
 weight: 4
+description: |
+  Command line flags that are less commonly used and don't usually impact the build.
 ---
 
 - `-no-debug`

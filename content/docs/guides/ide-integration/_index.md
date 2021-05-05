@@ -1,6 +1,8 @@
 ---
 title: "IDE Integration"
 weight: 8
+description: |
+  TinyGo has some IDE support. This is how you can configure your IDE to recognize the machine package.
 ---
 
 IDEs need to have certain environment variables set before they work with TinyGo: `GOROOT` and `GOFLAGS`. You can determine the correct values from the `tinygo info` command (starting with TinyGo 0.15).

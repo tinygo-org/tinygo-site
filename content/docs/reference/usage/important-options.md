@@ -1,6 +1,8 @@
 ---
 title: "Important Build Options"
 weight: 3
+description: |
+  Command line flags you will commonly use with TinyGo that often control how the binary is built or flashed to the device.
 ---
 
 There are a few flags to control how binaries are built:
