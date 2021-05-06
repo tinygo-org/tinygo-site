@@ -82,8 +82,13 @@ title: {{.Target}}
 func main() {
 	// Get the target from the list of command line options.
 	for _, target := range os.Args[1:] {
-		fmt.Println("Generating documentation for:", target)
 		path := filepath.Join("..", "content", "docs", "reference", "microcontrollers", "machine", target+".md")
+		docPath := filepath.Join("..", "content", "docs", "reference", "microcontrollers", target+".md")
+		if _, err := os.Stat(docPath); err != nil {
+			fmt.Println("Skipping:                    ", target)
+			continue
+		}
+		fmt.Println("Generating documentation for:", target)
 		writeTargetDoc(target, path)
 	}
 }
