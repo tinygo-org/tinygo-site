@@ -16,7 +16,7 @@ Note: the AVR backend of LLVM is still experimental so you may encounter bugs.
 | SPI      | YES | YES |
 | I2C      | YES | YES |
 | ADC      | YES | YES |
-| PWM      | YES | YES |
+| PWM      | YES | Not yet |
 
 ## Machine Package Docs
 
