@@ -4,10 +4,10 @@ import (
 	"bytes"
 	"fmt"
 	"go/ast"
-	"go/parser"
 	"go/printer"
 	"go/token"
-	"io"
+	"go/types"
+	"io/ioutil"
 	"log"
 	"os"
 	"os/exec"
@@ -89,11 +89,11 @@ func main() {
 			continue
 		}
 		fmt.Println("Generating documentation for:", target)
-		writeTargetDoc(target, path)
+		updateDocumentation(target, path, docPath)
 	}
 }
 
-func writeTargetDoc(target, path string) {
+func updateDocumentation(target, path, docPath string) {
 	// Get the important information from the compiler.
 	cmd := exec.Command("tinygo", "info", target)
 	outBytes, err := cmd.Output()
@@ -102,7 +102,7 @@ func writeTargetDoc(target, path string) {
 		os.Exit(1)
 	}
 	var buildTags []string
-	var goos, goarch string
+	var goos, goarch, goroot string
 	for _, line := range strings.Split(string(outBytes), "\n") {
 		idx := strings.IndexByte(line, ':')
 		if idx < 0 {
@@ -117,28 +117,20 @@ func writeTargetDoc(target, path string) {
 			goos = value
 		case "GOARCH":
 			goarch = value
+		case "cached GOROOT":
+			goroot = value
 		}
 	}
-	if len(buildTags) == 0 || goos == "" || goarch == "" {
-		fmt.Fprintln(os.Stderr, "could not find all needed properties (build tags, GOOS, GOARCH)")
+	if len(buildTags) == 0 || goos == "" || goarch == "" || goroot == "" {
+		fmt.Fprintln(os.Stderr, "could not find all needed properties (build tags, GOOS, GOARCH, GOROOT)")
 		os.Exit(1)
 	}
 
-	f, err := os.Create(path)
-	if err != nil {
-		fmt.Fprintln(os.Stderr, "could not open file:", err)
-		os.Exit(1)
-	}
-	defer f.Close()
-	writeDoc(f, target, buildTags, goos, goarch)
-}
-
-func writeDoc(out io.Writer, target string, buildTags []string, goos, goarch string) {
 	// Get the list of files that would be compiled for this package.
 	pkgs, err := packages.Load(&packages.Config{
-		Mode:       packages.NeedName | packages.NeedFiles | packages.NeedCompiledGoFiles,
+		Mode:       packages.NeedName | packages.NeedSyntax | packages.NeedTypes | packages.NeedDeps,
 		BuildFlags: []string{"-tags=" + strings.Join(buildTags, " ")},
-		Env:        append(os.Environ(), "GOOS="+goos, "GOARCH="+goarch, "GO111MODULE=off"),
+		Env:        append(os.Environ(), "GOOS="+goos, "GOARCH="+goarch, "GOROOT="+goroot, "GO111MODULE=off"),
 	}, "github.com/tinygo-org/tinygo/src/machine")
 	if err != nil {
 		log.Fatal(err)
@@ -151,22 +143,22 @@ func writeDoc(out io.Writer, target string, buildTags []string, goos, goarch str
 		}
 		os.Exit(1)
 	}
-	if len(pkgs[0].CompiledGoFiles) == 0 {
-		fmt.Fprintln(os.Stderr, "no compiled Go files found for target:", target)
+	pkg := pkgs[0]
+
+	err = writeMachinePackageDoc(path, target, pkg)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "error:", err)
 		os.Exit(1)
 	}
 
-	// Parse all to-be-compiled files.
-	syntax := make([]*ast.File, len(pkgs[0].CompiledGoFiles))
-	fset := token.NewFileSet()
-	for i, fileName := range pkgs[0].CompiledGoFiles {
-		file, err := parser.ParseFile(fset, fileName, nil, parser.ParseComments)
-		if err != nil {
-			log.Fatal("failed to parse Go source file:", err)
-		}
-		syntax[i] = file
+	err = updateBoardDocumentation(docPath, pkg, buildTags)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "error:", err)
+		os.Exit(1)
 	}
+}
 
+func writeMachinePackageDoc(path, target string, pkg *packages.Package) error {
 	doc := PackageDoc{
 		Target: target,
 		Types:  make(map[string]*Type),
@@ -174,7 +166,7 @@ func writeDoc(out io.Writer, target string, buildTags []string, goos, goarch str
 	}
 
 	// Read everything except for functions.
-	for _, file := range syntax {
+	for _, file := range pkg.Syntax {
 		for _, decl := range file.Decls {
 			switch decl := decl.(type) {
 			case *ast.GenDecl:
@@ -216,7 +208,7 @@ func writeDoc(out io.Writer, target string, buildTags []string, goos, goarch str
 
 	// Read functions after types have been read, to attach functions to type
 	// documentation.
-	for _, file := range syntax {
+	for _, file := range pkg.Syntax {
 		for _, decl := range file.Decls {
 			switch decl := decl.(type) {
 			case *ast.FuncDecl:
@@ -235,7 +227,7 @@ func writeDoc(out io.Writer, target string, buildTags []string, goos, goarch str
 					case *ast.StarExpr:
 						receiverName = receiver.X.(*ast.Ident).Name
 					default:
-						log.Fatal("unknown receiver for:", decl.Name.Name)
+						return fmt.Errorf("unknown receiver for %s", decl.Name.Name)
 					}
 					doc.Types[receiverName].Funcs[decl.Name.Name] = decl
 				}
@@ -268,19 +260,167 @@ func writeDoc(out io.Writer, target string, buildTags []string, goos, goarch str
 					Rparen: n.Rparen,
 				}
 			}
-			printer.Fprint(w, fset, node)
+			printer.Fprint(w, pkg.Fset, node)
 			text := string(w.Bytes())
 			return "```go\n" + text + "\n```\n"
 		},
 		"formatReceiver": func(receiver *ast.FieldList) string {
 			// Special case for formatting the receiver of a method.
 			w := &bytes.Buffer{}
-			printer.Fprint(w, fset, receiver.List[0].Type)
+			printer.Fprint(w, pkg.Fset, receiver.List[0].Type)
 			return string(w.Bytes())
 		},
 	}).Parse(markdownTemplateText))
-	err = tpl.Execute(out, doc)
+
+	f, err := os.Create(path)
 	if err != nil {
-		fmt.Fprintln(os.Stderr, "error:", err)
+		return fmt.Errorf("could not open file: %w", err)
 	}
+	defer f.Close()
+
+	return tpl.Execute(f, doc)
+}
+
+func updateBoardDocumentation(path string, pkg *packages.Package, buildTags []string) error {
+	features := detectSupportedFeatures(pkg, buildTags)
+
+	// Read the entire Markdown file in memory.
+	docBuf, err := ioutil.ReadFile(path)
+	if err != nil {
+		return fmt.Errorf("could not read Markdown file: %w", err)
+	}
+	doc := string(docBuf)
+
+	// Find "Interfaces" section.
+	start := strings.Index(doc, "## Interfaces\n")
+	if start < 0 {
+		return fmt.Errorf("could not find 'Interface' header")
+	}
+	endOffset := strings.Index(doc[start:], "\n## ")
+	if endOffset < 0 {
+		return fmt.Errorf("could not find end of 'Interface' header")
+	}
+	end := start + endOffset
+
+	// Create new "Interfaces" section based on the previous section.
+	interfacesText := "## Interfaces\n\n| Interface | Hardware Supported | TinyGo Support |\n| --------- | ------------- | ----- |\n"
+	for _, line := range strings.Split(doc[start:end], "\n") {
+		if !strings.HasPrefix(line, "| ") {
+			continue
+		}
+		parts := strings.Split(line, "|")
+		if len(parts) != 5 {
+			return fmt.Errorf("expected 5 parts, got %d", len(parts))
+		}
+		feature := strings.TrimSpace(parts[1])
+		if feature == "Interface" || feature[0] == '-' {
+			// Part of the hearder.
+			continue
+		}
+		hardwareSupport := strings.TrimSpace(parts[2])
+		softwareSupport := strings.TrimSpace(parts[3])
+		if hardwareSupport != "NO" && hardwareSupport != "?" {
+			if supported, ok := features[feature]; ok {
+				if supported {
+					softwareSupport = "YES"
+				} else {
+					softwareSupport = "Not yet"
+				}
+			}
+		}
+		interfacesText += fmt.Sprintf("| %s      | %s | %s |\n", feature, hardwareSupport, softwareSupport)
+	}
+
+	// Replace the "Interfaces" section.
+	doc = doc[:start] + interfacesText + doc[end:]
+
+	// Write out the updated documentation.
+	err = ioutil.WriteFile(path+".tmp", []byte(doc), 0o666)
+	if err != nil {
+		return fmt.Errorf("could not write updated Markdown file: %w", err)
+	}
+	err = os.Rename(path+".tmp", path)
+	if err != nil {
+		return fmt.Errorf("could not rename updated Markdown file: %w", err)
+	}
+
+	return nil
+}
+
+// detectSupportedFeatures check whether a given feature is supported by the
+// chip/board based on the available types in the machine package and the build
+// tags used for the compilation.
+func detectSupportedFeatures(pkg *packages.Package, buildTags []string) map[string]bool {
+	features := map[string]bool{
+		"GPIO":      false,
+		"UART":      false,
+		"SPI":       false,
+		"I2C":       false,
+		"ADC":       false,
+		"PWM":       false,
+		"Bluetooth": false,
+	}
+
+	pinType := pkg.Types.Scope().Lookup("Pin").Type()
+	if types.NewMethodSet(pinType).Lookup(pkg.Types, "Get") != nil {
+		// Note: checking the 'Get' method because the 'Set' method is always
+		// implemented (even if it's a no-op).
+		features["GPIO"] = true
+	}
+	if pkg.Types.Scope().Lookup("UART") != nil {
+		features["UART"] = true
+	}
+	if pkg.Types.Scope().Lookup("SPI") != nil {
+		features["SPI"] = true
+	}
+	if pkg.Types.Scope().Lookup("I2C") != nil {
+		features["I2C"] = true
+	}
+	adcType := pkg.Types.Scope().Lookup("ADC").Type()
+	if types.NewMethodSet(adcType).Lookup(pkg.Types, "Configure") != nil {
+		features["ADC"] = true
+	}
+	for _, tag := range buildTags {
+		if tag == "nrf51" || tag == "nrf52" || tag == "nrf52840" || tag == "nrf52833" {
+			features["Bluetooth"] = true
+		}
+	}
+
+	// Detecting PWM support is a bit more tricky.
+	// We basically iterate over all global variables and check whether they
+	// have Configure method that takes a single PWMConfig struct.
+	for _, file := range pkg.Syntax {
+		for _, decl := range file.Decls {
+			switch decl := decl.(type) {
+			case *ast.GenDecl:
+				if decl.Tok != token.VAR {
+					continue
+				}
+				for _, spec := range decl.Specs {
+					// Found a global variable.
+					spec := spec.(*ast.ValueSpec)
+					name := spec.Names[0].Name
+					if !ast.IsExported(name) {
+						continue
+					}
+					varType := pkg.Types.Scope().Lookup(name).Type()
+					// Check for Configure method.
+					configureMethod := types.NewMethodSet(varType).Lookup(pkg.Types, "Configure")
+					if configureMethod == nil {
+						continue
+					}
+					// Check whether it has just one parameter and this
+					// parameter is of type PWMConfig.
+					params := configureMethod.Type().(*types.Signature).Params()
+					if params.Len() != 1 || params.At(0).Type() != pkg.Types.Scope().Lookup("PWMConfig").Type() {
+						continue
+					}
+					// Yes, this looks like a PWM peripheral.
+					features["PWM"] = true
+				}
+			}
+		}
+	}
+
+	return features
 }
