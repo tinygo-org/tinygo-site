@@ -15,7 +15,7 @@ weight: 3
 | I2C      | YES | YES |
 | ADC      | YES | YES |
 | PWM      | YES | YES |
-| Bluetooth      | YES | Not yet |
+| Bluetooth      | YES | YES |
 
 ## Machine Package Docs
 

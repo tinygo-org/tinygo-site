@@ -13,8 +13,8 @@ The [nRF52840-MDK](https://wiki.makerdiary.com/nrf52840-mdk/) (not to be confuse
 | UART      | YES | YES |
 | SPI      | YES | YES |
 | I2C      | YES | YES |
-| ADC      | YES | Not yet |
-| PWM      | YES | Not yet |
+| ADC      | YES | YES |
+| PWM      | YES | YES |
 | Bluetooth      | YES | YES |
 
 ## Machine Package Docs
