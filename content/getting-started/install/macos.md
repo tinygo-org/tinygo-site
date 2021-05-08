@@ -7,9 +7,9 @@ description: >
   macOS install guide
 ---
 
-This page has information on how to install and use TinyGo on macOS. If you wish to build TinyGo from source, for example if you intend to contribute to the project, please take a look [here](../../guides/build).
+This page has information on how to install and use TinyGo on macOS. If you wish to build TinyGo from source, for example if you intend to contribute to the project, please take a look [here](../../../docs/guides/build).
 
-You must have Go v1.12+ already installed on your machine in order to install TinyGo. We recommend Go v1.16+.
+You must have Go v1.14+ already installed on your machine in order to install TinyGo. We recommend Go v1.16+.
 
 You can use Homebrew to install TinyGo using the following commands:
 
@@ -33,7 +33,7 @@ Otherwise, please continue with the installation of the additional requirements 
 
 ### Additional Requirements for Microcontrollers
 
-Some boards require a special flashing tool for that particular chip, like `openocd` or `nrfjprog`. See the documentation page for your board as listed [here](../../microcontrollers/) to see which flashing tool is required for your target board.
+Some boards require a special flashing tool for that particular chip, like `openocd` or `nrfjprog`. See the documentation page for your board as listed [here](../../../docs/reference/microcontrollers/) to see which flashing tool is required for your target board.
 
 If you are only interested in compiling TinyGo code for ARM microcontrollers then you are now done with the installation.
 

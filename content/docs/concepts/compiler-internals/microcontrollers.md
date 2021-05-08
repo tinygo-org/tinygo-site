@@ -23,4 +23,4 @@ There is some support for RISC-V, in particular the [HiFive1 rev B](https://gith
 
 ## Xtensa
 
-Support to run TinyGo directly on the ESP8266/ESP32 chips should be possible once the needed support is added to LLVM. See the [TinyGo FAQ](../../faq/what-about-esp8266-esp32) for details.
+Support to run TinyGo directly on the ESP8266/ESP32 chips now exists, although is still in an early stage. See the [TinyGo FAQ](../../faq/what-about-esp8266-esp32) for details.

@@ -11,7 +11,7 @@ This page has information on how to install and use TinyGo on Ubuntu, as well as
 
 If you want to use TinyGo to compile your own or sample code, you can install the release version directly on your machine by following the "Quick Install" instructions below.
 
-If you wish to build TinyGo from source, for example if you intend to contribute to the project, please take a look [here](../../guides/build).
+If you wish to build TinyGo from source, for example if you intend to contribute to the project, please take a look [here](../../../docs/guides/build).
 
 ## Quick Install
 
@@ -58,7 +58,7 @@ Otherwise, please continue with the installation of the additional requirements 
 
 ### Additional Requirements for Microcontrollers on Ubuntu/Debian
 
-Some boards require a special flashing tool for that particular chip, like `openocd` or `nrfjprog`. See the documentation page for your board as listed [here](../../microcontrollers/) to see which flashing tool is required for your target board.
+Some boards require a special flashing tool for that particular chip, like `openocd` or `nrfjprog`. See the documentation page for your board as listed [here](../../../docs/reference/microcontrollers/) to see which flashing tool is required for your target board.
 
 If you are only interested in compiling TinyGo code for ARM microcontrollers then you are now done with the installation.
 
