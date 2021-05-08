@@ -14,8 +14,7 @@ To build the WASM example, run the following command:
 tinygo build -o wasm.wasm -target=wasm examples/wasm/export
 ```
 
-See the [WebAssembly page](../../webassembly) for more information on executing the compiled
-WebAssembly.
+See the [WebAssembly page](../../../../docs/guides/webassembly) for more information on executing the compiled WebAssembly.
 
 ### Building/flashing a "blink" program for micro:bit
 

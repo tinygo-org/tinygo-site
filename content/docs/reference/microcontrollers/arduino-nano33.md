@@ -24,7 +24,7 @@ The [Arduino Nano33 IoT](https://store.arduino.cc/nano-33-iot) is a very small A
 
 Since the pin labels are located on the other side of the board, here is a picture showing the pin numbering from the front side perspective:
 
-![Arduino Nano33 IoT](../../images/nano33pinmap.jpg)
+![Arduino Nano33 IoT](../../../../images/nano33pinmap.jpg)
 
 ## Installing BOSSA
 

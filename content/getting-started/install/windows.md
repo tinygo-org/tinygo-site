@@ -7,7 +7,7 @@ description: >
   Windows install guide
 ---
 
-This page has information on how to install and use TinyGo on Windows 10. If you wish to build TinyGo from source, for example if you intend to contribute to the project, please take a look [here](../../guides/build).
+This page has information on how to install and use TinyGo on Windows 10. If you wish to build TinyGo from source, for example if you intend to contribute to the project, please take a look [here](../../../docs/guides/build).
 
 TinyGo can run on Windows 10, however please note that TinyGo does not support building exectuables for Windows. It only supports microcontrollers and WebAssembly on Windows.
 

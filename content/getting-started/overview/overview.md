@@ -43,6 +43,6 @@ What is more, is that you can actually run this binary on a variety of bare meta
 
     tinygo flash -target=microbit ./hello.go
 
-Many different boards from vendors such as [Adafruit](https://www.adafruit.com/) and [Arduino](https://www.arduino.cc/) and many other companies are supported. For a complete list, see [this list](../../microcontrollers).
+Many different boards from vendors such as [Adafruit](https://www.adafruit.com/) and [Arduino](https://www.arduino.cc/) and many other companies are supported. For a complete list, see [this list](../../../docs/reference/microcontrollers).
 
 Interested? Play around a bit with it on our [playground](https://play.tinygo.org/) or continue with [installing TinyGo](install).

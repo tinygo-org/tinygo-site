@@ -69,7 +69,7 @@ Make sure you copy `wasm_exec.js` to your runtime environment:
 docker run -v $GOPATH:/go -e "GOPATH=/go" tinygo/tinygo:0.17.0 /bin/bash -c "cp /usr/local/tinygo/targets/wasm_exec.js /go/src/github.com/myuser/myrepo/
 ```
 
-More complete examples are provided in the [wasm examples](https://github.com/tinygo-org/tinygo/tree/master/src/examples/wasm).
+More complete examples are provided in the [wasm examples](https://github.com/tinygo-org/tinygo/tree/release/src/examples/wasm).
 
 ## How it works
 

@@ -20,7 +20,7 @@ A docker container exists for easy access to the TinyGo CLI. For example, to com
 
     docker run --rm -v $(pwd):/src tinygo/tinygo:0.17.0 tinygo build -o wasm.wasm -target=wasm examples/wasm/export
 
-See the [WebAssembly page](../../webassembly) for more information on executing the compiled
+See the [WebAssembly page](../../../docs/guides/webassembly) for more information on executing the compiled
 WebAssembly.
 
 To compile `blinky1.hex` targeting an ARM microcontroller, such as the PCA10040:
