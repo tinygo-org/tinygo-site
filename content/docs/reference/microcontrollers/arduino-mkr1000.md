@@ -29,7 +29,7 @@ In order to flash your TinyGo programs onto the Arduino MKR1000 board, you will 
 You can use Homebrew to install the BOSSA command line interface by using the following command:
 
 ```shell
-brew cask install bossa
+brew install bossa
 ```
 
 Or if you  prefer, you can also download the installer from https://github.com/shumatech/BOSSA/releases/download/1.9.1/bossa-1.9.1.dmg
