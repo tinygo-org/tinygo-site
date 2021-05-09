@@ -23,3 +23,78 @@
   from = "/microcontrollers"
   to = "/docs/reference/microcontrollers"
   status = 301
+
+[[redirects]]
+  from = "/microcontrollers/arduino-nano33-iot"
+  to = "/docs/reference/microcontrollers/arduino-nano33"
+  status = 301
+
+[[redirects]]
+  from = "/microcontrollers/arduino-uno"
+  to = "/docs/reference/microcontrollers/arduino"
+  status = 301
+
+[[redirects]]
+  from = "/microcontrollers/circuit-playground-bluefruit"
+  to = "/docs/reference/microcontrollers/circuitplay-bluefruit"
+  status = 301
+
+[[redirects]]
+  from = "/microcontrollers/circuit-playground-express"
+  to = "/docs/reference/microcontrollers/circuitplay-express"
+  status = 301
+
+[[redirects]]
+  from = "/microcontrollers/esp8266-d1mini"
+  to = "/docs/reference/microcontrollers/d1mini"
+  status = 301
+
+[[redirects]]
+  from = "/microcontrollers/dragino-lgt92"
+  to = "/docs/reference/microcontrollers/lgt-92"
+  status = 301
+
+[[redirects]]
+  from = "/microcontrollers/bbc-microbit"
+  to = "/docs/reference/microcontrollers/microbit"
+  status = 301
+
+[[redirects]]
+  from = "/microcontrollers/nintendo-switch"
+  to = "/docs/reference/microcontrollers/nintendoswitch"
+  status = 301
+
+[[redirects]]
+  from = "/microcontrollers/esp8266-nodemcu"
+  to = "/docs/reference/microcontrollers/nodemcu"
+  status = 301
+
+[[redirects]]
+  from = "/microcontrollers/stm32-nucleo-f722ze"
+  to = "/docs/reference/microcontrollers/nucleo-f722ze"
+  status = 301
+
+[[redirects]]
+  from = "/microcontrollers/pinetime"
+  to = "/docs/reference/microcontrollers/pinetime-devkit0"
+  status = 301
+
+[[redirects]]
+  from = "/microcontrollers/stm32f4discovery"
+  to = "/docs/reference/microcontrollers/stm32f4disco"
+  status = 301
+
+[[redirects]]
+  from = "/microcontrollers/stm32-nucleo-l552ze"
+  to = "/docs/reference/microcontrollers/stm32nucleol552ze"
+  status = 301
+
+[[redirects]]
+  from = "/microcontrollers/x9-pro"
+  to = "/docs/reference/microcontrollers/x9pro"
+  status = 301
+
+[[redirects]]
+  from = "/microcontrollers/*"
+  to = "/docs/reference/microcontrollers/:splat"
+  status = 301
