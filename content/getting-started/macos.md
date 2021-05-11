@@ -75,7 +75,7 @@ The easiest way to install LLVM on macOS is through
 [Homebrew](https://formulae.brew.sh/formula/llvm). Make sure you install LLVM 10:
 
 ```shell
-brew install llvm
+brew install llvm@11
 ```
 
 Installing TinyGo should now be as easy as:
