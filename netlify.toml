@@ -101,3 +101,8 @@
   from = "/microcontrollers/*"
   to = "/docs/reference/microcontrollers/:splat"
   status = 301
+
+[[redirects]]
+  from = "/lang-support"
+  to = "/docs/reference/lang-support"
+  status = 301
