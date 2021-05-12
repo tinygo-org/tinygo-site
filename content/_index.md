@@ -19,11 +19,11 @@ title: "TinyGo Home"
 {{< /blocks/cover >}}
 
 {{% blocks/lead color="secondary" %}}
-TinyGo brings the [Go programming language](https://golang.org) to embedded systems and the modern web by creating a new compiler based on [LLVM](https://llvm.org/).
+TinyGo brings the [Go programming language](https://golang.org) to embedded systems and to the modern web by creating a new compiler based on [LLVM](https://llvm.org/).
 
-You can compile and run TinyGo programs on over 50 different microcontroller boards such as the [BBC micro:bit](https://www.microbit.co.uk/) and the [Arduino Uno](https://store.arduino.cc/usa/arduino-uno-rev3/). [Click here for the complete list](/docs/reference/microcontrollers)
+You can compile and run TinyGo programs on over 57 different microcontroller boards such as the [BBC micro:bit](https://www.microbit.co.uk/) and the [Arduino Uno](https://store.arduino.cc/usa/arduino-uno-rev3/). [Click here for the complete list](/docs/reference/microcontrollers)
 
-TinyGo can also produce [WebAssembly (WASM)](https://webassembly.org/) code which is very compact in size, for web browsers and for non-browser environments that support [WebAssembly System Interface (WASI)](https://github.com/WebAssembly/WASI).
+TinyGo can also produce [WebAssembly (WASM)](https://webassembly.org/) code which is very compact in size. You can compile programs for web browsers, as well as for server and edge computing environments that support the [WebAssembly System Interface (WASI)](https://github.com/WebAssembly/WASI) family of interfaces.
 
 Ready to get started? [Click here](getting-started).
 
