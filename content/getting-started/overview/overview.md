@@ -36,14 +36,23 @@ tinygo build -o hello ./hello.go
 
 The programming language is the same. The standard library (including the fmt package) is the same. The only difference here, is which compiler is used, and the associated runtime.
 
-What is significantly different is the output binary size:
+What is significantly different is the output binary size. Here are the executables produced by each compiler:
 
 ```shell
 1937340 may 12 12:42 helloworld-with-fmt.go1.16.3
  251376 may 12 12:42 helloworld-with-fmt.tinygo0.18
 ```
 
-In this case the Go compiled binary is 1.4MB in size (or 1.9MB before stripping) while TinyGo produces a binary of only 50kB in size (251kB before stripping)! This is 3-4% of the size of the original binary, which allows such binaries to be used on much smaller systems that were previously unsupported, simply because of the binary size.
+And then again after having the `strip` command run on each to remove all symbols and debugging info:
+
+```shell
+ 837624 may 12 20:03 helloworld-with-fmt.go1.16.3-stripped
+  10392 may 12 20:05 helloworld-with-fmt.tinygo0.18-stripped
+```
+
+In this case the Go compiled binary is 837k in size (or 1.9MB before stripping) while TinyGo produces a binary of only 10k in size (251k before stripping)!
+
+This is 1% of the size of the original binary, which allows such binaries to be used on much smaller systems that were previously unsupported, simply because of the binary size.
 
 By using TinyGo you can actually compile and run a binary on a variety of bare metal hardware platforms. For example, you can run this program directly on a [BBC micro:bit](https://microbit.org/):
 
