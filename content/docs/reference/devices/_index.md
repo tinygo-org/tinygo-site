@@ -1,7 +1,9 @@
 ---
-title: "Drivers"
+title: "Devices"
 chapter: true
-weight: 90
+weight: 4
+description: |
+  Sensors and displays that are supported by TinyGo.
 ---
 
 TinyGo has driver support for many different sensors and devices such as digital accelerometers and multicolor LEDs.
