@@ -70,3 +70,6 @@ footer_about_disable = false
 	url = "https://gophers.slack.com/messages/CDJD3SUP6/"
 	icon = "fab fa-slack"
         desc = "Chat with other project developers"
+
+[params.mermaid]
+enable = true
