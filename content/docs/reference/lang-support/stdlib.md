@@ -9,8 +9,8 @@ Note that the fact they can be imported, does not mean that all functions and ty
 
 Package | Importable
 --- | --- |
-archive/tar |  [<span style="color: red">✗</span> no](#archive-tar)  | 
-archive/zip |  [<span style="color: red">✗</span> no](#archive-zip)  | 
+archive/tar |  <span style="color: green">✔</span> yes  | 
+archive/zip |  <span style="color: green">✔</span> yes  | 
 bufio |  <span style="color: green">✔</span> yes  | 
 bytes |  <span style="color: green">✔</span> yes  | 
 compress/bzip2 |  <span style="color: green">✔</span> yes  | 
@@ -28,13 +28,13 @@ crypto/cipher |  <span style="color: green">✔</span> yes  |
 crypto/des |  <span style="color: green">✔</span> yes  | 
 crypto/dsa |  <span style="color: green">✔</span> yes  | 
 crypto/ecdsa |  <span style="color: green">✔</span> yes  | 
-crypto/ed25519 |  <span style="color: green">✔</span> yes  | 
+crypto/ed25519 |  [<span style="color: red">✗</span> no](#crypto-ed25519)  | 
 crypto/elliptic |  <span style="color: green">✔</span> yes  | 
 crypto/hmac |  <span style="color: green">✔</span> yes  | 
 crypto/md5 |  <span style="color: green">✔</span> yes  | 
-crypto/rand |  <span style="color: green">✔</span> yes  | 
+crypto/rand |  [<span style="color: red">✗</span> no](#crypto-rand)  | 
 crypto/rc4 |  <span style="color: green">✔</span> yes  | 
-crypto/rsa |  <span style="color: green">✔</span> yes  | 
+crypto/rsa |  [<span style="color: red">✗</span> no](#crypto-rsa)  | 
 crypto/sha1 |  <span style="color: green">✔</span> yes  | 
 crypto/sha256 |  <span style="color: green">✔</span> yes  | 
 crypto/sha512 |  <span style="color: green">✔</span> yes  | 
@@ -50,6 +50,7 @@ debug/gosym |  <span style="color: green">✔</span> yes  |
 debug/macho |  <span style="color: green">✔</span> yes  | 
 debug/pe |  <span style="color: green">✔</span> yes  | 
 debug/plan9obj |  <span style="color: green">✔</span> yes  | 
+embed |  <span style="color: green">✔</span> yes  | 
 encoding |  <span style="color: green">✔</span> yes  | 
 encoding/ascii85 |  <span style="color: green">✔</span> yes  | 
 encoding/asn1 |  <span style="color: green">✔</span> yes  | 
@@ -59,7 +60,7 @@ encoding/binary |  <span style="color: green">✔</span> yes  |
 encoding/csv |  <span style="color: green">✔</span> yes  | 
 encoding/gob |  [<span style="color: red">✗</span> no](#encoding-gob)  | 
 encoding/hex |  <span style="color: green">✔</span> yes  | 
-encoding/json |  [<span style="color: red">✗</span> no](#encoding-json)  | 
+encoding/json |  <span style="color: green">✔</span> yes  | 
 encoding/pem |  <span style="color: green">✔</span> yes  | 
 encoding/xml |  [<span style="color: red">✗</span> no](#encoding-xml)  | 
 errors |  <span style="color: green">✔</span> yes  | 
@@ -68,15 +69,16 @@ flag |  <span style="color: green">✔</span> yes  |
 fmt |  <span style="color: green">✔</span> yes  | 
 go/ast |  <span style="color: green">✔</span> yes  | 
 go/build |  [<span style="color: red">✗</span> no](#go-build)  | 
+go/build/constraint |  <span style="color: green">✔</span> yes  | 
 go/constant |  <span style="color: green">✔</span> yes  | 
 go/doc |  [<span style="color: red">✗</span> no](#go-doc)  | 
-go/format |  <span style="color: green">✔</span> yes  | 
+go/format |  [<span style="color: red">✗</span> no](#go-format)  | 
 go/importer |  [<span style="color: red">✗</span> no](#go-importer)  | 
-go/parser |  <span style="color: green">✔</span> yes  | 
+go/parser |  [<span style="color: red">✗</span> no](#go-parser)  | 
 go/printer |  <span style="color: green">✔</span> yes  | 
 go/scanner |  <span style="color: green">✔</span> yes  | 
 go/token |  <span style="color: green">✔</span> yes  | 
-go/types |  <span style="color: green">✔</span> yes  | 
+go/types |  [<span style="color: red">✗</span> no](#go-types)  | 
 hash |  <span style="color: green">✔</span> yes  | 
 hash/adler32 |  <span style="color: green">✔</span> yes  | 
 hash/crc32 |  <span style="color: green">✔</span> yes  | 
@@ -94,6 +96,7 @@ image/jpeg |  <span style="color: green">✔</span> yes  |
 image/png |  <span style="color: green">✔</span> yes  | 
 index/suffixarray |  <span style="color: green">✔</span> yes  | 
 io |  <span style="color: green">✔</span> yes  | 
+io/fs |  <span style="color: green">✔</span> yes  | 
 io/ioutil |  <span style="color: green">✔</span> yes  | 
 log |  <span style="color: green">✔</span> yes  | 
 log/syslog |  [<span style="color: red">✗</span> no](#log-syslog)  | 
@@ -105,7 +108,7 @@ math/rand |  <span style="color: green">✔</span> yes  |
 mime |  <span style="color: green">✔</span> yes  | 
 mime/multipart |  [<span style="color: red">✗</span> no](#mime-multipart)  | 
 mime/quotedprintable |  <span style="color: green">✔</span> yes  | 
-net |  [<span style="color: red">✗</span> no](#net)  | 
+net |  <span style="color: green">✔</span> yes  | 
 net/http |  [<span style="color: red">✗</span> no](#net-http)  | 
 net/http/cgi |  [<span style="color: red">✗</span> no](#net-http-cgi)  | 
 net/http/cookiejar |  [<span style="color: red">✗</span> no](#net-http-cookiejar)  | 
@@ -119,7 +122,7 @@ net/rpc |  [<span style="color: red">✗</span> no](#net-rpc)  |
 net/rpc/jsonrpc |  [<span style="color: red">✗</span> no](#net-rpc-jsonrpc)  | 
 net/smtp |  [<span style="color: red">✗</span> no](#net-smtp)  | 
 net/textproto |  [<span style="color: red">✗</span> no](#net-textproto)  | 
-net/url |  <span style="color: green">✔</span> yes  | 
+net/url |  [<span style="color: red">✗</span> no](#net-url)  | 
 os |  <span style="color: green">✔</span> yes  | 
 os/exec |  [<span style="color: red">✗</span> no](#os-exec)  | 
 os/signal |  <span style="color: green">✔</span> yes  | 
@@ -138,6 +141,7 @@ sync/atomic |  <span style="color: green">✔</span> yes  |
 syscall |  <span style="color: green">✔</span> yes  | 
 syscall/js |  <span style="color: green">✔</span> yes  | 
 testing |  <span style="color: green">✔</span> yes  | 
+testing/fstest |  <span style="color: green">✔</span> yes  | 
 testing/iotest |  <span style="color: green">✔</span> yes  | 
 testing/quick |  [<span style="color: red">✗</span> no](#testing-quick)  | 
 text/scanner |  <span style="color: green">✔</span> yes  | 
@@ -153,33 +157,82 @@ unsafe |  <span style="color: green">✔</span> yes  |
 
 
 
-## archive/tar
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## crypto/ed25519
+
+
+This package cannot be imported because the following dependencies cannot be compiled:
+
+  * [crypto/rand](#crypto-rand)
+
+
+
+
+
+
+
+
+
+
+
+## crypto/rand
 
 
 The compiler gave the following error when this package was imported:
 
-<pre># archive/tar
-/home/ron/.gvm/gos/go1.15/src/archive/tar/common.go:554:32: os.FileMode(fi.h.Mode).Perm undefined (type os.FileMode has no field or method Perm)
-/home/ron/.gvm/gos/go1.15/src/archive/tar/common.go:636:15: fi.ModTime undefined (type os.FileInfo has no field or method ModTime)
-/home/ron/.gvm/gos/go1.15/src/archive/tar/common.go:637:21: fm.Perm undefined (type os.FileMode has no field or method Perm)
-/home/ron/.gvm/gos/go1.15/src/archive/tar/common.go:640:10: fm.IsRegular undefined (type os.FileMode has no field or method IsRegular)
-</pre>
+<pre>fatal error: unexpected signal during runtime execution
+[signal SIGSEGV: segmentation violation code=0x1 addr=0x8 pc=0x4a1ed8e]
 
+runtime stack:
+runtime.throw(0x4ea9aba, 0x2a)
+	/usr/local/go/src/runtime/panic.go:1116 +0x72
+runtime.sigpanic()
+	/usr/local/go/src/runtime/signal_unix.go:701 +0x46a
 
-
-
-
-## archive/zip
-
-
-The compiler gave the following error when this package was imported:
-
-<pre># archive/zip
-/home/ron/.gvm/gos/go1.15/src/archive/zip/struct.go:180:19: fi.ModTime undefined (type os.FileInfo has no field or method ModTime)
-</pre>
-
-
-
+goroutine 10 [syscall]:
+runtime.cgocall(0xea6d70, 0xc00435b990, 0xc0025d4508)
+	/usr/local/go/src/runtime/cgocall.go:133 +0x5b fp=0xc00435b960 sp=0xc00435b928 pc=0xad570b
+tinygo.org/x/go-llvm._Cfunc_LLVMVerifyModule(0x7f1f2801c830, 0xc000000001, 0xc0025d4508, 0x0)
+	_cgo_gotypes.go:9557 +0x4d fp=0xc00435b990 sp=0xc00435b960 pc=0xd7fb5d
+tinygo.org/x/go-llvm.VerifyModule.func1(0x7f1f2801c830, 0xc000000001, 0xc0025d4508, 0x1)
+[...more lines following...]</pre>
 
 
 
@@ -187,44 +240,12 @@ The compiler gave the following error when this package was imported:
 
 
 
+## crypto/rsa
 
 
+This package cannot be imported because the following dependencies cannot be compiled:
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  * [crypto/rand](#crypto-rand)
 
 
 
@@ -243,8 +264,10 @@ The compiler gave the following error when this package was imported:
 
 This package cannot be imported because the following dependencies cannot be compiled:
 
+  * [crypto/ed25519](#crypto-ed25519)
+  * [crypto/rand](#crypto-rand)
+  * [crypto/rsa](#crypto-rsa)
   * [crypto/x509](#crypto-x509)
-  * [net](#net)
 
 
 
@@ -255,7 +278,11 @@ This package cannot be imported because the following dependencies cannot be com
 
 This package cannot be imported because the following dependencies cannot be compiled:
 
-  * [net](#net)
+  * [crypto/ed25519](#crypto-ed25519)
+  * [crypto/rsa](#crypto-rsa)
+  * [net/url](#net-url)
+
+
 
 
 
@@ -299,39 +326,16 @@ This package cannot be imported because the following dependencies cannot be com
 The compiler gave the following error when this package was imported:
 
 <pre># encoding/gob
-/home/ron/.gvm/gos/go1.15/src/encoding/gob/decode.go:562:21: MakeMapWithSize not declared by package reflect
-/home/ron/.gvm/gos/go1.15/src/encoding/gob/decode.go:1118:30: srt.FieldByName undefined (type reflect.Type has no field or method FieldByName)
-/home/ron/.gvm/gos/go1.15/src/encoding/gob/encode.go:643:70: f.Index undefined (type reflect.StructField has no field or method Index)
-/home/ron/.gvm/gos/go1.15/src/encoding/gob/type.go:119:12: cannot convert nil (untyped nil value) to reflect.Type
-/home/ron/.gvm/gos/go1.15/src/encoding/gob/type.go:867:9: rt.PkgPath undefined (type reflect.Type has no field or method PkgPath)
-/home/ron/.gvm/gos/go1.15/src/encoding/gob/type.go:870:21: rt.PkgPath undefined (type reflect.Type has no field or method PkgPath)
+/opt/go-1.16.4/src/encoding/gob/decode.go:562:21: MakeMapWithSize not declared by package reflect
+/opt/go-1.16.4/src/encoding/gob/decode.go:1118:30: srt.FieldByName undefined (type reflect.Type has no field or method FieldByName)
+/opt/go-1.16.4/src/encoding/gob/encode.go:643:70: f.Index undefined (type reflect.StructField has no field or method Index)
+/opt/go-1.16.4/src/encoding/gob/type.go:867:9: rt.PkgPath undefined (type reflect.Type has no field or method PkgPath)
+/opt/go-1.16.4/src/encoding/gob/type.go:870:21: rt.PkgPath undefined (type reflect.Type has no field or method PkgPath)
 </pre>
 
 
 
 
-
-
-
-## encoding/json
-
-
-The compiler gave the following error when this package was imported:
-
-<pre># encoding/json
-/home/ron/.gvm/gos/go1.15/src/encoding/json/decode.go:160:15: cannot convert nil (untyped nil value) to reflect.Type
-/home/ron/.gvm/gos/go1.15/src/encoding/json/decode.go:232:26: cannot convert nil (untyped nil value) to reflect.Type
-/home/ron/.gvm/gos/go1.15/src/encoding/json/decode.go:249:30: cannot convert nil (untyped nil value) to reflect.Type
-/home/ron/.gvm/gos/go1.15/src/encoding/json/decode.go:515:8: v.NumMethod undefined (type reflect.Value has no field or method NumMethod)
-/home/ron/.gvm/gos/go1.15/src/encoding/json/decode.go:552:7: v.SetLen undefined (type reflect.Value has no field or method SetLen)
-/home/ron/.gvm/gos/go1.15/src/encoding/json/decode.go:589:6: v.SetLen undefined (type reflect.Value has no field or method SetLen)
-/home/ron/.gvm/gos/go1.15/src/encoding/json/decode.go:620:40: v.NumMethod undefined (type reflect.Value has no field or method NumMethod)
-/home/ron/.gvm/gos/go1.15/src/encoding/json/decode.go:921:9: v.NumMethod undefined (type reflect.Value has no field or method NumMethod)
-/home/ron/.gvm/gos/go1.15/src/encoding/json/decode.go:950:6: v.SetBytes undefined (type reflect.Value has no field or method SetBytes)
-/home/ron/.gvm/gos/go1.15/src/encoding/json/decode.go:957:9: v.NumMethod undefined (type reflect.Value has no field or method NumMethod)
-/home/ron/.gvm/gos/go1.15/src/encoding/json/decode.go:990:9: v.NumMethod undefined (type reflect.Value has no field or method NumMethod)
-/home/ron/.gvm/gos/go1.15/src/encoding/json/decode.go:1014:23: v.OverflowFloat undefined (type reflect.Value has no field or method OverflowFloat)
-</pre>
 
 
 
@@ -345,12 +349,9 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when this package was imported:
 
 <pre># encoding/xml
-/home/ron/.gvm/gos/go1.15/src/encoding/xml/read.go:286:8: val.SetLen undefined (type reflect.Value has no field or method SetLen)
-/home/ron/.gvm/gos/go1.15/src/encoding/xml/read.go:402:6: v.SetLen undefined (type reflect.Value has no field or method SetLen)
-/home/ron/.gvm/gos/go1.15/src/encoding/xml/read.go:665:7: dst.SetBytes undefined (type reflect.Value has no field or method SetBytes)
-/home/ron/.gvm/gos/go1.15/src/encoding/xml/typeinfo.go:114:29: f.Index undefined (type *reflect.StructField has no field or method Index)
-/home/ron/.gvm/gos/go1.15/src/encoding/xml/typeinfo.go:318:14: typ.FieldByIndex undefined (type reflect.Type has no field or method FieldByIndex)
-/home/ron/.gvm/gos/go1.15/src/encoding/xml/typeinfo.go:319:14: typ.FieldByIndex undefined (type reflect.Type has no field or method FieldByIndex)
+/opt/go-1.16.4/src/encoding/xml/typeinfo.go:114:29: f.Index undefined (type *reflect.StructField has no field or method Index)
+/opt/go-1.16.4/src/encoding/xml/typeinfo.go:318:14: typ.FieldByIndex undefined (type reflect.Type has no field or method FieldByIndex)
+/opt/go-1.16.4/src/encoding/xml/typeinfo.go:319:14: typ.FieldByIndex undefined (type reflect.Type has no field or method FieldByIndex)
 </pre>
 
 
@@ -364,7 +365,6 @@ The compiler gave the following error when this package was imported:
 
 This package cannot be imported because the following dependencies cannot be compiled:
 
-  * [encoding/json](#encoding-json)
   * [net/http](#net-http)
 
 
@@ -383,7 +383,9 @@ This package cannot be imported because the following dependencies cannot be com
 This package cannot be imported because the following dependencies cannot be compiled:
 
   * [go/doc](#go-doc)
-  * [os/exec](#os-exec)
+  * [go/parser](#go-parser)
+
+
 
 
 
@@ -402,6 +404,15 @@ This package cannot be imported because the following dependencies cannot be com
 
 
 
+## go/format
+
+
+This package cannot be imported because the following dependencies cannot be compiled:
+
+  * [go/parser](#go-parser)
+
+
+
 
 
 ## go/importer
@@ -410,6 +421,20 @@ This package cannot be imported because the following dependencies cannot be com
 This package cannot be imported because the following dependencies cannot be compiled:
 
   * [go/build](#go-build)
+  * [go/types](#go-types)
+
+
+
+
+
+## go/parser
+
+
+The compiler gave the following error when this package was imported:
+
+<pre># go/parser
+/opt/go-1.16.4/src/go/parser/interface.go:136:18: ReadDir not declared by package os
+</pre>
 
 
 
@@ -420,6 +445,13 @@ This package cannot be imported because the following dependencies cannot be com
 
 
 
+
+## go/types
+
+
+This package cannot be imported because the following dependencies cannot be compiled:
+
+  * [go/parser](#go-parser)
 
 
 
@@ -444,8 +476,9 @@ This package cannot be imported because the following dependencies cannot be com
 
 This package cannot be imported because the following dependencies cannot be compiled:
 
-  * [encoding/json](#encoding-json)
   * [text/template](#text-template)
+
+
 
 
 
@@ -476,9 +509,14 @@ This package cannot be imported because the following dependencies cannot be com
 ## log/syslog
 
 
-This package cannot be imported because the following dependencies cannot be compiled:
+The compiler gave the following error when this package was imported:
 
-  * [net](#net)
+<pre># log/syslog
+/opt/go-1.16.4/src/log/syslog/syslog.go:100:12: Conn not declared by package net
+/opt/go-1.16.4/src/log/syslog/syslog.go:161:13: Conn not declared by package net
+/opt/go-1.16.4/src/log/syslog/syslog.go:162:16: Dial not declared by package net
+/opt/go-1.16.4/src/log/syslog/syslog_unix.go:22:21: Dial not declared by package net
+</pre>
 
 
 
@@ -501,26 +539,12 @@ This package cannot be imported because the following dependencies cannot be com
 
 This package cannot be imported because the following dependencies cannot be compiled:
 
+  * [crypto/rand](#crypto-rand)
   * [net/textproto](#net-textproto)
 
 
 
 
-
-
-
-## net
-
-
-The compiler gave the following error when this package was imported:
-
-<pre># net
-/home/ron/.gvm/gos/go1.15/src/net/parse.go:80:12: st.ModTime undefined (type os.FileInfo has no field or method ModTime)
-/home/ron/.gvm/gos/go1.15/src/net/pipe.go:156:16: ErrDeadlineExceeded not declared by package os
-/home/ron/.gvm/gos/go1.15/src/net/pipe.go:169:16: ErrDeadlineExceeded not declared by package os
-/home/ron/.gvm/gos/go1.15/src/net/pipe.go:188:16: ErrDeadlineExceeded not declared by package os
-/home/ron/.gvm/gos/go1.15/src/net/pipe.go:204:17: ErrDeadlineExceeded not declared by package os
-</pre>
 
 
 
@@ -531,11 +555,12 @@ The compiler gave the following error when this package was imported:
 
 This package cannot be imported because the following dependencies cannot be compiled:
 
+  * [crypto/rand](#crypto-rand)
   * [crypto/tls](#crypto-tls)
   * [mime/multipart](#mime-multipart)
-  * [net](#net)
   * [net/http/httptrace](#net-http-httptrace)
   * [net/textproto](#net-textproto)
+  * [net/url](#net-url)
 
 
 
@@ -547,9 +572,9 @@ This package cannot be imported because the following dependencies cannot be com
 This package cannot be imported because the following dependencies cannot be compiled:
 
   * [crypto/tls](#crypto-tls)
-  * [net](#net)
   * [net/http](#net-http)
   * [net/textproto](#net-textproto)
+  * [net/url](#net-url)
   * [os/exec](#os-exec)
 
 
@@ -561,8 +586,8 @@ This package cannot be imported because the following dependencies cannot be com
 
 This package cannot be imported because the following dependencies cannot be compiled:
 
-  * [net](#net)
   * [net/http](#net-http)
+  * [net/url](#net-url)
 
 
 
@@ -573,7 +598,6 @@ This package cannot be imported because the following dependencies cannot be com
 
 This package cannot be imported because the following dependencies cannot be compiled:
 
-  * [net](#net)
   * [net/http](#net-http)
   * [net/http/cgi](#net-http-cgi)
 
@@ -588,7 +612,6 @@ This package cannot be imported because the following dependencies cannot be com
 
   * [crypto/tls](#crypto-tls)
   * [crypto/x509](#crypto-x509)
-  * [net](#net)
   * [net/http](#net-http)
   * [net/textproto](#net-textproto)
 
@@ -602,7 +625,6 @@ This package cannot be imported because the following dependencies cannot be com
 This package cannot be imported because the following dependencies cannot be compiled:
 
   * [crypto/tls](#crypto-tls)
-  * [net](#net)
   * [net/textproto](#net-textproto)
 
 
@@ -614,9 +636,9 @@ This package cannot be imported because the following dependencies cannot be com
 
 This package cannot be imported because the following dependencies cannot be compiled:
 
-  * [net](#net)
   * [net/http](#net-http)
   * [net/textproto](#net-textproto)
+  * [net/url](#net-url)
 
 
 
@@ -627,8 +649,8 @@ This package cannot be imported because the following dependencies cannot be com
 
 This package cannot be imported because the following dependencies cannot be compiled:
 
-  * [html/template](#html-template)
   * [net/http](#net-http)
+  * [net/url](#net-url)
 
 
 
@@ -652,7 +674,6 @@ This package cannot be imported because the following dependencies cannot be com
 
   * [encoding/gob](#encoding-gob)
   * [html/template](#html-template)
-  * [net](#net)
   * [net/http](#net-http)
 
 
@@ -664,8 +685,6 @@ This package cannot be imported because the following dependencies cannot be com
 
 This package cannot be imported because the following dependencies cannot be compiled:
 
-  * [encoding/json](#encoding-json)
-  * [net](#net)
   * [net/rpc](#net-rpc)
 
 
@@ -678,7 +697,6 @@ This package cannot be imported because the following dependencies cannot be com
 This package cannot be imported because the following dependencies cannot be compiled:
 
   * [crypto/tls](#crypto-tls)
-  * [net](#net)
   * [net/textproto](#net-textproto)
 
 
@@ -688,11 +706,22 @@ This package cannot be imported because the following dependencies cannot be com
 ## net/textproto
 
 
-This package cannot be imported because the following dependencies cannot be compiled:
+The compiler gave the following error when this package was imported:
 
-  * [net](#net)
+<pre>/tmp/tinygo-test-224097129/main.go:2:8: package net/textproto is not in GOROOT (/home/fgsch/.cache/tinygo/goroot-go1.16.4-1fabd5e82c0fa87fc2690e2236a57bac63173c5dadf42e03c38f73017a16208e/src/net/textproto)
+</pre>
 
 
+
+
+
+## net/url
+
+
+The compiler gave the following error when this package was imported:
+
+<pre>/tmp/tinygo-test-420930484/main.go:2:8: package net/url is not in GOROOT (/home/fgsch/.cache/tinygo/goroot-go1.16.4-1fabd5e82c0fa87fc2690e2236a57bac63173c5dadf42e03c38f73017a16208e/src/net/url)
+</pre>
 
 
 
@@ -706,18 +735,18 @@ This package cannot be imported because the following dependencies cannot be com
 The compiler gave the following error when this package was imported:
 
 <pre># os/exec
-/home/ron/.gvm/gos/go1.15/src/os/exec/exec.go:130:14: Process not declared by package os
-/home/ron/.gvm/gos/go1.15/src/os/exec/exec.go:134:19: ProcessState not declared by package os
-/home/ron/.gvm/gos/go1.15/src/os/exec/exec.go:462:6: ProcessState not declared by package os
-/home/ron/.gvm/gos/go1.15/src/os/exec/exec.go:246:23: DevNull not declared by package os
-/home/ron/.gvm/gos/go1.15/src/os/exec/exec.go:258:20: Pipe not declared by package os
-/home/ron/.gvm/gos/go1.15/src/os/exec/exec.go:291:27: DevNull not declared by package os
-/home/ron/.gvm/gos/go1.15/src/os/exec/exec.go:303:20: Pipe not declared by package os
-/home/ron/.gvm/gos/go1.15/src/os/exec/exec.go:422:22: StartProcess not declared by package os
-/home/ron/.gvm/gos/go1.15/src/os/exec/exec.go:422:57: ProcAttr not declared by package os
-/home/ron/.gvm/gos/go1.15/src/os/exec/exec.go:584:20: Pipe not declared by package os
-/home/ron/.gvm/gos/go1.15/src/os/exec/exec.go:626:20: Pipe not declared by package os
-/home/ron/.gvm/gos/go1.15/src/os/exec/exec.go:651:20: Pipe not declared by package os
+/opt/go-1.16.4/src/os/exec/exec.go:130:14: Process not declared by package os
+/opt/go-1.16.4/src/os/exec/exec.go:134:19: ProcessState not declared by package os
+/opt/go-1.16.4/src/os/exec/exec.go:462:6: ProcessState not declared by package os
+/opt/go-1.16.4/src/os/exec/exec.go:246:23: DevNull not declared by package os
+/opt/go-1.16.4/src/os/exec/exec.go:258:20: Pipe not declared by package os
+/opt/go-1.16.4/src/os/exec/exec.go:291:27: DevNull not declared by package os
+/opt/go-1.16.4/src/os/exec/exec.go:303:20: Pipe not declared by package os
+/opt/go-1.16.4/src/os/exec/exec.go:422:22: StartProcess not declared by package os
+/opt/go-1.16.4/src/os/exec/exec.go:422:57: ProcAttr not declared by package os
+/opt/go-1.16.4/src/os/exec/exec.go:584:20: Pipe not declared by package os
+/opt/go-1.16.4/src/os/exec/exec.go:626:20: Pipe not declared by package os
+/opt/go-1.16.4/src/os/exec/exec.go:651:20: Pipe not declared by package os
 </pre>
 
 
@@ -732,13 +761,15 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when this package was imported:
 
 <pre># os/user
-/home/ron/.gvm/gos/go1.15/src/os/user/lookup.go:15:41: undeclared name: current
-/home/ron/.gvm/gos/go1.15/src/os/user/lookup.go:36:9: undeclared name: lookupUser
-/home/ron/.gvm/gos/go1.15/src/os/user/lookup.go:45:9: undeclared name: lookupUserId
-/home/ron/.gvm/gos/go1.15/src/os/user/lookup.go:51:9: undeclared name: lookupGroup
-/home/ron/.gvm/gos/go1.15/src/os/user/lookup.go:57:9: undeclared name: lookupGroupId
-/home/ron/.gvm/gos/go1.15/src/os/user/lookup.go:62:9: undeclared name: listGroups
+/opt/go-1.16.4/src/os/user/lookup.go:15:41: undeclared name: current
+/opt/go-1.16.4/src/os/user/lookup.go:36:9: undeclared name: lookupUser
+/opt/go-1.16.4/src/os/user/lookup.go:45:9: undeclared name: lookupUserId
+/opt/go-1.16.4/src/os/user/lookup.go:51:9: undeclared name: lookupGroup
+/opt/go-1.16.4/src/os/user/lookup.go:57:9: undeclared name: lookupGroupId
+/opt/go-1.16.4/src/os/user/lookup.go:62:9: undeclared name: listGroups
 </pre>
+
+
 
 
 
@@ -780,15 +811,15 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when this package was imported:
 
 <pre># testing/quick
-/home/ron/.gvm/gos/go1.15/src/testing/quick/quick.go:273:11: fType.NumOut undefined (type reflect.Type has no field or method NumOut)
-/home/ron/.gvm/gos/go1.15/src/testing/quick/quick.go:276:11: fType.Out undefined (type reflect.Type has no field or method Out)
-/home/ron/.gvm/gos/go1.15/src/testing/quick/quick.go:280:43: fType.NumIn undefined (type reflect.Type has no field or method NumIn)
-/home/ron/.gvm/gos/go1.15/src/testing/quick/quick.go:290:12: fVal.Call undefined (type reflect.Value has no field or method Call)
-/home/ron/.gvm/gos/go1.15/src/testing/quick/quick.go:320:43: xType.NumIn undefined (type reflect.Type has no field or method NumIn)
-/home/ron/.gvm/gos/go1.15/src/testing/quick/quick.go:330:26: x.Call undefined (type reflect.Value has no field or method Call)
-/home/ron/.gvm/gos/go1.15/src/testing/quick/quick.go:331:26: y.Call undefined (type reflect.Value has no field or method Call)
-/home/ron/.gvm/gos/go1.15/src/testing/quick/quick.go:351:25: f.In undefined (type reflect.Type has no field or method In)
-/home/ron/.gvm/gos/go1.15/src/testing/quick/quick.go:353:95: f.In undefined (type reflect.Type has no field or method In)
+/opt/go-1.16.4/src/testing/quick/quick.go:273:11: fType.NumOut undefined (type reflect.Type has no field or method NumOut)
+/opt/go-1.16.4/src/testing/quick/quick.go:276:11: fType.Out undefined (type reflect.Type has no field or method Out)
+/opt/go-1.16.4/src/testing/quick/quick.go:280:43: fType.NumIn undefined (type reflect.Type has no field or method NumIn)
+/opt/go-1.16.4/src/testing/quick/quick.go:290:12: fVal.Call undefined (type reflect.Value has no field or method Call)
+/opt/go-1.16.4/src/testing/quick/quick.go:320:43: xType.NumIn undefined (type reflect.Type has no field or method NumIn)
+/opt/go-1.16.4/src/testing/quick/quick.go:330:26: x.Call undefined (type reflect.Value has no field or method Call)
+/opt/go-1.16.4/src/testing/quick/quick.go:331:26: y.Call undefined (type reflect.Value has no field or method Call)
+/opt/go-1.16.4/src/testing/quick/quick.go:351:25: f.In undefined (type reflect.Type has no field or method In)
+/opt/go-1.16.4/src/testing/quick/quick.go:353:95: f.In undefined (type reflect.Type has no field or method In)
 </pre>
 
 
@@ -802,24 +833,9 @@ The compiler gave the following error when this package was imported:
 ## text/template
 
 
-The compiler gave the following error when this package was imported:
+This package cannot be imported because the following dependencies cannot be compiled:
 
-<pre># text/template
-/home/ron/.gvm/gos/go1.15/src/text/template/exec.go:377:20: val.Recv undefined (type reflect.Value has no field or method Recv)
-/home/ron/.gvm/gos/go1.15/src/text/template/exec.go:541:25: cannot convert nil (untyped nil value) to reflect.Type
-/home/ron/.gvm/gos/go1.15/src/text/template/exec.go:603:19: ptr.MethodByName undefined (type reflect.Value has no field or method MethodByName)
-/home/ron/.gvm/gos/go1.15/src/text/template/exec.go:610:33: receiver.Type().FieldByName undefined (type reflect.Type has no field or method FieldByName)
-/home/ron/.gvm/gos/go1.15/src/text/template/exec.go:645:21: etyp.FieldByName undefined (type reflect.Type has no field or method FieldByName)
-/home/ron/.gvm/gos/go1.15/src/text/template/exec.go:678:9: typ.IsVariadic undefined (type reflect.Type has no field or method IsVariadic)
-/home/ron/.gvm/gos/go1.15/src/text/template/exec.go:679:18: typ.NumIn undefined (type reflect.Type has no field or method NumIn)
-/home/ron/.gvm/gos/go1.15/src/text/template/exec.go:681:79: typ.NumIn undefined (type reflect.Type has no field or method NumIn)
-/home/ron/.gvm/gos/go1.15/src/text/template/exec.go:683:25: typ.NumIn undefined (type reflect.Type has no field or method NumIn)
-/home/ron/.gvm/gos/go1.15/src/text/template/exec.go:684:69: typ.NumIn undefined (type reflect.Type has no field or method NumIn)
-/home/ron/.gvm/gos/go1.15/src/text/template/exec.go:688:71: typ.NumOut undefined (type reflect.Type has no field or method NumOut)
-/home/ron/.gvm/gos/go1.15/src/text/template/exec.go:695:32: typ.In undefined (type reflect.Type has no field or method In)
-/home/ron/.gvm/gos/go1.15/src/text/template/exec.go:698:9: typ.IsVariadic undefined (type reflect.Type has no field or method IsVariadic)
-/home/ron/.gvm/gos/go1.15/src/text/template/exec.go:699:18: typ.In undefined (type reflect.Type has no field or method In)
-[...more lines following...]</pre>
+  * [net/url](#net-url)
 
 
 
