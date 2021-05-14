@@ -13,7 +13,7 @@ import (
 )
 
 // The environment to pass to `go` commands when they are invoked.
-var commandEnv = []string{"GOPATH=/does-not-exist", "GOOS=js", "GOARCH=wasm"}
+var commandEnv = []string{"GOPATH=/does-not-exist", "GOOS=js", "GOARCH=wasm", "GO111MODULE=off"}
 
 var markdownTemplate = template.Must(template.New("markdown").Parse(`
 ---
@@ -81,10 +81,13 @@ type testResult struct {
 func checkPackages(goroot string) error {
 	fmt.Fprintln(os.Stderr, "gathering a list of packages...")
 
+	baseDir := filepath.Join(goroot, "src")
+
 	// Get a list of all standard library packages.
 	pkgsList := new(bytes.Buffer)
 	cmd := exec.Command("go", "list", "all")
 	cmd.Env = append(os.Environ(), commandEnv...)
+	cmd.Dir = baseDir
 	cmd.Stdout = pkgsList
 	if err := cmd.Run(); err != nil {
 		return err
@@ -113,6 +116,7 @@ func checkPackages(goroot string) error {
 	for _, pkg := range pkgs {
 		cmd := exec.Command("go", "list", "-f", `{{ join .Imports "\n" }}`, pkg.Path)
 		buf := new(bytes.Buffer)
+	        cmd.Dir = baseDir
 		cmd.Env = append(os.Environ(), commandEnv...)
 		cmd.Stdout = buf
 		err := cmd.Run()
