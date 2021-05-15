@@ -64,10 +64,10 @@ func (p *Package) AllImportsCanCompile() bool {
 	return true
 }
 
-// Link returns the link name to a header with the path as title. Hugo replaces
-// slashes with dashes so we emulate that behavior.
+// Link returns the link name to a header with the path as title. Hugo/Docsy removes
+// slashes so we emulate that behavior.
 func (p *Package) Link() string {
-	return strings.Replace(p.Path, "/", "-", -1)
+	return strings.Replace(p.Path, "/", "", -1)
 }
 
 // testResult is returned by runTest. It's necessary to communicate the test
@@ -116,7 +116,7 @@ func checkPackages(goroot string) error {
 	for _, pkg := range pkgs {
 		cmd := exec.Command("go", "list", "-f", `{{ join .Imports "\n" }}`, pkg.Path)
 		buf := new(bytes.Buffer)
-	        cmd.Dir = baseDir
+		cmd.Dir = baseDir
 		cmd.Env = append(os.Environ(), commandEnv...)
 		cmd.Stdout = buf
 		err := cmd.Run()
