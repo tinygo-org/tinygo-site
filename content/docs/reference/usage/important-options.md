@@ -58,7 +58,7 @@ Use the specified memory manager. The default is usually the best option, so lea
   - `-gc=leaking`  
     Only allocate memory, never free it. This is the simplest allocator possible and uses very few resources while being very portable. Also, allocation is very fast. Larger programs will likely need a real garbage collector.
 
-  - `-gc=marksweep`  
+  - `-gc=conservative`  
     Simple conservative mark/sweep garbage collector. This collector does not yet work on all platforms. Also, the performance of the collector is highly unpredictable as any allocation may trigger a garbage collection cycle.
 
   - `-gc=extalloc`
