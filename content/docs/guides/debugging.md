@@ -54,6 +54,7 @@ Here are some debug probes that are known to work in TinyGo for at least some bo
   * [SEGGER J-Link Edu Mini](https://www.segger.com/products/debug-probes/j-link/models/j-link-edu-mini/): this debugger can debug pretty much all ARM Cortex-M chips and is generally very reliable. However, it comes with some possible issues: it's entirely closed source, it is only allowed to be used for non-commercial purposes and it doesn't support as many chips as the full version.
   * [Particle Debugger](https://store.particle.io/products/particle-debugger): a [DAPLink](https://armmbed.github.io/DAPLink/) based debugger that can debug practially all ARM Cortex-M chips (like the SEGGER above) and does not have limitations on how it can be used. It is also open source. While this debugger is designed for Particle hardware it can easily handle chips from other vendors.
   * [ST-Link v2](https://www.st.com/en/development-tools/st-link-v2.html): a debugger often included on boards from STMicroelectronics and also sold separately. It is somewhat less powerful than some other debuggers as it is only intended to be used with ST hardware, even though it works with most microcontrollers that support SWD debugging. Note that many online stores sell counterfeit versions of this debugger that may be unreliable.
+  * [DIY DAPLink](https://embeddedcomputing.weebly.com/the-5-programmer-debugger.html): a debugger you can make yourself. Requires compatible board, for example [Seeeduino XIAO](https://www.seeedstudio.com/Seeeduino-XIAO-Arduino-Microcontroller-SAMD21-Cortex-M0+-p-4426.html) that costs about $5. Please see linked page for flashing and wiring instructions. For quick and easy start, it is possible to [download uf2 image](http://files.seeedstudio.com/wiki/Seeeduino-XIAO/res/simple_daplink_xiao.uf2) and flash it by simply copying it over to XIAO mounted as an external drive. Members of TinyGo community reported successfully using this method to debug XIAO and Arduino Nano 33 IoT boards.
 
 Which one you should pick depends on availability and price in your area but if you want to be sure, the SEGGER debugger is a commonly used vendor-neutral debugger that supports almost all chips and is very reliable.
 
@@ -98,6 +99,7 @@ Otherwise, you may need to specify the programmer:
 | SEGGER J-Link     | `-programmer=jlink`     |
 | Particle Debugger | `-programmer=cmsis-dap` |
 | ST-Link V2        | `-programmer=stlink-v2` |
+| DIY DAPLink       | `-programmer=cmsis-dap` |
 
 For example:
 
