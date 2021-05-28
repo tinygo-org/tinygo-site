@@ -12,7 +12,11 @@ You will need a board with an onboard LED. Most education and development boards
   - [Adafruit Circuit Playground Express](../../reference/microcontrollers/circuit-playground-express/)
   - [Arduino Nano 33 IoT](../../reference/microcontrollers/arduino-nano33-iot/)
 
-Now that you have a board, let's get started. Start by creating a new directory (for example, named blink) and create a new file named main.go with the following contents:
+Now that you have a board, let's get started. Start by creating a new directory (for example, named blink) and navigating into it. If you are using Go modules, initialize a new module with the following command:
+
+    go mod init blinky
+
+Next, create a new file named main.go with the following contents:
 
 ```go
 package main
