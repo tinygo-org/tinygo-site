@@ -23,6 +23,16 @@
   status = 301
 
 [[redirects]]
+  from = "/compiler-internals/*"
+  to = "/docs/concepts/compiler-internals/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/faq/*"
+  to = "/docs/concepts/faq/:splat"
+  status = 301
+
+[[redirects]]
   from = "/microcontrollers"
   to = "/docs/reference/microcontrollers"
   status = 301
@@ -103,6 +113,6 @@
   status = 301
 
 [[redirects]]
-  from = "/lang-support"
-  to = "/docs/reference/lang-support"
+  from = "/lang-support/*"
+  to = "/docs/reference/lang-support/:splat"
   status = 301
