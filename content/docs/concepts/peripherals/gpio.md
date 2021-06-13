@@ -100,6 +100,36 @@ This simply adds an extra resistor from the pin to VCC - all in software! There 
 
 Of course, instead of using a pull mode in software you can also connect a physical resistor to the pin as a pull up or pull down resistor. This has the advantage that you precisely control the resistor value.
 
-```Warning```: make sure the input voltage is within the allowed range of the chip. Many chips will tolerate an input slightly out of the VCC..GND range (for example, allowing VCC+0.3V) but it's better to stay entirely within VCC..GND to be safe. Going outside this range may stress or destroy the chip, although the damage might not be immediately noticeable.
+**Warning**: make sure the input voltage is within the allowed range of the chip. Many chips will tolerate an input slightly out of the VCC..GND range (for example, allowing VCC+0.3V) but it's better to stay entirely within VCC..GND to be safe. Going outside this range may stress or destroy the chip, although the damage might not be immediately noticeable.
 
 It's also worth noting that digital inputs expect exactly VCC or GND as input, but have some tolerance: the cutoff isn't exactly in the middle (VCC\*0.5V). Instead, most chips guarantee that low will be read when the voltage is below VCC\*0.3 and high will be read when the voltage is above VCC\*0.7. The area in between could be read either way.
+
+## Interrupts on pin changes
+
+Sometimes you may want to respond right away to a pin change, for example when it is connected to a button. You can do this by reading the state very frequently (every 10ms for example) but that introduces a lot of overhead and still doesn't respond right away. Instead, you can set an interrupt callback on the pin, which will be called when the pin changes state.
+
+Here is an example which can be used on a Circuit Playground Express:
+
+```go
+led := machine.LED
+led.Configure(machine.PinConfig{Mode: machine.PinOutput})
+led.Low()
+
+pin := machine.BUTTONA
+pin.Configure(machine.PinConfig{Mode: machine.PinInputPulldown})
+pin.SetInterrupt(machine.PinToggle, func(p machine.Pin) {
+    led.Set(p.Get())
+})
+```
+
+In this case, the button is connected between the input pin (here, `machine.BUTTONA`) and VCC. By configuring it with a pull down register, the button pin is normally logically low. However, when you press the button a connection is made between the button pin and VCC, which makes it logically high.
+
+The most important part is this:
+
+```go
+pin.SetInterrupt(machine.PinToggle, func(p machine.Pin) {
+    led.Set(p.Get())
+})
+```
+
+It says that it should trigger an interrupt whenever the pin changes state (from low to high or from high to low, meaning when pressing or releasing the button) and that it sets the LED output to the given state. This means that the LED output will match the button input in software. That's not very useful on its own but demonstrates how pin interrupts can be used.

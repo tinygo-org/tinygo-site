@@ -65,6 +65,23 @@ Get the input state of a pin. The returned value indicates whether the pin is lo
 
 Note that if the pin is left floating (not connected to anything) the returned value is unpredictable and may appear random.
 
+```go
+type PinChange uint8
+
+const (
+    PinRising  PinChange = ... // call callback when the pin goes from low to high
+    PinFalling PinChange = ... // call callback when the pin goes from high to low
+    PinToggle  PinChange = ... // call callback when the pin changes either way
+)
+
+func (p Pin) SetInterrupt(change PinChange, callback func(Pin)) error
+```
+
+SetInterrupt sets an interrupt to be executed when the pin changes state. The pin should already be configured as an input, including a pull up or down if no external pull is provided. The callback is called in an interrupt handler, which means the code is limited in what it can do: it cannot block and it may not allocate heap memory.
+
+This call will replace a previously set callback on this pin. You can pass `nil` to disable the interrupt. If you do so, the change parameter is ignored and can be set to any value (such as 0).
+
+
 ## I2C
 
 ```go
