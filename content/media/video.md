@@ -7,6 +7,9 @@ description: >
   Videos/Podcasts talking about TinyGo
 ---
 
+**Microsoft LearnTV - "Hello World"** - *June 15, 2021*
+https://channel9.msdn.com/Shows/Hello-World/Hello-World-Tuesday-June-15-2021#time=03m09s
+
 **QCon 2020 London - "Tiny Go: Small is Going Big"** - *March 3, 2020*
 https://www.infoq.com/presentations/tiny-go/
 
