@@ -3,12 +3,12 @@ title: "Nano RP2040"
 weight: 3
 ---
 
-The [Nano RP2040]() is a tiny development board based on the Raspberry Pi [RP2040]() microcontroller.
+The [Nano RP2040](https://store.arduino.cc/nano-rp2040-connect) is a tiny development board based on the Raspberry Pi [RP2040](https://datasheets.raspberrypi.org/rp2040/rp2040-datasheet.pdf) microcontroller.
 
 ## Interfaces
 
 | Interface | Hardware Supported | TinyGo Support |
-| --------- | ------------- | ----- |
+| --------- | ------------- | ----- |Well, I think 
 | GPIO      | YES | YES |
 | UART      | YES | YES |
 | SPI      | YES | YES |
@@ -28,8 +28,8 @@ The Nano RP2040 comes with the [UF2 bootloader](https://github.com/Microsoft/uf2
 
 ### CLI Flashing
 
-- Plug your Nano RP2040 into your computer's USB port while holding down the RESET button on the board.
-- One plugged in, release the RESET button.
+- Plug your Nano RP2040 into your computer's USB port while shorting the pins REC and GND with a jumper wire.
+- Once plugged in, remove the jumper pin.
 - Flash your TinyGo program to the board using this command:
 
     ```shell
