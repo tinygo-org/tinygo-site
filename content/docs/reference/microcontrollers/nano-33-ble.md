@@ -3,7 +3,9 @@ title: "Arduino Nano33 BLE"
 weight: 3
 ---
 
-The [Arduino Nano33 BLE](h) is a very small ARM development board based on the Nordic Semiconductor [nrf52840](https://www.nordicsemi.com/eng/Products/nRF52840) processor.
+The [Arduino Nano33 BLE](https://store.arduino.cc/arduino-nano-33-ble) is a very small ARM development board based on the Nordic Semiconductor [nrf52840](https://www.nordicsemi.com/eng/Products/nRF52840) processor.
+
+There is also the [Arduino Nano33 BLE Sense](https://store.arduino.cc/arduino-nano-33-ble-sense) which is the exact same board but with additional onboard sensors.
 
 ## Interfaces
 
@@ -18,23 +20,35 @@ The [Arduino Nano33 BLE](h) is a very small ARM development board based on the N
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Arduino Nano33 IoT](../machine/arduino-nano33-ble)
+[Documentation for the machine package for the Arduino Nano33 BLE](../machine/nano-33-ble)
 
 ## Installing BOSSA
 
-In order to flash your TinyGo programs onto the Arduino Nano33 BLE board, you will need to install the "arduino_bossac" command line utility which is a special build of the [BOSSA command line utilities](https://github.com/shumatech/BOSSA).
+In order to flash your TinyGo programs onto the Arduino Nano33 BLE board, you will need to install the "bossac_arduino2" command line utility which is a special build of the [BOSSA command line utilities](https://github.com/shumatech/BOSSA).
 
 ### macOS
 
-Instructions needed here.
+If you have a Mac computer with an Intel processor, download the `bossac_arduino2` program from http://downloads.arduino.cc/tools/bossac-1.9.1-arduino2-osx.tar.gz
+
+Extract the downloaded file to a directory on your computer.
+
+Make sure to add that directory into your PATH.
 
 ### Linux
 
-Instructions needed here.
+Download the `bossac_arduino2` program from http://downloads.arduino.cc/tools/bossac-1.9.1-arduino2-linux64.tar.gz
+
+Extract the downloaded file to a directory on your computer.
+
+Make sure to add that directory into your PATH.
 
 ### Windows
 
-Instructions needed here.
+Download the `bossac_arduino2` program from http://downloads.arduino.cc/tools/bossac-1.9.1-arduino2-windows.tar.gz
+
+Extract the downloaded file to a directory on your computer.
+
+Make sure to add that directory into your PATH.
 
 ## Flashing
 
@@ -46,7 +60,7 @@ Once you have installed the needed BOSSA command line utility, as in the previou
 - Build and flash your TinyGo code using the `tinygo flash` command. This command flashes the Arduino Nano33 BLE with the blinky1 example:
 
     ```shell
-    tinygo flash -target=arduino-nano33-ble examples/blinky1
+    tinygo flash -target=nano-33-ble examples/blinky1
     ```
 
 - The Arduino Nano33 BLE board should restart and then begin running your program.
