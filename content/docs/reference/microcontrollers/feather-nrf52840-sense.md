@@ -1,9 +1,9 @@
 ---
-title: "Adafruit Feather nRF52840"
+title: "Adafruit Feather nRF52840 Sense"
 weight: 3
 ---
 
-The [Adafruit Feather nRF52840](https://www.adafruit.com/product/4500) is a small ARM development board based on the Nordic Semiconductor [nrf52840](https://www.nordicsemi.com/eng/Products/nRF52840) processor.
+The [Adafruit Feather nRF52840 Sense](https://www.adafruit.com/product/4516) is a small ARM development board based on the Nordic Semiconductor [nrf52840](https://www.nordicsemi.com/eng/Products/nRF52840) processor.
 
 ## Interfaces
 
@@ -19,46 +19,46 @@ The [Adafruit Feather nRF52840](https://www.adafruit.com/product/4500) is a smal
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Adafruit Feather nRF52840](../machine/feather-nrf52840)
+[Documentation for the machine package for the Adafruit Feather nRF52840 Sense](../machine/feather-nrf52840-sense)
 
 ## Flashing
 
 ### UF2
 
-The Adafruit Feather nRF52840 comes with the [UF2 bootloader](https://github.com/Microsoft/uf2) already installed.
+The Adafruit Feather nRF52840 Sense comes with the [UF2 bootloader](https://github.com/Microsoft/uf2) already installed.
 
 **PLEASE NOTE** that for a good experience using TinyGo on your board you must be running version 0.4.1 or above of the UF2 bootloader on the board. For more information, [see below](#updating-the-uf2-bootloader)
 
 ### CLI Flashing
 
-- Plug your Adafruit Feather nRF52840 into your computer's USB port.
+- Plug your Adafruit Feather nRF52840 Sense into your computer's USB port.
 - Flash your TinyGo program to the board using this command:
 
     ```shell
-    tinygo flash -target=feather-nrf52840 [PATH TO YOUR PROGRAM]
+    tinygo flash -target=feather-nrf52840-sense [PATH TO YOUR PROGRAM]
     ```
 
-- The Adafruit Feather nRF52840 board should restart and then begin running your program.
+- The Adafruit Feather nRF52840 Sense board should restart and then begin running your program.
 
 ### Troubleshooting
 
-If you have troubles getting your Adafruit Feather nRF52840 board to receive code, try this:
+If you have troubles getting your Adafruit Feather nRF52840 Sense board to receive code, try this:
 
-- Press the "RESET" button on the board two times to get the Adafruit Feather nRF52840 board ready to receive code.
-- The Adafruit Feather nRF52840 board will appear to your computer like a USB drive.
+- Press the "RESET" button on the board two times to get the Adafruit Feather nRF52840 Sense board ready to receive code.
+- The Adafruit Feather nRF52840 Sense board will appear to your computer like a USB drive.
 - Now try running the command:
 
     ```shell
-    tinygo flash -target=feather-nrf52840 [PATH TO YOUR PROGRAM]
+    tinygo flash -target=feather-nrf52840-sense [PATH TO YOUR PROGRAM]
     ```
 
-Once you have updated your Adafruit Feather nRF52840 board the first time, after that you should be able to flash it entirely from the command line.
+Once you have updated your Adafruit Feather nRF52840 Sense board the first time, after that you should be able to flash it entirely from the command line.
 
 ## Notes
 
-You can use the USB port to the Adafruit Feather nRF52840 as a serial port. `UART0` refers to this connection.
+You can use the USB port to the Adafruit Feather nRF52840 Sense as a serial port. `UART0` refers to this connection.
 
-Bluetooth support is now available for the Adafruit Feather nRF52840 board. See https://github.com/tinygo-org/bluetooth for more information.
+Bluetooth support is now available for the Adafruit Feather nRF52840 Sense board. See https://github.com/tinygo-org/bluetooth for more information.
 
 ## Updating the UF2 bootloader
 
@@ -83,7 +83,7 @@ pip3 install --user adafruit-nrfutil
 ```
 
 Once you have installed the `adafruit-nrfutil` program, download the firmware here: 
-https://github.com/adafruit/Adafruit_nRF52_Bootloader/releases/download/0.4.1/feather_nrf52840_express_bootloader-0.4.1.zip
+https://github.com/adafruit/Adafruit_nRF52_Bootloader/releases/download/0.4.1/feather_nrf52840_sense_bootloader-0.4.1.zip
 
 Unzip the files in this zip file and save them to a convenient location. 
 
