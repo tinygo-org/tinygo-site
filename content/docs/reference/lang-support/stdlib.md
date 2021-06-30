@@ -28,19 +28,19 @@ crypto/cipher |  <span style="color: green">✔</span> yes  |
 crypto/des |  <span style="color: green">✔</span> yes  | 
 crypto/dsa |  <span style="color: green">✔</span> yes  | 
 crypto/ecdsa |  <span style="color: green">✔</span> yes  | 
-crypto/ed25519 |  [<span style="color: red">✗</span> no](#cryptoed25519)  | 
+crypto/ed25519 |  <span style="color: green">✔</span> yes  | 
 crypto/elliptic |  <span style="color: green">✔</span> yes  | 
 crypto/hmac |  <span style="color: green">✔</span> yes  | 
 crypto/md5 |  <span style="color: green">✔</span> yes  | 
-crypto/rand |  [<span style="color: red">✗</span> no](#cryptorand)  | 
+crypto/rand |  <span style="color: green">✔</span> yes  | 
 crypto/rc4 |  <span style="color: green">✔</span> yes  | 
-crypto/rsa |  [<span style="color: red">✗</span> no](#cryptorsa)  | 
+crypto/rsa |  <span style="color: green">✔</span> yes  | 
 crypto/sha1 |  <span style="color: green">✔</span> yes  | 
 crypto/sha256 |  <span style="color: green">✔</span> yes  | 
 crypto/sha512 |  <span style="color: green">✔</span> yes  | 
 crypto/subtle |  <span style="color: green">✔</span> yes  | 
-crypto/tls |  [<span style="color: red">✗</span> no](#cryptotls)  | 
-crypto/x509 |  [<span style="color: red">✗</span> no](#cryptox509)  | 
+crypto/tls |  <span style="color: green">✔</span> yes  | 
+crypto/x509 |  <span style="color: green">✔</span> yes  | 
 crypto/x509/pkix |  <span style="color: green">✔</span> yes  | 
 database/sql |  <span style="color: green">✔</span> yes  | 
 database/sql/driver |  <span style="color: green">✔</span> yes  | 
@@ -72,13 +72,13 @@ go/build |  [<span style="color: red">✗</span> no](#gobuild)  |
 go/build/constraint |  <span style="color: green">✔</span> yes  | 
 go/constant |  <span style="color: green">✔</span> yes  | 
 go/doc |  [<span style="color: red">✗</span> no](#godoc)  | 
-go/format |  [<span style="color: red">✗</span> no](#goformat)  | 
+go/format |  <span style="color: green">✔</span> yes  | 
 go/importer |  [<span style="color: red">✗</span> no](#goimporter)  | 
-go/parser |  [<span style="color: red">✗</span> no](#goparser)  | 
+go/parser |  <span style="color: green">✔</span> yes  | 
 go/printer |  <span style="color: green">✔</span> yes  | 
 go/scanner |  <span style="color: green">✔</span> yes  | 
 go/token |  <span style="color: green">✔</span> yes  | 
-go/types |  [<span style="color: red">✗</span> no](#gotypes)  | 
+go/types |  <span style="color: green">✔</span> yes  | 
 hash |  <span style="color: green">✔</span> yes  | 
 hash/adler32 |  <span style="color: green">✔</span> yes  | 
 hash/crc32 |  <span style="color: green">✔</span> yes  | 
@@ -99,29 +99,29 @@ io |  <span style="color: green">✔</span> yes  |
 io/fs |  <span style="color: green">✔</span> yes  | 
 io/ioutil |  <span style="color: green">✔</span> yes  | 
 log |  <span style="color: green">✔</span> yes  | 
-log/syslog |  [<span style="color: red">✗</span> no](#logsyslog)  | 
+log/syslog |  <span style="color: green">✔</span> yes  | 
 math |  <span style="color: green">✔</span> yes  | 
 math/big |  <span style="color: green">✔</span> yes  | 
 math/bits |  <span style="color: green">✔</span> yes  | 
 math/cmplx |  <span style="color: green">✔</span> yes  | 
 math/rand |  <span style="color: green">✔</span> yes  | 
 mime |  <span style="color: green">✔</span> yes  | 
-mime/multipart |  [<span style="color: red">✗</span> no](#mimemultipart)  | 
+mime/multipart |  <span style="color: green">✔</span> yes  | 
 mime/quotedprintable |  <span style="color: green">✔</span> yes  | 
-net |  [<span style="color: red">✗</span> no](#net)  | 
+net |  <span style="color: green">✔</span> yes  | 
 net/http |  [<span style="color: red">✗</span> no](#nethttp)  | 
 net/http/cgi |  [<span style="color: red">✗</span> no](#nethttpcgi)  | 
 net/http/cookiejar |  [<span style="color: red">✗</span> no](#nethttpcookiejar)  | 
 net/http/fcgi |  [<span style="color: red">✗</span> no](#nethttpfcgi)  | 
 net/http/httptest |  [<span style="color: red">✗</span> no](#nethttphttptest)  | 
-net/http/httptrace |  [<span style="color: red">✗</span> no](#nethttphttptrace)  | 
+net/http/httptrace |  <span style="color: green">✔</span> yes  | 
 net/http/httputil |  [<span style="color: red">✗</span> no](#nethttphttputil)  | 
 net/http/pprof |  [<span style="color: red">✗</span> no](#nethttppprof)  | 
-net/mail |  [<span style="color: red">✗</span> no](#netmail)  | 
+net/mail |  <span style="color: green">✔</span> yes  | 
 net/rpc |  [<span style="color: red">✗</span> no](#netrpc)  | 
 net/rpc/jsonrpc |  [<span style="color: red">✗</span> no](#netrpcjsonrpc)  | 
-net/smtp |  [<span style="color: red">✗</span> no](#netsmtp)  | 
-net/textproto |  [<span style="color: red">✗</span> no](#nettextproto)  | 
+net/smtp |  <span style="color: green">✔</span> yes  | 
+net/textproto |  <span style="color: green">✔</span> yes  | 
 net/url |  <span style="color: green">✔</span> yes  | 
 os |  <span style="color: green">✔</span> yes  | 
 os/exec |  [<span style="color: red">✗</span> no](#osexec)  | 
@@ -195,57 +195,6 @@ unsafe |  <span style="color: green">✔</span> yes  |
 
 
 
-## crypto/ed25519
-
-
-This package cannot be imported because the following dependencies cannot be compiled:
-
-  * [crypto/rand](#cryptorand)
-
-
-
-
-
-
-
-
-
-
-
-## crypto/rand
-
-
-The compiler gave the following error when this package was imported:
-
-<pre>fatal error: unexpected signal during runtime execution
-[signal SIGSEGV: segmentation violation code=0x1 addr=0x8 pc=0x4c3675e]
-
-runtime stack:
-runtime.throw(0x50dc149, 0x2a)
-	/home/ron/.gvm/gos/go1.16.3/src/runtime/panic.go:1117 +0x72
-runtime.sigpanic()
-	/home/ron/.gvm/gos/go1.16.3/src/runtime/signal_unix.go:718 +0x2e5
-
-goroutine 21 [syscall]:
-runtime.cgocall(0xdd6800, 0xc003d939c0, 0xc0038589a0)
-	/home/ron/.gvm/gos/go1.16.3/src/runtime/cgocall.go:154 +0x5b fp=0xc003d93990 sp=0xc003d93958 pc=0xa7db3b
-tinygo.org/x/go-llvm._Cfunc_LLVMVerifyModule(0x7f434801c7f0, 0xc000000001, 0xc0038589a0, 0x0)
-	_cgo_gotypes.go:9591 +0x48 fp=0xc003d939c0 sp=0xc003d93990 pc=0xcd4168
-tinygo.org/x/go-llvm.VerifyModule.func1(0x7f434801c7f0, 0xc000000001, 0xc0038589a0, 0x7f4349080d58)
-[...more lines following...]</pre>
-
-
-
-
-
-
-
-## crypto/rsa
-
-
-This package cannot be imported because the following dependencies cannot be compiled:
-
-  * [crypto/rand](#cryptorand)
 
 
 
@@ -259,29 +208,14 @@ This package cannot be imported because the following dependencies cannot be com
 
 
 
-## crypto/tls
-
-
-This package cannot be imported because the following dependencies cannot be compiled:
-
-  * [crypto/ed25519](#cryptoed25519)
-  * [crypto/rand](#cryptorand)
-  * [crypto/rsa](#cryptorsa)
-  * [crypto/x509](#cryptox509)
-  * [net](#net)
 
 
 
 
 
-## crypto/x509
 
 
-This package cannot be imported because the following dependencies cannot be compiled:
 
-  * [crypto/ed25519](#cryptoed25519)
-  * [crypto/rsa](#cryptorsa)
-  * [net](#net)
 
 
 
@@ -384,7 +318,6 @@ This package cannot be imported because the following dependencies cannot be com
 This package cannot be imported because the following dependencies cannot be compiled:
 
   * [go/doc](#godoc)
-  * [go/parser](#goparser)
 
 
 
@@ -405,15 +338,6 @@ This package cannot be imported because the following dependencies cannot be com
 
 
 
-## go/format
-
-
-This package cannot be imported because the following dependencies cannot be compiled:
-
-  * [go/parser](#goparser)
-
-
-
 
 
 ## go/importer
@@ -422,20 +346,6 @@ This package cannot be imported because the following dependencies cannot be com
 This package cannot be imported because the following dependencies cannot be compiled:
 
   * [go/build](#gobuild)
-  * [go/types](#gotypes)
-
-
-
-
-
-## go/parser
-
-
-The compiler gave the following error when this package was imported:
-
-<pre># go/parser
-/home/ron/.gvm/gos/go1.16.3/src/go/parser/interface.go:136:18: ReadDir not declared by package os
-</pre>
 
 
 
@@ -446,13 +356,6 @@ The compiler gave the following error when this package was imported:
 
 
 
-
-## go/types
-
-
-This package cannot be imported because the following dependencies cannot be compiled:
-
-  * [go/parser](#goparser)
 
 
 
@@ -507,12 +410,6 @@ This package cannot be imported because the following dependencies cannot be com
 
 
 
-## log/syslog
-
-
-This package cannot be imported because the following dependencies cannot be compiled:
-
-  * [net](#net)
 
 
 
@@ -528,33 +425,6 @@ This package cannot be imported because the following dependencies cannot be com
 
 
 
-
-
-## mime/multipart
-
-
-This package cannot be imported because the following dependencies cannot be compiled:
-
-  * [crypto/rand](#cryptorand)
-  * [net/textproto](#nettextproto)
-
-
-
-
-
-
-
-## net
-
-
-The compiler gave the following error when this package was imported:
-
-<pre># net
-/home/ron/.gvm/gos/go1.16.3/src/net/pipe.go:156:16: ErrDeadlineExceeded not declared by package os
-/home/ron/.gvm/gos/go1.16.3/src/net/pipe.go:169:16: ErrDeadlineExceeded not declared by package os
-/home/ron/.gvm/gos/go1.16.3/src/net/pipe.go:188:16: ErrDeadlineExceeded not declared by package os
-/home/ron/.gvm/gos/go1.16.3/src/net/pipe.go:204:17: ErrDeadlineExceeded not declared by package os
-</pre>
 
 
 
@@ -563,14 +433,10 @@ The compiler gave the following error when this package was imported:
 ## net/http
 
 
-This package cannot be imported because the following dependencies cannot be compiled:
+The compiler gave the following error when this package was imported:
 
-  * [crypto/rand](#cryptorand)
-  * [crypto/tls](#cryptotls)
-  * [mime/multipart](#mimemultipart)
-  * [net](#net)
-  * [net/http/httptrace](#nethttphttptrace)
-  * [net/textproto](#nettextproto)
+<pre>/home/ron/.gvm/gos/go1.16.3/src/net/http/transport.go:1587:5: todo: go on interface call
+</pre>
 
 
 
@@ -581,10 +447,7 @@ This package cannot be imported because the following dependencies cannot be com
 
 This package cannot be imported because the following dependencies cannot be compiled:
 
-  * [crypto/tls](#cryptotls)
-  * [net](#net)
   * [net/http](#nethttp)
-  * [net/textproto](#nettextproto)
   * [os/exec](#osexec)
 
 
@@ -596,7 +459,6 @@ This package cannot be imported because the following dependencies cannot be com
 
 This package cannot be imported because the following dependencies cannot be compiled:
 
-  * [net](#net)
   * [net/http](#nethttp)
 
 
@@ -608,7 +470,6 @@ This package cannot be imported because the following dependencies cannot be com
 
 This package cannot be imported because the following dependencies cannot be compiled:
 
-  * [net](#net)
   * [net/http](#nethttp)
   * [net/http/cgi](#nethttpcgi)
 
@@ -621,24 +482,9 @@ This package cannot be imported because the following dependencies cannot be com
 
 This package cannot be imported because the following dependencies cannot be compiled:
 
-  * [crypto/tls](#cryptotls)
-  * [crypto/x509](#cryptox509)
-  * [net](#net)
   * [net/http](#nethttp)
-  * [net/textproto](#nettextproto)
 
 
-
-
-
-## net/http/httptrace
-
-
-This package cannot be imported because the following dependencies cannot be compiled:
-
-  * [crypto/tls](#cryptotls)
-  * [net](#net)
-  * [net/textproto](#nettextproto)
 
 
 
@@ -649,9 +495,7 @@ This package cannot be imported because the following dependencies cannot be com
 
 This package cannot be imported because the following dependencies cannot be compiled:
 
-  * [net](#net)
   * [net/http](#nethttp)
-  * [net/textproto](#nettextproto)
 
 
 
@@ -668,15 +512,6 @@ This package cannot be imported because the following dependencies cannot be com
 
 
 
-## net/mail
-
-
-This package cannot be imported because the following dependencies cannot be compiled:
-
-  * [net/textproto](#nettextproto)
-
-
-
 
 
 ## net/rpc
@@ -686,7 +521,6 @@ This package cannot be imported because the following dependencies cannot be com
 
   * [encoding/gob](#encodinggob)
   * [html/template](#htmltemplate)
-  * [net](#net)
   * [net/http](#nethttp)
 
 
@@ -698,32 +532,11 @@ This package cannot be imported because the following dependencies cannot be com
 
 This package cannot be imported because the following dependencies cannot be compiled:
 
-  * [net](#net)
   * [net/rpc](#netrpc)
 
 
 
 
-
-## net/smtp
-
-
-This package cannot be imported because the following dependencies cannot be compiled:
-
-  * [crypto/tls](#cryptotls)
-  * [net](#net)
-  * [net/textproto](#nettextproto)
-
-
-
-
-
-## net/textproto
-
-
-This package cannot be imported because the following dependencies cannot be compiled:
-
-  * [net](#net)
 
 
 
@@ -818,10 +631,7 @@ The compiler gave the following error when this package was imported:
 /home/ron/.gvm/gos/go1.16.3/src/testing/quick/quick.go:273:11: fType.NumOut undefined (type reflect.Type has no field or method NumOut)
 /home/ron/.gvm/gos/go1.16.3/src/testing/quick/quick.go:276:11: fType.Out undefined (type reflect.Type has no field or method Out)
 /home/ron/.gvm/gos/go1.16.3/src/testing/quick/quick.go:280:43: fType.NumIn undefined (type reflect.Type has no field or method NumIn)
-/home/ron/.gvm/gos/go1.16.3/src/testing/quick/quick.go:290:12: fVal.Call undefined (type reflect.Value has no field or method Call)
 /home/ron/.gvm/gos/go1.16.3/src/testing/quick/quick.go:320:43: xType.NumIn undefined (type reflect.Type has no field or method NumIn)
-/home/ron/.gvm/gos/go1.16.3/src/testing/quick/quick.go:330:26: x.Call undefined (type reflect.Value has no field or method Call)
-/home/ron/.gvm/gos/go1.16.3/src/testing/quick/quick.go:331:26: y.Call undefined (type reflect.Value has no field or method Call)
 /home/ron/.gvm/gos/go1.16.3/src/testing/quick/quick.go:351:25: f.In undefined (type reflect.Type has no field or method In)
 /home/ron/.gvm/gos/go1.16.3/src/testing/quick/quick.go:353:95: f.In undefined (type reflect.Type has no field or method In)
 </pre>
