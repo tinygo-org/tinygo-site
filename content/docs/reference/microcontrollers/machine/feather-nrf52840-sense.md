@@ -1,6 +1,6 @@
 
 ---
-title: particle-boron
+title: feather-nrf52840-sense
 ---
 
 
@@ -14,48 +14,77 @@ const HasLowFrequencyCrystal = true
 
 ```go
 const (
-	LED		Pin	= 44
-	LED_GREEN	Pin	= 14
-	LED_RED		Pin	= 13
-	LED_BLUE	Pin	= 15
+	D0	= P0_25	// UART TX
+	D1	= P0_24	// UART RX
+	D2	= P0_10	// NFC2
+	D3	= P1_11
+	D4	= P1_10	// LED2
+	D5	= P1_08
+	D6	= P0_07
+	D7	= P1_02	// Button
+	D8	= P0_16	// NeoPixel
+	D9	= P0_26
+	D10	= P0_27
+	D11	= P0_06
+	D12	= P0_08
+	D13	= P1_09	// LED1
+	D14	= P0_04	// A0
+	D15	= P0_05	// A1
+	D16	= P0_30	// A2
+	D17	= P0_28	// A3
+	D18	= P0_02	// A4
+	D19	= P0_03	// A5
+	D20	= P0_29	// Battery
+	D21	= P0_31	// AREF
+	D22	= P0_12	// I2C SDA
+	D23	= P0_11	// I2C SCL
+	D24	= P0_15	// SPI MISO
+	D25	= P0_13	// SPI MOSI
+	D26	= P0_14	// SPI SCK
+	D27	= P0_19	// QSPI CLK
+	D28	= P0_20	// QSPI CS
+	D29	= P0_17	// QSPI Data 0
+	D30	= P0_22	// QSPI Data 1
+	D31	= P0_23	// QSPI Data 2
+	D32	= P0_21	// QSPI Data 3
+	D33	= P0_09	// NFC1 (test point on bottom of board)
 )
 ```
 
-LEDs
+GPIO Pins
 
 
 ```go
 const (
-	A0	Pin	= 3
-	A1	Pin	= 4
-	A2	Pin	= 28
-	A3	Pin	= 29
-	A4	Pin	= 30
-	A5	Pin	= 31
-	D0	Pin	= 26	// Also SDA
-	D1	Pin	= 27	// Also SCL
-	D2	Pin	= 33
-	D3	Pin	= 34
-	D4	Pin	= 40
-	D5	Pin	= 42
-	D6	Pin	= 43
-	D7	Pin	= 44	// Also LED
-	D8	Pin	= 35
-	D9	Pin	= 6	// Also TX
-	D10	Pin	= 8	// Also RX
-	D11	Pin	= 46	// Also SDI
-	D12	Pin	= 45	// Also SDO
-	D13	Pin	= 47	// Also SCK
+	A0	= D14
+	A1	= D15
+	A2	= D16
+	A3	= D17
+	A4	= D18
+	A5	= D19
+	A6	= D20	// Battery
+	A7	= D21	// ARef
 )
 ```
 
-GPIOs
+Analog Pins
 
 
 ```go
 const (
-	UART_TX_PIN	Pin	= 6
-	UART_RX_PIN	Pin	= 8
+	LED		= D13
+	LED1		= LED
+	LED2		= D4
+	NEOPIXEL	= D8
+	WS2812		= D8
+	BUTTON		= D7
+
+	QSPI_SCK	= D27
+	QSPI_CS		= D28
+	QSPI_DATA0	= D29
+	QSPI_DATA1	= D30
+	QSPI_DATA2	= D31
+	QSPI_DATA3	= D32
 )
 ```
 
@@ -63,13 +92,18 @@ const (
 
 ```go
 const (
-	SDA_PIN	Pin	= 26
-	SCL_PIN	Pin	= 27
+	UART_RX_PIN	= D0
+	UART_TX_PIN	= D1
+)
+```
 
-	// Internal I2C with MAX17043 (Fuel gauge) and BQ24195 (Power management) chips on it
-	SDA1_PIN	Pin	= 24
-	SCL1_PIN	Pin	= 41
-	INT1_PIN	Pin	= 5
+UART0 pins (logical UART1)
+
+
+```go
+const (
+	SDA_PIN	= D22	// I2C0 external
+	SCL_PIN	= D23	// I2C0 external
 )
 ```
 
@@ -78,55 +112,13 @@ I2C pins
 
 ```go
 const (
-	SPI0_SCK_PIN	Pin	= 47
-	SPI0_SDO_PIN	Pin	= 45
-	SPI0_SDI_PIN	Pin	= 46
+	SPI0_SCK_PIN	= D26	// SCK
+	SPI0_SDO_PIN	= D25	// SDO
+	SPI0_SDI_PIN	= D24	// SDI
 )
 ```
 
 SPI pins
-
-
-```go
-const (
-	SPI1_SCK_PIN	Pin	= 19
-	SPI1_SDO_PIN	Pin	= 20
-	SPI1_SDI_PIN	Pin	= 21
-	SPI1_CS_PIN	Pin	= 17
-	SPI1_WP_PIN	Pin	= 22
-	SPI1_HOLD_PIN	Pin	= 23
-)
-```
-
-Internal 4MB SPI Flash
-
-
-```go
-const (
-	SARA_TXD_PIN		Pin	= 37
-	SARA_RXD_PIN		Pin	= 36
-	SARA_CTS_PIN		Pin	= 38
-	SARA_RTS_PIN		Pin	= 39
-	SARA_RESET_PIN		Pin	= 12
-	SARA_POWER_ON_PIN	Pin	= 16
-	SARA_BUFF_EN_PIN	Pin	= 25
-	SARA_VINT_PIN		Pin	= 2
-)
-```
-
-u-blox SARA coprocessor
-
-
-```go
-const (
-	MODE_BUTTON_PIN	Pin	= 11
-	ANTENNA_SEL_PIN	Pin	= 7	// Low: chip antenna, High: External uFL
-	NFC1_PIN	Pin	= 9
-	NFC2_PIN	Pin	= 10
-)
-```
-
-Other peripherals
 
 
 ```go
@@ -227,6 +219,16 @@ Hardware pins
 
 ```go
 const (
+	DFU_MAGIC_SERIAL_ONLY_RESET	= 0x4e
+	DFU_MAGIC_UF2_RESET		= 0x57
+	DFU_MAGIC_OTA_RESET		= 0xA8
+)
+```
+
+
+
+```go
+const (
 	// ParityNone means to not use any parity checking. This is
 	// the most common setting.
 	ParityNone	UARTParity	= 0
@@ -247,15 +249,6 @@ const (
 
 
 ## Variables
-
-```go
-var (
-	DefaultUART = UART0
-)
-```
-
-UART
-
 
 ```go
 var (
@@ -363,10 +356,10 @@ var (
 
 
 ```go
-var Serial = DefaultUART
+var Serial = USB
 ```
 
-Serial is implemented via the default (usually the first) UART on the chip.
+Serial is implemented via USB (USB-CDC).
 
 
 
@@ -378,6 +371,36 @@ Serial is implemented via the default (usually the first) UART on the chip.
 func CPUFrequency() uint32
 ```
 
+
+
+### func EnterOTABootloader
+
+```go
+func EnterOTABootloader()
+```
+
+EnterOTABootloader resets the chip into the bootloader so that it can be
+flashed via an OTA update
+
+
+### func EnterSerialBootloader
+
+```go
+func EnterSerialBootloader()
+```
+
+EnterSerialBootloader resets the chip into the serial bootloader. After
+reset, it can be flashed using serial/nrfutil.
+
+
+### func EnterUF2Bootloader
+
+```go
+func EnterUF2Bootloader()
+```
+
+EnterUF2Bootloader resets the chip into the UF2 bootloader. After reset, it
+can be flashed via nrfutil or by copying a UF2 file to the mass storage device
 
 
 ### func InitADC

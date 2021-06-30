@@ -1,146 +1,380 @@
 
 ---
-title: arduino-zero
+title: grandcentral-m4
 ---
 
 
 ## Constants
 
 ```go
-const RESET_MAGIC_VALUE = 0x07738135
+const (
+	//  = Pin     Alt. Function        SERCOM   PWM Timer   Interrupt
+	//   ------  -------------------- -------- ----------- -----------
+	D0	= PB25	// UART1 RX              0[1]                 EXTI9
+	D1	= PB24	// UART1 TX              0[0]                 EXTI8
+	D2	= PC18	//                                TCC0[2]     EXTI2
+	D3	= PC19	//                                TCC0[3]     EXTI3
+	D4	= PC20	//                                TCC0[4]     EXTI4
+	D5	= PC21	//                                TCC0[5]     EXTI5
+	D6	= PD20	//                                TCC1[0]     EXTI10
+	D7	= PD21	//                                TCC1[1]     EXTI11
+	D8	= PB18	//                                TCC1[0]     EXTI2
+	D9	= PB02	//                                TC6[0]      EXTI3
+	D10	= PB22	//                                TC7[0]      EXTI6
+	D11	= PB23	//                                            EXTI7
+	D12	= PB00	//                                TC7[0]      EXTI0
+	D13	= PB01	// On-board LED                   TC7[1]      EXTI1
+	D14	= PB16	// UART4 TX, I2S0 SCK    5[0]     TC6[0]      EXTI0
+	D15	= PB17	// UART4 RX, I2S0 MCK    5[1]                 EXTI1
+	D16	= PC22	// UART3 TX              1[0]                 EXTI6
+	D17	= PC23	// UART3 RX              1[1]                 EXTI6
+	D18	= PB12	// UART2 TX              4[0]     TCC3[0]     EXTI12
+	D19	= PB13	// UART2 RX              4[1]     TCC3[1]     EXTI13
+	D20	= PB20	// I2C0 SDA              3[0]                 EXTI4
+	D21	= PB21	// I2C0 SCL              3[1]                 EXTI5
+	D22	= PD12	//                                            EXTI7
+	D23	= PA15	//                                TCC2[1]     EXTI15
+	D24	= PC17	// I2C1 SCL              6[1]     TCC0[1]     EXTI1
+	D25	= PC16	// I2C1 SDA              6[0]     TCC0[0]     EXTI0
+	D26	= PA12	// PCC DEN1                       TC2[0]      EXTI12
+	D27	= PA13	// PCC DEN2                       TC2[1]      EXTI13
+	D28	= PA14	// PCC CLK                        TCC2[0]     EXTI14
+	D29	= PB19	// PCC XCLK                                   EXTI3
+	D30	= PA23	// PCC D7                         TC4[1]      EXTI7
+	D31	= PA22	// PCC D6, I2S0 SDI               TC4[0]      EXTI6
+	D32	= PA21	// PCC D5, I2S0 SDO                           EXTI5
+	D33	= PA20	// PCC D4, I2S0 FS                            EXTI4
+	D34	= PA19	// PCC D3                         TC3[1]      EXTI3
+	D35	= PA18	// PCC D2                         TC3[0]      EXTI2
+	D36	= PA17	// PCC D1                                     EXTI1
+	D37	= PA16	// PCC D0                                     EXTI0
+	D38	= PB15	// PCC D9                         TCC4[1]     EXTI15
+	D39	= PB14	// PCC D8                         TCC4[0]     EXTI14
+	D40	= PC13	// PCC D11                                    EXTI13
+	D41	= PC12	// PCC D10                                    EXTI12
+	D42	= PC15	// PCC D13                                    EXTI15
+	D43	= PC14	// PCC D12                                    EXTI14
+	D44	= PC11	//                                            EXTI11
+	D45	= PC10	//                                            EXTI10
+	D46	= PC06	//                                            EXTI6
+	D47	= PC07	//                                            EXTI5
+	D48	= PC04	//                                            EXTI4
+	D49	= PC05	//                                            EXTI5
+	D50	= PD11	// SPI0 SDI              7[3]                 EXTI11
+	D51	= PD08	// SPI0 SDO              7[0]                 EXTI8
+	D52	= PD09	// SPI0 SCK              7[1]                 EXTI9
+	D53	= PD10	// SPI0 CS                                    EXTI10
+	D54	= PB05	// ADC1 (A8)                                  EXTI5
+	D55	= PB06	// ADC1 (A9)                                  EXTI6
+	D56	= PB07	// ADC1 (A10)                                 EXTI7
+	D57	= PB08	// ADC1 (A11)                                 EXTI8
+	D58	= PB09	// ADC1 (A12)                                 EXTI9
+	D59	= PA04	// ADC0 (A13)                     TC0[0]      EXTI4
+	D60	= PA06	// ADC0 (A14)                     TC1[0]      EXTI6
+	D61	= PA07	// ADC0 (A15)                     TC1[1]      EXTI7
+	D62	= PB20	// I2C0 SDA              3[0]     TCC1[2]     EXTI4
+	D63	= PB21	// I2C0 SCL              3[1]     TCC1[3]     EXTI5
+	D64	= PD11	// SPI0 SDI              7[3]                 EXTI6
+	D65	= PD08	// SPI0 SDO              7[0]                 EXTI3
+	D66	= PD09	// SPI0 SCK              7[1]                 EXTI4
+	D67	= PA02	// ADC0 (A0), DAC0                            EXTI2
+	D68	= PA05	// ADC0 (A1), DAC1                            EXTI5
+	D69	= PB03	// ADC0 (A2)                      TC6[1]      EXTI3
+	D70	= PC00	// ADC1 (A3)                                  EXTI0
+	D71	= PC01	// ADC1 (A4)                                  EXTI1
+	D72	= PC02	// ADC1 (A5)                                  EXTI2
+	D73	= PC03	// ADC1 (A6)                                  EXTI3
+	D74	= PB04	// ADC1 (A7)                                  EXTI4
+	D75	= PC31	// UART RX LED
+	D76	= PC30	// UART TX LED
+	D77	= PA27	// USB HOST EN
+	D78	= PA24	// USB DM                                     EXTI8
+	D79	= PA25	// USB DP                                     EXTI9
+	D80	= PB29	// SD/SPI1 SDI           2[3]
+	D81	= PB27	// SD/SPI1 SCK           2[1]
+	D82	= PB26	// SD/SPI1 SDO           2[0]
+	D83	= PB28	// SD/SPI1 CS
+	D84	= PA03	// AREF                                       EXTI3
+	D85	= PA02	// DAC0                                       EXTI2
+	D86	= PA05	// DAC1                                       EXTI5
+	D87	= PB01	// On-board LED (D13)             TC7[1]      EXTI1
+	D88	= PC24	// On-board NeoPixel
+	D89	= PB10	// QSPI SCK                                   EXTI10
+	D90	= PB11	// QSPI CS                                    EXTI11
+	D91	= PA08	// QSPI ID0                                   EXTI(NMI)
+	D92	= PA09	// QSPI ID1                                   EXTI9
+	D93	= PA10	// QSPI ID2                                   EXTI10
+	D94	= PA11	// QSPI ID3                                   EXTI11
+	D95	= PB31	// SD Detect                                  EXTI15
+	D96	= PB30	// SWO                                        EXTI14
+)
 ```
 
-used to reset into bootloader
+Digital pins
 
 
 ```go
 const (
-	D0	= PA11	// RX
-	D1	= PA10	// TX
-	D2	= PA14
-	D3	= PA09	// PWM available
-	D4	= PA08	// PWM available
-	D5	= PA15	// PWM available
-	D6	= PA20	// PWM available
-	D7	= PA21
+	A0	= D67	// (PA02) ADC0 ch. 0,
+	A1	= D68	// (PA05) ADC0 ch. 5,
+	A2	= D69	// (PB03) ADC0 ch. 15
+	A3	= D70	// (PC00) ADC1 ch. 10
+	A4	= D71	// (PC01) ADC1 ch. 11
+	A5	= D72	// (PC02) ADC1 ch. 4
+	A6	= D73	// (PC03) ADC1 ch. 5
+	A7	= D74	// (PB04) ADC1 ch. 6
+	A8	= D54	// (PB05) ADC1 ch. 7
+	A9	= D55	// (PB06) ADC1 ch. 8
+	A10	= D56	// (PB07) ADC1 ch. 9
+	A11	= D57	// (PB08) ADC1 ch. 0
+	A12	= D58	// (PB09) ADC1 ch. 1
+	A13	= D59	// (PA04) ADC0 ch. 4
+	A14	= D60	// (PA06) ADC0 ch. 6
+	A15	= D61	// (PA07) ADC0 ch. 7
+
+	AREF	= D84	// (PA03)
 )
 ```
 
-GPIO Pins - Digital Low
+Analog pins
 
 
 ```go
 const (
-	D8	= PA06	// PWM available
-	D9	= PA07	// PWM available
-	D10	= PA18	// PWM available
-	D11	= PA16	// PWM available
-	D12	= PA19	// PWM available
-	D13	= PA17	// PWM available
+	LED_PIN		= D13	// (PB01), also on D87
+	UART_RX_LED_PIN	= D75	// (PC31)
+	UART_TX_LED_PIN	= D76	// (PC30)
+	NEOPIXEL_PIN	= D88	// (PC24)
+
+	// aliases used by examples and drivers
+	LED		= LED_PIN
+	LED_RX		= UART_RX_LED_PIN
+	LED_TX		= UART_TX_LED_PIN
+	NEOPIXEL	= NEOPIXEL_PIN
+	WS2812		= NEOPIXEL_PIN
 )
 ```
 
-GPIO Pins - Digital High
+LED pins
 
 
 ```go
 const (
-	LED		= LED1
-	LED1	Pin	= D13
-	LED2	Pin	= PA27	// TX LED
-	LED3	Pin	= PB03	// RX LED
+	UART1_RX_PIN	= D0	// (PB25)
+	UART1_TX_PIN	= D1	// (PB24)
+
+	UART2_RX_PIN	= D19	// (PB13)
+	UART2_TX_PIN	= D18	// (PB12)
+
+	UART3_RX_PIN	= D17	// (PC23)
+	UART3_TX_PIN	= D16	// (PC22)
+
+	UART4_RX_PIN	= D15	// (PB17)
+	UART4_TX_PIN	= D14	// (PB16)
+
+	UART_RX_PIN	= UART1_RX_PIN	// default pins
+	UART_TX_PIN	= UART1_TX_PIN	//
 )
 ```
 
-LEDs on the Arduino Zero
+UART pins
 
 
 ```go
 const (
-	AREF	Pin	= PA03
-	ADC0	Pin	= PA02
-	ADC1	Pin	= PB08
-	ADC2	Pin	= PB09
-	ADC3	Pin	= PA04
-	ADC4	Pin	= PA05
-	ADC5	Pin	= PB02
+	SPI0_SCK_PIN	= D66	// (PD09), also on D52
+	SPI0_SDO_PIN	= D65	// (PD08), also on D51
+	SPI0_SDI_PIN	= D64	// (PD11), also on D50
+	SPI0_CS_PIN	= D53	// (PD10)
+
+	SPI1_SCK_PIN	= D81	// (PB27)
+	SPI1_SDO_PIN	= D82	// (PB26)
+	SPI1_SDI_PIN	= D80	// (PB29)
+
+	SPI_SCK_PIN	= SPI0_SCK_PIN	// default pins
+	SPI_SDO_PIN	= SPI0_SDO_PIN	//
+	SPI_SDI_PIN	= SPI0_SDI_PIN	//
+	SPI_CS_PIN	= SPI0_CS_PIN	//
 )
 ```
 
-ADC pins
+SPI pins
 
 
 ```go
 const (
-	SPI0_SDO_PIN	Pin	= PA16	// MOSI: SERCOM1/PAD[0]
-	SPI0_SDI_PIN	Pin	= PA19	// MISO: SERCOM1/PAD[2]
-	SPI0_SCK_PIN	Pin	= PA17	// SCK:  SERCOM1/PAD[3]
+	I2C0_SDA_PIN	= D62	// (PB20), also on D20
+	I2C0_SCL_PIN	= D63	// (PB21), also on D21
+
+	I2C1_SDA_PIN	= D25	// (PC16)
+	I2C1_SCL_PIN	= D24	// (PC17)
+
+	I2C_SDA_PIN	= I2C0_SDA_PIN	// default pins
+	I2C_SCL_PIN	= I2C0_SCL_PIN	//
+
+	SDA_PIN	= I2C_SDA_PIN	// unconventional pin names
+	SCL_PIN	= I2C_SCL_PIN	//  (required by machine_atsamd51.go)
 )
 ```
 
-SPI pins - EDBG connected
+I2C pins
 
 
 ```go
 const (
-	SPI1_SDO_PIN	Pin	= PB10	// MOSI: SERCOM4/PAD[2] - Pin 4
-	SPI1_SDI_PIN	Pin	= PA12	// MISO: SERCOM4/PAD[0] - Pin 1
-	SPI1_SCK_PIN	Pin	= PB11	// SCK:  SERCOM4/PAD[3] - Pin 3
+	I2S0_SCK_PIN	= D14	// (PB16)
+	I2S0_MCK_PIN	= D15	// (PB17)
+	I2S0_FS_PIN	= D33	// (PA20)
+	I2S0_SDO_PIN	= D32	// (PA21)
+	I2S0_SDI_PIN	= D31	// (PA22)
+
+	I2S_SCK_PIN	= I2S0_SCK_PIN	// default pins
+	I2S_WS_PIN	= I2S0_FS_PIN	//
+	I2S_SD_PIN	= I2S0_SDO_PIN	//
 )
 ```
 
-SPI pins (Legacy ICSP)
+I2S pins
 
 
 ```go
 const (
-	SDA_PIN	Pin	= PA22	// SDA: SERCOM3/PAD[0] - Pin 20
-	SCL_PIN	Pin	= PA23	// SCL: SERCOM3/PAD[1] - Pin 21
+	SD0_SCK_PIN	= D81	// (PB27)
+	SD0_SDO_PIN	= D82	// (PB26)
+	SD0_SDI_PIN	= D80	// (PB29)
+	SD0_CS_PIN	= D83	// (PB28)
+	SD0_DET_PIN	= D95	// (PB31)
+
+	SDCARD_SCK_PIN	= SD0_SCK_PIN	// default pins
+	SDCARD_SDO_PIN	= SD0_SDO_PIN	//
+	SDCARD_SDI_PIN	= SD0_SDI_PIN	//
+	SDCARD_CS_PIN	= SD0_CS_PIN	//
+	SDCARD_DET_PIN	= SD0_DET_PIN	//
 )
 ```
 
-I2C pins - EDBG connected
+SD card pins
 
 
 ```go
 const (
-	I2S_SCK_PIN	Pin	= PA10
-	I2S_SD_PIN	Pin	= PA07
-	I2S_WS_PIN	Pin	= PA11
+	RESET_MAGIC_VALUE = 0xF01669EF	// Used to reset into bootloader
 )
 ```
 
-I2S pins - might not be exposed
+Other peripheral constants
 
 
 ```go
 const (
-	UART_RX_PIN	Pin	= D0
-	UART_TX_PIN	Pin	= D1
+	USBCDC_HOSTEN_PIN	= D77	// (PA27) host enable
+	USBCDC_DM_PIN		= D78	// (PA24) D-
+	USBCDC_DP_PIN		= D79	// (PA25) D+
 )
 ```
 
-UART0 pins - EDBG connected
+USB CDC pins
 
 
 ```go
 const (
-	USBCDC_DM_PIN	Pin	= PA24
-	USBCDC_DP_PIN	Pin	= PA25
+	TWI_FREQ_100KHZ	= 100000
+	TWI_FREQ_400KHZ	= 400000
 )
 ```
 
-'native' USB port pins
+TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-speed bus.
 
 
 ```go
 const (
-	XIN32	Pin	= PA00
-	XOUT32	Pin	= PA01
+	I2SModeSource	I2SMode	= iota
+	I2SModeReceiver
+	I2SModePDM
 )
 ```
 
-32.768 KHz Crystal
+
+
+```go
+const (
+	I2StandardPhilips	I2SStandard	= iota
+	I2SStandardMSB
+	I2SStandardLSB
+)
+```
+
+
+
+```go
+const (
+	I2SClockSourceInternal	I2SClockSource	= iota
+	I2SClockSourceExternal
+)
+```
+
+
+
+```go
+const (
+	I2SDataFormatDefault	I2SDataFormat	= 0
+	I2SDataFormat8bit			= 8
+	I2SDataFormat16bit			= 16
+	I2SDataFormat24bit			= 24
+	I2SDataFormat32bit			= 32
+)
+```
+
+
+
+```go
+const NoPin = Pin(0xff)
+```
+
+NoPin explicitly indicates "not a pin". Use this pin if you want to leave one
+of the pins in a peripheral unconfigured (if supported by the hardware).
+
+
+```go
+const (
+	PinAnalog		PinMode	= 1
+	PinSERCOM		PinMode	= 2
+	PinSERCOMAlt		PinMode	= 3
+	PinTimer		PinMode	= 4
+	PinTimerAlt		PinMode	= 5
+	PinTCCPDEC		PinMode	= 6
+	PinCom			PinMode	= 7
+	PinSDHC			PinMode	= 8
+	PinI2S			PinMode	= 9
+	PinPCC			PinMode	= 10
+	PinGMAC			PinMode	= 11
+	PinACCLK		PinMode	= 12
+	PinCCL			PinMode	= 13
+	PinDigital		PinMode	= 14
+	PinInput		PinMode	= 15
+	PinInputPullup		PinMode	= 16
+	PinOutput		PinMode	= 17
+	PinTCCE			PinMode	= PinTimer
+	PinTCCF			PinMode	= PinTimerAlt
+	PinTCCG			PinMode	= PinTCCPDEC
+	PinInputPulldown	PinMode	= 18
+	PinCAN			PinMode	= 19
+	PinCAN0			PinMode	= PinSDHC
+	PinCAN1			PinMode	= PinCom
+)
+```
+
+
+
+```go
+const (
+	PinRising	PinChange	= sam.EIC_CONFIG_SENSE0_RISE
+	PinFalling	PinChange	= sam.EIC_CONFIG_SENSE0_FALL
+	PinToggle	PinChange	= sam.EIC_CONFIG_SENSE0_BOTH
+)
+```
+
+Pin change interrupt constants for SetInterrupt.
 
 
 ```go
@@ -209,6 +443,70 @@ const (
 	PB29	Pin	= 61
 	PB30	Pin	= 62
 	PB31	Pin	= 63
+	PC00	Pin	= 64
+	PC01	Pin	= 65
+	PC02	Pin	= 66
+	PC03	Pin	= 67
+	PC04	Pin	= 68
+	PC05	Pin	= 69
+	PC06	Pin	= 70
+	PC07	Pin	= 71
+	PC08	Pin	= 72
+	PC09	Pin	= 73
+	PC10	Pin	= 74
+	PC11	Pin	= 75
+	PC12	Pin	= 76
+	PC13	Pin	= 77
+	PC14	Pin	= 78
+	PC15	Pin	= 79
+	PC16	Pin	= 80
+	PC17	Pin	= 81
+	PC18	Pin	= 82
+	PC19	Pin	= 83
+	PC20	Pin	= 84
+	PC21	Pin	= 85
+	PC22	Pin	= 86
+	PC23	Pin	= 87
+	PC24	Pin	= 88
+	PC25	Pin	= 89
+	PC26	Pin	= 90
+	PC27	Pin	= 91
+	PC28	Pin	= 92
+	PC29	Pin	= 93
+	PC30	Pin	= 94
+	PC31	Pin	= 95
+	PD00	Pin	= 96
+	PD01	Pin	= 97
+	PD02	Pin	= 98
+	PD03	Pin	= 99
+	PD04	Pin	= 100
+	PD05	Pin	= 101
+	PD06	Pin	= 102
+	PD07	Pin	= 103
+	PD08	Pin	= 104
+	PD09	Pin	= 105
+	PD10	Pin	= 106
+	PD11	Pin	= 107
+	PD12	Pin	= 108
+	PD13	Pin	= 109
+	PD14	Pin	= 110
+	PD15	Pin	= 111
+	PD16	Pin	= 112
+	PD17	Pin	= 113
+	PD18	Pin	= 114
+	PD19	Pin	= 115
+	PD20	Pin	= 116
+	PD21	Pin	= 117
+	PD22	Pin	= 118
+	PD23	Pin	= 119
+	PD24	Pin	= 120
+	PD25	Pin	= 121
+	PD26	Pin	= 122
+	PD27	Pin	= 123
+	PD28	Pin	= 124
+	PD29	Pin	= 125
+	PD30	Pin	= 126
+	PD31	Pin	= 127
 )
 ```
 
@@ -217,29 +515,23 @@ Hardware pins
 
 ```go
 const (
-	TWI_FREQ_100KHZ	= 100000
-	TWI_FREQ_400KHZ	= 400000
-)
-```
+	// SERCOM_FREQ_REF is always reference frequency on SAMD51 regardless of CPU speed.
+	SERCOM_FREQ_REF	= 48000000
 
-TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-speed bus.
+	// Default rise time in nanoseconds, based on 4.7K ohm pull up resistors
+	riseTimeNanoseconds	= 125
 
+	// wire bus states
+	wireUnknownState	= 0
+	wireIdleState		= 1
+	wireOwnerState		= 2
+	wireBusyState		= 3
 
-```go
-const (
-	I2SModeSource	I2SMode	= iota
-	I2SModeReceiver
-	I2SModePDM
-)
-```
-
-
-
-```go
-const (
-	I2StandardPhilips	I2SStandard	= iota
-	I2SStandardMSB
-	I2SStandardLSB
+	// wire commands
+	wireCmdNoAction		= 0
+	wireCmdRepeatStart	= 1
+	wireCmdRead		= 2
+	wireCmdStop		= 3
 )
 ```
 
@@ -247,63 +539,22 @@ const (
 
 ```go
 const (
-	I2SClockSourceInternal	I2SClockSource	= iota
-	I2SClockSourceExternal
+	QSPI_SCK	= PB10
+	QSPI_CS		= PB11
+	QSPI_DATA0	= PA08
+	QSPI_DATA1	= PA09
+	QSPI_DATA2	= PA10
+	QSPI_DATA3	= PA11
 )
 ```
 
+The QSPI peripheral on ATSAMD51 is only available on the following pins
 
 
 ```go
-const (
-	I2SDataFormatDefault	I2SDataFormat	= 0
-	I2SDataFormat8bit			= 8
-	I2SDataFormat16bit			= 16
-	I2SDataFormat24bit			= 24
-	I2SDataFormat32bit			= 32
-)
+const HSRAM_SIZE = 0x00040000
 ```
 
-
-
-```go
-const NoPin = Pin(0xff)
-```
-
-NoPin explicitly indicates "not a pin". Use this pin if you want to leave one
-of the pins in a peripheral unconfigured (if supported by the hardware).
-
-
-```go
-const (
-	PinAnalog	PinMode	= 1
-	PinSERCOM	PinMode	= 2
-	PinSERCOMAlt	PinMode	= 3
-	PinTimer	PinMode	= 4
-	PinTimerAlt	PinMode	= 5
-	PinCom		PinMode	= 6
-	//PinAC_CLK        PinMode = 7
-	PinDigital		PinMode	= 8
-	PinInput		PinMode	= 9
-	PinInputPullup		PinMode	= 10
-	PinOutput		PinMode	= 11
-	PinTCC			PinMode	= PinTimer
-	PinTCCAlt		PinMode	= PinTimerAlt
-	PinInputPulldown	PinMode	= 12
-)
-```
-
-
-
-```go
-const (
-	PinRising	PinChange	= sam.EIC_CONFIG_SENSE0_RISE
-	PinFalling	PinChange	= sam.EIC_CONFIG_SENSE0_FALL
-	PinToggle	PinChange	= sam.EIC_CONFIG_SENSE0_BOTH
-)
-```
-
-Pin change interrupt constants for SetInterrupt.
 
 
 ```go
@@ -331,6 +582,70 @@ const (
 
 ```go
 var (
+	UART1	= &_UART1
+	_UART1	= UART{
+		Buffer:	NewRingBuffer(),
+		Bus:	sam.SERCOM0_USART_INT,
+		SERCOM:	0,
+	}
+	UART2	= &_UART2
+	_UART2	= UART{
+		Buffer:	NewRingBuffer(),
+		Bus:	sam.SERCOM4_USART_INT,
+		SERCOM:	4,
+	}
+	UART3	= &_UART3
+	_UART3	= UART{
+		Buffer:	NewRingBuffer(),
+		Bus:	sam.SERCOM1_USART_INT,
+		SERCOM:	1,
+	}
+	UART4	= &_UART4
+	_UART4	= UART{
+		Buffer:	NewRingBuffer(),
+		Bus:	sam.SERCOM5_USART_INT,
+		SERCOM:	5,
+	}
+)
+```
+
+UART on the Grand Central M4
+
+
+```go
+var (
+	I2C0	= &I2C{
+		Bus:	sam.SERCOM3_I2CM,
+		SERCOM:	3,
+	}
+	I2C1	= &I2C{
+		Bus:	sam.SERCOM6_I2CM,
+		SERCOM:	6,
+	}
+)
+```
+
+I2C on the Grand Central M4
+
+
+```go
+var (
+	SPI0	= SPI{
+		Bus:	sam.SERCOM7_SPIM,
+		SERCOM:	7,
+	}
+	SPI1	= SPI{
+		Bus:	sam.SERCOM2_SPIM,
+		SERCOM:	2,
+	}
+)
+```
+
+SPI on the Grand Central M4
+
+
+```go
+var (
 	ErrInvalidInputPin	= errors.New("machine: invalid input pin")
 	ErrInvalidOutputPin	= errors.New("machine: invalid output pin")
 	ErrInvalidClockPin	= errors.New("machine: invalid clock pin")
@@ -343,6 +658,7 @@ var (
 
 ```go
 var (
+	// USB is a USB CDC interface.
 	USB = &USBCDC{Buffer: NewRingBuffer()}
 )
 ```
@@ -359,21 +675,23 @@ var (
 
 ```go
 var (
-	TCC0	= (*TCC)(sam.TCC0)
-	TCC1	= (*TCC)(sam.TCC1)
-	TCC2	= (*TCC)(sam.TCC2)
-)
-```
-
-The SAM D21 has three TCC peripherals, which have PWM as one feature.
-
-
-```go
-var (
 	DAC0 = DAC{}
 )
 ```
 
+
+
+```go
+var (
+	TCC0	= (*TCC)(sam.TCC0)
+	TCC1	= (*TCC)(sam.TCC1)
+	TCC2	= (*TCC)(sam.TCC2)
+	TCC3	= (*TCC)(sam.TCC3)
+	TCC4	= (*TCC)(sam.TCC4)
+)
+```
+
+This chip has five TCC peripherals, which have PWM as one feature.
 
 
 ```go
@@ -400,7 +718,6 @@ Serial is implemented via USB (USB-CDC).
 func CPUFrequency() uint32
 ```
 
-Return the current CPU frequency in hertz.
 
 
 ### func InitADC
@@ -515,7 +832,7 @@ NewRingBuffer returns a new ring buffer.
 func ResetProcessor()
 ```
 
-ResetProcessor should perform a system reset in preperation
+ResetProcessor should perform a system reset in preparation
 to switch to the bootloader to flash new firmware.
 
 
@@ -564,7 +881,7 @@ type ADC struct {
 func (a ADC) Configure(config ADCConfig)
 ```
 
-Configure configures a ADC pin to be able to be used to read data.
+Configure configures a ADCPin to be able to be used to read data.
 
 
 ### func (ADC) Get
@@ -729,7 +1046,7 @@ type DAC struct {
 }
 ```
 
-DAC on the SAMD21.
+DAC on the SAMD51.
 
 
 
@@ -750,7 +1067,7 @@ func (dac DAC) Set(value uint16) error
 ```
 
 Set writes a single 16-bit value to the DAC.
-Since the ATSAMD21 only has a 10-bit DAC, the passed-in value will be scaled down.
+Since the ATSAMD51 only has a 12-bit DAC, the passed-in value will be scaled down.
 
 
 
@@ -848,7 +1165,7 @@ type I2C struct {
 }
 ```
 
-I2C on the SAMD21.
+I2C on the SAMD51.
 
 
 
@@ -932,59 +1249,6 @@ type I2CConfig struct {
 
 I2CConfig is used to store config info for I2C.
 
-
-
-
-
-## type I2S
-
-```go
-type I2S struct {
-	Bus *sam.I2S_Type
-}
-```
-
-I2S
-
-
-
-### func (I2S) Close
-
-```go
-func (i2s I2S) Close() error
-```
-
-Close the I2S bus.
-
-
-### func (I2S) Configure
-
-```go
-func (i2s I2S) Configure(config I2SConfig)
-```
-
-Configure is used to configure the I2S interface. You must call this
-before you can use the I2S bus.
-
-
-### func (I2S) Read
-
-```go
-func (i2s I2S) Read(p []uint32) (n int, err error)
-```
-
-Read data from the I2S bus into the provided slice.
-The I2S bus must already have been configured correctly.
-
-
-### func (I2S) Write
-
-```go
-func (i2s I2S) Write(p []uint32) (n int, err error)
-```
-
-Write data to the I2S bus from the provided slice.
-The I2S bus must already have been configured correctly.
 
 
 
@@ -1323,6 +1587,16 @@ nil func to unset the pin change interrupt. If you do so, the change
 parameter is ignored and can be set to any value (such as 0).
 
 
+### func (Pin) Toggle
+
+```go
+func (p Pin) Toggle()
+```
+
+Toggle switches an output pin from low to high or from high to low.
+Warning: only use this on an output pin!
+
+
 
 
 ## type PinChange
@@ -1422,7 +1696,7 @@ Used returns how many bytes in buffer have been used.
 
 ```go
 type SPI struct {
-	Bus	*sam.SERCOM_SPI_Type
+	Bus	*sam.SERCOM_SPIM_Type
 	SERCOM	uint8
 }
 ```
@@ -1501,10 +1775,10 @@ SPIConfig is used to store config info for SPI.
 type TCC sam.TCC_Type
 ```
 
-TCC is one timer/counter peripheral, which consists of a counter and multiple
-output channels (that can be connected to actual pins). You can set the
-frequency using SetPeriod, but only for all the channels in this TCC
-peripheral at once.
+TCC is one timer peripheral, which consists of a counter and multiple output
+channels (that can be connected to actual pins). You can set the frequency
+using SetPeriod, but only for all the channels in this timer peripheral at
+once.
 
 
 
@@ -1516,8 +1790,7 @@ func (tcc *TCC) Channel(pin Pin) (uint8, error)
 
 Channel returns a PWM channel for the given pin. Note that one channel may be
 shared between multiple pins, and so will have the same duty cycle. If this
-is not desirable, look for a different TCC peripheral or consider using a
-different pin.
+is not desirable, look for a different TCC or consider using a different pin.
 
 
 ### func (*TCC) Configure
@@ -1602,8 +1875,8 @@ will only change with a call to Configure or SetPeriod, otherwise it is
 constant.
 
 The value returned here is hardware dependent. In general, it's best to treat
-it as an opaque value that can be divided by some number and passed to Set
-(see Set documentation for more information).
+it as an opaque value that can be divided by some number and passed to
+tcc.Set (see tcc.Set for more information).
 
 
 
@@ -1613,13 +1886,13 @@ it as an opaque value that can be divided by some number and passed to Set
 ```go
 type UART struct {
 	Buffer		*RingBuffer
-	Bus		*sam.SERCOM_USART_Type
+	Bus		*sam.SERCOM_USART_INT_Type
 	SERCOM		uint8
-	Interrupt	interrupt.Interrupt
+	Interrupt	interrupt.Interrupt	// RXC interrupt
 }
 ```
 
-UART on the SAMD21.
+UART on the SAMD51.
 
 
 

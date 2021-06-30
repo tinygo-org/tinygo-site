@@ -60,6 +60,21 @@ var Display = FramebufDisplay{(*[160][240]volatile.Register16)(unsafe.Pointer(ui
 
 
 
+```go
+var (
+	ErrPWMPeriodTooLong = errors.New("pwm: period too long")
+)
+```
+
+
+
+```go
+var Serial = NullSerial{}
+```
+
+Serial is a null device: writes to it are ignored.
+
+
 
 
 
@@ -149,14 +164,85 @@ func (d FramebufDisplay) Size() (x, y int16)
 
 
 
-## type PWM
+## type NullSerial
 
 ```go
-type PWM struct {
-	Pin Pin
+type NullSerial struct {
 }
 ```
 
+NullSerial is a serial version of /dev/null (or null router): it drops
+everything that is written to it.
+
+
+
+### func (NullSerial) Buffered
+
+```go
+func (ns NullSerial) Buffered() int
+```
+
+Buffered returns how many bytes are buffered in the UART. It always returns 0
+as there are no bytes to read.
+
+
+### func (NullSerial) Configure
+
+```go
+func (ns NullSerial) Configure(config UARTConfig) error
+```
+
+Configure does nothing: the null serial has no configuration.
+
+
+### func (NullSerial) ReadByte
+
+```go
+func (ns NullSerial) ReadByte() (byte, error)
+```
+
+ReadByte always returns an error because there aren't any bytes to read.
+
+
+### func (NullSerial) Write
+
+```go
+func (ns NullSerial) Write(p []byte) (n int, err error)
+```
+
+Write is a no-op: none of the data is being written and it will not return an
+error.
+
+
+### func (NullSerial) WriteByte
+
+```go
+func (ns NullSerial) WriteByte(b byte) error
+```
+
+WriteByte is a no-op: the null serial doesn't write bytes.
+
+
+
+
+## type PWMConfig
+
+```go
+type PWMConfig struct {
+	// PWM period in nanosecond. Leaving this zero will pick a reasonable period
+	// value for use with LEDs.
+	// If you want to configure a frequency instead of a period, you can use the
+	// following formula to calculate a period from a frequency:
+	//
+	//     period = 1e9 / frequency
+	//
+	Period uint64
+}
+```
+
+PWMConfig allows setting some configuration while configuring a PWM
+peripheral. A zero PWMConfig is ready to use for simple applications such as
+dimming LEDs.
 
 
 
@@ -226,6 +312,9 @@ type PinConfig struct {
 type PinMode uint8
 ```
 
+PinMode sets the direction and pull mode of the pin. For example, PinOutput
+sets the pin as an output and PinInputPullup sets the pin as an input with a
+pull-up.
 
 
 
@@ -282,6 +371,24 @@ func (rb *RingBuffer) Used() uint8
 ```
 
 Used returns how many bytes in buffer have been used.
+
+
+
+
+## type UARTConfig
+
+```go
+type UARTConfig struct {
+	BaudRate	uint32
+	TX		Pin
+	RX		Pin
+}
+```
+
+UARTConfig is a struct with which a UART (or similar object) can be
+configured. The baud rate is usually respected, but TX and RX may be ignored
+depending on the chip and the type of object.
+
 
 
 

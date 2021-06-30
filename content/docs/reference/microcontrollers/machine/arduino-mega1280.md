@@ -1,6 +1,6 @@
 
 ---
-title: arduino-nano
+title: arduino-mega1280
 ---
 
 
@@ -8,83 +8,99 @@ title: arduino-nano
 
 ```go
 const (
-	D0	= PD0	// RX0
-	D1	= PD1	// TX1
-	D2	= PD2
-	D3	= PD3
-	D4	= PD4
-	D5	= PD5
-	D6	= PD6
-	D7	= PD7
-	D8	= PB0
-	D9	= PB1
-	D10	= PB2
-	D11	= PB3
-	D12	= PB4
-	D13	= PB5
-)
-```
+	AREF	Pin	= NoPin
+	LED	Pin	= PB7
 
-Digital pins.
+	A0	Pin	= PF0
+	A1	Pin	= PF1
+	A2	Pin	= PF2
+	A3	Pin	= PF3
+	A4	Pin	= PF4
+	A5	Pin	= PF5
+	A6	Pin	= PF6
+	A7	Pin	= PF7
+	A8	Pin	= PK0
+	A9	Pin	= PK1
+	A10	Pin	= PK2
+	A11	Pin	= PK3
+	A12	Pin	= PK4
+	A13	Pin	= PK5
+	A14	Pin	= PK6
+	A15	Pin	= PK7
 
+	// Analog Input
+	ADC0	Pin	= PF0
+	ADC1	Pin	= PF1
+	ADC2	Pin	= PF2
+	ADC3	Pin	= PF3
+	ADC4	Pin	= PF4
+	ADC5	Pin	= PF5
+	ADC6	Pin	= PF6
+	ADC7	Pin	= PF7
+	ADC8	Pin	= PK0
+	ADC9	Pin	= PK1
+	ADC10	Pin	= PK2
+	ADC11	Pin	= PK3
+	ADC12	Pin	= PK4
+	ADC13	Pin	= PK5
+	ADC14	Pin	= PK6
+	ADC15	Pin	= PK7
 
-```go
-const LED Pin = D13
-```
-
-LED on the Arduino
-
-
-```go
-const (
-	ADC0	Pin	= PC0
-	ADC1	Pin	= PC1
-	ADC2	Pin	= PC2
-	ADC3	Pin	= PC3
-	ADC4	Pin	= PC4	// Used by TWI for SDA
-	ADC5	Pin	= PC5	// Used by TWI for SCL
-)
-```
-
-ADC on the Arduino
-
-
-```go
-const (
-	UART_TX_PIN	Pin	= PD1
-	UART_RX_PIN	Pin	= PD0
-)
-```
-
-UART pins
-
-
-```go
-const (
-	PB0	= portB + 0
-	PB1	= portB + 1
-	PB2	= portB + 2
-	PB3	= portB + 3
-	PB4	= portB + 4
-	PB5	= portB + 5
-	PB6	= portB + 6
-	PB7	= portB + 7
-	PC0	= portC + 0
-	PC1	= portC + 1
-	PC2	= portC + 2
-	PC3	= portC + 3
-	PC4	= portC + 4
-	PC5	= portC + 5
-	PC6	= portC + 6
-	PC7	= portC + 7
-	PD0	= portD + 0
-	PD1	= portD + 1
-	PD2	= portD + 2
-	PD3	= portD + 3
-	PD4	= portD + 4
-	PD5	= portD + 5
-	PD6	= portD + 6
-	PD7	= portD + 7
+	// Digital pins
+	D0	Pin	= PE0
+	D1	Pin	= PE1
+	D2	Pin	= PE4
+	D3	Pin	= PE5
+	D4	Pin	= PG5
+	D5	Pin	= PE3
+	D6	Pin	= PH3
+	D7	Pin	= PH4
+	D8	Pin	= PH5
+	D9	Pin	= PH6
+	D10	Pin	= PB4
+	D11	Pin	= PB5
+	D12	Pin	= PB6
+	D13	Pin	= PB7
+	D14	Pin	= PJ1
+	D15	Pin	= PJ0
+	D16	Pin	= PH1
+	D17	Pin	= PH0
+	D18	Pin	= PD3
+	D19	Pin	= PD2
+	D20	Pin	= PD1
+	D21	Pin	= PD0
+	D22	Pin	= PA0
+	D23	Pin	= PA1
+	D24	Pin	= PA2
+	D25	Pin	= PA3
+	D26	Pin	= PA4
+	D27	Pin	= PA5
+	D28	Pin	= PA6
+	D29	Pin	= PA7
+	D30	Pin	= PC7
+	D31	Pin	= PC6
+	D32	Pin	= PC5
+	D33	Pin	= PC4
+	D34	Pin	= PC3
+	D35	Pin	= PC2
+	D36	Pin	= PC1
+	D37	Pin	= PC0
+	D38	Pin	= PD7
+	D39	Pin	= PG2
+	D40	Pin	= PG1
+	D41	Pin	= PG0
+	D42	Pin	= PL7
+	D43	Pin	= PL6
+	D44	Pin	= PL5
+	D45	Pin	= PL4
+	D46	Pin	= PL3
+	D47	Pin	= PL2
+	D48	Pin	= PL1
+	D49	Pin	= PL0
+	D50	Pin	= PB3
+	D51	Pin	= PB2
+	D52	Pin	= PB1
+	D53	Pin	= PB0
 )
 ```
 
@@ -106,6 +122,84 @@ const NoPin = Pin(0xff)
 
 NoPin explicitly indicates "not a pin". Use this pin if you want to leave one
 of the pins in a peripheral unconfigured (if supported by the hardware).
+
+
+```go
+const (
+	PA0	= portA + 0
+	PA1	= portA + 1
+	PA2	= portA + 2
+	PA3	= portA + 3
+	PA4	= portA + 4
+	PA5	= portA + 5
+	PA6	= portA + 6
+	PA7	= portA + 7
+	PB0	= portB + 0
+	PB1	= portB + 1
+	PB2	= portB + 2
+	PB3	= portB + 3
+	PB4	= portB + 4
+	PB5	= portB + 5
+	PB6	= portB + 6
+	PB7	= portB + 7
+	PC0	= portC + 0
+	PC1	= portC + 1
+	PC2	= portC + 2
+	PC3	= portC + 3
+	PC4	= portC + 4
+	PC5	= portC + 5
+	PC6	= portC + 6
+	PC7	= portC + 7
+	PD0	= portD + 0
+	PD1	= portD + 1
+	PD2	= portD + 2
+	PD3	= portD + 3
+	PD7	= portD + 7
+	PE0	= portE + 0
+	PE1	= portE + 1
+	PE3	= portE + 3
+	PE4	= portE + 4
+	PE5	= portE + 5
+	PE6	= portE + 6
+	PF0	= portF + 0
+	PF1	= portF + 1
+	PF2	= portF + 2
+	PF3	= portF + 3
+	PF4	= portF + 4
+	PF5	= portF + 5
+	PF6	= portF + 6
+	PF7	= portF + 7
+	PG0	= portG + 0
+	PG1	= portG + 1
+	PG2	= portG + 2
+	PG5	= portG + 5
+	PH0	= portH + 0
+	PH1	= portH + 1
+	PH3	= portH + 3
+	PH4	= portH + 4
+	PH5	= portH + 5
+	PH6	= portH + 6
+	PJ0	= portJ + 0
+	PJ1	= portJ + 1
+	PK0	= portK + 0
+	PK1	= portK + 1
+	PK2	= portK + 2
+	PK3	= portK + 3
+	PK4	= portH + 4
+	PK5	= portH + 5
+	PK6	= portH + 6
+	PK7	= portH + 7
+	PL0	= portL + 0
+	PL1	= portL + 1
+	PL2	= portL + 2
+	PL3	= portL + 3
+	PL4	= portL + 4
+	PL5	= portL + 5
+	PL6	= portL + 6
+	PL7	= portL + 7
+)
+```
+
 
 
 ```go
@@ -192,9 +286,12 @@ UART
 
 ```go
 var (
-	Timer0	= PWM{0}	// 8 bit timer for PD5 and PD6
-	Timer1	= PWM{1}	// 16 bit timer for PB1 and PB2
-	Timer2	= PWM{2}	// 8 bit timer for PB3 and PD3
+	Timer0	= PWM{0}	// 8 bit timer for PB7 and PG5
+	Timer1	= PWM{1}	// 16 bit timer for PB5 and PB6
+	Timer2	= PWM{2}	// 8 bit timer for PB4 and PH6
+	Timer3	= PWM{3}	// 16 bit timer for PE3, PE4 and PE5
+	Timer4	= PWM{4}	// 16 bit timer for PH3, PH4 and PH5
+	Timer5	= PWM{5}	// 16 bit timer for PL3, PL4 and PL5
 )
 ```
 
@@ -205,10 +302,10 @@ var SPI0 = SPI{
 	spcr:	avr.SPCR,
 	spdr:	avr.SPDR,
 	spsr:	avr.SPSR,
-	sck:	PB5,
-	sdo:	PB3,
-	sdi:	PB4,
-	cs:	PB2}
+	sck:	PB1,
+	sdo:	PB2,
+	sdi:	PB3,
+	cs:	PB0}
 ```
 
 SPI configuration

@@ -22,16 +22,6 @@ const (
 
 
 ```go
-const (
-	TWI_FREQ_100KHZ	= 100000
-	TWI_FREQ_400KHZ	= 400000
-)
-```
-
-TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-speed bus.
-
-
-```go
 const NoPin = Pin(0xff)
 ```
 
@@ -80,20 +70,18 @@ var (
 
 
 ```go
-var I2C0 = I2C{}
-```
-
-I2C0 is the only I2C interface on most AVRs.
-
-
-```go
 var (
-	// UART0 is the hardware serial port on the AVR.
-	UART0 = UART{Buffer: NewRingBuffer()}
+	ErrPWMPeriodTooLong = errors.New("pwm: period too long")
 )
 ```
 
-UART
+
+
+```go
+var Serial = NullSerial{}
+```
+
+Serial is a null device: writes to it are ignored.
 
 
 
@@ -177,65 +165,85 @@ value of each parameter will use the peripheral's default settings.
 
 
 
-## type I2C
+## type NullSerial
 
 ```go
-type I2C struct {
+type NullSerial struct {
 }
 ```
 
-I2C on AVR.
+NullSerial is a serial version of /dev/null (or null router): it drops
+everything that is written to it.
 
 
 
-### func (I2C) ReadRegister
+### func (NullSerial) Buffered
 
 ```go
-func (i2c I2C) ReadRegister(address uint8, register uint8, data []byte) error
+func (ns NullSerial) Buffered() int
 ```
 
-ReadRegister transmits the register, restarts the connection as a read
-operation, and reads the response.
-
-Many I2C-compatible devices are organized in terms of registers. This method
-is a shortcut to easily read such registers. Also, it only works for devices
-with 7-bit addresses, which is the vast majority.
+Buffered returns how many bytes are buffered in the UART. It always returns 0
+as there are no bytes to read.
 
 
-### func (I2C) Tx
+### func (NullSerial) Configure
 
 ```go
-func (i2c I2C) Tx(addr uint16, w, r []byte) error
+func (ns NullSerial) Configure(config UARTConfig) error
 ```
 
-Tx is a dummy implementation. I2C has not been implemented for ATtiny
-devices.
+Configure does nothing: the null serial has no configuration.
 
 
-### func (I2C) WriteRegister
+### func (NullSerial) ReadByte
 
 ```go
-func (i2c I2C) WriteRegister(address uint8, register uint8, data []byte) error
+func (ns NullSerial) ReadByte() (byte, error)
 ```
 
-WriteRegister transmits first the register and then the data to the
-peripheral device.
-
-Many I2C-compatible devices are organized in terms of registers. This method
-is a shortcut to easily write to such registers. Also, it only works for
-devices with 7-bit addresses, which is the vast majority.
+ReadByte always returns an error because there aren't any bytes to read.
 
 
-
-
-## type PWM
+### func (NullSerial) Write
 
 ```go
-type PWM struct {
-	Pin Pin
+func (ns NullSerial) Write(p []byte) (n int, err error)
+```
+
+Write is a no-op: none of the data is being written and it will not return an
+error.
+
+
+### func (NullSerial) WriteByte
+
+```go
+func (ns NullSerial) WriteByte(b byte) error
+```
+
+WriteByte is a no-op: the null serial doesn't write bytes.
+
+
+
+
+## type PWMConfig
+
+```go
+type PWMConfig struct {
+	// PWM period in nanosecond. Leaving this zero will pick a reasonable period
+	// value for use with LEDs.
+	// If you want to configure a frequency instead of a period, you can use the
+	// following formula to calculate a period from a frequency:
+	//
+	//     period = 1e9 / frequency
+	//
+	Period uint64
 }
 ```
 
+PWMConfig allows setting some configuration while configuring a PWM
+peripheral. A zero PWMConfig is ready to use for simple applications such as
+dimming LEDs.
 
 
 
@@ -351,6 +359,9 @@ type PinConfig struct {
 type PinMode uint8
 ```
 
+PinMode sets the direction and pull mode of the pin. For example, PinOutput
+sets the pin as an output and PinInputPullup sets the pin as an input with a
+pull-up.
 
 
 
@@ -411,88 +422,6 @@ Used returns how many bytes in buffer have been used.
 
 
 
-## type UART
-
-```go
-type UART struct {
-	Buffer *RingBuffer
-}
-```
-
-UART on the AVR is a dummy implementation. UART has not been implemented for ATtiny
-devices.
-
-
-
-### func (UART) Buffered
-
-```go
-func (uart UART) Buffered() int
-```
-
-Buffered returns the number of bytes currently stored in the RX buffer.
-
-
-### func (UART) Configure
-
-```go
-func (uart UART) Configure(config UARTConfig)
-```
-
-Configure is a dummy implementation. UART has not been implemented for ATtiny
-devices.
-
-
-### func (UART) Read
-
-```go
-func (uart UART) Read(data []byte) (n int, err error)
-```
-
-Read from the RX buffer.
-
-
-### func (UART) ReadByte
-
-```go
-func (uart UART) ReadByte() (byte, error)
-```
-
-ReadByte reads a single byte from the RX buffer.
-If there is no data in the buffer, returns an error.
-
-
-### func (UART) Receive
-
-```go
-func (uart UART) Receive(data byte)
-```
-
-Receive handles adding data to the UART's data buffer.
-Usually called by the IRQ handler for a machine.
-
-
-### func (UART) Write
-
-```go
-func (uart UART) Write(data []byte) (n int, err error)
-```
-
-Write data to the UART.
-
-
-### func (UART) WriteByte
-
-```go
-func (uart UART) WriteByte(c byte) error
-```
-
-WriteByte is a dummy implementation. UART has not been implemented for ATtiny
-devices.
-
-
-
-
 ## type UARTConfig
 
 ```go
@@ -503,6 +432,9 @@ type UARTConfig struct {
 }
 ```
 
+UARTConfig is a struct with which a UART (or similar object) can be
+configured. The baud rate is usually respected, but TX and RX may be ignored
+depending on the chip and the type of object.
 
 
 

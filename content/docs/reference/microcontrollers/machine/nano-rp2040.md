@@ -1,79 +1,62 @@
 
 ---
-title: esp32-coreboard-v2
+title: nano-rp2040
 ---
 
 
 ## Constants
 
 ```go
-const LED = IO2
-```
-
-Built-in LED on some ESP32 boards.
-
-
-```go
 const (
-	CLK	Pin	= 6
-	CMD	Pin	= 11
-	IO0	Pin	= 0
-	IO1	Pin	= 1
-	IO10	Pin	= 10
-	IO16	Pin	= 16
-	IO17	Pin	= 17
-	IO18	Pin	= 18
-	IO19	Pin	= 19
-	IO2	Pin	= 2
-	IO21	Pin	= 21
-	IO22	Pin	= 22
-	IO23	Pin	= 23
-	IO25	Pin	= 25
-	IO26	Pin	= 26
-	IO27	Pin	= 27
-	IO3	Pin	= 3
-	IO32	Pin	= 32
-	IO33	Pin	= 33
-	IO34	Pin	= 34
-	IO35	Pin	= 35
-	IO36	Pin	= 36
-	IO39	Pin	= 39
-	IO4	Pin	= 4
-	IO5	Pin	= 5
-	IO9	Pin	= 9
-	RXD	Pin	= 3
-	SD0	Pin	= 7
-	SD1	Pin	= 8
-	SD2	Pin	= 9
-	SD3	Pin	= 10
-	SVN	Pin	= 39
-	SVP	Pin	= 36
-	TCK	Pin	= 13
-	TD0	Pin	= 15
-	TDI	Pin	= 12
-	TMS	Pin	= 14
-	TXD	Pin	= 1
+	D2	Pin	= GPIO25
+	D3	Pin	= GPIO15
+	D4	Pin	= GPIO16
+	D5	Pin	= GPIO17
+	D6	Pin	= GPIO18
+	D7	Pin	= GPIO19
+	D8	Pin	= GPIO20
+	D9	Pin	= GPIO21
+	D10	Pin	= GPIO5
+	D11	Pin	= GPIO7
+	D12	Pin	= GPIO4
+	D13	Pin	= GPIO6
+	D14	Pin	= GPIO26
+	D15	Pin	= GPIO27
+	D16	Pin	= GPIO28
+	D17	Pin	= GPIO29
+	D18	Pin	= GPIO12
+	D19	Pin	= GPIO13
 )
 ```
 
+Digital Pins
 
 
 ```go
 const (
-	SPI0_SCK_PIN	= IO18
-	SPI0_SDO_PIN	= IO23
-	SPI0_SDI_PIN	= IO19
-	SPI0_CS0_PIN	= IO5
+	A0	Pin	= ADC0
+	A1	Pin	= ADC1
+	A2	Pin	= ADC2
+	A3	Pin	= ADC3
 )
 ```
 
-SPI pins
+Analog pins
 
 
 ```go
 const (
-	SDA_PIN	= IO21
-	SCL_PIN	= IO22
+	LED = GPIO6
+)
+```
+
+Onboard LED
+
+
+```go
+const (
+	SDA_PIN	Pin	= GPIO12
+	SCL_PIN	Pin	= GPIO13
 )
 ```
 
@@ -82,45 +65,32 @@ I2C pins
 
 ```go
 const (
-	ADC0	Pin	= IO34
-	ADC1	Pin	= IO35
-	ADC2	Pin	= IO36
-	ADC3	Pin	= IO39
+	SPI0_SCK_PIN	Pin	= GPIO6
+	SPI0_SDO_PIN	Pin	= GPIO7
+	SPI0_SDI_PIN	Pin	= GPIO4
 )
 ```
 
-ADC pins
+SPI pins
 
 
 ```go
 const (
-	UART_TX_PIN	= IO1
-	UART_RX_PIN	= IO3
+	NINA_SCK	Pin	= GPIO14
+	NINA_SDO	Pin	= GPIO11
+	NINA_SDI	Pin	= GPIO8
+
+	NINA_CS		Pin	= GPIO9
+	NINA_ACK	Pin	= GPIO10
+	NINA_GPIO0	Pin	= GPIO0
+	NINA_RESETN	Pin	= GPIO3
+
+	NINA_TX	Pin	= GPIO9
+	NINA_RX	Pin	= GPIO8
 )
 ```
 
-UART0 pins
-
-
-```go
-const (
-	UART1_TX_PIN	= IO9
-	UART1_RX_PIN	= IO10
-)
-```
-
-UART1 pins
-
-
-```go
-const (
-	PWM0_PIN	Pin	= IO2
-	PWM1_PIN	Pin	= IO0
-	PWM2_PIN	Pin	= IO4
-)
-```
-
-PWM pins
+NINA-W102 Pins
 
 
 ```go
@@ -133,13 +103,91 @@ of the pins in a peripheral unconfigured (if supported by the hardware).
 
 ```go
 const (
-	PinOutput	PinMode	= iota
-	PinInput
-	PinInputPullup
-	PinInputPulldown
+	// GPIO pins
+	GPIO0	Pin	= 0
+	GPIO1	Pin	= 1
+	GPIO2	Pin	= 2
+	GPIO3	Pin	= 3
+	GPIO4	Pin	= 4
+	GPIO5	Pin	= 5
+	GPIO6	Pin	= 6
+	GPIO7	Pin	= 7
+	GPIO8	Pin	= 8
+	GPIO9	Pin	= 9
+	GPIO10	Pin	= 10
+	GPIO11	Pin	= 11
+	GPIO12	Pin	= 12
+	GPIO13	Pin	= 13
+	GPIO14	Pin	= 14
+	GPIO15	Pin	= 15
+	GPIO16	Pin	= 16
+	GPIO17	Pin	= 17
+	GPIO18	Pin	= 18
+	GPIO19	Pin	= 19
+	GPIO20	Pin	= 20
+	GPIO21	Pin	= 21
+	GPIO22	Pin	= 22
+	GPIO23	Pin	= 23
+	GPIO24	Pin	= 24
+	GPIO25	Pin	= 25
+	GPIO26	Pin	= 26
+	GPIO27	Pin	= 27
+	GPIO28	Pin	= 28
+	GPIO29	Pin	= 29
+
+	// Analog pins
+	ADC0	Pin	= GPIO26
+	ADC1	Pin	= GPIO27
+	ADC2	Pin	= GPIO28
+	ADC3	Pin	= GPIO29
 )
 ```
 
+
+
+```go
+const (
+	UART_TX_PIN	= UART0_TX_PIN
+	UART_RX_PIN	= UART0_RX_PIN
+	UART0_TX_PIN	= GPIO0
+	UART0_RX_PIN	= GPIO1
+	UART1_TX_PIN	= GPIO8
+	UART1_RX_PIN	= GPIO9
+)
+```
+
+UART pins
+
+
+```go
+const (
+	KHz	= 1000
+	MHz	= 1000000
+)
+```
+
+
+
+```go
+const (
+	PinOutput	PinMode	= iota
+	PinInput
+	PinInputPulldown
+	PinInputPullup
+	PinAnalog
+	PinUART
+)
+```
+
+
+
+```go
+const RESETS_RESET_Msk = 0x01ffffff
+```
+
+RESETS_RESET_Msk is bitmask to reset all peripherals
+
+TODO: This field is not available in the device file.
 
 
 ```go
@@ -179,37 +227,25 @@ var (
 
 ```go
 var (
-	ErrInvalidSPIBus = errors.New("machine: invalid SPI bus")
+	UART0	= &_UART0
+	_UART0	= UART{
+		Buffer:	NewRingBuffer(),
+		Bus:	rp.UART0,
+	}
+
+	UART1	= &_UART1
+	_UART1	= UART{
+		Buffer:	NewRingBuffer(),
+		Bus:	rp.UART1,
+	}
 )
 ```
 
+UART on the RP2040
 
 
 ```go
 var DefaultUART = UART0
-```
-
-
-
-```go
-var (
-	UART0	= &_UART0
-	_UART0	= UART{Bus: esp.UART0, Buffer: NewRingBuffer()}
-	UART1	= &_UART1
-	_UART1	= UART{Bus: esp.UART1, Buffer: NewRingBuffer()}
-	UART2	= &_UART2
-	_UART2	= UART{Bus: esp.UART2, Buffer: NewRingBuffer()}
-)
-```
-
-
-
-```go
-var (
-	// SPI0 and SPI1 are reserved for use by the caching system etc.
-	SPI2	= SPI{esp.SPI2}
-	SPI3	= SPI{esp.SPI3}
-)
 ```
 
 
@@ -232,14 +268,12 @@ Serial is implemented via the default (usually the first) UART on the chip.
 
 
 
-### func CPUFrequency
+### func InitADC
 
 ```go
-func CPUFrequency() uint32
+func InitADC()
 ```
 
-CPUFrequency returns the current CPU frequency of the chip.
-Currently it is a fixed frequency but it may allow changing in the future.
 
 
 ### func NewRingBuffer
@@ -261,6 +295,23 @@ type ADC struct {
 }
 ```
 
+
+
+
+### func (ADC) Configure
+
+```go
+func (a ADC) Configure(config ADCConfig)
+```
+
+Configure configures a ADC pin to be able to be used to read data.
+
+
+### func (ADC) Get
+
+```go
+func (a ADC) Get() uint16
+```
 
 
 
@@ -385,7 +436,7 @@ other peripherals like ADC, I2C, etc.
 func (p Pin) Configure(config PinConfig)
 ```
 
-Configure this pin with the given configuration.
+Configure configures the gpio pin as per mode.
 
 
 ### func (Pin) Get
@@ -394,8 +445,7 @@ Configure this pin with the given configuration.
 func (p Pin) Get() bool
 ```
 
-Get returns the current value of a GPIO pin when the pin is configured as an
-input.
+Get reads the pin value.
 
 
 ### func (Pin) High
@@ -420,38 +470,13 @@ pin. It is hardware dependent (and often undefined) what happens if you set a
 pin to low that is not configured as an output pin.
 
 
-### func (Pin) PortMaskClear
-
-```go
-func (p Pin) PortMaskClear() (*uint32, uint32)
-```
-
-Return the register and mask to disable a given GPIO pin. This can be used to
-implement bit-banged drivers.
-
-Warning: only use this on an output pin!
-
-
-### func (Pin) PortMaskSet
-
-```go
-func (p Pin) PortMaskSet() (*uint32, uint32)
-```
-
-Return the register and mask to enable a given GPIO pin. This can be used to
-implement bit-banged drivers.
-
-Warning: only use this on an output pin!
-
-
 ### func (Pin) Set
 
 ```go
 func (p Pin) Set(value bool)
 ```
 
-Set the pin to high or low.
-Warning: only use this on an output pin!
+Set drives the pin high if value is true else drives it low.
 
 
 
@@ -538,84 +563,17 @@ Used returns how many bytes in buffer have been used.
 
 
 
-## type SPI
-
-```go
-type SPI struct {
-	Bus *esp.SPI_Type
-}
-```
-
-Serial Peripheral Interface on the ESP32.
-
-
-
-### func (SPI) Configure
-
-```go
-func (spi SPI) Configure(config SPIConfig) error
-```
-
-Configure and make the SPI peripheral ready to use.
-
-
-### func (SPI) Transfer
-
-```go
-func (spi SPI) Transfer(w byte) (byte, error)
-```
-
-Transfer writes/reads a single byte using the SPI interface. If you need to
-transfer larger amounts of data, Tx will be faster.
-
-
-### func (SPI) Tx
-
-```go
-func (spi SPI) Tx(w, r []byte) error
-```
-
-Tx handles read/write operation for SPI interface. Since SPI is a syncronous write/read
-interface, there must always be the same number of bytes written as bytes read.
-This is accomplished by sending zero bits if r is bigger than w or discarding
-the incoming data if w is bigger than r.
-
-
-
-
-## type SPIConfig
-
-```go
-type SPIConfig struct {
-	Frequency	uint32
-	SCK		Pin
-	SDO		Pin
-	SDI		Pin
-	LSBFirst	bool
-	Mode		uint8
-}
-```
-
-SPIConfig configures a SPI peripheral on the ESP32. Make sure to set at least
-SCK, SDO and SDI (possibly to NoPin if not in use). The default for LSBFirst
-(false) and Mode (0) are good for most applications. The frequency defaults
-to 1MHz if not set but can be configured up to 40MHz. Possible values are
-40MHz and integer divisions from 40MHz such as 20MHz, 13.3MHz, 10MHz, 8MHz,
-etc.
-
-
-
-
-
 ## type UART
 
 ```go
 type UART struct {
-	Bus	*esp.UART_Type
-	Buffer	*RingBuffer
+	Buffer		*RingBuffer
+	Bus		*rp.UART0_Type
+	Interrupt	interrupt.Interrupt
 }
 ```
 
+UART on the RP2040.
 
 
 
@@ -631,9 +589,10 @@ Buffered returns the number of bytes currently stored in the RX buffer.
 ### func (*UART) Configure
 
 ```go
-func (uart *UART) Configure(config UARTConfig)
+func (uart *UART) Configure(config UARTConfig) error
 ```
 
+Configure the UART.
 
 
 ### func (*UART) Read
@@ -665,6 +624,24 @@ Receive handles adding data to the UART's data buffer.
 Usually called by the IRQ handler for a machine.
 
 
+### func (*UART) SetBaudRate
+
+```go
+func (uart *UART) SetBaudRate(br uint32)
+```
+
+SetBaudRate sets the baudrate to be used for the UART.
+
+
+### func (*UART) SetFormat
+
+```go
+func (uart *UART) SetFormat(databits, stopbits uint8, parity UARTParity) error
+```
+
+SetFormat for number of data bits, stop bits, and parity for the UART.
+
+
 ### func (*UART) Write
 
 ```go
@@ -677,9 +654,10 @@ Write data to the UART.
 ### func (*UART) WriteByte
 
 ```go
-func (uart *UART) WriteByte(b byte) error
+func (uart *UART) WriteByte(c byte) error
 ```
 
+WriteByte writes a byte of data to the UART.
 
 
 

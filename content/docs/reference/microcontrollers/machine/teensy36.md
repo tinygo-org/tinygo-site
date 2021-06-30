@@ -260,6 +260,24 @@ const (
 
 
 
+```go
+const (
+	// ParityNone means to not use any parity checking. This is
+	// the most common setting.
+	ParityNone	UARTParity	= 0
+
+	// ParityEven means to expect that the total number of 1 bits sent
+	// should be an even number.
+	ParityEven	UARTParity	= 1
+
+	// ParityOdd means to expect that the total number of 1 bits sent
+	// should be an odd number.
+	ParityOdd	UARTParity	= 2
+)
+```
+
+
+
 
 
 
@@ -267,12 +285,18 @@ const (
 
 ```go
 var (
-	TeensyUART1	= &UART0
-	TeensyUART2	= &UART1
-	TeensyUART3	= &UART2
-	TeensyUART4	= &UART3
-	TeensyUART5	= &UART4
+	TeensyUART1	= UART0
+	TeensyUART2	= UART1
+	TeensyUART3	= UART2
+	TeensyUART4	= UART3
+	TeensyUART5	= UART4
 )
+```
+
+
+
+```go
+var DefaultUART = UART0
 ```
 
 
@@ -299,33 +323,35 @@ var (
 
 
 ```go
-var UART0 = UART{UART_Type: nxp.UART0, SCGC: &nxp.SIM.SCGC4, SCGCMask: nxp.SIM_SCGC4_UART0, DefaultRX: defaultUART0RX, DefaultTX: defaultUART0TX}
+var (
+	UART0	= &_UART0
+	UART1	= &_UART1
+	UART2	= &_UART2
+	UART3	= &_UART3
+	UART4	= &_UART4
+	_UART0	= UART{UART_Type: nxp.UART0, SCGC: &nxp.SIM.SCGC4, SCGCMask: nxp.SIM_SCGC4_UART0, DefaultRX: defaultUART0RX, DefaultTX: defaultUART0TX}
+	_UART1	= UART{UART_Type: nxp.UART1, SCGC: &nxp.SIM.SCGC4, SCGCMask: nxp.SIM_SCGC4_UART1, DefaultRX: defaultUART1RX, DefaultTX: defaultUART1TX}
+	_UART2	= UART{UART_Type: nxp.UART2, SCGC: &nxp.SIM.SCGC4, SCGCMask: nxp.SIM_SCGC4_UART2, DefaultRX: defaultUART2RX, DefaultTX: defaultUART2TX}
+	_UART3	= UART{UART_Type: nxp.UART3, SCGC: &nxp.SIM.SCGC4, SCGCMask: nxp.SIM_SCGC4_UART3, DefaultRX: defaultUART3RX, DefaultTX: defaultUART3TX}
+	_UART4	= UART{UART_Type: nxp.UART4, SCGC: &nxp.SIM.SCGC1, SCGCMask: nxp.SIM_SCGC1_UART4, DefaultRX: defaultUART4RX, DefaultTX: defaultUART4TX}
+)
 ```
 
 
 
 ```go
-var UART1 = UART{UART_Type: nxp.UART1, SCGC: &nxp.SIM.SCGC4, SCGCMask: nxp.SIM_SCGC4_UART1, DefaultRX: defaultUART1RX, DefaultTX: defaultUART1TX}
+var (
+	ErrPWMPeriodTooLong = errors.New("pwm: period too long")
+)
 ```
 
 
 
 ```go
-var UART2 = UART{UART_Type: nxp.UART2, SCGC: &nxp.SIM.SCGC4, SCGCMask: nxp.SIM_SCGC4_UART2, DefaultRX: defaultUART2RX, DefaultTX: defaultUART2TX}
+var Serial = DefaultUART
 ```
 
-
-
-```go
-var UART3 = UART{UART_Type: nxp.UART3, SCGC: &nxp.SIM.SCGC4, SCGCMask: nxp.SIM_SCGC4_UART3, DefaultRX: defaultUART3RX, DefaultTX: defaultUART3TX}
-```
-
-
-
-```go
-var UART4 = UART{UART_Type: nxp.UART4, SCGC: &nxp.SIM.SCGC1, SCGCMask: nxp.SIM_SCGC1_UART4, DefaultRX: defaultUART4RX, DefaultTX: defaultUART4TX}
-```
-
+Serial is implemented via the default (usually the first) UART on the chip.
 
 
 
@@ -468,14 +494,85 @@ func (p FastPin) Write(v bool)
 
 
 
-## type PWM
+## type NullSerial
 
 ```go
-type PWM struct {
-	Pin Pin
+type NullSerial struct {
 }
 ```
 
+NullSerial is a serial version of /dev/null (or null router): it drops
+everything that is written to it.
+
+
+
+### func (NullSerial) Buffered
+
+```go
+func (ns NullSerial) Buffered() int
+```
+
+Buffered returns how many bytes are buffered in the UART. It always returns 0
+as there are no bytes to read.
+
+
+### func (NullSerial) Configure
+
+```go
+func (ns NullSerial) Configure(config UARTConfig) error
+```
+
+Configure does nothing: the null serial has no configuration.
+
+
+### func (NullSerial) ReadByte
+
+```go
+func (ns NullSerial) ReadByte() (byte, error)
+```
+
+ReadByte always returns an error because there aren't any bytes to read.
+
+
+### func (NullSerial) Write
+
+```go
+func (ns NullSerial) Write(p []byte) (n int, err error)
+```
+
+Write is a no-op: none of the data is being written and it will not return an
+error.
+
+
+### func (NullSerial) WriteByte
+
+```go
+func (ns NullSerial) WriteByte(b byte) error
+```
+
+WriteByte is a no-op: the null serial doesn't write bytes.
+
+
+
+
+## type PWMConfig
+
+```go
+type PWMConfig struct {
+	// PWM period in nanosecond. Leaving this zero will pick a reasonable period
+	// value for use with LEDs.
+	// If you want to configure a frequency instead of a period, you can use the
+	// following formula to calculate a period from a frequency:
+	//
+	//     period = 1e9 / frequency
+	//
+	Period uint64
+}
+```
+
+PWMConfig allows setting some configuration while configuring a PWM
+peripheral. A zero PWMConfig is ready to use for simple applications such as
+dimming LEDs.
 
 
 
@@ -579,6 +676,9 @@ type PinConfig struct {
 type PinMode uint8
 ```
 
+PinMode sets the direction and pull mode of the pin. For example, PinOutput
+sets the pin as an output and PinInputPullup sets the pin as an input with a
+pull-up.
 
 
 
@@ -662,10 +762,10 @@ type UART struct {
 
 
 
-### func (UART) Buffered
+### func (*UART) Buffered
 
 ```go
-func (uart UART) Buffered() int
+func (uart *UART) Buffered() int
 ```
 
 Buffered returns the number of bytes currently stored in the RX buffer.
@@ -696,39 +796,39 @@ func (u *UART) Flush()
 
 
 
-### func (UART) Read
+### func (*UART) Read
 
 ```go
-func (uart UART) Read(data []byte) (n int, err error)
+func (uart *UART) Read(data []byte) (n int, err error)
 ```
 
 Read from the RX buffer.
 
 
-### func (UART) ReadByte
+### func (*UART) ReadByte
 
 ```go
-func (uart UART) ReadByte() (byte, error)
+func (uart *UART) ReadByte() (byte, error)
 ```
 
 ReadByte reads a single byte from the RX buffer.
 If there is no data in the buffer, returns an error.
 
 
-### func (UART) Receive
+### func (*UART) Receive
 
 ```go
-func (uart UART) Receive(data byte)
+func (uart *UART) Receive(data byte)
 ```
 
 Receive handles adding data to the UART's data buffer.
 Usually called by the IRQ handler for a machine.
 
 
-### func (UART) Write
+### func (*UART) Write
 
 ```go
-func (uart UART) Write(data []byte) (n int, err error)
+func (uart *UART) Write(data []byte) (n int, err error)
 ```
 
 Write data to the UART.
@@ -755,6 +855,21 @@ type UARTConfig struct {
 }
 ```
 
+UARTConfig is a struct with which a UART (or similar object) can be
+configured. The baud rate is usually respected, but TX and RX may be ignored
+depending on the chip and the type of object.
+
+
+
+
+
+## type UARTParity
+
+```go
+type UARTParity int
+```
+
+UARTParity is the parity setting to be used for UART communication.
 
 
 

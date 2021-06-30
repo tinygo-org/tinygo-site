@@ -11,10 +11,10 @@ The [Raspberry Pi Pico](https://www.raspberrypi.org/products/raspberry-pi-pico/)
 | --------- | ------------- | ----- |
 | GPIO      | YES | YES |
 | UART      | YES | YES |
-| SPI      | YES | YES |
-| I2C      | YES | YES |
+| SPI      | YES | Not yet |
+| I2C      | YES | Not yet |
 | ADC      | YES | YES |
-| PWM      | YES | YES |
+| PWM      | YES | Not yet |
 
 ## Machine Package Docs
 

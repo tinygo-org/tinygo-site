@@ -64,7 +64,7 @@ const (
 )
 ```
 
-UART0 aka USBCDC pins
+USBCDC pins
 
 
 ```go
@@ -185,10 +185,13 @@ const (
 	PinInput		PinMode	= 15
 	PinInputPullup		PinMode	= 16
 	PinOutput		PinMode	= 17
-	PinPWME			PinMode	= PinTimer
-	PinPWMF			PinMode	= PinTimerAlt
-	PinPWMG			PinMode	= PinTCCPDEC
+	PinTCCE			PinMode	= PinTimer
+	PinTCCF			PinMode	= PinTimerAlt
+	PinTCCG			PinMode	= PinTCCPDEC
 	PinInputPulldown	PinMode	= 18
+	PinCAN			PinMode	= 19
+	PinCAN0			PinMode	= PinSDHC
+	PinCAN1			PinMode	= PinCom
 )
 ```
 
@@ -387,14 +390,20 @@ const HSRAM_SIZE = 0x00030000
 
 ```go
 const (
-	Mode0	= 0
-	Mode1	= 1
-	Mode2	= 2
-	Mode3	= 3
+	// ParityNone means to not use any parity checking. This is
+	// the most common setting.
+	ParityNone	UARTParity	= 0
+
+	// ParityEven means to expect that the total number of 1 bits sent
+	// should be an even number.
+	ParityEven	UARTParity	= 1
+
+	// ParityOdd means to expect that the total number of 1 bits sent
+	// should be an odd number.
+	ParityOdd	UARTParity	= 2
 )
 ```
 
-SPI phase and polarity configs CPOL and CPHA
 
 
 
@@ -404,13 +413,15 @@ SPI phase and polarity configs CPOL and CPHA
 
 ```go
 var (
-	UART1	= UART{
+	UART1	= &_UART1
+	_UART1	= UART{
 		Buffer:	NewRingBuffer(),
 		Bus:	sam.SERCOM3_USART_INT,
 		SERCOM:	3,
 	}
 
-	UART2	= UART{
+	UART2	= &_UART2
+	_UART2	= UART{
 		Buffer:	NewRingBuffer(),
 		Bus:	sam.SERCOM0_USART_INT,
 		SERCOM:	0,
@@ -422,7 +433,7 @@ var (
 
 ```go
 var (
-	I2C0 = I2C{
+	I2C0 = &I2C{
 		Bus:	sam.SERCOM2_I2CM,
 		SERCOM:	2,
 	}
@@ -458,8 +469,16 @@ var (
 
 ```go
 var (
-	// UART0 is actually a USB CDC interface.
-	UART0 = USBCDC{Buffer: NewRingBuffer()}
+	// USB is a USB CDC interface.
+	USB = &USBCDC{Buffer: NewRingBuffer()}
+)
+```
+
+
+
+```go
+var (
+	ErrTxInvalidSliceSize = errors.New("SPI write and read slices must be same size")
 )
 ```
 
@@ -475,11 +494,28 @@ var (
 
 ```go
 var (
-	ErrTxInvalidSliceSize		= errors.New("SPI write and read slices must be same size")
-	errSPIInvalidMachineConfig	= errors.New("SPI port was not configured properly by the machine")
+	TCC0	= (*TCC)(sam.TCC0)
+	TCC1	= (*TCC)(sam.TCC1)
+	TCC2	= (*TCC)(sam.TCC2)
 )
 ```
 
+This chip has three TCC peripherals, which have PWM as one feature.
+
+
+```go
+var (
+	ErrPWMPeriodTooLong = errors.New("pwm: period too long")
+)
+```
+
+
+
+```go
+var Serial = USB
+```
+
+Serial is implemented via USB (USB-CDC).
 
 
 
@@ -500,15 +536,6 @@ func InitADC()
 ```
 
 InitADC initializes the ADC.
-
-
-### func InitPWM
-
-```go
-func InitPWM()
-```
-
-InitPWM initializes the PWM interface.
 
 
 ### func NewACMFunctionalDescriptor
@@ -638,7 +665,7 @@ ACMFunctionalDescriptor is a Abstract Control Model (ACM) USB descriptor.
 ### func (ACMFunctionalDescriptor) Bytes
 
 ```go
-func (d ACMFunctionalDescriptor) Bytes() []byte
+func (d ACMFunctionalDescriptor) Bytes() [acmFunctionalDescriptorSize]byte
 ```
 
 Bytes returns the ACMFunctionalDescriptor data.
@@ -713,7 +740,7 @@ CDCCSInterfaceDescriptor is a CDC CS interface descriptor.
 ### func (CDCCSInterfaceDescriptor) Bytes
 
 ```go
-func (d CDCCSInterfaceDescriptor) Bytes() []byte
+func (d CDCCSInterfaceDescriptor) Bytes() [cdcCSInterfaceDescriptorSize]byte
 ```
 
 Bytes returns CDCCSInterfaceDescriptor data.
@@ -752,7 +779,7 @@ CDCDescriptor is the Communication Device Class (CDC) descriptor.
 ### func (CDCDescriptor) Bytes
 
 ```go
-func (d CDCDescriptor) Bytes() []byte
+func (d CDCDescriptor) Bytes() [cdcSize]byte
 ```
 
 Bytes returns CDCDescriptor data.
@@ -779,7 +806,7 @@ CMFunctionalDescriptor is the functional descriptor general format.
 ### func (CMFunctionalDescriptor) Bytes
 
 ```go
-func (d CMFunctionalDescriptor) Bytes() []byte
+func (d CMFunctionalDescriptor) Bytes() [cmFunctionalDescriptorSize]byte
 ```
 
 Bytes returns the CMFunctionalDescriptor data.
@@ -813,7 +840,7 @@ bmAttributes, bMaxPower
 ### func (ConfigDescriptor) Bytes
 
 ```go
-func (d ConfigDescriptor) Bytes() []byte
+func (d ConfigDescriptor) Bytes() [configDescriptorSize]byte
 ```
 
 Bytes returns ConfigDescriptor data.
@@ -899,7 +926,7 @@ bLength, bDescriptorType, bcdUSB, bDeviceClass, bDeviceSubClass, bDeviceProtocol
 ### func (DeviceDescriptor) Bytes
 
 ```go
-func (d DeviceDescriptor) Bytes() []byte
+func (d DeviceDescriptor) Bytes() [deviceDescriptorSize]byte
 ```
 
 Bytes returns DeviceDescriptor data
@@ -930,7 +957,7 @@ bLength, bDescriptorType, bEndpointAddress, bmAttributes, wMaxPacketSize, bInter
 ### func (EndpointDescriptor) Bytes
 
 ```go
-func (d EndpointDescriptor) Bytes() []byte
+func (d EndpointDescriptor) Bytes() [endpointDescriptorSize]byte
 ```
 
 Bytes returns EndpointDescriptor data.
@@ -951,19 +978,19 @@ I2C on the SAMD51.
 
 
 
-### func (I2C) Configure
+### func (*I2C) Configure
 
 ```go
-func (i2c I2C) Configure(config I2CConfig) error
+func (i2c *I2C) Configure(config I2CConfig) error
 ```
 
 Configure is intended to setup the I2C interface.
 
 
-### func (I2C) ReadRegister
+### func (*I2C) ReadRegister
 
 ```go
-func (i2c I2C) ReadRegister(address uint8, register uint8, data []byte) error
+func (i2c *I2C) ReadRegister(address uint8, register uint8, data []byte) error
 ```
 
 ReadRegister transmits the register, restarts the connection as a read
@@ -974,19 +1001,19 @@ is a shortcut to easily read such registers. Also, it only works for devices
 with 7-bit addresses, which is the vast majority.
 
 
-### func (I2C) SetBaudRate
+### func (*I2C) SetBaudRate
 
 ```go
-func (i2c I2C) SetBaudRate(br uint32)
+func (i2c *I2C) SetBaudRate(br uint32)
 ```
 
 SetBaudRate sets the communication speed for the I2C.
 
 
-### func (I2C) Tx
+### func (*I2C) Tx
 
 ```go
-func (i2c I2C) Tx(addr uint16, w, r []byte) error
+func (i2c *I2C) Tx(addr uint16, w, r []byte) error
 ```
 
 Tx does a single I2C transaction at the specified address.
@@ -994,19 +1021,19 @@ It clocks out the given address, writes the bytes in w, reads back len(r)
 bytes and stores them in r, and generates a stop condition on the bus.
 
 
-### func (I2C) WriteByte
+### func (*I2C) WriteByte
 
 ```go
-func (i2c I2C) WriteByte(data byte) error
+func (i2c *I2C) WriteByte(data byte) error
 ```
 
 WriteByte writes a single byte to the I2C bus.
 
 
-### func (I2C) WriteRegister
+### func (*I2C) WriteRegister
 
 ```go
-func (i2c I2C) WriteRegister(address uint8, register uint8, data []byte) error
+func (i2c *I2C) WriteRegister(address uint8, register uint8, data []byte) error
 ```
 
 WriteRegister transmits first the register and then the data to the
@@ -1129,7 +1156,7 @@ bFunctionProtocol, iFunction
 ### func (IADDescriptor) Bytes
 
 ```go
-func (d IADDescriptor) Bytes() []byte
+func (d IADDescriptor) Bytes() [iadDescriptorSize]byte
 ```
 
 Bytes returns IADDescriptor data.
@@ -1164,7 +1191,7 @@ bInterfaceSubClass, bInterfaceProtocol, iInterface
 ### func (InterfaceDescriptor) Bytes
 
 ```go
-func (d InterfaceDescriptor) Bytes() []byte
+func (d InterfaceDescriptor) Bytes() [interfaceDescriptorSize]byte
 ```
 
 Bytes returns InterfaceDescriptor data.
@@ -1188,33 +1215,86 @@ MSCDescriptor is not used yet.
 
 
 
-## type PWM
+## type NullSerial
 
 ```go
-type PWM struct {
-	Pin Pin
+type NullSerial struct {
 }
 ```
 
+NullSerial is a serial version of /dev/null (or null router): it drops
+everything that is written to it.
 
 
 
-### func (PWM) Configure
-
-```go
-func (pwm PWM) Configure() error
-```
-
-Configure configures a PWM pin for output.
-
-
-### func (PWM) Set
+### func (NullSerial) Buffered
 
 ```go
-func (pwm PWM) Set(value uint16)
+func (ns NullSerial) Buffered() int
 ```
 
-Set turns on the duty cycle for a PWM pin using the provided value.
+Buffered returns how many bytes are buffered in the UART. It always returns 0
+as there are no bytes to read.
+
+
+### func (NullSerial) Configure
+
+```go
+func (ns NullSerial) Configure(config UARTConfig) error
+```
+
+Configure does nothing: the null serial has no configuration.
+
+
+### func (NullSerial) ReadByte
+
+```go
+func (ns NullSerial) ReadByte() (byte, error)
+```
+
+ReadByte always returns an error because there aren't any bytes to read.
+
+
+### func (NullSerial) Write
+
+```go
+func (ns NullSerial) Write(p []byte) (n int, err error)
+```
+
+Write is a no-op: none of the data is being written and it will not return an
+error.
+
+
+### func (NullSerial) WriteByte
+
+```go
+func (ns NullSerial) WriteByte(b byte) error
+```
+
+WriteByte is a no-op: the null serial doesn't write bytes.
+
+
+
+
+## type PWMConfig
+
+```go
+type PWMConfig struct {
+	// PWM period in nanosecond. Leaving this zero will pick a reasonable period
+	// value for use with LEDs.
+	// If you want to configure a frequency instead of a period, you can use the
+	// following formula to calculate a period from a frequency:
+	//
+	//     period = 1e9 / frequency
+	//
+	Period uint64
+}
+```
+
+PWMConfig allows setting some configuration while configuring a PWM
+peripheral. A zero PWMConfig is ready to use for simple applications such as
+dimming LEDs.
+
 
 
 
@@ -1358,6 +1438,9 @@ type PinConfig struct {
 type PinMode uint8
 ```
 
+PinMode sets the direction and pull mode of the pin. For example, PinOutput
+sets the pin as an output and PinInputPullup sets the pin as an input with a
+pull-up.
 
 
 
@@ -1495,6 +1578,118 @@ SPIConfig is used to store config info for SPI.
 
 
 
+## type TCC
+
+```go
+type TCC sam.TCC_Type
+```
+
+TCC is one timer peripheral, which consists of a counter and multiple output
+channels (that can be connected to actual pins). You can set the frequency
+using SetPeriod, but only for all the channels in this timer peripheral at
+once.
+
+
+
+### func (*TCC) Channel
+
+```go
+func (tcc *TCC) Channel(pin Pin) (uint8, error)
+```
+
+Channel returns a PWM channel for the given pin. Note that one channel may be
+shared between multiple pins, and so will have the same duty cycle. If this
+is not desirable, look for a different TCC or consider using a different pin.
+
+
+### func (*TCC) Configure
+
+```go
+func (tcc *TCC) Configure(config PWMConfig) error
+```
+
+Configure enables and configures this TCC.
+
+
+### func (*TCC) Counter
+
+```go
+func (tcc *TCC) Counter() uint32
+```
+
+Counter returns the current counter value of the timer in this TCC
+peripheral. It may be useful for debugging.
+
+
+### func (*TCC) Set
+
+```go
+func (tcc *TCC) Set(channel uint8, value uint32)
+```
+
+Set updates the channel value. This is used to control the channel duty
+cycle, in other words the fraction of time the channel output is high (or low
+when inverted). For example, to set it to a 25% duty cycle, use:
+
+    tcc.Set(channel, tcc.Top() / 4)
+
+tcc.Set(channel, 0) will set the output to low and tcc.Set(channel,
+tcc.Top()) will set the output to high, assuming the output isn't inverted.
+
+
+### func (*TCC) SetInverting
+
+```go
+func (tcc *TCC) SetInverting(channel uint8, inverting bool)
+```
+
+SetInverting sets whether to invert the output of this channel.
+Without inverting, a 25% duty cycle would mean the output is high for 25% of
+the time and low for the rest. Inverting flips the output as if a NOT gate
+was placed at the output, meaning that the output would be 25% low and 75%
+high with a duty cycle of 25%.
+
+
+### func (*TCC) SetPeriod
+
+```go
+func (tcc *TCC) SetPeriod(period uint64) error
+```
+
+SetPeriod updates the period of this TCC peripheral.
+To set a particular frequency, use the following formula:
+
+    period = 1e9 / frequency
+
+If you use a period of 0, a period that works well for LEDs will be picked.
+
+SetPeriod will not change the prescaler, but also won't change the current
+value in any of the channels. This means that you may need to update the
+value for the particular channel.
+
+Note that you cannot pick any arbitrary period after the TCC peripheral has
+been configured. If you want to switch between frequencies, pick the lowest
+frequency (longest period) once when calling Configure and adjust the
+frequency here as needed.
+
+
+### func (*TCC) Top
+
+```go
+func (tcc *TCC) Top() uint32
+```
+
+Top returns the current counter top, for use in duty cycle calculation. It
+will only change with a call to Configure or SetPeriod, otherwise it is
+constant.
+
+The value returned here is hardware dependent. In general, it's best to treat
+it as an opaque value that can be divided by some number and passed to
+tcc.Set (see tcc.Set for more information).
+
+
+
+
 ## type UART
 
 ```go
@@ -1510,75 +1705,75 @@ UART on the SAMD51.
 
 
 
-### func (UART) Buffered
+### func (*UART) Buffered
 
 ```go
-func (uart UART) Buffered() int
+func (uart *UART) Buffered() int
 ```
 
 Buffered returns the number of bytes currently stored in the RX buffer.
 
 
-### func (UART) Configure
+### func (*UART) Configure
 
 ```go
-func (uart UART) Configure(config UARTConfig) error
+func (uart *UART) Configure(config UARTConfig) error
 ```
 
 Configure the UART.
 
 
-### func (UART) Read
+### func (*UART) Read
 
 ```go
-func (uart UART) Read(data []byte) (n int, err error)
+func (uart *UART) Read(data []byte) (n int, err error)
 ```
 
 Read from the RX buffer.
 
 
-### func (UART) ReadByte
+### func (*UART) ReadByte
 
 ```go
-func (uart UART) ReadByte() (byte, error)
+func (uart *UART) ReadByte() (byte, error)
 ```
 
 ReadByte reads a single byte from the RX buffer.
 If there is no data in the buffer, returns an error.
 
 
-### func (UART) Receive
+### func (*UART) Receive
 
 ```go
-func (uart UART) Receive(data byte)
+func (uart *UART) Receive(data byte)
 ```
 
 Receive handles adding data to the UART's data buffer.
 Usually called by the IRQ handler for a machine.
 
 
-### func (UART) SetBaudRate
+### func (*UART) SetBaudRate
 
 ```go
-func (uart UART) SetBaudRate(br uint32)
+func (uart *UART) SetBaudRate(br uint32)
 ```
 
 SetBaudRate sets the communication speed for the UART.
 
 
-### func (UART) Write
+### func (*UART) Write
 
 ```go
-func (uart UART) Write(data []byte) (n int, err error)
+func (uart *UART) Write(data []byte) (n int, err error)
 ```
 
 Write data to the UART.
 
 
-### func (UART) WriteByte
+### func (*UART) WriteByte
 
 ```go
-func (uart UART) WriteByte(c byte) error
+func (uart *UART) WriteByte(c byte) error
 ```
 
 WriteByte writes a byte of data to the UART.
@@ -1596,6 +1791,21 @@ type UARTConfig struct {
 }
 ```
 
+UARTConfig is a struct with which a UART (or similar object) can be
+configured. The baud rate is usually respected, but TX and RX may be ignored
+depending on the chip and the type of object.
+
+
+
+
+
+## type UARTParity
+
+```go
+type UARTParity int
+```
+
+UARTParity is the parity setting to be used for UART communication.
 
 
 
@@ -1617,28 +1827,28 @@ USBCDC is the USB CDC aka serial over USB interface on the SAMD21.
 
 
 
-### func (USBCDC) Buffered
+### func (*USBCDC) Buffered
 
 ```go
-func (usbcdc USBCDC) Buffered() int
+func (usbcdc *USBCDC) Buffered() int
 ```
 
 Buffered returns the number of bytes currently stored in the RX buffer.
 
 
-### func (USBCDC) Configure
+### func (*USBCDC) Configure
 
 ```go
-func (usbcdc USBCDC) Configure(config UARTConfig)
+func (usbcdc *USBCDC) Configure(config UARTConfig)
 ```
 
 Configure the USB CDC interface. The config is here for compatibility with the UART interface.
 
 
-### func (USBCDC) DTR
+### func (*USBCDC) DTR
 
 ```go
-func (usbcdc USBCDC) DTR() bool
+func (usbcdc *USBCDC) DTR() bool
 ```
 
 
@@ -1652,47 +1862,47 @@ func (usbcdc *USBCDC) Flush() error
 Flush flushes buffered data.
 
 
-### func (USBCDC) RTS
+### func (*USBCDC) RTS
 
 ```go
-func (usbcdc USBCDC) RTS() bool
+func (usbcdc *USBCDC) RTS() bool
 ```
 
 
 
-### func (USBCDC) Read
+### func (*USBCDC) Read
 
 ```go
-func (usbcdc USBCDC) Read(data []byte) (n int, err error)
+func (usbcdc *USBCDC) Read(data []byte) (n int, err error)
 ```
 
 Read from the RX buffer.
 
 
-### func (USBCDC) ReadByte
+### func (*USBCDC) ReadByte
 
 ```go
-func (usbcdc USBCDC) ReadByte() (byte, error)
+func (usbcdc *USBCDC) ReadByte() (byte, error)
 ```
 
 ReadByte reads a single byte from the RX buffer.
 If there is no data in the buffer, returns an error.
 
 
-### func (USBCDC) Receive
+### func (*USBCDC) Receive
 
 ```go
-func (usbcdc USBCDC) Receive(data byte)
+func (usbcdc *USBCDC) Receive(data byte)
 ```
 
 Receive handles adding data to the UART's data buffer.
 Usually called by the IRQ handler for a machine.
 
 
-### func (USBCDC) Write
+### func (*USBCDC) Write
 
 ```go
-func (usbcdc USBCDC) Write(data []byte) (n int, err error)
+func (usbcdc *USBCDC) Write(data []byte) (n int, err error)
 ```
 
 Write data to the USBCDC.

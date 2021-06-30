@@ -151,10 +151,34 @@ const (
 Pin change interrupt constants for SetInterrupt.
 
 
+```go
+const (
+	// ParityNone means to not use any parity checking. This is
+	// the most common setting.
+	ParityNone	UARTParity	= 0
+
+	// ParityEven means to expect that the total number of 1 bits sent
+	// should be an even number.
+	ParityEven	UARTParity	= 1
+
+	// ParityOdd means to expect that the total number of 1 bits sent
+	// should be an odd number.
+	ParityOdd	UARTParity	= 2
+)
+```
+
+
+
 
 
 
 ## Variables
+
+```go
+var DefaultUART = UART0
+```
+
+
 
 ```go
 var (
@@ -178,8 +202,9 @@ var (
 
 ```go
 var (
-	// NRF_UART0 is the hardware UART on the NRF SoC.
-	NRF_UART0 = UART{Buffer: NewRingBuffer()}
+	// UART0 is the hardware UART on the NRF SoC.
+	_UART0	= UART{Buffer: NewRingBuffer()}
+	UART0	= &_UART0
 )
 ```
 
@@ -188,20 +213,12 @@ UART
 
 ```go
 var (
-	I2C0	= I2C{Bus: nrf.TWI0}
-	I2C1	= I2C{Bus: nrf.TWI1}
+	I2C0	= (*I2C)(unsafe.Pointer(nrf.TWI0))
+	I2C1	= (*I2C)(unsafe.Pointer(nrf.TWI1))
 )
 ```
 
 There are 2 I2C interfaces on the NRF.
-
-
-```go
-var (
-	UART0 = NRF_UART0
-)
-```
-
 
 
 ```go
@@ -212,6 +229,21 @@ var (
 ```
 
 There are 2 SPI interfaces on the NRF51.
+
+
+```go
+var (
+	ErrPWMPeriodTooLong = errors.New("pwm: period too long")
+)
+```
+
+
+
+```go
+var Serial = DefaultUART
+```
+
+Serial is implemented via the default (usually the first) UART on the chip.
 
 
 
@@ -270,7 +302,7 @@ value of each parameter will use the peripheral's default settings.
 
 ```go
 type I2C struct {
-	Bus *nrf.TWI_Type
+	Bus nrf.TWI_Type
 }
 ```
 
@@ -278,19 +310,19 @@ I2C on the NRF.
 
 
 
-### func (I2C) Configure
+### func (*I2C) Configure
 
 ```go
-func (i2c I2C) Configure(config I2CConfig) error
+func (i2c *I2C) Configure(config I2CConfig) error
 ```
 
 Configure is intended to setup the I2C interface.
 
 
-### func (I2C) ReadRegister
+### func (*I2C) ReadRegister
 
 ```go
-func (i2c I2C) ReadRegister(address uint8, register uint8, data []byte) error
+func (i2c *I2C) ReadRegister(address uint8, register uint8, data []byte) error
 ```
 
 ReadRegister transmits the register, restarts the connection as a read
@@ -301,10 +333,10 @@ is a shortcut to easily read such registers. Also, it only works for devices
 with 7-bit addresses, which is the vast majority.
 
 
-### func (I2C) Tx
+### func (*I2C) Tx
 
 ```go
-func (i2c I2C) Tx(addr uint16, w, r []byte) (err error)
+func (i2c *I2C) Tx(addr uint16, w, r []byte) (err error)
 ```
 
 Tx does a single I2C transaction at the specified address.
@@ -312,10 +344,10 @@ It clocks out the given address, writes the bytes in w, reads back len(r)
 bytes and stores them in r, and generates a stop condition on the bus.
 
 
-### func (I2C) WriteRegister
+### func (*I2C) WriteRegister
 
 ```go
-func (i2c I2C) WriteRegister(address uint8, register uint8, data []byte) error
+func (i2c *I2C) WriteRegister(address uint8, register uint8, data []byte) error
 ```
 
 WriteRegister transmits first the register and then the data to the
@@ -344,14 +376,85 @@ I2CConfig is used to store config info for I2C.
 
 
 
-## type PWM
+## type NullSerial
 
 ```go
-type PWM struct {
-	Pin Pin
+type NullSerial struct {
 }
 ```
 
+NullSerial is a serial version of /dev/null (or null router): it drops
+everything that is written to it.
+
+
+
+### func (NullSerial) Buffered
+
+```go
+func (ns NullSerial) Buffered() int
+```
+
+Buffered returns how many bytes are buffered in the UART. It always returns 0
+as there are no bytes to read.
+
+
+### func (NullSerial) Configure
+
+```go
+func (ns NullSerial) Configure(config UARTConfig) error
+```
+
+Configure does nothing: the null serial has no configuration.
+
+
+### func (NullSerial) ReadByte
+
+```go
+func (ns NullSerial) ReadByte() (byte, error)
+```
+
+ReadByte always returns an error because there aren't any bytes to read.
+
+
+### func (NullSerial) Write
+
+```go
+func (ns NullSerial) Write(p []byte) (n int, err error)
+```
+
+Write is a no-op: none of the data is being written and it will not return an
+error.
+
+
+### func (NullSerial) WriteByte
+
+```go
+func (ns NullSerial) WriteByte(b byte) error
+```
+
+WriteByte is a no-op: the null serial doesn't write bytes.
+
+
+
+
+## type PWMConfig
+
+```go
+type PWMConfig struct {
+	// PWM period in nanosecond. Leaving this zero will pick a reasonable period
+	// value for use with LEDs.
+	// If you want to configure a frequency instead of a period, you can use the
+	// following formula to calculate a period from a frequency:
+	//
+	//     period = 1e9 / frequency
+	//
+	Period uint64
+}
+```
+
+PWMConfig allows setting some configuration while configuring a PWM
+peripheral. A zero PWMConfig is ready to use for simple applications such as
+dimming LEDs.
 
 
 
@@ -486,6 +589,9 @@ type PinConfig struct {
 type PinMode uint8
 ```
 
+PinMode sets the direction and pull mode of the pin. For example, PinOutput
+sets the pin as an output and PinInputPullup sets the pin as an input with a
+pull-up.
 
 
 
@@ -634,75 +740,75 @@ UART on the NRF.
 
 
 
-### func (UART) Buffered
+### func (*UART) Buffered
 
 ```go
-func (uart UART) Buffered() int
+func (uart *UART) Buffered() int
 ```
 
 Buffered returns the number of bytes currently stored in the RX buffer.
 
 
-### func (UART) Configure
+### func (*UART) Configure
 
 ```go
-func (uart UART) Configure(config UARTConfig)
+func (uart *UART) Configure(config UARTConfig)
 ```
 
 Configure the UART.
 
 
-### func (UART) Read
+### func (*UART) Read
 
 ```go
-func (uart UART) Read(data []byte) (n int, err error)
+func (uart *UART) Read(data []byte) (n int, err error)
 ```
 
 Read from the RX buffer.
 
 
-### func (UART) ReadByte
+### func (*UART) ReadByte
 
 ```go
-func (uart UART) ReadByte() (byte, error)
+func (uart *UART) ReadByte() (byte, error)
 ```
 
 ReadByte reads a single byte from the RX buffer.
 If there is no data in the buffer, returns an error.
 
 
-### func (UART) Receive
+### func (*UART) Receive
 
 ```go
-func (uart UART) Receive(data byte)
+func (uart *UART) Receive(data byte)
 ```
 
 Receive handles adding data to the UART's data buffer.
 Usually called by the IRQ handler for a machine.
 
 
-### func (UART) SetBaudRate
+### func (*UART) SetBaudRate
 
 ```go
-func (uart UART) SetBaudRate(br uint32)
+func (uart *UART) SetBaudRate(br uint32)
 ```
 
 SetBaudRate sets the communication speed for the UART.
 
 
-### func (UART) Write
+### func (*UART) Write
 
 ```go
-func (uart UART) Write(data []byte) (n int, err error)
+func (uart *UART) Write(data []byte) (n int, err error)
 ```
 
 Write data to the UART.
 
 
-### func (UART) WriteByte
+### func (*UART) WriteByte
 
 ```go
-func (uart UART) WriteByte(c byte) error
+func (uart *UART) WriteByte(c byte) error
 ```
 
 WriteByte writes a byte of data to the UART.
@@ -720,6 +826,21 @@ type UARTConfig struct {
 }
 ```
 
+UARTConfig is a struct with which a UART (or similar object) can be
+configured. The baud rate is usually respected, but TX and RX may be ignored
+depending on the chip and the type of object.
+
+
+
+
+
+## type UARTParity
+
+```go
+type UARTParity int
+```
+
+UARTParity is the parity setting to be used for UART communication.
 
 
 

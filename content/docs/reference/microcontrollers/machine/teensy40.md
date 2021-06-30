@@ -382,6 +382,24 @@ const (
 
 
 
+```go
+const (
+	// ParityNone means to not use any parity checking. This is
+	// the most common setting.
+	ParityNone	UARTParity	= 0
+
+	// ParityEven means to expect that the total number of 1 bits sent
+	// should be an even number.
+	ParityEven	UARTParity	= 1
+
+	// ParityOdd means to expect that the total number of 1 bits sent
+	// should be an odd number.
+	ParityOdd	UARTParity	= 2
+)
+```
+
+
+
 
 
 
@@ -389,9 +407,12 @@ const (
 
 ```go
 var (
-	UART1	= UART{
-		Buffer:	NewRingBuffer(),
-		Bus:	nxp.LPUART6,
+	DefaultUART	= UART1
+	UART1		= &_UART1
+	_UART1		= UART{
+		Bus:		nxp.LPUART6,
+		Buffer:		NewRingBuffer(),
+		txBuffer:	NewRingBuffer(),
 		muxRX: muxSelect{
 			mux:	nxp.IOMUXC_LPUART6_RX_SELECT_INPUT_DAISY_GPIO_AD_B0_03_ALT2,
 			sel:	&nxp.IOMUXC.LPUART6_RX_SELECT_INPUT,
@@ -401,9 +422,11 @@ var (
 			sel:	&nxp.IOMUXC.LPUART6_TX_SELECT_INPUT,
 		},
 	}
-	UART2	= UART{
-		Buffer:	NewRingBuffer(),
-		Bus:	nxp.LPUART4,
+	UART2	= &_UART2
+	_UART2	= UART{
+		Bus:		nxp.LPUART4,
+		Buffer:		NewRingBuffer(),
+		txBuffer:	NewRingBuffer(),
 		muxRX: muxSelect{
 			mux:	nxp.IOMUXC_LPUART4_RX_SELECT_INPUT_DAISY_GPIO_B1_01_ALT2,
 			sel:	&nxp.IOMUXC.LPUART4_RX_SELECT_INPUT,
@@ -413,9 +436,11 @@ var (
 			sel:	&nxp.IOMUXC.LPUART4_TX_SELECT_INPUT,
 		},
 	}
-	UART3	= UART{
-		Buffer:	NewRingBuffer(),
-		Bus:	nxp.LPUART2,
+	UART3	= &_UART3
+	_UART3	= UART{
+		Bus:		nxp.LPUART2,
+		Buffer:		NewRingBuffer(),
+		txBuffer:	NewRingBuffer(),
 		muxRX: muxSelect{
 			mux:	nxp.IOMUXC_LPUART2_RX_SELECT_INPUT_DAISY_GPIO_AD_B1_03_ALT2,
 			sel:	&nxp.IOMUXC.LPUART2_RX_SELECT_INPUT,
@@ -425,9 +450,11 @@ var (
 			sel:	&nxp.IOMUXC.LPUART2_TX_SELECT_INPUT,
 		},
 	}
-	UART4	= UART{
-		Buffer:	NewRingBuffer(),
-		Bus:	nxp.LPUART3,
+	UART4	= &_UART4
+	_UART4	= UART{
+		Bus:		nxp.LPUART3,
+		Buffer:		NewRingBuffer(),
+		txBuffer:	NewRingBuffer(),
 		muxRX: muxSelect{
 			mux:	nxp.IOMUXC_LPUART3_RX_SELECT_INPUT_DAISY_GPIO_AD_B1_07_ALT2,
 			sel:	&nxp.IOMUXC.LPUART3_RX_SELECT_INPUT,
@@ -437,9 +464,11 @@ var (
 			sel:	&nxp.IOMUXC.LPUART3_TX_SELECT_INPUT,
 		},
 	}
-	UART5	= UART{
-		Buffer:	NewRingBuffer(),
-		Bus:	nxp.LPUART8,
+	UART5	= &_UART5
+	_UART5	= UART{
+		Bus:		nxp.LPUART8,
+		Buffer:		NewRingBuffer(),
+		txBuffer:	NewRingBuffer(),
 		muxRX: muxSelect{
 			mux:	nxp.IOMUXC_LPUART8_RX_SELECT_INPUT_DAISY_GPIO_AD_B1_11_ALT2,
 			sel:	&nxp.IOMUXC.LPUART8_RX_SELECT_INPUT,
@@ -449,13 +478,17 @@ var (
 			sel:	&nxp.IOMUXC.LPUART8_TX_SELECT_INPUT,
 		},
 	}
-	UART6	= UART{
-		Buffer:	NewRingBuffer(),
-		Bus:	nxp.LPUART1,
+	UART6	= &_UART6
+	_UART6	= UART{
+		Bus:		nxp.LPUART1,
+		Buffer:		NewRingBuffer(),
+		txBuffer:	NewRingBuffer(),
 	}
-	UART7	= UART{
-		Buffer:	NewRingBuffer(),
-		Bus:	nxp.LPUART7,
+	UART7	= &_UART7
+	_UART7	= UART{
+		Bus:		nxp.LPUART7,
+		Buffer:		NewRingBuffer(),
+		txBuffer:	NewRingBuffer(),
 		muxRX: muxSelect{
 			mux:	nxp.IOMUXC_LPUART7_RX_SELECT_INPUT_DAISY_GPIO_EMC_32_ALT2,
 			sel:	&nxp.IOMUXC.LPUART7_RX_SELECT_INPUT,
@@ -480,6 +513,21 @@ var (
 )
 ```
 
+
+
+```go
+var (
+	ErrPWMPeriodTooLong = errors.New("pwm: period too long")
+)
+```
+
+
+
+```go
+var Serial = DefaultUART
+```
+
+Serial is implemented via the default (usually the first) UART on the chip.
 
 
 
@@ -534,14 +582,85 @@ value of each parameter will use the peripheral's default settings.
 
 
 
-## type PWM
+## type NullSerial
 
 ```go
-type PWM struct {
-	Pin Pin
+type NullSerial struct {
 }
 ```
 
+NullSerial is a serial version of /dev/null (or null router): it drops
+everything that is written to it.
+
+
+
+### func (NullSerial) Buffered
+
+```go
+func (ns NullSerial) Buffered() int
+```
+
+Buffered returns how many bytes are buffered in the UART. It always returns 0
+as there are no bytes to read.
+
+
+### func (NullSerial) Configure
+
+```go
+func (ns NullSerial) Configure(config UARTConfig) error
+```
+
+Configure does nothing: the null serial has no configuration.
+
+
+### func (NullSerial) ReadByte
+
+```go
+func (ns NullSerial) ReadByte() (byte, error)
+```
+
+ReadByte always returns an error because there aren't any bytes to read.
+
+
+### func (NullSerial) Write
+
+```go
+func (ns NullSerial) Write(p []byte) (n int, err error)
+```
+
+Write is a no-op: none of the data is being written and it will not return an
+error.
+
+
+### func (NullSerial) WriteByte
+
+```go
+func (ns NullSerial) WriteByte(b byte) error
+```
+
+WriteByte is a no-op: the null serial doesn't write bytes.
+
+
+
+
+## type PWMConfig
+
+```go
+type PWMConfig struct {
+	// PWM period in nanosecond. Leaving this zero will pick a reasonable period
+	// value for use with LEDs.
+	// If you want to configure a frequency instead of a period, you can use the
+	// following formula to calculate a period from a frequency:
+	//
+	//     period = 1e9 / frequency
+	//
+	Period uint64
+}
+```
+
+PWMConfig allows setting some configuration while configuring a PWM
+peripheral. A zero PWMConfig is ready to use for simple applications such as
+dimming LEDs.
 
 
 
@@ -665,6 +784,9 @@ type PinConfig struct {
 type PinMode uint8
 ```
 
+PinMode sets the direction and pull mode of the pin. For example, PinOutput
+sets the pin as an output and PinInputPullup sets the pin as an input with a
+pull-up.
 
 
 
@@ -733,6 +855,10 @@ type UART struct {
 	Buffer		*RingBuffer
 	Interrupt	interrupt.Interrupt
 
+	// txBuffer should be allocated globally (such as when UART is created) to
+	// prevent it being reclaimed or cleaned up prematurely.
+	txBuffer	*RingBuffer
+
 	// these hold the input selector ("daisy chain") values that select which pins
 	// are connected to the LPUART device, and should be defined where the UART
 	// instance is declared. see the godoc comments on type muxSelect for more
@@ -749,17 +875,16 @@ type UART struct {
 	configured	bool
 	msbFirst	bool
 	transmitting	volatile.Register32
-	txBuffer	*RingBuffer
 }
 ```
 
 
 
 
-### func (UART) Buffered
+### func (*UART) Buffered
 
 ```go
-func (uart UART) Buffered() int
+func (uart *UART) Buffered() int
 ```
 
 Buffered returns the number of bytes currently stored in the RX buffer.
@@ -789,29 +914,29 @@ interrupt is also disabled, and the RX/TX pins are reconfigured for GPIO
 input (pull-up).
 
 
-### func (UART) Read
+### func (*UART) Read
 
 ```go
-func (uart UART) Read(data []byte) (n int, err error)
+func (uart *UART) Read(data []byte) (n int, err error)
 ```
 
 Read from the RX buffer.
 
 
-### func (UART) ReadByte
+### func (*UART) ReadByte
 
 ```go
-func (uart UART) ReadByte() (byte, error)
+func (uart *UART) ReadByte() (byte, error)
 ```
 
 ReadByte reads a single byte from the RX buffer.
 If there is no data in the buffer, returns an error.
 
 
-### func (UART) Receive
+### func (*UART) Receive
 
 ```go
-func (uart UART) Receive(data byte)
+func (uart *UART) Receive(data byte)
 ```
 
 Receive handles adding data to the UART's data buffer.
@@ -828,10 +953,10 @@ Sync blocks the calling goroutine until all data in the output buffer has
 been transmitted.
 
 
-### func (UART) Write
+### func (*UART) Write
 
 ```go
-func (uart UART) Write(data []byte) (n int, err error)
+func (uart *UART) Write(data []byte) (n int, err error)
 ```
 
 Write data to the UART.
@@ -858,6 +983,21 @@ type UARTConfig struct {
 }
 ```
 
+UARTConfig is a struct with which a UART (or similar object) can be
+configured. The baud rate is usually respected, but TX and RX may be ignored
+depending on the chip and the type of object.
+
+
+
+
+
+## type UARTParity
+
+```go
+type UARTParity int
+```
+
+UARTParity is the parity setting to be used for UART communication.
 
 
 
