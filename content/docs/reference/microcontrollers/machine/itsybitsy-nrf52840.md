@@ -221,19 +221,28 @@ const (
 
 
 
+```go
+const (
+	// ParityNone means to not use any parity checking. This is
+	// the most common setting.
+	ParityNone	UARTParity	= 0
+
+	// ParityEven means to expect that the total number of 1 bits sent
+	// should be an even number.
+	ParityEven	UARTParity	= 1
+
+	// ParityOdd means to expect that the total number of 1 bits sent
+	// should be an odd number.
+	ParityOdd	UARTParity	= 2
+)
+```
+
+
+
 
 
 
 ## Variables
-
-```go
-var (
-	UART0 = &USB
-)
-```
-
-UART0 is the USB device
-
 
 ```go
 var (
@@ -257,8 +266,9 @@ var (
 
 ```go
 var (
-	// NRF_UART0 is the hardware UART on the NRF SoC.
-	NRF_UART0 = UART{Buffer: NewRingBuffer()}
+	// UART0 is the hardware UART on the NRF SoC.
+	_UART0	= UART{Buffer: NewRingBuffer()}
+	UART0	= &_UART0
 )
 ```
 
@@ -267,8 +277,8 @@ UART
 
 ```go
 var (
-	I2C0	= I2C{Bus: nrf.TWI0}
-	I2C1	= I2C{Bus: nrf.TWI1}
+	I2C0	= (*I2C)(unsafe.Pointer(nrf.TWI0))
+	I2C1	= (*I2C)(unsafe.Pointer(nrf.TWI1))
 )
 ```
 
@@ -277,7 +287,20 @@ There are 2 I2C interfaces on the NRF.
 
 ```go
 var (
-	USB	= USBCDC{Buffer: NewRingBuffer()}
+	PWM0	= &PWM{PWM: nrf.PWM0}
+	PWM1	= &PWM{PWM: nrf.PWM1}
+	PWM2	= &PWM{PWM: nrf.PWM2}
+	PWM3	= &PWM{PWM: nrf.PWM3}
+)
+```
+
+PWM
+
+
+```go
+var (
+	USB	= &_USB
+	_USB	= USBCDC{Buffer: NewRingBuffer()}
 
 	usbEndpointDescriptors	[8]usbDeviceDescriptor
 
@@ -309,13 +332,28 @@ var (
 
 ```go
 var (
-	SPI0	= SPI{Bus: nrf.SPIM0}
-	SPI1	= SPI{Bus: nrf.SPIM1}
-	SPI2	= SPI{Bus: nrf.SPIM2}
+	SPI0	= SPI{Bus: nrf.SPIM0, buf: new([1]byte)}
+	SPI1	= SPI{Bus: nrf.SPIM1, buf: new([1]byte)}
+	SPI2	= SPI{Bus: nrf.SPIM2, buf: new([1]byte)}
 )
 ```
 
 There are 3 SPI interfaces on the NRF528xx.
+
+
+```go
+var (
+	ErrPWMPeriodTooLong = errors.New("pwm: period too long")
+)
+```
+
+
+
+```go
+var Serial = USB
+```
+
+Serial is implemented via USB (USB-CDC).
 
 
 
@@ -366,15 +404,6 @@ func InitADC()
 ```
 
 InitADC initializes the registers needed for ADC.
-
-
-### func InitPWM
-
-```go
-func InitPWM()
-```
-
-InitPWM initializes the registers needed for PWM.
 
 
 ### func NewACMFunctionalDescriptor
@@ -494,7 +523,7 @@ ACMFunctionalDescriptor is a Abstract Control Model (ACM) USB descriptor.
 ### func (ACMFunctionalDescriptor) Bytes
 
 ```go
-func (d ACMFunctionalDescriptor) Bytes() []byte
+func (d ACMFunctionalDescriptor) Bytes() [acmFunctionalDescriptorSize]byte
 ```
 
 Bytes returns the ACMFunctionalDescriptor data.
@@ -569,7 +598,7 @@ CDCCSInterfaceDescriptor is a CDC CS interface descriptor.
 ### func (CDCCSInterfaceDescriptor) Bytes
 
 ```go
-func (d CDCCSInterfaceDescriptor) Bytes() []byte
+func (d CDCCSInterfaceDescriptor) Bytes() [cdcCSInterfaceDescriptorSize]byte
 ```
 
 Bytes returns CDCCSInterfaceDescriptor data.
@@ -608,7 +637,7 @@ CDCDescriptor is the Communication Device Class (CDC) descriptor.
 ### func (CDCDescriptor) Bytes
 
 ```go
-func (d CDCDescriptor) Bytes() []byte
+func (d CDCDescriptor) Bytes() [cdcSize]byte
 ```
 
 Bytes returns CDCDescriptor data.
@@ -635,7 +664,7 @@ CMFunctionalDescriptor is the functional descriptor general format.
 ### func (CMFunctionalDescriptor) Bytes
 
 ```go
-func (d CMFunctionalDescriptor) Bytes() []byte
+func (d CMFunctionalDescriptor) Bytes() [cmFunctionalDescriptorSize]byte
 ```
 
 Bytes returns the CMFunctionalDescriptor data.
@@ -669,7 +698,7 @@ bmAttributes, bMaxPower
 ### func (ConfigDescriptor) Bytes
 
 ```go
-func (d ConfigDescriptor) Bytes() []byte
+func (d ConfigDescriptor) Bytes() [configDescriptorSize]byte
 ```
 
 Bytes returns ConfigDescriptor data.
@@ -709,7 +738,7 @@ bLength, bDescriptorType, bcdUSB, bDeviceClass, bDeviceSubClass, bDeviceProtocol
 ### func (DeviceDescriptor) Bytes
 
 ```go
-func (d DeviceDescriptor) Bytes() []byte
+func (d DeviceDescriptor) Bytes() [deviceDescriptorSize]byte
 ```
 
 Bytes returns DeviceDescriptor data
@@ -740,7 +769,7 @@ bLength, bDescriptorType, bEndpointAddress, bmAttributes, wMaxPacketSize, bInter
 ### func (EndpointDescriptor) Bytes
 
 ```go
-func (d EndpointDescriptor) Bytes() []byte
+func (d EndpointDescriptor) Bytes() [endpointDescriptorSize]byte
 ```
 
 Bytes returns EndpointDescriptor data.
@@ -752,7 +781,7 @@ Bytes returns EndpointDescriptor data.
 
 ```go
 type I2C struct {
-	Bus *nrf.TWI_Type
+	Bus nrf.TWI_Type
 }
 ```
 
@@ -760,19 +789,19 @@ I2C on the NRF.
 
 
 
-### func (I2C) Configure
+### func (*I2C) Configure
 
 ```go
-func (i2c I2C) Configure(config I2CConfig) error
+func (i2c *I2C) Configure(config I2CConfig) error
 ```
 
 Configure is intended to setup the I2C interface.
 
 
-### func (I2C) ReadRegister
+### func (*I2C) ReadRegister
 
 ```go
-func (i2c I2C) ReadRegister(address uint8, register uint8, data []byte) error
+func (i2c *I2C) ReadRegister(address uint8, register uint8, data []byte) error
 ```
 
 ReadRegister transmits the register, restarts the connection as a read
@@ -783,10 +812,10 @@ is a shortcut to easily read such registers. Also, it only works for devices
 with 7-bit addresses, which is the vast majority.
 
 
-### func (I2C) Tx
+### func (*I2C) Tx
 
 ```go
-func (i2c I2C) Tx(addr uint16, w, r []byte) (err error)
+func (i2c *I2C) Tx(addr uint16, w, r []byte) (err error)
 ```
 
 Tx does a single I2C transaction at the specified address.
@@ -794,10 +823,10 @@ It clocks out the given address, writes the bytes in w, reads back len(r)
 bytes and stores them in r, and generates a stop condition on the bus.
 
 
-### func (I2C) WriteRegister
+### func (*I2C) WriteRegister
 
 ```go
-func (i2c I2C) WriteRegister(address uint8, register uint8, data []byte) error
+func (i2c *I2C) WriteRegister(address uint8, register uint8, data []byte) error
 ```
 
 WriteRegister transmits first the register and then the data to the
@@ -853,7 +882,7 @@ bFunctionProtocol, iFunction
 ### func (IADDescriptor) Bytes
 
 ```go
-func (d IADDescriptor) Bytes() []byte
+func (d IADDescriptor) Bytes() [iadDescriptorSize]byte
 ```
 
 Bytes returns IADDescriptor data.
@@ -888,7 +917,7 @@ bInterfaceSubClass, bInterfaceProtocol, iInterface
 ### func (InterfaceDescriptor) Bytes
 
 ```go
-func (d InterfaceDescriptor) Bytes() []byte
+func (d InterfaceDescriptor) Bytes() [interfaceDescriptorSize]byte
 ```
 
 Bytes returns InterfaceDescriptor data.
@@ -912,33 +941,190 @@ MSCDescriptor is not used yet.
 
 
 
+## type NullSerial
+
+```go
+type NullSerial struct {
+}
+```
+
+NullSerial is a serial version of /dev/null (or null router): it drops
+everything that is written to it.
+
+
+
+### func (NullSerial) Buffered
+
+```go
+func (ns NullSerial) Buffered() int
+```
+
+Buffered returns how many bytes are buffered in the UART. It always returns 0
+as there are no bytes to read.
+
+
+### func (NullSerial) Configure
+
+```go
+func (ns NullSerial) Configure(config UARTConfig) error
+```
+
+Configure does nothing: the null serial has no configuration.
+
+
+### func (NullSerial) ReadByte
+
+```go
+func (ns NullSerial) ReadByte() (byte, error)
+```
+
+ReadByte always returns an error because there aren't any bytes to read.
+
+
+### func (NullSerial) Write
+
+```go
+func (ns NullSerial) Write(p []byte) (n int, err error)
+```
+
+Write is a no-op: none of the data is being written and it will not return an
+error.
+
+
+### func (NullSerial) WriteByte
+
+```go
+func (ns NullSerial) WriteByte(b byte) error
+```
+
+WriteByte is a no-op: the null serial doesn't write bytes.
+
+
+
+
 ## type PWM
 
 ```go
 type PWM struct {
-	Pin Pin
+	PWM	*nrf.PWM_Type
+
+	channelValues	[4]volatile.Register16
 }
 ```
 
+PWM is one PWM peripheral, which consists of a counter and multiple output
+channels (that can be connected to actual pins). You can set the frequency
+using SetPeriod, but only for all the channels in this PWM peripheral at
+once.
 
 
 
-### func (PWM) Configure
-
-```go
-func (pwm PWM) Configure()
-```
-
-Configure configures a PWM pin for output.
-
-
-### func (PWM) Set
+### func (*PWM) Channel
 
 ```go
-func (pwm PWM) Set(value uint16)
+func (pwm *PWM) Channel(pin Pin) (uint8, error)
 ```
 
-Set turns on the duty cycle for a PWM pin using the provided value.
+Channel returns a PWM channel for the given pin.
+
+
+### func (*PWM) Configure
+
+```go
+func (pwm *PWM) Configure(config PWMConfig) error
+```
+
+Configure enables and configures this PWM.
+On the nRF52 series, the maximum period is around 0.26s.
+
+
+### func (*PWM) Set
+
+```go
+func (pwm *PWM) Set(channel uint8, value uint32)
+```
+
+Set updates the channel value. This is used to control the channel duty
+cycle. For example, to set it to a 25% duty cycle, use:
+
+    ch.Set(ch.Top() / 4)
+
+ch.Set(0) will set the output to low and ch.Set(ch.Top()) will set the output
+to high, assuming the output isn't inverted.
+
+
+### func (*PWM) SetInverting
+
+```go
+func (pwm *PWM) SetInverting(channel uint8, inverting bool)
+```
+
+SetInverting sets whether to invert the output of this channel.
+Without inverting, a 25% duty cycle would mean the output is high for 25% of
+the time and low for the rest. Inverting flips the output as if a NOT gate
+was placed at the output, meaning that the output would be 25% low and 75%
+high with a duty cycle of 25%.
+
+
+### func (*PWM) SetPeriod
+
+```go
+func (pwm *PWM) SetPeriod(period uint64) error
+```
+
+SetPeriod updates the period of this PWM peripheral.
+To set a particular frequency, use the following formula:
+
+    period = 1e9 / frequency
+
+If you use a period of 0, a period that works well for LEDs will be picked.
+
+SetPeriod will not change the prescaler, but also won't change the current
+value in any of the channels. This means that you may need to update the
+value for the particular channel.
+
+Note that you cannot pick any arbitrary period after the PWM peripheral has
+been configured. If you want to switch between frequencies, pick the lowest
+frequency (longest period) once when calling Configure and adjust the
+frequency here as needed.
+
+
+### func (*PWM) Top
+
+```go
+func (pwm *PWM) Top() uint32
+```
+
+Top returns the current counter top, for use in duty cycle calculation. It
+will only change with a call to Configure or SetPeriod, otherwise it is
+constant.
+
+The value returned here is hardware dependent. In general, it's best to treat
+it as an opaque value that can be divided by some number and passed to
+pwm.Set (see pwm.Set for more information).
+
+
+
+
+## type PWMConfig
+
+```go
+type PWMConfig struct {
+	// PWM period in nanosecond. Leaving this zero will pick a reasonable period
+	// value for use with LEDs.
+	// If you want to configure a frequency instead of a period, you can use the
+	// following formula to calculate a period from a frequency:
+	//
+	//     period = 1e9 / frequency
+	//
+	Period uint64
+}
+```
+
+PWMConfig allows setting some configuration while configuring a PWM
+peripheral. A zero PWMConfig is ready to use for simple applications such as
+dimming LEDs.
+
 
 
 
@@ -1072,6 +1258,9 @@ type PinConfig struct {
 type PinMode uint8
 ```
 
+PinMode sets the direction and pull mode of the pin. For example, PinOutput
+sets the pin as an output and PinInputPullup sets the pin as an input with a
+pull-up.
 
 
 
@@ -1136,7 +1325,8 @@ Used returns how many bytes in buffer have been used.
 
 ```go
 type SPI struct {
-	Bus *nrf.SPIM_Type
+	Bus	*nrf.SPIM_Type
+	buf	*[1]byte	// 1-byte buffer for the Transfer method
 }
 ```
 
@@ -1208,75 +1398,75 @@ UART on the NRF.
 
 
 
-### func (UART) Buffered
+### func (*UART) Buffered
 
 ```go
-func (uart UART) Buffered() int
+func (uart *UART) Buffered() int
 ```
 
 Buffered returns the number of bytes currently stored in the RX buffer.
 
 
-### func (UART) Configure
+### func (*UART) Configure
 
 ```go
-func (uart UART) Configure(config UARTConfig)
+func (uart *UART) Configure(config UARTConfig)
 ```
 
 Configure the UART.
 
 
-### func (UART) Read
+### func (*UART) Read
 
 ```go
-func (uart UART) Read(data []byte) (n int, err error)
+func (uart *UART) Read(data []byte) (n int, err error)
 ```
 
 Read from the RX buffer.
 
 
-### func (UART) ReadByte
+### func (*UART) ReadByte
 
 ```go
-func (uart UART) ReadByte() (byte, error)
+func (uart *UART) ReadByte() (byte, error)
 ```
 
 ReadByte reads a single byte from the RX buffer.
 If there is no data in the buffer, returns an error.
 
 
-### func (UART) Receive
+### func (*UART) Receive
 
 ```go
-func (uart UART) Receive(data byte)
+func (uart *UART) Receive(data byte)
 ```
 
 Receive handles adding data to the UART's data buffer.
 Usually called by the IRQ handler for a machine.
 
 
-### func (UART) SetBaudRate
+### func (*UART) SetBaudRate
 
 ```go
-func (uart UART) SetBaudRate(br uint32)
+func (uart *UART) SetBaudRate(br uint32)
 ```
 
 SetBaudRate sets the communication speed for the UART.
 
 
-### func (UART) Write
+### func (*UART) Write
 
 ```go
-func (uart UART) Write(data []byte) (n int, err error)
+func (uart *UART) Write(data []byte) (n int, err error)
 ```
 
 Write data to the UART.
 
 
-### func (UART) WriteByte
+### func (*UART) WriteByte
 
 ```go
-func (uart UART) WriteByte(c byte) error
+func (uart *UART) WriteByte(c byte) error
 ```
 
 WriteByte writes a byte of data to the UART.
@@ -1294,6 +1484,21 @@ type UARTConfig struct {
 }
 ```
 
+UARTConfig is a struct with which a UART (or similar object) can be
+configured. The baud rate is usually respected, but TX and RX may be ignored
+depending on the chip and the type of object.
+
+
+
+
+
+## type UARTParity
+
+```go
+type UARTParity int
+```
+
+UARTParity is the parity setting to be used for UART communication.
 
 
 
@@ -1317,10 +1522,10 @@ USBCDC is the USB CDC aka serial over USB interface on the nRF52840
 
 
 
-### func (USBCDC) Buffered
+### func (*USBCDC) Buffered
 
 ```go
-func (usbcdc USBCDC) Buffered() int
+func (usbcdc *USBCDC) Buffered() int
 ```
 
 Buffered returns the number of bytes currently stored in the RX buffer.
@@ -1335,10 +1540,10 @@ func (usbcdc *USBCDC) Configure(config UARTConfig)
 Configure the USB CDC interface. The config is here for compatibility with the UART interface.
 
 
-### func (USBCDC) DTR
+### func (*USBCDC) DTR
 
 ```go
-func (usbcdc USBCDC) DTR() bool
+func (usbcdc *USBCDC) DTR() bool
 ```
 
 
@@ -1352,56 +1557,56 @@ func (usbcdc *USBCDC) Flush() error
 Flush flushes buffered data.
 
 
-### func (USBCDC) RTS
+### func (*USBCDC) RTS
 
 ```go
-func (usbcdc USBCDC) RTS() bool
+func (usbcdc *USBCDC) RTS() bool
 ```
 
 
 
-### func (USBCDC) Read
+### func (*USBCDC) Read
 
 ```go
-func (usbcdc USBCDC) Read(data []byte) (n int, err error)
+func (usbcdc *USBCDC) Read(data []byte) (n int, err error)
 ```
 
 Read from the RX buffer.
 
 
-### func (USBCDC) ReadByte
+### func (*USBCDC) ReadByte
 
 ```go
-func (usbcdc USBCDC) ReadByte() (byte, error)
+func (usbcdc *USBCDC) ReadByte() (byte, error)
 ```
 
 ReadByte reads a single byte from the RX buffer.
 If there is no data in the buffer, returns an error.
 
 
-### func (USBCDC) Receive
+### func (*USBCDC) Receive
 
 ```go
-func (usbcdc USBCDC) Receive(data byte)
+func (usbcdc *USBCDC) Receive(data byte)
 ```
 
 Receive handles adding data to the UART's data buffer.
 Usually called by the IRQ handler for a machine.
 
 
-### func (USBCDC) Write
+### func (*USBCDC) Write
 
 ```go
-func (usbcdc USBCDC) Write(data []byte) (n int, err error)
+func (usbcdc *USBCDC) Write(data []byte) (n int, err error)
 ```
 
 Write data to the USBCDC.
 
 
-### func (USBCDC) WriteByte
+### func (*USBCDC) WriteByte
 
 ```go
-func (usbcdc USBCDC) WriteByte(c byte) error
+func (usbcdc *USBCDC) WriteByte(c byte) error
 ```
 
 WriteByte writes a byte of data to the USB CDC interface.

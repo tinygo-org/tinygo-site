@@ -8,13 +8,13 @@ The [Nano RP2040](https://store.arduino.cc/nano-rp2040-connect) is a tiny develo
 ## Interfaces
 
 | Interface | Hardware Supported | TinyGo Support |
-| --------- | ------------- | ----- |Well, I think 
+| --------- | ------------- | ----- |
 | GPIO      | YES | YES |
 | UART      | YES | YES |
-| SPI      | YES | YES |
-| I2C      | YES | YES |
+| SPI      | YES | Not yet |
+| I2C      | YES | Not yet |
 | ADC      | YES | YES |
-| PWM      | YES | YES |
+| PWM      | YES | Not yet |
 
 ## Machine Package Docs
 

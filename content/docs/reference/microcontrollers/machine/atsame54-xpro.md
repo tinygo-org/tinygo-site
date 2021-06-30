@@ -1,146 +1,356 @@
 
 ---
-title: arduino-zero
+title: atsame54-xpro
 ---
 
 
 ## Constants
 
 ```go
-const RESET_MAGIC_VALUE = 0x07738135
+const RESET_MAGIC_VALUE = 0x00000000
 ```
 
-used to reset into bootloader
+Definition for compatibility, but not used
 
 
 ```go
 const (
-	D0	= PA11	// RX
-	D1	= PA10	// TX
-	D2	= PA14
-	D3	= PA09	// PWM available
-	D4	= PA08	// PWM available
-	D5	= PA15	// PWM available
-	D6	= PA20	// PWM available
-	D7	= PA21
+	LED	= PC18
+	BUTTON	= PB31
 )
 ```
 
-GPIO Pins - Digital Low
 
 
 ```go
 const (
-	D8	= PA06	// PWM available
-	D9	= PA07	// PWM available
-	D10	= PA18	// PWM available
-	D11	= PA16	// PWM available
-	D12	= PA19	// PWM available
-	D13	= PA17	// PWM available
+
+	// Extension Header EXT1
+	EXT1_PIN3_ADC_P		= PB04
+	EXT1_PIN4_ADC_N		= PB05
+	EXT1_PIN5_GPIO1		= PA06
+	EXT1_PIN6_GPIO2		= PA07
+	EXT1_PIN7_PWM_P		= PB08
+	EXT1_PIN8_PWM_N		= PB09
+	EXT1_PIN9_IRQ		= PB07
+	EXT1_PIN9_GPIO		= PB07
+	EXT1_PIN10_SPI_SS_B	= PA27
+	EXT1_PIN10_GPIO		= PA27
+	EXT1_PIN11_TWI_SDA	= PA22
+	EXT1_PIN12_TWI_SCL	= PA23
+	EXT1_PIN13_UART_RX	= PA05
+	EXT1_PIN14_UART_TX	= PA04
+	EXT1_PIN15_SPI_SS_A	= PB28
+	EXT1_PIN16_SPI_SDO	= PB27
+	EXT1_PIN17_SPI_SDI	= PB29
+	EXT1_PIN18_SPI_SCK	= PB26
+
+	// Extension Header EXT2
+	EXT2_PIN3_ADC_P		= PB00
+	EXT2_PIN4_ADC_N		= PA03
+	EXT2_PIN5_GPIO1		= PB01
+	EXT2_PIN6_GPIO2		= PB06
+	EXT2_PIN7_PWM_P		= PB14
+	EXT2_PIN8_PWM_N		= PB15
+	EXT2_PIN9_IRQ		= PD00
+	EXT2_PIN9_GPIO		= PD00
+	EXT2_PIN10_SPI_SS_B	= PB02
+	EXT2_PIN10_GPIO		= PB02
+	EXT2_PIN11_TWI_SDA	= PD08
+	EXT2_PIN12_TWI_SCL	= PD09
+	EXT2_PIN13_UART_RX	= PB17
+	EXT2_PIN14_UART_TX	= PB16
+	EXT2_PIN15_SPI_SS_A	= PC06
+	EXT2_PIN16_SPI_SDO	= PC04
+	EXT2_PIN17_SPI_SDI	= PC07
+	EXT2_PIN18_SPI_SCK	= PC05
+
+	// Extension Header EXT3
+	EXT3_PIN3_ADC_P		= PC02
+	EXT3_PIN4_ADC_N		= PC03
+	EXT3_PIN5_GPIO1		= PC01
+	EXT3_PIN6_GPIO2		= PC10
+	EXT3_PIN7_PWM_P		= PD10
+	EXT3_PIN8_PWM_N		= PD11
+	EXT3_PIN9_IRQ		= PC30
+	EXT3_PIN9_GPIO		= PC30
+	EXT3_PIN10_SPI_SS_B	= PC31
+	EXT3_PIN10_GPIO		= PC31
+	EXT3_PIN11_TWI_SDA	= PD08
+	EXT3_PIN12_TWI_SCL	= PD09
+	EXT3_PIN13_UART_RX	= PC23
+	EXT3_PIN14_UART_TX	= PC22
+	EXT3_PIN15_SPI_SS_A	= PC14
+	EXT3_PIN16_SPI_SDO	= PC04
+	EXT3_PIN17_SPI_SDI	= PC07
+	EXT3_PIN18_SPI_SCK	= PC05
+
+	// SD_CARD
+	SD_CARD_MCDA0	= PB18
+	SD_CARD_MCDA1	= PB19
+	SD_CARD_MCDA2	= PB20
+	SD_CARD_MCDA3	= PB21
+	SD_CARD_MCCK	= PA21
+	SD_CARD_MCCDA	= PA20
+	SD_CARD_DETECT	= PD20
+	SD_CARD_PROTECT	= PD21
+
+	// I2C
+	I2C_SDA	= PD08
+	I2C_SCL	= PD09
+
+	// CAN
+	CAN0_TX	= PA22
+	CAN0_RX	= PA23
+
+	CAN1_STANDBY	= PC13
+	CAN1_TX		= PB12
+	CAN1_RX		= PB13
+
+	CAN_STANDBY	= CAN1_STANDBY
+	CAN_TX		= CAN1_TX
+	CAN_RX		= CAN1_RX
+
+	// PDEC
+	PDEC_PHASE_A	= PC16
+	PDEC_PHASE_B	= PC17
+	PDEC_INDEX	= PC18
+
+	// PCC
+	PCC_I2C_SDA	= PD08
+	PCC_I2C_SCL	= PD09
+	PCC_VSYNC_DEN1	= PA12
+	PCC_HSYNC_DEN2	= PA13
+	PCC_CLK		= PA14
+	PCC_XCLK	= PA15
+	PCC_DATA00	= PA16
+	PCC_DATA01	= PA17
+	PCC_DATA02	= PA18
+	PCC_DATA03	= PA19
+	PCC_DATA04	= PA20
+	PCC_DATA05	= PA21
+	PCC_DATA06	= PA22
+	PCC_DATA07	= PA23
+	PCC_DATA08	= PB14
+	PCC_DATA09	= PB15
+	PCC_RESET	= PC12
+	PCC_PWDN	= PC11
+
+	// Ethernet
+	ETHERNET_TXCK	= PA14
+	ETHERNET_TXEN	= PA17
+	ETHERNET_TX0	= PA18
+	ETHERNET_TX1	= PA19
+	ETHERNET_RXER	= PA15
+	ETHERNET_RX0	= PA13
+	ETHERNET_RX1	= PA12
+	ETHERNET_RXDV	= PC20
+	ETHERNET_MDIO	= PC12
+	ETHERNET_MDC	= PC11
+	ETHERNET_INT	= PD12
+	ETHERNET_RESET	= PC21
+
+	PIN_QT_BUTTON	= PA16
+	PIN_BTN0	= PB31
+	PIN_ETH_LED	= PC15
+	PIN_LED0	= PC18
+	PIN_ADC_DAC	= PA02
+	PIN_VBUS_DETECT	= PC00
+	PIN_USB_ID	= PC19
 )
 ```
 
-GPIO Pins - Digital High
 
 
 ```go
 const (
-	LED		= LED1
-	LED1	Pin	= D13
-	LED2	Pin	= PA27	// TX LED
-	LED3	Pin	= PB03	// RX LED
+	USBCDC_DM_PIN	= PA24
+	USBCDC_DP_PIN	= PA25
 )
 ```
 
-LEDs on the Arduino Zero
+USBCDC pins
 
 
 ```go
 const (
-	AREF	Pin	= PA03
-	ADC0	Pin	= PA02
-	ADC1	Pin	= PB08
-	ADC2	Pin	= PB09
-	ADC3	Pin	= PA04
-	ADC4	Pin	= PA05
-	ADC5	Pin	= PB02
+	// Extension Header EXT1
+	UART_TX_PIN	= PA04	// TX : SERCOM0/PAD[0]
+	UART_RX_PIN	= PA05	// RX : SERCOM0/PAD[1]
+
+	// Extension Header EXT2
+	UART2_TX_PIN	= PB16	// TX : SERCOM5/PAD[0]
+	UART2_RX_PIN	= PB17	// RX : SERCOM5/PAD[1]
+
+	// Extension Header EXT3
+	UART3_TX_PIN	= PC22	// TX : SERCOM1/PAD[0]
+	UART3_RX_PIN	= PC23	// RX : SERCOM1/PAD[1]
+
+	// Virtual COM Port
+	UART4_TX_PIN	= PB25	// TX : SERCOM2/PAD[0]
+	UART4_RX_PIN	= PB24	// RX : SERCOM2/PAD[1]
 )
 ```
 
-ADC pins
+UART pins
 
 
 ```go
 const (
-	SPI0_SDO_PIN	Pin	= PA16	// MOSI: SERCOM1/PAD[0]
-	SPI0_SDI_PIN	Pin	= PA19	// MISO: SERCOM1/PAD[2]
-	SPI0_SCK_PIN	Pin	= PA17	// SCK:  SERCOM1/PAD[3]
+	// Extension Header EXT1
+	SDA0_PIN	= PA22	// SDA: SERCOM3/PAD[0]
+	SCL0_PIN	= PA23	// SCL: SERCOM3/PAD[1]
+
+	// Extension Header EXT2
+	SDA1_PIN	= PD08	// SDA: SERCOM7/PAD[0]
+	SCL1_PIN	= PD09	// SCL: SERCOM7/PAD[1]
+
+	// Extension Header EXT3
+	SDA2_PIN	= PD08	// SDA: SERCOM7/PAD[0]
+	SCL2_PIN	= PD09	// SCL: SERCOM7/PAD[1]
+
+	// Data Gateway Interface
+	SDA_DGI_PIN	= PD08	// SDA: SERCOM7/PAD[0]
+	SCL_DGI_PIN	= PD09	// SCL: SERCOM7/PAD[1]
+
+	SDA_PIN	= SDA0_PIN
+	SCL_PIN	= SCL0_PIN
 )
 ```
 
-SPI pins - EDBG connected
+I2C pins
 
 
 ```go
 const (
-	SPI1_SDO_PIN	Pin	= PB10	// MOSI: SERCOM4/PAD[2] - Pin 4
-	SPI1_SDI_PIN	Pin	= PA12	// MISO: SERCOM4/PAD[0] - Pin 1
-	SPI1_SCK_PIN	Pin	= PB11	// SCK:  SERCOM4/PAD[3] - Pin 3
+	// Extension Header EXT1
+	SPI0_SCK_PIN	= PB26	// SCK: SERCOM4/PAD[1]
+	SPI0_SDO_PIN	= PB27	// SDO: SERCOM4/PAD[0]
+	SPI0_SDI_PIN	= PB29	// SDI: SERCOM4/PAD[3]
+	SPI0_SS_PIN	= PB28	// SS : SERCOM4/PAD[2]
+
+	// Extension Header EXT2
+	SPI1_SCK_PIN	= PC05	// SCK: SERCOM6/PAD[1]
+	SPI1_SDO_PIN	= PC04	// SDO: SERCOM6/PAD[0]
+	SPI1_SDI_PIN	= PC07	// SDI: SERCOM6/PAD[3]
+	SPI1_SS_PIN	= PC06	// SS : SERCOM6/PAD[2]
+
+	// Extension Header EXT3
+	SPI2_SCK_PIN	= PC05	// SCK: SERCOM6/PAD[1]
+	SPI2_SDO_PIN	= PC04	// SDO: SERCOM6/PAD[0]
+	SPI2_SDI_PIN	= PC07	// SDI: SERCOM6/PAD[3]
+	SPI2_SS_PIN	= PC14	// SS : GPIO
+
+	// Data Gateway Interface
+	SPI_DGI_SCK_PIN	= PC05	// SCK: SERCOM6/PAD[1]
+	SPI_DGI_SDO_PIN	= PC04	// SDO: SERCOM6/PAD[0]
+	SPI_DGI_SDI_PIN	= PC07	// SDI: SERCOM6/PAD[3]
+	SPI_DGI_SS_PIN	= PD01	// SS : GPIO
 )
 ```
 
-SPI pins (Legacy ICSP)
+SPI pins
 
 
 ```go
 const (
-	SDA_PIN	Pin	= PA22	// SDA: SERCOM3/PAD[0] - Pin 20
-	SCL_PIN	Pin	= PA23	// SCL: SERCOM3/PAD[1] - Pin 21
+	TWI_FREQ_100KHZ	= 100000
+	TWI_FREQ_400KHZ	= 400000
 )
 ```
 
-I2C pins - EDBG connected
+TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-speed bus.
 
 
 ```go
 const (
-	I2S_SCK_PIN	Pin	= PA10
-	I2S_SD_PIN	Pin	= PA07
-	I2S_WS_PIN	Pin	= PA11
+	I2SModeSource	I2SMode	= iota
+	I2SModeReceiver
+	I2SModePDM
 )
 ```
 
-I2S pins - might not be exposed
 
 
 ```go
 const (
-	UART_RX_PIN	Pin	= D0
-	UART_TX_PIN	Pin	= D1
+	I2StandardPhilips	I2SStandard	= iota
+	I2SStandardMSB
+	I2SStandardLSB
 )
 ```
 
-UART0 pins - EDBG connected
 
 
 ```go
 const (
-	USBCDC_DM_PIN	Pin	= PA24
-	USBCDC_DP_PIN	Pin	= PA25
+	I2SClockSourceInternal	I2SClockSource	= iota
+	I2SClockSourceExternal
 )
 ```
 
-'native' USB port pins
 
 
 ```go
 const (
-	XIN32	Pin	= PA00
-	XOUT32	Pin	= PA01
+	I2SDataFormatDefault	I2SDataFormat	= 0
+	I2SDataFormat8bit			= 8
+	I2SDataFormat16bit			= 16
+	I2SDataFormat24bit			= 24
+	I2SDataFormat32bit			= 32
 )
 ```
 
-32.768 KHz Crystal
+
+
+```go
+const NoPin = Pin(0xff)
+```
+
+NoPin explicitly indicates "not a pin". Use this pin if you want to leave one
+of the pins in a peripheral unconfigured (if supported by the hardware).
+
+
+```go
+const (
+	PinAnalog		PinMode	= 1
+	PinSERCOM		PinMode	= 2
+	PinSERCOMAlt		PinMode	= 3
+	PinTimer		PinMode	= 4
+	PinTimerAlt		PinMode	= 5
+	PinTCCPDEC		PinMode	= 6
+	PinCom			PinMode	= 7
+	PinSDHC			PinMode	= 8
+	PinI2S			PinMode	= 9
+	PinPCC			PinMode	= 10
+	PinGMAC			PinMode	= 11
+	PinACCLK		PinMode	= 12
+	PinCCL			PinMode	= 13
+	PinDigital		PinMode	= 14
+	PinInput		PinMode	= 15
+	PinInputPullup		PinMode	= 16
+	PinOutput		PinMode	= 17
+	PinTCCE			PinMode	= PinTimer
+	PinTCCF			PinMode	= PinTimerAlt
+	PinTCCG			PinMode	= PinTCCPDEC
+	PinInputPulldown	PinMode	= 18
+	PinCAN			PinMode	= 19
+	PinCAN0			PinMode	= PinSDHC
+	PinCAN1			PinMode	= PinCom
+)
+```
+
+
+
+```go
+const (
+	PinRising	PinChange	= sam.EIC_CONFIG_SENSE0_RISE
+	PinFalling	PinChange	= sam.EIC_CONFIG_SENSE0_FALL
+	PinToggle	PinChange	= sam.EIC_CONFIG_SENSE0_BOTH
+)
+```
+
+Pin change interrupt constants for SetInterrupt.
 
 
 ```go
@@ -209,6 +419,70 @@ const (
 	PB29	Pin	= 61
 	PB30	Pin	= 62
 	PB31	Pin	= 63
+	PC00	Pin	= 64
+	PC01	Pin	= 65
+	PC02	Pin	= 66
+	PC03	Pin	= 67
+	PC04	Pin	= 68
+	PC05	Pin	= 69
+	PC06	Pin	= 70
+	PC07	Pin	= 71
+	PC08	Pin	= 72
+	PC09	Pin	= 73
+	PC10	Pin	= 74
+	PC11	Pin	= 75
+	PC12	Pin	= 76
+	PC13	Pin	= 77
+	PC14	Pin	= 78
+	PC15	Pin	= 79
+	PC16	Pin	= 80
+	PC17	Pin	= 81
+	PC18	Pin	= 82
+	PC19	Pin	= 83
+	PC20	Pin	= 84
+	PC21	Pin	= 85
+	PC22	Pin	= 86
+	PC23	Pin	= 87
+	PC24	Pin	= 88
+	PC25	Pin	= 89
+	PC26	Pin	= 90
+	PC27	Pin	= 91
+	PC28	Pin	= 92
+	PC29	Pin	= 93
+	PC30	Pin	= 94
+	PC31	Pin	= 95
+	PD00	Pin	= 96
+	PD01	Pin	= 97
+	PD02	Pin	= 98
+	PD03	Pin	= 99
+	PD04	Pin	= 100
+	PD05	Pin	= 101
+	PD06	Pin	= 102
+	PD07	Pin	= 103
+	PD08	Pin	= 104
+	PD09	Pin	= 105
+	PD10	Pin	= 106
+	PD11	Pin	= 107
+	PD12	Pin	= 108
+	PD13	Pin	= 109
+	PD14	Pin	= 110
+	PD15	Pin	= 111
+	PD16	Pin	= 112
+	PD17	Pin	= 113
+	PD18	Pin	= 114
+	PD19	Pin	= 115
+	PD20	Pin	= 116
+	PD21	Pin	= 117
+	PD22	Pin	= 118
+	PD23	Pin	= 119
+	PD24	Pin	= 120
+	PD25	Pin	= 121
+	PD26	Pin	= 122
+	PD27	Pin	= 123
+	PD28	Pin	= 124
+	PD29	Pin	= 125
+	PD30	Pin	= 126
+	PD31	Pin	= 127
 )
 ```
 
@@ -217,29 +491,23 @@ Hardware pins
 
 ```go
 const (
-	TWI_FREQ_100KHZ	= 100000
-	TWI_FREQ_400KHZ	= 400000
-)
-```
+	// SERCOM_FREQ_REF is always reference frequency on SAMD51 regardless of CPU speed.
+	SERCOM_FREQ_REF	= 48000000
 
-TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-speed bus.
+	// Default rise time in nanoseconds, based on 4.7K ohm pull up resistors
+	riseTimeNanoseconds	= 125
 
+	// wire bus states
+	wireUnknownState	= 0
+	wireIdleState		= 1
+	wireOwnerState		= 2
+	wireBusyState		= 3
 
-```go
-const (
-	I2SModeSource	I2SMode	= iota
-	I2SModeReceiver
-	I2SModePDM
-)
-```
-
-
-
-```go
-const (
-	I2StandardPhilips	I2SStandard	= iota
-	I2SStandardMSB
-	I2SStandardLSB
+	// wire commands
+	wireCmdNoAction		= 0
+	wireCmdRepeatStart	= 1
+	wireCmdRead		= 2
+	wireCmdStop		= 3
 )
 ```
 
@@ -247,8 +515,29 @@ const (
 
 ```go
 const (
-	I2SClockSourceInternal	I2SClockSource	= iota
-	I2SClockSourceExternal
+	QSPI_SCK	= PB10
+	QSPI_CS		= PB11
+	QSPI_DATA0	= PA08
+	QSPI_DATA1	= PA09
+	QSPI_DATA2	= PA10
+	QSPI_DATA3	= PA11
+)
+```
+
+The QSPI peripheral on ATSAMD51 is only available on the following pins
+
+
+```go
+const HSRAM_SIZE = 0x00040000
+```
+
+
+
+```go
+const (
+	CANRxFifoSize	= 16
+	CANTxFifoSize	= 16
+	CANEvFifoSize	= 16
 )
 ```
 
@@ -256,54 +545,16 @@ const (
 
 ```go
 const (
-	I2SDataFormatDefault	I2SDataFormat	= 0
-	I2SDataFormat8bit			= 8
-	I2SDataFormat16bit			= 16
-	I2SDataFormat24bit			= 24
-	I2SDataFormat32bit			= 32
+	CANTransferRate125kbps	CANTransferRate	= 125000
+	CANTransferRate250kbps	CANTransferRate	= 250000
+	CANTransferRate500kbps	CANTransferRate	= 500000
+	CANTransferRate1000kbps	CANTransferRate	= 1000000
+	CANTransferRate2000kbps	CANTransferRate	= 2000000
+	CANTransferRate4000kbps	CANTransferRate	= 4000000
 )
 ```
 
-
-
-```go
-const NoPin = Pin(0xff)
-```
-
-NoPin explicitly indicates "not a pin". Use this pin if you want to leave one
-of the pins in a peripheral unconfigured (if supported by the hardware).
-
-
-```go
-const (
-	PinAnalog	PinMode	= 1
-	PinSERCOM	PinMode	= 2
-	PinSERCOMAlt	PinMode	= 3
-	PinTimer	PinMode	= 4
-	PinTimerAlt	PinMode	= 5
-	PinCom		PinMode	= 6
-	//PinAC_CLK        PinMode = 7
-	PinDigital		PinMode	= 8
-	PinInput		PinMode	= 9
-	PinInputPullup		PinMode	= 10
-	PinOutput		PinMode	= 11
-	PinTCC			PinMode	= PinTimer
-	PinTCCAlt		PinMode	= PinTimerAlt
-	PinInputPulldown	PinMode	= 12
-)
-```
-
-
-
-```go
-const (
-	PinRising	PinChange	= sam.EIC_CONFIG_SENSE0_RISE
-	PinFalling	PinChange	= sam.EIC_CONFIG_SENSE0_FALL
-	PinToggle	PinChange	= sam.EIC_CONFIG_SENSE0_BOTH
-)
-```
-
-Pin change interrupt constants for SetInterrupt.
+CAN transfer rates for CANConfig
 
 
 ```go
@@ -331,6 +582,122 @@ const (
 
 ```go
 var (
+	// Extension Header EXT1
+	UART1	= &_UART1
+	_UART1	= UART{
+		Buffer:	NewRingBuffer(),
+		Bus:	sam.SERCOM0_USART_INT,
+		SERCOM:	0,
+	}
+
+	// Extension Header EXT2
+	UART2	= &_UART2
+	_UART2	= UART{
+		Buffer:	NewRingBuffer(),
+		Bus:	sam.SERCOM5_USART_INT,
+		SERCOM:	5,
+	}
+
+	// Extension Header EXT3
+	UART3	= &_UART3
+	_UART3	= UART{
+		Buffer:	NewRingBuffer(),
+		Bus:	sam.SERCOM1_USART_INT,
+		SERCOM:	1,
+	}
+
+	// EDBG Virtual COM Port
+	UART4	= &_UART4
+	_UART4	= UART{
+		Buffer:	NewRingBuffer(),
+		Bus:	sam.SERCOM2_USART_INT,
+		SERCOM:	2,
+	}
+)
+```
+
+UART on the SAM E54 Xplained Pro
+
+
+```go
+var (
+	// Extension Header EXT1
+	I2C0	= I2C{
+		Bus:	sam.SERCOM3_I2CM,
+		SERCOM:	3,
+	}
+
+	// Extension Header EXT2
+	I2C1	= I2C{
+		Bus:	sam.SERCOM7_I2CM,
+		SERCOM:	7,
+	}
+
+	// Extension Header EXT3
+	I2C2	= I2C{
+		Bus:	sam.SERCOM7_I2CM,
+		SERCOM:	7,
+	}
+
+	// Data Gateway Interface
+	I2C3	= I2C{
+		Bus:	sam.SERCOM7_I2CM,
+		SERCOM:	7,
+	}
+)
+```
+
+I2C on the SAM E54 Xplained Pro
+
+
+```go
+var (
+	// Extension Header EXT1
+	SPI0	= SPI{
+		Bus:	sam.SERCOM4_SPIM,
+		SERCOM:	4,
+	}
+
+	// Extension Header EXT2
+	SPI1	= SPI{
+		Bus:	sam.SERCOM6_SPIM,
+		SERCOM:	6,
+	}
+
+	// Extension Header EXT3
+	SPI2	= SPI{
+		Bus:	sam.SERCOM6_SPIM,
+		SERCOM:	6,
+	}
+
+	// Data Gateway Interface
+	SPI3	= SPI{
+		Bus:	sam.SERCOM6_SPIM,
+		SERCOM:	6,
+	}
+)
+```
+
+SPI on the SAM E54 Xplained Pro
+
+
+```go
+var (
+	CAN0	= CAN{
+		Bus: sam.CAN0,
+	}
+
+	CAN1	= CAN{
+		Bus: sam.CAN1,
+	}
+)
+```
+
+CAN on the SAM E54 Xplained Pro
+
+
+```go
+var (
 	ErrInvalidInputPin	= errors.New("machine: invalid input pin")
 	ErrInvalidOutputPin	= errors.New("machine: invalid output pin")
 	ErrInvalidClockPin	= errors.New("machine: invalid clock pin")
@@ -343,6 +710,7 @@ var (
 
 ```go
 var (
+	// USB is a USB CDC interface.
 	USB = &USBCDC{Buffer: NewRingBuffer()}
 )
 ```
@@ -359,19 +727,39 @@ var (
 
 ```go
 var (
-	TCC0	= (*TCC)(sam.TCC0)
-	TCC1	= (*TCC)(sam.TCC1)
-	TCC2	= (*TCC)(sam.TCC2)
+	DAC0 = DAC{}
 )
 ```
 
-The SAM D21 has three TCC peripherals, which have PWM as one feature.
 
 
 ```go
 var (
-	DAC0 = DAC{}
+	TCC0	= (*TCC)(sam.TCC0)
+	TCC1	= (*TCC)(sam.TCC1)
+	TCC2	= (*TCC)(sam.TCC2)
+	TCC3	= (*TCC)(sam.TCC3)
+	TCC4	= (*TCC)(sam.TCC4)
 )
+```
+
+This chip has five TCC peripherals, which have PWM as one feature.
+
+
+```go
+var CANRxFifo [2][(8 + 64) * CANRxFifoSize]byte
+```
+
+
+
+```go
+var CANTxFifo [2][(8 + 64) * CANTxFifoSize]byte
+```
+
+
+
+```go
+var CANEvFifo [2][(8) * CANEvFifoSize]byte
 ```
 
 
@@ -394,13 +782,30 @@ Serial is implemented via USB (USB-CDC).
 
 
 
+### func CANDlcToLength
+
+```go
+func CANDlcToLength(dlc byte, isFD bool) byte
+```
+
+CANDlcToLength() converts a DLC value to its actual length.
+
+
+### func CANLengthToDlc
+
+```go
+func CANLengthToDlc(length byte, isFD bool) byte
+```
+
+CANLengthToDlc() converts its actual length to a DLC value.
+
+
 ### func CPUFrequency
 
 ```go
 func CPUFrequency() uint32
 ```
 
-Return the current CPU frequency in hertz.
 
 
 ### func InitADC
@@ -515,7 +920,7 @@ NewRingBuffer returns a new ring buffer.
 func ResetProcessor()
 ```
 
-ResetProcessor should perform a system reset in preperation
+ResetProcessor should perform a system reset in preparation
 to switch to the bootloader to flash new firmware.
 
 
@@ -564,7 +969,7 @@ type ADC struct {
 func (a ADC) Configure(config ADCConfig)
 ```
 
-Configure configures a ADC pin to be able to be used to read data.
+Configure configures a ADCPin to be able to be used to read data.
 
 
 ### func (ADC) Get
@@ -590,6 +995,205 @@ type ADCConfig struct {
 
 ADCConfig holds ADC configuration parameters. If left unspecified, the zero
 value of each parameter will use the peripheral's default settings.
+
+
+
+
+
+## type CAN
+
+```go
+type CAN struct {
+	Bus *sam.CAN_Type
+}
+```
+
+
+
+
+### func (*CAN) Configure
+
+```go
+func (can *CAN) Configure(config CANConfig) error
+```
+
+Configure this CAN peripheral with the given configuration.
+
+
+### func (*CAN) Rx
+
+```go
+func (can *CAN) Rx() (id uint32, dlc byte, data []byte, isFd, isExtendedID bool)
+```
+
+Rx receives a CAN frame. It is easier to use than RxRaw, but not as
+flexible.
+
+
+### func (*CAN) RxFifoIsEmpty
+
+```go
+func (can *CAN) RxFifoIsEmpty() bool
+```
+
+RxFifoIsEmpty returns whether RxFifo is empty or not.
+
+
+### func (*CAN) RxFifoIsFull
+
+```go
+func (can *CAN) RxFifoIsFull() bool
+```
+
+RxFifoIsFull returns whether RxFifo is full or not.
+
+
+### func (*CAN) RxFifoSize
+
+```go
+func (can *CAN) RxFifoSize() int
+```
+
+RxFifoSize returns the number of CAN Frames currently stored in the RXFifo.
+
+
+### func (*CAN) RxRaw
+
+```go
+func (can *CAN) RxRaw(e *CANRxBufferElement)
+```
+
+RxRaw copies the received CAN frame to CANRxBufferElement.
+
+
+### func (*CAN) SetInterrupt
+
+```go
+func (can *CAN) SetInterrupt(ie uint32, callback func(*CAN)) error
+```
+
+SetInterrupt sets an interrupt to be executed when a particular CAN state.
+
+This call will replace a previously set callback. You can pass a nil func
+to unset the CAN interrupt. If you do so, the change parameter is ignored
+and can be set to any value (such as 0).
+
+
+### func (*CAN) Tx
+
+```go
+func (can *CAN) Tx(id uint32, data []byte, isFD, isExtendedID bool)
+```
+
+The Tx transmits CAN frames. It is easier to use than TxRaw, but not as
+flexible.
+
+
+### func (*CAN) TxFifoIsFull
+
+```go
+func (can *CAN) TxFifoIsFull() bool
+```
+
+TxFifoIsFull returns whether TxFifo is full or not.
+
+
+### func (*CAN) TxRaw
+
+```go
+func (can *CAN) TxRaw(e *CANTxBufferElement)
+```
+
+TxRaw sends a CAN Frame according to CANTxBufferElement.
+
+
+
+
+## type CANConfig
+
+```go
+type CANConfig struct {
+	TransferRate	CANTransferRate
+	TransferRateFD	CANTransferRate
+	Tx		Pin
+	Rx		Pin
+	Standby		Pin
+}
+```
+
+CANConfig holds CAN configuration parameters. Tx and Rx need to be
+specified with some pins. When the Standby Pin is specified, configure it
+as an output pin and output Low in Configure(). If this operation is not
+necessary, specify NoPin.
+
+
+
+
+
+## type CANRxBufferElement
+
+```go
+type CANRxBufferElement struct {
+	ESI	bool
+	XTD	bool
+	RTR	bool
+	ID	uint32
+	ANMF	bool
+	FIDX	uint8
+	FDF	bool
+	BRS	bool
+	DLC	uint8
+	RXTS	uint16
+	DB	[64]uint8
+}
+```
+
+CANRxBufferElement is a struct that corresponds to the same5x Rx Buffer and
+FIFO Element.
+
+
+
+### func (CANRxBufferElement) Data
+
+```go
+func (e CANRxBufferElement) Data() []byte
+```
+
+Data returns the received data as a slice of the size according to dlc.
+
+
+
+
+## type CANTransferRate
+
+```go
+type CANTransferRate uint32
+```
+
+
+
+
+
+
+## type CANTxBufferElement
+
+```go
+type CANTxBufferElement struct {
+	ESI	bool
+	XTD	bool
+	RTR	bool
+	ID	uint32
+	MM	uint8
+	EFC	bool
+	FDF	bool
+	BRS	bool
+	DLC	uint8
+	DB	[64]uint8
+}
+```
+
+CANTxBufferElement is a struct that corresponds to the same5x' Tx Buffer
+Element.
 
 
 
@@ -729,7 +1333,7 @@ type DAC struct {
 }
 ```
 
-DAC on the SAMD21.
+DAC on the SAMD51.
 
 
 
@@ -750,7 +1354,7 @@ func (dac DAC) Set(value uint16) error
 ```
 
 Set writes a single 16-bit value to the DAC.
-Since the ATSAMD21 only has a 10-bit DAC, the passed-in value will be scaled down.
+Since the ATSAMD51 only has a 12-bit DAC, the passed-in value will be scaled down.
 
 
 
@@ -848,7 +1452,7 @@ type I2C struct {
 }
 ```
 
-I2C on the SAMD21.
+I2C on the SAMD51.
 
 
 
@@ -932,59 +1536,6 @@ type I2CConfig struct {
 
 I2CConfig is used to store config info for I2C.
 
-
-
-
-
-## type I2S
-
-```go
-type I2S struct {
-	Bus *sam.I2S_Type
-}
-```
-
-I2S
-
-
-
-### func (I2S) Close
-
-```go
-func (i2s I2S) Close() error
-```
-
-Close the I2S bus.
-
-
-### func (I2S) Configure
-
-```go
-func (i2s I2S) Configure(config I2SConfig)
-```
-
-Configure is used to configure the I2S interface. You must call this
-before you can use the I2S bus.
-
-
-### func (I2S) Read
-
-```go
-func (i2s I2S) Read(p []uint32) (n int, err error)
-```
-
-Read data from the I2S bus into the provided slice.
-The I2S bus must already have been configured correctly.
-
-
-### func (I2S) Write
-
-```go
-func (i2s I2S) Write(p []uint32) (n int, err error)
-```
-
-Write data to the I2S bus from the provided slice.
-The I2S bus must already have been configured correctly.
 
 
 
@@ -1323,6 +1874,16 @@ nil func to unset the pin change interrupt. If you do so, the change
 parameter is ignored and can be set to any value (such as 0).
 
 
+### func (Pin) Toggle
+
+```go
+func (p Pin) Toggle()
+```
+
+Toggle switches an output pin from low to high or from high to low.
+Warning: only use this on an output pin!
+
+
 
 
 ## type PinChange
@@ -1422,7 +1983,7 @@ Used returns how many bytes in buffer have been used.
 
 ```go
 type SPI struct {
-	Bus	*sam.SERCOM_SPI_Type
+	Bus	*sam.SERCOM_SPIM_Type
 	SERCOM	uint8
 }
 ```
@@ -1501,10 +2062,10 @@ SPIConfig is used to store config info for SPI.
 type TCC sam.TCC_Type
 ```
 
-TCC is one timer/counter peripheral, which consists of a counter and multiple
-output channels (that can be connected to actual pins). You can set the
-frequency using SetPeriod, but only for all the channels in this TCC
-peripheral at once.
+TCC is one timer peripheral, which consists of a counter and multiple output
+channels (that can be connected to actual pins). You can set the frequency
+using SetPeriod, but only for all the channels in this timer peripheral at
+once.
 
 
 
@@ -1516,8 +2077,7 @@ func (tcc *TCC) Channel(pin Pin) (uint8, error)
 
 Channel returns a PWM channel for the given pin. Note that one channel may be
 shared between multiple pins, and so will have the same duty cycle. If this
-is not desirable, look for a different TCC peripheral or consider using a
-different pin.
+is not desirable, look for a different TCC or consider using a different pin.
 
 
 ### func (*TCC) Configure
@@ -1602,8 +2162,8 @@ will only change with a call to Configure or SetPeriod, otherwise it is
 constant.
 
 The value returned here is hardware dependent. In general, it's best to treat
-it as an opaque value that can be divided by some number and passed to Set
-(see Set documentation for more information).
+it as an opaque value that can be divided by some number and passed to
+tcc.Set (see tcc.Set for more information).
 
 
 
@@ -1613,13 +2173,13 @@ it as an opaque value that can be divided by some number and passed to Set
 ```go
 type UART struct {
 	Buffer		*RingBuffer
-	Bus		*sam.SERCOM_USART_Type
+	Bus		*sam.SERCOM_USART_INT_Type
 	SERCOM		uint8
-	Interrupt	interrupt.Interrupt
+	Interrupt	interrupt.Interrupt	// RXC interrupt
 }
 ```
 
-UART on the SAMD21.
+UART on the SAMD51.
 
 
 

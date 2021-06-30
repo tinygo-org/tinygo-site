@@ -130,6 +130,24 @@ const (
 SPI phase and polarity configs CPOL and CPHA
 
 
+```go
+const (
+	// ParityNone means to not use any parity checking. This is
+	// the most common setting.
+	ParityNone	UARTParity	= 0
+
+	// ParityEven means to expect that the total number of 1 bits sent
+	// should be an even number.
+	ParityEven	UARTParity	= 1
+
+	// ParityOdd means to expect that the total number of 1 bits sent
+	// should be an odd number.
+	ParityOdd	UARTParity	= 2
+)
+```
+
+
+
 
 
 
@@ -142,6 +160,41 @@ var (
 	ErrInvalidClockPin	= errors.New("machine: invalid clock pin")
 	ErrInvalidDataPin	= errors.New("machine: invalid data pin")
 	ErrNoPinChangeChannel	= errors.New("machine: no channel available for pin interrupt")
+)
+```
+
+
+
+```go
+var I2C0 *I2C = nil
+```
+
+I2C0 is the only I2C interface on most AVRs.
+
+
+```go
+var DefaultUART = UART0
+```
+
+Always use UART0 as the serial output.
+
+
+```go
+var (
+	// UART0 is the hardware serial port on the AVR.
+	UART0	= &_UART0
+	_UART0	= UART{Buffer: NewRingBuffer()}
+)
+```
+
+UART
+
+
+```go
+var (
+	Timer0	= PWM{0}	// 8 bit timer for PD5 and PD6
+	Timer1	= PWM{1}	// 16 bit timer for PB1 and PB2
+	Timer2	= PWM{2}	// 8 bit timer for PB3 and PD3
 )
 ```
 
@@ -162,20 +215,18 @@ SPI configuration
 
 
 ```go
-var I2C0 = I2C{}
-```
-
-I2C0 is the only I2C interface on most AVRs.
-
-
-```go
 var (
-	// UART0 is the hardware serial port on the AVR.
-	UART0 = UART{Buffer: NewRingBuffer()}
+	ErrPWMPeriodTooLong = errors.New("pwm: period too long")
 )
 ```
 
-UART
+
+
+```go
+var Serial = DefaultUART
+```
+
+Serial is implemented via the default (usually the first) UART on the chip.
 
 
 ```go
@@ -206,15 +257,6 @@ func InitADC()
 ```
 
 InitADC initializes the registers needed for ADC.
-
-
-### func InitPWM
-
-```go
-func InitPWM()
-```
-
-InitPWM initializes the registers needed for PWM.
 
 
 ### func NewRingBuffer
@@ -288,19 +330,19 @@ I2C on AVR.
 
 
 
-### func (I2C) Configure
+### func (*I2C) Configure
 
 ```go
-func (i2c I2C) Configure(config I2CConfig) error
+func (i2c *I2C) Configure(config I2CConfig) error
 ```
 
 Configure is intended to setup the I2C interface.
 
 
-### func (I2C) ReadRegister
+### func (*I2C) ReadRegister
 
 ```go
-func (i2c I2C) ReadRegister(address uint8, register uint8, data []byte) error
+func (i2c *I2C) ReadRegister(address uint8, register uint8, data []byte) error
 ```
 
 ReadRegister transmits the register, restarts the connection as a read
@@ -311,10 +353,10 @@ is a shortcut to easily read such registers. Also, it only works for devices
 with 7-bit addresses, which is the vast majority.
 
 
-### func (I2C) Tx
+### func (*I2C) Tx
 
 ```go
-func (i2c I2C) Tx(addr uint16, w, r []byte) error
+func (i2c *I2C) Tx(addr uint16, w, r []byte) error
 ```
 
 Tx does a single I2C transaction at the specified address.
@@ -322,10 +364,10 @@ It clocks out the given address, writes the bytes in w, reads back len(r)
 bytes and stores them in r, and generates a stop condition on the bus.
 
 
-### func (I2C) WriteRegister
+### func (*I2C) WriteRegister
 
 ```go
-func (i2c I2C) WriteRegister(address uint8, register uint8, data []byte) error
+func (i2c *I2C) WriteRegister(address uint8, register uint8, data []byte) error
 ```
 
 WriteRegister transmits first the register and then the data to the
@@ -352,34 +394,216 @@ I2CConfig is used to store config info for I2C.
 
 
 
+## type NullSerial
+
+```go
+type NullSerial struct {
+}
+```
+
+NullSerial is a serial version of /dev/null (or null router): it drops
+everything that is written to it.
+
+
+
+### func (NullSerial) Buffered
+
+```go
+func (ns NullSerial) Buffered() int
+```
+
+Buffered returns how many bytes are buffered in the UART. It always returns 0
+as there are no bytes to read.
+
+
+### func (NullSerial) Configure
+
+```go
+func (ns NullSerial) Configure(config UARTConfig) error
+```
+
+Configure does nothing: the null serial has no configuration.
+
+
+### func (NullSerial) ReadByte
+
+```go
+func (ns NullSerial) ReadByte() (byte, error)
+```
+
+ReadByte always returns an error because there aren't any bytes to read.
+
+
+### func (NullSerial) Write
+
+```go
+func (ns NullSerial) Write(p []byte) (n int, err error)
+```
+
+Write is a no-op: none of the data is being written and it will not return an
+error.
+
+
+### func (NullSerial) WriteByte
+
+```go
+func (ns NullSerial) WriteByte(b byte) error
+```
+
+WriteByte is a no-op: the null serial doesn't write bytes.
+
+
+
+
 ## type PWM
 
 ```go
 type PWM struct {
-	Pin Pin
+	num uint8
 }
 ```
 
+PWM is one PWM peripheral, which consists of a counter and two output
+channels (that can be connected to two fixed pins). You can set the frequency
+using SetPeriod, but only for all the channels in this PWM peripheral at
+once.
 
+
+
+### func (PWM) Channel
+
+```go
+func (pwm PWM) Channel(pin Pin) (uint8, error)
+```
+
+Channel returns a PWM channel for the given pin.
 
 
 ### func (PWM) Configure
 
 ```go
-func (pwm PWM) Configure() error
+func (pwm PWM) Configure(config PWMConfig) error
 ```
 
-Configure configures a PWM pin for output.
+Configure enables and configures this PWM.
+
+For the two 8 bit timers, there is only a limited number of periods
+available, namely the CPU frequency divided by 256 and again divided by 1, 8,
+64, 256, or 1024. For a MCU running at 16MHz, this would be a period of 16µs,
+128µs, 1024µs, 4096µs, or 16384µs.
+
+
+### func (PWM) Counter
+
+```go
+func (pwm PWM) Counter() uint32
+```
+
+Counter returns the current counter value of the timer in this PWM
+peripheral. It may be useful for debugging.
+
+
+### func (PWM) Period
+
+```go
+func (pwm PWM) Period() uint64
+```
+
+Period returns the used PWM period in nanoseconds. It might deviate slightly
+from the configured period due to rounding.
 
 
 ### func (PWM) Set
 
 ```go
-func (pwm PWM) Set(value uint16)
+func (pwm PWM) Set(channel uint8, value uint32)
 ```
 
-Set turns on the duty cycle for a PWM pin using the provided value. On the AVR this is normally a
-8-bit value ranging from 0 to 255.
+Set updates the channel value. This is used to control the channel duty
+cycle, in other words the fraction of time the channel output is high (or low
+when inverted). For example, to set it to a 25% duty cycle, use:
+
+    pwm.Set(channel, pwm.Top() / 4)
+
+pwm.Set(channel, 0) will set the output to low and pwm.Set(channel,
+pwm.Top()) will set the output to high, assuming the output isn't inverted.
+
+
+### func (PWM) SetInverting
+
+```go
+func (pwm PWM) SetInverting(channel uint8, inverting bool)
+```
+
+SetInverting sets whether to invert the output of this channel.
+Without inverting, a 25% duty cycle would mean the output is high for 25% of
+the time and low for the rest. Inverting flips the output as if a NOT gate
+was placed at the output, meaning that the output would be 25% low and 75%
+high with a duty cycle of 25%.
+
+Note: the invert state may not be applied on the AVR until the next call to
+ch.Set().
+
+
+### func (PWM) SetPeriod
+
+```go
+func (pwm PWM) SetPeriod(period uint64) error
+```
+
+SetPeriod updates the period of this PWM peripheral.
+To set a particular frequency, use the following formula:
+
+    period = 1e9 / frequency
+
+If you use a period of 0, a period that works well for LEDs will be picked.
+
+SetPeriod will not change the prescaler, but also won't change the current
+value in any of the channels. This means that you may need to update the
+value for the particular channel.
+
+Note that you cannot pick any arbitrary period after the PWM peripheral has
+been configured. If you want to switch between frequencies, pick the lowest
+frequency (longest period) once when calling Configure and adjust the
+frequency here as needed.
+
+
+### func (PWM) Top
+
+```go
+func (pwm PWM) Top() uint32
+```
+
+Top returns the current counter top, for use in duty cycle calculation. It
+will only change with a call to Configure or SetPeriod, otherwise it is
+constant.
+
+The value returned here is hardware dependent. In general, it's best to treat
+it as an opaque value that can be divided by some number and passed to Set
+(see Set documentation for more information).
+
+
+
+
+## type PWMConfig
+
+```go
+type PWMConfig struct {
+	// PWM period in nanosecond. Leaving this zero will pick a reasonable period
+	// value for use with LEDs.
+	// If you want to configure a frequency instead of a period, you can use the
+	// following formula to calculate a period from a frequency:
+	//
+	//     period = 1e9 / frequency
+	//
+	Period uint64
+}
+```
+
+PWMConfig allows setting some configuration while configuring a PWM
+peripheral. A zero PWMConfig is ready to use for simple applications such as
+dimming LEDs.
+
 
 
 
@@ -494,6 +718,9 @@ type PinConfig struct {
 type PinMode uint8
 ```
 
+PinMode sets the direction and pull mode of the pin. For example, PinOutput
+sets the pin as an output and PinInputPullup sets the pin as an input with a
+pull-up.
 
 
 
@@ -649,66 +876,66 @@ UART on the AVR.
 
 
 
-### func (UART) Buffered
+### func (*UART) Buffered
 
 ```go
-func (uart UART) Buffered() int
+func (uart *UART) Buffered() int
 ```
 
 Buffered returns the number of bytes currently stored in the RX buffer.
 
 
-### func (UART) Configure
+### func (*UART) Configure
 
 ```go
-func (uart UART) Configure(config UARTConfig)
+func (uart *UART) Configure(config UARTConfig)
 ```
 
 Configure the UART on the AVR. Defaults to 9600 baud on Arduino.
 
 
-### func (UART) Read
+### func (*UART) Read
 
 ```go
-func (uart UART) Read(data []byte) (n int, err error)
+func (uart *UART) Read(data []byte) (n int, err error)
 ```
 
 Read from the RX buffer.
 
 
-### func (UART) ReadByte
+### func (*UART) ReadByte
 
 ```go
-func (uart UART) ReadByte() (byte, error)
+func (uart *UART) ReadByte() (byte, error)
 ```
 
 ReadByte reads a single byte from the RX buffer.
 If there is no data in the buffer, returns an error.
 
 
-### func (UART) Receive
+### func (*UART) Receive
 
 ```go
-func (uart UART) Receive(data byte)
+func (uart *UART) Receive(data byte)
 ```
 
 Receive handles adding data to the UART's data buffer.
 Usually called by the IRQ handler for a machine.
 
 
-### func (UART) Write
+### func (*UART) Write
 
 ```go
-func (uart UART) Write(data []byte) (n int, err error)
+func (uart *UART) Write(data []byte) (n int, err error)
 ```
 
 Write data to the UART.
 
 
-### func (UART) WriteByte
+### func (*UART) WriteByte
 
 ```go
-func (uart UART) WriteByte(c byte) error
+func (uart *UART) WriteByte(c byte) error
 ```
 
 WriteByte writes a byte of data to the UART.
@@ -726,6 +953,21 @@ type UARTConfig struct {
 }
 ```
 
+UARTConfig is a struct with which a UART (or similar object) can be
+configured. The baud rate is usually respected, but TX and RX may be ignored
+depending on the chip and the type of object.
+
+
+
+
+
+## type UARTParity
+
+```go
+type UARTParity int
+```
+
+UARTParity is the parity setting to be used for UART communication.
 
 
 

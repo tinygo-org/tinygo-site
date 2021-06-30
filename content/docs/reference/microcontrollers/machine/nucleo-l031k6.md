@@ -1,6 +1,6 @@
 
 ---
-title: stm32f4disco
+title: nucleo-l031k6
 ---
 
 
@@ -9,15 +9,8 @@ title: stm32f4disco
 ```go
 const (
 	LED		= LED_BUILTIN
-	LED1		= LED_GREEN
-	LED2		= LED_ORANGE
-	LED3		= LED_RED
-	LED4		= LED_BLUE
 	LED_BUILTIN	= LED_GREEN
-	LED_GREEN	= PD12
-	LED_ORANGE	= PD13
-	LED_RED		= PD14
-	LED_BLUE	= PD15
+	LED_GREEN	= PB3
 )
 ```
 
@@ -25,6 +18,8 @@ const (
 
 ```go
 const (
+	// This board does not have a user button, so
+	// use first GPIO pin by default
 	BUTTON = PA0
 )
 ```
@@ -33,43 +28,54 @@ const (
 
 ```go
 const (
-	UART_TX_PIN	= PA2
-	UART_RX_PIN	= PA3
+	// Arduino Pins
+	A0	= PA0	// ADC_IN0
+	A1	= PA1	// ADC_IN1
+	A2	= PA3	// ADC_IN3
+	A3	= PA4	// ADC_IN4
+	A4	= PA5	// ADC_IN5 || I2C1_SDA
+	A5	= PA6	// ADC_IN6 || I2C1_SCL
+	A6	= PA7	// ADC_IN7
+	A7	= PA2	// ADC_IN2
+
+	D0	= PA10	// USART1_TX
+	D1	= PA9	// USART1_RX
+	D2	= PA12
+	D3	= PB0	// TIM2_CH3
+	D4	= PB7
+	D5	= PB6	// TIM16_CH1N
+	D6	= PB1	// TIM14_CH1
+	D9	= PA8	// TIM1_CH1
+	D10	= PA11	// SPI_CS || TIM1_CH4
+	D11	= PB5	// SPI1_MOSI || TIM3_CH2
+	D12	= PB4	// SPI1_MISO
+	D13	= PB3	// SPI1_SCK
 )
 ```
 
-UART pins
 
 
 ```go
 const (
-	SPI1_SCK_PIN	= PA5
-	SPI1_SDI_PIN	= PA6
-	SPI1_SDO_PIN	= PA7
+	// UART pins
+	// PA2 and PA15 are connected to the ST-Link Virtual Com Port (VCP)
+	UART_TX_PIN	= PA2
+	UART_RX_PIN	= PA15
+
+	// SPI
+	SPI1_SCK_PIN	= PB3
+	SPI1_SDI_PIN	= PB5
+	SPI1_SDO_PIN	= PB4
 	SPI0_SCK_PIN	= SPI1_SCK_PIN
 	SPI0_SDI_PIN	= SPI1_SDI_PIN
 	SPI0_SDO_PIN	= SPI1_SDO_PIN
-)
-```
 
-SPI pins
-
-
-```go
-const (
-	MEMS_ACCEL_CS	= PE3
-	MEMS_ACCEL_INT1	= PE0
-	MEMS_ACCEL_INT2	= PE1
-)
-```
-
-MEMs accelerometer
-
-
-```go
-const (
-	I2C0_SCL_PIN	= PB6
-	I2C0_SDA_PIN	= PB9
+	// I2C pins
+	// PB6 and PB7 are mapped to CN4 pin 7 and CN4 pin 8 respectively with the
+	// default solder bridge settings
+	I2C0_SCL_PIN	= PB7
+	I2C0_SDA_PIN	= PB6
+	I2C0_ALT_FUNC	= 1
 )
 ```
 
@@ -105,12 +111,16 @@ const (
 
 ```go
 const (
-	DutyCycle2	= 0
-	DutyCycle16x9	= 1
+	MAX_NBYTE_SIZE	= 255
+	TIMEOUT_TICKS	= 100	// 100ms
+
+	I2C_NO_STARTSTOP		= 0x0
+	I2C_GENERATE_START_WRITE	= 0x80000000 | stm32.I2C_CR2_START
+	I2C_GENERATE_START_READ		= 0x80000000 | stm32.I2C_CR2_START | stm32.I2C_CR2_RD_WRN
+	I2C_GENERATE_STOP		= 0x80000000 | stm32.I2C_CR2_STOP
 )
 ```
 
-I2C fast mode (Fm) duty cycle
 
 
 ```go
@@ -147,6 +157,23 @@ const (
 
 ```go
 const PWM_MODE1 = 0x6
+```
+
+
+
+```go
+const APB1_TIM_FREQ = 32e6	// 32MHz
+
+```
+
+Internal use: configured speed of the APB1 and APB2 timers, this should be kept
+in sync with any changes to runtime package which configures the oscillators
+and clock frequencies
+
+
+```go
+const APB2_TIM_FREQ = 32e6	// 32MHz
+
 ```
 
 
@@ -238,56 +265,23 @@ const (
 	PE14	= portE + 14
 	PE15	= portE + 15
 
-	PF0	= portF + 0
-	PF1	= portF + 1
-	PF2	= portF + 2
-	PF3	= portF + 3
-	PF4	= portF + 4
-	PF5	= portF + 5
-	PF6	= portF + 6
-	PF7	= portF + 7
-	PF8	= portF + 8
-	PF9	= portF + 9
-	PF10	= portF + 10
-	PF11	= portF + 11
-	PF12	= portF + 12
-	PF13	= portF + 13
-	PF14	= portF + 14
-	PF15	= portF + 15
-
 	PH0	= portH + 0
 	PH1	= portH + 1
-	PH2	= portH + 2
-	PH3	= portH + 3
-	PH4	= portH + 4
-	PH5	= portH + 5
-	PH6	= portH + 6
-	PH7	= portH + 7
-	PH8	= portH + 8
-	PH9	= portH + 9
-	PH10	= portH + 10
-	PH11	= portH + 11
-	PH12	= portH + 12
-	PH13	= portH + 13
-	PH14	= portH + 14
-	PH15	= portH + 15
+)
+```
 
-	PI0	= portI + 0
-	PI1	= portI + 1
-	PI2	= portI + 2
-	PI3	= portI + 3
-	PI4	= portI + 4
-	PI5	= portI + 5
-	PI6	= portI + 6
-	PI7	= portI + 7
-	PI8	= portI + 8
-	PI9	= portI + 9
-	PI10	= portI + 10
-	PI11	= portI + 11
-	PI12	= portI + 12
-	PI13	= portI + 13
-	PI14	= portI + 14
-	PI15	= portI + 15
+
+
+```go
+const (
+	AF0_SYSTEM_SPI1_USART2_LPTIM_TIM21	= 0
+	AF1_SPI1_I2C1_LPTIM			= 1
+	AF2_LPTIM_TIM2				= 2
+	AF3_I2C1				= 3
+	AF4_I2C1_USART2_LPUART1_TIM22		= 4
+	AF5_TIM2_21_22				= 5
+	AF6_LPUART1				= 6
+	AF7_COMP1_2				= 7
 )
 ```
 
@@ -300,45 +294,6 @@ const (
 )
 ```
 
-
-
-```go
-const APB1_TIM_FREQ = 42000000 * 2
-```
-
-Internal use: configured speed of the APB1 and APB2 timers, this should be kept
-in sync with any changes to runtime package which configures the oscillators
-and clock frequencies
-
-
-```go
-const APB2_TIM_FREQ = 84000000 * 2
-```
-
-
-
-```go
-const (
-	AF0_SYSTEM			= 0
-	AF1_TIM1_2			= 1
-	AF2_TIM3_4_5			= 2
-	AF3_TIM8_9_10_11		= 3
-	AF4_I2C1_2_3			= 4
-	AF5_SPI1_SPI2			= 5
-	AF6_SPI3			= 6
-	AF7_USART1_2_3			= 7
-	AF8_USART4_5_6			= 8
-	AF9_CAN1_CAN2_TIM12_13_14	= 9
-	AF10_OTG_FS_OTG_HS		= 10
-	AF11_ETH			= 11
-	AF12_FSMC_SDIO_OTG_HS_1		= 12
-	AF13_DCMI			= 13
-	AF14				= 14
-	AF15_EVENTOUT			= 15
-)
-```
-
-Alternative peripheral pin functions
 
 
 ```go
@@ -378,39 +333,30 @@ const (
 
 ```go
 var (
+	// USART2 is the hardware serial port connected to the onboard ST-LINK
+	// debugger to be exposed as virtual COM port over USB on Nucleo boards.
 	UART1	= &_UART1
 	_UART1	= UART{
 		Buffer:			NewRingBuffer(),
 		Bus:			stm32.USART2,
-		TxAltFuncSelector:	AF7_USART1_2_3,
-		RxAltFuncSelector:	AF7_USART1_2_3,
+		TxAltFuncSelector:	4,
+		RxAltFuncSelector:	4,
 	}
 	DefaultUART	= UART1
-)
-```
 
+	// I2C1 is documented, alias to I2C0 as well
+	I2C1	= &I2C{
+		Bus:			stm32.I2C1,
+		AltFuncSelector:	1,
+	}
+	I2C0	= I2C1
 
-
-```go
-var (
+	// SPI
 	SPI0	= SPI{
 		Bus:			stm32.SPI1,
-		AltFuncSelector:	AF5_SPI1_SPI2,
+		AltFuncSelector:	0,
 	}
 	SPI1	= &SPI0
-)
-```
-
-Since the first interface is named SPI1, both SPI0 and SPI1 refer to SPI1.
-TODO: implement SPI2 and SPI3.
-
-
-```go
-var (
-	I2C0 = &I2C{
-		Bus:			stm32.I2C1,
-		AltFuncSelector:	AF4_I2C1_2_3,
-	}
 )
 ```
 
@@ -430,28 +376,15 @@ var (
 
 ```go
 var (
-	TIM1	= TIM{
-		EnableRegister:	&stm32.RCC.APB2ENR,
-		EnableFlag:	stm32.RCC_APB2ENR_TIM1EN,
-		Device:		stm32.TIM1,
-		Channels: [4]TimerChannel{
-			TimerChannel{Pins: []PinFunction{{PA8, AF1_TIM1_2}, {PE9, AF1_TIM1_2}}},
-			TimerChannel{Pins: []PinFunction{{PA9, AF1_TIM1_2}, {PE11, AF1_TIM1_2}}},
-			TimerChannel{Pins: []PinFunction{{PA10, AF1_TIM1_2}, {PE13, AF1_TIM1_2}}},
-			TimerChannel{Pins: []PinFunction{{PA11, AF1_TIM1_2}, {PE14, AF1_TIM1_2}}},
-		},
-		busFreq:	APB2_TIM_FREQ,
-	}
-
 	TIM2	= TIM{
 		EnableRegister:	&stm32.RCC.APB1ENR,
 		EnableFlag:	stm32.RCC_APB1ENR_TIM2EN,
 		Device:		stm32.TIM2,
 		Channels: [4]TimerChannel{
-			TimerChannel{Pins: []PinFunction{{PA0, AF1_TIM1_2}, {PA5, AF1_TIM1_2}, {PA15, AF1_TIM1_2}}},
-			TimerChannel{Pins: []PinFunction{{PA1, AF1_TIM1_2}, {PB3, AF1_TIM1_2}}},
-			TimerChannel{Pins: []PinFunction{{PA2, AF1_TIM1_2}, {PB10, AF1_TIM1_2}}},
-			TimerChannel{Pins: []PinFunction{{PA3, AF1_TIM1_2}, {PB11, AF1_TIM1_2}}},
+			TimerChannel{Pins: []PinFunction{{PA0, AF2_LPTIM_TIM2}, {PA5, AF5_TIM2_21_22}, {PA8, AF5_TIM2_21_22}, {PA15, AF5_TIM2_21_22}}},
+			TimerChannel{Pins: []PinFunction{{PA1, AF2_LPTIM_TIM2}, {PB3, AF2_LPTIM_TIM2}}},
+			TimerChannel{Pins: []PinFunction{{PA2, AF2_LPTIM_TIM2}, {PB0, AF5_TIM2_21_22}, {PB10, AF2_LPTIM_TIM2}}},
+			TimerChannel{Pins: []PinFunction{{PA3, AF2_LPTIM_TIM2}, {PB1, AF5_TIM2_21_22}, {PB11, AF2_LPTIM_TIM2}}},
 		},
 		busFreq:	APB1_TIM_FREQ,
 	}
@@ -461,36 +394,10 @@ var (
 		EnableFlag:	stm32.RCC_APB1ENR_TIM3EN,
 		Device:		stm32.TIM3,
 		Channels: [4]TimerChannel{
-			TimerChannel{Pins: []PinFunction{{PA6, AF2_TIM3_4_5}, {PB4, AF2_TIM3_4_5}, {PC6, AF2_TIM3_4_5}}},
-			TimerChannel{Pins: []PinFunction{{PA7, AF2_TIM3_4_5}, {PB5, AF2_TIM3_4_5}, {PC7, AF2_TIM3_4_5}}},
-			TimerChannel{Pins: []PinFunction{{PB0, AF2_TIM3_4_5}, {PC8, AF2_TIM3_4_5}}},
-			TimerChannel{Pins: []PinFunction{{PB1, AF2_TIM3_4_5}, {PC9, AF2_TIM3_4_5}}},
-		},
-		busFreq:	APB1_TIM_FREQ,
-	}
-
-	TIM4	= TIM{
-		EnableRegister:	&stm32.RCC.APB1ENR,
-		EnableFlag:	stm32.RCC_APB1ENR_TIM4EN,
-		Device:		stm32.TIM4,
-		Channels: [4]TimerChannel{
-			TimerChannel{Pins: []PinFunction{{PB6, AF2_TIM3_4_5}, {PD12, AF2_TIM3_4_5}}},
-			TimerChannel{Pins: []PinFunction{{PB7, AF2_TIM3_4_5}, {PD13, AF2_TIM3_4_5}}},
-			TimerChannel{Pins: []PinFunction{{PB8, AF2_TIM3_4_5}, {PD14, AF2_TIM3_4_5}}},
-			TimerChannel{Pins: []PinFunction{{PB9, AF2_TIM3_4_5}, {PD15, AF2_TIM3_4_5}}},
-		},
-		busFreq:	APB1_TIM_FREQ,
-	}
-
-	TIM5	= TIM{
-		EnableRegister:	&stm32.RCC.APB1ENR,
-		EnableFlag:	stm32.RCC_APB1ENR_TIM5EN,
-		Device:		stm32.TIM5,
-		Channels: [4]TimerChannel{
-			TimerChannel{Pins: []PinFunction{{PH10, AF2_TIM3_4_5}}},
-			TimerChannel{Pins: []PinFunction{{PH11, AF2_TIM3_4_5}}},
-			TimerChannel{Pins: []PinFunction{{PH12, AF2_TIM3_4_5}}},
-			TimerChannel{Pins: []PinFunction{{PI0, AF2_TIM3_4_5}}},
+			TimerChannel{Pins: []PinFunction{}},
+			TimerChannel{Pins: []PinFunction{}},
+			TimerChannel{Pins: []PinFunction{}},
+			TimerChannel{Pins: []PinFunction{}},
 		},
 		busFreq:	APB1_TIM_FREQ,
 	}
@@ -521,38 +428,12 @@ var (
 		busFreq:	APB1_TIM_FREQ,
 	}
 
-	TIM8	= TIM{
+	TIM21	= TIM{
 		EnableRegister:	&stm32.RCC.APB2ENR,
-		EnableFlag:	stm32.RCC_APB2ENR_TIM8EN,
-		Device:		stm32.TIM8,
+		EnableFlag:	stm32.RCC_APB2ENR_TIM21EN,
+		Device:		stm32.TIM21,
 		Channels: [4]TimerChannel{
-			TimerChannel{Pins: []PinFunction{{PC6, AF3_TIM8_9_10_11}, {PI5, AF3_TIM8_9_10_11}}},
-			TimerChannel{Pins: []PinFunction{{PC7, AF3_TIM8_9_10_11}, {PI6, AF3_TIM8_9_10_11}}},
-			TimerChannel{Pins: []PinFunction{{PC8, AF3_TIM8_9_10_11}, {PI7, AF3_TIM8_9_10_11}}},
-			TimerChannel{Pins: []PinFunction{{PC9, AF3_TIM8_9_10_11}, {PI2, AF3_TIM8_9_10_11}}},
-		},
-		busFreq:	APB2_TIM_FREQ,
-	}
-
-	TIM9	= TIM{
-		EnableRegister:	&stm32.RCC.APB2ENR,
-		EnableFlag:	stm32.RCC_APB2ENR_TIM9EN,
-		Device:		stm32.TIM9,
-		Channels: [4]TimerChannel{
-			TimerChannel{Pins: []PinFunction{{PA2, AF3_TIM8_9_10_11}, {PE5, AF3_TIM8_9_10_11}}},
-			TimerChannel{Pins: []PinFunction{{PA3, AF3_TIM8_9_10_11}, {PE6, AF3_TIM8_9_10_11}}},
 			TimerChannel{Pins: []PinFunction{}},
-			TimerChannel{Pins: []PinFunction{}},
-		},
-		busFreq:	APB2_TIM_FREQ,
-	}
-
-	TIM10	= TIM{
-		EnableRegister:	&stm32.RCC.APB2ENR,
-		EnableFlag:	stm32.RCC_APB2ENR_TIM10EN,
-		Device:		stm32.TIM10,
-		Channels: [4]TimerChannel{
-			TimerChannel{Pins: []PinFunction{{PB8, AF3_TIM8_9_10_11}, {PF6, AF3_TIM8_9_10_11}}},
 			TimerChannel{Pins: []PinFunction{}},
 			TimerChannel{Pins: []PinFunction{}},
 			TimerChannel{Pins: []PinFunction{}},
@@ -560,56 +441,17 @@ var (
 		busFreq:	APB2_TIM_FREQ,
 	}
 
-	TIM11	= TIM{
+	TIM22	= TIM{
 		EnableRegister:	&stm32.RCC.APB2ENR,
-		EnableFlag:	stm32.RCC_APB2ENR_TIM11EN,
-		Device:		stm32.TIM11,
+		EnableFlag:	stm32.RCC_APB2ENR_TIM22EN,
+		Device:		stm32.TIM2,
 		Channels: [4]TimerChannel{
-			TimerChannel{Pins: []PinFunction{{PB9, AF3_TIM8_9_10_11}, {PF7, AF3_TIM8_9_10_11}}},
+			TimerChannel{Pins: []PinFunction{}},
 			TimerChannel{Pins: []PinFunction{}},
 			TimerChannel{Pins: []PinFunction{}},
 			TimerChannel{Pins: []PinFunction{}},
 		},
 		busFreq:	APB2_TIM_FREQ,
-	}
-
-	TIM12	= TIM{
-		EnableRegister:	&stm32.RCC.APB1ENR,
-		EnableFlag:	stm32.RCC_APB1ENR_TIM12EN,
-		Device:		stm32.TIM12,
-		Channels: [4]TimerChannel{
-			TimerChannel{Pins: []PinFunction{{PB14, AF9_CAN1_CAN2_TIM12_13_14}, {PH6, AF9_CAN1_CAN2_TIM12_13_14}}},
-			TimerChannel{Pins: []PinFunction{{PB15, AF9_CAN1_CAN2_TIM12_13_14}, {PH9, AF9_CAN1_CAN2_TIM12_13_14}}},
-			TimerChannel{Pins: []PinFunction{}},
-			TimerChannel{Pins: []PinFunction{}},
-		},
-		busFreq:	APB1_TIM_FREQ,
-	}
-
-	TIM13	= TIM{
-		EnableRegister:	&stm32.RCC.APB1ENR,
-		EnableFlag:	stm32.RCC_APB1ENR_TIM13EN,
-		Device:		stm32.TIM13,
-		Channels: [4]TimerChannel{
-			TimerChannel{Pins: []PinFunction{{PA6, AF9_CAN1_CAN2_TIM12_13_14}, {PF8, AF9_CAN1_CAN2_TIM12_13_14}}},
-			TimerChannel{Pins: []PinFunction{}},
-			TimerChannel{Pins: []PinFunction{}},
-			TimerChannel{Pins: []PinFunction{}},
-		},
-		busFreq:	APB1_TIM_FREQ,
-	}
-
-	TIM14	= TIM{
-		EnableRegister:	&stm32.RCC.APB1ENR,
-		EnableFlag:	stm32.RCC_APB1ENR_TIM14EN,
-		Device:		stm32.TIM14,
-		Channels: [4]TimerChannel{
-			TimerChannel{Pins: []PinFunction{{PA7, AF9_CAN1_CAN2_TIM12_13_14}, {PF9, AF9_CAN1_CAN2_TIM12_13_14}}},
-			TimerChannel{Pins: []PinFunction{}},
-			TimerChannel{Pins: []PinFunction{}},
-			TimerChannel{Pins: []PinFunction{}},
-		},
-		busFreq:	APB1_TIM_FREQ,
 	}
 )
 ```
@@ -721,7 +563,6 @@ type I2C struct {
 func (i2c *I2C) Configure(config I2CConfig) error
 ```
 
-Configure is intended to setup the STM32 I2C interface.
 
 
 ### func (*I2C) ReadRegister
@@ -766,10 +607,8 @@ devices with 7-bit addresses, which is the vast majority.
 
 ```go
 type I2CConfig struct {
-	Frequency	uint32
-	SCL		Pin
-	SDA		Pin
-	DutyCycle	uint8
+	SCL	Pin
+	SDA	Pin
 }
 ```
 

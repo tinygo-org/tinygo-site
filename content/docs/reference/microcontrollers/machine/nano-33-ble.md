@@ -1,6 +1,6 @@
 
 ---
-title: particle-boron
+title: nano-33-ble
 ---
 
 
@@ -14,62 +14,70 @@ const HasLowFrequencyCrystal = true
 
 ```go
 const (
-	LED		Pin	= 44
-	LED_GREEN	Pin	= 14
-	LED_RED		Pin	= 13
-	LED_BLUE	Pin	= 15
+	D2	Pin	= P1_11
+	D3	Pin	= P1_12
+	D4	Pin	= P1_15
+	D5	Pin	= P1_13
+	D6	Pin	= P1_14
+	D7	Pin	= P0_23
+	D8	Pin	= P0_21
+	D9	Pin	= P0_27
+	D10	Pin	= P1_02
+	D11	Pin	= P1_01
+	D12	Pin	= P1_08
+	D13	Pin	= P0_13
 )
 ```
 
-LEDs
+Digital Pins
 
 
 ```go
 const (
-	A0	Pin	= 3
-	A1	Pin	= 4
-	A2	Pin	= 28
-	A3	Pin	= 29
-	A4	Pin	= 30
-	A5	Pin	= 31
-	D0	Pin	= 26	// Also SDA
-	D1	Pin	= 27	// Also SCL
-	D2	Pin	= 33
-	D3	Pin	= 34
-	D4	Pin	= 40
-	D5	Pin	= 42
-	D6	Pin	= 43
-	D7	Pin	= 44	// Also LED
-	D8	Pin	= 35
-	D9	Pin	= 6	// Also TX
-	D10	Pin	= 8	// Also RX
-	D11	Pin	= 46	// Also SDI
-	D12	Pin	= 45	// Also SDO
-	D13	Pin	= 47	// Also SCK
+	A0	Pin	= P0_04
+	A1	Pin	= P0_05
+	A2	Pin	= P0_30
+	A3	Pin	= P0_29
+	A4	Pin	= P0_31
+	A5	Pin	= P0_02
+	A6	Pin	= P0_28
+	A7	Pin	= P0_03
 )
 ```
 
-GPIOs
+Analog pins
 
 
 ```go
 const (
-	UART_TX_PIN	Pin	= 6
-	UART_RX_PIN	Pin	= 8
+	LED		= LED_BUILTIN
+	LED1		= LED_RED
+	LED2		= LED_GREEN
+	LED3		= LED_BLUE
+	LED_BUILTIN	= P0_13
+	LED_RED		= P0_24
+	LED_GREEN	= P0_16
+	LED_BLUE	= P0_06
 )
 ```
 
+Onboard LEDs
 
 
 ```go
 const (
-	SDA_PIN	Pin	= 26
-	SCL_PIN	Pin	= 27
+	UART_RX_PIN	= P1_10
+	UART_TX_PIN	= P1_03
+)
+```
 
-	// Internal I2C with MAX17043 (Fuel gauge) and BQ24195 (Power management) chips on it
-	SDA1_PIN	Pin	= 24
-	SCL1_PIN	Pin	= 41
-	INT1_PIN	Pin	= 5
+UART0 pins
+
+
+```go
+const (
+	SDA_PIN	= P0_31
+	SCL_PIN	= P0_02
 )
 ```
 
@@ -78,55 +86,13 @@ I2C pins
 
 ```go
 const (
-	SPI0_SCK_PIN	Pin	= 47
-	SPI0_SDO_PIN	Pin	= 45
-	SPI0_SDI_PIN	Pin	= 46
+	SPI0_SCK_PIN	= P0_13
+	SPI0_SDO_PIN	= P1_01
+	SPI0_SDI_PIN	= P1_08
 )
 ```
 
 SPI pins
-
-
-```go
-const (
-	SPI1_SCK_PIN	Pin	= 19
-	SPI1_SDO_PIN	Pin	= 20
-	SPI1_SDI_PIN	Pin	= 21
-	SPI1_CS_PIN	Pin	= 17
-	SPI1_WP_PIN	Pin	= 22
-	SPI1_HOLD_PIN	Pin	= 23
-)
-```
-
-Internal 4MB SPI Flash
-
-
-```go
-const (
-	SARA_TXD_PIN		Pin	= 37
-	SARA_RXD_PIN		Pin	= 36
-	SARA_CTS_PIN		Pin	= 38
-	SARA_RTS_PIN		Pin	= 39
-	SARA_RESET_PIN		Pin	= 12
-	SARA_POWER_ON_PIN	Pin	= 16
-	SARA_BUFF_EN_PIN	Pin	= 25
-	SARA_VINT_PIN		Pin	= 2
-)
-```
-
-u-blox SARA coprocessor
-
-
-```go
-const (
-	MODE_BUTTON_PIN	Pin	= 11
-	ANTENNA_SEL_PIN	Pin	= 7	// Low: chip antenna, High: External uFL
-	NFC1_PIN	Pin	= 9
-	NFC2_PIN	Pin	= 10
-)
-```
-
-Other peripherals
 
 
 ```go
@@ -226,6 +192,12 @@ Hardware pins
 
 
 ```go
+const DFU_MAGIC_SERIAL_ONLY_RESET = 0xb0
+```
+
+
+
+```go
 const (
 	// ParityNone means to not use any parity checking. This is
 	// the most common setting.
@@ -247,15 +219,6 @@ const (
 
 
 ## Variables
-
-```go
-var (
-	DefaultUART = UART0
-)
-```
-
-UART
-
 
 ```go
 var (
@@ -363,10 +326,10 @@ var (
 
 
 ```go
-var Serial = DefaultUART
+var Serial = USB
 ```
 
-Serial is implemented via the default (usually the first) UART on the chip.
+Serial is implemented via USB (USB-CDC).
 
 
 
@@ -378,6 +341,16 @@ Serial is implemented via the default (usually the first) UART on the chip.
 func CPUFrequency() uint32
 ```
 
+
+
+### func EnterSerialBootloader
+
+```go
+func EnterSerialBootloader()
+```
+
+EnterSerialBootloader resets the chip into the serial bootloader. After
+reset, it can be flashed using serial/nrfutil.
 
 
 ### func InitADC

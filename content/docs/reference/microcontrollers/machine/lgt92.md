@@ -41,16 +41,30 @@ const (
 	// LORA RFM95 Radio
 	RFM95_DIO0_PIN	= PC13
 
-	//TinyGo UART is MCU LPUSART1
+	// TinyGo UART is MCU LPUSART1
 	UART_RX_PIN	= PA13
 	UART_TX_PIN	= PA14
 
-	//TinyGo UART1 is MCU USART1
+	// TinyGo UART1 is MCU USART1
 	UART1_RX_PIN	= PB6
 	UART1_TX_PIN	= PB7
+
+	// MPU9250 Nine-Axis (Gyro + Accelerometer + Compass)
+	I2C0_SCL_PIN	= PA9
+	I2C0_SDA_PIN	= PA10
 )
 ```
 
+
+
+```go
+const (
+	TWI_FREQ_100KHZ	= 100000
+	TWI_FREQ_400KHZ	= 400000
+)
+```
+
+TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-speed bus.
 
 
 ```go
@@ -59,6 +73,30 @@ const NoPin = Pin(0xff)
 
 NoPin explicitly indicates "not a pin". Use this pin if you want to leave one
 of the pins in a peripheral unconfigured (if supported by the hardware).
+
+
+```go
+const (
+	PinRising	PinChange	= 1 << iota
+	PinFalling
+	PinToggle	= PinRising | PinFalling
+)
+```
+
+
+
+```go
+const (
+	MAX_NBYTE_SIZE	= 255
+	TIMEOUT_TICKS	= 100	// 100ms
+
+	I2C_NO_STARTSTOP		= 0x0
+	I2C_GENERATE_START_WRITE	= 0x80000000 | stm32.I2C_CR2_START
+	I2C_GENERATE_START_READ		= 0x80000000 | stm32.I2C_CR2_START | stm32.I2C_CR2_RD_WRN
+	I2C_GENERATE_STOP		= 0x80000000 | stm32.I2C_CR2_STOP
+)
+```
+
 
 
 ```go
@@ -85,7 +123,33 @@ const (
 
 	// for analog/ADC
 	PinInputAnalog	PinMode	= 11
+
+	// for PWM
+	PinModePWMOutput	PinMode	= 12
 )
+```
+
+
+
+```go
+const PWM_MODE1 = 0x6
+```
+
+
+
+```go
+const APB1_TIM_FREQ = 32e6	// 32MHz
+
+```
+
+Internal use: configured speed of the APB1 and APB2 timers, this should be kept
+in sync with any changes to runtime package which configures the oscillators
+and clock frequencies
+
+
+```go
+const APB2_TIM_FREQ = 32e6	// 32MHz
+
 ```
 
 
@@ -186,6 +250,30 @@ const (
 
 ```go
 const (
+	AF0_SYSTEM_SPI1_2_I2S2_USART1_2_LPUART1_USB_LPTIM1_TSC_TIM2_21_22	= 0
+	AF1_SPI1_2_I2S2_I2C1_TIM2_21						= 1
+	AF2_SPI1_2_I2S2_LPUART1_USART5_USB_LPTIM1_TIM2_3			= 2
+	AF3_I2C1_TSC								= 3
+	AF4_I2C1_USART1_2_LPUART1_TIM3_22					= 4
+	AF5_SPI2_I2S2_I2C2_USART1_TIM2_21_22					= 5
+	AF6_I2C1_2_LPUART1_USART4_5_TIM21					= 6
+	AF7_I2C3_LPUART1_COMP1_2_TIM3						= 7
+)
+```
+
+
+
+```go
+const (
+	ARR_MAX	= 0x10000
+	PSC_MAX	= 0x10000
+)
+```
+
+
+
+```go
+const (
 	Mode0	= 0
 	Mode1	= 1
 	Mode2	= 2
@@ -196,27 +284,62 @@ const (
 SPI phase and polarity configs CPOL and CPHA
 
 
+```go
+const (
+	// ParityNone means to not use any parity checking. This is
+	// the most common setting.
+	ParityNone	UARTParity	= 0
+
+	// ParityEven means to expect that the total number of 1 bits sent
+	// should be an even number.
+	ParityEven	UARTParity	= 1
+
+	// ParityOdd means to expect that the total number of 1 bits sent
+	// should be an odd number.
+	ParityOdd	UARTParity	= 2
+)
+```
+
+
+
 
 
 
 ## Variables
 
 ```go
+var DefaultUART = UART0
+```
+
+
+
+```go
 var (
 
 	// Console UART (LPUSART1)
-	UART0	= UART{
+	UART0	= &_UART0
+	_UART0	= UART{
 		Buffer:			NewRingBuffer(),
 		Bus:			stm32.LPUART1,
-		AltFuncSelector:	6,
+		TxAltFuncSelector:	6,
+		RxAltFuncSelector:	6,
 	}
 
 	// Gps UART
-	UART1	= UART{
+	UART1	= &_UART1
+	_UART1	= UART{
 		Buffer:			NewRingBuffer(),
 		Bus:			stm32.USART1,
-		AltFuncSelector:	0,
+		TxAltFuncSelector:	0,
+		RxAltFuncSelector:	0,
 	}
+
+	// MPU9250 Nine-Axis (Gyro + Accelerometer + Compass)
+	I2C1	= &I2C{
+		Bus:			stm32.I2C1,
+		AltFuncSelector:	6,
+	}
+	I2C0	= I2C1
 
 	// SPI
 	SPI0	= SPI{
@@ -238,6 +361,160 @@ var (
 )
 ```
 
+
+
+```go
+var (
+	TIM2	= TIM{
+		EnableRegister:	&stm32.RCC.APB1ENR,
+		EnableFlag:	stm32.RCC_APB1ENR_TIM2EN,
+		Device:		stm32.TIM2,
+		Channels: [4]TimerChannel{
+			TimerChannel{Pins: []PinFunction{
+				{PA0, AF2_SPI1_2_I2S2_LPUART1_USART5_USB_LPTIM1_TIM2_3},
+				{PA5, AF5_SPI2_I2S2_I2C2_USART1_TIM2_21_22},
+				{PA15, AF5_SPI2_I2S2_I2C2_USART1_TIM2_21_22},
+				{PE9, AF0_SYSTEM_SPI1_2_I2S2_USART1_2_LPUART1_USB_LPTIM1_TSC_TIM2_21_22},
+			}},
+			TimerChannel{Pins: []PinFunction{
+				{PA1, AF2_SPI1_2_I2S2_LPUART1_USART5_USB_LPTIM1_TIM2_3},
+				{PB3, AF2_SPI1_2_I2S2_LPUART1_USART5_USB_LPTIM1_TIM2_3},
+				{PE10, AF0_SYSTEM_SPI1_2_I2S2_USART1_2_LPUART1_USB_LPTIM1_TSC_TIM2_21_22},
+			}},
+			TimerChannel{Pins: []PinFunction{
+				{PA2, AF2_SPI1_2_I2S2_LPUART1_USART5_USB_LPTIM1_TIM2_3},
+				{PB10, AF2_SPI1_2_I2S2_LPUART1_USART5_USB_LPTIM1_TIM2_3},
+				{PE11, AF0_SYSTEM_SPI1_2_I2S2_USART1_2_LPUART1_USB_LPTIM1_TSC_TIM2_21_22},
+			}},
+			TimerChannel{Pins: []PinFunction{
+				{PA3, AF2_SPI1_2_I2S2_LPUART1_USART5_USB_LPTIM1_TIM2_3},
+				{PB11, AF2_SPI1_2_I2S2_LPUART1_USART5_USB_LPTIM1_TIM2_3},
+				{PE12, AF0_SYSTEM_SPI1_2_I2S2_USART1_2_LPUART1_USB_LPTIM1_TSC_TIM2_21_22},
+			}},
+		},
+		busFreq:	APB1_TIM_FREQ,
+	}
+
+	TIM3	= TIM{
+		EnableRegister:	&stm32.RCC.APB1ENR,
+		EnableFlag:	stm32.RCC_APB1ENR_TIM3EN,
+		Device:		stm32.TIM3,
+		Channels: [4]TimerChannel{
+			TimerChannel{Pins: []PinFunction{
+				{PA6, AF2_SPI1_2_I2S2_LPUART1_USART5_USB_LPTIM1_TIM2_3},
+				{PB4, AF2_SPI1_2_I2S2_LPUART1_USART5_USB_LPTIM1_TIM2_3},
+				{PC6, AF2_SPI1_2_I2S2_LPUART1_USART5_USB_LPTIM1_TIM2_3},
+				{PE3, AF2_SPI1_2_I2S2_LPUART1_USART5_USB_LPTIM1_TIM2_3},
+			}},
+			TimerChannel{Pins: []PinFunction{
+				{PA7, AF2_SPI1_2_I2S2_LPUART1_USART5_USB_LPTIM1_TIM2_3},
+				{PB5, AF4_I2C1_USART1_2_LPUART1_TIM3_22},
+				{PC7, AF2_SPI1_2_I2S2_LPUART1_USART5_USB_LPTIM1_TIM2_3},
+				{PE4, AF2_SPI1_2_I2S2_LPUART1_USART5_USB_LPTIM1_TIM2_3},
+			}},
+			TimerChannel{Pins: []PinFunction{
+				{PB0, AF2_SPI1_2_I2S2_LPUART1_USART5_USB_LPTIM1_TIM2_3},
+				{PC8, AF2_SPI1_2_I2S2_LPUART1_USART5_USB_LPTIM1_TIM2_3},
+				{PE5, AF2_SPI1_2_I2S2_LPUART1_USART5_USB_LPTIM1_TIM2_3},
+			}},
+			TimerChannel{Pins: []PinFunction{
+				{PB1, AF2_SPI1_2_I2S2_LPUART1_USART5_USB_LPTIM1_TIM2_3},
+				{PC9, AF2_SPI1_2_I2S2_LPUART1_USART5_USB_LPTIM1_TIM2_3},
+				{PE6, AF2_SPI1_2_I2S2_LPUART1_USART5_USB_LPTIM1_TIM2_3},
+			}},
+		},
+		busFreq:	APB1_TIM_FREQ,
+	}
+
+	TIM6	= TIM{
+		EnableRegister:	&stm32.RCC.APB1ENR,
+		EnableFlag:	stm32.RCC_APB1ENR_TIM6EN,
+		Device:		stm32.TIM6,
+		Channels: [4]TimerChannel{
+			TimerChannel{Pins: []PinFunction{}},
+			TimerChannel{Pins: []PinFunction{}},
+			TimerChannel{Pins: []PinFunction{}},
+			TimerChannel{Pins: []PinFunction{}},
+		},
+		busFreq:	APB1_TIM_FREQ,
+	}
+
+	TIM7	= TIM{
+		EnableRegister:	&stm32.RCC.APB1ENR,
+		EnableFlag:	stm32.RCC_APB1ENR_TIM7EN,
+		Device:		stm32.TIM7,
+		Channels: [4]TimerChannel{
+			TimerChannel{Pins: []PinFunction{}},
+			TimerChannel{Pins: []PinFunction{}},
+			TimerChannel{Pins: []PinFunction{}},
+			TimerChannel{Pins: []PinFunction{}},
+		},
+		busFreq:	APB1_TIM_FREQ,
+	}
+
+	TIM21	= TIM{
+		EnableRegister:	&stm32.RCC.APB2ENR,
+		EnableFlag:	stm32.RCC_APB2ENR_TIM21EN,
+		Device:		stm32.TIM21,
+		Channels: [4]TimerChannel{
+			TimerChannel{Pins: []PinFunction{
+				{PA2, AF0_SYSTEM_SPI1_2_I2S2_USART1_2_LPUART1_USB_LPTIM1_TSC_TIM2_21_22},
+				{PB13, AF6_I2C1_2_LPUART1_USART4_5_TIM21},
+				{PD0, AF0_SYSTEM_SPI1_2_I2S2_USART1_2_LPUART1_USB_LPTIM1_TSC_TIM2_21_22},
+				{PE5, AF0_SYSTEM_SPI1_2_I2S2_USART1_2_LPUART1_USB_LPTIM1_TSC_TIM2_21_22},
+			}},
+			TimerChannel{Pins: []PinFunction{
+				{PA3, AF0_SYSTEM_SPI1_2_I2S2_USART1_2_LPUART1_USB_LPTIM1_TSC_TIM2_21_22},
+				{PB14, AF6_I2C1_2_LPUART1_USART4_5_TIM21},
+				{PD7, AF1_SPI1_2_I2S2_I2C1_TIM2_21},
+				{PE6, AF0_SYSTEM_SPI1_2_I2S2_USART1_2_LPUART1_USB_LPTIM1_TSC_TIM2_21_22},
+			}},
+			TimerChannel{Pins: []PinFunction{}},
+			TimerChannel{Pins: []PinFunction{}},
+		},
+		busFreq:	APB2_TIM_FREQ,
+	}
+
+	TIM22	= TIM{
+		EnableRegister:	&stm32.RCC.APB2ENR,
+		EnableFlag:	stm32.RCC_APB2ENR_TIM22EN,
+		Device:		stm32.TIM2,
+		Channels: [4]TimerChannel{
+			TimerChannel{Pins: []PinFunction{
+				{PA6, AF5_SPI2_I2S2_I2C2_USART1_TIM2_21_22},
+				{PB4, AF4_I2C1_USART1_2_LPUART1_TIM3_22},
+				{PC6, AF0_SYSTEM_SPI1_2_I2S2_USART1_2_LPUART1_USB_LPTIM1_TSC_TIM2_21_22},
+				{PE3, AF0_SYSTEM_SPI1_2_I2S2_USART1_2_LPUART1_USB_LPTIM1_TSC_TIM2_21_22},
+			}},
+			TimerChannel{Pins: []PinFunction{
+				{PA7, AF5_SPI2_I2S2_I2C2_USART1_TIM2_21_22},
+				{PB5, AF4_I2C1_USART1_2_LPUART1_TIM3_22},
+				{PC7, AF0_SYSTEM_SPI1_2_I2S2_USART1_2_LPUART1_USB_LPTIM1_TSC_TIM2_21_22},
+				{PE4, AF0_SYSTEM_SPI1_2_I2S2_USART1_2_LPUART1_USB_LPTIM1_TSC_TIM2_21_22},
+			}},
+			TimerChannel{Pins: []PinFunction{}},
+			TimerChannel{Pins: []PinFunction{}},
+		},
+		busFreq:	APB2_TIM_FREQ,
+	}
+)
+```
+
+
+
+```go
+var (
+	ErrPWMPeriodTooLong = errors.New("pwm: period too long")
+)
+```
+
+
+
+```go
+var Serial = DefaultUART
+```
+
+Serial is implemented via the default (usually the first) UART on the chip.
 
 
 ```go
@@ -301,14 +578,169 @@ value of each parameter will use the peripheral's default settings.
 
 
 
-## type PWM
+## type ChannelCallback
 
 ```go
-type PWM struct {
-	Pin Pin
+type ChannelCallback func(channel uint8)
+```
+
+
+
+
+
+
+## type I2C
+
+```go
+type I2C struct {
+	Bus		*stm32.I2C_Type
+	AltFuncSelector	uint8
 }
 ```
 
+
+
+
+### func (*I2C) Configure
+
+```go
+func (i2c *I2C) Configure(config I2CConfig) error
+```
+
+
+
+### func (*I2C) ReadRegister
+
+```go
+func (i2c *I2C) ReadRegister(address uint8, register uint8, data []byte) error
+```
+
+ReadRegister transmits the register, restarts the connection as a read
+operation, and reads the response.
+
+Many I2C-compatible devices are organized in terms of registers. This method
+is a shortcut to easily read such registers. Also, it only works for devices
+with 7-bit addresses, which is the vast majority.
+
+
+### func (*I2C) Tx
+
+```go
+func (i2c *I2C) Tx(addr uint16, w, r []byte) error
+```
+
+
+
+### func (*I2C) WriteRegister
+
+```go
+func (i2c *I2C) WriteRegister(address uint8, register uint8, data []byte) error
+```
+
+WriteRegister transmits first the register and then the data to the
+peripheral device.
+
+Many I2C-compatible devices are organized in terms of registers. This method
+is a shortcut to easily write to such registers. Also, it only works for
+devices with 7-bit addresses, which is the vast majority.
+
+
+
+
+## type I2CConfig
+
+```go
+type I2CConfig struct {
+	SCL	Pin
+	SDA	Pin
+}
+```
+
+I2CConfig is used to store config info for I2C.
+
+
+
+
+
+## type NullSerial
+
+```go
+type NullSerial struct {
+}
+```
+
+NullSerial is a serial version of /dev/null (or null router): it drops
+everything that is written to it.
+
+
+
+### func (NullSerial) Buffered
+
+```go
+func (ns NullSerial) Buffered() int
+```
+
+Buffered returns how many bytes are buffered in the UART. It always returns 0
+as there are no bytes to read.
+
+
+### func (NullSerial) Configure
+
+```go
+func (ns NullSerial) Configure(config UARTConfig) error
+```
+
+Configure does nothing: the null serial has no configuration.
+
+
+### func (NullSerial) ReadByte
+
+```go
+func (ns NullSerial) ReadByte() (byte, error)
+```
+
+ReadByte always returns an error because there aren't any bytes to read.
+
+
+### func (NullSerial) Write
+
+```go
+func (ns NullSerial) Write(p []byte) (n int, err error)
+```
+
+Write is a no-op: none of the data is being written and it will not return an
+error.
+
+
+### func (NullSerial) WriteByte
+
+```go
+func (ns NullSerial) WriteByte(b byte) error
+```
+
+WriteByte is a no-op: the null serial doesn't write bytes.
+
+
+
+
+## type PWMConfig
+
+```go
+type PWMConfig struct {
+	// PWM period in nanosecond. Leaving this zero will pick a reasonable period
+	// value for use with LEDs.
+	// If you want to configure a frequency instead of a period, you can use the
+	// following formula to calculate a period from a frequency:
+	//
+	//     period = 1e9 / frequency
+	//
+	Period uint64
+}
+```
+
+PWMConfig allows setting some configuration while configuring a PWM
+peripheral. A zero PWMConfig is ready to use for simple applications such as
+dimming LEDs.
 
 
 
@@ -395,6 +827,33 @@ func (p Pin) SetAltFunc(af uint8)
 SetAltFunc maps the given alternative function to the I/O pin
 
 
+### func (Pin) SetInterrupt
+
+```go
+func (p Pin) SetInterrupt(change PinChange, callback func(Pin)) error
+```
+
+SetInterrupt sets an interrupt to be executed when a particular pin changes
+state. The pin should already be configured as an input, including a pull up
+or down if no external pull is provided.
+
+This call will replace a previously set callback on this pin. You can pass a
+nil func to unset the pin change interrupt. If you do so, the change
+parameter is ignored and can be set to any value (such as 0).
+
+
+
+
+## type PinChange
+
+```go
+type PinChange uint8
+```
+
+---------- General pin operations ----------
+
+
+
 
 
 ## type PinConfig
@@ -410,12 +869,29 @@ type PinConfig struct {
 
 
 
+## type PinFunction
+
+```go
+type PinFunction struct {
+	Pin	Pin
+	AltFunc	uint8
+}
+```
+
+
+
+
+
+
 ## type PinMode
 
 ```go
 type PinMode uint8
 ```
 
+PinMode sets the direction and pull mode of the pin. For example, PinOutput
+sets the pin as an output and PinInputPullup sets the pin as an input with a
+pull-up.
 
 
 
@@ -553,14 +1029,195 @@ SPIConfig is used to store config info for SPI.
 
 
 
+## type TIM
+
+```go
+type TIM struct {
+	EnableRegister	*volatile.Register32
+	EnableFlag	uint32
+	Device		*stm32.TIM_Type
+	Channels	[4]TimerChannel
+	UpInterrupt	interrupt.Interrupt
+	OCInterrupt	interrupt.Interrupt
+
+	wraparoundCallback	TimerCallback
+	channelCallbacks	[4]ChannelCallback
+
+	busFreq	uint64
+}
+```
+
+
+
+
+### func (*TIM) Channel
+
+```go
+func (t *TIM) Channel(pin Pin) (uint8, error)
+```
+
+Channel returns a PWM channel for the given pin.
+
+
+### func (*TIM) Configure
+
+```go
+func (t *TIM) Configure(config PWMConfig) error
+```
+
+Configure enables and configures this PWM.
+
+
+### func (*TIM) Count
+
+```go
+func (t *TIM) Count() uint32
+```
+
+
+
+### func (*TIM) Set
+
+```go
+func (t *TIM) Set(channel uint8, value uint32)
+```
+
+Set updates the channel value. This is used to control the channel duty
+cycle. For example, to set it to a 25% duty cycle, use:
+
+    t.Set(ch, t.Top() / 4)
+
+ch.Set(0) will set the output to low and ch.Set(ch.Top()) will set the output
+to high, assuming the output isn't inverted.
+
+
+### func (*TIM) SetInverting
+
+```go
+func (t *TIM) SetInverting(channel uint8, inverting bool)
+```
+
+SetInverting sets whether to invert the output of this channel.
+Without inverting, a 25% duty cycle would mean the output is high for 25% of
+the time and low for the rest. Inverting flips the output as if a NOT gate
+was placed at the output, meaning that the output would be 25% low and 75%
+high with a duty cycle of 25%.
+
+
+### func (*TIM) SetMatchInterrupt
+
+```go
+func (t *TIM) SetMatchInterrupt(channel uint8, callback ChannelCallback) error
+```
+
+Sets a callback to be called when a channel reaches it's set-point.
+
+For example, if `t.Set(ch, t.Top() / 4)` is used then the callback will
+be called every quarter-period of the timer's base Period.
+
+
+### func (*TIM) SetPeriod
+
+```go
+func (t *TIM) SetPeriod(period uint64) error
+```
+
+SetPeriod updates the period of this PWM peripheral.
+To set a particular frequency, use the following formula:
+
+    period = 1e9 / frequency
+
+If you use a period of 0, a period that works well for LEDs will be picked.
+
+SetPeriod will not change the prescaler, but also won't change the current
+value in any of the channels. This means that you may need to update the
+value for the particular channel.
+
+Note that you cannot pick any arbitrary period after the PWM peripheral has
+been configured. If you want to switch between frequencies, pick the lowest
+frequency (longest period) once when calling Configure and adjust the
+frequency here as needed.
+
+
+### func (*TIM) SetWraparoundInterrupt
+
+```go
+func (t *TIM) SetWraparoundInterrupt(callback TimerCallback) error
+```
+
+SetWraparoundInterrupt configures a callback to be called each
+time the timer 'wraps-around'.
+
+For example, if `Configure(PWMConfig{Period:1000000})` is used,
+to set the timer period to 1ms, this callback will be called every
+1ms.
+
+
+### func (*TIM) Top
+
+```go
+func (t *TIM) Top() uint32
+```
+
+Top returns the current counter top, for use in duty cycle calculation. It
+will only change with a call to Configure or SetPeriod, otherwise it is
+constant.
+
+The value returned here is hardware dependent. In general, it's best to treat
+it as an opaque value that can be divided by some number and passed to
+pwm.Set (see pwm.Set for more information).
+
+
+### func (*TIM) Unset
+
+```go
+func (t *TIM) Unset(channel uint8)
+```
+
+Unset disables a channel, including any configured interrupts.
+
+
+
+
+## type TimerCallback
+
+```go
+type TimerCallback func()
+```
+
+
+
+
+
+
+## type TimerChannel
+
+```go
+type TimerChannel struct {
+	Pins []PinFunction
+}
+```
+
+
+
+
+
+
 ## type UART
 
 ```go
 type UART struct {
-	Buffer		*RingBuffer
-	Bus		*stm32.USART_Type
-	Interrupt	interrupt.Interrupt
-	AltFuncSelector	uint8
+	Buffer			*RingBuffer
+	Bus			*stm32.USART_Type
+	Interrupt		interrupt.Interrupt
+	TxAltFuncSelector	uint8
+	RxAltFuncSelector	uint8
+
+	// Registers specific to the chip
+	rxReg		*volatile.Register32
+	txReg		*volatile.Register32
+	statusReg	*volatile.Register32
+	txEmptyFlag	uint32
 }
 ```
 
@@ -568,76 +1225,76 @@ UART representation
 
 
 
-### func (UART) Buffered
+### func (*UART) Buffered
 
 ```go
-func (uart UART) Buffered() int
+func (uart *UART) Buffered() int
 ```
 
 Buffered returns the number of bytes currently stored in the RX buffer.
 
 
-### func (UART) Configure
+### func (*UART) Configure
 
 ```go
-func (uart UART) Configure(config UARTConfig)
+func (uart *UART) Configure(config UARTConfig)
 ```
 
 Configure the UART.
 
 
-### func (UART) Read
+### func (*UART) Read
 
 ```go
-func (uart UART) Read(data []byte) (n int, err error)
+func (uart *UART) Read(data []byte) (n int, err error)
 ```
 
 Read from the RX buffer.
 
 
-### func (UART) ReadByte
+### func (*UART) ReadByte
 
 ```go
-func (uart UART) ReadByte() (byte, error)
+func (uart *UART) ReadByte() (byte, error)
 ```
 
 ReadByte reads a single byte from the RX buffer.
 If there is no data in the buffer, returns an error.
 
 
-### func (UART) Receive
+### func (*UART) Receive
 
 ```go
-func (uart UART) Receive(data byte)
+func (uart *UART) Receive(data byte)
 ```
 
 Receive handles adding data to the UART's data buffer.
 Usually called by the IRQ handler for a machine.
 
 
-### func (UART) SetBaudRate
+### func (*UART) SetBaudRate
 
 ```go
-func (uart UART) SetBaudRate(br uint32)
+func (uart *UART) SetBaudRate(br uint32)
 ```
 
 SetBaudRate sets the communication speed for the UART. Defer to chip-specific
 routines for calculation
 
 
-### func (UART) Write
+### func (*UART) Write
 
 ```go
-func (uart UART) Write(data []byte) (n int, err error)
+func (uart *UART) Write(data []byte) (n int, err error)
 ```
 
 Write data to the UART.
 
 
-### func (UART) WriteByte
+### func (*UART) WriteByte
 
 ```go
-func (uart UART) WriteByte(c byte) error
+func (uart *UART) WriteByte(c byte) error
 ```
 
 WriteByte writes a byte of data to the UART.
@@ -655,6 +1312,21 @@ type UARTConfig struct {
 }
 ```
 
+UARTConfig is a struct with which a UART (or similar object) can be
+configured. The baud rate is usually respected, but TX and RX may be ignored
+depending on the chip and the type of object.
+
+
+
+
+
+## type UARTParity
+
+```go
+type UARTParity int
+```
+
+UARTParity is the parity setting to be used for UART communication.
 
 
 
