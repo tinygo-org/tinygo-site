@@ -6,11 +6,13 @@ description: |
   Sensors and displays that are supported by TinyGo.
 ---
 
-TinyGo has driver support for many different sensors and devices such as digital accelerometers and multicolor LEDs.
+TinyGo has support for many different devices and sensors such as digital accelerometers, OLED displays, WiFi adaptors, and more.
 
-All of the drivers code is in the TinyGo Drivers repository located at [https://github.com/tinygo-org/drivers/](https://github.com/tinygo-org/drivers/).
+Drivers are packages designed to make it easier to use these devices from your own TinyGo programs.
 
-The following 65 devices are supported.
+All of these drivers can be found in the TinyGo Drivers repository located at [https://github.com/tinygo-org/drivers/](https://github.com/tinygo-org/drivers/).
+
+The following 67 devices are supported.
 
 | Device Name | Interface Type |
 |----------|-------------|
@@ -58,12 +60,14 @@ The following 65 devices are supported.
 | [PCD8544 display](http://eia.udg.edu/~forest/PCD8544_1.pdf) | SPI |
 | [PCF8563 real time clock](https://www.nxp.com/docs/en/data-sheet/PCF8563.pdf) | I2C |
 | [Resistive Touchscreen (4-wire)](http://ww1.microchip.com/downloads/en/Appnotes/doc8091.pdf) | GPIO |
+| [RTL8720DN 2.4G/5G Dual Bands Wireless and BLE5.0](https://www.seeedstudio.com/Realtek8720DN-2-4G-5G-Dual-Bands-Wireless-and-BLE5-0-Combo-Module-p-4442.html) | UART |
 | [Semihosting](https://wiki.segger.com/Semihosting) | Debug |
 | [Servo](https://learn.sparkfun.com/tutorials/hobby-servo-tutorial/all) | PWM |
 | [Shift register (PISO)](https://en.wikipedia.org/wiki/Shift_register#Parallel-in_serial-out_\(PISO\)) | GPIO |
 | [Shift registers (SIPO)](https://en.wikipedia.org/wiki/Shift_register#Serial-in_parallel-out_(SIPO)) | GPIO |
 | [SHT3x Digital Humidity Sensor](https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/0_Datasheets/Humidity/Sensirion_Humidity_Sensors_SHT3x_Datasheet_digital.pdf) | I2C |
 | [SPI NOR Flash Memory](https://en.wikipedia.org/wiki/Flash_memory#NOR_flash) | SPI/QSPI |
+| [SPI SDCARD/MMC](https://en.wikipedia.org/wiki/SD_card) | SPI |
 | [SSD1306 OLED display](https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf) | I2C / SPI |
 | [SSD1331 TFT color display](https://www.crystalfontz.com/controllers/SolomonSystech/SSD1331/381/) | SPI |
 | [SSD1351 OLED display](https://download.mikroe.com/documents/datasheets/ssd1351-revision-1.3.pdf) | SPI |
@@ -81,3 +85,5 @@ The following 65 devices are supported.
 | [WS2812 RGB LED](https://cdn-shop.adafruit.com/datasheets/WS2812.pdf) | GPIO |
 
 We also give you the ability to add new drivers. If your device isn't listed here, please raise an issue in the [issue tracker](https://github.com/tinygo-org/drivers/issues).
+
+If you want to know more about how drivers are implemented please see the [Drivers page](../../concepts/drivers) under "Concepts".
