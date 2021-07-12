@@ -35,26 +35,42 @@ You need to build LLVM manually in the following cases:
 
 Using a system-installed version of LLVM depends on your system, of course.
 
-For Debian or Ubuntu you can install LLVM by adding a new apt repository (please replace `buster` with the appropriate codename). For more information about this method, see [apt.llvm.org](https://apt.llvm.org/).
+For **Debian** or **Ubuntu** you can install LLVM by adding a new apt repository. For more information about this method, see [apt.llvm.org](https://apt.llvm.org/). *Before copying the command below, please replace `xxxxx` with your distribution's codename*.
+
+| Distro | Version | Codename |
+|--------|------- |-----------|
+| Ubuntu | 18.04  | `bionic`  |
+| Ubuntu | 20.04  | `focal`   |
+| Ubuntu | 20.10  | `groovy`  |
+| Ubuntu | 21.04  | `hirsute` |
+| Debian | 10     | `buster`  |
+| Debian | 11     | `bullseye`|
+| Debian | sid    | `unstable`|
 
 ```shell
-echo 'deb http://apt.llvm.org/buster/ llvm-toolchain-buster-11 main' | sudo tee /etc/apt/sources.list.d/llvm.list
+echo 'deb http://apt.llvm.org/xxxxx/ llvm-toolchain-xxxxx-11 main' | sudo tee /etc/apt/sources.list.d/llvm.list
+```
+
+After adding the apt repository for your distribution you may install the LLVM toolchain packages:
+
+```
 wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
 sudo apt-get update
 sudo apt-get install clang-11 llvm-11-dev lld-11 libclang-11-dev
 ```
 
-For MacOS, you can install LLVM through [Homebrew](https://formulae.brew.sh/formula/llvm). The Clang/LLVM version from Apple is not supported by TinyGo.
+For **MacOS**, you can install LLVM through [Homebrew](https://formulae.brew.sh/formula/llvm). The Clang/LLVM version from Apple is not supported by TinyGo.
 
 ```shell
 brew install llvm@11
 ```
 
-After LLVM has been installed, installing TinyGo should be as easy as running the following command:
+After LLVM has been installed, installing TinyGo should be as easy as running the following command (cgo must be enabled so that the compile does not fail):
 
 ```shell
-go install
+CGO_ENABLED=1 go install
 ```
+
 
 Note that you should not use `make` when you want to build using a system-installed LLVM, just use the Go toolchain. `make` is used when you want to use a self-built LLVM, as in the next section.
 
