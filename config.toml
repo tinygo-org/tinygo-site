@@ -26,6 +26,11 @@ unsafe = true
 [params]
 copyright = "The TinyGo Authors"
 
+# Google Custom Search Engine ID. Remove or comment out to disable search.
+# gcs_engine_id = "feba5f0a3db52897d"
+
+# Enable Algolia DocSearch
+algolia_docsearch = true
 
 # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
 github_repo = "https://github.com/tinygo-org/tinygo-site"
@@ -41,7 +46,7 @@ sidebar_menu_compact = true
 #  Set to true to disable breadcrumb navigation.
 breadcrumb_disable = false
 #  Set to true to hide the sidebar search box (the top nav search box will still be displayed if search is enabled)
-sidebar_search_disable = false
+sidebar_search_disable = true
 #  Set to false if you don't want to display a logo (/assets/icons/logo.svg) in the top nav bar
 navbar_logo = true
 # Set to true to disable the About link in the site footer
