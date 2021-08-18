@@ -11,10 +11,10 @@ The [Raspberry Pi Pico](https://www.raspberrypi.org/products/raspberry-pi-pico/)
 | --------- | ------------- | ----- |
 | GPIO      | YES | YES |
 | UART      | YES | YES |
-| SPI      | YES | Not yet |
-| I2C      | YES | Not yet |
+| SPI      | YES | YES |
+| I2C      | YES | YES |
 | ADC      | YES | YES |
-| PWM      | YES | Not yet |
+| PWM      | YES | YES |
 
 ## Machine Package Docs
 
@@ -45,3 +45,5 @@ Any troubleshooting tips go here.
 ## Notes
 
 You cannot yet use the USB port to the Pico as a serial port. Instead `UART0` refers to the TX/RX pins on the board itself.
+
+You can refer to [getting started with Raspberry Pi Pico](https://datasheets.raspberrypi.org/pico/getting-started-with-pico.pdf) documentation on how to connect two Picos together (see Appendix A: Using Picoprobe) to debug and convert `UART0` output on target pico to USB output on picoprobe. You will need the [Picoprobe UF2](https://www.raspberrypi.org/documentation/rp2040/getting-started/#board-specifications), available on the Pico's website under "About" tab.
