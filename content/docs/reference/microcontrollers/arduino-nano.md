@@ -38,7 +38,7 @@ Or like this:
 /bin/sh: 1: avrdude: not found
 ```
 
-To fix this, see the installation guide for [Linux](../../getting-started/linux/#avr-arduino) and for [macOS](../../getting-started/macos/#avr-arduino).
+To fix this, see the installation guide for [Linux](../../../../getting-started/install/linux/#avr-eg-arduino-uno-2) and for [macOS](../../../../getting-started/install/macos/#avr-eg-arduino-uno-2).
 
 ## Flashing
 
