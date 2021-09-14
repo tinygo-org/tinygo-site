@@ -5,6 +5,10 @@ weight: 3
 
 The [Arduino Nano33 IoT](https://store.arduino.cc/nano-33-iot) is a very small ARM development board based on the Atmel [SAMD21](https://www.microchip.com/wwwproducts/en/ATSAMD21G18) family of processors. It also has a NINA-W102 chip onboard which provides an wireless communication abilities based on the popular ESP32 family of wireless chips from Espressif.
 
+Peripherals: 
+- NINA-W102 chip with [wifinina](https://github.com/tinygo-org/drivers/tree/release/wifinina) firmware (wifi and bluetooth)
+- [lsm6ds3](https://github.com/tinygo-org/drivers/tree/release/lsm6ds3) IMU chip (acceleration, rotation and temperature)
+
 ## Interfaces
 
 | Interface | Hardware Supported | TinyGo Support |
