@@ -1,9 +1,14 @@
 ---
-title: "Nano RP2040"
+title: "Arduino Nano RP2040 Connect"
 weight: 3
 ---
 
-The [Nano RP2040](https://store.arduino.cc/nano-rp2040-connect) is a tiny development board based on the Raspberry Pi [RP2040](https://datasheets.raspberrypi.org/rp2040/rp2040-datasheet.pdf) microcontroller.
+The [Nano RP2040 Connect](https://store.arduino.cc/nano-rp2040-connect) is a tiny development board based on the Raspberry Pi [RP2040](https://datasheets.raspberrypi.org/rp2040/rp2040-datasheet.pdf) microcontroller. 
+
+Peripherals: 
+- NINA-W102 chip with [wifinina](https://github.com/tinygo-org/drivers/tree/release/wifinina) firmware (wifi and bluetooth)
+- [lsm6dox](https://github.com/tinygo-org/drivers/tree/release/lsm6dox) IMU chip (acceleration, rotation and temperature)
+- microphone
 
 ## Interfaces
 
@@ -36,7 +41,7 @@ The Nano RP2040 comes with the [UF2 bootloader](https://github.com/Microsoft/uf2
     tinygo flash -target=nano-rp2040 [PATH TO YOUR PROGRAM]
     ```
 
-- The Nano RP2040 board should restart and then begin running your program.
+- The Nano RP2040 board should restart and run your program.
 
 ### Troubleshooting
 

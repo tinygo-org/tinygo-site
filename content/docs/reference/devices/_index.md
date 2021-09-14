@@ -47,7 +47,8 @@ The following 67 devices are supported.
 | [L9110x motor driver](https://www.elecrow.com/download/datasheet-l9110.pdf) | GPIO/PWM |
 | [LIS2MDL magnetometer](https://www.st.com/resource/en/datasheet/lis2mdl.pdf) | I2C |
 | [LIS3DH accelerometer](https://www.st.com/resource/en/datasheet/lis3dh.pdf) | I2C |
-| [LSM6DS3 accelerometer](https://www.st.com/resource/en/datasheet/lsm6ds3.pdf) | I2C |
+| [LSM6DS3 accelerometer/gyroscope](https://www.st.com/resource/en/datasheet/lsm6ds3.pdf) | I2C |
+| [LSM6DSOX accelerometer/gyroscope](https://www.st.com/resource/en/datasheet/lsm6dsox.pdf) | I2C |
 | [MAG3110 magnetometer](https://www.nxp.com/docs/en/data-sheet/MAG3110.pdf) | I2C |
 | [MAX7219 & MAX7221 display driver](https://datasheets.maximintegrated.com/en/ds/MAX7219-MAX7221.pdf) | SPI |
 | [MCP23017 port expander](https://ww1.microchip.com/downloads/en/DeviceDoc/20001952C.pdf) | I2C |
