@@ -122,7 +122,7 @@ This results in a `tinygo` binary in the `build` directory:
 
 ```shell
 $ ./build/tinygo version
-tinygo version 0.19.0 linux/amd64 (using go version go1.16 and LLVM version 11.0.0)
+tinygo version 0.20.0 linux/amd64 (using go version go1.17 and LLVM version 11.0.0)
 ```
 
 You have successfully built TinyGo from source. Congratulations!

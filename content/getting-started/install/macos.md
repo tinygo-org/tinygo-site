@@ -9,7 +9,7 @@ description: >
 
 This page has information on how to install and use TinyGo on macOS. If you wish to build TinyGo from source, for example if you intend to contribute to the project, please take a look [here](../../../docs/guides/build).
 
-You must have Go v1.14+ already installed on your machine in order to install TinyGo. We recommend Go v1.16+.
+You must have Go v1.15+ already installed on your machine in order to install TinyGo. We recommend Go v1.17+.
 
 You can use Homebrew to install TinyGo using the following commands:
 
@@ -18,13 +18,13 @@ brew tap tinygo-org/tools
 brew install tinygo
 ```
 
-Alternatively, you can download and extract the files manually by downloading [this](https://github.com/tinygo-org/tinygo/releases/download/v0.19.0/tinygo0.19.0.darwin-amd64.tar.gz) file.
+Alternatively, you can download and extract the files manually by downloading [this](https://github.com/tinygo-org/tinygo/releases/download/v0.20.0/tinygo0.20.0.darwin-amd64.tar.gz) file.
 
 You can test that the installation is working properly by running this code which should display the version number:
 
 ```shell
 $ tinygo version
-tinygo version 0.19.0 darwin/amd64 (using go version go1.16 and LLVM version 11.0.0)
+tinygo version 0.20.0 darwin/amd64 (using go version go1.17 and LLVM version 11.0.0)
 ```
 
 If you are only interested in compiling TinyGo code for WebAssembly then you are done with the installation.
