@@ -61,7 +61,7 @@ Set an output pin to low or high. It must have been configured before as an outp
 func (p Pin) Get() bool
 ```
 
-Get the input state of a pin. The returned value indicates whether the pin is low or high: `true` means high and `false` means low. `Get` may only be called when the pin has been configured as an input.
+Get the input state of a pin. The returned value indicates whether the pin is low or high: `true` means high and `false` means low. The pin must be configured as an input or as an output.
 
 Note that if the pin is left floating (not connected to anything) the returned value is unpredictable and may appear random.
 
