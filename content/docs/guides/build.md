@@ -147,6 +147,6 @@ These command may need to be re-run after some updates in TinyGo.
 
 There are also some extra tools you will need to install, depending on your operating system. These tools are gcc-avr, avr-libc, avrdude, and openocd. Check the additional requirements for your operating system:
 
-  * [Linux](../../getting-started/install/linux/)
-  * [MacOS](../../getting-started/install/macos/)
-  * [Windows](../../getting-started/install/windows/)
+  * [Linux](/getting-started/install/linux/)
+  * [MacOS](/getting-started/install/macos/)
+  * [Windows](/getting-started/install/windows/)
