@@ -59,10 +59,7 @@ Use the specified memory manager. The default is usually the best option, so lea
     Only allocate memory, never free it. This is the simplest allocator possible and uses very few resources while being very portable. Also, allocation is very fast. Larger programs will likely need a real garbage collector.
 
   - `-gc=conservative`  
-    Simple conservative mark/sweep garbage collector. This collector does not yet work on all platforms. Also, the performance of the collector is highly unpredictable as any allocation may trigger a garbage collection cycle.
-
-  - `-gc=extalloc`
-    Use an existing `malloc` function to allocate memory, normally provided by the operating system. This allocator is used on Linux and MacOS.
+    Simple conservative mark/sweep garbage collector. This collector works on all platforms. Also, the performance of the collector is highly unpredictable as any allocation may trigger a garbage collection cycle.
 
 - `-panic`
 Use the specified panic strategy. That is, what the compiled program should do when a panic occurs.
@@ -74,8 +71,8 @@ Use the specified panic strategy. That is, what the compiled program should do w
     Do not print the panic message but instead of printing anything, it directly hits a trap instruction. This instruction varies by platform but it will result in the immediate termination of the program. It could either exit with `SIGILL` or cause a call to the `HardFault_Handler`. It can be used to reduce the size of the compiled program while keeping standard Go safety rules intact at the cost of debuggability.
 
 - `-scheduler`
-Use the specified scheduler. The default scheduler varies by platform. For example, `AVR` currently defaults to `none` because it has such limited memory while `coroutines` and `tasks` is used for other platforms. Normally you do not need to override the default except on AVR where you can optionally select the tasks scheduler if you want concurrency.
+Use the specified scheduler. The default scheduler varies by platform. For example, `AVR` currently defaults to `none` because it has such limited memory while `asyncify` and `tasks` are used for other platforms. Normally you do not need to override the default except on AVR where you can optionally select the tasks scheduler if you want concurrency.
 
-  - `scheduler=coroutines` The coroutines scheduler is a portable scheduler based on C++ coroutines that works almost everywhere and is therefore used whenever the tasks scheduler is not available or impossible to implement such as on WebAssembly.
-  - `scheduler=tasks` The tasks scheduler is a scheduler much like an RTOS available for a limited number of platforms. It currently works on AVR, baremetal ARM (Cortex-M), the ESP8266, and the ESP32. This is usually the preferred scheduler if it is available.
+  - `scheduler=tasks` The tasks scheduler is a scheduler much like an RTOS available for non-WASM platforms. This is usually the preferred scheduler.
+  - `scheduler=asyncify` The asyncify scheduler is a scheduler for WASM based off of [Binaryen's Asyncify Pass](https://github.com/WebAssembly/binaryen/blob/main/src/passes/Asyncify.cpp).
   - `scheduler=none` The none scheduler disables scheduler support, which means that goroutines and channels are not available. It can be used to reduce firmware size and RAM consumption if goroutines and channels are not needed.
