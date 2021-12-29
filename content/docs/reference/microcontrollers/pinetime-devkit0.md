@@ -1,5 +1,5 @@
 ---
-title: "PineTime"
+title: "PineTime DevKit"
 weight: 3
 ---
 

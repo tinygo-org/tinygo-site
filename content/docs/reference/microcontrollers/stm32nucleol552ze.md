@@ -1,5 +1,5 @@
 ---
-title: "STM32 Nucleo L552ZE"
+title: 'ST Micro "Nucleo" L552ZE'
 weight: 3
 ---
 

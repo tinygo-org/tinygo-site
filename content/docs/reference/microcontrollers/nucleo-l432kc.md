@@ -1,5 +1,5 @@
 ---
-title: "STM32 Nucleo L432KC"
+title: 'ST Micro "Nucleo" L432KC'
 weight: 3
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: "nRF52840-MDK-USB-Dongle"
+title: "Makerdiary nRF52840-MDK USB Dongle"
 weight: 3
 ---
 

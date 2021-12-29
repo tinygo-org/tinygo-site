@@ -1,5 +1,5 @@
 ---
-title: "Adafruit Feather nRF52840"
+title: "Adafruit Feather nRF52840 Express"
 weight: 3
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: "Sipeed MAix Bit"
+title: "Seeed Sipeed MAix Bit"
 weight: 3
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: "Adafruit Feather STM32F405"
+title: "Adafruit Feather STM32F405 Express"
 weight: 3
 ---
 
