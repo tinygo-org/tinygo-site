@@ -1,5 +1,5 @@
 ---
-title: "Dragino LGT-92"
+title: "Dragino LoRaWAN GPS Tracker LGT-92"
 weight: 3
 ---
 

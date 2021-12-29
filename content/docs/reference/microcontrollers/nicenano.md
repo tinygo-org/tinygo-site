@@ -1,5 +1,5 @@
 ---
-title: "nice!nano v1.0"
+title: "nice!nano"
 weight: 3
 ---
 

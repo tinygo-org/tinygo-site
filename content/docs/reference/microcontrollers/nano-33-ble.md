@@ -1,5 +1,5 @@
 ---
-title: "Arduino Nano33 BLE"
+title: "Arduino Nano 33 BLE"
 weight: 3
 ---
 

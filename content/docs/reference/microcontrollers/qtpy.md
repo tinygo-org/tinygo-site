@@ -1,5 +1,5 @@
 ---
-title: "Adafruit QtPy"
+title: "Adafruit Qt Py"
 weight: 3
 ---
 

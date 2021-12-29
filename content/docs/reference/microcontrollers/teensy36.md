@@ -1,5 +1,5 @@
 ---
-title: "Teensy 3.6"
+title: "PJRC Teensy 3.6"
 weight: 3
 ---
 

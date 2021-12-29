@@ -1,5 +1,5 @@
 ---
-title: "Arduino Nano33 IoT"
+title: "Arduino Nano 33 IoT"
 weight: 3
 ---
 

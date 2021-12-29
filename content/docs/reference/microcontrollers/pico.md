@@ -1,5 +1,5 @@
 ---
-title: "Pico"
+title: "Raspberry Pi Pico"
 weight: 3
 ---
 
