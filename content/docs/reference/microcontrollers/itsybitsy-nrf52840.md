@@ -1,5 +1,5 @@
 ---
-title: "Adafruit ItsyBitsy-nRF52840"
+title: "Adafruit ItsyBitsy nRF52840"
 weight: 3
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: "Bluepill"
+title: 'ST Micro STM32F103XX "Bluepill"'
 weight: 3
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: "Nucleo F103RB"
+title: 'ST Micro "Nucleo" F103RB'
 weight: 3
 ---
 

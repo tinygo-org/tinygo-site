@@ -1,5 +1,5 @@
 ---
-title: "STM32F4 Discovery"
+title: 'ST Micro STM32F407 "Discovery"'
 weight: 3
 ---
 

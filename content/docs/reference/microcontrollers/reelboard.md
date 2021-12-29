@@ -1,5 +1,5 @@
 ---
-title: "reel board"
+title: "Phytec reel board"
 weight: 3
 ---
 
