@@ -229,7 +229,9 @@ func writeMachinePackageDoc(path, target string, pkg *packages.Package) error {
 					default:
 						return fmt.Errorf("unknown receiver for %s", decl.Name.Name)
 					}
-					doc.Types[receiverName].Funcs[decl.Name.Name] = decl
+					if ast.IsExported(receiverName) {
+						doc.Types[receiverName].Funcs[decl.Name.Name] = decl
+					}
 				}
 			}
 		}
