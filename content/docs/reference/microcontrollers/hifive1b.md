@@ -1,5 +1,5 @@
 ---
-title: "SiFive HiFive1"
+title: "SiFive HiFive1 Rev B"
 weight: 3
 ---
 
