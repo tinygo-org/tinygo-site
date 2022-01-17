@@ -39,12 +39,6 @@ wget https://github.com/tinygo-org/tinygo/releases/download/v0.21.0/tinygo_0.21.
 sudo dpkg -i tinygo_0.21.0_arm.deb
 ```
 
-You will need to ensure that the path to the `tinygo` executable file is in your `PATH` variable.
-
-```shell
-export PATH=$PATH:/usr/local/tinygo/bin
-```
-
 You can test that the installation is working properly by running this code which should display the version number:
 
 ```shell
