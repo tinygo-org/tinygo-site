@@ -13,14 +13,14 @@ It has onboard ethernet, 2 user buttons, and 3 user LEDs.
 | --------- | ------------- | ----- |
 | GPIO      | YES | YES |
 | UART      | YES | YES |
-| SPI      | YES | YES |
+| SPI      | YES | Not yet |
 | I2C      | YES | YES |
 | ADC      | YES | Not yet |
 | PWM      | YES | Not yet |
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the STM32 Nucleo l552ze](../machine/stm32nucleol552ze)
+[Documentation for the machine package for the STM32 Nucleo l552ze](../machine/nucleo-l552ze)
 
 ## Flashing
 
