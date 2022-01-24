@@ -5,7 +5,7 @@ weight: 3
 
 The [Arduino Nano33 BLE](https://store.arduino.cc/arduino-nano-33-ble) is a very small ARM development board based on the Nordic Semiconductor [nrf52840](https://www.nordicsemi.com/eng/Products/nRF52840) processor.
 
-There is also the [Arduino Nano33 BLE Sense](https://store.arduino.cc/arduino-nano-33-ble-sense) which is the exact same board but with additional onboard sensors.
+There is also the [Arduino Nano33 BLE Sense](nano-33-ble-sense) which is the exact same board but with additional onboard sensors.
 
 ## Interfaces
 
@@ -17,6 +17,10 @@ There is also the [Arduino Nano33 BLE Sense](https://store.arduino.cc/arduino-na
 | I2C      | YES | YES |
 | ADC      | YES | YES |
 | PWM      | YES | YES |
+
+## Onboard sensors
+
+* 9-axis IMU: [LSM9DS1](https://github.com/tinygo-org/drivers/tree/release/lsm9ds1)
 
 ## Machine Package Docs
 
@@ -68,6 +72,13 @@ Once you have installed the needed BOSSA command line utility, as in the previou
 ### Troubleshooting
 
 Instructions needed here.
+
+## Bluetooth
+
+Nordic Semiconductor's SoftDevice (s140v7) must be flashed first to enable use of [bluetooth](https://github.com/tinygo-org/bluetooth) on this board.
+
+SoftDevice overwrites original bootloader and flashing method described above is not avalable anymore.
+Instead, please use [debug](../../guides/debugging.md) probe and flash your code with `nano-33-ble-s140v7` target.
 
 ## Notes
 
