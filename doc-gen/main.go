@@ -131,7 +131,7 @@ func updateDocumentation(target, path, docPath string) {
 		Mode:       packages.NeedName | packages.NeedSyntax | packages.NeedTypes | packages.NeedDeps,
 		BuildFlags: []string{"-tags=" + strings.Join(buildTags, " ")},
 		Env:        append(os.Environ(), "GOOS="+goos, "GOARCH="+goarch, "GOROOT="+goroot, "GO111MODULE=off"),
-	}, "github.com/tinygo-org/tinygo/src/machine")
+	}, "machine")
 	if err != nil {
 		log.Fatal(err)
 	}
