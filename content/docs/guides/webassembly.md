@@ -34,6 +34,7 @@ Related JavaScript would look something like this:
 // Providing the environment object, used in WebAssembly.instantiateStreaming.
 // This part goes after "const go = new Go();" declaration.
 go.importObject.env = {
+    ...go.importObject.env,
     'main.add': function(x, y) {
         return x + y
     }
