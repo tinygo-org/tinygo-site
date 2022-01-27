@@ -58,6 +58,7 @@ const (
 	LED_RED		= P0_24
 	LED_GREEN	= P0_16
 	LED_BLUE	= P0_06
+	LED_PWR		= P1_09
 )
 ```
 
@@ -76,8 +77,19 @@ UART0 pins
 
 ```go
 const (
-	SDA_PIN	= P0_31
-	SCL_PIN	= P0_02
+	// Defaults to internal
+	SDA_PIN	= SDA1_PIN
+	SCL_PIN	= SCL1_PIN
+
+	// I2C0 (external) pins
+	SDA0_PIN	= P0_31
+	SCL0_PIN	= P0_02
+
+	// I2C1 (internal) pins
+	SDA1_PIN	= P0_14
+	SCL1_PIN	= P0_15
+
+	I2C_PULLUP	= P1_00	// Set high for I2C to work
 )
 ```
 
@@ -97,12 +109,40 @@ SPI pins
 
 ```go
 const (
+	APDS_INT	= P0_19	// Proximity (APDS9960) interrupt pin
+
+	LSM_PWR	= P0_22	// IMU (LSM9DS1) power
+	LSP_PWR	= P0_22	// Pressure (LSP22) power
+	HTS_PWR	= P0_22	// Humidity (HTS221) power
+
+	MIC_PWR	= P0_17	// Microphone (MP34DT06JTR) power
+	MIC_CLK	= P0_26
+	MIC_DIN	= P0_25
+)
+```
+
+Peripherals
+
+
+```go
+const (
 	TWI_FREQ_100KHZ	= 100000
 	TWI_FREQ_400KHZ	= 400000
 )
 ```
 
 TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-speed bus.
+
+
+```go
+const Device = deviceName
+```
+
+Device is the running program's chip name, such as "ATSAMD51J19A" or
+"nrf52840". It is not the same as the CPU name.
+
+The constant is some hardcoded default value if the program does not target a
+particular chip but instead runs in WebAssembly for example.
 
 
 ```go
@@ -118,7 +158,7 @@ const (
 	PinInput		PinMode	= (nrf.GPIO_PIN_CNF_DIR_Input << nrf.GPIO_PIN_CNF_DIR_Pos) | (nrf.GPIO_PIN_CNF_INPUT_Connect << nrf.GPIO_PIN_CNF_INPUT_Pos)
 	PinInputPullup		PinMode	= PinInput | (nrf.GPIO_PIN_CNF_PULL_Pullup << nrf.GPIO_PIN_CNF_PULL_Pos)
 	PinInputPulldown	PinMode	= PinInput | (nrf.GPIO_PIN_CNF_PULL_Pulldown << nrf.GPIO_PIN_CNF_PULL_Pos)
-	PinOutput		PinMode	= (nrf.GPIO_PIN_CNF_DIR_Output << nrf.GPIO_PIN_CNF_DIR_Pos) | (nrf.GPIO_PIN_CNF_INPUT_Disconnect << nrf.GPIO_PIN_CNF_INPUT_Pos)
+	PinOutput		PinMode	= (nrf.GPIO_PIN_CNF_DIR_Output << nrf.GPIO_PIN_CNF_DIR_Pos) | (nrf.GPIO_PIN_CNF_INPUT_Connect << nrf.GPIO_PIN_CNF_INPUT_Pos)
 )
 ```
 
@@ -222,6 +262,7 @@ const (
 
 ```go
 var (
+	ErrTimeoutRNG		= errors.New("machine: RNG Timeout")
 	ErrInvalidInputPin	= errors.New("machine: invalid input pin")
 	ErrInvalidOutputPin	= errors.New("machine: invalid output pin")
 	ErrInvalidClockPin	= errors.New("machine: invalid clock pin")
@@ -1112,7 +1153,8 @@ Configure this pin with the given configuration.
 func (p Pin) Get() bool
 ```
 
-Get returns the current value of a GPIO pin.
+Get returns the current value of a GPIO pin when the pin is configured as an
+input or as an output.
 
 
 ### func (Pin) High

@@ -13,7 +13,7 @@ The [Nucleo F103RB](https://www.st.com/en/evaluation-tools/nucleo-f103rb.html) i
 | UART      | YES | YES |
 | SPI      | YES | YES |
 | I2C      | YES | YES |
-| ADC      | YES | Not yet |
+| ADC      | YES | YES |
 | PWM      | YES | Not yet |
 
 ## Machine Package Docs

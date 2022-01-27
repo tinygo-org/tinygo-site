@@ -26,6 +26,24 @@ const (
 
 ```go
 const (
+	ADC0	= PA0
+	ADC1	= PA1
+	ADC2	= PA2
+	ADC3	= PA3
+	ADC4	= PA4
+	ADC5	= PA5
+	ADC6	= PA6
+	ADC7	= PA7
+	ADC8	= PB0
+	ADC9	= PB1
+)
+```
+
+Analog Pins
+
+
+```go
+const (
 	UART_TX_PIN	= PA9
 	UART_RX_PIN	= PA10
 	UART_ALT_TX_PIN	= PB6
@@ -68,6 +86,17 @@ TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-spee
 
 
 ```go
+const Device = deviceName
+```
+
+Device is the running program's chip name, such as "ATSAMD51J19A" or
+"nrf52840". It is not the same as the CPU name.
+
+The constant is some hardcoded default value if the program does not target a
+particular chip but instead runs in WebAssembly for example.
+
+
+```go
 const NoPin = Pin(0xff)
 ```
 
@@ -80,6 +109,21 @@ const (
 	PinRising	PinChange	= 1 << iota
 	PinFalling
 	PinToggle	= PinRising | PinFalling
+)
+```
+
+
+
+```go
+const (
+	Cycles_1_5	= 0x0
+	Cycles_7_5	= 0x1
+	Cycles_13_5	= 0x2
+	Cycles_28_5	= 0x3
+	Cycles_41_5	= 0x4
+	Cycles_55_5	= 0x5
+	Cycles_71_5	= 0x6
+	Cycles_239_5	= 0x7
 )
 ```
 
@@ -324,6 +368,7 @@ var (
 
 ```go
 var (
+	ErrTimeoutRNG		= errors.New("machine: RNG Timeout")
 	ErrInvalidInputPin	= errors.New("machine: invalid input pin")
 	ErrInvalidOutputPin	= errors.New("machine: invalid output pin")
 	ErrInvalidClockPin	= errors.New("machine: invalid clock pin")
@@ -578,6 +623,15 @@ func CPUFrequency() uint32
 
 
 
+### func InitADC
+
+```go
+func InitADC()
+```
+
+InitADC initializes the registers needed for ADC1.
+
+
 ### func NewRingBuffer
 
 ```go
@@ -598,6 +652,25 @@ type ADC struct {
 ```
 
 
+
+
+### func (ADC) Configure
+
+```go
+func (a ADC) Configure(ADCConfig)
+```
+
+Configure configures an ADC pin to be able to read analog data.
+
+
+### func (ADC) Get
+
+```go
+func (a ADC) Get() uint16
+```
+
+Get returns the current value of a ADC pin in the range 0..0xffff.
+TODO: DMA based implementation.
 
 
 
@@ -817,7 +890,8 @@ stm32f1xx uses different technique for setting the GPIO pins than the stm32f407
 func (p Pin) Get() bool
 ```
 
-Get returns the current value of a GPIO pin.
+Get returns the current value of a GPIO pin when the pin is configured as an
+input or as an output.
 
 
 ### func (Pin) High
@@ -840,6 +914,26 @@ func (p Pin) Low()
 Low sets this GPIO pin to low, assuming it has been configured as an output
 pin. It is hardware dependent (and often undefined) what happens if you set a
 pin to low that is not configured as an output pin.
+
+
+### func (Pin) PortMaskClear
+
+```go
+func (p Pin) PortMaskClear() (*uint32, uint32)
+```
+
+PortMaskClear returns the register and mask to disable a given port. This can
+be used to implement bit-banged drivers.
+
+
+### func (Pin) PortMaskSet
+
+```go
+func (p Pin) PortMaskSet() (*uint32, uint32)
+```
+
+PortMaskSet returns the register and mask to enable a given GPIO pin. This
+can be used to implement bit-banged drivers.
 
 
 ### func (Pin) Set

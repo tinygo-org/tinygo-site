@@ -254,6 +254,17 @@ const (
 
 
 ```go
+const Device = deviceName
+```
+
+Device is the running program's chip name, such as "ATSAMD51J19A" or
+"nrf52840". It is not the same as the CPU name.
+
+The constant is some hardcoded default value if the program does not target a
+particular chip but instead runs in WebAssembly for example.
+
+
+```go
 const NoPin = Pin(0xff)
 ```
 
@@ -318,12 +329,9 @@ const (
 
 ```go
 var (
-	UART1	= &_UART1
-	_UART1	= UART{
-		Buffer:	NewRingBuffer(),
-		Bus:	sam.SERCOM4_USART,
-		SERCOM:	4,
-	}
+	UART1	= &sercomUSART4
+
+	DefaultUART	= UART1
 )
 ```
 
@@ -332,16 +340,8 @@ UART1 on the Circuit Playground Express.
 
 ```go
 var (
-	// external device
-	I2C0	= &I2C{
-		Bus:	sam.SERCOM5_I2CM,
-		SERCOM:	5,
-	}
-	// internal device
-	I2C1	= &I2C{
-		Bus:	sam.SERCOM1_I2CM,
-		SERCOM:	1,
-	}
+	I2C0	= sercomI2CM5	// external device
+	I2C1	= sercomI2CM1	// internal device
 )
 ```
 
@@ -349,12 +349,7 @@ I2C on the Circuit Playground Express.
 
 
 ```go
-var (
-	SPI0 = SPI{
-		Bus:	sam.SERCOM3_SPI,
-		SERCOM:	3,
-	}
-)
+var SPI0 = sercomSPIM3
 ```
 
 SPI on the Circuit Playground Express.
@@ -362,15 +357,7 @@ SPI on the Circuit Playground Express.
 
 ```go
 var (
-	I2S0 = I2S{Bus: sam.I2S}
-)
-```
-
-I2S on the Circuit Playground Express.
-
-
-```go
-var (
+	ErrTimeoutRNG		= errors.New("machine: RNG Timeout")
 	ErrInvalidInputPin	= errors.New("machine: invalid input pin")
 	ErrInvalidOutputPin	= errors.New("machine: invalid output pin")
 	ErrInvalidClockPin	= errors.New("machine: invalid clock pin")
@@ -382,9 +369,7 @@ var (
 
 
 ```go
-var (
-	USB = &USBCDC{Buffer: NewRingBuffer()}
-)
+var I2S0 = I2S{Bus: sam.I2S}
 ```
 
 
@@ -406,6 +391,14 @@ var (
 ```
 
 The SAM D21 has three TCC peripherals, which have PWM as one feature.
+
+
+```go
+var (
+	USB = &USBCDC{Buffer: NewRingBuffer()}
+)
+```
+
 
 
 ```go
@@ -1293,7 +1286,8 @@ Configure this pin with the given configuration.
 func (p Pin) Get() bool
 ```
 
-Get returns the current value of a GPIO pin.
+Get returns the current value of a GPIO pin when configured as an input or as
+an output.
 
 
 ### func (Pin) High

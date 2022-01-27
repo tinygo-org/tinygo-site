@@ -435,6 +435,17 @@ const (
 
 
 ```go
+const Device = deviceName
+```
+
+Device is the running program's chip name, such as "ATSAMD51J19A" or
+"nrf52840". It is not the same as the CPU name.
+
+The constant is some hardcoded default value if the program does not target a
+particular chip but instead runs in WebAssembly for example.
+
+
+```go
 const NoPin = Pin(0xff)
 ```
 
@@ -689,20 +700,10 @@ const (
 
 ```go
 var (
-	UART1	= &_UART1
-	_UART1	= UART{
-		Buffer:	NewRingBuffer(),
-		Bus:	sam.SERCOM2_USART_INT,
-		SERCOM:	2,
-	}
+	UART1	= &sercomUSART2
 
 	// RTL8720D
-	UART2	= &_UART2
-	_UART2	= UART{
-		Buffer:	NewRingBuffer(),
-		Bus:	sam.SERCOM1_USART_INT,
-		SERCOM:	1,
-	}
+	UART2	= &sercomUSART1
 )
 ```
 
@@ -710,15 +711,8 @@ var (
 
 ```go
 var (
-	I2C0	= &I2C{
-		Bus:	sam.SERCOM4_I2CM,
-		SERCOM:	4,
-	}
-
-	I2C1	= &I2C{
-		Bus:	sam.SERCOM4_I2CM,
-		SERCOM:	4,
-	}
+	I2C0	= sercomI2CM4
+	I2C1	= sercomI2CM4
 )
 ```
 
@@ -727,28 +721,16 @@ I2C on the Wio Terminal
 
 ```go
 var (
-	SPI0	= SPI{
-		Bus:	sam.SERCOM5_SPIM,
-		SERCOM:	5,
-	}
+	SPI0	= sercomSPIM5
 
 	// RTL8720D
-	SPI1	= SPI{
-		Bus:	sam.SERCOM0_SPIM,
-		SERCOM:	0,
-	}
+	SPI1	= sercomSPIM0
 
 	// SD
-	SPI2	= SPI{
-		Bus:	sam.SERCOM6_SPIM,
-		SERCOM:	6,
-	}
+	SPI2	= sercomSPIM6
 
 	// LCD
-	SPI3	= SPI{
-		Bus:	sam.SERCOM7_SPIM,
-		SERCOM:	7,
-	}
+	SPI3	= sercomSPIM7
 )
 ```
 
@@ -757,6 +739,7 @@ SPI on the Wio Terminal
 
 ```go
 var (
+	ErrTimeoutRNG		= errors.New("machine: RNG Timeout")
 	ErrInvalidInputPin	= errors.New("machine: invalid input pin")
 	ErrInvalidOutputPin	= errors.New("machine: invalid output pin")
 	ErrInvalidClockPin	= errors.New("machine: invalid clock pin")
@@ -769,8 +752,7 @@ var (
 
 ```go
 var (
-	// USB is a USB CDC interface.
-	USB = &USBCDC{Buffer: NewRingBuffer()}
+	ErrTxInvalidSliceSize = errors.New("SPI write and read slices must be same size")
 )
 ```
 
@@ -778,7 +760,8 @@ var (
 
 ```go
 var (
-	ErrTxInvalidSliceSize = errors.New("SPI write and read slices must be same size")
+	// USB is a USB CDC interface.
+	USB = &USBCDC{Buffer: NewRingBuffer()}
 )
 ```
 
@@ -829,6 +812,15 @@ Serial is implemented via USB (USB-CDC).
 func CPUFrequency() uint32
 ```
 
+
+
+### func GetRNG
+
+```go
+func GetRNG() (uint32, error)
+```
+
+GetRNG returns 32 bits of cryptographically secure random data
 
 
 ### func InitADC
@@ -1628,7 +1620,8 @@ Configure this pin with the given configuration.
 func (p Pin) Get() bool
 ```
 
-Get returns the current value of a GPIO pin.
+Get returns the current value of a GPIO pin when configured as an input or as
+an output.
 
 
 ### func (Pin) High

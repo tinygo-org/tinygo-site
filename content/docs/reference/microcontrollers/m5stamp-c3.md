@@ -9,7 +9,7 @@ The [M5Stamp-C3](https://docs.m5stack.com/en/core/stamp_c3) is a development boa
 
 | Interface | Hardware Supported | TinyGo Support |
 | --------- | ------------- | ----- |
-| GPIO      | YES | YES |
+| GPIO      | YES | Not yet |
 | UART      | YES | YES |
 | SPI      | YES | Not yet |
 | I2C      | YES | Not yet |

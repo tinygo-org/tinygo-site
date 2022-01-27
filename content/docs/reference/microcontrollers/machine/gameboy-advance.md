@@ -7,6 +7,17 @@ title: gameboy-advance
 ## Constants
 
 ```go
+const Device = deviceName
+```
+
+Device is the running program's chip name, such as "ATSAMD51J19A" or
+"nrf52840". It is not the same as the CPU name.
+
+The constant is some hardcoded default value if the program does not target a
+particular chip but instead runs in WebAssembly for example.
+
+
+```go
 const NoPin = Pin(0xff)
 ```
 
@@ -16,20 +27,20 @@ of the pins in a peripheral unconfigured (if supported by the hardware).
 
 ```go
 const (
-	IRQ_VBLANK	= 0
-	IRQ_HBLANK	= 1
-	IRQ_VCOUNT	= 2
-	IRQ_TIMER0	= 3
-	IRQ_TIMER1	= 4
-	IRQ_TIMER2	= 5
-	IRQ_TIMER3	= 6
-	IRQ_COM		= 7
-	IRQ_DMA0	= 8
-	IRQ_DMA1	= 9
-	IRQ_DMA2	= 10
-	IRQ_DMA3	= 11
-	IRQ_KEYPAD	= 12
-	IRQ_GAMEPAK	= 13
+	IRQ_VBLANK	= interrupt.IRQ_VBLANK
+	IRQ_HBLANK	= interrupt.IRQ_HBLANK
+	IRQ_VCOUNT	= interrupt.IRQ_VCOUNT
+	IRQ_TIMER0	= interrupt.IRQ_TIMER0
+	IRQ_TIMER1	= interrupt.IRQ_TIMER1
+	IRQ_TIMER2	= interrupt.IRQ_TIMER2
+	IRQ_TIMER3	= interrupt.IRQ_TIMER3
+	IRQ_COM		= interrupt.IRQ_COM
+	IRQ_DMA0	= interrupt.IRQ_DMA0
+	IRQ_DMA1	= interrupt.IRQ_DMA1
+	IRQ_DMA2	= interrupt.IRQ_DMA2
+	IRQ_DMA3	= interrupt.IRQ_DMA3
+	IRQ_KEYPAD	= interrupt.IRQ_KEYPAD
+	IRQ_GAMEPAK	= interrupt.IRQ_GAMEPAK
 )
 ```
 
@@ -44,6 +55,7 @@ runtime/interrupt.New.
 
 ```go
 var (
+	ErrTimeoutRNG		= errors.New("machine: RNG Timeout")
 	ErrInvalidInputPin	= errors.New("machine: invalid input pin")
 	ErrInvalidOutputPin	= errors.New("machine: invalid output pin")
 	ErrInvalidClockPin	= errors.New("machine: invalid clock pin")

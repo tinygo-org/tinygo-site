@@ -316,16 +316,6 @@ func (p Pin) Configure(config PinConfig)
 Configure this pin with the given configuration.
 
 
-### func (Pin) Get
-
-```go
-func (p Pin) Get() bool
-```
-
-Get returns the current value of a GPIO pin when configured as an input or as
-an output.
-
-
 ### func (Pin) High
 
 ```go

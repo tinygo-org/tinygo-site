@@ -267,6 +267,17 @@ const (
 
 
 ```go
+const Device = deviceName
+```
+
+Device is the running program's chip name, such as "ATSAMD51J19A" or
+"nrf52840". It is not the same as the CPU name.
+
+The constant is some hardcoded default value if the program does not target a
+particular chip but instead runs in WebAssembly for example.
+
+
+```go
 const NoPin = Pin(0xff)
 ```
 
@@ -331,6 +342,7 @@ const (
 
 ```go
 var (
+	ErrTimeoutRNG		= errors.New("machine: RNG Timeout")
 	ErrInvalidInputPin	= errors.New("machine: invalid input pin")
 	ErrInvalidOutputPin	= errors.New("machine: invalid output pin")
 	ErrInvalidClockPin	= errors.New("machine: invalid clock pin")
@@ -342,9 +354,7 @@ var (
 
 
 ```go
-var (
-	USB = &USBCDC{Buffer: NewRingBuffer()}
-)
+var I2S0 = I2S{Bus: sam.I2S}
 ```
 
 
@@ -366,6 +376,14 @@ var (
 ```
 
 The SAM D21 has three TCC peripherals, which have PWM as one feature.
+
+
+```go
+var (
+	USB = &USBCDC{Buffer: NewRingBuffer()}
+)
+```
+
 
 
 ```go
@@ -1253,7 +1271,8 @@ Configure this pin with the given configuration.
 func (p Pin) Get() bool
 ```
 
-Get returns the current value of a GPIO pin.
+Get returns the current value of a GPIO pin when configured as an input or as
+an output.
 
 
 ### func (Pin) High

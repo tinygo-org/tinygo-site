@@ -92,6 +92,17 @@ TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-spee
 
 
 ```go
+const Device = deviceName
+```
+
+Device is the running program's chip name, such as "ATSAMD51J19A" or
+"nrf52840". It is not the same as the CPU name.
+
+The constant is some hardcoded default value if the program does not target a
+particular chip but instead runs in WebAssembly for example.
+
+
+```go
 const NoPin = Pin(0xff)
 ```
 
@@ -112,7 +123,10 @@ const (
 ```go
 const (
 	MAX_NBYTE_SIZE	= 255
-	TIMEOUT_TICKS	= 100	// 100ms
+
+	// 100ms delay = 100e6ns / 16ns
+	// In runtime_stm32_timers.go, tick is fixed at 16ns per tick
+	TIMEOUT_TICKS	= 100e6 / 16
 
 	I2C_NO_STARTSTOP		= 0x0
 	I2C_GENERATE_START_WRITE	= 0x80000000 | stm32.I2C_CR2_START
@@ -364,6 +378,7 @@ var (
 
 ```go
 var (
+	ErrTimeoutRNG		= errors.New("machine: RNG Timeout")
 	ErrInvalidInputPin	= errors.New("machine: invalid input pin")
 	ErrInvalidOutputPin	= errors.New("machine: invalid output pin")
 	ErrInvalidClockPin	= errors.New("machine: invalid clock pin")
@@ -739,7 +754,8 @@ Configure this pin with the given configuration including alternate
 func (p Pin) Get() bool
 ```
 
-Get returns the current value of a GPIO pin.
+Get returns the current value of a GPIO pin when the pin is configured as an
+input or as an output.
 
 
 ### func (Pin) High
@@ -762,6 +778,26 @@ func (p Pin) Low()
 Low sets this GPIO pin to low, assuming it has been configured as an output
 pin. It is hardware dependent (and often undefined) what happens if you set a
 pin to low that is not configured as an output pin.
+
+
+### func (Pin) PortMaskClear
+
+```go
+func (p Pin) PortMaskClear() (*uint32, uint32)
+```
+
+PortMaskClear returns the register and mask to disable a given port. This can
+be used to implement bit-banged drivers.
+
+
+### func (Pin) PortMaskSet
+
+```go
+func (p Pin) PortMaskSet() (*uint32, uint32)
+```
+
+PortMaskSet returns the register and mask to enable a given GPIO pin. This
+can be used to implement bit-banged drivers.
 
 
 ### func (Pin) Set

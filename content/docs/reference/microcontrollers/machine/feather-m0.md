@@ -233,6 +233,17 @@ const (
 
 
 ```go
+const Device = deviceName
+```
+
+Device is the running program's chip name, such as "ATSAMD51J19A" or
+"nrf52840". It is not the same as the CPU name.
+
+The constant is some hardcoded default value if the program does not target a
+particular chip but instead runs in WebAssembly for example.
+
+
+```go
 const NoPin = Pin(0xff)
 ```
 
@@ -296,14 +307,7 @@ const (
 ## Variables
 
 ```go
-var (
-	UART1	= &_UART1
-	_UART1	= UART{
-		Buffer:	NewRingBuffer(),
-		Bus:	sam.SERCOM1_USART,
-		SERCOM:	1,
-	}
-)
+var UART1 = &sercomUSART1
 ```
 
 UART1 on the Feather M0.
@@ -311,10 +315,7 @@ UART1 on the Feather M0.
 
 ```go
 var (
-	I2C0 = &I2C{
-		Bus:	sam.SERCOM3_I2CM,
-		SERCOM:	3,
-	}
+	I2C0 = sercomI2CM3
 )
 ```
 
@@ -322,12 +323,7 @@ I2C on the Feather M0.
 
 
 ```go
-var (
-	SPI0 = SPI{
-		Bus:	sam.SERCOM4_SPI,
-		SERCOM:	4,
-	}
-)
+var SPI0 = sercomSPIM4
 ```
 
 SPI on the Feather M0.
@@ -335,6 +331,15 @@ SPI on the Feather M0.
 
 ```go
 var (
+	DefaultUART = UART1
+)
+```
+
+
+
+```go
+var (
+	ErrTimeoutRNG		= errors.New("machine: RNG Timeout")
 	ErrInvalidInputPin	= errors.New("machine: invalid input pin")
 	ErrInvalidOutputPin	= errors.New("machine: invalid output pin")
 	ErrInvalidClockPin	= errors.New("machine: invalid clock pin")
@@ -346,9 +351,7 @@ var (
 
 
 ```go
-var (
-	USB = &USBCDC{Buffer: NewRingBuffer()}
-)
+var I2S0 = I2S{Bus: sam.I2S}
 ```
 
 
@@ -370,6 +373,14 @@ var (
 ```
 
 The SAM D21 has three TCC peripherals, which have PWM as one feature.
+
+
+```go
+var (
+	USB = &USBCDC{Buffer: NewRingBuffer()}
+)
+```
+
 
 
 ```go
@@ -1257,7 +1268,8 @@ Configure this pin with the given configuration.
 func (p Pin) Get() bool
 ```
 
-Get returns the current value of a GPIO pin.
+Get returns the current value of a GPIO pin when configured as an input or as
+an output.
 
 
 ### func (Pin) High
