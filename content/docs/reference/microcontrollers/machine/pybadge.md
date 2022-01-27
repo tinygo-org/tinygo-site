@@ -204,6 +204,17 @@ const (
 
 
 ```go
+const Device = deviceName
+```
+
+Device is the running program's chip name, such as "ATSAMD51J19A" or
+"nrf52840". It is not the same as the CPU name.
+
+The constant is some hardcoded default value if the program does not target a
+particular chip but instead runs in WebAssembly for example.
+
+
+```go
 const NoPin = Pin(0xff)
 ```
 
@@ -458,55 +469,31 @@ const (
 
 ```go
 var (
-	UART1	= &_UART1
-	_UART1	= UART{
-		Buffer:	NewRingBuffer(),
-		Bus:	sam.SERCOM5_USART_INT,
-		SERCOM:	5,
-	}
+	UART1	= &sercomUSART5
+	UART2	= &sercomUSART0
 
-	UART2	= &_UART2
-	_UART2	= UART{
-		Buffer:	NewRingBuffer(),
-		Bus:	sam.SERCOM0_USART_INT,
-		SERCOM:	0,
-	}
+	DefaultUART	= UART1
 )
 ```
 
 
 
 ```go
-var (
-	I2C0 = &I2C{
-		Bus:	sam.SERCOM2_I2CM,
-		SERCOM:	2,
-	}
-)
+var I2C0 = sercomI2CM2
 ```
 
 I2C on the ItsyBitsy M4.
 
 
 ```go
-var (
-	SPI0 = SPI{
-		Bus:	sam.SERCOM1_SPIM,
-		SERCOM:	1,
-	}
-)
+var SPI0 = sercomSPIM1
 ```
 
 SPI on the PyBadge.
 
 
 ```go
-var (
-	SPI1 = SPI{
-		Bus:	sam.SERCOM4_SPIM,
-		SERCOM:	4,
-	}
-)
+var SPI1 = sercomSPIM4
 ```
 
 TFT SPI on the PyBadge.
@@ -514,6 +501,7 @@ TFT SPI on the PyBadge.
 
 ```go
 var (
+	ErrTimeoutRNG		= errors.New("machine: RNG Timeout")
 	ErrInvalidInputPin	= errors.New("machine: invalid input pin")
 	ErrInvalidOutputPin	= errors.New("machine: invalid output pin")
 	ErrInvalidClockPin	= errors.New("machine: invalid clock pin")
@@ -526,8 +514,7 @@ var (
 
 ```go
 var (
-	// USB is a USB CDC interface.
-	USB = &USBCDC{Buffer: NewRingBuffer()}
+	ErrTxInvalidSliceSize = errors.New("SPI write and read slices must be same size")
 )
 ```
 
@@ -535,7 +522,8 @@ var (
 
 ```go
 var (
-	ErrTxInvalidSliceSize = errors.New("SPI write and read slices must be same size")
+	// USB is a USB CDC interface.
+	USB = &USBCDC{Buffer: NewRingBuffer()}
 )
 ```
 
@@ -586,6 +574,15 @@ Serial is implemented via USB (USB-CDC).
 func CPUFrequency() uint32
 ```
 
+
+
+### func GetRNG
+
+```go
+func GetRNG() (uint32, error)
+```
+
+GetRNG returns 32 bits of cryptographically secure random data
 
 
 ### func InitADC
@@ -1385,7 +1382,8 @@ Configure this pin with the given configuration.
 func (p Pin) Get() bool
 ```
 
-Get returns the current value of a GPIO pin.
+Get returns the current value of a GPIO pin when configured as an input or as
+an output.
 
 
 ### func (Pin) High

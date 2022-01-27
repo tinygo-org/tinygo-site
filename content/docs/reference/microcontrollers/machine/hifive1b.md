@@ -132,6 +132,17 @@ TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-spee
 
 
 ```go
+const Device = deviceName
+```
+
+Device is the running program's chip name, such as "ATSAMD51J19A" or
+"nrf52840". It is not the same as the CPU name.
+
+The constant is some hardcoded default value if the program does not target a
+particular chip but instead runs in WebAssembly for example.
+
+
+```go
 const NoPin = Pin(0xff)
 ```
 
@@ -205,6 +216,7 @@ SPI on the HiFive1.
 
 ```go
 var (
+	ErrTimeoutRNG		= errors.New("machine: RNG Timeout")
 	ErrInvalidInputPin	= errors.New("machine: invalid input pin")
 	ErrInvalidOutputPin	= errors.New("machine: invalid output pin")
 	ErrInvalidClockPin	= errors.New("machine: invalid clock pin")
@@ -497,7 +509,8 @@ Configure this pin with the given configuration.
 func (p Pin) Get() bool
 ```
 
-Get returns the current value of a GPIO pin.
+Get returns the current value of a GPIO pin when the pin is configured as an
+input or as an output.
 
 
 ### func (Pin) High
@@ -520,6 +533,30 @@ func (p Pin) Low()
 Low sets this GPIO pin to low, assuming it has been configured as an output
 pin. It is hardware dependent (and often undefined) what happens if you set a
 pin to low that is not configured as an output pin.
+
+
+### func (Pin) PortMaskClear
+
+```go
+func (p Pin) PortMaskClear() (*uint32, uint32)
+```
+
+Return the register and mask to disable a given GPIO pin. This can be used to
+implement bit-banged drivers.
+
+Warning: only use this on an output pin!
+
+
+### func (Pin) PortMaskSet
+
+```go
+func (p Pin) PortMaskSet() (*uint32, uint32)
+```
+
+Return the register and mask to enable a given GPIO pin. This can be used to
+implement bit-banged drivers.
+
+Warning: only use this on an output pin!
 
 
 ### func (Pin) Set

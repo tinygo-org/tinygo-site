@@ -304,6 +304,17 @@ const (
 
 
 ```go
+const Device = deviceName
+```
+
+Device is the running program's chip name, such as "ATSAMD51J19A" or
+"nrf52840". It is not the same as the CPU name.
+
+The constant is some hardcoded default value if the program does not target a
+particular chip but instead runs in WebAssembly for example.
+
+
+```go
 const NoPin = Pin(0xff)
 ```
 
@@ -583,36 +594,16 @@ const (
 ```go
 var (
 	// Extension Header EXT1
-	UART1	= &_UART1
-	_UART1	= UART{
-		Buffer:	NewRingBuffer(),
-		Bus:	sam.SERCOM0_USART_INT,
-		SERCOM:	0,
-	}
+	UART1	= &sercomUSART0
 
 	// Extension Header EXT2
-	UART2	= &_UART2
-	_UART2	= UART{
-		Buffer:	NewRingBuffer(),
-		Bus:	sam.SERCOM5_USART_INT,
-		SERCOM:	5,
-	}
+	UART2	= &sercomUSART5
 
 	// Extension Header EXT3
-	UART3	= &_UART3
-	_UART3	= UART{
-		Buffer:	NewRingBuffer(),
-		Bus:	sam.SERCOM1_USART_INT,
-		SERCOM:	1,
-	}
+	UART3	= &sercomUSART1
 
 	// EDBG Virtual COM Port
-	UART4	= &_UART4
-	_UART4	= UART{
-		Buffer:	NewRingBuffer(),
-		Bus:	sam.SERCOM2_USART_INT,
-		SERCOM:	2,
-	}
+	UART4	= &sercomUSART2
 )
 ```
 
@@ -622,28 +613,16 @@ UART on the SAM E54 Xplained Pro
 ```go
 var (
 	// Extension Header EXT1
-	I2C0	= I2C{
-		Bus:	sam.SERCOM3_I2CM,
-		SERCOM:	3,
-	}
+	I2C0	= sercomI2CM3
 
 	// Extension Header EXT2
-	I2C1	= I2C{
-		Bus:	sam.SERCOM7_I2CM,
-		SERCOM:	7,
-	}
+	I2C1	= sercomI2CM7
 
 	// Extension Header EXT3
-	I2C2	= I2C{
-		Bus:	sam.SERCOM7_I2CM,
-		SERCOM:	7,
-	}
+	I2C2	= sercomI2CM7
 
 	// Data Gateway Interface
-	I2C3	= I2C{
-		Bus:	sam.SERCOM7_I2CM,
-		SERCOM:	7,
-	}
+	I2C3	= sercomI2CM7
 )
 ```
 
@@ -653,28 +632,16 @@ I2C on the SAM E54 Xplained Pro
 ```go
 var (
 	// Extension Header EXT1
-	SPI0	= SPI{
-		Bus:	sam.SERCOM4_SPIM,
-		SERCOM:	4,
-	}
+	SPI0	= sercomSPIM4
 
 	// Extension Header EXT2
-	SPI1	= SPI{
-		Bus:	sam.SERCOM6_SPIM,
-		SERCOM:	6,
-	}
+	SPI1	= sercomSPIM6
 
 	// Extension Header EXT3
-	SPI2	= SPI{
-		Bus:	sam.SERCOM6_SPIM,
-		SERCOM:	6,
-	}
+	SPI2	= sercomSPIM6
 
 	// Data Gateway Interface
-	SPI3	= SPI{
-		Bus:	sam.SERCOM6_SPIM,
-		SERCOM:	6,
-	}
+	SPI3	= sercomSPIM6
 )
 ```
 
@@ -698,6 +665,7 @@ CAN on the SAM E54 Xplained Pro
 
 ```go
 var (
+	ErrTimeoutRNG		= errors.New("machine: RNG Timeout")
 	ErrInvalidInputPin	= errors.New("machine: invalid input pin")
 	ErrInvalidOutputPin	= errors.New("machine: invalid output pin")
 	ErrInvalidClockPin	= errors.New("machine: invalid clock pin")
@@ -710,8 +678,7 @@ var (
 
 ```go
 var (
-	// USB is a USB CDC interface.
-	USB = &USBCDC{Buffer: NewRingBuffer()}
+	ErrTxInvalidSliceSize = errors.New("SPI write and read slices must be same size")
 )
 ```
 
@@ -719,7 +686,8 @@ var (
 
 ```go
 var (
-	ErrTxInvalidSliceSize = errors.New("SPI write and read slices must be same size")
+	// USB is a USB CDC interface.
+	USB = &USBCDC{Buffer: NewRingBuffer()}
 )
 ```
 
@@ -806,6 +774,15 @@ CANLengthToDlc() converts its actual length to a DLC value.
 func CPUFrequency() uint32
 ```
 
+
+
+### func GetRNG
+
+```go
+func GetRNG() (uint32, error)
+```
+
+GetRNG returns 32 bits of cryptographically secure random data
 
 
 ### func InitADC
@@ -1804,7 +1781,8 @@ Configure this pin with the given configuration.
 func (p Pin) Get() bool
 ```
 
-Get returns the current value of a GPIO pin.
+Get returns the current value of a GPIO pin when configured as an input or as
+an output.
 
 
 ### func (Pin) High

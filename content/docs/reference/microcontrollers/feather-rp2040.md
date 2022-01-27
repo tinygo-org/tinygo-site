@@ -11,10 +11,10 @@ The [Adafruit Feather RP2040](https://www.adafruit.com/product/4884) is a tiny d
 | --------- | ------------- | ----- |
 | GPIO      | YES | YES |
 | UART      | YES | YES |
-| SPI      | YES | Not yet |
-| I2C      | YES | Not yet |
+| SPI      | YES | YES |
+| I2C      | YES | YES |
 | ADC      | YES | YES |
-| PWM      | YES | Not yet |
+| PWM      | YES | YES |
 
 ## Machine Package Docs
 

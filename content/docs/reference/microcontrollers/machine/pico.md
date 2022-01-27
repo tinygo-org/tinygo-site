@@ -47,6 +47,61 @@ GPIO pins
 
 
 ```go
+const (
+	I2C0_SDA_PIN	= GP4
+	I2C0_SCL_PIN	= GP5
+
+	I2C1_SDA_PIN	= GP2
+	I2C1_SCL_PIN	= GP3
+)
+```
+
+I2C Default pins on Raspberry Pico.
+
+
+```go
+const (
+	// Default Serial Clock Bus 0 for SPI communications
+	SPI0_SCK_PIN	= GPIO18
+	// Default Serial Out Bus 0 for SPI communications
+	SPI0_SDO_PIN	= GPIO19	// Tx
+	// Default Serial In Bus 0 for SPI communications
+	SPI0_SDI_PIN	= GPIO16	// Rx
+
+	// Default Serial Clock Bus 1 for SPI communications
+	SPI1_SCK_PIN	= GPIO10
+	// Default Serial Out Bus 1 for SPI communications
+	SPI1_SDO_PIN	= GPIO11	// Tx
+	// Default Serial In Bus 1 for SPI communications
+	SPI1_SDI_PIN	= GPIO12	// Rx
+)
+```
+
+SPI default pins
+
+
+```go
+const (
+	TWI_FREQ_100KHZ	= 100000
+	TWI_FREQ_400KHZ	= 400000
+)
+```
+
+TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-speed bus.
+
+
+```go
+const Device = deviceName
+```
+
+Device is the running program's chip name, such as "ATSAMD51J19A" or
+"nrf52840". It is not the same as the CPU name.
+
+The constant is some hardcoded default value if the program does not target a
+particular chip but instead runs in WebAssembly for example.
+
+
+```go
 const NoPin = Pin(0xff)
 ```
 
@@ -129,9 +184,28 @@ const (
 	PinInputPullup
 	PinAnalog
 	PinUART
+	PinPWM
+	PinI2C
+	PinSPI
 )
 ```
 
+
+
+```go
+const (
+	// PinLevelLow triggers whenever pin is at a low (around 0V) logic level.
+	PinLevelLow	PinChange	= 1 << iota
+	// PinLevelLow triggers whenever pin is at a high (around 3V) logic level.
+	PinLevelHigh
+	// Edge falling
+	PinFalling
+	// Edge rising
+	PinRising
+)
+```
+
+Pin change interrupt constants for SetInterrupt.
 
 
 ```go
@@ -168,6 +242,7 @@ const (
 
 ```go
 var (
+	ErrTimeoutRNG		= errors.New("machine: RNG Timeout")
 	ErrInvalidInputPin	= errors.New("machine: invalid input pin")
 	ErrInvalidOutputPin	= errors.New("machine: invalid output pin")
 	ErrInvalidClockPin	= errors.New("machine: invalid clock pin")
@@ -205,6 +280,98 @@ var DefaultUART = UART0
 
 ```go
 var (
+	I2C0	= &_I2C0
+	_I2C0	= I2C{
+		Bus: rp.I2C0,
+	}
+	I2C1	= &_I2C1
+	_I2C1	= I2C{
+		Bus: rp.I2C1,
+	}
+)
+```
+
+I2C on the RP2040.
+
+
+```go
+var (
+	ErrInvalidI2CBaudrate	= errors.New("invalid i2c baudrate")
+	ErrInvalidTgtAddr	= errors.New("invalid target i2c address not in 0..0x80 or is reserved")
+	ErrI2CGeneric		= errors.New("i2c error")
+	ErrRP2040I2CDisable	= errors.New("i2c rp2040 peripheral timeout in disable")
+)
+```
+
+
+
+```go
+var (
+	ErrBadPeriod = errors.New("period outside valid range 8ns..268ms")
+)
+```
+
+
+
+```go
+var (
+	PWM0	= getPWMGroup(0)
+	PWM1	= getPWMGroup(1)
+	PWM2	= getPWMGroup(2)
+	PWM3	= getPWMGroup(3)
+	PWM4	= getPWMGroup(4)
+	PWM5	= getPWMGroup(5)
+	PWM6	= getPWMGroup(6)
+	PWM7	= getPWMGroup(7)
+)
+```
+
+Hardware Pulse Width Modulation (PWM) API
+PWM peripherals available on RP2040. Each peripheral has 2 pins available for
+a total of 16 available PWM outputs. Some pins may not be available on some boards.
+
+The RP2040 PWM block has 8 identical slices. Each slice can drive two PWM output signals, or
+measure the frequency or duty cycle of an input signal. This gives a total of up to 16 controllable
+PWM outputs. All 30 GPIOs can be driven by the PWM block
+
+The PWM hardware functions by continuously comparing the input value to a free-running counter. This produces a
+toggling output where the amount of time spent at the high output level is proportional to the input value. The fraction of
+time spent at the high signal level is known as the duty cycle of the signal.
+
+The default behaviour of a PWM slice is to count upward until the wrap value (\ref pwm_config_set_wrap) is reached, and then
+immediately wrap to 0. PWM slices also offer a phase-correct mode, where the counter starts to count downward after
+reaching TOP, until it reaches 0 again.
+
+
+```go
+var (
+	SPI0	= &_SPI0
+	_SPI0	= SPI{
+		Bus: rp.SPI0,
+	}
+	SPI1	= &_SPI1
+	_SPI1	= SPI{
+		Bus: rp.SPI1,
+	}
+)
+```
+
+SPI on the RP2040
+
+
+```go
+var (
+	ErrLSBNotSupported	= errors.New("SPI LSB unsupported on PL022")
+	ErrTxInvalidSliceSize	= errors.New("SPI write and read slices must be same size")
+	ErrSPITimeout		= errors.New("SPI timeout")
+	ErrSPIBaud		= errors.New("SPI baud too low or above 66.5Mhz")
+)
+```
+
+
+
+```go
+var (
 	ErrPWMPeriodTooLong = errors.New("pwm: period too long")
 )
 ```
@@ -219,6 +386,23 @@ Serial is implemented via the default (usually the first) UART on the chip.
 
 
 
+
+
+### func CPUFrequency
+
+```go
+func CPUFrequency() uint32
+```
+
+
+
+### func CurrentCore
+
+```go
+func CurrentCore() int
+```
+
+CurrentCore returns the core number the call was made from.
 
 
 ### func InitADC
@@ -236,6 +420,26 @@ func NewRingBuffer() *RingBuffer
 ```
 
 NewRingBuffer returns a new ring buffer.
+
+
+### func NumCores
+
+```go
+func NumCores() int
+```
+
+NumCores returns number of cores available on the device.
+
+
+### func PWMPeripheral
+
+```go
+func PWMPeripheral(pin Pin) (sliceNum uint8, err error)
+```
+
+Peripheral returns the RP2040 PWM peripheral which ranges from 0 to 7. Each
+PWM peripheral has 2 channels, A and B which correspond to 0 and 1 in the program.
+This number corresponds to the package's PWM0 throughout PWM7 handles
 
 
 
@@ -282,6 +486,109 @@ type ADCConfig struct {
 
 ADCConfig holds ADC configuration parameters. If left unspecified, the zero
 value of each parameter will use the peripheral's default settings.
+
+
+
+
+
+## type I2C
+
+```go
+type I2C struct {
+	Bus		*rp.I2C0_Type
+	restartOnNext	bool
+}
+```
+
+
+
+
+### func (*I2C) Configure
+
+```go
+func (i2c *I2C) Configure(config I2CConfig) error
+```
+
+Configure initializes i2c peripheral and configures I2C config's pins passed.
+Here's a list of valid SDA and SCL GPIO pins on bus I2C0 of the rp2040:
+ SDA: 0, 4, 8, 12, 16, 20
+ SCL: 1, 5, 9, 13, 17, 21
+Same as above for I2C1 bus:
+ SDA: 2, 6, 10, 14, 18, 26
+ SCL: 3, 7, 11, 15, 19, 27
+
+
+### func (*I2C) ReadRegister
+
+```go
+func (i2c *I2C) ReadRegister(address uint8, register uint8, data []byte) error
+```
+
+ReadRegister transmits the register, restarts the connection as a read
+operation, and reads the response.
+
+Many I2C-compatible devices are organized in terms of registers. This method
+is a shortcut to easily read such registers. Also, it only works for devices
+with 7-bit addresses, which is the vast majority.
+
+
+### func (*I2C) SetBaudRate
+
+```go
+func (i2c *I2C) SetBaudRate(br uint32) error
+```
+
+SetBaudRate sets the I2C frequency. It has the side effect of also
+enabling the I2C hardware if disabled beforehand.
+
+
+### func (*I2C) Tx
+
+```go
+func (i2c *I2C) Tx(addr uint16, w, r []byte) error
+```
+
+Tx performs a write and then a read transfer placing the result in
+in r.
+
+Passing a nil value for w or r skips the transfer corresponding to write
+or read, respectively.
+
+ i2c.Tx(addr, nil, r)
+Performs only a read transfer.
+
+ i2c.Tx(addr, w, nil)
+Performs only a write transfer.
+
+
+### func (*I2C) WriteRegister
+
+```go
+func (i2c *I2C) WriteRegister(address uint8, register uint8, data []byte) error
+```
+
+WriteRegister transmits first the register and then the data to the
+peripheral device.
+
+Many I2C-compatible devices are organized in terms of registers. This method
+is a shortcut to easily write to such registers. Also, it only works for
+devices with 7-bit addresses, which is the vast majority.
+
+
+
+
+## type I2CConfig
+
+```go
+type I2CConfig struct {
+	Frequency	uint32
+	// SDA/SCL Serial Data and clock pins. Refer to datasheet to see
+	// which pins match the desired bus.
+	SDA, SCL	Pin
+}
+```
+
+I2CConfig is used to store config info for I2C.
 
 
 
@@ -432,6 +739,34 @@ func (p Pin) Set(value bool)
 Set drives the pin high if value is true else drives it low.
 
 
+### func (Pin) SetInterrupt
+
+```go
+func (p Pin) SetInterrupt(change PinChange, callback func(Pin)) error
+```
+
+SetInterrupt sets an interrupt to be executed when a particular pin changes
+state. The pin should already be configured as an input, including a pull up
+or down if no external pull is provided.
+
+This call will replace a previously set callback on this pin. You can pass a
+nil func to unset the pin change interrupt. If you do so, the change
+parameter is ignored and can be set to any value (such as 0).
+
+
+
+
+## type PinChange
+
+```go
+type PinChange uint8
+```
+
+PinChange represents one or more trigger events that can happen on a given GPIO pin
+on the RP2040. ORed PinChanges are valid input to most IRQ functions.
+
+
+
 
 
 ## type PinConfig
@@ -512,6 +847,132 @@ func (rb *RingBuffer) Used() uint8
 ```
 
 Used returns how many bytes in buffer have been used.
+
+
+
+
+## type SPI
+
+```go
+type SPI struct {
+	Bus *rp.SPI0_Type
+}
+```
+
+
+
+
+### func (SPI) Configure
+
+```go
+func (spi SPI) Configure(config SPIConfig) error
+```
+
+Configure is intended to setup/initialize the SPI interface.
+Default baudrate of 115200 is used if Frequency == 0. Default
+word length (data bits) is 8.
+Below is a list of GPIO pins corresponding to SPI0 bus on the rp2040:
+ SI : 0, 4, 17  a.k.a RX and MISO (if rp2040 is master)
+ SO : 3, 7, 19  a.k.a TX and MOSI (if rp2040 is master)
+ SCK: 2, 6, 18
+SPI1 bus GPIO pins:
+ SI : 8, 12
+ SO : 11, 15
+ SCK: 10, 14
+No pin configuration is needed of SCK, SDO and SDI needed after calling Configure.
+
+
+### func (SPI) GetBaudRate
+
+```go
+func (spi SPI) GetBaudRate() uint32
+```
+
+
+
+### func (SPI) PrintRegs
+
+```go
+func (spi SPI) PrintRegs()
+```
+
+PrintRegs prints SPI's peripheral common registries current values
+
+
+### func (SPI) SetBaudRate
+
+```go
+func (spi SPI) SetBaudRate(br uint32) error
+```
+
+
+
+### func (SPI) Transfer
+
+```go
+func (spi SPI) Transfer(w byte) (byte, error)
+```
+
+Write a single byte and read a single byte from TX/RX FIFO.
+
+
+### func (SPI) Tx
+
+```go
+func (spi SPI) Tx(w, r []byte) (err error)
+```
+
+Tx handles read/write operation for SPI interface. Since SPI is a syncronous write/read
+interface, there must always be the same number of bytes written as bytes read.
+The Tx method knows about this, and offers a few different ways of calling it.
+
+This form sends the bytes in tx buffer, putting the resulting bytes read into the rx buffer.
+Note that the tx and rx buffers must be the same size:
+
+		spi.Tx(tx, rx)
+
+This form sends the tx buffer, ignoring the result. Useful for sending "commands" that return zeros
+until all the bytes in the command packet have been received:
+
+		spi.Tx(tx, nil)
+
+This form sends zeros, putting the result into the rx buffer. Good for reading a "result packet":
+
+		spi.Tx(nil, rx)
+
+Remark: This implementation (RP2040) allows reading into buffer with a custom repeated
+value on tx.
+
+		spi.Tx([]byte{0xff}, rx) // may cause unwanted heap allocations.
+
+This form sends 0xff and puts the result into rx buffer. Useful for reading from SD cards
+which require 0xff input on SI.
+
+
+
+
+## type SPIConfig
+
+```go
+type SPIConfig struct {
+	Frequency	uint32
+	// LSB not supported on rp2040.
+	LSBFirst	bool
+	// Mode's two most LSB are CPOL and CPHA. i.e. Mode==2 (0b10) is CPOL=1, CPHA=0
+	Mode	uint8
+	// Number of data bits per transfer. Valid values 4..16. Default and recommended is 8.
+	DataBits	uint8
+	// Serial clock pin
+	SCK	Pin
+	// TX or Serial Data Out (MOSI if rp2040 is master)
+	SDO	Pin
+	// RX or Serial Data In (MISO if rp2040 is master)
+	SDI	Pin
+}
+```
+
+SPIConfig is used to store config info for SPI.
+
 
 
 

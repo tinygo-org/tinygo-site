@@ -192,6 +192,17 @@ const (
 
 
 ```go
+const Device = deviceName
+```
+
+Device is the running program's chip name, such as "ATSAMD51J19A" or
+"nrf52840". It is not the same as the CPU name.
+
+The constant is some hardcoded default value if the program does not target a
+particular chip but instead runs in WebAssembly for example.
+
+
+```go
 const NoPin = Pin(0xff)
 ```
 
@@ -407,9 +418,17 @@ const (
 
 ```go
 var (
-	DefaultUART	= UART1
-	UART1		= &_UART1
-	_UART1		= UART{
+	DefaultUART = UART1
+)
+```
+
+Default peripherals
+
+
+```go
+var (
+	UART1	= &_UART1
+	_UART1	= UART{
 		Bus:		nxp.LPUART6,
 		Buffer:		NewRingBuffer(),
 		txBuffer:	NewRingBuffer(),
@@ -505,6 +524,7 @@ var (
 
 ```go
 var (
+	ErrTimeoutRNG		= errors.New("machine: RNG Timeout")
 	ErrInvalidInputPin	= errors.New("machine: invalid input pin")
 	ErrInvalidOutputPin	= errors.New("machine: invalid output pin")
 	ErrInvalidClockPin	= errors.New("machine: invalid clock pin")
@@ -873,7 +893,6 @@ type UART struct {
 
 	// auxiliary state data used internally
 	configured	bool
-	msbFirst	bool
 	transmitting	volatile.Register32
 }
 ```

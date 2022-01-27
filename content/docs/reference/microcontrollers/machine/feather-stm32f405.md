@@ -189,6 +189,9 @@ const (
 
 	I2C_SDA_PIN	= I2C0_SDA_PIN	// default/primary I2C pins
 	I2C_SCL_PIN	= I2C0_SCL_PIN	//
+
+	SDA_PIN	= I2C0_SDA_PIN
+	SCL_PIN	= I2C0_SCL_PIN
 )
 ```
 
@@ -202,6 +205,17 @@ const (
 ```
 
 TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-speed bus.
+
+
+```go
+const Device = deviceName
+```
+
+Device is the running program's chip name, such as "ATSAMD51J19A" or
+"nrf52840". It is not the same as the CPU name.
+
+The constant is some hardcoded default value if the program does not target a
+particular chip but instead runs in WebAssembly for example.
 
 
 ```go
@@ -260,6 +274,12 @@ const (
 	// for PWM
 	PinModePWMOutput	PinMode	= 12
 )
+```
+
+
+
+```go
+const RNG_MAX_READ_RETRIES = 1000
 ```
 
 
@@ -374,6 +394,23 @@ const (
 	PF14	= portF + 14
 	PF15	= portF + 15
 
+	PG0	= portG + 0
+	PG1	= portG + 1
+	PG2	= portG + 2
+	PG3	= portG + 3
+	PG4	= portG + 4
+	PG5	= portG + 5
+	PG6	= portG + 6
+	PG7	= portG + 7
+	PG8	= portG + 8
+	PG9	= portG + 9
+	PG10	= portG + 10
+	PG11	= portG + 11
+	PG12	= portG + 12
+	PG13	= portG + 13
+	PG14	= portG + 14
+	PG15	= portG + 15
+
 	PH0	= portH + 0
 	PH1	= portH + 1
 	PH2	= portH + 2
@@ -407,6 +444,23 @@ const (
 	PI13	= portI + 13
 	PI14	= portI + 14
 	PI15	= portI + 15
+
+	PK0	= portK + 0
+	PK1	= portK + 1
+	PK2	= portK + 2
+	PK3	= portK + 3
+	PK4	= portK + 4
+	PK5	= portK + 5
+	PK6	= portK + 6
+	PK7	= portK + 7
+	PK8	= portK + 8
+	PK9	= portK + 9
+	PK10	= portK + 10
+	PK11	= portK + 11
+	PK12	= portK + 12
+	PK13	= portK + 13
+	PK14	= portK + 14
+	PK15	= portK + 15
 )
 ```
 
@@ -417,21 +471,6 @@ const (
 	ARR_MAX	= 0x10000
 	PSC_MAX	= 0x10000
 )
-```
-
-
-
-```go
-const APB1_TIM_FREQ = 42000000 * 2
-```
-
-Internal use: configured speed of the APB1 and APB2 timers, this should be kept
-in sync with any changes to runtime package which configures the oscillators
-and clock frequencies
-
-
-```go
-const APB2_TIM_FREQ = 84000000 * 2
 ```
 
 
@@ -458,6 +497,21 @@ const (
 ```
 
 Alternative peripheral pin functions
+
+
+```go
+const APB1_TIM_FREQ = 42000000 * 2
+```
+
+Internal use: configured speed of the APB1 and APB2 timers, this should be kept
+in sync with any changes to runtime package which configures the oscillators
+and clock frequencies
+
+
+```go
+const APB2_TIM_FREQ = 84000000 * 2
+```
+
 
 
 ```go
@@ -566,6 +620,7 @@ var (
 
 ```go
 var (
+	ErrTimeoutRNG		= errors.New("machine: RNG Timeout")
 	ErrInvalidInputPin	= errors.New("machine: invalid input pin")
 	ErrInvalidOutputPin	= errors.New("machine: invalid output pin")
 	ErrInvalidClockPin	= errors.New("machine: invalid clock pin")
@@ -799,6 +854,24 @@ func CPUFrequency() uint32
 
 
 
+### func GetRNG
+
+```go
+func GetRNG() (uint32, error)
+```
+
+GetRNG returns 32 bits of cryptographically secure random data
+
+
+### func InitADC
+
+```go
+func InitADC()
+```
+
+InitADC initializes the registers needed for ADC1.
+
+
 ### func NewRingBuffer
 
 ```go
@@ -819,6 +892,25 @@ type ADC struct {
 ```
 
 
+
+
+### func (ADC) Configure
+
+```go
+func (a ADC) Configure(ADCConfig)
+```
+
+Configure configures an ADC pin to be able to read analog data.
+
+
+### func (ADC) Get
+
+```go
+func (a ADC) Get() uint16
+```
+
+Get returns the current value of a ADC pin in the range 0..0xffff.
+TODO: DMA based implementation.
 
 
 
@@ -1048,7 +1140,8 @@ Configure this pin with the given configuration including alternate
 func (p Pin) Get() bool
 ```
 
-Get returns the current value of a GPIO pin.
+Get returns the current value of a GPIO pin when the pin is configured as an
+input or as an output.
 
 
 ### func (Pin) High
@@ -1071,6 +1164,26 @@ func (p Pin) Low()
 Low sets this GPIO pin to low, assuming it has been configured as an output
 pin. It is hardware dependent (and often undefined) what happens if you set a
 pin to low that is not configured as an output pin.
+
+
+### func (Pin) PortMaskClear
+
+```go
+func (p Pin) PortMaskClear() (*uint32, uint32)
+```
+
+PortMaskClear returns the register and mask to disable a given port. This can
+be used to implement bit-banged drivers.
+
+
+### func (Pin) PortMaskSet
+
+```go
+func (p Pin) PortMaskSet() (*uint32, uint32)
+```
+
+PortMaskSet returns the register and mask to enable a given GPIO pin. This
+can be used to implement bit-banged drivers.
 
 
 ### func (Pin) Set
