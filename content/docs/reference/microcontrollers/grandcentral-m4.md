@@ -56,3 +56,5 @@ Once you have updated your Grand Central M4 board the first time, after that you
 ## Notes
 
 You can use the USB port to the Grand Central M4 as a serial port. `UART0` refers to this connection.
+
+The Neopixel LED on the Grand Central M4 can be accessed using the [WS2812](https://pkg.go.dev/tinygo.org/x/drivers/ws2812) driver via the `PC24` pin
