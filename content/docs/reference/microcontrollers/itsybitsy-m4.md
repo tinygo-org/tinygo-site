@@ -55,4 +55,4 @@ Once you have updated your ItsyBitsy M4 board the first time, after that you sho
 
 You can use the USB port to the ItsyBitsy M4 as a serial port. `UART0` refers to this connection.
 
-The DotStar LED on the ItsyBitsy M0 can be accessed using the [APA102](https://pkg.go.dev/tinygo.org/x/drivers/apa102) driver via a software SPI on the `PB02` and `PB03` pins
+The DotStar LED on the ItsyBitsy M4 can be accessed using the [APA102](https://pkg.go.dev/tinygo.org/x/drivers/apa102) driver via a software SPI on the `PB02` and `PB03` pins
