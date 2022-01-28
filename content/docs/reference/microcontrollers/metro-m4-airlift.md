@@ -54,3 +54,5 @@ Once you have updated your Metro M4 Express board the first time, after that you
 ## Notes
 
 You can use the USB port to the Metro M4 Express as a serial port. `UART0` refers to this connection.
+
+The Neopixel LED on the Feather M0 can be accessed using the [WS2812](https://pkg.go.dev/tinygo.org/x/drivers/ws2812) driver via the `PB22` pin
