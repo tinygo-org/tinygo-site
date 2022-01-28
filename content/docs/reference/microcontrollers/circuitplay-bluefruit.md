@@ -58,6 +58,8 @@ Once you have updated your Circuit Playground Bluefruit board the first time, af
 
 You can use the USB port to the Circuit Playground Bluefruit as a serial port. `UART0` refers to this connection.
 
+The Neopixel LED on the Circuit Playground Bluefruit can be accessed using the [WS2812](https://pkg.go.dev/tinygo.org/x/drivers/ws2812) driver via the `D8` pin.
+
 For an example that uses the built-in Neopixel LEDs, take a look at the TinyGo drivers repository located at [https://github.com/tinygo-org/drivers/tree/release/examples](https://github.com/tinygo-org/drivers)
 
 Bluetooth support is now available for the Circuit Playground Bluefruit board. See https://github.com/tinygo-org/bluetooth for more information.
