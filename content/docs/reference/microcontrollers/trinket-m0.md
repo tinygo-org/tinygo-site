@@ -54,3 +54,5 @@ Once you have updated your Trinket M0 board the first time, after that you shoul
 ## Notes
 
 You can use the USB port to the Trinket M0 as a serial port. `UART0` refers to this connection.
+
+The DotStar LED on the Trinket M0 can be accessed using the [APA102](https://pkg.go.dev/tinygo.org/x/drivers/apa102) driver via a software SPI on the `PA01` and `PA00` pins
