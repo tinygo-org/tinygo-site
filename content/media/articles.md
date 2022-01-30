@@ -7,6 +7,9 @@ description: >
   Articles and blog posts talking about TinyGo
 ---
 
+**Aurélie Vache - "Learning Go by examples: part 5 - Create a Game Boy Advance (GBA) game in Go"** - *August 11, 2021*
+https://dev.to/aurelievache/learning-go-by-examples-part-5-create-a-game-boy-advance-gba-game-in-go-5944
+
 **Alan Wang - "TinyGo on Arduino Uno: An Introduction"** - *February 5, 2020*
 https://create.arduino.cc/projecthub/alankrantas/tinygo-on-arduino-uno-an-introduction-6130f6
 
