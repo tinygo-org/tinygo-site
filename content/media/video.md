@@ -7,6 +7,9 @@ description: >
   Videos/Podcasts talking about TinyGo
 ---
 
+**CALM - Thierry Chantier - "TinyGo sur Pygamer" [FR]** - *June 15, 2021*
+https://www.youtube.com/watch?v=FI0_tC6ESJA&t=694s
+
 **Microsoft LearnTV - "Hello World"** - *June 15, 2021*
 https://channel9.msdn.com/Shows/Hello-World/Hello-World-Tuesday-June-15-2021#time=03m09s
 
