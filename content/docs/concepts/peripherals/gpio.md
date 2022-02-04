@@ -43,7 +43,7 @@ led := machine.LED
 led.Configure(machine.PinConfig{Mode: machine.PinOutput})
 ```
 
-`machine.LED` is a constant of type `machine.Pin`. It is simply a named numeric type (`type Pin uint8`) to identify a given pin on the board. It has a few methods to interact with these hardware pins. It can also be used in other peripherals, but more on that in other guides. Most developer boards contain an on-board LED which you can access through `machine.LED`, but you can also us any other pin defined on the board.
+`machine.LED` is a constant of type `machine.Pin`. It is simply a named numeric type (`type Pin uint8`) to identify a given pin on the board. It has a few methods to interact with these hardware pins. It can also be used in other peripherals, but more on that in other guides. Most developer boards contain an on-board LED which you can access through `machine.LED`, but you can also use any other pin defined on the board.
 
 The first method that's important is the `Configure` method. All hardware in the TinyGo machine package needs some initialization first before it can be used. In this case, only a single setting needs to be configured: the `Mode` field which indicates the pin mode. You could compare the `Configure` method to the Arduino [`pinMode`](https://www.arduino.cc/reference/en/language/functions/digital-io/pinmode/) function.
 
