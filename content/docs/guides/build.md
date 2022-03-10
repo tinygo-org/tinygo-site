@@ -48,7 +48,7 @@ For **Debian** or **Ubuntu** you can install LLVM by adding a new apt repository
 | Debian | sid    | `unstable`|
 
 ```shell
-echo 'deb http://apt.llvm.org/xxxxx/ llvm-toolchain-xxxxx-11 main' | sudo tee /etc/apt/sources.list.d/llvm.list
+echo 'deb http://apt.llvm.org/xxxxx/ llvm-toolchain-xxxxx-13 main' | sudo tee /etc/apt/sources.list.d/llvm.list
 ```
 
 After adding the apt repository for your distribution you may install the LLVM toolchain packages:
@@ -56,19 +56,19 @@ After adding the apt repository for your distribution you may install the LLVM t
 ```
 wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
 sudo apt-get update
-sudo apt-get install clang-11 llvm-11-dev lld-11 libclang-11-dev
+sudo apt-get install clang-13 llvm-13-dev lld-13 libclang-13-dev
 ```
 
 For **MacOS**, you can install LLVM through [Homebrew](https://formulae.brew.sh/formula/llvm). The Clang/LLVM version from Apple is not supported by TinyGo.
 
 ```shell
-brew install llvm@11
+brew install llvm@13
 ```
 
-After LLVM has been installed, installing TinyGo should be as easy as running the following command (cgo must be enabled so that the compile does not fail):
+After LLVM has been installed, installing TinyGo should be as easy as running the following command:
 
 ```shell
-CGO_ENABLED=1 go install
+go install
 ```
 
 
