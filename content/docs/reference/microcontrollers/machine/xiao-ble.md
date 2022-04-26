@@ -1,48 +1,100 @@
 
 ---
-title: itsybitsy-m4
+title: xiao-ble
 ---
 
 
 ## Constants
 
 ```go
-const RESET_MAGIC_VALUE = 0xf01669ef
-```
-
-used to reset into bootloader
-
-
-```go
 const (
-	D0	= PA16	// UART0 RX/PWM available
-	D1	= PA17	// UART0 TX/PWM available
-	D2	= PA07
-	D3	= PB22
-	D4	= PA14	// PWM available
-	D5	= PA15	// PWM available
-	D6	= PB02	// dotStar clock
-	D7	= PA18	// PWM available
-	D8	= PB03	// dotStar data
-	D9	= PA19	// PWM available
-	D10	= PA20	// can be used for PWM or UART1 TX
-	D11	= PA21	// can be used for PWM or UART1 RX
-	D12	= PA23	// PWM available
-	D13	= PA22	// PWM available
+	P0_00	Pin	= 0
+	P0_01	Pin	= 1
+	P0_02	Pin	= 2
+	P0_03	Pin	= 3
+	P0_04	Pin	= 4
+	P0_05	Pin	= 5
+	P0_06	Pin	= 6
+	P0_07	Pin	= 7
+	P0_08	Pin	= 8
+	P0_09	Pin	= 9
+	P0_10	Pin	= 10
+	P0_11	Pin	= 11
+	P0_12	Pin	= 12
+	P0_13	Pin	= 13
+	P0_14	Pin	= 14
+	P0_15	Pin	= 15
+	P0_16	Pin	= 16
+	P0_17	Pin	= 17
+	P0_18	Pin	= 18
+	P0_19	Pin	= 19
+	P0_20	Pin	= 20
+	P0_21	Pin	= 21
+	P0_22	Pin	= 22
+	P0_23	Pin	= 23
+	P0_24	Pin	= 24
+	P0_25	Pin	= 25
+	P0_26	Pin	= 26
+	P0_27	Pin	= 27
+	P0_28	Pin	= 28
+	P0_29	Pin	= 29
+	P0_30	Pin	= 30
+	P0_31	Pin	= 31
+	P1_00	Pin	= 32
+	P1_01	Pin	= 33
+	P1_02	Pin	= 34
+	P1_03	Pin	= 35
+	P1_04	Pin	= 36
+	P1_05	Pin	= 37
+	P1_06	Pin	= 38
+	P1_07	Pin	= 39
+	P1_08	Pin	= 40
+	P1_09	Pin	= 41
+	P1_10	Pin	= 42
+	P1_11	Pin	= 43
+	P1_12	Pin	= 44
+	P1_13	Pin	= 45
+	P1_14	Pin	= 46
+	P1_15	Pin	= 47
 )
 ```
 
-GPIO Pins
+Hardware pins
+
+
+```go
+const HasLowFrequencyCrystal = true
+```
+
 
 
 ```go
 const (
-	A0	= PA02	// ADC/AIN[0]
-	A1	= PA05	// ADC/AIN[2]
-	A2	= PB08	// ADC/AIN[3]
-	A3	= PB09	// ADC/AIN[4]
-	A4	= PA04	// ADC/AIN[5]
-	A5	= PA06	// ADC/AIN[10]
+	D0	Pin	= P0_02
+	D1	Pin	= P0_03
+	D2	Pin	= P0_28
+	D3	Pin	= P0_29
+	D4	Pin	= P0_04
+	D5	Pin	= P0_05
+	D6	Pin	= P1_11
+	D7	Pin	= P1_12
+	D8	Pin	= P1_13
+	D9	Pin	= P1_14
+	D10	Pin	= P1_15
+)
+```
+
+Digital Pins
+
+
+```go
+const (
+	A0	Pin	= P0_02
+	A1	Pin	= P0_03
+	A2	Pin	= P0_28
+	A3	Pin	= P0_29
+	A4	Pin	= P0_04
+	A5	Pin	= P0_05
 )
 ```
 
@@ -51,45 +103,43 @@ Analog pins
 
 ```go
 const (
-	LED = D13
+	LED		= LED_CHG
+	LED1		= LED_RED
+	LED2		= LED_GREEN
+	LED3		= LED_BLUE
+	LED_CHG		= P0_17
+	LED_RED		= P0_26
+	LED_GREEN	= P0_30
+	LED_BLUE	= P0_06
 )
 ```
 
+Onboard LEDs
 
 
 ```go
 const (
-	USBCDC_DM_PIN	= PA24
-	USBCDC_DP_PIN	= PA25
+	UART_RX_PIN	= P1_12
+	UART_TX_PIN	= P1_11
 )
 ```
 
-USBCDC pins
+UART0 pins
 
 
 ```go
 const (
-	UART_TX_PIN	= D1
-	UART_RX_PIN	= D0
-)
-```
+	// Defaults to internal
+	SDA_PIN	= SDA1_PIN
+	SCL_PIN	= SCL1_PIN
 
-UART1 pins
+	// I2C0 (external) pins
+	SDA0_PIN	= P0_04
+	SCL0_PIN	= P0_05
 
-
-```go
-const (
-	UART2_TX_PIN	= A4
-	UART2_RX_PIN	= D2
-)
-```
-
-
-
-```go
-const (
-	SDA_PIN	= PA12	// SDA: SERCOM2/PAD[0]
-	SCL_PIN	= PA13	// SCL: SERCOM2/PAD[1]
+	// I2C1 (internal) pins
+	SDA1_PIN	= P0_07
+	SCL1_PIN	= P0_27
 )
 ```
 
@@ -98,13 +148,27 @@ I2C pins
 
 ```go
 const (
-	SPI0_SCK_PIN	= PA01	// SCK: SERCOM1/PAD[1]
-	SPI0_SDO_PIN	= PA00	// SDO: SERCOM1/PAD[0]
-	SPI0_SDI_PIN	= PB23	// SDI: SERCOM1/PAD[3]
+	SPI0_SCK_PIN	= P1_13
+	SPI0_SDO_PIN	= P1_14
+	SPI0_SDI_PIN	= P1_15
 )
 ```
 
 SPI pins
+
+
+```go
+const (
+	LSM_PWR	= P1_08	// IMU (LSM6DS3TR) power
+	LSM_INT	= P0_11	// IMU (LSM6DS3TR) interrupt
+
+	MIC_PWR	= P1_10	// Microphone (MSM261D3526H1CPM) power
+	MIC_CLK	= P1_00
+	MIC_DIN	= P0_16
+)
+```
+
+Peripherals
 
 
 ```go
@@ -115,47 +179,6 @@ const (
 ```
 
 TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-speed bus.
-
-
-```go
-const (
-	I2SModeSource	I2SMode	= iota
-	I2SModeReceiver
-	I2SModePDM
-)
-```
-
-
-
-```go
-const (
-	I2StandardPhilips	I2SStandard	= iota
-	I2SStandardMSB
-	I2SStandardLSB
-)
-```
-
-
-
-```go
-const (
-	I2SClockSourceInternal	I2SClockSource	= iota
-	I2SClockSourceExternal
-)
-```
-
-
-
-```go
-const (
-	I2SDataFormatDefault	I2SDataFormat	= 0
-	I2SDataFormat8bit			= 8
-	I2SDataFormat16bit			= 16
-	I2SDataFormat24bit			= 24
-	I2SDataFormat32bit			= 32
-)
-```
-
 
 
 ```go
@@ -179,30 +202,10 @@ of the pins in a peripheral unconfigured (if supported by the hardware).
 
 ```go
 const (
-	PinAnalog		PinMode	= 1
-	PinSERCOM		PinMode	= 2
-	PinSERCOMAlt		PinMode	= 3
-	PinTimer		PinMode	= 4
-	PinTimerAlt		PinMode	= 5
-	PinTCCPDEC		PinMode	= 6
-	PinCom			PinMode	= 7
-	PinSDHC			PinMode	= 8
-	PinI2S			PinMode	= 9
-	PinPCC			PinMode	= 10
-	PinGMAC			PinMode	= 11
-	PinACCLK		PinMode	= 12
-	PinCCL			PinMode	= 13
-	PinDigital		PinMode	= 14
-	PinInput		PinMode	= 15
-	PinInputPullup		PinMode	= 16
-	PinOutput		PinMode	= 17
-	PinTCCE			PinMode	= PinTimer
-	PinTCCF			PinMode	= PinTimerAlt
-	PinTCCG			PinMode	= PinTCCPDEC
-	PinInputPulldown	PinMode	= 18
-	PinCAN			PinMode	= 19
-	PinCAN0			PinMode	= PinSDHC
-	PinCAN1			PinMode	= PinCom
+	PinInput		PinMode	= (nrf.GPIO_PIN_CNF_DIR_Input << nrf.GPIO_PIN_CNF_DIR_Pos) | (nrf.GPIO_PIN_CNF_INPUT_Connect << nrf.GPIO_PIN_CNF_INPUT_Pos)
+	PinInputPullup		PinMode	= PinInput | (nrf.GPIO_PIN_CNF_PULL_Pullup << nrf.GPIO_PIN_CNF_PULL_Pos)
+	PinInputPulldown	PinMode	= PinInput | (nrf.GPIO_PIN_CNF_PULL_Pulldown << nrf.GPIO_PIN_CNF_PULL_Pos)
+	PinOutput		PinMode	= (nrf.GPIO_PIN_CNF_DIR_Output << nrf.GPIO_PIN_CNF_DIR_Pos) | (nrf.GPIO_PIN_CNF_INPUT_Connect << nrf.GPIO_PIN_CNF_INPUT_Pos)
 )
 ```
 
@@ -210,194 +213,13 @@ const (
 
 ```go
 const (
-	PinRising	PinChange	= sam.EIC_CONFIG_SENSE0_RISE
-	PinFalling	PinChange	= sam.EIC_CONFIG_SENSE0_FALL
-	PinToggle	PinChange	= sam.EIC_CONFIG_SENSE0_BOTH
+	PinRising	PinChange	= nrf.GPIOTE_CONFIG_POLARITY_LoToHi
+	PinFalling	PinChange	= nrf.GPIOTE_CONFIG_POLARITY_HiToLo
+	PinToggle	PinChange	= nrf.GPIOTE_CONFIG_POLARITY_Toggle
 )
 ```
 
 Pin change interrupt constants for SetInterrupt.
-
-
-```go
-const (
-	PA00	Pin	= 0
-	PA01	Pin	= 1
-	PA02	Pin	= 2
-	PA03	Pin	= 3
-	PA04	Pin	= 4
-	PA05	Pin	= 5
-	PA06	Pin	= 6
-	PA07	Pin	= 7
-	PA08	Pin	= 8
-	PA09	Pin	= 9
-	PA10	Pin	= 10
-	PA11	Pin	= 11
-	PA12	Pin	= 12
-	PA13	Pin	= 13
-	PA14	Pin	= 14
-	PA15	Pin	= 15
-	PA16	Pin	= 16
-	PA17	Pin	= 17
-	PA18	Pin	= 18
-	PA19	Pin	= 19
-	PA20	Pin	= 20
-	PA21	Pin	= 21
-	PA22	Pin	= 22
-	PA23	Pin	= 23
-	PA24	Pin	= 24
-	PA25	Pin	= 25
-	PA26	Pin	= 26
-	PA27	Pin	= 27
-	PA28	Pin	= 28
-	PA29	Pin	= 29
-	PA30	Pin	= 30
-	PA31	Pin	= 31
-	PB00	Pin	= 32
-	PB01	Pin	= 33
-	PB02	Pin	= 34
-	PB03	Pin	= 35
-	PB04	Pin	= 36
-	PB05	Pin	= 37
-	PB06	Pin	= 38
-	PB07	Pin	= 39
-	PB08	Pin	= 40
-	PB09	Pin	= 41
-	PB10	Pin	= 42
-	PB11	Pin	= 43
-	PB12	Pin	= 44
-	PB13	Pin	= 45
-	PB14	Pin	= 46
-	PB15	Pin	= 47
-	PB16	Pin	= 48
-	PB17	Pin	= 49
-	PB18	Pin	= 50
-	PB19	Pin	= 51
-	PB20	Pin	= 52
-	PB21	Pin	= 53
-	PB22	Pin	= 54
-	PB23	Pin	= 55
-	PB24	Pin	= 56
-	PB25	Pin	= 57
-	PB26	Pin	= 58
-	PB27	Pin	= 59
-	PB28	Pin	= 60
-	PB29	Pin	= 61
-	PB30	Pin	= 62
-	PB31	Pin	= 63
-	PC00	Pin	= 64
-	PC01	Pin	= 65
-	PC02	Pin	= 66
-	PC03	Pin	= 67
-	PC04	Pin	= 68
-	PC05	Pin	= 69
-	PC06	Pin	= 70
-	PC07	Pin	= 71
-	PC08	Pin	= 72
-	PC09	Pin	= 73
-	PC10	Pin	= 74
-	PC11	Pin	= 75
-	PC12	Pin	= 76
-	PC13	Pin	= 77
-	PC14	Pin	= 78
-	PC15	Pin	= 79
-	PC16	Pin	= 80
-	PC17	Pin	= 81
-	PC18	Pin	= 82
-	PC19	Pin	= 83
-	PC20	Pin	= 84
-	PC21	Pin	= 85
-	PC22	Pin	= 86
-	PC23	Pin	= 87
-	PC24	Pin	= 88
-	PC25	Pin	= 89
-	PC26	Pin	= 90
-	PC27	Pin	= 91
-	PC28	Pin	= 92
-	PC29	Pin	= 93
-	PC30	Pin	= 94
-	PC31	Pin	= 95
-	PD00	Pin	= 96
-	PD01	Pin	= 97
-	PD02	Pin	= 98
-	PD03	Pin	= 99
-	PD04	Pin	= 100
-	PD05	Pin	= 101
-	PD06	Pin	= 102
-	PD07	Pin	= 103
-	PD08	Pin	= 104
-	PD09	Pin	= 105
-	PD10	Pin	= 106
-	PD11	Pin	= 107
-	PD12	Pin	= 108
-	PD13	Pin	= 109
-	PD14	Pin	= 110
-	PD15	Pin	= 111
-	PD16	Pin	= 112
-	PD17	Pin	= 113
-	PD18	Pin	= 114
-	PD19	Pin	= 115
-	PD20	Pin	= 116
-	PD21	Pin	= 117
-	PD22	Pin	= 118
-	PD23	Pin	= 119
-	PD24	Pin	= 120
-	PD25	Pin	= 121
-	PD26	Pin	= 122
-	PD27	Pin	= 123
-	PD28	Pin	= 124
-	PD29	Pin	= 125
-	PD30	Pin	= 126
-	PD31	Pin	= 127
-)
-```
-
-Hardware pins
-
-
-```go
-const (
-	// SERCOM_FREQ_REF is always reference frequency on SAMD51 regardless of CPU speed.
-	SERCOM_FREQ_REF		= 48000000
-	SERCOM_FREQ_REF_GCLK0	= 120000000
-
-	// Default rise time in nanoseconds, based on 4.7K ohm pull up resistors
-	riseTimeNanoseconds	= 125
-
-	// wire bus states
-	wireUnknownState	= 0
-	wireIdleState		= 1
-	wireOwnerState		= 2
-	wireBusyState		= 3
-
-	// wire commands
-	wireCmdNoAction		= 0
-	wireCmdRepeatStart	= 1
-	wireCmdRead		= 2
-	wireCmdStop		= 3
-)
-```
-
-
-
-```go
-const (
-	QSPI_SCK	= PB10
-	QSPI_CS		= PB11
-	QSPI_DATA0	= PA08
-	QSPI_DATA1	= PA09
-	QSPI_DATA2	= PA10
-	QSPI_DATA3	= PA11
-)
-```
-
-The QSPI peripheral on ATSAMD51 is only available on the following pins
-
-
-```go
-const HSRAM_SIZE = 0x00030000
-```
-
 
 
 ```go
@@ -425,29 +247,10 @@ const (
 
 ```go
 var (
-	UART1	= &sercomUSART3
-	UART2	= &sercomUSART0
-
-	DefaultUART	= UART1
+	DefaultUART = UART0
 )
 ```
 
-
-
-```go
-var (
-	I2C0 = sercomI2CM2
-)
-```
-
-I2C on the ItsyBitsy M4.
-
-
-```go
-var SPI0 = sercomSPIM1
-```
-
-SPI on the ItsyBitsy M4.
 
 
 ```go
@@ -473,8 +276,65 @@ var (
 
 ```go
 var (
-	// USB is a USB CDC interface.
-	USB = &USBCDC{Buffer: NewRingBuffer()}
+	// UART0 is the hardware UART on the NRF SoC.
+	_UART0	= UART{Buffer: NewRingBuffer()}
+	UART0	= &_UART0
+)
+```
+
+UART
+
+
+```go
+var (
+	I2C0	= (*I2C)(unsafe.Pointer(nrf.TWI0))
+	I2C1	= (*I2C)(unsafe.Pointer(nrf.TWI1))
+)
+```
+
+There are 2 I2C interfaces on the NRF.
+
+
+```go
+var (
+	PWM0	= &PWM{PWM: nrf.PWM0}
+	PWM1	= &PWM{PWM: nrf.PWM1}
+	PWM2	= &PWM{PWM: nrf.PWM2}
+	PWM3	= &PWM{PWM: nrf.PWM3}
+)
+```
+
+PWM
+
+
+```go
+var (
+	USB	= &_USB
+	_USB	= USBCDC{Buffer: NewRingBuffer()}
+
+	usbEndpointDescriptors	[8]usbDeviceDescriptor
+
+	udd_ep_in_cache_buffer	[7][128]uint8
+	udd_ep_out_cache_buffer	[7][128]uint8
+
+	sendOnEP0DATADONE	struct {
+		ptr	*byte
+		count	int
+	}
+	isEndpointHalt		= false
+	isRemoteWakeUpEnabled	= false
+	endPoints		= []uint32{usb_ENDPOINT_TYPE_CONTROL,
+		(usb_ENDPOINT_TYPE_INTERRUPT | usbEndpointIn),
+		(usb_ENDPOINT_TYPE_BULK | usbEndpointOut),
+		(usb_ENDPOINT_TYPE_BULK | usbEndpointIn)}
+
+	usbConfiguration		uint8
+	usbSetInterface			uint8
+	usbLineInfo			= cdcLineInfo{115200, 0x00, 0x00, 0x08, 0x00}
+	epinen				uint32
+	epouten				uint32
+	easyDMABusy			volatile.Register8
+	epout0data_setlinecoding	bool
 )
 ```
 
@@ -482,21 +342,13 @@ var (
 
 ```go
 var (
-	DAC0 = DAC{}
+	SPI0	= SPI{Bus: nrf.SPIM0, buf: new([1]byte)}
+	SPI1	= SPI{Bus: nrf.SPIM1, buf: new([1]byte)}
+	SPI2	= SPI{Bus: nrf.SPIM2, buf: new([1]byte)}
 )
 ```
 
-
-
-```go
-var (
-	TCC0	= (*TCC)(sam.TCC0)
-	TCC1	= (*TCC)(sam.TCC1)
-	TCC2	= (*TCC)(sam.TCC2)
-)
-```
-
-This chip has three TCC peripherals, which have PWM as one feature.
+There are 3 SPI interfaces on the NRF528xx.
 
 
 ```go
@@ -508,10 +360,10 @@ var (
 
 
 ```go
-var Serial = USB
+var Serial = DefaultUART
 ```
 
-Serial is implemented via USB (USB-CDC).
+Serial is implemented via the default (usually the first) UART on the chip.
 
 
 
@@ -525,22 +377,13 @@ func CPUFrequency() uint32
 
 
 
-### func GetRNG
-
-```go
-func GetRNG() (uint32, error)
-```
-
-GetRNG returns 32 bits of cryptographically secure random data
-
-
 ### func InitADC
 
 ```go
 func InitADC()
 ```
 
-InitADC initializes the ADC.
+InitADC initializes the registers needed for ADC.
 
 
 ### func NewACMFunctionalDescriptor
@@ -640,16 +483,6 @@ func NewRingBuffer() *RingBuffer
 NewRingBuffer returns a new ring buffer.
 
 
-### func ResetProcessor
-
-```go
-func ResetProcessor()
-```
-
-ResetProcessor should perform a system reset in preparation
-to switch to the bootloader to flash new firmware.
-
-
 
 
 ## type ACMFunctionalDescriptor
@@ -692,10 +525,10 @@ type ADC struct {
 ### func (ADC) Configure
 
 ```go
-func (a ADC) Configure(config ADCConfig)
+func (a ADC) Configure(ADCConfig)
 ```
 
-Configure configures a ADCPin to be able to be used to read data.
+Configure configures an ADC pin to be able to read analog data.
 
 
 ### func (ADC) Get
@@ -704,7 +537,7 @@ Configure configures a ADCPin to be able to be used to read data.
 func (a ADC) Get() uint16
 ```
 
-Get returns the current value of a ADC pin, in the range 0..0xffff.
+Get returns the current value of a ADC pin in the range 0..0xffff.
 
 
 
@@ -853,52 +686,6 @@ Bytes returns ConfigDescriptor data.
 
 
 
-## type DAC
-
-```go
-type DAC struct {
-}
-```
-
-DAC on the SAMD51.
-
-
-
-### func (DAC) Configure
-
-```go
-func (dac DAC) Configure(config DACConfig)
-```
-
-Configure the DAC.
-output pin must already be configured.
-
-
-### func (DAC) Set
-
-```go
-func (dac DAC) Set(value uint16) error
-```
-
-Set writes a single 16-bit value to the DAC.
-Since the ATSAMD51 only has a 12-bit DAC, the passed-in value will be scaled down.
-
-
-
-
-## type DACConfig
-
-```go
-type DACConfig struct {
-}
-```
-
-DACConfig placeholder for future expansion.
-
-
-
-
-
 ## type DeviceDescriptor
 
 ```go
@@ -974,12 +761,11 @@ Bytes returns EndpointDescriptor data.
 
 ```go
 type I2C struct {
-	Bus	*sam.SERCOM_I2CM_Type
-	SERCOM	uint8
+	Bus nrf.TWI_Type
 }
 ```
 
-I2C on the SAMD51.
+I2C on the NRF.
 
 
 
@@ -1006,33 +792,15 @@ is a shortcut to easily read such registers. Also, it only works for devices
 with 7-bit addresses, which is the vast majority.
 
 
-### func (*I2C) SetBaudRate
-
-```go
-func (i2c *I2C) SetBaudRate(br uint32)
-```
-
-SetBaudRate sets the communication speed for the I2C.
-
-
 ### func (*I2C) Tx
 
 ```go
-func (i2c *I2C) Tx(addr uint16, w, r []byte) error
+func (i2c *I2C) Tx(addr uint16, w, r []byte) (err error)
 ```
 
 Tx does a single I2C transaction at the specified address.
 It clocks out the given address, writes the bytes in w, reads back len(r)
 bytes and stores them in r, and generates a stop condition on the bus.
-
-
-### func (*I2C) WriteByte
-
-```go
-func (i2c *I2C) WriteByte(data byte) error
-```
-
-WriteByte writes a single byte to the I2C bus.
 
 
 ### func (*I2C) WriteRegister
@@ -1062,73 +830,6 @@ type I2CConfig struct {
 ```
 
 I2CConfig is used to store config info for I2C.
-
-
-
-
-
-## type I2SClockSource
-
-```go
-type I2SClockSource uint8
-```
-
-
-
-
-
-
-## type I2SConfig
-
-```go
-type I2SConfig struct {
-	SCK		Pin
-	WS		Pin
-	SD		Pin
-	Mode		I2SMode
-	Standard	I2SStandard
-	ClockSource	I2SClockSource
-	DataFormat	I2SDataFormat
-	AudioFrequency	uint32
-	MainClockOutput	bool
-	Stereo		bool
-}
-```
-
-All fields are optional and may not be required or used on a particular platform.
-
-
-
-
-
-## type I2SDataFormat
-
-```go
-type I2SDataFormat uint8
-```
-
-
-
-
-
-
-## type I2SMode
-
-```go
-type I2SMode uint8
-```
-
-
-
-
-
-
-## type I2SStandard
-
-```go
-type I2SStandard uint8
-```
-
 
 
 
@@ -1281,6 +982,110 @@ WriteByte is a no-op: the null serial doesn't write bytes.
 
 
 
+## type PWM
+
+```go
+type PWM struct {
+	PWM	*nrf.PWM_Type
+
+	channelValues	[4]volatile.Register16
+}
+```
+
+PWM is one PWM peripheral, which consists of a counter and multiple output
+channels (that can be connected to actual pins). You can set the frequency
+using SetPeriod, but only for all the channels in this PWM peripheral at
+once.
+
+
+
+### func (*PWM) Channel
+
+```go
+func (pwm *PWM) Channel(pin Pin) (uint8, error)
+```
+
+Channel returns a PWM channel for the given pin.
+
+
+### func (*PWM) Configure
+
+```go
+func (pwm *PWM) Configure(config PWMConfig) error
+```
+
+Configure enables and configures this PWM.
+On the nRF52 series, the maximum period is around 0.26s.
+
+
+### func (*PWM) Set
+
+```go
+func (pwm *PWM) Set(channel uint8, value uint32)
+```
+
+Set updates the channel value. This is used to control the channel duty
+cycle. For example, to set it to a 25% duty cycle, use:
+
+    ch.Set(ch.Top() / 4)
+
+ch.Set(0) will set the output to low and ch.Set(ch.Top()) will set the output
+to high, assuming the output isn't inverted.
+
+
+### func (*PWM) SetInverting
+
+```go
+func (pwm *PWM) SetInverting(channel uint8, inverting bool)
+```
+
+SetInverting sets whether to invert the output of this channel.
+Without inverting, a 25% duty cycle would mean the output is high for 25% of
+the time and low for the rest. Inverting flips the output as if a NOT gate
+was placed at the output, meaning that the output would be 25% low and 75%
+high with a duty cycle of 25%.
+
+
+### func (*PWM) SetPeriod
+
+```go
+func (pwm *PWM) SetPeriod(period uint64) error
+```
+
+SetPeriod updates the period of this PWM peripheral.
+To set a particular frequency, use the following formula:
+
+    period = 1e9 / frequency
+
+If you use a period of 0, a period that works well for LEDs will be picked.
+
+SetPeriod will not change the prescaler, but also won't change the current
+value in any of the channels. This means that you may need to update the
+value for the particular channel.
+
+Note that you cannot pick any arbitrary period after the PWM peripheral has
+been configured. If you want to switch between frequencies, pick the lowest
+frequency (longest period) once when calling Configure and adjust the
+frequency here as needed.
+
+
+### func (*PWM) Top
+
+```go
+func (pwm *PWM) Top() uint32
+```
+
+Top returns the current counter top, for use in duty cycle calculation. It
+will only change with a call to Configure or SetPeriod, otherwise it is
+constant.
+
+The value returned here is hardware dependent. In general, it's best to treat
+it as an opaque value that can be divided by some number and passed to
+pwm.Set (see pwm.Set for more information).
+
+
+
+
 ## type PWMConfig
 
 ```go
@@ -1331,8 +1136,8 @@ Configure this pin with the given configuration.
 func (p Pin) Get() bool
 ```
 
-Get returns the current value of a GPIO pin when configured as an input or as
-an output.
+Get returns the current value of a GPIO pin when the pin is configured as an
+input or as an output.
 
 
 ### func (Pin) High
@@ -1400,16 +1205,6 @@ or down if no external pull is provided.
 This call will replace a previously set callback on this pin. You can pass a
 nil func to unset the pin change interrupt. If you do so, the change
 parameter is ignored and can be set to any value (such as 0).
-
-
-### func (Pin) Toggle
-
-```go
-func (p Pin) Toggle()
-```
-
-Toggle switches an output pin from low to high or from high to low.
-Warning: only use this on an output pin!
 
 
 
@@ -1511,19 +1306,19 @@ Used returns how many bytes in buffer have been used.
 
 ```go
 type SPI struct {
-	Bus	*sam.SERCOM_SPIM_Type
-	SERCOM	uint8
+	Bus	*nrf.SPIM_Type
+	buf	*[1]byte	// 1-byte buffer for the Transfer method
 }
 ```
 
-SPI
+SPI on the NRF.
 
 
 
 ### func (SPI) Configure
 
 ```go
-func (spi SPI) Configure(config SPIConfig) error
+func (spi SPI) Configure(config SPIConfig)
 ```
 
 Configure is intended to setup the SPI interface.
@@ -1544,23 +1339,11 @@ Transfer writes/reads a single byte using the SPI interface.
 func (spi SPI) Tx(w, r []byte) error
 ```
 
-Tx handles read/write operation for SPI interface. Since SPI is a syncronous write/read
-interface, there must always be the same number of bytes written as bytes read.
-The Tx method knows about this, and offers a few different ways of calling it.
-
-This form sends the bytes in tx buffer, putting the resulting bytes read into the rx buffer.
-Note that the tx and rx buffers must be the same size:
-
-		spi.Tx(tx, rx)
-
-This form sends the tx buffer, ignoring the result. Useful for sending "commands" that return zeros
-until all the bytes in the command packet have been received:
-
-		spi.Tx(tx, nil)
-
-This form sends zeros, putting the result into the rx buffer. Good for reading a "result packet":
-
-		spi.Tx(nil, rx)
+Tx handles read/write operation for SPI interface. Since SPI is a syncronous
+write/read interface, there must always be the same number of bytes written
+as bytes read. Therefore, if the number of bytes don't match it will be
+padded until they fit: if len(w) > len(r) the extra bytes received will be
+dropped and if len(w) < len(r) extra 0 bytes will be sent.
 
 
 
@@ -1584,130 +1367,15 @@ SPIConfig is used to store config info for SPI.
 
 
 
-## type TCC
-
-```go
-type TCC sam.TCC_Type
-```
-
-TCC is one timer peripheral, which consists of a counter and multiple output
-channels (that can be connected to actual pins). You can set the frequency
-using SetPeriod, but only for all the channels in this timer peripheral at
-once.
-
-
-
-### func (*TCC) Channel
-
-```go
-func (tcc *TCC) Channel(pin Pin) (uint8, error)
-```
-
-Channel returns a PWM channel for the given pin. Note that one channel may be
-shared between multiple pins, and so will have the same duty cycle. If this
-is not desirable, look for a different TCC or consider using a different pin.
-
-
-### func (*TCC) Configure
-
-```go
-func (tcc *TCC) Configure(config PWMConfig) error
-```
-
-Configure enables and configures this TCC.
-
-
-### func (*TCC) Counter
-
-```go
-func (tcc *TCC) Counter() uint32
-```
-
-Counter returns the current counter value of the timer in this TCC
-peripheral. It may be useful for debugging.
-
-
-### func (*TCC) Set
-
-```go
-func (tcc *TCC) Set(channel uint8, value uint32)
-```
-
-Set updates the channel value. This is used to control the channel duty
-cycle, in other words the fraction of time the channel output is high (or low
-when inverted). For example, to set it to a 25% duty cycle, use:
-
-    tcc.Set(channel, tcc.Top() / 4)
-
-tcc.Set(channel, 0) will set the output to low and tcc.Set(channel,
-tcc.Top()) will set the output to high, assuming the output isn't inverted.
-
-
-### func (*TCC) SetInverting
-
-```go
-func (tcc *TCC) SetInverting(channel uint8, inverting bool)
-```
-
-SetInverting sets whether to invert the output of this channel.
-Without inverting, a 25% duty cycle would mean the output is high for 25% of
-the time and low for the rest. Inverting flips the output as if a NOT gate
-was placed at the output, meaning that the output would be 25% low and 75%
-high with a duty cycle of 25%.
-
-
-### func (*TCC) SetPeriod
-
-```go
-func (tcc *TCC) SetPeriod(period uint64) error
-```
-
-SetPeriod updates the period of this TCC peripheral.
-To set a particular frequency, use the following formula:
-
-    period = 1e9 / frequency
-
-If you use a period of 0, a period that works well for LEDs will be picked.
-
-SetPeriod will not change the prescaler, but also won't change the current
-value in any of the channels. This means that you may need to update the
-value for the particular channel.
-
-Note that you cannot pick any arbitrary period after the TCC peripheral has
-been configured. If you want to switch between frequencies, pick the lowest
-frequency (longest period) once when calling Configure and adjust the
-frequency here as needed.
-
-
-### func (*TCC) Top
-
-```go
-func (tcc *TCC) Top() uint32
-```
-
-Top returns the current counter top, for use in duty cycle calculation. It
-will only change with a call to Configure or SetPeriod, otherwise it is
-constant.
-
-The value returned here is hardware dependent. In general, it's best to treat
-it as an opaque value that can be divided by some number and passed to
-tcc.Set (see tcc.Set for more information).
-
-
-
-
 ## type UART
 
 ```go
 type UART struct {
-	Buffer		*RingBuffer
-	Bus		*sam.SERCOM_USART_INT_Type
-	SERCOM		uint8
-	Interrupt	interrupt.Interrupt	// RXC interrupt
+	Buffer *RingBuffer
 }
 ```
 
-UART on the SAMD51.
+UART on the NRF.
 
 
 
@@ -1723,7 +1391,7 @@ Buffered returns the number of bytes currently stored in the RX buffer.
 ### func (*UART) Configure
 
 ```go
-func (uart *UART) Configure(config UARTConfig) error
+func (uart *UART) Configure(config UARTConfig)
 ```
 
 Configure the UART.
@@ -1822,15 +1490,16 @@ UARTParity is the parity setting to be used for UART communication.
 ```go
 type USBCDC struct {
 	Buffer			*RingBuffer
+	interrupt		interrupt.Interrupt
+	initcomplete		bool
 	TxIdx			volatile.Register8
 	waitTxc			bool
 	waitTxcRetryCount	uint8
 	sent			bool
-	configured		bool
 }
 ```
 
-USBCDC is the USB CDC aka serial over USB interface on the SAMD21.
+USBCDC is the USB CDC aka serial over USB interface on the nRF52840
 
 
 
@@ -1850,15 +1519,6 @@ func (usbcdc *USBCDC) Configure(config UARTConfig)
 ```
 
 Configure the USB CDC interface. The config is here for compatibility with the UART interface.
-
-
-### func (*USBCDC) Configured
-
-```go
-func (usbcdc *USBCDC) Configured() bool
-```
-
-Configured returns whether usbcdc is configured or not.
 
 
 ### func (*USBCDC) DTR

@@ -190,6 +190,19 @@ UART pins
 
 ```go
 const (
+	adc0_CH	ADCChannel	= iota
+	adc1_CH
+	adc2_CH
+	adc3_CH		// Note: GPIO29 not broken out on pico board
+	ADC_TEMP_SENSOR	// Internal temperature sensor channel
+)
+```
+
+ADC channels. Only ADC_TEMP_SENSOR is public. The other channels are accessed via Machine.ADC objects
+
+
+```go
+const (
 	KHz	= 1000
 	MHz	= 1000000
 )
@@ -440,6 +453,7 @@ CurrentCore returns the core number the call was made from.
 func InitADC()
 ```
 
+InitADC resets the ADC peripheral.
 
 
 ### func NewRingBuffer
@@ -487,10 +501,10 @@ type ADC struct {
 ### func (ADC) Configure
 
 ```go
-func (a ADC) Configure(config ADCConfig)
+func (a ADC) Configure(config ADCConfig) error
 ```
 
-Configure configures a ADC pin to be able to be used to read data.
+Configure sets the ADC pin to analog input mode.
 
 
 ### func (ADC) Get
@@ -499,6 +513,57 @@ Configure configures a ADC pin to be able to be used to read data.
 func (a ADC) Get() uint16
 ```
 
+Get returns a one-shot ADC sample reading.
+
+
+### func (ADC) GetADCChannel
+
+```go
+func (a ADC) GetADCChannel() (c ADCChannel, err error)
+```
+
+GetADCChannel returns the channel associated with the ADC pin.
+
+
+
+
+## type ADCChannel
+
+```go
+type ADCChannel uint8
+```
+
+ADCChannel is the ADC peripheral mux channel. 0-4.
+
+
+
+### func (ADCChannel) Configure
+
+```go
+func (c ADCChannel) Configure(config ADCConfig) error
+```
+
+Configure sets the channel's associated pin to analog input mode or powers on the temperature sensor for ADC_TEMP_SENSOR.
+The powered on temperature sensor increases ADC_AVDD current by approximately 40 μA.
+
+
+### func (ADCChannel) Pin
+
+```go
+func (c ADCChannel) Pin() (p Pin, err error)
+```
+
+The Pin method returns the GPIO Pin associated with the ADC mux channel, if it has one.
+
+
+### func (ADCChannel) ReadTemperature
+
+```go
+func (c ADCChannel) ReadTemperature() (millicelsius uint32)
+```
+
+ReadTemperature does a one-shot sample of the internal temperature sensor and returns a milli-celsius reading.
+Only works on the ADC_TEMP_SENSOR channel. aka AINSEL=4. Other channels will return 0
 
 
 
@@ -757,6 +822,22 @@ func (p Pin) Low()
 Low sets this GPIO pin to low, assuming it has been configured as an output
 pin. It is hardware dependent (and often undefined) what happens if you set a
 pin to low that is not configured as an output pin.
+
+
+### func (Pin) PortMaskClear
+
+```go
+func (p Pin) PortMaskClear() (*volatile.Register32, uint32)
+```
+
+
+
+### func (Pin) PortMaskSet
+
+```go
+func (p Pin) PortMaskSet() (*volatile.Register32, uint32)
+```
+
 
 
 ### func (Pin) Set
