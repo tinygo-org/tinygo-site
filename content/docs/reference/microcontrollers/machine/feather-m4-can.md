@@ -382,7 +382,8 @@ Hardware pins
 ```go
 const (
 	// SERCOM_FREQ_REF is always reference frequency on SAMD51 regardless of CPU speed.
-	SERCOM_FREQ_REF	= 48000000
+	SERCOM_FREQ_REF		= 48000000
+	SERCOM_FREQ_REF_GCLK0	= 120000000
 
 	// Default rise time in nanoseconds, based on 4.7K ohm pull up resistors
 	riseTimeNanoseconds	= 125
@@ -2132,6 +2133,7 @@ type USBCDC struct {
 	waitTxc			bool
 	waitTxcRetryCount	uint8
 	sent			bool
+	configured		bool
 }
 ```
 
@@ -2155,6 +2157,15 @@ func (usbcdc *USBCDC) Configure(config UARTConfig)
 ```
 
 Configure the USB CDC interface. The config is here for compatibility with the UART interface.
+
+
+### func (*USBCDC) Configured
+
+```go
+func (usbcdc *USBCDC) Configured() bool
+```
+
+Configured returns whether usbcdc is configured or not.
 
 
 ### func (*USBCDC) DTR

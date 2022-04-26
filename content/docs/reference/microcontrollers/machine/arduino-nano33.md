@@ -1785,6 +1785,7 @@ type USBCDC struct {
 	waitTxc			bool
 	waitTxcRetryCount	uint8
 	sent			bool
+	configured		bool
 }
 ```
 
@@ -1808,6 +1809,15 @@ func (usbcdc *USBCDC) Configure(config UARTConfig)
 ```
 
 Configure the USB CDC interface. The config is here for compatibility with the UART interface.
+
+
+### func (*USBCDC) Configured
+
+```go
+func (usbcdc *USBCDC) Configured() bool
+```
+
+Configured returns whether usbcdc is configured or not.
 
 
 ### func (*USBCDC) DTR

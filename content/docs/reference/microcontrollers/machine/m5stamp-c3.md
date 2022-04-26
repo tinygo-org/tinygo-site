@@ -46,6 +46,9 @@ const (
 	SPIQ		= IO17
 	U0RXD		= IO20
 	U0TXD		= IO21
+
+	UART_TX_PIN	= U0TXD
+	UART_RX_PIN	= U0RXD
 )
 ```
 
@@ -91,6 +94,31 @@ const (
 
 ```go
 const (
+	PinNoInterrupt	PinChange	= iota
+	PinRising
+	PinFalling
+	PinToggle
+	PinLowLevel
+	PinHighLevel
+)
+```
+
+Pin change interrupt constants for SetInterrupt.
+
+
+```go
+const (
+	UARTStopBits_Default	UARTStopBits	= iota
+	UARTStopBits_1
+	UARTStopBits_1_5
+	UARTStopBits_2
+)
+```
+
+
+
+```go
+const (
 	// ParityNone means to not use any parity checking. This is
 	// the most common setting.
 	ParityNone	UARTParity	= 0
@@ -126,17 +154,19 @@ var (
 
 
 ```go
-var DefaultUART = UART0
-```
-
-
-
-```go
 var (
+	DefaultUART	= UART0
+
 	UART0	= &_UART0
 	_UART0	= UART{Bus: esp.UART0, Buffer: NewRingBuffer()}
 	UART1	= &_UART1
 	_UART1	= UART{Bus: esp.UART1, Buffer: NewRingBuffer()}
+
+	onceUart		= sync.Once{}
+	errSamePins		= errors.New("UART: invalid pin combination")
+	errWrongUART		= errors.New("UART: unsupported UARTn")
+	errWrongBitSize		= errors.New("UART: invalid data size")
+	errWrongStopBitSize	= errors.New("UART: invalid bit size")
 )
 ```
 
@@ -316,6 +346,16 @@ func (p Pin) Configure(config PinConfig)
 Configure this pin with the given configuration.
 
 
+### func (Pin) Get
+
+```go
+func (p Pin) Get() bool
+```
+
+Get returns the current value of a GPIO pin when configured as an input or as
+an output.
+
+
 ### func (Pin) High
 
 ```go
@@ -370,6 +410,33 @@ func (p Pin) Set(value bool)
 
 Set the pin to high or low.
 Warning: only use this on an output pin!
+
+
+### func (Pin) SetInterrupt
+
+```go
+func (p Pin) SetInterrupt(change PinChange, callback func(Pin)) (err error)
+```
+
+SetInterrupt sets an interrupt to be executed when a particular pin changes
+state. The pin should already be configured as an input, including a pull up
+or down if no external pull is provided.
+
+You can pass a nil func to unset the pin change interrupt. If you do so,
+the change parameter is ignored and can be set to any value (such as 0).
+If the pin is already configured with a callback, you must first unset
+this pins interrupt before you can set a new callback.
+
+
+
+
+## type PinChange
+
+```go
+type PinChange uint8
+```
+
+
 
 
 
@@ -460,8 +527,11 @@ Used returns how many bytes in buffer have been used.
 
 ```go
 type UART struct {
-	Bus	*esp.UART_Type
-	Buffer	*RingBuffer
+	Bus			*esp.UART_Type
+	Buffer			*RingBuffer
+	ParityErrorDetected	bool	// set when parity error detected
+	DataErrorDetected	bool	// set when data corruption detected
+	DataOverflowDetected	bool	// set when data overflow detected in UART FIFO buffer or RingBuffer
 }
 ```
 
@@ -475,6 +545,14 @@ func (uart *UART) Buffered() int
 ```
 
 Buffered returns the number of bytes currently stored in the RX buffer.
+
+
+### func (*UART) Configure
+
+```go
+func (uart *UART) Configure(config UARTConfig) error
+```
+
 
 
 ### func (*UART) Read
@@ -504,6 +582,22 @@ func (uart *UART) Receive(data byte)
 
 Receive handles adding data to the UART's data buffer.
 Usually called by the IRQ handler for a machine.
+
+
+### func (*UART) SetBaudRate
+
+```go
+func (uart *UART) SetBaudRate(baudRate uint32)
+```
+
+
+
+### func (*UART) SetFormat
+
+```go
+func (uart *UART) SetFormat(dataBits, stopBits int, parity UARTParity) error
+```
+
 
 
 ### func (*UART) Write
@@ -550,6 +644,17 @@ type UARTParity int
 ```
 
 UARTParity is the parity setting to be used for UART communication.
+
+
+
+
+
+## type UARTStopBits
+
+```go
+type UARTStopBits int
+```
+
 
 
 

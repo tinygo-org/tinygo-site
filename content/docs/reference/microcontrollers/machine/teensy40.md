@@ -158,6 +158,8 @@ const (
 )
 ```
 
+#==================================================================#
+|                               SPI                                |
 #===========#==========#===============#===========================#
 | Interface | Hardware |  Clock(Freq)  | SDI/SDO/SCK/CS  :   Alt   |
 #===========#==========#===============#=================-=========#
@@ -395,6 +397,18 @@ const (
 
 ```go
 const (
+	Mode0	= 0
+	Mode1	= 1
+	Mode2	= 2
+	Mode3	= 3
+)
+```
+
+SPI phase and polarity configs CPOL and CPHA
+
+
+```go
+const (
 	// ParityNone means to not use any parity checking. This is
 	// the most common setting.
 	ParityNone	UARTParity	= 0
@@ -524,6 +538,74 @@ var (
 
 ```go
 var (
+	SPI0	= SPI1	// SPI0 is an alias of SPI1 (LPSPI4)
+	SPI1	= &_SPI1
+	_SPI1	= SPI{
+		Bus:	nxp.LPSPI4,
+		muxSDI: muxSelect{
+			mux:	nxp.IOMUXC_LPSPI4_SDI_SELECT_INPUT_DAISY_GPIO_B0_01_ALT3,
+			sel:	&nxp.IOMUXC.LPSPI4_SDI_SELECT_INPUT,
+		},
+		muxSDO: muxSelect{
+			mux:	nxp.IOMUXC_LPSPI4_SDO_SELECT_INPUT_DAISY_GPIO_B0_02_ALT3,
+			sel:	&nxp.IOMUXC.LPSPI4_SDO_SELECT_INPUT,
+		},
+		muxSCK: muxSelect{
+			mux:	nxp.IOMUXC_LPSPI4_SCK_SELECT_INPUT_DAISY_GPIO_B0_03_ALT3,
+			sel:	&nxp.IOMUXC.LPSPI4_SCK_SELECT_INPUT,
+		},
+		muxCS: muxSelect{
+			mux:	nxp.IOMUXC_LPSPI4_PCS0_SELECT_INPUT_DAISY_GPIO_B0_00_ALT3,
+			sel:	&nxp.IOMUXC.LPSPI4_PCS0_SELECT_INPUT,
+		},
+	}
+	SPI2	= &_SPI2
+	_SPI2	= SPI{
+		Bus:	nxp.LPSPI3,
+		muxSDI: muxSelect{
+			mux:	nxp.IOMUXC_LPSPI3_SDI_SELECT_INPUT_DAISY_GPIO_AD_B0_02_ALT7,
+			sel:	&nxp.IOMUXC.LPSPI3_SDI_SELECT_INPUT,
+		},
+		muxSDO: muxSelect{
+			mux:	nxp.IOMUXC_LPSPI3_SDO_SELECT_INPUT_DAISY_GPIO_AD_B1_14_ALT2,
+			sel:	&nxp.IOMUXC.LPSPI3_SDO_SELECT_INPUT,
+		},
+		muxSCK: muxSelect{
+			mux:	nxp.IOMUXC_LPSPI3_SCK_SELECT_INPUT_DAISY_GPIO_AD_B1_15,
+			sel:	&nxp.IOMUXC.LPSPI3_SCK_SELECT_INPUT,
+		},
+		muxCS: muxSelect{
+			mux:	nxp.IOMUXC_LPSPI3_PCS0_SELECT_INPUT_DAISY_GPIO_AD_B0_03_ALT7,
+			sel:	&nxp.IOMUXC.LPSPI3_PCS0_SELECT_INPUT,
+		},
+	}
+	SPI3	= &_SPI3
+	_SPI3	= SPI{
+		Bus:	nxp.LPSPI1,
+		muxSDI: muxSelect{
+			mux:	nxp.IOMUXC_LPSPI1_SDI_SELECT_INPUT_DAISY_GPIO_SD_B0_03_ALT4,
+			sel:	&nxp.IOMUXC.LPSPI1_SDI_SELECT_INPUT,
+		},
+		muxSDO: muxSelect{
+			mux:	nxp.IOMUXC_LPSPI1_SDO_SELECT_INPUT_DAISY_GPIO_SD_B0_02_ALT4,
+			sel:	&nxp.IOMUXC.LPSPI1_SDO_SELECT_INPUT,
+		},
+		muxSCK: muxSelect{
+			mux:	nxp.IOMUXC_LPSPI1_SCK_SELECT_INPUT_DAISY_GPIO_SD_B0_00_ALT4,
+			sel:	&nxp.IOMUXC.LPSPI1_SCK_SELECT_INPUT,
+		},
+		muxCS: muxSelect{
+			mux:	nxp.IOMUXC_LPSPI1_PCS0_SELECT_INPUT_DAISY_GPIO_SD_B0_01_ALT4,
+			sel:	&nxp.IOMUXC.LPSPI1_PCS0_SELECT_INPUT,
+		},
+	}
+)
+```
+
+
+
+```go
+var (
 	ErrTimeoutRNG		= errors.New("machine: RNG Timeout")
 	ErrInvalidInputPin	= errors.New("machine: invalid input pin")
 	ErrInvalidOutputPin	= errors.New("machine: invalid output pin")
@@ -550,6 +632,15 @@ var Serial = DefaultUART
 Serial is implemented via the default (usually the first) UART on the chip.
 
 
+```go
+var (
+	ErrTxInvalidSliceSize		= errors.New("SPI write and read slices must be same size")
+	errSPIInvalidMachineConfig	= errors.New("SPI port was not configured properly by the machine")
+)
+```
+
+
+
 
 
 
@@ -559,6 +650,15 @@ Serial is implemented via the default (usually the first) UART on the chip.
 func CPUFrequency() uint32
 ```
 
+
+
+### func InitADC
+
+```go
+func InitADC()
+```
+
+InitADC is not used by this machine. Use `(ADC).Configure()`.
 
 
 ### func NewRingBuffer
@@ -581,6 +681,27 @@ type ADC struct {
 ```
 
 
+
+
+### func (ADC) Configure
+
+```go
+func (a ADC) Configure(config ADCConfig)
+```
+
+Configure initializes the receiver's ADC peripheral and pin for analog input.
+
+
+### func (ADC) Get
+
+```go
+func (a ADC) Get() uint16
+```
+
+Get performs a single ADC conversion, returning a 16-bit unsigned integer.
+The value returned will be scaled (uniformly distributed) if necessary so
+that it is always in the range [0..65535], regardless of the ADC's configured
+bit size (resolution).
 
 
 
@@ -863,6 +984,97 @@ func (rb *RingBuffer) Used() uint8
 ```
 
 Used returns how many bytes in buffer have been used.
+
+
+
+
+## type SPI
+
+```go
+type SPI struct {
+	Bus	*nxp.LPSPI_Type
+
+	// these hold the input selector ("daisy chain") values that select which pins
+	// are connected to the LPSPI device, and should be defined where the SPI
+	// instance is declared (e.g., in the board definition). see the godoc
+	// comments on type muxSelect for more details.
+	muxSDI, muxSDO, muxSCK, muxCS	muxSelect
+
+	// these are copied from SPIConfig, during (*SPI).Configure(SPIConfig), and
+	// should be considered read-only for internal reference (i.e., modifying them
+	// will have no desirable effect).
+	sdi, sdo, sck, cs	Pin
+	frequency		uint32
+
+	// auxiliary state data used internally
+	configured	bool
+}
+```
+
+
+
+
+### func (*SPI) Configure
+
+```go
+func (spi *SPI) Configure(config SPIConfig)
+```
+
+Configure is intended to setup an SPI interface for transmit/receive.
+
+
+### func (*SPI) Transfer
+
+```go
+func (spi *SPI) Transfer(w byte) (byte, error)
+```
+
+Transfer writes/reads a single byte using the SPI interface.
+
+
+### func (SPI) Tx
+
+```go
+func (spi SPI) Tx(w, r []byte) error
+```
+
+Tx handles read/write operation for SPI interface. Since SPI is a syncronous write/read
+interface, there must always be the same number of bytes written as bytes read.
+The Tx method knows about this, and offers a few different ways of calling it.
+
+This form sends the bytes in tx buffer, putting the resulting bytes read into the rx buffer.
+Note that the tx and rx buffers must be the same size:
+
+		spi.Tx(tx, rx)
+
+This form sends the tx buffer, ignoring the result. Useful for sending "commands" that return zeros
+until all the bytes in the command packet have been received:
+
+		spi.Tx(tx, nil)
+
+This form sends zeros, putting the result into the rx buffer. Good for reading a "result packet":
+
+		spi.Tx(nil, rx)
+
+
+
+
+## type SPIConfig
+
+```go
+type SPIConfig struct {
+	Frequency	uint32
+	SDI		Pin
+	SDO		Pin
+	SCK		Pin
+	CS		Pin
+	LSBFirst	bool
+	Mode		uint8
+}
+```
+
+SPIConfig is used to store config info for SPI.
+
 
 
 
