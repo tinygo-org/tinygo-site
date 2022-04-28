@@ -28,15 +28,15 @@ You must have Go already installed on your machine in order to install TinyGo. W
 If you are using Ubuntu or another Debian based Linux on an Intel processor, download the DEB file from Github and install it using the following commands:
 
 ```shell
-wget https://github.com/tinygo-org/tinygo/releases/download/v0.22.0/tinygo_0.22.0_amd64.deb
-sudo dpkg -i tinygo_0.22.0_amd64.deb
+wget https://github.com/tinygo-org/tinygo/releases/download/v0.23.0/tinygo_0.23.0_amd64.deb
+sudo dpkg -i tinygo_0.23.0_amd64.deb
 ```
 
 If you are on a Raspberry Pi or other ARM-based Linux computer, you should use this command instead:
 
 ```shell
-wget https://github.com/tinygo-org/tinygo/releases/download/v0.22.0/tinygo_0.22.0_arm.deb
-sudo dpkg -i tinygo_0.22.0_arm.deb
+wget https://github.com/tinygo-org/tinygo/releases/download/v0.23.0/tinygo_0.23.0_arm.deb
+sudo dpkg -i tinygo_0.23.0_arm.deb
 ```
 
 You will need to ensure that the path to the `tinygo` executable file is in your `PATH` variable.
@@ -49,7 +49,7 @@ You can test that the installation is working properly by running this code whic
 
 ```shell
 $ tinygo version
-tinygo version 0.22.0 linux/amd64 (using go version go1.17 and LLVM version 13.0.0)
+tinygo version 0.23.0 linux/amd64 (using go version go1.18.1 and LLVM version 14.0.0)
 ```
 
 If you are only interested in compiling TinyGo code for WebAssembly then you are now done with the installation.

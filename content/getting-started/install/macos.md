@@ -18,13 +18,13 @@ brew tap tinygo-org/tools
 brew install tinygo
 ```
 
-Alternatively, you can download and extract the files manually by downloading [this](https://github.com/tinygo-org/tinygo/releases/download/v0.22.0/tinygo0.22.0.darwin-amd64.tar.gz) file.
+Alternatively, you can download and extract the files manually by downloading [this](https://github.com/tinygo-org/tinygo/releases/download/v0.23.0/tinygo0.23.0.darwin-amd64.tar.gz) file.
 
 You can test that the installation is working properly by running this code which should display the version number:
 
 ```shell
 $ tinygo version
-tinygo version 0.22.0 darwin/amd64 (using go version go1.17 and LLVM version 13.0.0)
+tinygo version 0.23.0 darwin/amd64 (using go version go1.18.1 and LLVM version 14.0.0)
 ```
 
 If you are only interested in compiling TinyGo code for WebAssembly then you are done with the installation.
