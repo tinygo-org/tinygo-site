@@ -44,6 +44,7 @@ crypto/x509 |  <span style="color: green">✔</span> yes  |
 crypto/x509/pkix |  <span style="color: green">✔</span> yes  | 
 database/sql |  <span style="color: green">✔</span> yes  | 
 database/sql/driver |  <span style="color: green">✔</span> yes  | 
+debug/buildinfo |  [<span style="color: red">✗</span> no](#debugbuildinfo)  | 
 debug/dwarf |  <span style="color: green">✔</span> yes  | 
 debug/elf |  <span style="color: green">✔</span> yes  | 
 debug/gosym |  <span style="color: green">✔</span> yes  | 
@@ -68,12 +69,12 @@ expvar |  <span style="color: green">✔</span> yes  |
 flag |  <span style="color: green">✔</span> yes  | 
 fmt |  <span style="color: green">✔</span> yes  | 
 go/ast |  <span style="color: green">✔</span> yes  | 
-go/build |  [<span style="color: red">✗</span> no](#gobuild)  | 
+go/build |  <span style="color: green">✔</span> yes  | 
 go/build/constraint |  <span style="color: green">✔</span> yes  | 
 go/constant |  <span style="color: green">✔</span> yes  | 
-go/doc |  [<span style="color: red">✗</span> no](#godoc)  | 
+go/doc |  <span style="color: green">✔</span> yes  | 
 go/format |  <span style="color: green">✔</span> yes  | 
-go/importer |  [<span style="color: red">✗</span> no](#goimporter)  | 
+go/importer |  <span style="color: green">✔</span> yes  | 
 go/parser |  <span style="color: green">✔</span> yes  | 
 go/printer |  <span style="color: green">✔</span> yes  | 
 go/scanner |  <span style="color: green">✔</span> yes  | 
@@ -86,7 +87,7 @@ hash/crc64 |  <span style="color: green">✔</span> yes  |
 hash/fnv |  <span style="color: green">✔</span> yes  | 
 hash/maphash |  <span style="color: green">✔</span> yes  | 
 html |  <span style="color: green">✔</span> yes  | 
-html/template |  [<span style="color: red">✗</span> no](#htmltemplate)  | 
+html/template |  <span style="color: green">✔</span> yes  | 
 image |  <span style="color: green">✔</span> yes  | 
 image/color |  <span style="color: green">✔</span> yes  | 
 image/color/palette |  <span style="color: green">✔</span> yes  | 
@@ -110,7 +111,7 @@ mime/multipart |  <span style="color: green">✔</span> yes  |
 mime/quotedprintable |  <span style="color: green">✔</span> yes  | 
 net |  <span style="color: green">✔</span> yes  | 
 net/http |  <span style="color: green">✔</span> yes  | 
-net/http/cgi |  [<span style="color: red">✗</span> no](#nethttpcgi)  | 
+net/http/cgi |  <span style="color: green">✔</span> yes  | 
 net/http/cookiejar |  <span style="color: green">✔</span> yes  | 
 net/http/fcgi |  [<span style="color: red">✗</span> no](#nethttpfcgi)  | 
 net/http/httptest |  <span style="color: green">✔</span> yes  | 
@@ -118,14 +119,15 @@ net/http/httptrace |  <span style="color: green">✔</span> yes  |
 net/http/httputil |  <span style="color: green">✔</span> yes  | 
 net/http/pprof |  [<span style="color: red">✗</span> no](#nethttppprof)  | 
 net/mail |  <span style="color: green">✔</span> yes  | 
+net/netip |  <span style="color: green">✔</span> yes  | 
 net/rpc |  [<span style="color: red">✗</span> no](#netrpc)  | 
 net/rpc/jsonrpc |  [<span style="color: red">✗</span> no](#netrpcjsonrpc)  | 
 net/smtp |  <span style="color: green">✔</span> yes  | 
 net/textproto |  <span style="color: green">✔</span> yes  | 
 net/url |  <span style="color: green">✔</span> yes  | 
 os |  <span style="color: green">✔</span> yes  | 
-os/exec |  [<span style="color: red">✗</span> no](#osexec)  | 
-os/signal |  [<span style="color: red">✗</span> no](#ossignal)  | 
+os/exec |  <span style="color: green">✔</span> yes  | 
+os/signal |  <span style="color: green">✔</span> yes  | 
 os/user |  [<span style="color: red">✗</span> no](#osuser)  | 
 path |  <span style="color: green">✔</span> yes  | 
 path/filepath |  <span style="color: green">✔</span> yes  | 
@@ -143,10 +145,10 @@ syscall/js |  <span style="color: green">✔</span> yes  |
 testing |  <span style="color: green">✔</span> yes  | 
 testing/fstest |  <span style="color: green">✔</span> yes  | 
 testing/iotest |  <span style="color: green">✔</span> yes  | 
-testing/quick |  [<span style="color: red">✗</span> no](#testingquick)  | 
+testing/quick |  <span style="color: green">✔</span> yes  | 
 text/scanner |  <span style="color: green">✔</span> yes  | 
 text/tabwriter |  <span style="color: green">✔</span> yes  | 
-text/template |  [<span style="color: red">✗</span> no](#texttemplate)  | 
+text/template |  <span style="color: green">✔</span> yes  | 
 text/template/parse |  <span style="color: green">✔</span> yes  | 
 time |  <span style="color: green">✔</span> yes  | 
 time/tzdata |  <span style="color: green">✔</span> yes  | 
@@ -227,6 +229,19 @@ unsafe |  <span style="color: green">✔</span> yes  |
 
 
 
+## debug/buildinfo
+
+
+The compiler gave the following error when this package was imported:
+
+<pre># debug/buildinfo
+/home/ron/.gvm/gos/go1.18.1/src/debug/buildinfo/buildinfo.go:78:19: ParseBuildInfo not declared by package debug
+</pre>
+
+
+
+
+
 
 
 
@@ -261,11 +276,7 @@ unsafe |  <span style="color: green">✔</span> yes  |
 The compiler gave the following error when this package was imported:
 
 <pre># encoding/gob
-/home/ron/.gvm/gos/go1.17/src/encoding/gob/decode.go:562:21: MakeMapWithSize not declared by package reflect
-/home/ron/.gvm/gos/go1.17/src/encoding/gob/decode.go:1118:30: srt.FieldByName undefined (type reflect.Type has no field or method FieldByName)
-/home/ron/.gvm/gos/go1.17/src/encoding/gob/encode.go:643:70: f.Index undefined (type reflect.StructField has no field or method Index)
-/home/ron/.gvm/gos/go1.17/src/encoding/gob/type.go:867:9: rt.PkgPath undefined (type reflect.Type has no field or method PkgPath)
-/home/ron/.gvm/gos/go1.17/src/encoding/gob/type.go:870:21: rt.PkgPath undefined (type reflect.Type has no field or method PkgPath)
+/home/ron/.gvm/gos/go1.18.1/src/encoding/gob/decode.go:562:21: MakeMapWithSize not declared by package reflect
 </pre>
 
 
@@ -284,9 +295,8 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when this package was imported:
 
 <pre># encoding/xml
-/home/ron/.gvm/gos/go1.17/src/encoding/xml/typeinfo.go:114:29: f.Index undefined (type *reflect.StructField has no field or method Index)
-/home/ron/.gvm/gos/go1.17/src/encoding/xml/typeinfo.go:318:14: typ.FieldByIndex undefined (type reflect.Type has no field or method FieldByIndex)
-/home/ron/.gvm/gos/go1.17/src/encoding/xml/typeinfo.go:319:14: typ.FieldByIndex undefined (type reflect.Type has no field or method FieldByIndex)
+/home/ron/.gvm/gos/go1.18.1/src/encoding/xml/typeinfo.go:318:14: typ.FieldByIndex undefined (type reflect.Type has no field or method FieldByIndex)
+/home/ron/.gvm/gos/go1.18.1/src/encoding/xml/typeinfo.go:319:14: typ.FieldByIndex undefined (type reflect.Type has no field or method FieldByIndex)
 </pre>
 
 
@@ -303,12 +313,9 @@ The compiler gave the following error when this package was imported:
 
 
 
-## go/build
 
 
-This package cannot be imported because the following dependencies cannot be compiled:
 
-  * [go/doc](#godoc)
 
 
 
@@ -318,12 +325,9 @@ This package cannot be imported because the following dependencies cannot be com
 
 
 
-## go/doc
 
 
-This package cannot be imported because the following dependencies cannot be compiled:
 
-  * [text/template](#texttemplate)
 
 
 
@@ -331,12 +335,9 @@ This package cannot be imported because the following dependencies cannot be com
 
 
 
-## go/importer
 
 
-This package cannot be imported because the following dependencies cannot be compiled:
 
-  * [go/build](#gobuild)
 
 
 
@@ -366,12 +367,9 @@ This package cannot be imported because the following dependencies cannot be com
 
 
 
-## html/template
 
 
-This package cannot be imported because the following dependencies cannot be compiled:
 
-  * [text/template](#texttemplate)
 
 
 
@@ -396,39 +394,6 @@ This package cannot be imported because the following dependencies cannot be com
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## net/http/cgi
-
-
-This package cannot be imported because the following dependencies cannot be compiled:
-
-  * [os/exec](#osexec)
 
 
 
@@ -439,9 +404,11 @@ This package cannot be imported because the following dependencies cannot be com
 ## net/http/fcgi
 
 
-This package cannot be imported because the following dependencies cannot be compiled:
+The compiler gave the following error when this package was imported:
 
-  * [net/http/cgi](#nethttpcgi)
+<pre># net/http/fcgi
+/home/ron/.gvm/gos/go1.18.1/src/net/http/fcgi/child.go:342:16: FileListener not declared by package net
+</pre>
 
 
 
@@ -458,8 +425,10 @@ This package cannot be imported because the following dependencies cannot be com
 
 The compiler gave the following error when this package was imported:
 
-<pre>../../../.cache/tinygo/goroot-go1.17-e499b35e58bbb925e7e3a1f14fb802fe799c3d6d9f463d80710a1fc85b74bf86-syscall/src/net/http/pprof/pprof.go:73:2: package runtime/trace is not in GOROOT (/home/ron/.cache/tinygo/goroot-go1.17-e499b35e58bbb925e7e3a1f14fb802fe799c3d6d9f463d80710a1fc85b74bf86-syscall/src/runtime/trace)
+<pre>../../../.cache/tinygo/goroot-823f493b0dc9a9f0e80860fcc84322ec84e89131fcbbacca15b0be4a8879a3cb/src/net/http/pprof/pprof.go:73:2: package runtime/trace is not in GOROOT (/home/ron/.cache/tinygo/goroot-823f493b0dc9a9f0e80860fcc84322ec84e89131fcbbacca15b0be4a8879a3cb/src/runtime/trace)
 </pre>
+
+
 
 
 
@@ -473,7 +442,6 @@ The compiler gave the following error when this package was imported:
 This package cannot be imported because the following dependencies cannot be compiled:
 
   * [encoding/gob](#encodinggob)
-  * [html/template](#htmltemplate)
 
 
 
@@ -498,29 +466,6 @@ This package cannot be imported because the following dependencies cannot be com
 
 
 
-## os/exec
-
-
-The compiler gave the following error when this package was imported:
-
-<pre># internal/syscall/execenv
-/home/ron/.gvm/gos/go1.17/src/internal/syscall/execenv/execenv_default.go:19:17: Environ not declared by package syscall
-</pre>
-
-
-
-
-
-## os/signal
-
-
-The compiler gave the following error when this package was imported:
-
-<pre># os/signal
-/home/ron/.gvm/gos/go1.17/src/os/signal/signal_unix.go:24:11: cannot use syscall.Signal(signal_recv()) (value of type syscall.Signal) as os.Signal value in argument to process: missing method Signal
-/home/ron/.gvm/gos/go1.17/src/os/signal/signal_unix.go:38:7: sig (variable of type os.Signal) cannot have dynamic type syscall.Signal (missing method Signal)
-</pre>
-
 
 
 
@@ -531,12 +476,12 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when this package was imported:
 
 <pre># os/user
-/home/ron/.gvm/gos/go1.17/src/os/user/lookup.go:15:41: undeclared name: current
-/home/ron/.gvm/gos/go1.17/src/os/user/lookup.go:36:9: undeclared name: lookupUser
-/home/ron/.gvm/gos/go1.17/src/os/user/lookup.go:45:9: undeclared name: lookupUserId
-/home/ron/.gvm/gos/go1.17/src/os/user/lookup.go:51:9: undeclared name: lookupGroup
-/home/ron/.gvm/gos/go1.17/src/os/user/lookup.go:57:9: undeclared name: lookupGroupId
-/home/ron/.gvm/gos/go1.17/src/os/user/lookup.go:62:9: undeclared name: listGroups
+/home/ron/.gvm/gos/go1.18.1/src/os/user/lookup.go:15:41: undeclared name: current
+/home/ron/.gvm/gos/go1.18.1/src/os/user/lookup.go:36:9: undeclared name: lookupUser
+/home/ron/.gvm/gos/go1.18.1/src/os/user/lookup.go:45:9: undeclared name: lookupUserId
+/home/ron/.gvm/gos/go1.18.1/src/os/user/lookup.go:51:9: undeclared name: lookupGroup
+/home/ron/.gvm/gos/go1.18.1/src/os/user/lookup.go:57:9: undeclared name: lookupGroupId
+/home/ron/.gvm/gos/go1.18.1/src/os/user/lookup.go:62:9: undeclared name: listGroups
 </pre>
 
 
@@ -575,49 +520,9 @@ The compiler gave the following error when this package was imported:
 
 
 
-## testing/quick
-
-
-The compiler gave the following error when this package was imported:
-
-<pre># testing/quick
-/home/ron/.gvm/gos/go1.17/src/testing/quick/quick.go:273:11: fType.NumOut undefined (type reflect.Type has no field or method NumOut)
-/home/ron/.gvm/gos/go1.17/src/testing/quick/quick.go:276:11: fType.Out undefined (type reflect.Type has no field or method Out)
-/home/ron/.gvm/gos/go1.17/src/testing/quick/quick.go:280:43: fType.NumIn undefined (type reflect.Type has no field or method NumIn)
-/home/ron/.gvm/gos/go1.17/src/testing/quick/quick.go:320:43: xType.NumIn undefined (type reflect.Type has no field or method NumIn)
-/home/ron/.gvm/gos/go1.17/src/testing/quick/quick.go:351:25: f.In undefined (type reflect.Type has no field or method In)
-/home/ron/.gvm/gos/go1.17/src/testing/quick/quick.go:353:95: f.In undefined (type reflect.Type has no field or method In)
-</pre>
 
 
 
-
-
-
-
-
-
-## text/template
-
-
-The compiler gave the following error when this package was imported:
-
-<pre># text/template
-/home/ron/.gvm/gos/go1.17/src/text/template/exec.go:375:17: val.Type().ChanDir undefined (type reflect.Type has no field or method ChanDir)
-/home/ron/.gvm/gos/go1.17/src/text/template/exec.go:375:38: SendDir not declared by package reflect
-/home/ron/.gvm/gos/go1.17/src/text/template/exec.go:381:20: val.Recv undefined (type reflect.Value has no field or method Recv)
-/home/ron/.gvm/gos/go1.17/src/text/template/exec.go:607:19: ptr.MethodByName undefined (type reflect.Value has no field or method MethodByName)
-/home/ron/.gvm/gos/go1.17/src/text/template/exec.go:614:33: receiver.Type().FieldByName undefined (type reflect.Type has no field or method FieldByName)
-/home/ron/.gvm/gos/go1.17/src/text/template/exec.go:649:21: etyp.FieldByName undefined (type reflect.Type has no field or method FieldByName)
-/home/ron/.gvm/gos/go1.17/src/text/template/exec.go:682:9: typ.IsVariadic undefined (type reflect.Type has no field or method IsVariadic)
-/home/ron/.gvm/gos/go1.17/src/text/template/exec.go:683:18: typ.NumIn undefined (type reflect.Type has no field or method NumIn)
-/home/ron/.gvm/gos/go1.17/src/text/template/exec.go:685:79: typ.NumIn undefined (type reflect.Type has no field or method NumIn)
-/home/ron/.gvm/gos/go1.17/src/text/template/exec.go:687:25: typ.NumIn undefined (type reflect.Type has no field or method NumIn)
-/home/ron/.gvm/gos/go1.17/src/text/template/exec.go:688:69: typ.NumIn undefined (type reflect.Type has no field or method NumIn)
-/home/ron/.gvm/gos/go1.17/src/text/template/exec.go:692:71: typ.NumOut undefined (type reflect.Type has no field or method NumOut)
-/home/ron/.gvm/gos/go1.17/src/text/template/exec.go:699:32: typ.In undefined (type reflect.Type has no field or method In)
-/home/ron/.gvm/gos/go1.17/src/text/template/exec.go:702:9: typ.IsVariadic undefined (type reflect.Type has no field or method IsVariadic)
-[...more lines following...]</pre>
 
 
 
