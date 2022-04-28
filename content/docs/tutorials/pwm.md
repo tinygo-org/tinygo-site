@@ -26,23 +26,24 @@ import (
 	"time"
 )
 
+var period uint64 = 1e9 / 500
+
 func main() {
-    pin := machine.LED
     // This program is specific to the Raspberry Pi Pico.
-	pin.Configure(machine.PinConfig{Mode: machine.PinPWM})
-	pwm, err := machine.NewPWM(pin)
-	if err != nil {
-		println(err.Error())
-	}
-	var period uint64 = 1e9 / 500
-	err = pwm.Configure(machine.PWMConfig{Period: period})
-	if err != nil {
-		println(err.Error())
-	}
+    pin := machine.LED
+	pwm := machine.PWM4 // Pin 25 (LED on pico) corresponds to PWM4.
+
+	// Configure the PWM with the given period.
+	pwm.Configure(machine.PWMConfig{
+		Period: period,
+	})
+
 	ch, err := pwm.Channel(pin)
 	if err != nil {
 		println(err.Error())
+		return
 	}
+
 	for { 
 		for i := 1; i < 255; i++ {
             // This performs a stylish fade-out blink
@@ -75,39 +76,23 @@ led := machine.LED
 This declares a new variable named `led`. If you are not familiar with Go, the `:=` operator is somewhat like `auto` in C++: it declares a new variable while inferencing the type from the right hand size. In this case, this is the `machine.LED` constant which has type `machine.Pin`. Boards which have an on-board LED will have this constant available for use.
 
 ```go
-pin.Configure(machine.PinConfig{Mode: machine.PinPWM})
+pwm := machine.PWM4
 ```
-This code configures the GPIO pin. Like most peripherals in the machine package, GPIO pins need initialization before they can be used. Maybe the following is clearer if you’re not used to this syntax:
+Now things start to look quite different to the blinky example. This code creates a variable which references a PWM peripheral. 
 
-```go
-config := machine.PinConfig{
-    Mode: machine.PinPWM
-}
-pin.Configure(config)
-```
-The first three lines define a new `machine.PinConfig` object and sets the `Mode` field to `machine.PinPWM`. This means that `config.Mode` will now equal `machine.PinPWM`.
+A _peripheral_ refers to any on-board integrated circuit which interfaces directly with the microprocessor and has I/O capabilities. Some other tasks which different peripherals may manage are communications ([I2C](https://en.wikipedia.org/wiki/I%C2%B2C), [SPI](https://en.wikipedia.org/wiki/Serial_Peripheral_Interface), UART, etc.) and [ADC](https://en.wikipedia.org/wiki/Analog-to-digital_converter)/[DAC](https://en.wikipedia.org/wiki/Digital-to-analog_converter).
 
-```go
-pwm, err := machine.NewPWM(pin)
-```
-Now things start to look quite different to the blinky example. This code creates a variable which references the PWM peripheral. A _peripheral_ refers to any on-board integrated circuit which interfaces directly with the microprocessor and has I/O capabilities. Some other tasks which different peripherals may manage are communications ([I2C](https://en.wikipedia.org/wiki/I%C2%B2C), [SPI](https://en.wikipedia.org/wiki/Serial_Peripheral_Interface), UART, etc.) and [ADC](https://en.wikipedia.org/wiki/Analog-to-digital_converter)/[DAC](https://en.wikipedia.org/wiki/Digital-to-analog_converter).
-
-```go
-if err != nil {
-		println(err.Error())
-}
-```
-This code checks if there was an error and prints it. It is quite common in Go to come across this pattern though usually the error is handled and not simply printed.
+In the case of a PWM peripheral, there is the additional idea of a channel which can be used to control more than one pin at the same time with a single PWM peripheral.
 
 ```go
 var period uint64 = 1e9 / 500
 ```
-We declare a new variable to calculate and store the PWM period of 2 milliseconds. By convention periods are unsigned integers which represent a duration in _nanoseconds_, also written as _ns_. The formula used above is `period = 1 / frequency`, where `500` is the desired frequency in hertz (periods per second) and `1e9` is a conversion constant to convert a period in seconds to nanoseconds. 
+We previously declared a new variable to calculate and store the PWM period of 2 milliseconds. By convention periods are unsigned integers which represent a duration in _nanoseconds_, also written as _ns_. The formula used above is `period = 1 / frequency`, where `500` is the desired frequency in hertz (periods per second) and `1e9` is a conversion constant to convert a period in seconds to nanoseconds. 
 
 The period of a PWM signal is the time between rising edges.
 
 ```go
-err = pwm.Configure(machine.PWMConfig{Period: period})
+pwm.Configure(machine.PWMConfig{Period: period})
 ```
 This code configures the PWM peripheral with the desired period. Keep in mind the output period of the PWM is usually not exact and may differ between microcontrollers.
 
@@ -156,6 +141,7 @@ time.Sleep(time.Millisecond * 5)
 This code stops the program for 5 milliseconds and does nothing for that duration. It is used to slow down the rate at which the LED blinks. If it were not present then we would not notice the fade out effect because it would happen too fast to be perceived!
 
 ## Final thoughts
-Although PWM may have it's ins and outs which make it a complex topic to explain thoroughly, the program shown has everything one needs to begin harnessing the power of PWM control.
+
+Although PWM may have its ups and downs which make it a complex topic to explain thoroughly, the program shown has everything one needs to begin harnessing the power of PWM control.
 
 I hope this tutorial was helpful. If you have any questions, feel free to join the #tinygo channel on the [Gophers Slack](https://invite.slack.golangbridge.org/).
