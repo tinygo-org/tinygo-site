@@ -7,6 +7,8 @@ The following table shows all Go standard library packages and whether they can 
 
 Note that the fact they can be imported, does not mean that all functions and types in the program can be used. For example, sometimes using some functions or types of the package will still trigger compiler errors.
 
+Test results shown are for Linux.
+
 Package | Importable | Passes tests
 --- | --- | --- |
 archive/tar |  [<span style="color: red">✗</span> no](#archivetar)  |  <span style="color: gray">✗</span> no  | 
@@ -140,7 +142,7 @@ strconv |  <span style="color: green">✔</span> yes  |  [<span style="color: re
 strings |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#strings)  | 
 sync |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 sync/atomic |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#syncatomic)  | 
-syscall |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
+syscall |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#syscall)  | 
 testing |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 testing/fstest |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 testing/iotest |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
@@ -178,10 +180,11 @@ This package cannot be imported because the following dependencies cannot be com
 The compiler gave the following error when running the tests for this package:
 
 
-    tinygo:ld.lld: error: undefined symbol: _time.startTimer
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo189667552/main.o
+    tinygo:ld.lld: error: undefined symbol: time.startTimer
+    >>> referenced by sleep.go:96 (/usr/local/go1.18/src/time/sleep.go:96)
+    >>>               /home/dank/.cache/tinygo/thinlto/llvmcache-2E4DEF460220052B04593F78B666BEE2895C1305:(bufio_test.TestZeroReader)
     failed to run tool: ld.lld
-    error: failed to link /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo189667552/main: exit status 1
+    error: failed to link /tmp/tinygo845458571/main: exit status 1
     FAIL
 
 
@@ -197,20 +200,20 @@ The compiler gave the following error when running the tests for this package:
 
 
     # bytes_test
-    /Users/dkegel/src/tinygo/src/sync/mutex.go:17:7: interp: running for more than 180 seconds, timing out (executed calls: 532318)
-      %0 = icmp eq %sync.Mutex* %m, null, !dbg !2971
+    /home/dank/src/tinygo/src/sync/mutex.go:17:7: interp: running for more than 180 seconds, timing out (executed calls: 423948)
+      %0 = icmp eq %sync.Mutex* %m, null, !dbg !3149
     
     traceback:
-    /Users/dkegel/src/tinygo/src/sync/mutex.go:17:7:
-      %0 = icmp eq %sync.Mutex* %m, null, !dbg !2971
+    /home/dank/src/tinygo/src/sync/mutex.go:17:7:
+      %0 = icmp eq %sync.Mutex* %m, null, !dbg !3149
     /usr/local/go1.18/src/math/rand/rand.go:388:11:
-      call void @"(*sync.Mutex).Lock"(%sync.Mutex* %1, i8* undef), !dbg !2983
+      call void @"(*sync.Mutex).Lock"(%sync.Mutex* %1, i8* undef), !dbg !3161
     /usr/local/go1.18/src/math/rand/rand.go:84:50:
-      %3 = call i64 @"interface:{Int63:func:{}{basic:int64},Seed:func:{basic:int64}{}}.Int63$invoke"(i8* %invoke.func.value, i64 %invoke.func.typecode, i8* undef), !dbg !2956
+      %3 = call i64 @"interface:{Int63:func:{}{basic:int64},Seed:func:{basic:int64}{}}.Int63$invoke"(i8* %invoke.func.value, i64 %invoke.func.typecode, i8* undef), !dbg !3134
     /usr/local/go1.18/src/math/rand/rand.go:98:52:
-      %0 = call i64 @"(*math/rand.Rand).Int63"(%"math/rand.Rand"* %r, i8* undef), !dbg !2955
+      %0 = call i64 @"(*math/rand.Rand).Int63"(%"math/rand.Rand"* %r, i8* undef), !dbg !3133
     /usr/local/go1.18/src/math/rand/rand.go:133:14:
-      %11 = call i32 @"(*math/rand.Rand).Int31"(%"math/rand.Rand"* %r, i8* undef), !dbg !2985
+      %11 = call i32 @"(*math/rand.Rand).Int31"(%"math/rand.Rand"* %r, i8* undef), !dbg !3163
     [...more lines following...]
 
 
@@ -229,10 +232,11 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    tinygo:ld.lld: error: undefined symbol: _time.startTimer
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo345307923/main.o
+    tinygo:ld.lld: error: undefined symbol: time.startTimer
+    >>> referenced by sleep.go:96 (/usr/local/go1.18/src/time/sleep.go:96)
+    >>>               /home/dank/.cache/tinygo/thinlto/llvmcache-BA678F9BE184E5A205E2DAC72E56E8647CC53E76:(compress/gzip.TestIssue6550)
     failed to run tool: ld.lld
-    error: failed to link /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo345307923/main: exit status 1
+    error: failed to link /tmp/tinygo3470772217/main: exit status 1
     FAIL
 
 
@@ -286,13 +290,15 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    tinygo:ld.lld: error: undefined symbol: _crypto/cipher.xorBytesSSE2
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo209964351/main.o
+    tinygo:ld.lld: error: undefined symbol: crypto/cipher.xorBytesSSE2
+    >>> referenced by xor_amd64.go:18 (/usr/local/go1.18/src/crypto/cipher/xor_amd64.go:18)
+    >>>               /home/dank/.cache/tinygo/thinlto/llvmcache-6BE3DFA190B9D55236F81CB6EB4A080DAF5C2F13:(crypto/cipher.xorBytes)
     
-    tinygo:ld.lld: error: undefined symbol: _crypto/aes.encryptBlockAsm
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo209964351/main.o
+    tinygo:ld.lld: error: undefined symbol: crypto/aes.encryptBlockAsm
+    >>> referenced by cipher_asm.go:68 (/usr/local/go1.18/src/crypto/aes/cipher_asm.go:68)
+    >>>               /home/dank/.cache/tinygo/thinlto/llvmcache-6BE3DFA190B9D55236F81CB6EB4A080DAF5C2F13:((*crypto/aes.aesCipherAsm).Encrypt)
     failed to run tool: ld.lld
-    error: failed to link /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo209964351/main: exit status 1
+    error: failed to link /tmp/tinygo1242974899/main: exit status 1
     FAIL
 
 
@@ -307,13 +313,15 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    tinygo:ld.lld: error: undefined symbol: _crypto/aes.encryptBlockAsm
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo3086193382/main.o
+    tinygo:ld.lld: error: undefined symbol: crypto/aes.encryptBlockAsm
+    >>> referenced by cipher_asm.go:68 (/usr/local/go1.18/src/crypto/aes/cipher_asm.go:68)
+    >>>               /home/dank/.cache/tinygo/thinlto/llvmcache-F9812E83E730AF5AD919527A9DA5F93C5C6C430C:((*crypto/aes.aesCipherAsm).Encrypt)
     
-    tinygo:ld.lld: error: undefined symbol: _crypto/aes.decryptBlockAsm
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo3086193382/main.o
+    tinygo:ld.lld: error: undefined symbol: crypto/aes.decryptBlockAsm
+    >>> referenced by cipher_asm.go:81 (/usr/local/go1.18/src/crypto/aes/cipher_asm.go:81)
+    >>>               /home/dank/.cache/tinygo/thinlto/llvmcache-F9812E83E730AF5AD919527A9DA5F93C5C6C430C:((*crypto/aes.aesCipherAsm).Decrypt)
     failed to run tool: ld.lld
-    error: failed to link /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo3086193382/main: exit status 1
+    error: failed to link /tmp/tinygo1295193122/main: exit status 1
     FAIL
 
 
@@ -328,21 +336,21 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    tinygo:ld.lld: error: undefined symbol: _crypto/cipher.xorBytesSSE2
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo1517805482/main.o
+    tinygo:ld.lld: error: undefined symbol: crypto/cipher.xorBytesSSE2
+    >>> referenced by xor_amd64.go:18 (/usr/local/go1.18/src/crypto/cipher/xor_amd64.go:18)
+    >>>               /home/dank/.cache/tinygo/thinlto/llvmcache-75ED93C0074B0B39C7925165ECA9C04DA4196729:(crypto/cipher.xorBytes)
     
-    tinygo:ld.lld: error: undefined symbol: _crypto/aes.gcmAesInit
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo1517805482/main.o
+    tinygo:ld.lld: error: undefined symbol: crypto/aes.gcmAesInit
+    >>> referenced by aes_gcm.go:56 (/usr/local/go1.18/src/crypto/aes/aes_gcm.go:56)
+    >>>               /home/dank/.cache/tinygo/thinlto/llvmcache-75ED93C0074B0B39C7925165ECA9C04DA4196729:(crypto/cipher.newGCMWithNonceAndTagSize)
     
-    tinygo:ld.lld: error: undefined symbol: _crypto/aes.encryptBlockAsm
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo1517805482/main.o
-    
-    tinygo:ld.lld: error: undefined symbol: _crypto/aes.decryptBlockAsm
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo1517805482/main.o
-    
-    tinygo:ld.lld: error: undefined symbol: _crypto/aes.gcmAesFinish
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo1517805482/main.o
-    
+    tinygo:ld.lld: error: undefined symbol: crypto/aes.encryptBlockAsm
+    >>> referenced by cipher_asm.go:68 (/usr/local/go1.18/src/crypto/aes/cipher_asm.go:68)
+    >>>               /home/dank/.cache/tinygo/thinlto/llvmcache-75ED93C0074B0B39C7925165ECA9C04DA4196729:((*crypto/aes.aesCipherAsm).Encrypt)
+    >>> referenced by aes_gcm.go:118 (/usr/local/go1.18/src/crypto/aes/aes_gcm.go:118)
+    >>>               /home/dank/.cache/tinygo/thinlto/llvmcache-75ED93C0074B0B39C7925165ECA9C04DA4196729:(interface:{NonceSize:func:{}{basic:int},Open:func:{slice:basic:uint8,slice:basic:uint8,slice:basic:uint8,slice:basic:uint8}{slice:basic:uint8,named:error},Overhead:func:{}{basic:int},Seal:func:{slice:basic:uint8,slice:basic:uint8,slice:basic:uint8,slice:basic:uint8}{slice:basic:uint8}}.Seal$invoke)
+    >>> referenced by aes_gcm.go:171 (/usr/local/go1.18/src/crypto/aes/aes_gcm.go:171)
+    >>>               /home/dank/.cache/tinygo/thinlto/llvmcache-75ED93C0074B0B39C7925165ECA9C04DA4196729:(interface:{NonceSize:func:{}{basic:int},Open:func:{slice:basic:uint8,slice:basic:uint8,slice:basic:uint8,slice:basic:uint8}{slice:basic:uint8,named:error},Overhead:func:{}{basic:int},Seal:func:{slice:basic:uint8,slice:basic:uint8,slice:basic:uint8,slice:basic:uint8}{slice:basic:uint8}}.Open$invoke)
     [...more lines following...]
 
 
@@ -361,21 +369,21 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    tinygo:ld.lld: error: undefined symbol: _crypto/cipher.xorBytesSSE2
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo1473379088/main.o
+    tinygo:ld.lld: error: undefined symbol: crypto/cipher.xorBytesSSE2
+    >>> referenced by xor_amd64.go:18 (/usr/local/go1.18/src/crypto/cipher/xor_amd64.go:18)
+    >>>               /home/dank/.cache/tinygo/thinlto/llvmcache-EF98EDA270F4B6A2322D30935F3B9CF4E4FC523D:((crypto/cipher.StreamReader).Read)
     
-    tinygo:ld.lld: error: undefined symbol: _crypto/aes.encryptBlockAsm
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo1473379088/main.o
+    tinygo:ld.lld: error: undefined symbol: crypto/aes.encryptBlockAsm
+    >>> referenced by cipher_asm.go:68 (/usr/local/go1.18/src/crypto/aes/cipher_asm.go:68)
+    >>>               /home/dank/.cache/tinygo/thinlto/llvmcache-EF98EDA270F4B6A2322D30935F3B9CF4E4FC523D:((*crypto/aes.aesCipherAsm).Encrypt)
     
-    tinygo:ld.lld: error: undefined symbol: _crypto/elliptic.p256LittleToBig
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo1473379088/main.o
-    
-    tinygo:ld.lld: error: undefined symbol: _crypto/elliptic.p256LittleToBig
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo1473379088/main.o
-    
-    tinygo:ld.lld: error: undefined symbol: _crypto/elliptic.p256FromMont
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo1473379088/main.o
-    
+    tinygo:ld.lld: error: undefined symbol: crypto/elliptic.p256Mul
+    >>> referenced by p256_asm.go:284 (/usr/local/go1.18/src/crypto/elliptic/p256_asm.go:284)
+    >>>               /home/dank/.cache/tinygo/thinlto/llvmcache-EF98EDA270F4B6A2322D30935F3B9CF4E4FC523D:((crypto/elliptic.p256Curve).ScalarMult)
+    >>> referenced by p256_asm.go:285 (/usr/local/go1.18/src/crypto/elliptic/p256_asm.go:285)
+    >>>               /home/dank/.cache/tinygo/thinlto/llvmcache-EF98EDA270F4B6A2322D30935F3B9CF4E4FC523D:((crypto/elliptic.p256Curve).ScalarMult)
+    >>> referenced by p256_asm.go:356 (/usr/local/go1.18/src/crypto/elliptic/p256_asm.go:356)
+    >>>               /home/dank/.cache/tinygo/thinlto/llvmcache-EF98EDA270F4B6A2322D30935F3B9CF4E4FC523D:((crypto/elliptic.p256Curve).ScalarMult)
     [...more lines following...]
 
 
@@ -390,13 +398,15 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when this package was imported:
 
 
-    tinygo:ld.lld: error: undefined symbol: _crypto/ed25519/internal/edwards25519/field.feSquare
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo1818820213/main.o
+    tinygo:ld.lld: error: undefined symbol: crypto/ed25519/internal/edwards25519/field.feSquare
+    >>> referenced by fe.go:305 (/usr/local/go1.18/src/crypto/ed25519/internal/edwards25519/field/fe.go:305)
+    >>>               /home/dank/.cache/tinygo/thinlto/llvmcache-E5BEA7F300F8D7F2927A0BF071858A2CA05893D1:((*crypto/ed25519/internal/edwards25519/field.Element).Square)
     
-    tinygo:ld.lld: error: undefined symbol: _crypto/ed25519/internal/edwards25519/field.feMul
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo1818820213/main.o
+    tinygo:ld.lld: error: undefined symbol: crypto/ed25519/internal/edwards25519/field.feMul
+    >>> referenced by fe.go:299 (/usr/local/go1.18/src/crypto/ed25519/internal/edwards25519/field/fe.go:299)
+    >>>               /home/dank/.cache/tinygo/thinlto/llvmcache-E5BEA7F300F8D7F2927A0BF071858A2CA05893D1:((*crypto/ed25519/internal/edwards25519/field.Element).Multiply)
     failed to run tool: ld.lld
-    error: failed to link /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo1818820213/main: exit status 1
+    error: failed to link /tmp/tinygo1161548173/main: exit status 1
 
 
 
@@ -410,21 +420,21 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when running the tests for this package:
 
 
-    tinygo:ld.lld: error: undefined symbol: _time.startTimer
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo2238568371/main.o
+    tinygo:ld.lld: error: undefined symbol: crypto/elliptic.p256Mul
+    >>> referenced by p256_asm.go:284 (/usr/local/go1.18/src/crypto/elliptic/p256_asm.go:284)
+    >>>               /home/dank/.cache/tinygo/thinlto/llvmcache-8ACD439C417603695DD3DC387A0857D42326F007:((crypto/elliptic.p256Curve).ScalarMult)
+    >>> referenced by p256_asm.go:285 (/usr/local/go1.18/src/crypto/elliptic/p256_asm.go:285)
+    >>>               /home/dank/.cache/tinygo/thinlto/llvmcache-8ACD439C417603695DD3DC387A0857D42326F007:((crypto/elliptic.p256Curve).ScalarMult)
+    >>> referenced by p256_asm.go:319 (/usr/local/go1.18/src/crypto/elliptic/p256_asm.go:319)
+    >>>               /home/dank/.cache/tinygo/thinlto/llvmcache-8ACD439C417603695DD3DC387A0857D42326F007:((crypto/elliptic.p256Curve).ScalarMult)
+    >>> referenced 18 more times
     
-    tinygo:ld.lld: error: undefined symbol: _crypto/elliptic.p256LittleToBig
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo2238568371/main.o
-    
-    tinygo:ld.lld: error: undefined symbol: _crypto/elliptic.p256LittleToBig
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo2238568371/main.o
-    
-    tinygo:ld.lld: error: undefined symbol: _crypto/elliptic.p256FromMont
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo2238568371/main.o
-    
-    tinygo:ld.lld: error: undefined symbol: _crypto/elliptic.p256FromMont
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo2238568371/main.o
-    
+    tinygo:ld.lld: error: undefined symbol: crypto/elliptic.p256PointDoubleAsm
+    >>> referenced by p256_asm.go:460 (/usr/local/go1.18/src/crypto/elliptic/p256_asm.go:460)
+    >>>               /home/dank/.cache/tinygo/thinlto/llvmcache-8ACD439C417603695DD3DC387A0857D42326F007:((crypto/elliptic.p256Curve).ScalarMult)
+    >>> referenced by p256_asm.go:461 (/usr/local/go1.18/src/crypto/elliptic/p256_asm.go:461)
+    >>>               /home/dank/.cache/tinygo/thinlto/llvmcache-8ACD439C417603695DD3DC387A0857D42326F007:((crypto/elliptic.p256Curve).ScalarMult)
+    >>> referenced by p256_asm.go:462 (/usr/local/go1.18/src/crypto/elliptic/p256_asm.go:462)
     [...more lines following...]
 
 
@@ -440,7 +450,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: crypto/hmac: hash generation function does not produce unique values
-    FAIL	crypto/hmac	1.451s
+    FAIL	crypto/hmac	0.254s
     FAIL
 
 
@@ -461,21 +471,21 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    tinygo:ld.lld: error: undefined symbol: _crypto/cipher.xorBytesSSE2
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo2829435925/main.o
+    tinygo:ld.lld: error: undefined symbol: crypto/cipher.xorBytesSSE2
+    >>> referenced by xor_amd64.go:18 (/usr/local/go1.18/src/crypto/cipher/xor_amd64.go:18)
+    >>>               /home/dank/.cache/tinygo/thinlto/llvmcache-170E2AF6E9F724D0CB7DCC05685C402C186270CE:((crypto/cipher.StreamReader).Read)
     
-    tinygo:ld.lld: error: undefined symbol: _crypto/aes.encryptBlockAsm
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo2829435925/main.o
+    tinygo:ld.lld: error: undefined symbol: crypto/aes.encryptBlockAsm
+    >>> referenced by cipher_asm.go:68 (/usr/local/go1.18/src/crypto/aes/cipher_asm.go:68)
+    >>>               /home/dank/.cache/tinygo/thinlto/llvmcache-170E2AF6E9F724D0CB7DCC05685C402C186270CE:((*crypto/aes.aesCipherAsm).Encrypt)
     
-    tinygo:ld.lld: error: undefined symbol: _crypto/elliptic.p256LittleToBig
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo2829435925/main.o
-    
-    tinygo:ld.lld: error: undefined symbol: _crypto/elliptic.p256LittleToBig
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo2829435925/main.o
-    
-    tinygo:ld.lld: error: undefined symbol: _crypto/elliptic.p256FromMont
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo2829435925/main.o
-    
+    tinygo:ld.lld: error: undefined symbol: crypto/elliptic.p256Mul
+    >>> referenced by p256_asm.go:284 (/usr/local/go1.18/src/crypto/elliptic/p256_asm.go:284)
+    >>>               /home/dank/.cache/tinygo/thinlto/llvmcache-170E2AF6E9F724D0CB7DCC05685C402C186270CE:((crypto/elliptic.p256Curve).ScalarMult)
+    >>> referenced by p256_asm.go:285 (/usr/local/go1.18/src/crypto/elliptic/p256_asm.go:285)
+    >>>               /home/dank/.cache/tinygo/thinlto/llvmcache-170E2AF6E9F724D0CB7DCC05685C402C186270CE:((crypto/elliptic.p256Curve).ScalarMult)
+    >>> referenced by p256_asm.go:356 (/usr/local/go1.18/src/crypto/elliptic/p256_asm.go:356)
+    >>>               /home/dank/.cache/tinygo/thinlto/llvmcache-170E2AF6E9F724D0CB7DCC05685C402C186270CE:((crypto/elliptic.p256Curve).ScalarMult)
     [...more lines following...]
 
 
@@ -497,7 +507,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).NumIn()
-    FAIL	crypto/subtle	1.467s
+    FAIL	crypto/subtle	0.391s
     FAIL
 
 
@@ -554,7 +564,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Value).Bytes()
-    FAIL	database/sql/driver	7.808s
+    FAIL	database/sql/driver	0.265s
     FAIL
 
 
@@ -603,7 +613,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: runtime error: nil pointer dereference
-    FAIL	debug/gosym	0.714s
+    FAIL	debug/gosym	0.271s
     FAIL
 
 
@@ -621,7 +631,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: runtime error: index out of range
-    FAIL	debug/pe	0.561s
+    FAIL	debug/pe	0.221s
     FAIL
 
 
@@ -638,21 +648,21 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    tinygo:ld.lld: error: undefined symbol: _vendor/golang.org/x/sys/cpu.cpuid
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo1909912716/main.o
+    tinygo:ld.lld: error: undefined symbol: vendor/golang.org/x/sys/cpu.cpuid
+    >>> referenced by cpu_x86.go:64 (/usr/local/go1.18/src/vendor/golang.org/x/sys/cpu/cpu_x86.go:64)
+    >>>               /home/dank/.cache/tinygo/thinlto/llvmcache-1E9F484F121CD95C894F80423E4C424701BC14A0:(runtime.run$1)
+    >>> referenced by cpu_x86.go:70 (/usr/local/go1.18/src/vendor/golang.org/x/sys/cpu/cpu_x86.go:70)
+    >>>               /home/dank/.cache/tinygo/thinlto/llvmcache-1E9F484F121CD95C894F80423E4C424701BC14A0:(runtime.run$1)
+    >>> referenced by cpu_x86.go:109 (/usr/local/go1.18/src/vendor/golang.org/x/sys/cpu/cpu_x86.go:109)
+    >>>               /home/dank/.cache/tinygo/thinlto/llvmcache-1E9F484F121CD95C894F80423E4C424701BC14A0:(runtime.run$1)
+    >>> referenced 1 more times
     
-    tinygo:ld.lld: error: undefined symbol: _vendor/golang.org/x/sys/cpu.xgetbv
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo1909912716/main.o
+    tinygo:ld.lld: error: undefined symbol: vendor/golang.org/x/sys/cpu.xgetbv
+    >>> referenced by cpu_x86.go:88 (/usr/local/go1.18/src/vendor/golang.org/x/sys/cpu/cpu_x86.go:88)
+    >>>               /home/dank/.cache/tinygo/thinlto/llvmcache-1E9F484F121CD95C894F80423E4C424701BC14A0:(runtime.run$1)
     
-    tinygo:ld.lld: error: undefined symbol: _vendor/golang.org/x/sys/cpu.cpuid
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo1909912716/main.o
-    
-    tinygo:ld.lld: error: undefined symbol: _vendor/golang.org/x/sys/cpu.cpuid
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo1909912716/main.o
-    
-    tinygo:ld.lld: error: undefined symbol: _crypto/ed25519/internal/edwards25519/field.feSquare
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo1909912716/main.o
-    
+    tinygo:ld.lld: error: undefined symbol: crypto/ed25519/internal/edwards25519/field.feSquare
+    >>> referenced by fe.go:305 (/usr/local/go1.18/src/crypto/ed25519/internal/edwards25519/field/fe.go:305)
     [...more lines following...]
 
 
@@ -672,7 +682,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Value).Addr()
-    FAIL	encoding/asn1	0.839s
+    FAIL	encoding/asn1	0.200s
     FAIL
 
 
@@ -689,10 +699,11 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    tinygo:ld.lld: error: undefined symbol: _time.startTimer
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo3292315030/main.o
+    tinygo:ld.lld: error: undefined symbol: time.startTimer
+    >>> referenced by sleep.go:96 (/usr/local/go1.18/src/time/sleep.go:96)
+    >>>               /home/dank/.cache/tinygo/thinlto/llvmcache-8965451DA4F91BF318F70583F191823E023017CC:(encoding/base64.TestDecoderIssue3577)
     failed to run tool: ld.lld
-    error: failed to link /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo3292315030/main: exit status 1
+    error: failed to link /tmp/tinygo3648171859/main: exit status 1
     FAIL
 
 
@@ -708,7 +719,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Value).Slice()
-    FAIL	encoding/binary	3.803s
+    FAIL	encoding/binary	0.247s
     FAIL
 
 
@@ -759,22 +770,16 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    tinygo:ld.lld: error: undefined symbol: _crypto/ed25519/internal/edwards25519/field.feSquare
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo20248966/main.o
+    tinygo:ld.lld: error: undefined symbol: crypto/ed25519/internal/edwards25519/field.feSquare
+    >>> referenced by fe.go:305 (/usr/local/go1.18/src/crypto/ed25519/internal/edwards25519/field/fe.go:305)
+    >>>               /home/dank/.cache/tinygo/thinlto/llvmcache-8F1585C13DE6DBB63B352FB88DB86E29C7CA4642:((*crypto/ed25519/internal/edwards25519/field.Element).Square)
     
-    tinygo:ld.lld: error: undefined symbol: _crypto/ed25519/internal/edwards25519/field.feMul
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo20248966/main.o
-    
-    tinygo:ld.lld: error: undefined symbol: _crypto/x509/internal/macos.syscall
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo20248966/main.o
-    
-    tinygo:ld.lld: error: undefined symbol: _internal/abi.FuncPCABI0
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo20248966/main.o
-    
-    tinygo:ld.lld: error: undefined symbol: _crypto/x509/internal/macos.x509_CFStringCreateWithBytes_trampoline
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo20248966/main.o
+    tinygo:ld.lld: error: undefined symbol: crypto/ed25519/internal/edwards25519/field.feMul
+    >>> referenced by fe.go:299 (/usr/local/go1.18/src/crypto/ed25519/internal/edwards25519/field/fe.go:299)
+    >>>               /home/dank/.cache/tinygo/thinlto/llvmcache-8F1585C13DE6DBB63B352FB88DB86E29C7CA4642:((*crypto/ed25519/internal/edwards25519/field.Element).Multiply)
     failed to run tool: ld.lld
-    [...more lines following...]
+    error: failed to link /tmp/tinygo1967086332/main: exit status 1
+    FAIL
 
 
 
@@ -805,7 +810,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: reflect.Zero()
-    FAIL	errors	0.762s
+    FAIL	errors	0.260s
     FAIL
 
 
@@ -833,7 +838,7 @@ The compiler gave the following error when running the tests for this package:
 
     flag provided but not defined: -x
     panic: unimplemented: reflect.Zero()
-    FAIL	flag	1.062s
+    FAIL	flag	0.259s
     FAIL
 
 
@@ -849,7 +854,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Value).Slice()
-    FAIL	fmt	0.857s
+    FAIL	fmt	0.251s
     FAIL
 
 
@@ -865,7 +870,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Value).MapKeys()
-    FAIL	go/ast	0.825s
+    FAIL	go/ast	0.181s
     FAIL
 
 
@@ -905,7 +910,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: invalid syntax at ²
-    FAIL	go/build/constraint	0.645s
+    FAIL	go/build/constraint	0.237s
     FAIL
 
 
@@ -921,7 +926,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: division by zero
-    FAIL	go/constant	0.769s
+    FAIL	go/constant	0.215s
     FAIL
 
 
@@ -938,19 +943,19 @@ The compiler gave the following error when running the tests for this package:
 
     panic: unknown type: E
     
-    goroutine 30 [running]:
-    github.com/tinygo-org/tinygo/compiler.(*compilerContext).makeLLVMType(0xc0017fc5b0?, {0x839de00?, 0xc0050a7b30?})
-    	/Users/dkegel/src/tinygo/compiler/compiler.go:415 +0x82c
-    github.com/tinygo-org/tinygo/compiler.(*compilerContext).getLLVMType(0xc0017fc5b0, {0x839de00, 0xc0050a7b30})
-    	/Users/dkegel/src/tinygo/compiler/compiler.go:326 +0x6e
-    github.com/tinygo-org/tinygo/compiler.(*compilerContext).makeLLVMType(0xc0017fc5b0, {0x839dd88?, 0xc001a09650?})
-    	/Users/dkegel/src/tinygo/compiler/compiler.go:395 +0x185
-    github.com/tinygo-org/tinygo/compiler.(*compilerContext).getLLVMType(0xc0017fc5b0, {0x839dd88, 0xc001a09650})
-    	/Users/dkegel/src/tinygo/compiler/compiler.go:326 +0x6e
-    github.com/tinygo-org/tinygo/compiler.(*compilerContext).getFunction(0xc0017fc5b0, 0xc0056df040)
-    	/Users/dkegel/src/tinygo/compiler/symbol.go:78 +0x385
-    github.com/tinygo-org/tinygo/compiler.(*builder).createFunctionCall(0xc0033cf320, 0xc000833d40)
-    	/Users/dkegel/src/tinygo/compiler/compiler.go:1463 +0xab3
+    goroutine 72 [running]:
+    github.com/tinygo-org/tinygo/compiler.(*compilerContext).makeLLVMType(0xc000adc270?, {0x5adfa18?, 0xc004d78c00?})
+    	/home/dank/src/tinygo/compiler/compiler.go:415 +0x82c
+    github.com/tinygo-org/tinygo/compiler.(*compilerContext).getLLVMType(0xc000adc270, {0x5adfa18, 0xc004d78c00})
+    	/home/dank/src/tinygo/compiler/compiler.go:326 +0x6e
+    github.com/tinygo-org/tinygo/compiler.(*compilerContext).makeLLVMType(0xc000adc270, {0x5adf9a0?, 0xc00162e7b0?})
+    	/home/dank/src/tinygo/compiler/compiler.go:395 +0x185
+    github.com/tinygo-org/tinygo/compiler.(*compilerContext).getLLVMType(0xc000adc270, {0x5adf9a0, 0xc00162e7b0})
+    	/home/dank/src/tinygo/compiler/compiler.go:326 +0x6e
+    github.com/tinygo-org/tinygo/compiler.(*compilerContext).getFunction(0xc000adc270, 0xc005d30640)
+    	/home/dank/src/tinygo/compiler/symbol.go:78 +0x385
+    github.com/tinygo-org/tinygo/compiler.(*builder).createFunctionCall(0xc006c566c0, 0xc0066a4f40)
+    	/home/dank/src/tinygo/compiler/compiler.go:1463 +0xab3
     [...more lines following...]
 
 
@@ -966,7 +971,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: go/parser internal error: unbalanced scopes
-    FAIL	go/format	0.565s
+    FAIL	go/format	0.170s
     FAIL
 
 
@@ -982,7 +987,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: runtime error: nil pointer dereference
-    FAIL	go/importer	0.799s
+    FAIL	go/importer	0.146s
     FAIL
 
 
@@ -998,7 +1003,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: go/parser internal error: unbalanced scopes
-    FAIL	go/parser	0.680s
+    FAIL	go/parser	0.174s
     FAIL
 
 
@@ -1013,10 +1018,11 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    tinygo:ld.lld: error: undefined symbol: _time.startTimer
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo1882669185/main.o
+    tinygo:ld.lld: error: undefined symbol: time.startTimer
+    >>> referenced by sleep.go:96 (/usr/local/go1.18/src/time/sleep.go:96)
+    >>>               /home/dank/.cache/tinygo/thinlto/llvmcache-8588349ABBB74C0B810043062EDB88FA51386369:(go/printer.TestFiles$1)
     failed to run tool: ld.lld
-    error: failed to link /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo1882669185/main: exit status 1
+    error: failed to link /tmp/tinygo1021599587/main: exit status 1
     FAIL
 
 
@@ -1070,7 +1076,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: not available
-    FAIL	hash/crc32	1.495s
+    FAIL	hash/crc32	0.262s
     FAIL
 
 
@@ -1090,7 +1096,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: runtime error: out of memory
-    FAIL	hash/maphash	168.656s
+    FAIL	hash/maphash	76.419s
     FAIL
 
 
@@ -1108,7 +1114,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).NumOut()
-    FAIL	html/template	0.464s
+    FAIL	html/template	0.174s
     FAIL
 
 
@@ -1124,7 +1130,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: image: NewRGBA Rectangle has huge or negative dimensions
-    FAIL	image	0.763s
+    FAIL	image	0.228s
     FAIL
 
 
@@ -1140,7 +1146,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).NumIn()
-    FAIL	image/color	0.414s
+    FAIL	image/color	0.239s
     FAIL
 
 
@@ -1158,7 +1164,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).NumIn()
-    FAIL	image/draw	0.809s
+    FAIL	image/draw	0.292s
     FAIL
 
 
@@ -1192,10 +1198,11 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    tinygo:ld.lld: error: undefined symbol: _time.startTimer
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo2239879435/main.o
+    tinygo:ld.lld: error: undefined symbol: time.startTimer
+    >>> referenced by sleep.go:96 (/usr/local/go1.18/src/time/sleep.go:96)
+    >>>               /home/dank/.cache/tinygo/thinlto/llvmcache-CE75AF2502671DA606A59B57F5384FEDB000D810:(image/jpeg.TestLargeImageWithShortData)
     failed to run tool: ld.lld
-    error: failed to link /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo2239879435/main: exit status 1
+    error: failed to link /tmp/tinygo2460288946/main: exit status 1
     FAIL
 
 
@@ -1211,7 +1218,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: runtime error: out of memory
-    FAIL	image/png	2.466s
+    FAIL	image/png	2.486s
     FAIL
 
 
@@ -1228,10 +1235,11 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    tinygo:ld.lld: error: undefined symbol: _time.startTimer
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo1333954222/main.o
+    tinygo:ld.lld: error: undefined symbol: time.startTimer
+    >>> referenced by sleep.go:96 (/usr/local/go1.18/src/time/sleep.go:96)
+    >>>               /home/dank/.cache/tinygo/thinlto/llvmcache-86C72B9DED7DB3C1E98B8AB230BA26BA687A4B79:(io_test.TestMultiReaderFreesExhaustedReaders)
     failed to run tool: ld.lld
-    error: failed to link /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo1333954222/main: exit status 1
+    error: failed to link /tmp/tinygo2975446806/main: exit status 1
     FAIL
 
 
@@ -1249,9 +1257,9 @@ The compiler gave the following error when running the tests for this package:
 
 
     --- FAIL: TestTempDir_BadDir (0.00s)
-        TempDir error = &T{Op:"stat", Path:"/var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/TestTempDir_BadDir99598472/not-exist", Err:(T)(0x10180c878)}; want PathError for path "/var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/TestTempDir_BadDir99598472/not-exist" satisifying os.IsNotExist
+        TempDir error = &T{Op:"stat", Path:"/tmp/TestTempDir_BadDir216851801/not-exist", Err:(T)(0x247638)}; want PathError for path "/tmp/TestTempDir_BadDir216851801/not-exist" satisifying os.IsNotExist
     FAIL
-    FAIL	io/ioutil	0.959s
+    FAIL	io/ioutil	0.019s
     FAIL
 
 
@@ -1273,14 +1281,14 @@ The compiler gave the following error when running the tests for this package:
         log output should match "^[A-Za-z0-9_\\-]+\\.go:(61|63): hello 23 world$" is "???:0: hello 23 world"
         log output should match "^[A-Za-z0-9_\\-]+\\.go:(61|63): hello 23 world$" is "???:0: hello 23 world"
         log output should match "^[A-Za-z0-9_\\-]+\\.go:(61|63): hello 23 world$" is "???:0: hello 23 world"
-        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(61|63): hello 23 world$" is "XXX2022/04/28 16:01:17.295555 ???:0: hello 23 world"
-        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(61|63): hello 23 world$" is "XXX2022/04/28 16:01:17.295970 ???:0: hello 23 world"
-        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(61|63): hello 23 world$" is "XXX2022/04/28 16:01:17.296884 ???:0: hello 23 world"
-        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(61|63): hello 23 world$" is "XXX2022/04/28 16:01:17.297313 ???:0: hello 23 world"
-        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(61|63): XXXhello 23 world$" is "2022/04/28 16:01:17.297355 ???:0: XXXhello 23 world"
-        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(61|63): XXXhello 23 world$" is "2022/04/28 16:01:17.297393 ???:0: XXXhello 23 world"
-        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(61|63): XXXhello 23 world$" is "2022/04/28 16:01:17.297772 ???:0: XXXhello 23 world"
-        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(61|63): XXXhello 23 world$" is "2022/04/28 16:01:17.297802 ???:0: XXXhello 23 world"
+        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(61|63): hello 23 world$" is "XXX2022/04/29 00:22:54.345275 ???:0: hello 23 world"
+        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(61|63): hello 23 world$" is "XXX2022/04/29 00:22:54.345299 ???:0: hello 23 world"
+        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(61|63): hello 23 world$" is "XXX2022/04/29 00:22:54.345463 ???:0: hello 23 world"
+        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(61|63): hello 23 world$" is "XXX2022/04/29 00:22:54.345816 ???:0: hello 23 world"
+        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(61|63): XXXhello 23 world$" is "2022/04/29 00:22:54.346053 ???:0: XXXhello 23 world"
+        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(61|63): XXXhello 23 world$" is "2022/04/29 00:22:54.346652 ???:0: XXXhello 23 world"
+        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(61|63): XXXhello 23 world$" is "2022/04/29 00:22:54.346996 ???:0: XXXhello 23 world"
+        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(61|63): XXXhello 23 world$" is "2022/04/29 00:22:54.347164 ???:0: XXXhello 23 world"
     [...more lines following...]
 
 
@@ -1332,7 +1340,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: overflow
-    FAIL	math/bits	2.504s
+    FAIL	math/bits	0.222s
     FAIL
 
 
@@ -1367,7 +1375,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Value).MapKeys()
-    FAIL	mime	1.294s
+    FAIL	mime	0.238s
     FAIL
 
 
@@ -1383,7 +1391,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Value).MapRange()
-    FAIL	mime/multipart	0.512s
+    FAIL	mime/multipart	0.221s
     FAIL
 
 
@@ -1398,10 +1406,11 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    tinygo:ld.lld: error: undefined symbol: _time.startTimer
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo3869451097/main.o
+    tinygo:ld.lld: error: undefined symbol: time.startTimer
+    >>> referenced by sleep.go:96 (/usr/local/go1.18/src/time/sleep.go:96)
+    >>>               /home/dank/.cache/tinygo/thinlto/llvmcache-FF147D328A3201A09FDA2D4FAD678FFDEB7C560C:(mime/quotedprintable.everySequence)
     failed to run tool: ld.lld
-    error: failed to link /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo3869451097/main: exit status 1
+    error: failed to link /tmp/tinygo771125595/main: exit status 1
     FAIL
 
 
@@ -1565,7 +1574,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Value).MapKeys()
-    FAIL	net/textproto	0.808s
+    FAIL	net/textproto	0.226s
     FAIL
 
 
@@ -1600,7 +1609,6 @@ The compiler gave the following error when running the tests for this package:
 
     # os/user
     ../../../../../usr/local/go1.18/src/os/user/cgo_lookup_unix.go:18:6: not implemented: build constraints in #cgo line
-    ../../../../../usr/local/go1.18/src/os/user/cgo_lookup_unix.go:21:10: fatal: 'pwd.h' file not found
     FAIL
 
 
@@ -1615,7 +1623,7 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    can't load test package: ../../../Library/Caches/tinygo/goroot-6cdeec8e8f6bb3246a475995a5c5424095001b1df68f35e053b64525f5faf840/src/os/signal/signal_test.go:18:2: package runtime/trace is not in GOROOT (/Users/dkegel/Library/Caches/tinygo/goroot-6cdeec8e8f6bb3246a475995a5c5424095001b1df68f35e053b64525f5faf840/src/runtime/trace)
+    can't load test package: ../../../.cache/tinygo/goroot-4d285ac5873388dfa322d459f1686fe019a5a27d4b3719c1da9f6f5c98b2406f/src/os/signal/signal_test.go:18:2: package runtime/trace is not in GOROOT (/home/dank/.cache/tinygo/goroot-4d285ac5873388dfa322d459f1686fe019a5a27d4b3719c1da9f6f5c98b2406f/src/runtime/trace)
 
 
 
@@ -1631,7 +1639,6 @@ The compiler gave the following error when this package was imported:
 
     # os/user
     ../../../../../usr/local/go1.18/src/os/user/cgo_lookup_unix.go:18:6: not implemented: build constraints in #cgo line
-    ../../../../../usr/local/go1.18/src/os/user/cgo_lookup_unix.go:21:10: fatal: 'pwd.h' file not found
 
 
 
@@ -1648,7 +1655,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Value).MapKeys()
-    FAIL	path/filepath	1.553s
+    FAIL	path/filepath	0.233s
     FAIL
 
 
@@ -1665,7 +1672,6 @@ The compiler gave the following error when this package was imported:
 
     # plugin
     ../../../../../usr/local/go1.18/src/plugin/plugin_dlopen.go:10:6: not implemented: build constraints in #cgo line
-    ../../../../../usr/local/go1.18/src/plugin/plugin_dlopen.go:11:10: fatal: 'dlfcn.h' file not found
 
 
 
@@ -1681,7 +1687,7 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when running the tests for this package:
 
 
-    FAIL	regexp	0.584s
+    FAIL	regexp	0.228s
     FAIL
 
 
@@ -1697,7 +1703,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: regexp/syntax: internal error
-    FAIL	regexp/syntax	1.367s
+    FAIL	regexp/syntax	1.189s
     FAIL
 
 
@@ -1712,7 +1718,7 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    --- FAIL: TestCountStableOps (2.34s)
+    --- FAIL: TestCountStableOps (1.77s)
         Counting skipped as non-verbose mode.
         SkipNow is incomplete, requires runtime.Goexit()
         Stable      100 elements:         900 Swap,        774 Less
@@ -1724,7 +1730,7 @@ The compiler gave the following error when running the tests for this package:
         Stable   100000 elements:     5787542 Swap,    2084840 Less
         Stable   300000 elements:    20444960 Swap,    6868106 Less
         Stable  1000000 elements:    84504188 Swap,   25119300 Less
-    --- FAIL: TestCountSortOps (0.47s)
+    --- FAIL: TestCountSortOps (0.44s)
         Counting skipped as non-verbose mode.
         SkipNow is incomplete, requires runtime.Goexit()
     [...more lines following...]
@@ -1742,7 +1748,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: invalid bitSize
-    FAIL	strconv	7.906s
+    FAIL	strconv	2.361s
     FAIL
 
 
@@ -1758,20 +1764,20 @@ The compiler gave the following error when running the tests for this package:
 
 
     # strings_test
-    /Users/dkegel/src/tinygo/src/sync/mutex.go:17:7: interp: running for more than 180 seconds, timing out (executed calls: 546895)
-      %0 = icmp eq %sync.Mutex* %m, null, !dbg !2903
+    /home/dank/src/tinygo/src/sync/mutex.go:17:7: interp: running for more than 180 seconds, timing out (executed calls: 454630)
+      %0 = icmp eq %sync.Mutex* %m, null, !dbg !3081
     
     traceback:
-    /Users/dkegel/src/tinygo/src/sync/mutex.go:17:7:
-      %0 = icmp eq %sync.Mutex* %m, null, !dbg !2903
+    /home/dank/src/tinygo/src/sync/mutex.go:17:7:
+      %0 = icmp eq %sync.Mutex* %m, null, !dbg !3081
     /usr/local/go1.18/src/math/rand/rand.go:388:11:
-      call void @"(*sync.Mutex).Lock"(%sync.Mutex* %1, i8* undef), !dbg !2915
+      call void @"(*sync.Mutex).Lock"(%sync.Mutex* %1, i8* undef), !dbg !3093
     /usr/local/go1.18/src/math/rand/rand.go:84:50:
-      %3 = call i64 @"interface:{Int63:func:{}{basic:int64},Seed:func:{basic:int64}{}}.Int63$invoke"(i8* %invoke.func.value, i64 %invoke.func.typecode, i8* undef), !dbg !2888
+      %3 = call i64 @"interface:{Int63:func:{}{basic:int64},Seed:func:{basic:int64}{}}.Int63$invoke"(i8* %invoke.func.value, i64 %invoke.func.typecode, i8* undef), !dbg !3066
     /usr/local/go1.18/src/math/rand/rand.go:98:52:
-      %0 = call i64 @"(*math/rand.Rand).Int63"(%"math/rand.Rand"* %r, i8* undef), !dbg !2887
+      %0 = call i64 @"(*math/rand.Rand).Int63"(%"math/rand.Rand"* %r, i8* undef), !dbg !3065
     /usr/local/go1.18/src/math/rand/rand.go:133:14:
-      %11 = call i32 @"(*math/rand.Rand).Int31"(%"math/rand.Rand"* %r, i8* undef), !dbg !2917
+      %11 = call i32 @"(*math/rand.Rand).Int31"(%"math/rand.Rand"* %r, i8* undef), !dbg !3095
     [...more lines following...]
 
 
@@ -1798,6 +1804,20 @@ The compiler gave the following error when running the tests for this package:
 
 
 
+## syscall
+
+
+
+The compiler gave the following error when running the tests for this package:
+
+
+    # os/user
+    ../../../../../usr/local/go1.18/src/os/user/cgo_lookup_unix.go:18:6: not implemented: build constraints in #cgo line
+    FAIL
+
+
+
+
 
 
 
@@ -1814,7 +1834,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).NumIn()
-    FAIL	testing/quick	0.774s
+    FAIL	testing/quick	0.257s
     FAIL
 
 
@@ -1832,7 +1852,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: cannot write
-    FAIL	text/tabwriter	1.302s
+    FAIL	text/tabwriter	0.274s
     FAIL
 
 
@@ -1848,7 +1868,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).NumOut()
-    FAIL	text/template	0.841s
+    FAIL	text/template	0.177s
     FAIL
 
 
@@ -1864,7 +1884,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: template: root:1: unexpected "}}" in define clause
-    FAIL	text/template/parse	0.510s
+    FAIL	text/template/parse	0.222s
     FAIL
 
 
@@ -1895,10 +1915,11 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when this package was imported:
 
 
-    tinygo:ld.lld: error: undefined symbol: _time.registerLoadFromEmbeddedTZData
-    >>> referenced by /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo3893541617/main.o
+    tinygo:ld.lld: error: undefined symbol: time.registerLoadFromEmbeddedTZData
+    >>> referenced by scheduler_any.go:24 (/home/dank/src/tinygo/src/runtime/scheduler_any.go:24)
+    >>>               /home/dank/.cache/tinygo/thinlto/llvmcache-470A4A20A9DF4E8F02E0D8A6B48CE136DE1E0CA7:(runtime.run$1$gowrapper)
     failed to run tool: ld.lld
-    error: failed to link /var/folders/v0/0k9hwftd29b18z9z7s2g2sfc0000gn/T/tinygo3893541617/main: exit status 1
+    error: failed to link /tmp/tinygo704378068/main: exit status 1
 
 
 
