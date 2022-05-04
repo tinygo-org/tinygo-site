@@ -43,6 +43,7 @@ For **Debian** or **Ubuntu** you can install LLVM by adding a new apt repository
 | Ubuntu | 20.04  | `focal`   |
 | Ubuntu | 20.10  | `groovy`  |
 | Ubuntu | 21.04  | `hirsute` |
+| Ubuntu | 22.04  | `jammy`   |
 | Debian | 10     | `buster`  |
 | Debian | 11     | `bullseye`|
 | Debian | sid    | `unstable`|
