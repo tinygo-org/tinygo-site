@@ -9,8 +9,8 @@ For this tutorial, previous experience with Go is not required but recommended.
 
 You will need a board with an onboard LED. Most education and development boards will work, with the notable exception of the BBC micro:bit. Boards that are a good start are one of the following:
 
-  - [Adafruit Circuit Playground Express](../../reference/microcontrollers/circuit-playground-express/)
-  - [Arduino Nano 33 IoT](../../reference/microcontrollers/arduino-nano33-iot/)
+  - [Adafruit Circuit Playground Express](../../reference/microcontrollers/circuitplay-express/)
+  - [Arduino Nano 33 IoT](../../reference/microcontrollers/rduino-nano33/)
 
 Now that you have a board, let's get started. Start by creating a new directory (for example, named blink) and navigating into it. If you are using Go modules, initialize a new module with the following command:
 
