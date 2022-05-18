@@ -48,6 +48,16 @@ Here is how to contribute back some code or documentation:
 - Submit a pull request against the `dev` branch.
 - Be kind
 
+Please rebase (not merge) from the dev branch if your PR needs to incorporate changes that occured after your feature branch was created. You can accomplish that via the git command line:
+
+```
+git checkout dev
+git pull --rebase origin dev
+git checkout my-feature-branch
+git rebase dev
+git push myfork my-feature-branch -f
+```
+
 ## How to run tests
 
 To run the tests:
