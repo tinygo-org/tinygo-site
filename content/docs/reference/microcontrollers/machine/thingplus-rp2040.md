@@ -821,7 +821,7 @@ pin to low that is not configured as an output pin.
 ### func (Pin) PortMaskClear
 
 ```go
-func (p Pin) PortMaskClear() (*volatile.Register32, uint32)
+func (p Pin) PortMaskClear() (*uint32, uint32)
 ```
 
 
@@ -829,7 +829,7 @@ func (p Pin) PortMaskClear() (*volatile.Register32, uint32)
 ### func (Pin) PortMaskSet
 
 ```go
-func (p Pin) PortMaskSet() (*volatile.Register32, uint32)
+func (p Pin) PortMaskSet() (*uint32, uint32)
 ```
 
 

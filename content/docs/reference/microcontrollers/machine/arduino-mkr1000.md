@@ -352,7 +352,8 @@ The SAM D21 has three TCC peripherals, which have PWM as one feature.
 
 ```go
 var (
-	USB = &USBCDC{Buffer: NewRingBuffer()}
+	USB		= &USBCDC{Buffer: NewRingBuffer()}
+	waitHidTxc	bool
 )
 ```
 
@@ -393,6 +394,15 @@ func CPUFrequency() uint32
 Return the current CPU frequency in hertz.
 
 
+### func EnableHID
+
+```go
+func EnableHID(callback func())
+```
+
+EnableHID enables HID. This function must be executed from the init().
+
+
 ### func InitADC
 
 ```go
@@ -400,94 +410,6 @@ func InitADC()
 ```
 
 InitADC initializes the ADC.
-
-
-### func NewACMFunctionalDescriptor
-
-```go
-func NewACMFunctionalDescriptor(subtype, d0 uint8) ACMFunctionalDescriptor
-```
-
-NewACMFunctionalDescriptor returns a new USB ACMFunctionalDescriptor.
-
-
-### func NewCDCCSInterfaceDescriptor
-
-```go
-func NewCDCCSInterfaceDescriptor(subtype, d0, d1 uint8) CDCCSInterfaceDescriptor
-```
-
-NewCDCCSInterfaceDescriptor returns a new USB CDCCSInterfaceDescriptor.
-
-
-### func NewCDCDescriptor
-
-```go
-func NewCDCDescriptor(i IADDescriptor, c InterfaceDescriptor,
-	h CDCCSInterfaceDescriptor,
-	cm ACMFunctionalDescriptor,
-	fd CDCCSInterfaceDescriptor,
-	callm CMFunctionalDescriptor,
-	ci EndpointDescriptor,
-	di InterfaceDescriptor,
-	outp EndpointDescriptor,
-	inp EndpointDescriptor) CDCDescriptor
-```
-
-
-
-### func NewCMFunctionalDescriptor
-
-```go
-func NewCMFunctionalDescriptor(subtype, d0, d1 uint8) CMFunctionalDescriptor
-```
-
-NewCMFunctionalDescriptor returns a new USB CMFunctionalDescriptor.
-
-
-### func NewConfigDescriptor
-
-```go
-func NewConfigDescriptor(totalLength uint16, interfaces uint8) ConfigDescriptor
-```
-
-NewConfigDescriptor returns a new USB ConfigDescriptor.
-
-
-### func NewDeviceDescriptor
-
-```go
-func NewDeviceDescriptor(class, subClass, proto, packetSize0 uint8, vid, pid, version uint16, im, ip, is, configs uint8) DeviceDescriptor
-```
-
-NewDeviceDescriptor returns a USB DeviceDescriptor.
-
-
-### func NewEndpointDescriptor
-
-```go
-func NewEndpointDescriptor(addr, attr uint8, packetSize uint16, interval uint8) EndpointDescriptor
-```
-
-NewEndpointDescriptor returns a new USB EndpointDescriptor.
-
-
-### func NewIADDescriptor
-
-```go
-func NewIADDescriptor(firstInterface, count, class, subClass, protocol uint8) IADDescriptor
-```
-
-NewIADDescriptor returns a new USB IADDescriptor.
-
-
-### func NewInterfaceDescriptor
-
-```go
-func NewInterfaceDescriptor(n, numEndpoints, class, subClass, protocol uint8) InterfaceDescriptor
-```
-
-NewInterfaceDescriptor returns a new USB InterfaceDescriptor.
 
 
 ### func NewRingBuffer
@@ -509,30 +431,13 @@ ResetProcessor should perform a system reset in preperation
 to switch to the bootloader to flash new firmware.
 
 
-
-
-## type ACMFunctionalDescriptor
+### func SendUSBHIDPacket
 
 ```go
-type ACMFunctionalDescriptor struct {
-	len		uint8
-	dtype		uint8	// 0x24
-	subtype		uint8	// 1
-	bmCapabilities	uint8
-}
+func SendUSBHIDPacket(ep uint32, data []byte) bool
 ```
 
-ACMFunctionalDescriptor is a Abstract Control Model (ACM) USB descriptor.
-
-
-
-### func (ACMFunctionalDescriptor) Bytes
-
-```go
-func (d ACMFunctionalDescriptor) Bytes() [acmFunctionalDescriptorSize]byte
-```
-
-Bytes returns the ACMFunctionalDescriptor data.
+SendUSBHIDPacket sends a packet for USBHID (interrupt / in).
 
 
 
@@ -585,133 +490,6 @@ value of each parameter will use the peripheral's default settings.
 
 
 
-## type CDCCSInterfaceDescriptor
-
-```go
-type CDCCSInterfaceDescriptor struct {
-	len	uint8	// 5
-	dtype	uint8	// 0x24
-	subtype	uint8
-	d0	uint8
-	d1	uint8
-}
-```
-
-CDCCSInterfaceDescriptor is a CDC CS interface descriptor.
-
-
-
-### func (CDCCSInterfaceDescriptor) Bytes
-
-```go
-func (d CDCCSInterfaceDescriptor) Bytes() [cdcCSInterfaceDescriptorSize]byte
-```
-
-Bytes returns CDCCSInterfaceDescriptor data.
-
-
-
-
-## type CDCDescriptor
-
-```go
-type CDCDescriptor struct {
-	//	IAD
-	iad	IADDescriptor	// Only needed on compound device
-
-	//	Control
-	cif	InterfaceDescriptor
-	header	CDCCSInterfaceDescriptor
-
-	// CDC control
-	controlManagement	ACMFunctionalDescriptor		// ACM
-	functionalDescriptor	CDCCSInterfaceDescriptor	// CDC_UNION
-	callManagement		CMFunctionalDescriptor		// Call Management
-	cifin			EndpointDescriptor
-
-	//	CDC Data
-	dif	InterfaceDescriptor
-	in	EndpointDescriptor
-	out	EndpointDescriptor
-}
-```
-
-CDCDescriptor is the Communication Device Class (CDC) descriptor.
-
-
-
-### func (CDCDescriptor) Bytes
-
-```go
-func (d CDCDescriptor) Bytes() [cdcSize]byte
-```
-
-Bytes returns CDCDescriptor data.
-
-
-
-
-## type CMFunctionalDescriptor
-
-```go
-type CMFunctionalDescriptor struct {
-	bFunctionLength		uint8
-	bDescriptorType		uint8	// 0x24
-	bDescriptorSubtype	uint8	// 1
-	bmCapabilities		uint8
-	bDataInterface		uint8
-}
-```
-
-CMFunctionalDescriptor is the functional descriptor general format.
-
-
-
-### func (CMFunctionalDescriptor) Bytes
-
-```go
-func (d CMFunctionalDescriptor) Bytes() [cmFunctionalDescriptorSize]byte
-```
-
-Bytes returns the CMFunctionalDescriptor data.
-
-
-
-
-## type ConfigDescriptor
-
-```go
-type ConfigDescriptor struct {
-	bLength			uint8	// 9
-	bDescriptorType		uint8	// 2
-	wTotalLength		uint16	// total length
-	bNumInterfaces		uint8
-	bConfigurationValue	uint8
-	iConfiguration		uint8
-	bmAttributes		uint8
-	bMaxPower		uint8
-}
-```
-
-ConfigDescriptor implements the standard USB configuration descriptor.
-
-Table 9-10. Standard Configuration Descriptor
-bLength, bDescriptorType, wTotalLength, bNumInterfaces, bConfigurationValue, iConfiguration
-bmAttributes, bMaxPower
-
-
-
-### func (ConfigDescriptor) Bytes
-
-```go
-func (d ConfigDescriptor) Bytes() [configDescriptorSize]byte
-```
-
-Bytes returns ConfigDescriptor data.
-
-
-
-
 ## type DAC
 
 ```go
@@ -754,77 +532,6 @@ type DACConfig struct {
 
 DACConfig placeholder for future expansion.
 
-
-
-
-
-## type DeviceDescriptor
-
-```go
-type DeviceDescriptor struct {
-	bLength			uint8	// 18
-	bDescriptorType		uint8	// 1 USB_DEVICE_DESCRIPTOR_TYPE
-	bcdUSB			uint16	// 0x200
-	bDeviceClass		uint8
-	bDeviceSubClass		uint8
-	bDeviceProtocol		uint8
-	bMaxPacketSize0		uint8	// Packet 0
-	idVendor		uint16
-	idProduct		uint16
-	bcdDevice		uint16	// 0x100
-	iManufacturer		uint8
-	iProduct		uint8
-	iSerialNumber		uint8
-	bNumConfigurations	uint8
-}
-```
-
-DeviceDescriptor implements the USB standard device descriptor.
-
-Table 9-8. Standard Device Descriptor
-bLength, bDescriptorType, bcdUSB, bDeviceClass, bDeviceSubClass, bDeviceProtocol, bMaxPacketSize0,
-   idVendor, idProduct, bcdDevice, iManufacturer, iProduct, iSerialNumber, bNumConfigurations */
-
-
-
-### func (DeviceDescriptor) Bytes
-
-```go
-func (d DeviceDescriptor) Bytes() [deviceDescriptorSize]byte
-```
-
-Bytes returns DeviceDescriptor data
-
-
-
-
-## type EndpointDescriptor
-
-```go
-type EndpointDescriptor struct {
-	bLength			uint8	// 7
-	bDescriptorType		uint8	// 5
-	bEndpointAddress	uint8
-	bmAttributes		uint8
-	wMaxPacketSize		uint16
-	bInterval		uint8
-}
-```
-
-EndpointDescriptor implements the standard USB endpoint descriptor.
-
-Table 9-13. Standard Endpoint Descriptor
-bLength, bDescriptorType, bEndpointAddress, bmAttributes, wMaxPacketSize, bInterval
-
-
-
-### func (EndpointDescriptor) Bytes
-
-```go
-func (d EndpointDescriptor) Bytes() [endpointDescriptorSize]byte
-```
-
-Bytes returns EndpointDescriptor data.
 
 
 
@@ -1041,92 +748,6 @@ type I2SMode uint8
 type I2SStandard uint8
 ```
 
-
-
-
-
-
-## type IADDescriptor
-
-```go
-type IADDescriptor struct {
-	bLength			uint8	// 8
-	bDescriptorType		uint8	// 11
-	bFirstInterface		uint8
-	bInterfaceCount		uint8
-	bFunctionClass		uint8
-	bFunctionSubClass	uint8
-	bFunctionProtocol	uint8
-	iFunction		uint8
-}
-```
-
-IADDescriptor is an Interface Association Descriptor, which is used
-to bind 2 interfaces together in CDC composite device.
-
-Standard Interface Association Descriptor:
-bLength, bDescriptorType, bFirstInterface, bInterfaceCount, bFunctionClass, bFunctionSubClass,
-bFunctionProtocol, iFunction
-
-
-
-### func (IADDescriptor) Bytes
-
-```go
-func (d IADDescriptor) Bytes() [iadDescriptorSize]byte
-```
-
-Bytes returns IADDescriptor data.
-
-
-
-
-## type InterfaceDescriptor
-
-```go
-type InterfaceDescriptor struct {
-	bLength			uint8	// 9
-	bDescriptorType		uint8	// 4
-	bInterfaceNumber	uint8
-	bAlternateSetting	uint8
-	bNumEndpoints		uint8
-	bInterfaceClass		uint8
-	bInterfaceSubClass	uint8
-	bInterfaceProtocol	uint8
-	iInterface		uint8
-}
-```
-
-InterfaceDescriptor implements the standard USB interface descriptor.
-
-Table 9-12. Standard Interface Descriptor
-bLength, bDescriptorType, bInterfaceNumber, bAlternateSetting, bNumEndpoints, bInterfaceClass,
-bInterfaceSubClass, bInterfaceProtocol, iInterface
-
-
-
-### func (InterfaceDescriptor) Bytes
-
-```go
-func (d InterfaceDescriptor) Bytes() [interfaceDescriptorSize]byte
-```
-
-Bytes returns InterfaceDescriptor data.
-
-
-
-
-## type MSCDescriptor
-
-```go
-type MSCDescriptor struct {
-	msc	InterfaceDescriptor
-	in	EndpointDescriptor
-	out	EndpointDescriptor
-}
-```
-
-MSCDescriptor is not used yet.
 
 
 
@@ -1834,6 +1455,29 @@ func (usbcdc *USBCDC) WriteByte(c byte) error
 ```
 
 WriteByte writes a byte of data to the USB CDC interface.
+
+
+
+
+## type USBDescriptor
+
+```go
+type USBDescriptor struct {
+	Device		[]byte
+	Configuration	[]byte
+	HID		map[uint16][]byte
+}
+```
+
+
+
+
+### func (*USBDescriptor) Configure
+
+```go
+func (d *USBDescriptor) Configure(idVendor, idProduct uint16)
+```
+
 
 
 

@@ -289,7 +289,16 @@ Always use UART0 as the serial output.
 var (
 	// UART0 is the hardware serial port on the AVR.
 	UART0	= &_UART0
-	_UART0	= UART{Buffer: NewRingBuffer()}
+	_UART0	= UART{
+		Buffer:	NewRingBuffer(),
+
+		dataReg:	avr.UDR0,
+		baudRegH:	avr.UBRR0H,
+		baudRegL:	avr.UBRR0L,
+		statusRegA:	avr.UCSR0A,
+		statusRegB:	avr.UCSR0B,
+		statusRegC:	avr.UCSR0C,
+	}
 )
 ```
 
@@ -978,7 +987,15 @@ SPIConfig is used to store config info for SPI.
 
 ```go
 type UART struct {
-	Buffer *RingBuffer
+	Buffer	*RingBuffer
+
+	dataReg		*volatile.Register8
+	baudRegH	*volatile.Register8
+	baudRegL	*volatile.Register8
+
+	statusRegA	*volatile.Register8
+	statusRegB	*volatile.Register8
+	statusRegC	*volatile.Register8
 }
 ```
 
