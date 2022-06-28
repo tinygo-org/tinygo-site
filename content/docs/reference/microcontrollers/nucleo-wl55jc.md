@@ -18,6 +18,29 @@ It has onboard LoRa®, (G)FSK, (G)MSK, and BPSK as well as 3 user LEDs, 3 user b
 | ADC      | YES | Not yet |
 | PWM      | YES | Not yet |
 
+## Pins
+
+| Pin               | Hardware pin | Alternative names |
+| ----------------- | ------------ | ----------------- |
+| `LED_BLUE`        | `PB15`       |                   |
+| `LED_GREEN`       | `PB9`        |                   |
+| `LED_RED`         | `PB11`       | `LED`             |
+| `BTN1`            | `PA0`        | `BUTTON`          |
+| `BTN2`            | `PA1`        |                   |
+| `BTN3`            | `PC6`        |                   |
+| `SPI0_NSS_PIN`    | `PA4`        |                   |
+| `SPI0_SCK_PIN`    | `PA5`        |                   |
+| `SPI0_SDO_PIN`    | `PA6`        |                   |
+| `SPI0_SDI_PIN`    | `PA7`        |                   |
+| `UART1_TX_PIN`    | `PB6`        |                   |
+| `UART1_RX_PIN`    | `PB7`        |                   |
+| `UART2_RX_PIN`    | `PA3`        | `UART_RX_PIN`     |
+| `UART2_TX_PIN`    | `PA2`        | `UART_TX_PIN`     |
+| `I2C1_SCL_PIN`    | `PA9`        | `I2C0_SCL_PIN`    |
+| `I2C1_SDA_PIN`    | `PA10`       | `I2C0_SDA_PIN`    |
+| `I2C2_SCL_PIN`    | `PA12`       |                   |
+| `I2C2_SDA_PIN`    | `PA11`       |                   |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the STM32 Nucleo WL55JC](../machine/nucleo-wl55jc)

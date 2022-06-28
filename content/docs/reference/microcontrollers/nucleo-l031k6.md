@@ -18,6 +18,32 @@ It has 2 user buttons, and 3 user LEDs.
 | ADC      | YES | Not yet |
 | PWM      | YES | Not yet |
 
+## Pins
+
+| Pin               | Hardware pin | Alternative names |
+| ----------------- | ------------ | ----------------- |
+| `A0`              | `PA0`        | `BUTTON`          |
+| `A1`              | `PA1`        |                   |
+| `A2`              | `PA3`        |                   |
+| `A3`              | `PA4`        |                   |
+| `A4`              | `PA5`        |                   |
+| `A5`              | `PA6`        |                   |
+| `A6`              | `PA7`        |                   |
+| `A7`              | `PA2`        | `UART_TX_PIN`     |
+| `D0`              | `PA10`       |                   |
+| `D1`              | `PA9`        |                   |
+| `D2`              | `PA12`       |                   |
+| `D3`              | `PB0`        |                   |
+| `D4`              | `PB7`        | `I2C0_SCL_PIN`    |
+| `D5`              | `PB6`        | `I2C0_SDA_PIN`    |
+| `D6`              | `PB1`        |                   |
+| `D9`              | `PA8`        |                   |
+| `D10`             | `PA11`       |                   |
+| `D11`             | `PB5`        | `SPI1_SDI_PIN`, `SPI0_SDI_PIN` |
+| `D12`             | `PB4`        | `SPI1_SDO_PIN`, `SPI0_SDO_PIN` |
+| `D13`             | `PB3`        | `LED`, `LED_BUILTIN`, `LED_GREEN`, `SPI1_SCK_PIN`, `SPI0_SCK_PIN` |
+| `UART_RX_PIN`     | `PA15`       |                   |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the STM32 Nucleo L031K6](../machine/nucleo-l031k6)

@@ -18,6 +18,33 @@ The [M5Stamp-C3](https://docs.m5stack.com/en/core/stamp_c3) is a development boa
 | WiFi      | YES | Not Yet |
 | Bluetooth      | YES | Not yet |
 
+## Pins
+
+| Pin               | Hardware pin | Alternative names |
+| ----------------- | ------------ | ----------------- |
+| `IO0`             | `GPIO0`      | `XTAL_32K_P`      |
+| `IO1`             | `GPIO1`      | `XTAL_32K_N`      |
+| `IO2`             | `GPIO2`      | `WS2812`          |
+| `IO3`             | `GPIO3`      |                   |
+| `IO4`             | `GPIO4`      | `MTMS`            |
+| `IO5`             | `GPIO5`      | `MTDI`            |
+| `IO6`             | `GPIO6`      | `MTCK`            |
+| `IO7`             | `GPIO7`      | `MTDO`            |
+| `IO8`             | `GPIO8`      |                   |
+| `IO9`             | `GPIO9`      |                   |
+| `IO10`            | `GPIO10`     |                   |
+| `IO11`            | `GPIO11`     | `VDD_SPI`         |
+| `IO12`            | `GPIO12`     | `SPIHD`           |
+| `IO13`            | `GPIO13`     | `SPISP`           |
+| `IO14`            | `GPIO14`     | `SPICS0`          |
+| `IO15`            | `GPIO15`     | `SPICLK`          |
+| `IO16`            | `GPIO16`     | `SPID`            |
+| `IO17`            | `GPIO17`     | `SPIQ`            |
+| `IO18`            | `GPIO18`     |                   |
+| `IO19`            | `GPIO19`     |                   |
+| `IO20`            | `GPIO20`     | `U0RXD`, `UART_RX_PIN` |
+| `IO21`            | `GPIO21`     | `U0TXD`, `UART_TX_PIN` |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the M5Stamp-C3](../machine/m5stamp-c3)

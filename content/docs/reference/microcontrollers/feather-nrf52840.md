@@ -17,6 +17,45 @@ The [Adafruit Feather nRF52840](https://www.adafruit.com/product/4500) is a smal
 | PWM      | YES | YES |
 | Bluetooth      | YES | YES |
 
+## Pins
+
+| Pin               | Hardware pin | Alternative names |
+| ----------------- | ------------ | ----------------- |
+| `D0`              | `P0_25`      | `UART_TX_PIN`     |
+| `D1`              | `P0_24`      | `UART_RX_PIN`     |
+| `D2`              | `P0_10`      |                   |
+| `D3`              | `P1_15`      | `LED`, `LED1`     |
+| `D4`              | `P1_10`      | `LED2`            |
+| `D5`              | `P1_08`      |                   |
+| `D6`              | `P0_07`      |                   |
+| `D7`              | `P1_02`      | `BUTTON`          |
+| `D8`              | `P0_16`      | `NEOPIXEL`, `WS2812` |
+| `D9`              | `P0_26`      |                   |
+| `D10`             | `P0_27`      |                   |
+| `D11`             | `P0_06`      |                   |
+| `D12`             | `P0_08`      |                   |
+| `D13`             | `P1_09`      |                   |
+| `D14`             | `P0_04`      | `A0`              |
+| `D15`             | `P0_05`      | `A1`              |
+| `D16`             | `P0_30`      | `A2`              |
+| `D17`             | `P0_28`      | `A3`              |
+| `D18`             | `P0_02`      | `A4`              |
+| `D19`             | `P0_03`      | `A5`              |
+| `D20`             | `P0_29`      | `A6`              |
+| `D21`             | `P0_31`      | `A7`              |
+| `D22`             | `P0_12`      | `SDA_PIN`         |
+| `D23`             | `P0_11`      | `SCL_PIN`         |
+| `D24`             | `P0_15`      | `SPI0_SDI_PIN`    |
+| `D25`             | `P0_13`      | `SPI0_SDO_PIN`    |
+| `D26`             | `P0_14`      | `SPI0_SCK_PIN`    |
+| `D27`             | `P0_19`      | `QSPI_SCK`        |
+| `D28`             | `P0_20`      | `QSPI_CS`         |
+| `D29`             | `P0_17`      | `QSPI_DATA0`      |
+| `D30`             | `P0_22`      | `QSPI_DATA1`      |
+| `D31`             | `P0_23`      | `QSPI_DATA2`      |
+| `D32`             | `P0_21`      | `QSPI_DATA3`      |
+| `D33`             | `P0_09`      |                   |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the Adafruit Feather nRF52840](../machine/feather-nrf52840)

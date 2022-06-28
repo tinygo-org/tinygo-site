@@ -17,6 +17,16 @@ The [nRF52840-MDK](https://wiki.makerdiary.com/nrf52840-mdk/) (not to be confuse
 | PWM      | YES | YES |
 | Bluetooth      | YES | YES |
 
+## Pins
+
+| Pin               | Hardware pin | Alternative names |
+| ----------------- | ------------ | ----------------- |
+| `LED_GREEN`       | `P0_22`      | `LED`             |
+| `LED_RED`         | `P0_23`      |                   |
+| `LED_BLUE`        | `P0_24`      |                   |
+| `UART_TX_PIN`     | `P0_20`      |                   |
+| `UART_RX_PIN`     | `P0_19`      |                   |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the nRF52840-MDK](../machine/nrf52840-mdk)

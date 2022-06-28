@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"go/ast"
+	"go/constant"
 	"go/printer"
 	"go/token"
 	"go/types"
@@ -12,6 +13,7 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"regexp"
 	"strings"
 	"text/template"
 
@@ -34,6 +36,19 @@ type Type struct {
 	Doc   *ast.CommentGroup
 	Funcs map[string]*ast.FuncDecl
 }
+
+type Pin struct {
+	HardwareName string
+	OtherNames   []string
+}
+
+// Match formats:
+// - PA0 (AVR)
+// - PA00 (Microchip SAM series)
+// - P0_00 (nrf series),
+// - GPIO0 (esp series, rp2040)
+// - P00 (sifive)
+var pinIsHardwareName = regexp.MustCompile("^(P[A-Z][0-9]+|P[0-1]_[0-9]{2}|GPIO[0-9]+|P[0-9]{2})$")
 
 var markdownTemplateText = `
 ---
@@ -283,6 +298,19 @@ func writeMachinePackageDoc(path, target string, pkg *packages.Package) error {
 	return tpl.Execute(f, doc)
 }
 
+func findSection(name, doc string) (start, end int, err error) {
+	start = strings.Index(doc, fmt.Sprintf("## %s\n", name))
+	if start < 0 {
+		return 0, 0, fmt.Errorf("could not find '%s' header", name)
+	}
+	endOffset := strings.Index(doc[start:], "\n## ")
+	if endOffset < 0 {
+		return 0, 0, fmt.Errorf("could not find end of '%s' header", name)
+	}
+	end = start + endOffset
+	return
+}
+
 func updateBoardDocumentation(path string, pkg *packages.Package, buildTags []string) error {
 	features := detectSupportedFeatures(pkg, buildTags)
 
@@ -294,15 +322,10 @@ func updateBoardDocumentation(path string, pkg *packages.Package, buildTags []st
 	doc := string(docBuf)
 
 	// Find "Interfaces" section.
-	start := strings.Index(doc, "## Interfaces\n")
-	if start < 0 {
-		return fmt.Errorf("could not find 'Interface' header")
+	start, end, err := findSection("Interfaces", doc)
+	if err != nil {
+		return err
 	}
-	endOffset := strings.Index(doc[start:], "\n## ")
-	if endOffset < 0 {
-		return fmt.Errorf("could not find end of 'Interface' header")
-	}
-	end := start + endOffset
 
 	// Create new "Interfaces" section based on the previous section.
 	interfacesText := "## Interfaces\n\n| Interface | Hardware Supported | TinyGo Support |\n| --------- | ------------- | ----- |\n"
@@ -335,6 +358,18 @@ func updateBoardDocumentation(path string, pkg *packages.Package, buildTags []st
 
 	// Replace the "Interfaces" section.
 	doc = doc[:start] + interfacesText + doc[end:]
+
+	start, end, err = findSection("Pins", doc)
+	if err == nil {
+		// There is a pins section. Update it from the machine package.
+		pinsText, err := getPinsSection(pkg)
+		if err != nil {
+			return err
+		}
+
+		// Replace the "Pins" section.
+		doc = doc[:start] + pinsText + doc[end:]
+	}
 
 	// Write out the updated documentation.
 	err = ioutil.WriteFile(path+".tmp", []byte(doc), 0o666)
@@ -425,4 +460,124 @@ func detectSupportedFeatures(pkg *packages.Package, buildTags []string) map[stri
 	}
 
 	return features
+}
+
+func getPinsSection(pkg *packages.Package) (string, error) {
+	// Find board pin names
+	pinNames := make(map[string]uint64)
+	hardwarePins := make(map[string]struct{})
+	var pinNamesSlice []string
+	for _, file := range pkg.Syntax {
+		for _, decl := range file.Decls {
+			switch decl := decl.(type) {
+			case *ast.GenDecl:
+				if decl.Tok != token.CONST {
+					continue
+				}
+				for _, spec := range decl.Specs {
+					// Found a constant.
+					spec := spec.(*ast.ValueSpec)
+					name := spec.Names[0].Name
+					if !ast.IsExported(name) {
+						continue
+					}
+					obj := pkg.Types.Scope().Lookup(name)
+					if obj.Type().String() != "machine.Pin" {
+						continue
+					}
+					val, ok := constant.Uint64Val(obj.(*types.Const).Val())
+					if !ok {
+						return "", fmt.Errorf("expected pin %s with value %s to be representable by uint64", name, obj.(*types.Const).Val())
+					}
+					pinNamesSlice = append(pinNamesSlice, name)
+					pinNames[name] = val
+					if isHardwarePin(name, spec.Values) {
+						hardwarePins[name] = struct{}{}
+					}
+				}
+			}
+		}
+	}
+	if _, ok := pinNames["NoPin"]; !ok {
+		return "", fmt.Errorf("could not find NoPin constant")
+	}
+	var exposedPins []*Pin
+	pins := make(map[uint64]*Pin)
+	for _, name := range pinNamesSlice {
+		if name == "NoPin" || pinNames[name] == pinNames["NoPin"] {
+			continue
+		}
+		num := pinNames[name]
+		pin, ok := pins[num]
+		if !ok {
+			pin = &Pin{}
+			pins[num] = pin
+		}
+		if _, ok := hardwarePins[name]; ok {
+			// Hardware name
+			if pin.HardwareName != "" {
+				return "", fmt.Errorf("duplicate hardware pin name: %s and %s", pin.HardwareName, name)
+			}
+			pin.HardwareName = name
+		} else {
+			// Other name
+			if len(pin.OtherNames) == 0 {
+				exposedPins = append(exposedPins, pin)
+			}
+			pin.OtherNames = append(pin.OtherNames, name)
+		}
+	}
+
+	pinsText := "## Pins\n\n| Pin               | Hardware pin | Alternative names |\n| ----------------- | ------------ | ----------------- |\n"
+	for _, pin := range exposedPins {
+		if pin.HardwareName == "" {
+			return "", fmt.Errorf("could not find hardware pin name for %s", pin.OtherNames[0])
+		}
+		alternativeNames := make([]string, 0, len(pin.OtherNames)-1)
+		for _, name := range pin.OtherNames[1:] {
+			alternativeNames = append(alternativeNames, "`"+name+"`")
+		}
+		pinsText += fmt.Sprintf("| %-17s | %-12s | %-17s |\n", "`"+pin.OtherNames[0]+"`", "`"+pin.HardwareName+"`", strings.Join(alternativeNames, ", "))
+	}
+
+	return pinsText, nil
+}
+
+// Return whether this pin looks like a hardware pin name. A hardware pin
+// constant is a constant like PB02 on the Arduino: a constant defined by the
+// chip, and not the board (which would be pin 13, D13, or the LED pin).
+func isHardwarePin(name string, values []ast.Expr) bool {
+	if !pinIsHardwareName.MatchString(name) {
+		return false
+	}
+	if len(values) == 0 {
+		// Pin constant is probably part of a constant like this:
+		//   const (
+		//     GPIO0 Pin = iota
+		//     GPIO1
+		//     GPIO2
+		//     // etc
+		//   )
+		return true
+	}
+	switch value := values[0].(type) {
+	case *ast.BasicLit:
+		// For example:
+		//   const GPIO5 Pin = 5
+		return true
+	case *ast.BinaryExpr:
+		// For example:
+		//   const PB02 = portB + 2
+		return true
+	case *ast.Ident:
+		if value.Name == "iota" {
+			// Pins are initialized using the special identifier "iota".
+			return true
+		}
+		// Doesn't look like a hardware pin, could be something like:
+		//   const D13 = PB5
+		return false
+	default:
+		return false
+	}
 }

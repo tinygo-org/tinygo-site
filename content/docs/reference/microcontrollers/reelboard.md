@@ -19,6 +19,30 @@ It is equipped with an Electrophoretic (electronic ink) Display (EPD), along wit
 | PWM      | YES | YES |
 | Bluetooth      | YES | YES |
 
+## Pins
+
+| Pin               | Hardware pin | Alternative names |
+| ----------------- | ------------ | ----------------- |
+| `LED_RED`         | `P0_11`      | `LED2`            |
+| `LED_GREEN`       | `P0_12`      | `LED3`            |
+| `LED_BLUE`        | `P1_09`      | `LED4`            |
+| `LED_YELLOW`      | `P0_13`      | `LED1`, `LED`     |
+| `EPD_BUSY_PIN`    | `P0_14`      |                   |
+| `EPD_RESET_PIN`   | `P0_15`      |                   |
+| `EPD_DC_PIN`      | `P0_16`      |                   |
+| `EPD_CS_PIN`      | `P0_17`      |                   |
+| `EPD_SCK_PIN`     | `P0_19`      |                   |
+| `EPD_SDO_PIN`     | `P0_20`      |                   |
+| `POWER_SUPPLY_PIN` | `P1_00`      |                   |
+| `BUTTON`          | `P0_07`      |                   |
+| `UART_TX_PIN`     | `P0_06`      |                   |
+| `UART_RX_PIN`     | `P0_08`      |                   |
+| `SDA_PIN`         | `P0_26`      |                   |
+| `SCL_PIN`         | `P0_27`      |                   |
+| `SPI0_SCK_PIN`    | `P1_15`      |                   |
+| `SPI0_SDO_PIN`    | `P1_13`      |                   |
+| `SPI0_SDI_PIN`    | `P1_14`      |                   |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the reel board](../machine/reelboard)

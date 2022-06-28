@@ -18,6 +18,19 @@ The Swan has a user button and an LED, LiPo charging and USB.
 | ADC      | YES | Not yet |
 | PWM      | YES | Not yet |
 
+## Pins
+
+| Pin               | Hardware pin | Alternative names |
+| ----------------- | ------------ | ----------------- |
+| `LED`             | `PE2`        |                   |
+| `UART_TX_PIN`     | `PA9`        |                   |
+| `UART_RX_PIN`     | `PA10`       |                   |
+| `I2C0_SCL_PIN`    | `PB6`        |                   |
+| `I2C0_SDA_PIN`    | `PB7`        |                   |
+| `SPI1_SCK_PIN`    | `PD1`        | `SPI0_SCK_PIN`    |
+| `SPI1_SDI_PIN`    | `PB14`       | `SPI0_SDI_PIN`    |
+| `SPI1_SDO_PIN`    | `PB15`       | `SPI0_SDO_PIN`    |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the Swan](../machine/swan)

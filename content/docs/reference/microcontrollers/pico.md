@@ -16,6 +16,39 @@ The [Raspberry Pi Pico](https://www.raspberrypi.org/products/raspberry-pi-pico/)
 | ADC      | YES | YES |
 | PWM      | YES | YES |
 
+## Pins
+
+| Pin               | Hardware pin | Alternative names |
+| ----------------- | ------------ | ----------------- |
+| `GP0`             | `GPIO0`      | `UART0_TX_PIN`, `UART_TX_PIN` |
+| `GP1`             | `GPIO1`      | `UART0_RX_PIN`, `UART_RX_PIN` |
+| `GP2`             | `GPIO2`      | `I2C1_SDA_PIN`    |
+| `GP3`             | `GPIO3`      | `I2C1_SCL_PIN`    |
+| `GP4`             | `GPIO4`      | `I2C0_SDA_PIN`    |
+| `GP5`             | `GPIO5`      | `I2C0_SCL_PIN`    |
+| `GP6`             | `GPIO6`      |                   |
+| `GP7`             | `GPIO7`      |                   |
+| `GP8`             | `GPIO8`      | `UART1_TX_PIN`    |
+| `GP9`             | `GPIO9`      | `UART1_RX_PIN`    |
+| `GP10`            | `GPIO10`     | `SPI1_SCK_PIN`    |
+| `GP11`            | `GPIO11`     | `SPI1_SDO_PIN`    |
+| `GP12`            | `GPIO12`     | `SPI1_SDI_PIN`    |
+| `GP13`            | `GPIO13`     |                   |
+| `GP14`            | `GPIO14`     |                   |
+| `GP15`            | `GPIO15`     |                   |
+| `GP16`            | `GPIO16`     | `SPI0_SDI_PIN`    |
+| `GP17`            | `GPIO17`     |                   |
+| `GP18`            | `GPIO18`     | `SPI0_SCK_PIN`    |
+| `GP19`            | `GPIO19`     | `SPI0_SDO_PIN`    |
+| `GP20`            | `GPIO20`     |                   |
+| `GP21`            | `GPIO21`     |                   |
+| `GP22`            | `GPIO22`     |                   |
+| `GP26`            | `GPIO26`     | `ADC0`            |
+| `GP27`            | `GPIO27`     | `ADC1`            |
+| `GP28`            | `GPIO28`     | `ADC2`            |
+| `LED`             | `GPIO25`     |                   |
+| `ADC3`            | `GPIO29`     |                   |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the Pico](../machine/pico)

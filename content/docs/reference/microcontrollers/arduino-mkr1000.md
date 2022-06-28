@@ -16,6 +16,35 @@ The [Arduino MKR1000](https://store.arduino.cc/arduino-mkr1000-wifi) is a very s
 | ADC      | YES | YES |
 | PWM      | YES | YES |
 
+## Pins
+
+| Pin               | Hardware pin | Alternative names |
+| ----------------- | ------------ | ----------------- |
+| `D0`              | `PA22`       |                   |
+| `D1`              | `PA23`       |                   |
+| `D2`              | `PA10`       | `I2S_SCK_PIN`     |
+| `D3`              | `PA11`       |                   |
+| `D4`              | `PB10`       |                   |
+| `D5`              | `PB11`       |                   |
+| `D6`              | `PA20`       | `LED`             |
+| `D7`              | `PA21`       |                   |
+| `D8`              | `PA16`       | `SPI0_SDO_PIN`    |
+| `D9`              | `PA17`       | `SPI0_SCK_PIN`    |
+| `D10`             | `PA19`       | `SPI0_SDI_PIN`    |
+| `D11`             | `PA08`       | `SDA_PIN`         |
+| `D12`             | `PA09`       | `SCL_PIN`         |
+| `D13`             | `PB23`       | `RX0`, `UART_RX_PIN` |
+| `D14`             | `PB22`       | `TX1`, `UART_TX_PIN` |
+| `A0`              | `PA02`       |                   |
+| `A1`              | `PB02`       |                   |
+| `A2`              | `PB03`       |                   |
+| `A3`              | `PA04`       |                   |
+| `A4`              | `PA05`       |                   |
+| `A5`              | `PA06`       |                   |
+| `A6`              | `PA07`       | `I2S_SD_PIN`      |
+| `USBCDC_DM_PIN`   | `PA24`       |                   |
+| `USBCDC_DP_PIN`   | `PA25`       |                   |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the Arduino MKR1000](../machine/arduino-mkr1000)

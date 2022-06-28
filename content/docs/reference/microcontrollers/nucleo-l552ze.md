@@ -18,6 +18,19 @@ It has onboard ethernet, 2 user buttons, and 3 user LEDs.
 | ADC      | YES | Not yet |
 | PWM      | YES | Not yet |
 
+## Pins
+
+| Pin               | Hardware pin | Alternative names |
+| ----------------- | ------------ | ----------------- |
+| `LED_GREEN`       | `PC7`        | `LED_BUILTIN`, `LED` |
+| `LED_BLUE`        | `PB7`        |                   |
+| `LED_RED`         | `PA9`        |                   |
+| `BUTTON`          | `PC13`       | `BUTTON_USER`     |
+| `UART_TX_PIN`     | `PG7`        |                   |
+| `UART_RX_PIN`     | `PG8`        |                   |
+| `I2C0_SCL_PIN`    | `PB8`        |                   |
+| `I2C0_SDA_PIN`    | `PB9`        |                   |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the STM32 Nucleo l552ze](../machine/nucleo-l552ze)

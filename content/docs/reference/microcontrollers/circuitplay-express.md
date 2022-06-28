@@ -16,6 +16,36 @@ The [Adafruit Circuit Playground Express](https://www.adafruit.com/product/3333)
 | ADC      | YES | YES |
 | PWM      | YES | YES |
 
+## Pins
+
+| Pin               | Hardware pin | Alternative names |
+| ----------------- | ------------ | ----------------- |
+| `D0`              | `PB09`       | `A6`, `UART_RX_PIN` |
+| `D1`              | `PB08`       | `A7`, `UART_TX_PIN` |
+| `D2`              | `PB02`       | `A5`, `SDA_PIN`   |
+| `D3`              | `PB03`       | `A4`, `SCL_PIN`   |
+| `D4`              | `PA28`       | `BUTTONA`, `BUTTON` |
+| `D5`              | `PA14`       | `BUTTONB`, `BUTTON1` |
+| `D6`              | `PA05`       | `A1`              |
+| `D7`              | `PA15`       | `SLIDER`          |
+| `D8`              | `PB23`       | `NEOPIXELS`, `WS2812` |
+| `D9`              | `PA06`       | `A2`              |
+| `D10`             | `PA07`       | `A3`              |
+| `D12`             | `PA02`       | `A0`              |
+| `D13`             | `PA17`       | `LED`             |
+| `A8`              | `PA11`       | `LIGHTSENSOR`     |
+| `A9`              | `PA09`       | `TEMPSENSOR`      |
+| `A10`             | `PA04`       | `PROXIMITY`       |
+| `USBCDC_DM_PIN`   | `PA24`       |                   |
+| `USBCDC_DP_PIN`   | `PA25`       |                   |
+| `SDA1_PIN`        | `PA00`       |                   |
+| `SCL1_PIN`        | `PA01`       |                   |
+| `SPI0_SCK_PIN`    | `PA21`       |                   |
+| `SPI0_SDO_PIN`    | `PA20`       |                   |
+| `SPI0_SDI_PIN`    | `PA16`       |                   |
+| `I2S_SCK_PIN`     | `PA10`       |                   |
+| `I2S_SD_PIN`      | `PA08`       |                   |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the Circuit Playground Express](../machine/circuitplay-express)

@@ -18,6 +18,22 @@ It has 2 user buttons, and 3 user LEDs.
 | ADC      | YES | Not yet |
 | PWM      | YES | Not yet |
 
+## Pins
+
+| Pin               | Hardware pin | Alternative names |
+| ----------------- | ------------ | ----------------- |
+| `LED`             | `PB0`        | `LED_BUILTIN`, `LED_GREEN` |
+| `LED_BLUE`        | `PB7`        |                   |
+| `LED_RED`         | `PB14`       |                   |
+| `BUTTON`          | `PC13`       | `BUTTON_USER`     |
+| `UART_TX_PIN`     | `PD8`        |                   |
+| `UART_RX_PIN`     | `PD9`        |                   |
+| `SPI0_SCK_PIN`    | `PA5`        |                   |
+| `SPI0_SDI_PIN`    | `PA6`        |                   |
+| `SPI0_SDO_PIN`    | `PA7`        |                   |
+| `I2C0_SCL_PIN`    | `PB8`        |                   |
+| `I2C0_SDA_PIN`    | `PB9`        |                   |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the STM32 Nucleo F722ZE](../machine/nucleo-f722ze)

@@ -16,6 +16,42 @@ The [Arduino MKR WiFi 1010](https://store.arduino.cc/usa/mkr-wifi-1010) is a ver
 | ADC      | YES | YES |
 | PWM      | YES | YES |
 
+## Pins
+
+| Pin               | Hardware pin | Alternative names |
+| ----------------- | ------------ | ----------------- |
+| `D0`              | `PA22`       | `NINA_TX`         |
+| `D1`              | `PA23`       | `NINA_RX`         |
+| `D2`              | `PA10`       | `I2S_SCK_PIN`     |
+| `D3`              | `PA11`       |                   |
+| `D4`              | `PB10`       |                   |
+| `D5`              | `PB11`       |                   |
+| `D6`              | `PA20`       | `LED`             |
+| `D7`              | `PA21`       |                   |
+| `D8`              | `PA16`       | `SPI0_SDO_PIN`    |
+| `D9`              | `PA17`       | `SPI0_SCK_PIN`    |
+| `D10`             | `PA19`       | `SPI0_SDI_PIN`    |
+| `D11`             | `PA08`       | `SDA_PIN`         |
+| `D12`             | `PA09`       | `SCL_PIN`         |
+| `D13`             | `PB23`       | `RX0`, `UART_RX_PIN` |
+| `D14`             | `PB22`       | `TX1`, `UART_TX_PIN` |
+| `A0`              | `PA02`       |                   |
+| `A1`              | `PB02`       |                   |
+| `A2`              | `PB03`       |                   |
+| `A3`              | `PA04`       |                   |
+| `A4`              | `PA05`       |                   |
+| `A5`              | `PA06`       |                   |
+| `A6`              | `PA07`       | `I2S_SD_PIN`      |
+| `USBCDC_DM_PIN`   | `PA24`       |                   |
+| `USBCDC_DP_PIN`   | `PA25`       |                   |
+| `NINA_SDO`        | `PA12`       |                   |
+| `NINA_SDI`        | `PA13`       |                   |
+| `NINA_CS`         | `PA14`       |                   |
+| `NINA_SCK`        | `PA15`       |                   |
+| `NINA_GPIO0`      | `PA27`       |                   |
+| `NINA_RESETN`     | `PB08`       |                   |
+| `NINA_ACK`        | `PA28`       |                   |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the Arduino MKR WiFi 1010](../machine/arduino-mkrwifi1010)

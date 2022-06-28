@@ -16,6 +16,21 @@ The [Nucleo F103RB](https://www.st.com/en/evaluation-tools/nucleo-f103rb.html) i
 | ADC      | YES | YES |
 | PWM      | YES | Not yet |
 
+## Pins
+
+| Pin               | Hardware pin | Alternative names |
+| ----------------- | ------------ | ----------------- |
+| `LED`             | `PA5`        | `LED_BUILTIN`, `LED_GREEN`, `SPI0_SCK_PIN` |
+| `BUTTON`          | `PC13`       | `BUTTON_USER`     |
+| `UART_TX_PIN`     | `PA2`        |                   |
+| `UART_RX_PIN`     | `PA3`        |                   |
+| `UART_ALT_TX_PIN` | `PD5`        |                   |
+| `UART_ALT_RX_PIN` | `PD6`        |                   |
+| `SPI0_SDI_PIN`    | `PA6`        |                   |
+| `SPI0_SDO_PIN`    | `PA7`        |                   |
+| `I2C0_SCL_PIN`    | `PB6`        |                   |
+| `I2C0_SDA_PIN`    | `PB7`        |                   |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the Nucleo F103RB](../machine/nucleo-f103rb)

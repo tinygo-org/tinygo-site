@@ -18,6 +18,43 @@ The esp32-coreboard-v2 is a development board based on the [Espressif ESP32](htt
 | WiFi      | YES | Not Yet |
 | Bluetooth      | YES | Not yet |
 
+## Pins
+
+| Pin               | Hardware pin | Alternative names |
+| ----------------- | ------------ | ----------------- |
+| `CLK`             | `GPIO6`      |                   |
+| `CMD`             | `GPIO11`     |                   |
+| `IO0`             | `GPIO0`      | `PWM1_PIN`        |
+| `IO1`             | `GPIO1`      | `TXD`, `UART_TX_PIN` |
+| `IO2`             | `GPIO2`      | `LED`, `PWM0_PIN` |
+| `IO3`             | `GPIO3`      | `RXD`, `UART_RX_PIN` |
+| `IO4`             | `GPIO4`      | `PWM2_PIN`        |
+| `IO5`             | `GPIO5`      | `SPI0_CS0_PIN`    |
+| `IO9`             | `GPIO9`      | `SD2`, `UART1_TX_PIN` |
+| `IO10`            | `GPIO10`     | `SD3`, `UART1_RX_PIN` |
+| `IO16`            | `GPIO16`     |                   |
+| `IO17`            | `GPIO17`     |                   |
+| `IO18`            | `GPIO18`     | `SPI0_SCK_PIN`    |
+| `IO19`            | `GPIO19`     | `SPI0_SDI_PIN`    |
+| `IO21`            | `GPIO21`     | `SDA_PIN`         |
+| `IO22`            | `GPIO22`     | `SCL_PIN`         |
+| `IO23`            | `GPIO23`     | `SPI0_SDO_PIN`    |
+| `IO25`            | `GPIO25`     |                   |
+| `IO26`            | `GPIO26`     |                   |
+| `IO27`            | `GPIO27`     |                   |
+| `IO32`            | `GPIO32`     |                   |
+| `IO33`            | `GPIO33`     |                   |
+| `IO34`            | `GPIO34`     | `ADC0`            |
+| `IO35`            | `GPIO35`     | `ADC1`            |
+| `IO36`            | `GPIO36`     | `SVP`, `ADC2`     |
+| `IO39`            | `GPIO39`     | `SVN`, `ADC3`     |
+| `SD0`             | `GPIO7`      |                   |
+| `SD1`             | `GPIO8`      |                   |
+| `TCK`             | `GPIO13`     |                   |
+| `TD0`             | `GPIO15`     |                   |
+| `TDI`             | `GPIO12`     |                   |
+| `TMS`             | `GPIO14`     |                   |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the ESP32 Core board v2](../machine/esp32-coreboard-v2)

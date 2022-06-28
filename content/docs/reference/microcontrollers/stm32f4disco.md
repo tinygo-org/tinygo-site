@@ -19,6 +19,36 @@ CS43L22 audio DAC, 2 user buttons, and 4 user LEDs.
 | ADC      | YES | YES |
 | PWM      | YES | Not yet |
 
+## Pins
+
+| Pin               | Hardware pin | Alternative names |
+| ----------------- | ------------ | ----------------- |
+| `LED1`            | `PD12`       | `LED_GREEN`, `LED`, `LED_BUILTIN` |
+| `LED2`            | `PD13`       | `LED_ORANGE`      |
+| `LED3`            | `PD14`       | `LED_RED`         |
+| `LED4`            | `PD15`       | `LED_BLUE`        |
+| `BUTTON`          | `PA0`        | `ADC0`            |
+| `ADC1`            | `PA1`        |                   |
+| `ADC2`            | `PA2`        | `UART_TX_PIN`     |
+| `ADC3`            | `PA3`        | `UART_RX_PIN`     |
+| `ADC4`            | `PA4`        |                   |
+| `ADC5`            | `PA5`        | `SPI1_SCK_PIN`, `SPI0_SCK_PIN` |
+| `ADC6`            | `PA6`        | `SPI1_SDI_PIN`, `SPI0_SDI_PIN` |
+| `ADC7`            | `PA7`        | `SPI1_SDO_PIN`, `SPI0_SDO_PIN` |
+| `ADC8`            | `PB0`        |                   |
+| `ADC9`            | `PB1`        |                   |
+| `ADC10`           | `PC0`        |                   |
+| `ADC11`           | `PC1`        |                   |
+| `ADC12`           | `PC2`        |                   |
+| `ADC13`           | `PC3`        |                   |
+| `ADC14`           | `PC4`        |                   |
+| `ADC15`           | `PC5`        |                   |
+| `MEMS_ACCEL_CS`   | `PE3`        |                   |
+| `MEMS_ACCEL_INT1` | `PE0`        |                   |
+| `MEMS_ACCEL_INT2` | `PE1`        |                   |
+| `I2C0_SCL_PIN`    | `PB6`        |                   |
+| `I2C0_SDA_PIN`    | `PB9`        |                   |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the STM32F4 Discovery](../machine/stm32f4disco)

@@ -17,6 +17,32 @@ The [Adafruit Circuit Playground Bluefruit](https://www.adafruit.com/product/433
 | PWM      | YES | YES |
 | Bluetooth      | YES | YES |
 
+## Pins
+
+| Pin               | Hardware pin | Alternative names |
+| ----------------- | ------------ | ----------------- |
+| `D0`              | `P0_30`      | `A6`, `UART_RX_PIN` |
+| `D1`              | `P0_14`      | `A7`, `UART_TX_PIN` |
+| `D2`              | `P0_05`      | `A5`, `SDA_PIN`   |
+| `D3`              | `P0_04`      | `A4`, `SCL_PIN`   |
+| `D4`              | `P1_02`      | `BUTTONA`, `BUTTON` |
+| `D5`              | `P1_15`      | `BUTTONB`, `BUTTON1` |
+| `D6`              | `P0_02`      | `A1`              |
+| `D7`              | `P1_06`      | `SLIDER`          |
+| `D8`              | `P0_13`      | `NEOPIXELS`, `WS2812` |
+| `D9`              | `P0_29`      | `A2`              |
+| `D10`             | `P0_03`      | `A3`              |
+| `D11`             | `P1_04`      |                   |
+| `D12`             | `P0_26`      |                   |
+| `D13`             | `P1_14`      | `LED`             |
+| `A8`              | `P0_28`      | `LIGHTSENSOR`     |
+| `A9`              | `P0_31`      | `TEMPSENSOR`      |
+| `SDA1_PIN`        | `P1_10`      |                   |
+| `SCL1_PIN`        | `P1_12`      |                   |
+| `SPI0_SCK_PIN`    | `P0_19`      |                   |
+| `SPI0_SDO_PIN`    | `P0_21`      |                   |
+| `SPI0_SDI_PIN`    | `P0_23`      |                   |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the Circuit Playground Bluefruit](../machine/circuitplay-bluefruit)

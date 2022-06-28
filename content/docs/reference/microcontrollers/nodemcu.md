@@ -17,6 +17,22 @@ The [Espressif ESP8266](https://www.espressif.com/en/products/socs/esp8266) Node
 | PWM      | YES | Not yet |
 | WiFi      | YES | Not Yet |
 
+## Pins
+
+| Pin               | Hardware pin | Alternative names |
+| ----------------- | ------------ | ----------------- |
+| `D0`              | `GPIO16`     |                   |
+| `D1`              | `GPIO5`      | `SCL_PIN`         |
+| `D2`              | `GPIO4`      | `SDA_PIN`         |
+| `D3`              | `GPIO0`      |                   |
+| `D4`              | `GPIO2`      | `LED`             |
+| `D5`              | `GPIO14`     | `SPI0_SCK_PIN`    |
+| `D6`              | `GPIO12`     | `SPI0_SDI_PIN`    |
+| `D7`              | `GPIO13`     | `SPI0_SDO_PIN`    |
+| `D8`              | `GPIO15`     | `SPI0_CS0_PIN`    |
+| `UART_TX_PIN`     | `GPIO1`      |                   |
+| `UART_RX_PIN`     | `GPIO3`      |                   |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the ESP8266 NodeMCU](../machine/nodemcu)

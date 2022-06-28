@@ -17,6 +17,15 @@ The [nRF52840 MDK USB Dongle](https://wiki.makerdiary.com/nrf52840-mdk-usb-dongl
 | PWM      | YES | YES |
 | Bluetooth      | YES | YES |
 
+## Pins
+
+| Pin               | Hardware pin | Alternative names |
+| ----------------- | ------------ | ----------------- |
+| `LED`             | `P0_22`      | `LED_GREEN`       |
+| `LED_RED`         | `P0_23`      |                   |
+| `LED_BLUE`        | `P0_24`      |                   |
+| `BUTTON`          | `P0_18`      |                   |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the nRF52840-MDK-USB-Dongle](../machine/nrf52840-mdk-usb-dongle)

@@ -20,6 +20,38 @@ Peripherals:
 | ADC      | YES | YES |
 | PWM      | YES | YES |
 
+## Pins
+
+| Pin               | Hardware pin | Alternative names |
+| ----------------- | ------------ | ----------------- |
+| `GP0`             | `GPIO0`      | `UART0_TX_PIN`, `UART_TX_PIN` |
+| `GP1`             | `GPIO1`      | `UART0_RX_PIN`, `UART_RX_PIN` |
+| `GP2`             | `GPIO2`      | `SPI0_SCK_PIN`    |
+| `GP3`             | `GPIO3`      | `SPI0_SDO_PIN`    |
+| `GP4`             | `GPIO4`      | `SPI0_SDI_PIN`    |
+| `GP6`             | `GPIO6`      | `I2C0_SCL_PIN`, `I2C1_SDA_PIN`, `SDA_PIN` |
+| `GP7`             | `GPIO7`      | `I2C0_SDA_PIN`, `I2C1_SCL_PIN`, `SCL_PIN` |
+| `GP8`             | `GPIO8`      |                   |
+| `GP9`             | `GPIO9`      |                   |
+| `GP10`            | `GPIO10`     |                   |
+| `GP11`            | `GPIO11`     |                   |
+| `GP12`            | `GPIO12`     | `SPI1_SDI_PIN`    |
+| `GP14`            | `GPIO14`     | `SPI1_SCK_PIN`    |
+| `GP15`            | `GPIO15`     | `SPI1_SDO_PIN`    |
+| `GP16`            | `GPIO16`     |                   |
+| `GP17`            | `GPIO17`     |                   |
+| `GP18`            | `GPIO18`     |                   |
+| `GP19`            | `GPIO19`     |                   |
+| `GP20`            | `GPIO20`     |                   |
+| `GP21`            | `GPIO21`     |                   |
+| `GP22`            | `GPIO22`     |                   |
+| `GP23`            | `GPIO23`     |                   |
+| `GP25`            | `GPIO25`     | `LED`             |
+| `GP26`            | `GPIO26`     | `A0`, `ADC0`      |
+| `GP27`            | `GPIO27`     | `A1`, `ADC1`      |
+| `GP28`            | `GPIO28`     | `A2`, `ADC2`      |
+| `GP29`            | `GPIO29`     | `A3`, `ADC3`      |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the Sparkfun Thing Plus RP2040](../machine/thingplus-rp2040)
