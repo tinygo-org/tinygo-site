@@ -397,6 +397,19 @@ const (
 
 ```go
 const (
+	TWI_FREQ_BUS		= 24000000		// LPI2C root clock is on 24 MHz OSC
+	TWI_FREQ_100KHZ		= 100000		// StandardMode (100 kHz)
+	TWI_FREQ_400KHZ		= 400000		// FastMode (400 kHz)
+	TWI_FREQ_1MHZ		= 1000000		// FastModePlus (1 MHz)
+	TWI_FREQ_5MHZ		= 5000000		// UltraFastMode (5 MHz)
+	TWI_FREQ_DEFAULT	= TWI_FREQ_100KHZ	// default to StandardMode (100 kHz)
+)
+```
+
+
+
+```go
+const (
 	Mode0	= 0
 	Mode1	= 1
 	Mode2	= 2
@@ -606,6 +619,56 @@ var (
 
 ```go
 var (
+	I2C0	= I2C1	// I2C0 is an alias for I2C1 (LPI2C1)
+	I2C1	= &_I2C1
+	_I2C1	= I2C{
+		Bus:	nxp.LPI2C1,
+		sda:	I2C1_SDA_PIN,
+		scl:	I2C1_SCL_PIN,
+		muxSDA: muxSelect{
+			mux:	nxp.IOMUXC_LPI2C1_SDA_SELECT_INPUT_DAISY_GPIO_AD_B1_01_ALT3,
+			sel:	&nxp.IOMUXC.LPI2C1_SDA_SELECT_INPUT,
+		},
+		muxSCL: muxSelect{
+			mux:	nxp.IOMUXC_LPI2C1_SCL_SELECT_INPUT_DAISY_GPIO_AD_B1_00_ALT3,
+			sel:	&nxp.IOMUXC.LPI2C1_SCL_SELECT_INPUT,
+		},
+	}
+	I2C2	= &_I2C2
+	_I2C2	= I2C{
+		Bus:	nxp.LPI2C3,
+		sda:	I2C2_SDA_PIN,
+		scl:	I2C2_SCL_PIN,
+		muxSDA: muxSelect{
+			mux:	nxp.IOMUXC_LPI2C3_SDA_SELECT_INPUT_DAISY_GPIO_AD_B1_06_ALT1,
+			sel:	&nxp.IOMUXC.LPI2C3_SDA_SELECT_INPUT,
+		},
+		muxSCL: muxSelect{
+			mux:	nxp.IOMUXC_LPI2C3_SCL_SELECT_INPUT_DAISY_GPIO_AD_B1_07_ALT1,
+			sel:	&nxp.IOMUXC.LPI2C3_SCL_SELECT_INPUT,
+		},
+	}
+	I2C3	= &_I2C3
+	_I2C3	= I2C{
+		Bus:	nxp.LPI2C4,
+		sda:	I2C3_SDA_PIN,
+		scl:	I2C3_SCL_PIN,
+		muxSDA: muxSelect{
+			mux:	nxp.IOMUXC_LPI2C4_SDA_SELECT_INPUT_DAISY_GPIO_AD_B0_13_ALT0,
+			sel:	&nxp.IOMUXC.LPI2C4_SDA_SELECT_INPUT,
+		},
+		muxSCL: muxSelect{
+			mux:	nxp.IOMUXC_LPI2C4_SCL_SELECT_INPUT_DAISY_GPIO_AD_B0_12_ALT0,
+			sel:	&nxp.IOMUXC.LPI2C4_SCL_SELECT_INPUT,
+		},
+	}
+)
+```
+
+
+
+```go
+var (
 	ErrTimeoutRNG		= errors.New("machine: RNG Timeout")
 	ErrInvalidInputPin	= errors.New("machine: invalid input pin")
 	ErrInvalidOutputPin	= errors.New("machine: invalid output pin")
@@ -718,6 +781,92 @@ type ADCConfig struct {
 
 ADCConfig holds ADC configuration parameters. If left unspecified, the zero
 value of each parameter will use the peripheral's default settings.
+
+
+
+
+
+## type I2C
+
+```go
+type I2C struct {
+	Bus	*nxp.LPI2C_Type
+
+	// these pins are initialized by each global I2C variable declared in the
+	// board_teensy4x.go file according to the board manufacturer's default pin
+	// mapping. they can be overridden with the I2CConfig argument given to
+	// (*I2C) Configure(I2CConfig).
+	sda, scl	Pin
+
+	// these hold the input selector ("daisy chain") values that select which pins
+	// are connected to the LPI2C device, and should be defined where the I2C
+	// instance is declared (e.g., in the board definition). see the godoc
+	// comments on type muxSelect for more details.
+	muxSDA, muxSCL	muxSelect
+}
+```
+
+
+
+
+### func (*I2C) Configure
+
+```go
+func (i2c *I2C) Configure(config I2CConfig)
+```
+
+Configure is intended to setup an I2C interface for transmit/receive.
+
+
+### func (I2C) ReadRegister
+
+```go
+func (i2c I2C) ReadRegister(address uint8, register uint8, data []byte) error
+```
+
+ReadRegister transmits the register, restarts the connection as a read
+operation, and reads the response.
+
+Many I2C-compatible devices are organized in terms of registers. This method
+is a shortcut to easily read such registers. Also, it only works for devices
+with 7-bit addresses, which is the vast majority.
+
+
+### func (I2C) Tx
+
+```go
+func (i2c I2C) Tx(addr uint16, w, r []byte) error
+```
+
+
+
+### func (I2C) WriteRegister
+
+```go
+func (i2c I2C) WriteRegister(address uint8, register uint8, data []byte) error
+```
+
+WriteRegister transmits first the register and then the data to the
+peripheral device.
+
+Many I2C-compatible devices are organized in terms of registers. This method
+is a shortcut to easily write to such registers. Also, it only works for
+devices with 7-bit addresses, which is the vast majority.
+
+
+
+
+## type I2CConfig
+
+```go
+type I2CConfig struct {
+	Frequency	uint32
+	SDA		Pin
+	SCL		Pin
+}
+```
+
+I2CConfig is used to store config info for I2C.
 
 
 
