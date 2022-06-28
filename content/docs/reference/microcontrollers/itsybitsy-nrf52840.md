@@ -18,6 +18,42 @@ The [Adafruit ItsyBitsy-nRF52840](https://www.adafruit.com/product/4333) is a sm
 | USBDevice | YES | YES |
 | Bluetooth | YES | YES |
 
+## Pins
+
+| Pin               | Hardware pin | Alternative names |
+| ----------------- | ------------ | ----------------- |
+| `D0`              | `P0_25`      | `UART_RX_PIN`     |
+| `D1`              | `P0_24`      | `UART_TX_PIN`     |
+| `D2`              | `P1_02`      |                   |
+| `D3`              | `P0_06`      | `LED`, `LED1`     |
+| `D4`              | `P0_29`      | `BUTTON`          |
+| `D5`              | `P0_27`      |                   |
+| `D6`              | `P1_09`      |                   |
+| `D7`              | `P1_08`      |                   |
+| `D8`              | `P0_08`      |                   |
+| `D9`              | `P0_07`      |                   |
+| `D10`             | `P0_05`      | `D20`, `A6`       |
+| `D11`             | `P0_26`      |                   |
+| `D12`             | `P0_11`      |                   |
+| `D13`             | `P0_12`      |                   |
+| `D14`             | `P0_04`      | `A0`              |
+| `D15`             | `P0_30`      | `A1`              |
+| `D16`             | `P0_28`      | `A2`              |
+| `D17`             | `P0_31`      | `A3`              |
+| `D18`             | `P0_02`      | `A4`              |
+| `D19`             | `P0_03`      | `A5`              |
+| `D21`             | `P0_16`      | `SDA_PIN`         |
+| `D22`             | `P0_14`      | `SCL_PIN`         |
+| `D23`             | `P0_20`      | `SPI0_SDI_PIN`    |
+| `D24`             | `P0_15`      | `SPI0_SDO_PIN`    |
+| `D25`             | `P0_13`      | `SPI0_SCK_PIN`    |
+| `D26`             | `P0_19`      | `QSPI_SCK`        |
+| `D27`             | `P0_23`      | `QSPI_CS`         |
+| `D28`             | `P0_21`      | `QSPI_DATA0`      |
+| `D29`             | `P0_22`      | `QSPI_DATA1`      |
+| `D30`             | `P1_00`      | `QSPI_DATA2`      |
+| `D31`             | `P0_17`      | `QSPI_DATA3`      |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the ItsyBitsy-nRF52840](../machine/itsybitsy-nrf52840)

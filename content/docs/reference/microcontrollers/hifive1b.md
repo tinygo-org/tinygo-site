@@ -17,6 +17,28 @@ The [HiFive1 Rev B](https://www.sifive.com/boards/hifive1-rev-b) is low-cost, Ar
 | PWM       | YES | Not yet |
 | USBDevice | ?   | ?   |
 
+## Pins
+
+| Pin               | Hardware pin | Alternative names |
+| ----------------- | ------------ | ----------------- |
+| `D0`              | `P16`        | `D7`, `UART_RX_PIN` |
+| `D1`              | `P17`        | `UART_TX_PIN`     |
+| `D2`              | `P18`        |                   |
+| `D3`              | `P19`        | `LED2`, `LED_GREEN` |
+| `D4`              | `P20`        |                   |
+| `D5`              | `P21`        | `LED3`, `LED_BLUE` |
+| `D6`              | `P22`        | `LED`, `LED1`, `LED_RED` |
+| `D9`              | `P01`        |                   |
+| `D10`             | `P02`        |                   |
+| `D11`             | `P03`        | `SPI1_SDO_PIN`    |
+| `D12`             | `P04`        | `SPI1_SDI_PIN`    |
+| `D13`             | `P05`        | `SPI1_SCK_PIN`    |
+| `D15`             | `P09`        |                   |
+| `D16`             | `P10`        |                   |
+| `D17`             | `P11`        |                   |
+| `D18`             | `P12`        | `I2C0_SDA_PIN`    |
+| `D19`             | `P13`        | `I2C0_SCL_PIN`    |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the SiFive HiFive1b](../machine/hifive1b)

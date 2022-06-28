@@ -19,6 +19,56 @@ It has many built-in devices, such as a 1.8" 160x128 Color TFT Display, 8 x butt
 | PWM       | YES | YES |
 | USBDevice | YES | YES |
 
+## Pins
+
+| Pin               | Hardware pin | Alternative names |
+| ----------------- | ------------ | ----------------- |
+| `D0`              | `PB17`       | `UART_RX_PIN`     |
+| `D1`              | `PB16`       | `UART_TX_PIN`     |
+| `D2`              | `PB03`       | `A8`              |
+| `D3`              | `PB02`       | `A9`              |
+| `D4`              | `PA14`       |                   |
+| `D5`              | `PA16`       |                   |
+| `D6`              | `PA18`       |                   |
+| `D7`              | `PB14`       |                   |
+| `D8`              | `PA15`       | `NEOPIXELS`, `WS2812` |
+| `D9`              | `PA19`       |                   |
+| `D10`             | `PA20`       |                   |
+| `D11`             | `PA21`       |                   |
+| `D12`             | `PA22`       |                   |
+| `D13`             | `PA23`       | `LED`             |
+| `A0`              | `PA02`       |                   |
+| `A1`              | `PA05`       |                   |
+| `A2`              | `PB08`       |                   |
+| `A3`              | `PB09`       |                   |
+| `A4`              | `PA04`       | `UART2_TX_PIN`    |
+| `A5`              | `PA06`       | `UART2_RX_PIN`    |
+| `A6`              | `PB01`       |                   |
+| `A7`              | `PB04`       | `LIGHTSENSOR`     |
+| `BUTTON_LATCH`    | `PB00`       |                   |
+| `BUTTON_OUT`      | `PB30`       |                   |
+| `BUTTON_CLK`      | `PB31`       |                   |
+| `TFT_DC`          | `PB05`       |                   |
+| `TFT_CS`          | `PB07`       |                   |
+| `TFT_RST`         | `PA00`       |                   |
+| `TFT_LITE`        | `PA01`       |                   |
+| `SPEAKER_ENABLE`  | `PA27`       |                   |
+| `USBCDC_DM_PIN`   | `PA24`       |                   |
+| `USBCDC_DP_PIN`   | `PA25`       |                   |
+| `SDA_PIN`         | `PA12`       |                   |
+| `SCL_PIN`         | `PA13`       |                   |
+| `SPI0_SCK_PIN`    | `PA17`       |                   |
+| `SPI0_SDO_PIN`    | `PB23`       |                   |
+| `SPI0_SDI_PIN`    | `PB22`       |                   |
+| `SPI1_SCK_PIN`    | `PB13`       |                   |
+| `SPI1_SDO_PIN`    | `PB15`       |                   |
+| `QSPI_SCK`        | `PB10`       |                   |
+| `QSPI_CS`         | `PB11`       |                   |
+| `QSPI_DATA0`      | `PA08`       |                   |
+| `QSPI_DATA1`      | `PA09`       |                   |
+| `QSPI_DATA2`      | `PA10`       |                   |
+| `QSPI_DATA3`      | `PA11`       |                   |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the Adafruit PyBadge](../machine/pybadge)

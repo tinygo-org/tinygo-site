@@ -19,6 +19,22 @@ It has onboard LoRa®, (G)FSK, (G)MSK, and BPSK as well as 1 user LED, 1 user bu
 | PWM       | YES | Not yet |
 | USBDevice | NO  | NO  |
 
+## Pins
+
+| Pin               | Hardware pin | Alternative names |
+| ----------------- | ------------ | ----------------- |
+| `LED`             | `PB5`        |                   |
+| `SPI0_NSS_PIN`    | `PA4`        |                   |
+| `SPI0_SCK_PIN`    | `PA5`        |                   |
+| `SPI0_SDO_PIN`    | `PA6`        |                   |
+| `SPI0_SDI_PIN`    | `PA7`        |                   |
+| `UART1_TX_PIN`    | `PB6`        | `UART_TX_PIN`     |
+| `UART1_RX_PIN`    | `PB7`        | `UART_RX_PIN`     |
+| `UART2_TX_PIN`    | `PA2`        |                   |
+| `UART2_RX_PIN`    | `PA3`        |                   |
+| `I2C1_SCL_PIN`    | `PA9`        | `I2C0_SCL_PIN`    |
+| `I2C1_SDA_PIN`    | `PA10`       | `I2C0_SDA_PIN`    |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the LoRa E5](../machine/lorae5)

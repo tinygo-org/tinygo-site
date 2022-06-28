@@ -17,6 +17,26 @@ The [PineTime](https://wiki.pine64.org/index.php/PineTime) is a smartwatch by [P
 | PWM       | YES | YES |
 | USBDevice | NO  | NO  |
 
+## Pins
+
+| Pin               | Hardware pin | Alternative names |
+| ----------------- | ------------ | ----------------- |
+| `LED1`            | `P0_23`      | `LED`, `LCD_BACKLIGHT_HIGH` |
+| `LED2`            | `P0_22`      | `LCD_BACKLIGHT_MID` |
+| `LED3`            | `P0_14`      | `LCD_BACKLIGHT_LOW` |
+| `UART_TX_PIN`     | `P0_11`      |                   |
+| `SPI0_SCK_PIN`    | `P0_02`      | `LCD_SCK`         |
+| `SPI0_SDO_PIN`    | `P0_03`      | `LCD_SDI`         |
+| `SPI0_SDI_PIN`    | `P0_04`      |                   |
+| `SDA_PIN`         | `P0_06`      |                   |
+| `SCL_PIN`         | `P0_07`      |                   |
+| `BUTTON_IN`       | `P0_13`      |                   |
+| `BUTTON_OUT`      | `P0_15`      |                   |
+| `VIBRATOR_PIN`    | `P0_16`      |                   |
+| `LCD_RS`          | `P0_18`      |                   |
+| `LCD_CS`          | `P0_25`      |                   |
+| `LCD_RESET`       | `P0_26`      |                   |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the PineTime](../machine/pinetime-devkit0)

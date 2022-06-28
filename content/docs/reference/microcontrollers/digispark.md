@@ -21,6 +21,17 @@ Note: the AVR backend of LLVM is still experimental so you may encounter bugs.
 | PWM       | YES | Not yet |
 | USBDevice | NO  | NO  |
 
+## Pins
+
+| Pin               | Hardware pin | Alternative names |
+| ----------------- | ------------ | ----------------- |
+| `P0`              | `PB0`        |                   |
+| `P1`              | `PB1`        | `LED`             |
+| `P2`              | `PB2`        |                   |
+| `P3`              | `PB3`        |                   |
+| `P4`              | `PB4`        |                   |
+| `P5`              | `PB5`        |                   |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the Digispark](../machine/digispark)

@@ -17,6 +17,31 @@ The [Adafruit QtPy](https://www.adafruit.com/product/4600) is a tiny ARM develop
 | PWM       | YES | YES |
 | USBDevice | YES | YES |
 
+## Pins
+
+| Pin               | Hardware pin | Alternative names |
+| ----------------- | ------------ | ----------------- |
+| `D0`              | `PA02`       |                   |
+| `D1`              | `PA03`       | `A0`, `A1`        |
+| `D2`              | `PA04`       | `A2`              |
+| `D3`              | `PA05`       | `A3`              |
+| `D4`              | `PA16`       | `A4`, `SDA_PIN`   |
+| `D5`              | `PA17`       | `SCL_PIN`         |
+| `D6`              | `PA06`       | `UART_TX_PIN`     |
+| `D7`              | `PA07`       | `UART_RX_PIN`     |
+| `D8`              | `PA11`       | `SPI0_SCK_PIN`    |
+| `D9`              | `PA09`       | `SPI0_SDI_PIN`    |
+| `D10`             | `PA10`       | `SPI0_SDO_PIN`, `I2S_SCK_PIN` |
+| `D11`             | `PA18`       | `NEOPIXELS`, `WS2812` |
+| `D12`             | `PA15`       | `NEOPIXELS_POWER` |
+| `D13`             | `PA27`       |                   |
+| `D14`             | `PA23`       |                   |
+| `D15`             | `PA19`       |                   |
+| `D16`             | `PA22`       |                   |
+| `D17`             | `PA08`       | `I2S_SD_PIN`      |
+| `USBCDC_DM_PIN`   | `PA24`       |                   |
+| `USBCDC_DP_PIN`   | `PA25`       |                   |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the Adafruit QtPy](../machine/qtpy)

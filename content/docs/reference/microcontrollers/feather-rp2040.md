@@ -17,6 +17,32 @@ The [Adafruit Feather RP2040](https://www.adafruit.com/product/4884) is a tiny d
 | PWM       | YES | YES |
 | USBDevice | YES | YES |
 
+## Pins
+
+| Pin               | Hardware pin | Alternative names |
+| ----------------- | ------------ | ----------------- |
+| `D4`              | `GPIO6`      |                   |
+| `D5`              | `GPIO7`      |                   |
+| `D6`              | `GPIO8`      | `UART1_TX_PIN`    |
+| `D9`              | `GPIO9`      | `UART1_RX_PIN`    |
+| `D10`             | `GPIO10`     | `SPI1_SCK_PIN`    |
+| `D11`             | `GPIO11`     | `SPI1_SDO_PIN`    |
+| `D12`             | `GPIO12`     | `SPI1_SDI_PIN`    |
+| `D13`             | `GPIO13`     | `LED`             |
+| `D24`             | `GPIO24`     | `I2C0_SDA_PIN`    |
+| `D25`             | `GPIO25`     | `I2C0_SCL_PIN`    |
+| `A0`              | `GPIO26`     | `ADC0`            |
+| `A1`              | `GPIO27`     | `ADC1`            |
+| `A2`              | `GPIO28`     | `ADC2`            |
+| `A3`              | `GPIO29`     | `ADC3`            |
+| `I2C1_SDA_PIN`    | `GPIO2`      | `SDA_PIN`         |
+| `I2C1_SCL_PIN`    | `GPIO3`      | `SCL_PIN`         |
+| `SPI0_SCK_PIN`    | `GPIO18`     |                   |
+| `SPI0_SDO_PIN`    | `GPIO19`     |                   |
+| `SPI0_SDI_PIN`    | `GPIO20`     |                   |
+| `UART0_TX_PIN`    | `GPIO0`      | `UART_TX_PIN`     |
+| `UART0_RX_PIN`    | `GPIO1`      | `UART_RX_PIN`     |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the Adafruit Feather RP2040](../machine/feather-rp2040)

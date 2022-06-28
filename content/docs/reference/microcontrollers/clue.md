@@ -18,6 +18,50 @@ The [Adafruit CLUE](https://www.adafruit.com/product/4500) is small ARM developm
 | USBDevice | YES | YES |
 | Bluetooth | YES | YES |
 
+## Pins
+
+| Pin               | Hardware pin | Alternative names |
+| ----------------- | ------------ | ----------------- |
+| `D0`              | `P0_04`      | `A2`, `UART_RX_PIN` |
+| `D1`              | `P0_05`      | `A3`, `UART_TX_PIN` |
+| `D2`              | `P0_03`      | `A4`              |
+| `D3`              | `P0_28`      | `A5`              |
+| `D4`              | `P0_02`      | `A6`              |
+| `D5`              | `P1_02`      | `BUTTON_LEFT`     |
+| `D6`              | `P1_09`      |                   |
+| `D7`              | `P0_07`      |                   |
+| `D8`              | `P1_07`      |                   |
+| `D9`              | `P0_27`      |                   |
+| `D10`             | `P0_30`      | `A7`              |
+| `D11`             | `P1_10`      | `BUTTON_RIGHT`    |
+| `D12`             | `P0_31`      | `A0`              |
+| `D13`             | `P0_08`      | `SPI0_SCK_PIN`    |
+| `D14`             | `P0_06`      | `SPI0_SDI_PIN`    |
+| `D15`             | `P0_26`      | `SPI0_SDO_PIN`    |
+| `D16`             | `P0_29`      | `A1`              |
+| `D17`             | `P1_01`      | `LED`, `LED1`     |
+| `D18`             | `P0_16`      | `NEOPIXEL`, `WS2812` |
+| `D19`             | `P0_25`      | `SCL_PIN`         |
+| `D20`             | `P0_24`      | `SDA_PIN`         |
+| `D29`             | `P0_14`      | `TFT_SCK`         |
+| `D30`             | `P0_15`      | `TFT_SDO`         |
+| `D31`             | `P0_12`      | `TFT_CS`          |
+| `D32`             | `P0_13`      | `TFT_DC`          |
+| `D33`             | `P1_03`      | `TFT_RESET`       |
+| `D34`             | `P1_05`      | `TFT_LITE`        |
+| `D35`             | `P0_00`      | `PDM_DAT`         |
+| `D36`             | `P0_01`      | `PDM_CLK`         |
+| `D37`             | `P0_19`      | `QSPI_SCK`        |
+| `D38`             | `P0_20`      | `QSPI_CS`         |
+| `D39`             | `P0_17`      | `QSPI_DATA0`      |
+| `D40`             | `P0_22`      | `QSPI_DATA1`      |
+| `D41`             | `P0_23`      | `QSPI_DATA2`      |
+| `D42`             | `P0_21`      | `QSPI_DATA3`      |
+| `D43`             | `P0_10`      | `LED2`            |
+| `D44`             | `P0_09`      |                   |
+| `D45`             | `P1_06`      |                   |
+| `D46`             | `P1_00`      | `SPEAKER`         |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the Adafruit CLUE](../machine/clue)

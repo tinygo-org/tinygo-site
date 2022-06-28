@@ -17,6 +17,19 @@ The [Adafruit Trinket M0](https://www.adafruit.com/product/3500) is a tiny ARM d
 | PWM       | YES | YES |
 | USBDevice | YES | YES |
 
+## Pins
+
+| Pin               | Hardware pin | Alternative names |
+| ----------------- | ------------ | ----------------- |
+| `D0`              | `PA08`       | `A2`, `SDA_PIN`, `I2S_SD_PIN` |
+| `D1`              | `PA02`       | `A0`              |
+| `D2`              | `PA09`       | `A1`, `SPI0_SDI_PIN`, `SCL_PIN` |
+| `D3`              | `PA07`       | `A3`, `UART_RX_PIN`, `SPI0_SCK_PIN` |
+| `D4`              | `PA06`       | `A4`, `UART_TX_PIN`, `SPI0_SDO_PIN` |
+| `D13`             | `PA10`       | `LED`, `I2S_SCK_PIN` |
+| `USBCDC_DM_PIN`   | `PA24`       |                   |
+| `USBCDC_DP_PIN`   | `PA25`       |                   |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the Adafruit Trinket M0](../machine/trinket-m0)

@@ -18,6 +18,38 @@ The BBC [micro:bit](https://microbit.org) is a tiny programmable computer design
 | USBDevice | NO  | NO  |
 | Bluetooth | YES | YES |
 
+## Pins
+
+| Pin               | Hardware pin | Alternative names |
+| ----------------- | ------------ | ----------------- |
+| `P0`              | `P0_03`      | `ADC0`            |
+| `P1`              | `P0_02`      | `ADC1`            |
+| `P2`              | `P0_01`      | `ADC2`            |
+| `P3`              | `P0_04`      | `LED_COL_1`       |
+| `P4`              | `P0_05`      | `LED_COL_2`       |
+| `P5`              | `P0_17`      | `BUTTONA`, `BUTTON` |
+| `P6`              | `P0_12`      | `LED_COL_9`       |
+| `P7`              | `P0_11`      | `LED_COL_8`       |
+| `P8`              | `P0_18`      |                   |
+| `P9`              | `P0_10`      | `LED_COL_7`       |
+| `P10`             | `P0_06`      | `LED_COL_3`       |
+| `P11`             | `P0_26`      | `BUTTONB`         |
+| `P12`             | `P0_20`      |                   |
+| `P13`             | `P0_23`      | `SPI0_SCK_PIN`    |
+| `P14`             | `P0_22`      | `SPI0_SDI_PIN`    |
+| `P15`             | `P0_21`      | `SPI0_SDO_PIN`    |
+| `P16`             | `P0_16`      |                   |
+| `UART_TX_PIN`     | `P0_24`      |                   |
+| `UART_RX_PIN`     | `P0_25`      |                   |
+| `SDA_PIN`         | `P0_30`      |                   |
+| `SCL_PIN`         | `P0_00`      |                   |
+| `LED_COL_4`       | `P0_07`      |                   |
+| `LED_COL_5`       | `P0_08`      |                   |
+| `LED_COL_6`       | `P0_09`      |                   |
+| `LED_ROW_1`       | `P0_13`      |                   |
+| `LED_ROW_2`       | `P0_14`      |                   |
+| `LED_ROW_3`       | `P0_15`      |                   |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the BBC micro:bit](../machine/microbit)

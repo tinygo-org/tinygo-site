@@ -17,6 +17,52 @@ The [Adafruit Metro M4 Express AirLift](https://www.adafruit.com/product/4000) i
 | PWM       | YES | YES |
 | USBDevice | YES | YES |
 
+## Pins
+
+| Pin               | Hardware pin | Alternative names |
+| ----------------- | ------------ | ----------------- |
+| `D0`              | `PA23`       | `UART_RX_PIN`     |
+| `D1`              | `PA22`       | `UART_TX_PIN`     |
+| `D2`              | `PB17`       |                   |
+| `D3`              | `PB16`       |                   |
+| `D4`              | `PB13`       |                   |
+| `D5`              | `PB14`       |                   |
+| `D6`              | `PB15`       |                   |
+| `D7`              | `PB12`       |                   |
+| `D8`              | `PA21`       |                   |
+| `D9`              | `PA20`       |                   |
+| `D10`             | `PA18`       |                   |
+| `D11`             | `PA19`       | `SPI1_SDO_PIN`    |
+| `D12`             | `PA17`       | `SPI1_SCK_PIN`    |
+| `D13`             | `PA16`       | `LED`, `SPI1_SDI_PIN` |
+| `D40`             | `PB22`       | `WS2812`          |
+| `A0`              | `PA02`       |                   |
+| `A1`              | `PA05`       |                   |
+| `A2`              | `PB06`       |                   |
+| `A3`              | `PB00`       |                   |
+| `A4`              | `PB08`       |                   |
+| `A5`              | `PB09`       |                   |
+| `USBCDC_DM_PIN`   | `PA24`       |                   |
+| `USBCDC_DP_PIN`   | `PA25`       |                   |
+| `UART2_TX_PIN`    | `PA04`       | `NINA_TX`         |
+| `UART2_RX_PIN`    | `PA07`       | `NINA_RX`         |
+| `NINA_CS`         | `PA15`       |                   |
+| `NINA_ACK`        | `PB04`       |                   |
+| `NINA_GPIO0`      | `PB01`       |                   |
+| `NINA_RESETN`     | `PB05`       |                   |
+| `NINA_RTS`        | `PB23`       |                   |
+| `SDA_PIN`         | `PB02`       |                   |
+| `SCL_PIN`         | `PB03`       |                   |
+| `SPI0_SCK_PIN`    | `PA13`       | `NINA_SCK`        |
+| `SPI0_SDO_PIN`    | `PA12`       | `NINA_SDO`        |
+| `SPI0_SDI_PIN`    | `PA14`       | `NINA_SDI`        |
+| `QSPI_SCK`        | `PB10`       |                   |
+| `QSPI_CS`         | `PB11`       |                   |
+| `QSPI_DATA0`      | `PA08`       |                   |
+| `QSPI_DATA1`      | `PA09`       |                   |
+| `QSPI_DATA2`      | `PA10`       |                   |
+| `QSPI_DATA3`      | `PA11`       |                   |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the Adafruit Metro M4 Airlift](../machine/metro-m4-airlift)

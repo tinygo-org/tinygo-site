@@ -19,6 +19,58 @@ The PyPortal also has an Espressif ESP32 Wi-Fi coprocessor with TLS/SSL support 
 | PWM       | YES | YES |
 | USBDevice | YES | YES |
 
+## Pins
+
+| Pin               | Hardware pin | Alternative names |
+| ----------------- | ------------ | ----------------- |
+| `D0`              | `PB13`       | `NINA_RX`, `UART_RX_PIN` |
+| `D1`              | `PB12`       | `NINA_TX`, `UART_TX_PIN` |
+| `D2`              | `PB22`       | `NEOPIXEL`, `WS2812` |
+| `D3`              | `PA04`       | `A1`              |
+| `D4`              | `PA05`       | `A3`              |
+| `D5`              | `PB16`       | `NINA_ACK`        |
+| `D6`              | `PB15`       | `NINA_GPIO0`      |
+| `D7`              | `PB17`       | `NINA_RESETN`     |
+| `D8`              | `PB14`       | `NINA_CS`         |
+| `D9`              | `PB04`       | `TFT_RD`          |
+| `D10`             | `PB05`       | `TFT_DC`          |
+| `D11`             | `PB06`       | `TFT_CS`          |
+| `D12`             | `PB07`       | `TFT_TE`          |
+| `D13`             | `PB23`       | `LED`             |
+| `D24`             | `PA00`       | `TFT_RESET`       |
+| `D25`             | `PB31`       | `TFT_BACKLIGHT`   |
+| `D26`             | `PB09`       | `TFT_WR`          |
+| `D27`             | `PB02`       | `SDA_PIN`         |
+| `D28`             | `PB03`       | `SCL_PIN`         |
+| `D29`             | `PA12`       | `SPI0_SDO_PIN`, `NINA_SDO` |
+| `D30`             | `PA13`       | `SPI0_SCK_PIN`, `NINA_SCK` |
+| `D31`             | `PA14`       | `SPI0_SDI_PIN`, `NINA_SDI` |
+| `D32`             | `PB30`       |                   |
+| `D33`             | `PA01`       |                   |
+| `D34`             | `PA16`       | `LCD_DATA0`       |
+| `D35`             | `PA17`       |                   |
+| `D36`             | `PA18`       |                   |
+| `D37`             | `PA19`       |                   |
+| `D38`             | `PA20`       |                   |
+| `D39`             | `PA21`       |                   |
+| `D40`             | `PA22`       |                   |
+| `D41`             | `PA23`       |                   |
+| `D42`             | `PB10`       | `QSPI_SCK`        |
+| `D43`             | `PB11`       | `QSPI_CS`         |
+| `D44`             | `PA08`       | `QSPI_DATA0`      |
+| `D45`             | `PA09`       | `QSPI_DATA1`      |
+| `D46`             | `PA10`       | `QSPI_DATA2`      |
+| `D47`             | `PA11`       | `QSPI_DATA3`      |
+| `D50`             | `PA02`       | `SPK_SD`, `A0`, `AUDIO_OUT` |
+| `D51`             | `PA15`       | `NINA_RTS`        |
+| `A2`              | `PA07`       | `LIGHT`           |
+| `A4`              | `PB00`       | `TOUCH_YD`        |
+| `A5`              | `PB01`       | `TOUCH_XL`        |
+| `A6`              | `PA06`       | `TOUCH_YU`        |
+| `A7`              | `PB08`       | `TOUCH_XR`        |
+| `USBCDC_DM_PIN`   | `PA24`       |                   |
+| `USBCDC_DP_PIN`   | `PA25`       |                   |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the Adafruit PyPortal](../machine/pyportal)

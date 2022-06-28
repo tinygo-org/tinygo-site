@@ -19,6 +19,31 @@ Note: the AVR backend of LLVM is still experimental so you may encounter bugs.
 | PWM       | YES | YES |
 | USBDevice | NO  | NO  |
 
+## Pins
+
+| Pin               | Hardware pin | Alternative names |
+| ----------------- | ------------ | ----------------- |
+| `D0`              | `PD0`        | `UART_RX_PIN`     |
+| `D1`              | `PD1`        | `UART_TX_PIN`     |
+| `D2`              | `PD2`        |                   |
+| `D3`              | `PD3`        |                   |
+| `D4`              | `PD4`        |                   |
+| `D5`              | `PD5`        |                   |
+| `D6`              | `PD6`        |                   |
+| `D7`              | `PD7`        |                   |
+| `D8`              | `PB0`        |                   |
+| `D9`              | `PB1`        |                   |
+| `D10`             | `PB2`        |                   |
+| `D11`             | `PB3`        |                   |
+| `D12`             | `PB4`        |                   |
+| `D13`             | `PB5`        | `LED`             |
+| `ADC0`            | `PC0`        |                   |
+| `ADC1`            | `PC1`        |                   |
+| `ADC2`            | `PC2`        |                   |
+| `ADC3`            | `PC3`        |                   |
+| `ADC4`            | `PC4`        |                   |
+| `ADC5`            | `PC5`        |                   |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the Arduino Uno](../machine/arduino)

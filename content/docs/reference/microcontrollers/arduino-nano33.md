@@ -21,6 +21,44 @@ Peripherals:
 | PWM       | YES | YES |
 | USBDevice | YES | YES |
 
+## Pins
+
+| Pin               | Hardware pin | Alternative names |
+| ----------------- | ------------ | ----------------- |
+| `RX0`             | `PB23`       |                   |
+| `TX1`             | `PB22`       |                   |
+| `D2`              | `PB10`       |                   |
+| `D3`              | `PB11`       |                   |
+| `D4`              | `PA07`       |                   |
+| `D5`              | `PA05`       |                   |
+| `D6`              | `PA04`       |                   |
+| `D7`              | `PA06`       |                   |
+| `D8`              | `PA18`       |                   |
+| `D9`              | `PA20`       |                   |
+| `D10`             | `PA21`       |                   |
+| `D11`             | `PA16`       | `SPI0_SDO_PIN`    |
+| `D12`             | `PA19`       | `SPI0_SDI_PIN`    |
+| `D13`             | `PA17`       | `LED`, `SPI0_SCK_PIN` |
+| `A0`              | `PA02`       |                   |
+| `A1`              | `PB02`       |                   |
+| `A2`              | `PA11`       |                   |
+| `A3`              | `PA10`       | `I2S_SCK_PIN`     |
+| `A4`              | `PB08`       | `SDA_PIN`         |
+| `A5`              | `PB09`       | `SCL_PIN`         |
+| `A6`              | `PA09`       |                   |
+| `A7`              | `PB03`       |                   |
+| `USBCDC_DM_PIN`   | `PA24`       |                   |
+| `USBCDC_DP_PIN`   | `PA25`       |                   |
+| `UART_TX_PIN`     | `PA22`       | `NINA_TX`         |
+| `UART_RX_PIN`     | `PA23`       | `NINA_RX`         |
+| `NINA_SDO`        | `PA12`       |                   |
+| `NINA_SDI`        | `PA13`       |                   |
+| `NINA_CS`         | `PA14`       |                   |
+| `NINA_SCK`        | `PA15`       |                   |
+| `NINA_GPIO0`      | `PA27`       |                   |
+| `NINA_RESETN`     | `PA08`       | `I2S_SD_PIN`      |
+| `NINA_ACK`        | `PA28`       |                   |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the Arduino Nano33 IoT](../machine/arduino-nano33)

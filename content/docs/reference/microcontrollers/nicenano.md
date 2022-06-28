@@ -18,6 +18,37 @@ The [nice!nano](https://nicekeyboards.com/products/nice-nano-v1-0) is a wireless
 | USBDevice | YES | YES |
 | Bluetooth | YES | YES |
 
+## Pins
+
+| Pin               | Hardware pin | Alternative names |
+| ----------------- | ------------ | ----------------- |
+| `D006`            | `P0_06`      | `UART_RX_PIN`     |
+| `D008`            | `P0_08`      | `UART_TX_PIN`     |
+| `D017`            | `P0_17`      | `SDA_PIN`         |
+| `D020`            | `P0_20`      | `SCL_PIN`         |
+| `D022`            | `P0_22`      | `SPI0_SCK_PIN`    |
+| `D024`            | `P0_24`      | `SPI0_SDO_PIN`    |
+| `D100`            | `P1_00`      | `SPI0_SDI_PIN`    |
+| `D011`            | `P0_11`      |                   |
+| `D104`            | `P1_04`      |                   |
+| `D106`            | `P1_06`      |                   |
+| `D004`            | `P0_04`      | `AIN2`            |
+| `D013`            | `P0_13`      |                   |
+| `D115`            | `P1_15`      |                   |
+| `D113`            | `P1_13`      |                   |
+| `D031`            | `P0_31`      | `AIN7`            |
+| `D029`            | `P0_29`      | `AIN5`            |
+| `D002`            | `P0_02`      | `AIN0`            |
+| `D111`            | `P1_11`      |                   |
+| `D010`            | `P0_10`      |                   |
+| `D009`            | `P0_09`      |                   |
+| `D026`            | `P0_26`      |                   |
+| `D012`            | `P0_12`      |                   |
+| `D101`            | `P1_01`      |                   |
+| `D102`            | `P1_02`      |                   |
+| `D107`            | `P1_07`      |                   |
+| `LED`             | `P0_15`      |                   |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the nice!nano](../machine/nicenano)

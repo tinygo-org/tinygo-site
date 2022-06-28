@@ -22,6 +22,39 @@ Peripherals:
 | PWM       | YES | YES |
 | USBDevice | YES | YES |
 
+## Pins
+
+| Pin               | Hardware pin | Alternative names |
+| ----------------- | ------------ | ----------------- |
+| `D2`              | `GPIO25`     |                   |
+| `D3`              | `GPIO15`     |                   |
+| `D4`              | `GPIO16`     |                   |
+| `D5`              | `GPIO17`     |                   |
+| `D6`              | `GPIO18`     | `I2C1_SDA_PIN`    |
+| `D7`              | `GPIO19`     | `I2C1_SCL_PIN`    |
+| `D8`              | `GPIO20`     |                   |
+| `D9`              | `GPIO21`     |                   |
+| `D10`             | `GPIO5`      |                   |
+| `D11`             | `GPIO7`      | `SPI0_SDO_PIN`    |
+| `D12`             | `GPIO4`      | `SPI0_SDI_PIN`    |
+| `D13`             | `GPIO6`      | `LED`, `SPI0_SCK_PIN` |
+| `D14`             | `GPIO26`     | `A0`, `ADC0`      |
+| `D15`             | `GPIO27`     | `A1`, `ADC1`      |
+| `D16`             | `GPIO28`     | `A2`, `ADC2`      |
+| `D17`             | `GPIO29`     | `A3`, `ADC3`      |
+| `D18`             | `GPIO12`     | `I2C0_SDA_PIN`    |
+| `D19`             | `GPIO13`     | `I2C0_SCL_PIN`    |
+| `SPI1_SCK_PIN`    | `GPIO22`     | `SPI1_SDO_PIN`, `SPI1_SDI_PIN` |
+| `NINA_SCK`        | `GPIO14`     |                   |
+| `NINA_SDO`        | `GPIO11`     |                   |
+| `NINA_SDI`        | `GPIO8`      | `NINA_RX`         |
+| `NINA_CS`         | `GPIO9`      | `NINA_TX`         |
+| `NINA_ACK`        | `GPIO10`     |                   |
+| `NINA_GPIO0`      | `GPIO2`      |                   |
+| `NINA_RESETN`     | `GPIO3`      |                   |
+| `UART0_TX_PIN`    | `GPIO0`      | `UART_TX_PIN`     |
+| `UART0_RX_PIN`    | `GPIO1`      | `UART_RX_PIN`     |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the Nano RP2040](../machine/nano-rp2040)

@@ -17,6 +17,50 @@ The [Adafruit Feather STM32F405](https://www.adafruit.com/product/4382) is a tin
 | PWM       | YES | Not yet |
 | USBDevice | YES | Not yet |
 
+## Pins
+
+| Pin               | Hardware pin | Alternative names |
+| ----------------- | ------------ | ----------------- |
+| `D0`              | `PB11`       | `UART1_RX_PIN`, `UART0_RX_PIN`, `UART_RX_PIN`, `I2C2_SDA_PIN` |
+| `D1`              | `PB10`       | `UART1_TX_PIN`, `UART0_TX_PIN`, `UART_TX_PIN`, `I2C2_SCL_PIN` |
+| `D2`              | `PB3`        | `SPI2_SCK_PIN`    |
+| `D3`              | `PB4`        | `SPI2_SDI_PIN`    |
+| `D4`              | `PB5`        | `SPI2_SDO_PIN`    |
+| `D5`              | `PC7`        | `UART2_RX_PIN`    |
+| `D6`              | `PC6`        | `UART2_TX_PIN`    |
+| `D7`              | `PA15`       |                   |
+| `D8`              | `PC0`        | `LED_NEOPIXEL`, `WS2812` |
+| `D9`              | `PB8`        | `I2C3_SDA_PIN`    |
+| `D10`             | `PB9`        | `I2C3_SCL_PIN`    |
+| `D11`             | `PC3`        |                   |
+| `D12`             | `PC2`        |                   |
+| `D13`             | `PC1`        | `LED_RED`, `LED_BUILTIN`, `LED` |
+| `D14`             | `PB7`        | `UART3_RX_PIN`, `I2C1_SDA_PIN`, `I2C0_SDA_PIN`, `I2C_SDA_PIN`, `SDA_PIN` |
+| `D15`             | `PB6`        | `UART3_TX_PIN`, `I2C1_SCL_PIN`, `I2C0_SCL_PIN`, `I2C_SCL_PIN`, `SCL_PIN` |
+| `D16`             | `PA4`        | `A0`              |
+| `D17`             | `PA5`        | `A1`, `SPI3_SCK_PIN` |
+| `D18`             | `PA6`        | `A2`, `SPI3_SDI_PIN` |
+| `D19`             | `PA7`        | `A3`, `SPI3_SDO_PIN` |
+| `D20`             | `PC4`        | `A4`              |
+| `D21`             | `PC5`        | `A5`              |
+| `D22`             | `PA3`        | `A6`              |
+| `D23`             | `PB13`       | `SPI1_SCK_PIN`, `SPI0_SCK_PIN`, `SPI_SCK_PIN` |
+| `D24`             | `PB14`       | `SPI1_SDI_PIN`, `SPI0_SDI_PIN`, `SPI_SDI_PIN` |
+| `D25`             | `PB15`       | `SPI1_SDO_PIN`, `SPI0_SDO_PIN`, `SPI_SDO_PIN` |
+| `D26`             | `PC8`        |                   |
+| `D27`             | `PC9`        |                   |
+| `D28`             | `PC10`       |                   |
+| `D29`             | `PC11`       |                   |
+| `D30`             | `PC12`       |                   |
+| `D31`             | `PD2`        |                   |
+| `D32`             | `PB12`       |                   |
+| `D33`             | `PC14`       |                   |
+| `D34`             | `PC15`       |                   |
+| `D35`             | `PA11`       |                   |
+| `D36`             | `PA12`       |                   |
+| `D37`             | `PA13`       |                   |
+| `D38`             | `PA14`       |                   |
+
 ## Machine Package Docs
 
 [Documentation for the machine package for the Adafruit Feather STM32F405](../machine/feather-stm32f405)

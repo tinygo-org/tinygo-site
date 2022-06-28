@@ -19,6 +19,45 @@ There is also the [Arduino Nano33 BLE Sense](nano-33-ble-sense) which is the exa
 | PWM       | YES | YES |
 | USBDevice | YES | YES |
 
+## Pins
+
+| Pin               | Hardware pin | Alternative names |
+| ----------------- | ------------ | ----------------- |
+| `D2`              | `P1_11`      |                   |
+| `D3`              | `P1_12`      |                   |
+| `D4`              | `P1_15`      |                   |
+| `D5`              | `P1_13`      |                   |
+| `D6`              | `P1_14`      |                   |
+| `D7`              | `P0_23`      |                   |
+| `D8`              | `P0_21`      |                   |
+| `D9`              | `P0_27`      |                   |
+| `D10`             | `P1_02`      |                   |
+| `D11`             | `P1_01`      | `SPI0_SDO_PIN`    |
+| `D12`             | `P1_08`      | `SPI0_SDI_PIN`    |
+| `D13`             | `P0_13`      | `LED`, `LED_BUILTIN`, `SPI0_SCK_PIN` |
+| `A0`              | `P0_04`      |                   |
+| `A1`              | `P0_05`      |                   |
+| `A2`              | `P0_30`      |                   |
+| `A3`              | `P0_29`      |                   |
+| `A4`              | `P0_31`      | `SDA0_PIN`        |
+| `A5`              | `P0_02`      | `SCL0_PIN`        |
+| `A6`              | `P0_28`      |                   |
+| `A7`              | `P0_03`      |                   |
+| `LED1`            | `P0_24`      | `LED_RED`         |
+| `LED2`            | `P0_16`      | `LED_GREEN`       |
+| `LED3`            | `P0_06`      | `LED_BLUE`        |
+| `LED_PWR`         | `P1_09`      |                   |
+| `UART_RX_PIN`     | `P1_10`      |                   |
+| `UART_TX_PIN`     | `P1_03`      |                   |
+| `SDA_PIN`         | `P0_14`      | `SDA1_PIN`        |
+| `SCL_PIN`         | `P0_15`      | `SCL1_PIN`        |
+| `I2C_PULLUP`      | `P1_00`      |                   |
+| `APDS_INT`        | `P0_19`      |                   |
+| `LSM_PWR`         | `P0_22`      | `LPS_PWR`, `HTS_PWR` |
+| `MIC_PWR`         | `P0_17`      |                   |
+| `MIC_CLK`         | `P0_26`      |                   |
+| `MIC_DIN`         | `P0_25`      |                   |
+
 ## Onboard sensors
 
 * 9-axis IMU: [LSM9DS1](https://github.com/tinygo-org/drivers/tree/release/lsm9ds1)
