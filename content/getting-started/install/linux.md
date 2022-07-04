@@ -84,7 +84,7 @@ This should allow you to compile and flash TinyGo programs on an Arduino or othe
 
 ### Fedora Linux
 
-There is an [Fedora 30 package](https://apps.fedoraproject.org/packages/tinygo) available for the latest TinyGo release. To install it:
+There is an [Fedora 30 package](https://packages.fedoraproject.org/pkgs/tinygo/tinygo/) available for the latest TinyGo release. To install it:
 
 ```shell
 sudo dnf install tinygo
