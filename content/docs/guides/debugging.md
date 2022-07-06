@@ -30,6 +30,22 @@ You can install the most common dependencies through the package manager:
 
     sudo apt-get install gdb-multiarch openocd
 
+### Fedora
+
+Fedora's `gdb` package comes compiled with multi arch support:
+  
+    dnf install gdb openocd
+
+To use the picoprobe as a debugger you must compile openocd from source using Raspberry Pi's openocd. [Getting Started with Raspberry Pi Pico](https://datasheets.raspberrypi.com/pico/getting-started-with-pico.pdf) Appendix A has build instructions we can modify:
+
+    dnf install automake autoconf build-essential texinfo libtool libftdi-devel libusb1-devel
+    git clone https://github.com/raspberrypi/openocd.git --recursive --branch rp2040 --depth=1
+    cd openocd
+    ./bootstrap
+    ./configure --enable-ftdi --enable-sysfsgpio --enable-bcm2835gpio
+    make -j$(nproc)
+    sudo make install
+
 ### MacOS
 
 You can install the most common dependencies through Homebrew:
@@ -55,6 +71,7 @@ Here are some debug probes that are known to work in TinyGo for at least some bo
   * [Particle Debugger](https://store.particle.io/products/particle-debugger): a [DAPLink](https://armmbed.github.io/DAPLink/) based debugger that can debug practially all ARM Cortex-M chips (like the SEGGER above) and does not have limitations on how it can be used. It is also open source. While this debugger is designed for Particle hardware it can easily handle chips from other vendors.
   * [ST-Link v2](https://www.st.com/en/development-tools/st-link-v2.html): a debugger often included on boards from STMicroelectronics and also sold separately. It is somewhat less powerful than some other debuggers as it is only intended to be used with ST hardware, even though it works with most microcontrollers that support SWD debugging. Note that many online stores sell counterfeit versions of this debugger that may be unreliable.
   * [DIY DAPLink](https://embeddedcomputing.weebly.com/the-5-programmer-debugger.html): a debugger you can make yourself. Requires compatible board, for example [Seeeduino XIAO](https://www.seeedstudio.com/Seeeduino-XIAO-Arduino-Microcontroller-SAMD21-Cortex-M0+-p-4426.html) that costs about $5. Please see linked page for flashing and wiring instructions. For quick and easy start, it is possible to [download uf2 image](http://files.seeedstudio.com/wiki/Seeeduino-XIAO/res/simple_daplink_xiao.uf2) and flash it by simply copying it over to XIAO mounted as an external drive. Members of TinyGo community reported successfully using this method to debug XIAO and Arduino Nano 33 IoT boards.
+  * [DYI Picoprobe](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html#debugging-using-another-raspberry-pi-pico): Is another DIY opensource tool for the Raspberry Pi Pico. It acts as a Serial Wire Debugger (SWD) and UART to usb converter. The Raspberry Pi Pico getting started guide Appendix A page 60 has [instructions to build](https://datasheets.raspberrypi.com/pico/getting-started-with-pico.pdf) from [source](https://github.com/raspberrypi/picoprobe) or you can download and flash the [UF2 image](https://datasheets.raspberrypi.com/soft/picoprobe.uf2).
 
 Which one you should pick depends on availability and price in your area but if you want to be sure, the SEGGER debugger is a commonly used vendor-neutral debugger that supports almost all chips and is very reliable.
 
