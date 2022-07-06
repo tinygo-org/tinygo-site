@@ -66,6 +66,15 @@ For **MacOS**, you can install LLVM through [Homebrew](https://formulae.brew.sh/
 brew install llvm@14
 ```
 
+For **Fedora** users you configure the go-llvm module before installing the remaining dependencies
+```shell
+sudo dnf install llvm-devel golang-tinygo-x-llvm-devel lld-libs lld
+git clone https://github.com/tinygo-org/go-llvm.git
+cd go-llvm
+make config VERSION=14 SRCDIR=/usr/include/llvm/ BUILDIR=/usr/bin/llvm/
+go install
+```
+
 After LLVM has been installed, installing TinyGo should be as easy as running the following command:
 
 ```shell
@@ -80,7 +89,7 @@ If you have gotten this far, please skip over to [Additional requirements](#addi
 
 ### With a self-built LLVM
 
-You can also manually build LLVM. This is a long process which takes at least one hour on most machines. In many cases you can build TinyGo using a system-installed LLVM, see above.
+You can also manually build LLVM. This is a long process which takes at least one hour on most machines. In many cases you can build TinyGo using a system-installed LLVM, see above. More than 8GB of memory is recommend.
 
 You will need a few extra tools that are required during the build of LLVM, depending on your OS.
 
@@ -90,6 +99,13 @@ Debian and Ubuntu users can install all required tools this way:
 
 ```shell
 sudo apt-get install build-essential git cmake ninja-build
+```
+
+Fedora users can install all required tools with:
+
+```shell
+sudo dnf groupinstall "Development Tools"
+sudo dnf install cmake ninja-build
 ```
 
 On MacOS you can install these tools using [Homebrew](https://brew.sh/):
