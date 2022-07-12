@@ -9,7 +9,7 @@ description: >
 
 This page has information on how to install and use TinyGo on macOS. If you wish to build TinyGo from source, for example if you intend to contribute to the project, please take a look [here](../../../docs/guides/build).
 
-You must have Go v1.15+ already installed on your machine in order to install TinyGo. We recommend Go v1.17+.
+You must have Go v1.16+ already installed on your machine in order to install TinyGo. We recommend Go v1.17+.
 
 You can use Homebrew to install TinyGo using the following commands:
 
