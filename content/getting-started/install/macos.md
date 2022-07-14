@@ -18,13 +18,20 @@ brew tap tinygo-org/tools
 brew install tinygo
 ```
 
-Alternatively, you can download and extract the files manually by downloading [this](https://github.com/tinygo-org/tinygo/releases/download/v0.23.0/tinygo0.23.0.darwin-amd64.tar.gz) file.
+### Alternative installation
+
+Download [this](https://github.com/tinygo-org/tinygo/releases/download/v0.24.0/tinygo0.24.0.darwin-amd64.tar.gz) file. Then, run the following commands:
+
+```shell
+tar xvzf tinygo-0.24.0.darwin-amd64.tar.gz
+export PATH=<extract location>/tinygo/bin:$PATH
+```
 
 You can test that the installation is working properly by running this code which should display the version number:
 
 ```shell
 $ tinygo version
-tinygo version 0.23.0 darwin/amd64 (using go version go1.18.1 and LLVM version 14.0.0)
+tinygo version 0.24.0 darwin/amd64 (using go version go1.18.1 and LLVM version 14.0.0)
 ```
 
 If you are only interested in compiling TinyGo code for WebAssembly then you are done with the installation.
@@ -33,9 +40,9 @@ Otherwise, please continue with the installation of the additional requirements 
 
 ### Additional Requirements for Microcontrollers
 
-Some boards require a special flashing tool for that particular chip, like `openocd` or `nrfjprog`. See the documentation page for your board as listed [here](../../../docs/reference/microcontrollers/) to see which flashing tool is required for your target board.
-
 If you are only interested in compiling TinyGo code for ARM microcontrollers then you are now done with the installation.
+
+Some boards require a special flashing tool for that particular chip, like `openocd` or `nrfjprog`. See the documentation page for your board as listed [here](../../../docs/reference/microcontrollers/) to see which flashing tool is required for your target board.
 
 #### AVR (e.g. Arduino Uno)
 
