@@ -7,6 +7,9 @@ description: >
   Videos/Podcasts talking about TinyGo
 ---
 
+**Pragmatik.tech - Charath Ranganathan - Multiple videos on TinyGo and Raspberry Pi Pico** - *July 2022 onwards*
+https://www.youtube.com/channel/UChxDHx-FThGJscOn3ljTi6A
+
 **CALM - Thierry Chantier - "TinyGo sur Pygamer" [FR]** - *June 15, 2021*
 https://www.youtube.com/watch?v=FI0_tC6ESJA&t=694s
 
