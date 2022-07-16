@@ -11,10 +11,11 @@ The [Arduino MKR1000](https://store.arduino.cc/arduino-mkr1000-wifi) is a very s
 | --------- | ------------- | ----- |
 | GPIO      | YES | YES |
 | UART      | YES | YES |
-| SPI      | YES | YES |
-| I2C      | YES | YES |
-| ADC      | YES | YES |
-| PWM      | YES | YES |
+| SPI       | YES | YES |
+| I2C       | YES | YES |
+| ADC       | YES | YES |
+| PWM       | YES | YES |
+| USBDevice | YES | YES |
 
 ## Machine Package Docs
 

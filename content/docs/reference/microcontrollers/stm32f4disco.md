@@ -14,10 +14,11 @@ CS43L22 audio DAC, 2 user buttons, and 4 user LEDs.
 | --------- | ------------- | ----- |
 | GPIO      | YES | YES |
 | UART      | YES | YES |
-| SPI      | YES | YES |
-| I2C      | YES | YES |
-| ADC      | YES | YES |
-| PWM      | YES | Not yet |
+| SPI       | YES | YES |
+| I2C       | YES | YES |
+| ADC       | YES | YES |
+| PWM       | YES | Not yet |
+| USBDevice | YES | Not yet |
 
 ## Machine Package Docs
 

@@ -11,10 +11,11 @@ The [Adafruit Feather STM32F405](https://www.adafruit.com/product/4382) is a tin
 | --------- | ------------- | ----- |
 | GPIO      | YES | YES |
 | UART      | YES | YES |
-| SPI      | YES | YES |
-| I2C      | YES | YES |
-| ADC      | YES | YES |
-| PWM      | YES | Not yet |
+| SPI       | YES | YES |
+| I2C       | YES | YES |
+| ADC       | YES | YES |
+| PWM       | YES | Not yet |
+| USBDevice | YES | Not yet |
 
 ## Machine Package Docs
 

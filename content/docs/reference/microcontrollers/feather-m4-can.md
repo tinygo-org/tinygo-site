@@ -11,10 +11,11 @@ The [Adafruit Feather M4 CAN](https://www.adafruit.com/product/4759) is a tiny A
 | --------- | ------------- | ----- |
 | GPIO      | YES | YES |
 | UART      | YES | YES |
-| SPI      | YES | YES |
-| I2C      | YES | YES |
-| ADC      | YES | YES |
-| PWM      | YES | YES |
+| SPI       | YES | YES |
+| I2C       | YES | YES |
+| ADC       | YES | YES |
+| PWM       | YES | YES |
+| USBDevice | YES | YES |
 
 ## Machine Package Docs
 

@@ -11,10 +11,11 @@ The [Nintendo Switch](https://en.wikipedia.org/wiki/Nintendo_Switch) is a handhe
 | --------- | ------------- | ----- |
 | GPIO      | ? | ? |
 | UART      | ? | ? |
-| SPI      | ? | ? |
-| I2C      | ? | ? |
-| ADC      | ? | ? |
-| PWM      | ? | ? |
+| SPI       | ? | ? |
+| I2C       | ? | ? |
+| ADC       | ? | ? |
+| PWM       | ? | ? |
+| USBDevice | ? | ? |
 
 ## Machine Package Docs
 

@@ -11,10 +11,11 @@ The [PJRC Teensy 3.6](https://www.pjrc.com/store/teensy36.html) is a small ARM d
 | --------- | ------------- | ----- |
 | GPIO      | YES | YES |
 | UART      | YES | YES |
-| SPI      | YES | Not yet |
-| I2C      | YES | Not yet |
-| ADC      | YES | Not yet |
-| PWM      | YES | Not yet |
+| SPI       | YES | Not yet |
+| I2C       | YES | Not yet |
+| ADC       | YES | Not yet |
+| PWM       | YES | Not yet |
+| USBDevice | YES | Not yet |
 
 ## Machine Package Docs
 

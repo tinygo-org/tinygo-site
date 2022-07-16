@@ -9,12 +9,13 @@ The [Game Boy Advance](https://en.wikipedia.org/wiki/Game_Boy_Advance) is a hand
 
 | Interface | Hardware Supported | TinyGo Support |
 | --------- | ------------- | ----- |
-| GPIO      | ? | ? |
-| UART      | ? | ? |
-| SPI      | ? | ? |
-| I2C      | ? | ? |
-| ADC      | ? | ? |
-| PWM      | ? | ? |
+| GPIO      | ?   | ?   |
+| UART      | ?   | ?   |
+| SPI       | ?   | ?   |
+| I2C       | ?   | ?   |
+| ADC       | ?   | ?   |
+| PWM       | ?   | ?   |
+| USBDevice | ?   | ?   |
 
 ## Machine Package Docs
 

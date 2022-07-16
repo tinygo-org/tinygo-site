@@ -11,11 +11,12 @@ The [Adafruit ItsyBitsy-nRF52840](https://www.adafruit.com/product/4333) is a sm
 | --------- | ------------- | ----- |
 | GPIO      | YES | YES |
 | UART      | YES | YES |
-| SPI      | YES | YES |
-| I2C      | YES | YES |
-| ADC      | YES | YES |
-| PWM      | YES | YES |
-| Bluetooth      | YES | YES |
+| SPI       | YES | YES |
+| I2C       | YES | YES |
+| ADC       | YES | YES |
+| PWM       | YES | YES |
+| USBDevice | YES | YES |
+| Bluetooth | YES | YES |
 
 ## Machine Package Docs
 

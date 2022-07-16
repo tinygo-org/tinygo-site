@@ -11,12 +11,13 @@ The mini32 is a small development board based on the popular [Espressif ESP32](h
 | --------- | ------------- | ----- |
 | GPIO      | YES | YES |
 | UART      | YES | YES |
-| SPI      | YES | YES |
-| I2C      | YES | Not yet |
-| ADC      | YES | Not yet |
-| PWM      | YES | Not yet |
+| SPI       | YES | YES |
+| I2C       | YES | Not yet |
+| ADC       | YES | Not yet |
+| PWM       | YES | Not yet |
+| USBDevice | NO  | NO  |
 | WiFi      | YES | Not Yet |
-| Bluetooth      | YES | Not yet |
+| Bluetooth | YES | Not yet |
 
 ## Machine Package Docs
 

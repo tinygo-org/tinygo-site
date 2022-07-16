@@ -11,12 +11,13 @@ The [m5stack-core2](https://shop.m5stack.com/products/m5stack-core2-esp32-iot-de
 | --------- | ------------- | ----- |
 | GPIO      | YES | YES |
 | UART      | YES | YES |
-| SPI      | YES | YES |
-| I2C      | YES | Not yet |
-| ADC      | YES | Not yet |
-| PWM      | YES | Not yet |
+| SPI       | YES | YES |
+| I2C       | YES | Not yet |
+| ADC       | YES | Not yet |
+| PWM       | YES | Not yet |
+| USBDevice | NO  | NO  |
 | WiFi      | YES | Not Yet |
-| Bluetooth      | YES | Not yet |
+| Bluetooth | YES | Not yet |
 
 ## Machine Package Docs
 

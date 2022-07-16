@@ -11,10 +11,11 @@ The [Adafruit Matrix Portal M4](https://www.adafruit.com/product/4745) is an ARM
 | --------- | ------------- | ----- |
 | GPIO      | YES | YES |
 | UART      | YES | YES |
-| SPI      | YES | YES |
-| I2C      | YES | YES |
-| ADC      | YES | YES |
-| PWM      | YES | YES |
+| SPI       | YES | YES |
+| I2C       | YES | YES |
+| ADC       | YES | YES |
+| PWM       | YES | YES |
+| USBDevice | YES | YES |
 
 ## Machine Package Docs
 

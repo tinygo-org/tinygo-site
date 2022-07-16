@@ -9,12 +9,13 @@ Info here
 
 | Interface | Hardware Supported | TinyGo Support |
 | --------- | ------------- | ----- |
-| GPIO      | ? | ? |
-| UART      | ? | ? |
-| SPI      | ? | ? |
-| I2C      | ? | ? |
-| ADC      | ? | ? |
-| PWM      | ? | ? |
+| GPIO      | ?   | ?   |
+| UART      | ?   | ?   |
+| SPI       | ?   | ?   |
+| I2C       | ?   | ?   |
+| ADC       | ?   | ?   |
+| PWM       | ?   | ?   |
+| USBDevice | ?   | ?   |
 
 ## Machine Package Docs
 

@@ -11,10 +11,11 @@ The [Adafruit ItsyBitsy M4](https://www.adafruit.com/product/3800) is very compa
 | --------- | ------------- | ----- |
 | GPIO      | YES | YES |
 | UART      | YES | YES |
-| SPI      | YES | YES |
-| I2C      | YES | YES |
-| ADC      | YES | YES |
-| PWM      | YES | YES |
+| SPI       | YES | YES |
+| I2C       | YES | YES |
+| ADC       | YES | YES |
+| PWM       | YES | YES |
+| USBDevice | YES | YES |
 
 ## Machine Package Docs
 

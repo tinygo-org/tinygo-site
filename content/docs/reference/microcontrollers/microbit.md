@@ -11,11 +11,12 @@ The BBC [micro:bit](https://microbit.org) is a tiny programmable computer design
 | --------- | ------------- | ----- |
 | GPIO      | YES | YES |
 | UART      | YES | YES |
-| SPI      | YES | YES |
-| I2C      | YES | YES |
-| ADC      | YES | Not yet |
-| PWM      | Software support | Not yet |
-| Bluetooth      | YES | YES |
+| SPI       | YES | YES |
+| I2C       | YES | YES |
+| ADC       | YES | Not yet |
+| PWM       | Software support | Not yet |
+| USBDevice | NO  | NO  |
+| Bluetooth | YES | YES |
 
 ## Machine Package Docs
 

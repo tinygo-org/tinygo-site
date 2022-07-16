@@ -11,10 +11,11 @@ The [Bluepill](http://wiki.stm32duino.com/index.php?title=Blue_Pill) is a popula
 | --------- | ------------- | ----- |
 | GPIO      | YES | YES |
 | UART      | YES | YES |
-| SPI      | YES | YES |
-| I2C      | YES | YES |
-| ADC      | YES | YES |
-| PWM      | YES | Not yet |
+| SPI       | YES | YES |
+| I2C       | YES | YES |
+| ADC       | YES | YES |
+| PWM       | YES | Not yet |
+| USBDevice | YES | Not yet |
 
 ## Machine Package Docs
 

@@ -330,7 +330,7 @@ func updateBoardDocumentation(path string, pkg *packages.Package, buildTags []st
 				}
 			}
 		}
-		interfacesText += fmt.Sprintf("| %s      | %s | %s |\n", feature, hardwareSupport, softwareSupport)
+		interfacesText += fmt.Sprintf("| %-9s | %-3s | %-3s |\n", feature, hardwareSupport, softwareSupport)
 	}
 
 	// Replace the "Interfaces" section.
@@ -361,6 +361,7 @@ func detectSupportedFeatures(pkg *packages.Package, buildTags []string) map[stri
 		"ADC":       false,
 		"PWM":       false,
 		"Bluetooth": false,
+		"USBDevice": false,
 	}
 
 	pinType := pkg.Types.Scope().Lookup("Pin").Type()
@@ -386,6 +387,9 @@ func detectSupportedFeatures(pkg *packages.Package, buildTags []string) map[stri
 		if tag == "nrf51" || tag == "nrf52" || tag == "nrf52840" || tag == "nrf52833" {
 			features["Bluetooth"] = true
 		}
+	}
+	if pkg.Types.Scope().Lookup("USBDevice") != nil {
+		features["USBDevice"] = true
 	}
 
 	// Detecting PWM support is a bit more tricky.

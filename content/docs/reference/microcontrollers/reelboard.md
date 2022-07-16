@@ -13,11 +13,12 @@ It is equipped with an Electrophoretic (electronic ink) Display (EPD), along wit
 | --------- | ------------- | ----- |
 | GPIO      | YES | YES |
 | UART      | YES | YES |
-| SPI      | YES | YES |
-| I2C      | YES | YES |
-| ADC      | YES | YES |
-| PWM      | YES | YES |
-| Bluetooth      | YES | YES |
+| SPI       | YES | YES |
+| I2C       | YES | YES |
+| ADC       | YES | YES |
+| PWM       | YES | YES |
+| USBDevice | YES | YES |
+| Bluetooth | YES | YES |
 
 ## Machine Package Docs
 

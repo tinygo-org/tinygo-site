@@ -575,6 +575,14 @@ func GetRNG() (uint32, error)
 GetRNG returns 32 bits of cryptographically secure random data
 
 
+### func InitSerial
+
+```go
+func InitSerial()
+```
+
+
+
 ### func NewRingBuffer
 
 ```go

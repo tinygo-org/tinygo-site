@@ -11,10 +11,11 @@ The [PJRC Teensy 4.0](https://www.pjrc.com/store/teensy40.html) is a small ARM d
 | --------- | ------------- | ----- |
 | GPIO      | YES | YES |
 | UART      | YES | YES |
-| SPI      | YES | YES |
-| I2C      | YES | YES |
-| ADC      | YES | YES |
-| PWM      | YES | Not yet |
+| SPI       | YES | YES |
+| I2C       | YES | YES |
+| ADC       | YES | YES |
+| PWM       | YES | Not yet |
+| USBDevice | YES | Not yet |
 
 ## Machine Package Docs
 
