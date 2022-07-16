@@ -6,6 +6,8 @@ weight: 45
 description: >
   Articles and blog posts talking about TinyGo
 ---
+**Pragmatik.tech - Multiple articles on TinyGo and Raspberry Pi Pico** - *July 2022 onwards*
+https://pragmatik.tech/tags/tinygo/
 
 **Aurélie Vache - "Learning Go by examples: part 5 - Create a Game Boy Advance (GBA) game in Go"** - *August 11, 2021*
 https://dev.to/aurelievache/learning-go-by-examples-part-5-create-a-game-boy-advance-gba-game-in-go-5944
