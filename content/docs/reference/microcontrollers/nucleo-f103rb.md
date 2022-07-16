@@ -11,10 +11,11 @@ The [Nucleo F103RB](https://www.st.com/en/evaluation-tools/nucleo-f103rb.html) i
 | --------- | ------------- | ----- |
 | GPIO      | YES | YES |
 | UART      | YES | YES |
-| SPI      | YES | YES |
-| I2C      | YES | YES |
-| ADC      | YES | YES |
-| PWM      | YES | Not yet |
+| SPI       | YES | YES |
+| I2C       | YES | YES |
+| ADC       | YES | YES |
+| PWM       | YES | Not yet |
+| USBDevice | NO  | NO  |
 
 ## Machine Package Docs
 

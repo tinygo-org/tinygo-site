@@ -724,6 +724,14 @@ func InitADC()
 InitADC is not used by this machine. Use `(ADC).Configure()`.
 
 
+### func InitSerial
+
+```go
+func InitSerial()
+```
+
+
+
 ### func NewRingBuffer
 
 ```go

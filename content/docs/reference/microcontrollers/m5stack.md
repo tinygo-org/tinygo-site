@@ -11,12 +11,13 @@ The [m5stack](https://docs.m5stack.com/en/core/basic) is a development board bas
 | --------- | ------------- | ----- |
 | GPIO      | YES | YES |
 | UART      | YES | YES |
-| SPI      | YES | YES |
-| I2C      | YES | Not yet |
-| ADC      | YES | Not yet |
-| PWM      | YES | Not yet |
+| SPI       | YES | YES |
+| I2C       | YES | Not yet |
+| ADC       | YES | Not yet |
+| PWM       | YES | Not yet |
+| USBDevice | NO  | NO  |
 | WiFi      | YES | Not Yet |
-| Bluetooth      | YES | Not yet |
+| Bluetooth | YES | Not yet |
 
 ## Machine Package Docs
 

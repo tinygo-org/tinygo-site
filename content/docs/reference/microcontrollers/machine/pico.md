@@ -82,6 +82,20 @@ SPI default pins
 
 ```go
 const (
+	UART0_TX_PIN	= GPIO0
+	UART0_RX_PIN	= GPIO1
+	UART1_TX_PIN	= GPIO8
+	UART1_RX_PIN	= GPIO9
+	UART_TX_PIN	= UART0_TX_PIN
+	UART_RX_PIN	= UART0_RX_PIN
+)
+```
+
+UART pins
+
+
+```go
+const (
 	TWI_FREQ_100KHZ	= 100000
 	TWI_FREQ_400KHZ	= 400000
 )
@@ -155,20 +169,6 @@ const (
 
 ```go
 const (
-	UART_TX_PIN	= UART0_TX_PIN
-	UART_RX_PIN	= UART0_RX_PIN
-	UART0_TX_PIN	= GPIO0
-	UART0_RX_PIN	= GPIO1
-	UART1_TX_PIN	= GPIO8
-	UART1_RX_PIN	= GPIO9
-)
-```
-
-UART pins
-
-
-```go
-const (
 	adc0_CH	ADCChannel	= iota
 	adc1_CH
 	adc2_CH
@@ -232,6 +232,47 @@ TODO: This field is not available in the device file.
 
 ```go
 const (
+	// DPRAM : Endpoint control register
+	usbEpControlEnable			= 0x80000000
+	usbEpControlDoubleBuffered		= 0x40000000
+	usbEpControlInterruptPerBuff		= 0x20000000
+	usbEpControlInterruptPerDoubleBuff	= 0x10000000
+	usbEpControlEndpointType		= 0x0c000000
+	usbEpControlInterruptOnStall		= 0x00020000
+	usbEpControlInterruptOnNak		= 0x00010000
+	usbEpControlBufferAddress		= 0x0000ffff
+
+	usbEpControlEndpointTypeControl		= 0x00000000
+	usbEpControlEndpointTypeISO		= 0x04000000
+	usbEpControlEndpointTypeBulk		= 0x08000000
+	usbEpControlEndpointTypeInterrupt	= 0x0c000000
+
+	// Endpoint buffer control bits
+	usbBuf1CtrlFull		= 0x80000000
+	usbBuf1CtrlLast		= 0x40000000
+	usbBuf1CtrlData0Pid	= 0x20000000
+	usbBuf1CtrlData1Pid	= 0x00000000
+	usbBuf1CtrlSel		= 0x10000000
+	usbBuf1CtrlStall	= 0x08000000
+	usbBuf1CtrlAvail	= 0x04000000
+	usbBuf1CtrlLenMask	= 0x03FF0000
+	usbBuf0CtrlFull		= 0x00008000
+	usbBuf0CtrlLast		= 0x00004000
+	usbBuf0CtrlData0Pid	= 0x00000000
+	usbBuf0CtrlData1Pid	= 0x00002000
+	usbBuf0CtrlSel		= 0x00001000
+	usbBuf0CtrlStall	= 0x00000800
+	usbBuf0CtrlAvail	= 0x00000400
+	usbBuf0CtrlLenMask	= 0x000003FF
+
+	USBBufferLen	= 64
+)
+```
+
+
+
+```go
+const (
 	// ParityNone means to not use any parity checking. This is
 	// the most common setting.
 	ParityNone	UARTParity	= 0
@@ -255,19 +296,6 @@ const (
 
 ```go
 var (
-	ErrTimeoutRNG		= errors.New("machine: RNG Timeout")
-	ErrInvalidInputPin	= errors.New("machine: invalid input pin")
-	ErrInvalidOutputPin	= errors.New("machine: invalid output pin")
-	ErrInvalidClockPin	= errors.New("machine: invalid clock pin")
-	ErrInvalidDataPin	= errors.New("machine: invalid data pin")
-	ErrNoPinChangeChannel	= errors.New("machine: no channel available for pin interrupt")
-)
-```
-
-
-
-```go
-var (
 	UART0	= &_UART0
 	_UART0	= UART{
 		Buffer:	NewRingBuffer(),
@@ -287,6 +315,19 @@ UART on the RP2040
 
 ```go
 var DefaultUART = UART0
+```
+
+
+
+```go
+var (
+	ErrTimeoutRNG		= errors.New("machine: RNG Timeout")
+	ErrInvalidInputPin	= errors.New("machine: invalid input pin")
+	ErrInvalidOutputPin	= errors.New("machine: invalid output pin")
+	ErrInvalidClockPin	= errors.New("machine: invalid clock pin")
+	ErrInvalidDataPin	= errors.New("machine: invalid data pin")
+	ErrNoPinChangeChannel	= errors.New("machine: no channel available for pin interrupt")
+)
 ```
 
 
@@ -392,10 +433,28 @@ var (
 
 
 ```go
-var Serial = DefaultUART
+var Serial Serialer
 ```
 
-Serial is implemented via the default (usually the first) UART on the chip.
+Serial is implemented via USB (USB-CDC).
+
+
+```go
+var (
+	USBDev	= &USBDevice{}
+	USBCDC	Serialer
+)
+```
+
+
+
+```go
+var (
+	ErrUSBReadTimeout	= errors.New("USB read timeout")
+	ErrUSBBytesRead		= errors.New("USB invalid number of bytes read")
+)
+```
+
 
 
 
@@ -418,6 +477,32 @@ func CurrentCore() int
 CurrentCore returns the core number the call was made from.
 
 
+### func EnableCDC
+
+```go
+func EnableCDC(txHandler func(), rxHandler func([]byte), setupHandler func(usb.Setup) bool)
+```
+
+
+
+### func EnableHID
+
+```go
+func EnableHID(txHandler func(), rxHandler func([]byte), setupHandler func(usb.Setup) bool)
+```
+
+EnableHID enables HID. This function must be executed from the init().
+
+
+### func EnableMIDI
+
+```go
+func EnableMIDI(txHandler func(), rxHandler func([]byte), setupHandler func(usb.Setup) bool)
+```
+
+EnableMIDI enables MIDI. This function must be executed from the init().
+
+
 ### func InitADC
 
 ```go
@@ -425,6 +510,14 @@ func InitADC()
 ```
 
 InitADC resets the ADC peripheral.
+
+
+### func InitSerial
+
+```go
+func InitSerial()
+```
+
 
 
 ### func NewRingBuffer
@@ -454,6 +547,31 @@ func PWMPeripheral(pin Pin) (sliceNum uint8, err error)
 Peripheral returns the RP2040 PWM peripheral which ranges from 0 to 7. Each
 PWM peripheral has 2 channels, A and B which correspond to 0 and 1 in the program.
 This number corresponds to the package's PWM0 throughout PWM7 handles
+
+
+### func ReceiveUSBControlPacket
+
+```go
+func ReceiveUSBControlPacket() ([cdcLineInfoSize]byte, error)
+```
+
+
+
+### func SendUSBInPacket
+
+```go
+func SendUSBInPacket(ep uint32, data []byte) bool
+```
+
+SendUSBInPacket sends a packet for USB (interrupt in / bulk in).
+
+
+### func SendZlp
+
+```go
+func SendZlp()
+```
+
 
 
 
@@ -1058,6 +1176,25 @@ SPIConfig is used to store config info for SPI.
 
 
 
+## type Serialer
+
+```go
+type Serialer interface {
+	WriteByte(c byte) error
+	Write(data []byte) (n int, err error)
+	Configure(config UARTConfig) error
+	Buffered() int
+	ReadByte() (byte, error)
+	DTR() bool
+	RTS() bool
+}
+```
+
+
+
+
+
+
 ## type UART
 
 ```go
@@ -1182,6 +1319,88 @@ type UARTParity int
 ```
 
 UARTParity is the parity setting to be used for UART communication.
+
+
+
+
+
+## type USBBuffer
+
+```go
+type USBBuffer struct {
+	Buffer0	[USBBufferLen]byte
+	Buffer1	[USBBufferLen]byte
+}
+```
+
+
+
+
+
+
+## type USBBufferControlRegister
+
+```go
+type USBBufferControlRegister struct {
+	In	volatile.Register32
+	Out	volatile.Register32
+}
+```
+
+
+
+
+
+
+## type USBDPSRAM
+
+```go
+type USBDPSRAM struct {
+	// Note that EPxControl[0] is not EP0Control but 8-byte setup data.
+	EPxControl	[16]USBEndpointControlRegister
+
+	EPxBufferControl	[16]USBBufferControlRegister
+
+	EPxBuffer	[16]USBBuffer
+}
+```
+
+
+
+
+
+
+## type USBDevice
+
+```go
+type USBDevice struct {
+	initcomplete bool
+}
+```
+
+
+
+
+### func (*USBDevice) Configure
+
+```go
+func (dev *USBDevice) Configure(config UARTConfig)
+```
+
+Configure the USB peripheral. The config is here for compatibility with the UART interface.
+
+
+
+
+## type USBEndpointControlRegister
+
+```go
+type USBEndpointControlRegister struct {
+	In	volatile.Register32
+	Out	volatile.Register32
+}
+```
+
 
 
 

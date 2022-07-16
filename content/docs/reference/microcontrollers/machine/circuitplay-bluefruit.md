@@ -309,40 +309,6 @@ PWM
 
 ```go
 var (
-	USB		= &_USB
-	_USB		= USBCDC{Buffer: NewRingBuffer()}
-	waitHidTxc	bool
-
-	usbEndpointDescriptors	[8]usbDeviceDescriptor
-
-	udd_ep_in_cache_buffer	[7][128]uint8
-	udd_ep_out_cache_buffer	[7][128]uint8
-
-	sendOnEP0DATADONE	struct {
-		ptr	*byte
-		count	int
-	}
-	isEndpointHalt		= false
-	isRemoteWakeUpEnabled	= false
-	endPoints		= []uint32{usb_ENDPOINT_TYPE_CONTROL,
-		(usb_ENDPOINT_TYPE_INTERRUPT | usbEndpointIn),
-		(usb_ENDPOINT_TYPE_BULK | usbEndpointOut),
-		(usb_ENDPOINT_TYPE_BULK | usbEndpointIn)}
-
-	usbConfiguration		uint8
-	usbSetInterface			uint8
-	usbLineInfo			= cdcLineInfo{115200, 0x00, 0x00, 0x08, 0x00}
-	epinen				uint32
-	epouten				uint32
-	easyDMABusy			volatile.Register8
-	epout0data_setlinecoding	bool
-)
-```
-
-
-
-```go
-var (
 	SPI0	= SPI{Bus: nrf.SPIM0, buf: new([1]byte)}
 	SPI1	= SPI{Bus: nrf.SPIM1, buf: new([1]byte)}
 	SPI2	= SPI{Bus: nrf.SPIM2, buf: new([1]byte)}
@@ -361,10 +327,28 @@ var (
 
 
 ```go
-var Serial = USB
+var Serial Serialer
 ```
 
 Serial is implemented via USB (USB-CDC).
+
+
+```go
+var (
+	USBDev	= &USBDevice{}
+	USBCDC	Serialer
+)
+```
+
+
+
+```go
+var (
+	ErrUSBReadTimeout	= errors.New("USB read timeout")
+	ErrUSBBytesRead		= errors.New("USB invalid number of bytes read")
+)
+```
+
 
 
 
@@ -378,13 +362,40 @@ func CPUFrequency() uint32
 
 
 
+### func EnableCDC
+
+```go
+func EnableCDC(txHandler func(), rxHandler func([]byte), setupHandler func(usb.Setup) bool)
+```
+
+
+
 ### func EnableHID
 
 ```go
-func EnableHID(callback func())
+func EnableHID(txHandler func(), rxHandler func([]byte), setupHandler func(usb.Setup) bool)
 ```
 
 EnableHID enables HID. This function must be executed from the init().
+
+
+### func EnableMIDI
+
+```go
+func EnableMIDI(txHandler func(), rxHandler func([]byte), setupHandler func(usb.Setup) bool)
+```
+
+EnableMIDI enables MIDI. This function must be executed from the init().
+
+
+### func EnterBootloader
+
+```go
+func EnterBootloader()
+```
+
+EnterBootloader resets the chip into the UF2 bootloader. After reset, it
+can be flashed via nrfutil or by copying a UF2 file to the mass storage device
 
 
 ### func EnterOTABootloader
@@ -426,6 +437,14 @@ func InitADC()
 InitADC initializes the registers needed for ADC.
 
 
+### func InitSerial
+
+```go
+func InitSerial()
+```
+
+
+
 ### func NewRingBuffer
 
 ```go
@@ -435,13 +454,29 @@ func NewRingBuffer() *RingBuffer
 NewRingBuffer returns a new ring buffer.
 
 
-### func SendUSBHIDPacket
+### func ReceiveUSBControlPacket
 
 ```go
-func SendUSBHIDPacket(ep uint32, data []byte) bool
+func ReceiveUSBControlPacket() ([cdcLineInfoSize]byte, error)
 ```
 
-SendUSBHIDPacket sends a packet for USBHID (interrupt / in).
+
+
+### func SendUSBInPacket
+
+```go
+func SendUSBInPacket(ep uint32, data []byte) bool
+```
+
+SendUSBInPacket sends a packet for USBHID (interrupt in / bulk in).
+
+
+### func SendZlp
+
+```go
+func SendZlp()
+```
+
 
 
 
@@ -1018,6 +1053,25 @@ SPIConfig is used to store config info for SPI.
 
 
 
+## type Serialer
+
+```go
+type Serialer interface {
+	WriteByte(c byte) error
+	Write(data []byte) (n int, err error)
+	Configure(config UARTConfig) error
+	Buffered() int
+	ReadByte() (byte, error)
+	DTR() bool
+	RTS() bool
+}
+```
+
+
+
+
+
+
 ## type UART
 
 ```go
@@ -1136,135 +1190,24 @@ UARTParity is the parity setting to be used for UART communication.
 
 
 
-## type USBCDC
+## type USBDevice
 
 ```go
-type USBCDC struct {
-	Buffer			*RingBuffer
-	interrupt		interrupt.Interrupt
-	initcomplete		bool
-	TxIdx			volatile.Register8
-	waitTxc			bool
-	waitTxcRetryCount	uint8
-	sent			bool
-}
-```
-
-USBCDC is the USB CDC aka serial over USB interface on the nRF52840
-
-
-
-### func (*USBCDC) Buffered
-
-```go
-func (usbcdc *USBCDC) Buffered() int
-```
-
-Buffered returns the number of bytes currently stored in the RX buffer.
-
-
-### func (*USBCDC) Configure
-
-```go
-func (usbcdc *USBCDC) Configure(config UARTConfig)
-```
-
-Configure the USB CDC interface. The config is here for compatibility with the UART interface.
-
-
-### func (*USBCDC) DTR
-
-```go
-func (usbcdc *USBCDC) DTR() bool
-```
-
-
-
-### func (*USBCDC) Flush
-
-```go
-func (usbcdc *USBCDC) Flush() error
-```
-
-Flush flushes buffered data.
-
-
-### func (*USBCDC) RTS
-
-```go
-func (usbcdc *USBCDC) RTS() bool
-```
-
-
-
-### func (*USBCDC) Read
-
-```go
-func (usbcdc *USBCDC) Read(data []byte) (n int, err error)
-```
-
-Read from the RX buffer.
-
-
-### func (*USBCDC) ReadByte
-
-```go
-func (usbcdc *USBCDC) ReadByte() (byte, error)
-```
-
-ReadByte reads a single byte from the RX buffer.
-If there is no data in the buffer, returns an error.
-
-
-### func (*USBCDC) Receive
-
-```go
-func (usbcdc *USBCDC) Receive(data byte)
-```
-
-Receive handles adding data to the UART's data buffer.
-Usually called by the IRQ handler for a machine.
-
-
-### func (*USBCDC) Write
-
-```go
-func (usbcdc *USBCDC) Write(data []byte) (n int, err error)
-```
-
-Write data to the USBCDC.
-
-
-### func (*USBCDC) WriteByte
-
-```go
-func (usbcdc *USBCDC) WriteByte(c byte) error
-```
-
-WriteByte writes a byte of data to the USB CDC interface.
-
-
-
-
-## type USBDescriptor
-
-```go
-type USBDescriptor struct {
-	Device		[]byte
-	Configuration	[]byte
-	HID		map[uint16][]byte
+type USBDevice struct {
+	initcomplete bool
 }
 ```
 
 
 
 
-### func (*USBDescriptor) Configure
+### func (*USBDevice) Configure
 
 ```go
-func (d *USBDescriptor) Configure(idVendor, idProduct uint16)
+func (dev *USBDevice) Configure(config UARTConfig)
 ```
 
+Configure the USB peripheral. The config is here for compatibility with the UART interface.
 
 
 

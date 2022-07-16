@@ -13,10 +13,11 @@ It has 2 user buttons, and 3 user LEDs.
 | --------- | ------------- | ----- |
 | GPIO      | YES | YES |
 | UART      | YES | YES |
-| SPI      | YES | YES |
-| I2C      | YES | YES |
-| ADC      | YES | Not yet |
-| PWM      | YES | Not yet |
+| SPI       | YES | YES |
+| I2C       | YES | YES |
+| ADC       | YES | Not yet |
+| PWM       | YES | Not yet |
+| USBDevice | NO  | NO  |
 
 ## Machine Package Docs
 

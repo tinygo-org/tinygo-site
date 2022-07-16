@@ -508,6 +508,14 @@ func CPUFrequency() uint32
 
 
 
+### func InitSerial
+
+```go
+func InitSerial()
+```
+
+
+
 ### func NewRingBuffer
 
 ```go

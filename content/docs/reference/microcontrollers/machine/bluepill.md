@@ -632,6 +632,14 @@ func InitADC()
 InitADC initializes the registers needed for ADC1.
 
 
+### func InitSerial
+
+```go
+func InitSerial()
+```
+
+
+
 ### func NewRingBuffer
 
 ```go

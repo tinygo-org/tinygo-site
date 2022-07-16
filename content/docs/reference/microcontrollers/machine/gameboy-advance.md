@@ -90,6 +90,14 @@ Serial is a null device: writes to it are ignored.
 
 
 
+### func InitSerial
+
+```go
+func InitSerial()
+```
+
+
+
 ### func NewRingBuffer
 
 ```go

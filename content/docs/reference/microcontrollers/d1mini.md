@@ -11,10 +11,11 @@ The [Espressif ESP8266](https://www.espressif.com/en/products/socs/esp8266) d1mi
 | --------- | ------------- | ----- |
 | GPIO      | YES | YES |
 | UART      | YES | YES |
-| SPI      | YES | Not yet |
-| I2C      | NO (software only) | Not yet |
-| ADC      | YES | Not yet |
-| PWM      | YES | Not yet |
+| SPI       | YES | Not yet |
+| I2C       | NO (software only) | Not yet |
+| ADC       | YES | Not yet |
+| PWM       | YES | Not yet |
+| USBDevice | NO  | NO  |
 | WiFi      | YES | Not Yet |
 
 ## Machine Package Docs

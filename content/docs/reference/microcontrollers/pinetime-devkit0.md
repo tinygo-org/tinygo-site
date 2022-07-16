@@ -11,10 +11,11 @@ The [PineTime](https://wiki.pine64.org/index.php/PineTime) is a smartwatch by [P
 | --------- | ------------- | ----- |
 | GPIO      | YES | YES |
 | UART      | YES | YES |
-| SPI      | YES | YES |
-| I2C      | YES | YES |
-| ADC      | YES | YES |
-| PWM      | YES | YES |
+| SPI       | YES | YES |
+| I2C       | YES | YES |
+| ADC       | YES | YES |
+| PWM       | YES | YES |
+| USBDevice | NO  | NO  |
 
 ## Machine Package Docs
 

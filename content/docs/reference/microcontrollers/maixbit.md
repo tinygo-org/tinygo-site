@@ -11,10 +11,11 @@ The [Sipeed MAix Bit](https://www.seeedstudio.com/Sipeed-MAix-BiT-for-RISC-V-AI-
 | --------- | ------------- | ----- |
 | GPIO      | YES | YES |
 | UART      | YES | YES |
-| SPI      | YES | YES |
-| I2C      | YES | YES |
-| ADC      | NO | NO |
-| PWM      | YES | Not yet |
+| SPI       | YES | YES |
+| I2C       | YES | YES |
+| ADC       | NO  | NO  |
+| PWM       | YES | Not yet |
+| USBDevice | ?   | ?   |
 
 ## Machine Package Docs
 

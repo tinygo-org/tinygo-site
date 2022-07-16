@@ -387,6 +387,14 @@ func ClockFrequency() uint32
 ClockFrequency returns the frequency of the external oscillator (16MHz)
 
 
+### func InitSerial
+
+```go
+func InitSerial()
+```
+
+
+
 ### func NewRingBuffer
 
 ```go
