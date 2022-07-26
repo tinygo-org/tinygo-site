@@ -9,8 +9,6 @@ description: >
 
 This page has information on how to install and use TinyGo on Windows 10. If you wish to build TinyGo from source, for example if you intend to contribute to the project, please take a look [here](../../../docs/guides/build).
 
-TinyGo can run on Windows 10, however please note that TinyGo does not support building exectuables for Windows. It only supports microcontrollers and WebAssembly on Windows.
-
 TinyGo requires Go v1.16+ to be already installed on your machine.
 
 ### Quick Install via Scoop
@@ -44,9 +42,9 @@ Upgrading to the latest TinyGo version can be done via scoop with:
 > scoop update tinygo
 ```
 
-#### Installing Arduino Dependencies
+#### AVR (e.g. Arduino Uno)
 
-You can install dependencies required for Arduino Development (`avr-gcc` and `avrdude`) also via Scoop:
+If you want to develop code for older Arduino boards such as the Arduino Uno, you can install the dependencies required for AVR development  (`avr-gcc` and `avrdude`) via Scoop:
 
 ```shell
 > scoop install avr-gcc
