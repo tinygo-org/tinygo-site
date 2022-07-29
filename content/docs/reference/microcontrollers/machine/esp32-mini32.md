@@ -7,55 +7,55 @@ title: esp32-mini32
 ## Constants
 
 ```go
+const (
+	CLK	= GPIO6
+	CMD	= GPIO11
+	IO0	= GPIO0
+	IO1	= GPIO1
+	IO2	= GPIO2
+	IO3	= GPIO3
+	IO4	= GPIO4
+	IO5	= GPIO5
+	IO9	= GPIO9
+	IO10	= GPIO10
+	IO16	= GPIO16
+	IO17	= GPIO17
+	IO18	= GPIO18
+	IO19	= GPIO19
+	IO21	= GPIO21
+	IO22	= GPIO22
+	IO23	= GPIO23
+	IO25	= GPIO25
+	IO26	= GPIO26
+	IO27	= GPIO27
+	IO32	= GPIO32
+	IO33	= GPIO33
+	IO34	= GPIO34
+	IO35	= GPIO35
+	IO36	= GPIO36
+	IO39	= GPIO39
+	RXD	= GPIO3
+	SD0	= GPIO7
+	SD1	= GPIO8
+	SD2	= GPIO9
+	SD3	= GPIO10
+	SVN	= GPIO39
+	SVP	= GPIO36
+	TCK	= GPIO13
+	TD0	= GPIO15
+	TDI	= GPIO12
+	TMS	= GPIO14
+	TXD	= GPIO1
+)
+```
+
+
+
+```go
 const LED = IO2
 ```
 
 Built-in LED on some ESP32 boards.
-
-
-```go
-const (
-	CLK	Pin	= 6
-	CMD	Pin	= 11
-	IO0	Pin	= 0
-	IO1	Pin	= 1
-	IO10	Pin	= 10
-	IO16	Pin	= 16
-	IO17	Pin	= 17
-	IO18	Pin	= 18
-	IO19	Pin	= 19
-	IO2	Pin	= 2
-	IO21	Pin	= 21
-	IO22	Pin	= 22
-	IO23	Pin	= 23
-	IO25	Pin	= 25
-	IO26	Pin	= 26
-	IO27	Pin	= 27
-	IO3	Pin	= 3
-	IO32	Pin	= 32
-	IO33	Pin	= 33
-	IO34	Pin	= 34
-	IO35	Pin	= 35
-	IO36	Pin	= 36
-	IO39	Pin	= 39
-	IO4	Pin	= 4
-	IO5	Pin	= 5
-	IO9	Pin	= 9
-	RXD	Pin	= 3
-	SD0	Pin	= 7
-	SD1	Pin	= 8
-	SD2	Pin	= 9
-	SD3	Pin	= 10
-	SVN	Pin	= 39
-	SVP	Pin	= 36
-	TCK	Pin	= 13
-	TD0	Pin	= 15
-	TDI	Pin	= 12
-	TMS	Pin	= 14
-	TXD	Pin	= 1
-)
-```
-
 
 
 ```go
@@ -151,6 +151,48 @@ const (
 )
 ```
 
+
+
+```go
+const (
+	GPIO0	Pin	= 0
+	GPIO1	Pin	= 1
+	GPIO2	Pin	= 2
+	GPIO3	Pin	= 3
+	GPIO4	Pin	= 4
+	GPIO5	Pin	= 5
+	GPIO6	Pin	= 6
+	GPIO7	Pin	= 7
+	GPIO8	Pin	= 8
+	GPIO9	Pin	= 9
+	GPIO10	Pin	= 10
+	GPIO11	Pin	= 11
+	GPIO12	Pin	= 12
+	GPIO13	Pin	= 13
+	GPIO14	Pin	= 14
+	GPIO15	Pin	= 15
+	GPIO16	Pin	= 16
+	GPIO17	Pin	= 17
+	GPIO18	Pin	= 18
+	GPIO19	Pin	= 19
+	GPIO21	Pin	= 21
+	GPIO22	Pin	= 22
+	GPIO23	Pin	= 23
+	GPIO25	Pin	= 25
+	GPIO26	Pin	= 26
+	GPIO27	Pin	= 27
+	GPIO32	Pin	= 32
+	GPIO33	Pin	= 33
+	GPIO34	Pin	= 34
+	GPIO35	Pin	= 35
+	GPIO36	Pin	= 36
+	GPIO37	Pin	= 37
+	GPIO38	Pin	= 38
+	GPIO39	Pin	= 39
+)
+```
+
+Hardware pin numbers
 
 
 ```go

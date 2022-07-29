@@ -8,17 +8,6 @@ title: feather-rp2040
 
 ```go
 const (
-	LED	= GPIO13
-
-	// Onboard crystal oscillator frequency, in MHz.
-	xoscFreq	= 12	// MHz
-)
-```
-
-
-
-```go
-const (
 	D4	= GPIO6
 	D5	= GPIO7
 	D6	= GPIO8
@@ -45,6 +34,12 @@ const (
 ```
 
 Analog pins
+
+
+```go
+const LED = GPIO13
+```
+
 
 
 ```go

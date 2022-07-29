@@ -45,18 +45,6 @@ GPIO Pins - Digital High
 
 ```go
 const (
-	LED		= LED1
-	LED1	Pin	= D13
-	LED2	Pin	= PA27	// TX LED
-	LED3	Pin	= PB03	// RX LED
-)
-```
-
-LEDs on the Arduino Zero
-
-
-```go
-const (
 	AREF	Pin	= PA03
 	ADC0	Pin	= PA02
 	ADC1	Pin	= PB08
@@ -68,6 +56,18 @@ const (
 ```
 
 ADC pins
+
+
+```go
+const (
+	LED		= LED1
+	LED1	Pin	= D13
+	LED2	Pin	= PA27	// TX LED
+	LED3	Pin	= PB03	// RX LED
+)
+```
+
+LEDs on the Arduino Zero
 
 
 ```go

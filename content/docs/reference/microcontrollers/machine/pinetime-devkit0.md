@@ -15,10 +15,10 @@ The PineTime has a low-frequency (32kHz) crystal oscillator on board.
 
 ```go
 const (
-	LED	= LED1
 	LED1	= LCD_BACKLIGHT_HIGH
 	LED2	= LCD_BACKLIGHT_MID
 	LED3	= LCD_BACKLIGHT_LOW
+	LED	= LED1
 )
 ```
 

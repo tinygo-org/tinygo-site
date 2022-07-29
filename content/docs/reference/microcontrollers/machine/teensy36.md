@@ -7,13 +7,6 @@ title: teensy36
 ## Constants
 
 ```go
-const LED = PC05
-```
-
-LED on the Teensy
-
-
-```go
 const (
 	D00	= PB16
 	D01	= PB17
@@ -83,6 +76,13 @@ const (
 ```
 
 digital IO
+
+
+```go
+const LED = PC05
+```
+
+LED on the Teensy
 
 
 ```go

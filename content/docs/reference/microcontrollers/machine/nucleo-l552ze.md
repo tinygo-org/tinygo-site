@@ -8,11 +8,11 @@ title: nucleo-l552ze
 
 ```go
 const (
-	LED		= LED_BUILTIN
-	LED_BUILTIN	= LED_GREEN
 	LED_GREEN	= PC7
 	LED_BLUE	= PB7
 	LED_RED		= PA9
+	LED_BUILTIN	= LED_GREEN
+	LED		= LED_BUILTIN
 )
 ```
 

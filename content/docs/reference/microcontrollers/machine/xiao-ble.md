@@ -337,10 +337,10 @@ var (
 
 
 ```go
-var Serial = DefaultUART
+var Serial Serialer
 ```
 
-Serial is implemented via the default (usually the first) UART on the chip.
+Serial is implemented via USB (USB-CDC).
 
 
 ```go
@@ -404,7 +404,8 @@ EnableMIDI enables MIDI. This function must be executed from the init().
 func EnterBootloader()
 ```
 
-EnterBootloader resets the chip into the serial bootloader.
+EnterBootloader resets the chip into the UF2 bootloader. After reset, it
+can be flashed via nrfutil or by copying a UF2 file to the mass storage device
 
 
 ### func EnterOTABootloader
