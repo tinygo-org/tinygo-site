@@ -70,18 +70,6 @@ const HasLowFrequencyCrystal = true
 
 ```go
 const (
-	LED		Pin	= 44
-	LED_GREEN	Pin	= 14
-	LED_RED		Pin	= 13
-	LED_BLUE	Pin	= 15
-)
-```
-
-LEDs
-
-
-```go
-const (
 	A0	Pin	= 3
 	A1	Pin	= 4
 	A2	Pin	= 28
@@ -106,6 +94,18 @@ const (
 ```
 
 GPIOs
+
+
+```go
+const (
+	LED		Pin	= 44
+	LED_GREEN	Pin	= 14
+	LED_RED		Pin	= 13
+	LED_BLUE	Pin	= 15
+)
+```
+
+LEDs
 
 
 ```go

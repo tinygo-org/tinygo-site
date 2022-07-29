@@ -33,7 +33,7 @@ You can test that the installation was successful by running the `version` comma
 
 ```shell
 > tinygo version
-tinygo version 0.24.0 windows/amd64 (using go version go1.18.1 and LLVM version 14.0.0)
+tinygo version 0.25.0 windows/amd64 (using go version go1.18.1 and LLVM version 14.0.0)
 ```
 
 Upgrading to the latest TinyGo version can be done via scoop with:
@@ -67,7 +67,7 @@ Upgrading to the latest versions can be as easy as:
 
     - Choose the download link for Microsoft Windows, Windows 7 or later, Intel 64-bit processor.
 
-- Download the TinyGo binary for Windows file from https://github.com/tinygo-org/tinygo/releases/download/v0.24.0/tinygo0.24.0.windows-amd64.zip
+- Download the TinyGo binary for Windows file from https://github.com/tinygo-org/tinygo/releases/download/v0.25.0/tinygo0.25.0.windows-amd64.zip
 
 - Decompress the file like this:
 
@@ -87,7 +87,7 @@ Upgrading to the latest versions can be as easy as:
 
     ```
     > tinygo version
-    tinygo version 0.24.0 windows/amd64 (using go version go1.18.1 and LLVM version 14.0.0)
+    tinygo version 0.25.0 windows/amd64 (using go version go1.18.1 and LLVM version 14.0.0)
     ```
 
 ### Flashing boards

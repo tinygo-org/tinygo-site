@@ -14,10 +14,10 @@ const HasLowFrequencyCrystal = true
 
 ```go
 const (
-	LED		Pin	= LED_GREEN
 	LED_GREEN	Pin	= 22
 	LED_RED		Pin	= 23
 	LED_BLUE	Pin	= 24
+	LED		Pin	= LED_GREEN
 )
 ```
 

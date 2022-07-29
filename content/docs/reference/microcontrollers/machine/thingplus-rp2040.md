@@ -8,17 +8,6 @@ title: thingplus-rp2040
 
 ```go
 const (
-	LED	= GPIO25
-
-	// Onboard crystal oscillator frequency, in MHz.
-	xoscFreq	= 12	// MHz
-)
-```
-
-
-
-```go
-const (
 	GP0	Pin	= GPIO0	// TX
 	GP1	Pin	= GPIO1	// RX
 	GP2	Pin	= GPIO2	// SCK
@@ -64,6 +53,12 @@ const (
 ```
 
 Analog pins
+
+
+```go
+const LED = GPIO25
+```
+
 
 
 ```go

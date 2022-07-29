@@ -516,7 +516,8 @@ var (
 
 ```go
 var (
-	DAC0 = DAC{}
+	DAC0	= DAC{Channel: 0}
+	DAC1	= DAC{Channel: 1}
 )
 ```
 
@@ -729,6 +730,7 @@ value of each parameter will use the peripheral's default settings.
 
 ```go
 type DAC struct {
+	Channel uint8
 }
 ```
 

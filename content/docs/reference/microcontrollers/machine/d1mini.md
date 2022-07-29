@@ -8,15 +8,15 @@ title: d1mini
 
 ```go
 const (
-	D0	Pin	= 16
-	D1	Pin	= 5
-	D2	Pin	= 4
-	D3	Pin	= 0
-	D4	Pin	= 2
-	D5	Pin	= 14
-	D6	Pin	= 12
-	D7	Pin	= 13
-	D8	Pin	= 15
+	D0	= GPIO16
+	D1	= GPIO5
+	D2	= GPIO4
+	D3	= GPIO0
+	D4	= GPIO2
+	D5	= GPIO14
+	D6	= GPIO12
+	D7	= GPIO13
+	D8	= GPIO15
 )
 ```
 
@@ -78,6 +78,31 @@ const (
 )
 ```
 
+
+
+```go
+const (
+	GPIO0	Pin	= iota
+	GPIO1
+	GPIO2
+	GPIO3
+	GPIO4
+	GPIO5
+	GPIO6
+	GPIO7
+	GPIO8
+	GPIO9
+	GPIO10
+	GPIO11
+	GPIO12
+	GPIO13
+	GPIO14
+	GPIO15
+	GPIO16
+)
+```
+
+Hardware pin numbers
 
 
 ```go
