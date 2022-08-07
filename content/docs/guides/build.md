@@ -108,7 +108,7 @@ choco install --confirm git golang mingw make cmake ninja python
 The following command takes care of downloading and building LLVM. It places the source code in `llvm-project/` and the build output in `llvm-build/`. It only needs to be done once until the next LLVM release (every half year).
 
 ```shell
-make llvm-build
+make llvm-source llvm-build
 ```
 
 #### Building TinyGo
