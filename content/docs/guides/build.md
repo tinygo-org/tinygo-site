@@ -49,7 +49,7 @@ For **Debian** or **Ubuntu** you can install LLVM by adding a new apt repository
 | Debian | sid    | `unstable`|
 
 ```shell
-echo 'deb http://apt.llvm.org/xxxxx/ llvm-toolchain-xxxxx-13 main' | sudo tee /etc/apt/sources.list.d/llvm.list
+echo 'deb http://apt.llvm.org/xxxxx/ llvm-toolchain-xxxxx-14 main' | sudo tee /etc/apt/sources.list.d/llvm.list
 ```
 
 After adding the apt repository for your distribution you may install the LLVM toolchain packages:
@@ -57,13 +57,13 @@ After adding the apt repository for your distribution you may install the LLVM t
 ```
 wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
 sudo apt-get update
-sudo apt-get install clang-13 llvm-13-dev lld-13 libclang-13-dev
+sudo apt-get install clang-14 llvm-14-dev lld-14 libclang-14-dev
 ```
 
 For **MacOS**, you can install LLVM through [Homebrew](https://formulae.brew.sh/formula/llvm). The Clang/LLVM version from Apple is not supported by TinyGo.
 
 ```shell
-brew install llvm@13
+brew install llvm@14
 ```
 
 After LLVM has been installed, installing TinyGo should be as easy as running the following command:
@@ -72,6 +72,7 @@ After LLVM has been installed, installing TinyGo should be as easy as running th
 go install
 ```
 
+If you are getting an `gcc` or `g++ not found` error you most likely do not have a working C++ build environment. You'll need the `build-essential` package on Debian or `sudo dnf install make automake gcc gcc-c++` for Fedora based systems.
 
 Note that you should not use `make` when you want to build using a system-installed LLVM, just use the Go toolchain. `make` is used when you want to use a self-built LLVM, as in the next section.
 
