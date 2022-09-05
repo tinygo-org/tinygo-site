@@ -23,35 +23,35 @@ Peripherals:
 
 ## Pins
 
-| Pin               | Hardware pin | Alternative names |
-| ----------------- | ------------ | ----------------- |
-| `GP0`             | `GPIO0`      | `UART0_TX_PIN`, `UART_TX_PIN` |
-| `GP1`             | `GPIO1`      | `UART0_RX_PIN`, `UART_RX_PIN` |
-| `GP2`             | `GPIO2`      | `SPI0_SCK_PIN`    |
-| `GP3`             | `GPIO3`      | `SPI0_SDO_PIN`    |
-| `GP4`             | `GPIO4`      | `SPI0_SDI_PIN`    |
-| `GP6`             | `GPIO6`      | `I2C0_SCL_PIN`, `I2C1_SDA_PIN`, `SDA_PIN` |
-| `GP7`             | `GPIO7`      | `I2C0_SDA_PIN`, `I2C1_SCL_PIN`, `SCL_PIN` |
-| `GP8`             | `GPIO8`      |                   |
-| `GP9`             | `GPIO9`      |                   |
-| `GP10`            | `GPIO10`     |                   |
-| `GP11`            | `GPIO11`     |                   |
-| `GP12`            | `GPIO12`     | `SPI1_SDI_PIN`    |
-| `GP14`            | `GPIO14`     | `SPI1_SCK_PIN`    |
-| `GP15`            | `GPIO15`     | `SPI1_SDO_PIN`    |
-| `GP16`            | `GPIO16`     |                   |
-| `GP17`            | `GPIO17`     |                   |
-| `GP18`            | `GPIO18`     |                   |
-| `GP19`            | `GPIO19`     |                   |
-| `GP20`            | `GPIO20`     |                   |
-| `GP21`            | `GPIO21`     |                   |
-| `GP22`            | `GPIO22`     |                   |
-| `GP23`            | `GPIO23`     |                   |
-| `GP25`            | `GPIO25`     | `LED`             |
-| `GP26`            | `GPIO26`     | `A0`, `ADC0`      |
-| `GP27`            | `GPIO27`     | `A1`, `ADC1`      |
-| `GP28`            | `GPIO28`     | `A2`, `ADC2`      |
-| `GP29`            | `GPIO29`     | `A3`, `ADC3`      |
+| Pin               | Hardware pin | Alternative names | PWM                  |
+| ----------------- | ------------ | ----------------- | -------------------- |
+| `GP0`             | `GPIO0`      | `UART0_TX_PIN`, `UART_TX_PIN` | `PWM0` (channel A)   |
+| `GP1`             | `GPIO1`      | `UART0_RX_PIN`, `UART_RX_PIN` | `PWM0` (channel B)   |
+| `GP2`             | `GPIO2`      | `SPI0_SCK_PIN`    | `PWM1` (channel A)   |
+| `GP3`             | `GPIO3`      | `SPI0_SDO_PIN`    | `PWM1` (channel B)   |
+| `GP4`             | `GPIO4`      | `SPI0_SDI_PIN`    | `PWM2` (channel A)   |
+| `GP6`             | `GPIO6`      | `I2C0_SCL_PIN`, `I2C1_SDA_PIN`, `SDA_PIN` | `PWM3` (channel A)   |
+| `GP7`             | `GPIO7`      | `I2C0_SDA_PIN`, `I2C1_SCL_PIN`, `SCL_PIN` | `PWM3` (channel B)   |
+| `GP8`             | `GPIO8`      |                   | `PWM4` (channel A)   |
+| `GP9`             | `GPIO9`      |                   | `PWM4` (channel B)   |
+| `GP10`            | `GPIO10`     |                   | `PWM5` (channel A)   |
+| `GP11`            | `GPIO11`     |                   | `PWM5` (channel B)   |
+| `GP12`            | `GPIO12`     | `SPI1_SDI_PIN`    | `PWM6` (channel A)   |
+| `GP14`            | `GPIO14`     | `SPI1_SCK_PIN`    | `PWM7` (channel A)   |
+| `GP15`            | `GPIO15`     | `SPI1_SDO_PIN`    | `PWM7` (channel B)   |
+| `GP16`            | `GPIO16`     |                   | `PWM0` (channel A)   |
+| `GP17`            | `GPIO17`     |                   | `PWM0` (channel B)   |
+| `GP18`            | `GPIO18`     |                   | `PWM1` (channel A)   |
+| `GP19`            | `GPIO19`     |                   | `PWM1` (channel B)   |
+| `GP20`            | `GPIO20`     |                   | `PWM2` (channel A)   |
+| `GP21`            | `GPIO21`     |                   | `PWM2` (channel B)   |
+| `GP22`            | `GPIO22`     |                   | `PWM3` (channel A)   |
+| `GP23`            | `GPIO23`     |                   | `PWM3` (channel B)   |
+| `GP25`            | `GPIO25`     | `LED`             | `PWM4` (channel B)   |
+| `GP26`            | `GPIO26`     | `A0`, `ADC0`      | `PWM5` (channel A)   |
+| `GP27`            | `GPIO27`     | `A1`, `ADC1`      | `PWM5` (channel B)   |
+| `GP28`            | `GPIO28`     | `A2`, `ADC2`      | `PWM6` (channel A)   |
+| `GP29`            | `GPIO29`     | `A3`, `ADC3`      | `PWM6` (channel B)   |
 
 ## Machine Package Docs
 

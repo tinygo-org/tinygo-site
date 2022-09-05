@@ -19,40 +19,40 @@ The [Arduino Zero](https://store.arduino.cc/arduino-zero) is a very small ARM de
 
 ## Pins
 
-| Pin               | Hardware pin | Alternative names |
-| ----------------- | ------------ | ----------------- |
-| `D0`              | `PA11`       | `I2S_WS_PIN`, `UART_RX_PIN` |
-| `D1`              | `PA10`       | `I2S_SCK_PIN`, `UART_TX_PIN` |
-| `D2`              | `PA14`       |                   |
-| `D3`              | `PA09`       |                   |
-| `D4`              | `PA08`       |                   |
-| `D5`              | `PA15`       |                   |
-| `D6`              | `PA20`       |                   |
-| `D7`              | `PA21`       |                   |
-| `D8`              | `PA06`       |                   |
-| `D9`              | `PA07`       | `I2S_SD_PIN`      |
-| `D10`             | `PA18`       |                   |
-| `D11`             | `PA16`       | `SPI0_SDO_PIN`    |
-| `D12`             | `PA19`       | `SPI0_SDI_PIN`    |
-| `D13`             | `PA17`       | `LED`, `LED1`, `SPI0_SCK_PIN` |
-| `AREF`            | `PA03`       |                   |
-| `ADC0`            | `PA02`       |                   |
-| `ADC1`            | `PB08`       |                   |
-| `ADC2`            | `PB09`       |                   |
-| `ADC3`            | `PA04`       |                   |
-| `ADC4`            | `PA05`       |                   |
-| `ADC5`            | `PB02`       |                   |
-| `LED2`            | `PA27`       |                   |
-| `LED3`            | `PB03`       |                   |
-| `SPI1_SDO_PIN`    | `PB10`       |                   |
-| `SPI1_SDI_PIN`    | `PA12`       |                   |
-| `SPI1_SCK_PIN`    | `PB11`       |                   |
-| `SDA_PIN`         | `PA22`       |                   |
-| `SCL_PIN`         | `PA23`       |                   |
-| `USBCDC_DM_PIN`   | `PA24`       |                   |
-| `USBCDC_DP_PIN`   | `PA25`       |                   |
-| `XIN32`           | `PA00`       |                   |
-| `XOUT32`          | `PA01`       |                   |
+| Pin               | Hardware pin | Alternative names | PWM                  |
+| ----------------- | ------------ | ----------------- | -------------------- |
+| `D0`              | `PA11`       | `I2S_WS_PIN`, `UART_RX_PIN` | `TCC1` (channel 1), `TCC0` (channel 3) |
+| `D1`              | `PA10`       | `I2S_SCK_PIN`, `UART_TX_PIN` | `TCC1` (channel 0), `TCC0` (channel 2) |
+| `D2`              | `PA14`       |                   | `TCC0` (channel 0)   |
+| `D3`              | `PA09`       |                   | `TCC0` (channel 1), `TCC1` (channel 3) |
+| `D4`              | `PA08`       |                   | `TCC0` (channel 0), `TCC1` (channel 2) |
+| `D5`              | `PA15`       |                   | `TCC0` (channel 1)   |
+| `D6`              | `PA20`       |                   | `TCC0` (channel 2)   |
+| `D7`              | `PA21`       |                   | `TCC0` (channel 3)   |
+| `D8`              | `PA06`       |                   | `TCC1` (channel 0)   |
+| `D9`              | `PA07`       | `I2S_SD_PIN`      | `TCC1` (channel 1)   |
+| `D10`             | `PA18`       |                   | `TCC0` (channel 2)   |
+| `D11`             | `PA16`       | `SPI0_SDO_PIN`    | `TCC2` (channel 0), `TCC0` (channel 2) |
+| `D12`             | `PA19`       | `SPI0_SDI_PIN`    | `TCC0` (channel 3)   |
+| `D13`             | `PA17`       | `LED`, `LED1`, `SPI0_SCK_PIN` | `TCC2` (channel 1), `TCC0` (channel 3) |
+| `AREF`            | `PA03`       |                   |                      |
+| `ADC0`            | `PA02`       |                   |                      |
+| `ADC1`            | `PB08`       |                   |                      |
+| `ADC2`            | `PB09`       |                   |                      |
+| `ADC3`            | `PA04`       |                   | `TCC0` (channel 0)   |
+| `ADC4`            | `PA05`       |                   | `TCC0` (channel 1)   |
+| `ADC5`            | `PB02`       |                   |                      |
+| `LED2`            | `PA27`       |                   |                      |
+| `LED3`            | `PB03`       |                   |                      |
+| `SPI1_SDO_PIN`    | `PB10`       |                   | `TCC0` (channel 0)   |
+| `SPI1_SDI_PIN`    | `PA12`       |                   | `TCC2` (channel 0), `TCC0` (channel 2) |
+| `SPI1_SCK_PIN`    | `PB11`       |                   | `TCC0` (channel 1)   |
+| `SDA_PIN`         | `PA22`       |                   | `TCC0` (channel 0)   |
+| `SCL_PIN`         | `PA23`       |                   | `TCC0` (channel 1)   |
+| `USBCDC_DM_PIN`   | `PA24`       |                   | `TCC1` (channel 2)   |
+| `USBCDC_DP_PIN`   | `PA25`       |                   | `TCC1` (channel 3)   |
+| `XIN32`           | `PA00`       |                   | `TCC2` (channel 0)   |
+| `XOUT32`          | `PA01`       |                   | `TCC2` (channel 1)   |
 
 ## Machine Package Docs
 

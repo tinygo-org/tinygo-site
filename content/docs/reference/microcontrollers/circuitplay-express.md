@@ -19,33 +19,33 @@ The [Adafruit Circuit Playground Express](https://www.adafruit.com/product/3333)
 
 ## Pins
 
-| Pin               | Hardware pin | Alternative names |
-| ----------------- | ------------ | ----------------- |
-| `D0`              | `PB09`       | `A6`, `UART_RX_PIN` |
-| `D1`              | `PB08`       | `A7`, `UART_TX_PIN` |
-| `D2`              | `PB02`       | `A5`, `SDA_PIN`   |
-| `D3`              | `PB03`       | `A4`, `SCL_PIN`   |
-| `D4`              | `PA28`       | `BUTTONA`, `BUTTON` |
-| `D5`              | `PA14`       | `BUTTONB`, `BUTTON1` |
-| `D6`              | `PA05`       | `A1`              |
-| `D7`              | `PA15`       | `SLIDER`          |
-| `D8`              | `PB23`       | `NEOPIXELS`, `WS2812` |
-| `D9`              | `PA06`       | `A2`              |
-| `D10`             | `PA07`       | `A3`              |
-| `D12`             | `PA02`       | `A0`              |
-| `D13`             | `PA17`       | `LED`             |
-| `A8`              | `PA11`       | `LIGHTSENSOR`     |
-| `A9`              | `PA09`       | `TEMPSENSOR`      |
-| `A10`             | `PA04`       | `PROXIMITY`       |
-| `USBCDC_DM_PIN`   | `PA24`       |                   |
-| `USBCDC_DP_PIN`   | `PA25`       |                   |
-| `SDA1_PIN`        | `PA00`       |                   |
-| `SCL1_PIN`        | `PA01`       |                   |
-| `SPI0_SCK_PIN`    | `PA21`       |                   |
-| `SPI0_SDO_PIN`    | `PA20`       |                   |
-| `SPI0_SDI_PIN`    | `PA16`       |                   |
-| `I2S_SCK_PIN`     | `PA10`       |                   |
-| `I2S_SD_PIN`      | `PA08`       |                   |
+| Pin               | Hardware pin | Alternative names | PWM                  |
+| ----------------- | ------------ | ----------------- | -------------------- |
+| `D0`              | `PB09`       | `A6`, `UART_RX_PIN` |                      |
+| `D1`              | `PB08`       | `A7`, `UART_TX_PIN` |                      |
+| `D2`              | `PB02`       | `A5`, `SDA_PIN`   |                      |
+| `D3`              | `PB03`       | `A4`, `SCL_PIN`   |                      |
+| `D4`              | `PA28`       | `BUTTONA`, `BUTTON` |                      |
+| `D5`              | `PA14`       | `BUTTONB`, `BUTTON1` | `TCC0` (channel 0)   |
+| `D6`              | `PA05`       | `A1`              | `TCC0` (channel 1)   |
+| `D7`              | `PA15`       | `SLIDER`          | `TCC0` (channel 1)   |
+| `D8`              | `PB23`       | `NEOPIXELS`, `WS2812` |                      |
+| `D9`              | `PA06`       | `A2`              | `TCC1` (channel 0)   |
+| `D10`             | `PA07`       | `A3`              | `TCC1` (channel 1)   |
+| `D12`             | `PA02`       | `A0`              |                      |
+| `D13`             | `PA17`       | `LED`             | `TCC2` (channel 1), `TCC0` (channel 3) |
+| `A8`              | `PA11`       | `LIGHTSENSOR`     | `TCC1` (channel 1), `TCC0` (channel 3) |
+| `A9`              | `PA09`       | `TEMPSENSOR`      | `TCC0` (channel 1), `TCC1` (channel 3) |
+| `A10`             | `PA04`       | `PROXIMITY`       | `TCC0` (channel 0)   |
+| `USBCDC_DM_PIN`   | `PA24`       |                   | `TCC1` (channel 2)   |
+| `USBCDC_DP_PIN`   | `PA25`       |                   | `TCC1` (channel 3)   |
+| `SDA1_PIN`        | `PA00`       |                   | `TCC2` (channel 0)   |
+| `SCL1_PIN`        | `PA01`       |                   | `TCC2` (channel 1)   |
+| `SPI0_SCK_PIN`    | `PA21`       |                   | `TCC0` (channel 3)   |
+| `SPI0_SDO_PIN`    | `PA20`       |                   | `TCC0` (channel 2)   |
+| `SPI0_SDI_PIN`    | `PA16`       |                   | `TCC2` (channel 0), `TCC0` (channel 2) |
+| `I2S_SCK_PIN`     | `PA10`       |                   | `TCC1` (channel 0), `TCC0` (channel 2) |
+| `I2S_SD_PIN`      | `PA08`       |                   | `TCC0` (channel 0), `TCC1` (channel 2) |
 
 ## Machine Package Docs
 
