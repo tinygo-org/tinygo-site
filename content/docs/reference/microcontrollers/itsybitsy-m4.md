@@ -19,41 +19,41 @@ The [Adafruit ItsyBitsy M4](https://www.adafruit.com/product/3800) is very compa
 
 ## Pins
 
-| Pin               | Hardware pin | Alternative names |
-| ----------------- | ------------ | ----------------- |
-| `D0`              | `PA16`       | `UART_RX_PIN`     |
-| `D1`              | `PA17`       | `UART_TX_PIN`     |
-| `D2`              | `PA07`       | `UART2_RX_PIN`    |
-| `D3`              | `PB22`       |                   |
-| `D4`              | `PA14`       |                   |
-| `D5`              | `PA15`       |                   |
-| `D6`              | `PB02`       |                   |
-| `D7`              | `PA18`       |                   |
-| `D8`              | `PB03`       |                   |
-| `D9`              | `PA19`       |                   |
-| `D10`             | `PA20`       |                   |
-| `D11`             | `PA21`       |                   |
-| `D12`             | `PA23`       |                   |
-| `D13`             | `PA22`       | `LED`             |
-| `A0`              | `PA02`       |                   |
-| `A1`              | `PA05`       |                   |
-| `A2`              | `PB08`       |                   |
-| `A3`              | `PB09`       |                   |
-| `A4`              | `PA04`       | `UART2_TX_PIN`    |
-| `A5`              | `PA06`       |                   |
-| `USBCDC_DM_PIN`   | `PA24`       |                   |
-| `USBCDC_DP_PIN`   | `PA25`       |                   |
-| `SDA_PIN`         | `PA12`       |                   |
-| `SCL_PIN`         | `PA13`       |                   |
-| `SPI0_SCK_PIN`    | `PA01`       |                   |
-| `SPI0_SDO_PIN`    | `PA00`       |                   |
-| `SPI0_SDI_PIN`    | `PB23`       |                   |
-| `QSPI_SCK`        | `PB10`       |                   |
-| `QSPI_CS`         | `PB11`       |                   |
-| `QSPI_DATA0`      | `PA08`       |                   |
-| `QSPI_DATA1`      | `PA09`       |                   |
-| `QSPI_DATA2`      | `PA10`       |                   |
-| `QSPI_DATA3`      | `PA11`       |                   |
+| Pin               | Hardware pin | Alternative names | PWM                  |
+| ----------------- | ------------ | ----------------- | -------------------- |
+| `D0`              | `PA16`       | `UART_RX_PIN`     | `TCC1` (channel 0), `TCC0` (channel 4) |
+| `D1`              | `PA17`       | `UART_TX_PIN`     | `TCC1` (channel 1), `TCC0` (channel 5) |
+| `D2`              | `PA07`       | `UART2_RX_PIN`    |                      |
+| `D3`              | `PB22`       |                   |                      |
+| `D4`              | `PA14`       |                   | `TCC2` (channel 0), `TCC1` (channel 2) |
+| `D5`              | `PA15`       |                   | `TCC2` (channel 1), `TCC1` (channel 3) |
+| `D6`              | `PB02`       |                   | `TCC2` (channel 2)   |
+| `D7`              | `PA18`       |                   | `TCC1` (channel 2), `TCC0` (channel 6) |
+| `D8`              | `PB03`       |                   | `TCC2` (channel 3)   |
+| `D9`              | `PA19`       |                   | `TCC1` (channel 3), `TCC0` (channel 7) |
+| `D10`             | `PA20`       |                   | `TCC1` (channel 4), `TCC0` (channel 0) |
+| `D11`             | `PA21`       |                   | `TCC1` (channel 5), `TCC0` (channel 1) |
+| `D12`             | `PA23`       |                   | `TCC1` (channel 7), `TCC0` (channel 3) |
+| `D13`             | `PA22`       | `LED`             | `TCC1` (channel 6), `TCC0` (channel 2) |
+| `A0`              | `PA02`       |                   |                      |
+| `A1`              | `PA05`       |                   |                      |
+| `A2`              | `PB08`       |                   |                      |
+| `A3`              | `PB09`       |                   |                      |
+| `A4`              | `PA04`       | `UART2_TX_PIN`    |                      |
+| `A5`              | `PA06`       |                   |                      |
+| `USBCDC_DM_PIN`   | `PA24`       |                   | `TCC2` (channel 2)   |
+| `USBCDC_DP_PIN`   | `PA25`       |                   | `TCC2` (channel 3)   |
+| `SDA_PIN`         | `PA12`       |                   | `TCC0` (channel 6), `TCC1` (channel 2) |
+| `SCL_PIN`         | `PA13`       |                   | `TCC0` (channel 7), `TCC1` (channel 3) |
+| `SPI0_SCK_PIN`    | `PA01`       |                   |                      |
+| `SPI0_SDO_PIN`    | `PA00`       |                   |                      |
+| `SPI0_SDI_PIN`    | `PB23`       |                   |                      |
+| `QSPI_SCK`        | `PB10`       |                   | `TCC0` (channel 4), `TCC1` (channel 0) |
+| `QSPI_CS`         | `PB11`       |                   | `TCC0` (channel 5), `TCC1` (channel 1) |
+| `QSPI_DATA0`      | `PA08`       |                   | `TCC0` (channel 0), `TCC1` (channel 4) |
+| `QSPI_DATA1`      | `PA09`       |                   | `TCC0` (channel 1), `TCC1` (channel 5) |
+| `QSPI_DATA2`      | `PA10`       |                   | `TCC0` (channel 2), `TCC1` (channel 6) |
+| `QSPI_DATA3`      | `PA11`       |                   | `TCC0` (channel 3), `TCC1` (channel 7) |
 
 ## Machine Package Docs
 

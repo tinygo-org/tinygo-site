@@ -19,39 +19,39 @@ The [Arduino MKR WiFi 1010](https://store.arduino.cc/usa/mkr-wifi-1010) is a ver
 
 ## Pins
 
-| Pin               | Hardware pin | Alternative names |
-| ----------------- | ------------ | ----------------- |
-| `D0`              | `PA22`       | `NINA_TX`         |
-| `D1`              | `PA23`       | `NINA_RX`         |
-| `D2`              | `PA10`       | `I2S_SCK_PIN`     |
-| `D3`              | `PA11`       |                   |
-| `D4`              | `PB10`       |                   |
-| `D5`              | `PB11`       |                   |
-| `D6`              | `PA20`       | `LED`             |
-| `D7`              | `PA21`       |                   |
-| `D8`              | `PA16`       | `SPI0_SDO_PIN`    |
-| `D9`              | `PA17`       | `SPI0_SCK_PIN`    |
-| `D10`             | `PA19`       | `SPI0_SDI_PIN`    |
-| `D11`             | `PA08`       | `SDA_PIN`         |
-| `D12`             | `PA09`       | `SCL_PIN`         |
-| `D13`             | `PB23`       | `RX0`, `UART_RX_PIN` |
-| `D14`             | `PB22`       | `TX1`, `UART_TX_PIN` |
-| `A0`              | `PA02`       |                   |
-| `A1`              | `PB02`       |                   |
-| `A2`              | `PB03`       |                   |
-| `A3`              | `PA04`       |                   |
-| `A4`              | `PA05`       |                   |
-| `A5`              | `PA06`       |                   |
-| `A6`              | `PA07`       | `I2S_SD_PIN`      |
-| `USBCDC_DM_PIN`   | `PA24`       |                   |
-| `USBCDC_DP_PIN`   | `PA25`       |                   |
-| `NINA_SDO`        | `PA12`       |                   |
-| `NINA_SDI`        | `PA13`       |                   |
-| `NINA_CS`         | `PA14`       |                   |
-| `NINA_SCK`        | `PA15`       |                   |
-| `NINA_GPIO0`      | `PA27`       |                   |
-| `NINA_RESETN`     | `PB08`       |                   |
-| `NINA_ACK`        | `PA28`       |                   |
+| Pin               | Hardware pin | Alternative names | PWM                  |
+| ----------------- | ------------ | ----------------- | -------------------- |
+| `D0`              | `PA22`       | `NINA_TX`         | `TCC0` (channel 0)   |
+| `D1`              | `PA23`       | `NINA_RX`         | `TCC0` (channel 1)   |
+| `D2`              | `PA10`       | `I2S_SCK_PIN`     | `TCC1` (channel 0), `TCC0` (channel 2) |
+| `D3`              | `PA11`       |                   | `TCC1` (channel 1), `TCC0` (channel 3) |
+| `D4`              | `PB10`       |                   | `TCC0` (channel 0)   |
+| `D5`              | `PB11`       |                   | `TCC0` (channel 1)   |
+| `D6`              | `PA20`       | `LED`             | `TCC0` (channel 2)   |
+| `D7`              | `PA21`       |                   | `TCC0` (channel 3)   |
+| `D8`              | `PA16`       | `SPI0_SDO_PIN`    | `TCC2` (channel 0), `TCC0` (channel 2) |
+| `D9`              | `PA17`       | `SPI0_SCK_PIN`    | `TCC2` (channel 1), `TCC0` (channel 3) |
+| `D10`             | `PA19`       | `SPI0_SDI_PIN`    | `TCC0` (channel 3)   |
+| `D11`             | `PA08`       | `SDA_PIN`         | `TCC0` (channel 0), `TCC1` (channel 2) |
+| `D12`             | `PA09`       | `SCL_PIN`         | `TCC0` (channel 1), `TCC1` (channel 3) |
+| `D13`             | `PB23`       | `RX0`, `UART_RX_PIN` |                      |
+| `D14`             | `PB22`       | `TX1`, `UART_TX_PIN` |                      |
+| `A0`              | `PA02`       |                   |                      |
+| `A1`              | `PB02`       |                   |                      |
+| `A2`              | `PB03`       |                   |                      |
+| `A3`              | `PA04`       |                   | `TCC0` (channel 0)   |
+| `A4`              | `PA05`       |                   | `TCC0` (channel 1)   |
+| `A5`              | `PA06`       |                   | `TCC1` (channel 0)   |
+| `A6`              | `PA07`       | `I2S_SD_PIN`      | `TCC1` (channel 1)   |
+| `USBCDC_DM_PIN`   | `PA24`       |                   | `TCC1` (channel 2)   |
+| `USBCDC_DP_PIN`   | `PA25`       |                   | `TCC1` (channel 3)   |
+| `NINA_SDO`        | `PA12`       |                   | `TCC2` (channel 0), `TCC0` (channel 2) |
+| `NINA_SDI`        | `PA13`       |                   | `TCC2` (channel 1), `TCC0` (channel 3) |
+| `NINA_CS`         | `PA14`       |                   | `TCC0` (channel 0)   |
+| `NINA_SCK`        | `PA15`       |                   | `TCC0` (channel 1)   |
+| `NINA_GPIO0`      | `PA27`       |                   |                      |
+| `NINA_RESETN`     | `PB08`       |                   |                      |
+| `NINA_ACK`        | `PA28`       |                   |                      |
 
 ## Machine Package Docs
 

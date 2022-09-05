@@ -40,6 +40,7 @@ type Type struct {
 type Pin struct {
 	HardwareName string
 	OtherNames   []string
+	Peripherals  map[string][]string
 }
 
 // Match formats:
@@ -444,20 +445,9 @@ func detectSupportedFeatures(pkg *packages.Package, buildTags []string) map[stri
 					if !ast.IsExported(name) {
 						continue
 					}
-					varType := pkg.Types.Scope().Lookup(name).Type()
-					// Check for Configure method.
-					configureMethod := types.NewMethodSet(varType).Lookup(pkg.Types, "Configure")
-					if configureMethod == nil {
-						continue
+					if classifyPeripheral(pkg, name) == "PWM" {
+						features["PWM"] = true
 					}
-					// Check whether it has just one parameter and this
-					// parameter is of type PWMConfig.
-					params := configureMethod.Type().(*types.Signature).Params()
-					if params.Len() != 1 || params.At(0).Type() != pkg.Types.Scope().Lookup("PWMConfig").Type() {
-						continue
-					}
-					// Yes, this looks like a PWM peripheral.
-					features["PWM"] = true
 				}
 			}
 		}
@@ -467,9 +457,14 @@ func detectSupportedFeatures(pkg *packages.Package, buildTags []string) map[stri
 }
 
 func getPinsSection(pkg *packages.Package) (string, error) {
+	supportedPeripherals := map[string]bool{
+		"PWM": true,
+	}
+
 	// Find board pin names
 	pinNames := make(map[string]uint64)
 	hardwarePins := make(map[string]struct{})
+	pinPeripherals := make(map[string][]string)
 	var pinNamesSlice []string
 	for _, file := range pkg.Syntax {
 		for _, decl := range file.Decls {
@@ -497,6 +492,10 @@ func getPinsSection(pkg *packages.Package) (string, error) {
 					pinNames[name] = val
 					if isHardwarePin(name, spec.Values) {
 						hardwarePins[name] = struct{}{}
+						comment := strings.TrimSpace(spec.Comment.Text())
+						if strings.HasPrefix(comment, "peripherals: ") {
+							pinPeripherals[name] = strings.Split(strings.TrimPrefix(comment, "peripherals: "), ", ")
+						}
 					}
 				}
 			}
@@ -507,6 +506,7 @@ func getPinsSection(pkg *packages.Package) (string, error) {
 	}
 	var exposedPins []*Pin
 	pins := make(map[uint64]*Pin)
+	hasPeripheral := make(map[string]bool)
 	for _, name := range pinNamesSlice {
 		if name == "NoPin" || pinNames[name] == pinNames["NoPin"] {
 			continue
@@ -514,7 +514,7 @@ func getPinsSection(pkg *packages.Package) (string, error) {
 		num := pinNames[name]
 		pin, ok := pins[num]
 		if !ok {
-			pin = &Pin{}
+			pin = &Pin{Peripherals: map[string][]string{}}
 			pins[num] = pin
 		}
 		if _, ok := hardwarePins[name]; ok {
@@ -523,6 +523,14 @@ func getPinsSection(pkg *packages.Package) (string, error) {
 				return "", fmt.Errorf("duplicate hardware pin name: %s and %s", pin.HardwareName, name)
 			}
 			pin.HardwareName = name
+			for _, peripheral := range pinPeripherals[name] {
+				peripheralName := strings.SplitN(peripheral, " ", 2)[0]
+				peripheralType := classifyPeripheral(pkg, peripheralName)
+				if supportedPeripherals[peripheralType] {
+					pin.Peripherals[peripheralType] = append(pin.Peripherals[peripheralType], peripheral)
+					hasPeripheral[peripheralType] = true
+				}
+			}
 		} else {
 			// Other name
 			if len(pin.OtherNames) == 0 {
@@ -532,7 +540,15 @@ func getPinsSection(pkg *packages.Package) (string, error) {
 		}
 	}
 
-	pinsText := "## Pins\n\n| Pin               | Hardware pin | Alternative names |\n| ----------------- | ------------ | ----------------- |\n"
+	pinsText := "## Pins\n\n| Pin               | Hardware pin | Alternative names |"
+	if hasPeripheral["PWM"] {
+		pinsText += " PWM                  |"
+	}
+	pinsText += "\n| ----------------- | ------------ | ----------------- |"
+	for range hasPeripheral {
+		pinsText += " -------------------- |"
+	}
+	pinsText += "\n"
 	for _, pin := range exposedPins {
 		if pin.HardwareName == "" {
 			return "", fmt.Errorf("could not find hardware pin name for %s", pin.OtherNames[0])
@@ -541,7 +557,21 @@ func getPinsSection(pkg *packages.Package) (string, error) {
 		for _, name := range pin.OtherNames[1:] {
 			alternativeNames = append(alternativeNames, "`"+name+"`")
 		}
-		pinsText += fmt.Sprintf("| %-17s | %-12s | %-17s |\n", "`"+pin.OtherNames[0]+"`", "`"+pin.HardwareName+"`", strings.Join(alternativeNames, ", "))
+		pinsText += fmt.Sprintf("| %-17s | %-12s | %-17s |", "`"+pin.OtherNames[0]+"`", "`"+pin.HardwareName+"`", strings.Join(alternativeNames, ", "))
+		for _, peripheralType := range []string{"PWM"} {
+			if !hasPeripheral[peripheralType] {
+				continue
+			}
+			var peripherals []string
+			for _, peripheral := range pin.Peripherals[peripheralType] {
+				parts := strings.SplitN(peripheral, " ", 2)
+				s := "`" + parts[0] + "` (" + parts[1] + ")"
+				s = strings.ReplaceAll(s, " ", "\u00a0") // use non-breaking space
+				peripherals = append(peripherals, s)
+			}
+			pinsText += fmt.Sprintf(" %-20s |", strings.Join(peripherals, ", "))
+		}
+		pinsText += "\n"
 	}
 
 	return pinsText, nil
@@ -584,4 +614,31 @@ func isHardwarePin(name string, values []ast.Expr) bool {
 	default:
 		return false
 	}
+}
+
+// Return the peripheral type for a given peripheral name, by looking at the
+// type of the global.
+func classifyPeripheral(pkg *packages.Package, name string) string {
+	global := pkg.Types.Scope().Lookup(name)
+	if global == nil {
+		// The peripheral is not available.
+		// This sometimes happen when the pins are defined for a chip family but
+		// some chips don't have all the peripherals.
+		return ""
+	}
+
+	// Check for Configure method. Most peripherals have one.
+	configureMethod := types.NewMethodSet(global.Type()).Lookup(pkg.Types, "Configure")
+	if configureMethod == nil {
+		return ""
+	}
+
+	// Check whether it has just one parameter and this parameter is of type
+	// PWMConfig.
+	params := configureMethod.Type().(*types.Signature).Params()
+	if params.Len() == 1 && params.At(0).Type() == pkg.Types.Scope().Lookup("PWMConfig").Type() {
+		return "PWM"
+	}
+	// Some other kind of peripheral.
+	return ""
 }

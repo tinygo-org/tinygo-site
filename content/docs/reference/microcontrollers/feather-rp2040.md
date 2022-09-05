@@ -19,29 +19,29 @@ The [Adafruit Feather RP2040](https://www.adafruit.com/product/4884) is a tiny d
 
 ## Pins
 
-| Pin               | Hardware pin | Alternative names |
-| ----------------- | ------------ | ----------------- |
-| `D4`              | `GPIO6`      |                   |
-| `D5`              | `GPIO7`      |                   |
-| `D6`              | `GPIO8`      | `UART1_TX_PIN`    |
-| `D9`              | `GPIO9`      | `UART1_RX_PIN`    |
-| `D10`             | `GPIO10`     | `SPI1_SCK_PIN`    |
-| `D11`             | `GPIO11`     | `SPI1_SDO_PIN`    |
-| `D12`             | `GPIO12`     | `SPI1_SDI_PIN`    |
-| `D13`             | `GPIO13`     | `LED`             |
-| `D24`             | `GPIO24`     | `I2C0_SDA_PIN`    |
-| `D25`             | `GPIO25`     | `I2C0_SCL_PIN`    |
-| `A0`              | `GPIO26`     | `ADC0`            |
-| `A1`              | `GPIO27`     | `ADC1`            |
-| `A2`              | `GPIO28`     | `ADC2`            |
-| `A3`              | `GPIO29`     | `ADC3`            |
-| `I2C1_SDA_PIN`    | `GPIO2`      | `SDA_PIN`         |
-| `I2C1_SCL_PIN`    | `GPIO3`      | `SCL_PIN`         |
-| `SPI0_SCK_PIN`    | `GPIO18`     |                   |
-| `SPI0_SDO_PIN`    | `GPIO19`     |                   |
-| `SPI0_SDI_PIN`    | `GPIO20`     |                   |
-| `UART0_TX_PIN`    | `GPIO0`      | `UART_TX_PIN`     |
-| `UART0_RX_PIN`    | `GPIO1`      | `UART_RX_PIN`     |
+| Pin               | Hardware pin | Alternative names | PWM                  |
+| ----------------- | ------------ | ----------------- | -------------------- |
+| `D4`              | `GPIO6`      |                   | `PWM3` (channel A)   |
+| `D5`              | `GPIO7`      |                   | `PWM3` (channel B)   |
+| `D6`              | `GPIO8`      | `UART1_TX_PIN`    | `PWM4` (channel A)   |
+| `D9`              | `GPIO9`      | `UART1_RX_PIN`    | `PWM4` (channel B)   |
+| `D10`             | `GPIO10`     | `SPI1_SCK_PIN`    | `PWM5` (channel A)   |
+| `D11`             | `GPIO11`     | `SPI1_SDO_PIN`    | `PWM5` (channel B)   |
+| `D12`             | `GPIO12`     | `SPI1_SDI_PIN`    | `PWM6` (channel A)   |
+| `D13`             | `GPIO13`     | `LED`             | `PWM6` (channel B)   |
+| `D24`             | `GPIO24`     | `I2C0_SDA_PIN`    | `PWM4` (channel A)   |
+| `D25`             | `GPIO25`     | `I2C0_SCL_PIN`    | `PWM4` (channel B)   |
+| `A0`              | `GPIO26`     | `ADC0`            | `PWM5` (channel A)   |
+| `A1`              | `GPIO27`     | `ADC1`            | `PWM5` (channel B)   |
+| `A2`              | `GPIO28`     | `ADC2`            | `PWM6` (channel A)   |
+| `A3`              | `GPIO29`     | `ADC3`            | `PWM6` (channel B)   |
+| `I2C1_SDA_PIN`    | `GPIO2`      | `SDA_PIN`         | `PWM1` (channel A)   |
+| `I2C1_SCL_PIN`    | `GPIO3`      | `SCL_PIN`         | `PWM1` (channel B)   |
+| `SPI0_SCK_PIN`    | `GPIO18`     |                   | `PWM1` (channel A)   |
+| `SPI0_SDO_PIN`    | `GPIO19`     |                   | `PWM1` (channel B)   |
+| `SPI0_SDI_PIN`    | `GPIO20`     |                   | `PWM2` (channel A)   |
+| `UART0_TX_PIN`    | `GPIO0`      | `UART_TX_PIN`     | `PWM0` (channel A)   |
+| `UART0_RX_PIN`    | `GPIO1`      | `UART_RX_PIN`     | `PWM0` (channel B)   |
 
 ## Machine Package Docs
 
