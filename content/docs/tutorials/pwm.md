@@ -80,9 +80,17 @@ pwm := machine.PWM4
 ```
 Now things start to look quite different to the blinky example. This code creates a variable which references a PWM peripheral. 
 
-A _peripheral_ refers to any on-board integrated circuit which interfaces directly with the microprocessor and has I/O capabilities. Some other tasks which different peripherals may manage are communications ([I2C](https://en.wikipedia.org/wiki/I%C2%B2C), [SPI](https://en.wikipedia.org/wiki/Serial_Peripheral_Interface), UART, etc.) and [ADC](https://en.wikipedia.org/wiki/Analog-to-digital_converter)/[DAC](https://en.wikipedia.org/wiki/Digital-to-analog_converter).
+If you don't know which PWM peripheral to use for a pin, you can look it up in the documentation for your board. For example, for the [Raspberry Pi Pico](../../reference/microcontrollers/pico/) you can find a table with pins:
 
-In the case of a PWM peripheral, there is the additional idea of a channel which can be used to control more than one pin at the same time with a single PWM peripheral.
+| Pin               | Hardware pin | PWM                  |
+| ----------------- | ------------ | -------------------- |
+| `LED`             | `GPIO25`     | `PWM4` (channel B)   |
+
+Here, you can see the LED pin can be controlled by `PWM4`. (The table is a lot larger than this, but this is the relevant part).
+
+A _peripheral_ refers to any on-chip piece of hardware that runs independently of the CPU core but which interfaces directly with the CPU. They are used for things that are difficult or impossible to do in software. Some other tasks which different peripherals may manage are communications ([I2C](https://en.wikipedia.org/wiki/I%C2%B2C), [SPI](https://en.wikipedia.org/wiki/Serial_Peripheral_Interface), UART, etc.) and [ADC](https://en.wikipedia.org/wiki/Analog-to-digital_converter)/[DAC](https://en.wikipedia.org/wiki/Digital-to-analog_converter).
+
+In the case of a PWM peripheral, there is the additional idea of a channel which can be used to control more than one pin at the same time with a single PWM peripheral. All channels of a PWM peripheral have the same period (or frequency), but they can have a different duty cycle (or "on" time).
 
 ```go
 var period uint64 = 1e9 / 500
