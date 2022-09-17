@@ -62,8 +62,6 @@ The Pico comes with the [UF2 bootloader](https://github.com/Microsoft/uf2) alrea
 
 ### CLI Flashing
 
-- Plug your Pico into your computer's USB port while holding down the RESET button on the board.
-- One plugged in, release the RESET button.
 - Flash your TinyGo program to the board using this command:
 
     ```shell
@@ -78,6 +76,6 @@ Any troubleshooting tips go here.
 
 ## Notes
 
-You cannot yet use the USB port to the Pico as a serial port. Instead `UART0` refers to the TX/RX pins on the board itself.
+You can use the USB port to the Pico as a serial port.
 
 You can refer to [getting started with Raspberry Pi Pico](https://datasheets.raspberrypi.org/pico/getting-started-with-pico.pdf) documentation on how to connect two Picos together (see Appendix A: Using Picoprobe) to debug and convert `UART0` output on target pico to USB output on picoprobe. You will need the [Picoprobe UF2](https://www.raspberrypi.org/documentation/rp2040/getting-started/#board-specifications), available on the Pico's website under "About" tab.

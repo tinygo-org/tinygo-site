@@ -67,8 +67,6 @@ The Nano RP2040 comes with the [UF2 bootloader](https://github.com/Microsoft/uf2
 
 ### CLI Flashing
 
-- Plug your Nano RP2040 into your computer's USB port while shorting the pins REC and GND with a jumper wire.
-- Once plugged in, remove the jumper pin.
 - Flash your TinyGo program to the board using this command:
 
     ```shell
@@ -83,4 +81,4 @@ Any troubleshooting tips go here.
 
 ## Notes
 
-You cannot yet use the USB port to the Nano RP2040 as a serial port. Instead `UART0` refers to the TX/RX pins on the board itself.
+You can use the USB port to the Nano RP2040 as a serial port.
