@@ -55,8 +55,6 @@ The Feather RP2040 comes with the [UF2 bootloader](https://github.com/Microsoft/
 
 ### CLI Flashing
 
-- Plug your Feather RP2040 into your computer's USB port while holding down the RESET button on the board.
-- One plugged in, release the RESET button.
 - Flash your TinyGo program to the board using this command:
 
     ```shell
@@ -71,4 +69,4 @@ Any troubleshooting tips go here.
 
 ## Notes
 
-You cannot yet use the USB port to the Feather RP2040 as a serial port. Instead `UART0` refers to the TX/RX pins on the board itself.
+You can use the USB port to the Feather RP2040 as a serial port.

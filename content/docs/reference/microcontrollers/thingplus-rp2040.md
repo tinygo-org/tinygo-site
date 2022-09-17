@@ -65,8 +65,6 @@ The Sparkfun Thing Plus RP2040 comes with the [UF2 bootloader](https://github.co
 
 ### CLI Flashing
 
-- Plug your Thing Plus RP2040 into your computer's USB port while pressing the BOOT button
-- Release BOOT Button
 - Flash your TinyGo program to the board using this command:
 
     ```shell
@@ -81,6 +79,6 @@ Any troubleshooting tips go here.
 
 ## Notes
 
-You cannot yet use the USB port to the Thing Plus RP2040 as a serial port. Instead `UART0` refers to the TX/RX pins on the board itself.
+You can use the USB port to the Thing Plus RP2040 as a serial port.
 
 The Neopixel LED and the SD Card are supported by [tinygo drivers](https://github.com/tinygo-org/drivers)
