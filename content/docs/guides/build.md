@@ -128,6 +128,12 @@ The following command takes care of downloading and building LLVM. It places the
 make llvm-source llvm-build
 ```
 
+When building on Windows, add CCACHE=OFF.
+
+```shell
+make llvm-source llvm-build CCACHE=OFF
+```
+
 #### Building TinyGo
 
 Once this is finished, you can build TinyGo against this manually built LLVM:
