@@ -121,3 +121,100 @@ func (i2c I2C) Tx(addr uint16, w, r []byte) error
 ```
 
 The `Tx` call performs the actual I2C transaction. It first writes the bytes in `w` to the peripheral device indicated in `addr` and then reads `r` bytes from the peripheral and stores the read bytes in the `r` slice. It returns an error if the transaction failed. Both `w` and `r` can be `nil`.
+
+
+## UART
+
+```go
+type UARTConfig struct {
+    BaudRate uint32
+    TX       Pin
+    RX       Pin
+}
+```
+
+The `UARTConfig` struct contains configuration for the UART peripheral.
+
+  * `BaudRate` is the baud rate of the UART. Common values are 9600 and 115200. Other than that, most chips support multiples of 1200 (2400, 4800, 9600, etc). Support for other baud rates varies by chip, some chips even support high baudrates like 1MHz.
+  * `TX` and `RX` are the transmit and receive pins of the UART. Many chips impose restrictions on which pins can be used, some only support a particular TX and RX pin.
+
+```go
+type UARTParity uint8
+
+const (
+    ParityNone UARTParity = iota
+    ParityEven
+    ParityOdd
+)
+```
+
+Parity is a rarely used checksum feature of UART.
+
+  * `ParityNone` is the default, meaning no parity. It is the most commonly used setting.
+  * `ParityEven` means to expect that the total number of 1 bits sent should be an even number.
+  * `ParityOdd` means to expect that the total number of 1 bits sent should be an odd number.
+
+```go
+type UART struct {
+    // values are unexported or vary by chip
+}
+
+var (
+    UART0 = &UART{...}
+    UART1 = &UART{...}
+)
+```
+
+The `UART` object refers to a single (hardware) UART instance. Depending on chip capabilities, various objects such as `UART0` and perhaps others are defined.
+
+```go
+func (uart UART) Configure(config UARTConfig) error
+```
+
+The `Configure` call enables and configures the hardware UART for use, setting the pins and baud rate. It will return an error when an incorrect configuration is provided (for example, using pins not usable with this UART instance). See `UARTConfig` for details.
+
+Depending on the target configuration, a UART may already be configured if it is the stdout output for the given target. In that case, it is normally configured with a baud rate of 115200.
+
+```go
+func (uart *UART) SetBaudRate(br uint32)
+```
+
+Set the baud rate for the UART. This method is not available on all chips. See `UARTConfig` above for permissible baud rate values.
+
+```go
+func (uart *UART) SetFormat(dataBits, stopBits int, parity UARTParity) error
+```
+
+Set the UART format. The default format (8N1 meaning 8 bits, no parity, and 1 stop bit) is used for almost all external devices, but if you need it this method can be used to override the default.
+
+This method is only available on a limited number of chips.
+
+```go
+func (uart *UART) Buffered() int
+```
+
+Return the number of bytes stored in the receive buffer.
+
+```go
+func (uart *UART) Read(data []byte) (n int, err error)
+```
+
+Read from the receive buffer. This method implements the `io.Reader` interface. It is non-blocking: it will return immediately with `n` set to 0 and `err` set to nil if no data is available.
+
+```go
+func (uart *UART) ReadByte() (byte, error)
+```
+
+ReadByte reads a single byte from the UART receive buffer. If there is no data available in the buffer, it returns an error. You can use `Buffered` to know whether there is data available.
+
+```go
+func (uart *UART) Write(data []byte) (n int, err error)
+```
+
+Write data to the UART. This method implements the `io.Writer` interface. It blocks until all data is written.
+
+```go
+func (uart *UART) WriteByte(c byte) error
+```
+
+Write a single byte to the UART output.
