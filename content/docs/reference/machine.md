@@ -218,3 +218,28 @@ func (uart *UART) WriteByte(c byte) error
 ```
 
 Write a single byte to the UART output.
+
+
+## Other
+
+```go
+func CPUFrequency() uint32
+```
+
+Return the current CPU frequency in hertz (for example, 16MHz equals 16_000_000). It is often a fixed value.
+
+```go
+func GetRNG() uint32
+```
+
+Return a 32-bit random number from a hardware random number generator. It is often (but not always) a cryptographic random number generator. Check the documentation of the chip to be sure.
+
+Not all chips have a random number generator.
+
+```go
+func ReadTemperature() int32
+```
+
+Read the current die temperature of the chip. The return value is in milli-celsius: to convert to Celsius, divide the returned value by 1000.
+
+Not all chips have a built-in temperature sensor.
