@@ -151,6 +151,17 @@ particular chip but instead runs in WebAssembly for example.
 
 
 ```go
+const (
+	KHz	= 1000
+	MHz	= 1000_000
+	GHz	= 1000_000_000
+)
+```
+
+Generic constants.
+
+
+```go
 const NoPin = Pin(0xff)
 ```
 
@@ -213,17 +224,29 @@ Hardware pin numbers
 
 ```go
 const (
+	Mode0	= 0
+	Mode1	= 1
+	Mode2	= 2
+	Mode3	= 3
+)
+```
+
+SPI phase and polarity configs CPOL and CPHA
+
+
+```go
+const (
 	// ParityNone means to not use any parity checking. This is
 	// the most common setting.
-	ParityNone	UARTParity	= 0
+	ParityNone	UARTParity	= iota
 
 	// ParityEven means to expect that the total number of 1 bits sent
 	// should be an even number.
-	ParityEven	UARTParity	= 1
+	ParityEven
 
 	// ParityOdd means to expect that the total number of 1 bits sent
 	// should be an odd number.
-	ParityOdd	UARTParity	= 2
+	ParityOdd
 )
 ```
 
@@ -297,6 +320,15 @@ var Serial = DefaultUART
 ```
 
 Serial is implemented via the default (usually the first) UART on the chip.
+
+
+```go
+var (
+	ErrTxInvalidSliceSize		= errors.New("SPI write and read slices must be same size")
+	errSPIInvalidMachineConfig	= errors.New("SPI port was not configured properly by the machine")
+)
+```
+
 
 
 
@@ -783,7 +815,7 @@ depending on the chip and the type of object.
 ## type UARTParity
 
 ```go
-type UARTParity int
+type UARTParity uint8
 ```
 
 UARTParity is the parity setting to be used for UART communication.

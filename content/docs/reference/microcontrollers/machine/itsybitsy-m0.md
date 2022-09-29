@@ -8,38 +8,38 @@ title: itsybitsy-m0
 
 ```go
 const (
-	PA00	Pin	= 0
-	PA01	Pin	= 1
+	PA00	Pin	= 0	// peripherals: TCC2 channel 0
+	PA01	Pin	= 1	// peripherals: TCC2 channel 1
 	PA02	Pin	= 2
 	PA03	Pin	= 3
-	PA04	Pin	= 4
-	PA05	Pin	= 5
-	PA06	Pin	= 6
-	PA07	Pin	= 7
-	PA08	Pin	= 8
-	PA09	Pin	= 9
-	PA10	Pin	= 10
-	PA11	Pin	= 11
-	PA12	Pin	= 12
-	PA13	Pin	= 13
-	PA14	Pin	= 14
-	PA15	Pin	= 15
-	PA16	Pin	= 16
-	PA17	Pin	= 17
-	PA18	Pin	= 18
-	PA19	Pin	= 19
-	PA20	Pin	= 20
-	PA21	Pin	= 21
-	PA22	Pin	= 22
-	PA23	Pin	= 23
-	PA24	Pin	= 24
-	PA25	Pin	= 25
+	PA04	Pin	= 4	// peripherals: TCC0 channel 0
+	PA05	Pin	= 5	// peripherals: TCC0 channel 1
+	PA06	Pin	= 6	// peripherals: TCC1 channel 0
+	PA07	Pin	= 7	// peripherals: TCC1 channel 1
+	PA08	Pin	= 8	// peripherals: TCC0 channel 0, TCC1 channel 2
+	PA09	Pin	= 9	// peripherals: TCC0 channel 1, TCC1 channel 3
+	PA10	Pin	= 10	// peripherals: TCC1 channel 0, TCC0 channel 2
+	PA11	Pin	= 11	// peripherals: TCC1 channel 1, TCC0 channel 3
+	PA12	Pin	= 12	// peripherals: TCC2 channel 0, TCC0 channel 2
+	PA13	Pin	= 13	// peripherals: TCC2 channel 1, TCC0 channel 3
+	PA14	Pin	= 14	// peripherals: TCC0 channel 0
+	PA15	Pin	= 15	// peripherals: TCC0 channel 1
+	PA16	Pin	= 16	// peripherals: TCC2 channel 0, TCC0 channel 2
+	PA17	Pin	= 17	// peripherals: TCC2 channel 1, TCC0 channel 3
+	PA18	Pin	= 18	// peripherals: TCC0 channel 2
+	PA19	Pin	= 19	// peripherals: TCC0 channel 3
+	PA20	Pin	= 20	// peripherals: TCC0 channel 2
+	PA21	Pin	= 21	// peripherals: TCC0 channel 3
+	PA22	Pin	= 22	// peripherals: TCC0 channel 0
+	PA23	Pin	= 23	// peripherals: TCC0 channel 1
+	PA24	Pin	= 24	// peripherals: TCC1 channel 2
+	PA25	Pin	= 25	// peripherals: TCC1 channel 3
 	PA26	Pin	= 26
 	PA27	Pin	= 27
 	PA28	Pin	= 28
 	PA29	Pin	= 29
-	PA30	Pin	= 30
-	PA31	Pin	= 31
+	PA30	Pin	= 30	// peripherals: TCC1 channel 0
+	PA31	Pin	= 31	// peripherals: TCC1 channel 1
 	PB00	Pin	= 32
 	PB01	Pin	= 33
 	PB02	Pin	= 34
@@ -50,14 +50,14 @@ const (
 	PB07	Pin	= 39
 	PB08	Pin	= 40
 	PB09	Pin	= 41
-	PB10	Pin	= 42
-	PB11	Pin	= 43
-	PB12	Pin	= 44
-	PB13	Pin	= 45
+	PB10	Pin	= 42	// peripherals: TCC0 channel 0
+	PB11	Pin	= 43	// peripherals: TCC0 channel 1
+	PB12	Pin	= 44	// peripherals: TCC0 channel 2
+	PB13	Pin	= 45	// peripherals: TCC0 channel 3
 	PB14	Pin	= 46
 	PB15	Pin	= 47
-	PB16	Pin	= 48
-	PB17	Pin	= 49
+	PB16	Pin	= 48	// peripherals: TCC0 channel 0
+	PB17	Pin	= 49	// peripherals: TCC0 channel 1
 	PB18	Pin	= 50
 	PB19	Pin	= 51
 	PB20	Pin	= 52
@@ -70,19 +70,12 @@ const (
 	PB27	Pin	= 59
 	PB28	Pin	= 60
 	PB29	Pin	= 61
-	PB30	Pin	= 62
-	PB31	Pin	= 63
+	PB30	Pin	= 62	// peripherals: TCC0 channel 0, TCC1 channel 2
+	PB31	Pin	= 63	// peripherals: TCC0 channel 1, TCC1 channel 3
 )
 ```
 
 Hardware pins
-
-
-```go
-const RESET_MAGIC_VALUE = 0xf01669ef
-```
-
-used to reset into bootloader
 
 
 ```go
@@ -202,6 +195,8 @@ const (
 
 TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-speed bus.
 
+Deprecated: use 100 * machine.KHz or 400 * machine.KHz instead.
+
 
 ```go
 const (
@@ -256,6 +251,17 @@ particular chip but instead runs in WebAssembly for example.
 
 
 ```go
+const (
+	KHz	= 1000
+	MHz	= 1000_000
+	GHz	= 1000_000_000
+)
+```
+
+Generic constants.
+
+
+```go
 const NoPin = Pin(0xff)
 ```
 
@@ -297,17 +303,29 @@ Pin change interrupt constants for SetInterrupt.
 
 ```go
 const (
+	Mode0	= 0
+	Mode1	= 1
+	Mode2	= 2
+	Mode3	= 3
+)
+```
+
+SPI phase and polarity configs CPOL and CPHA
+
+
+```go
+const (
 	// ParityNone means to not use any parity checking. This is
 	// the most common setting.
-	ParityNone	UARTParity	= 0
+	ParityNone	UARTParity	= iota
 
 	// ParityEven means to expect that the total number of 1 bits sent
 	// should be an even number.
-	ParityEven	UARTParity	= 1
+	ParityEven
 
 	// ParityOdd means to expect that the total number of 1 bits sent
 	// should be an odd number.
-	ParityOdd	UARTParity	= 2
+	ParityOdd
 )
 ```
 
@@ -379,14 +397,6 @@ var I2S0 = I2S{Bus: sam.I2S}
 
 ```go
 var (
-	ErrTxInvalidSliceSize = errors.New("SPI write and read slices must be same size")
-)
-```
-
-
-
-```go
-var (
 	TCC0	= (*TCC)(sam.TCC0)
 	TCC1	= (*TCC)(sam.TCC1)
 	TCC2	= (*TCC)(sam.TCC2)
@@ -417,6 +427,15 @@ var Serial Serialer
 ```
 
 Serial is implemented via USB (USB-CDC).
+
+
+```go
+var (
+	ErrTxInvalidSliceSize		= errors.New("SPI write and read slices must be same size")
+	errSPIInvalidMachineConfig	= errors.New("SPI port was not configured properly by the machine")
+)
+```
+
 
 
 ```go
@@ -1170,16 +1189,16 @@ The Tx method knows about this, and offers a few different ways of calling it.
 This form sends the bytes in tx buffer, putting the resulting bytes read into the rx buffer.
 Note that the tx and rx buffers must be the same size:
 
-		spi.Tx(tx, rx)
+	spi.Tx(tx, rx)
 
 This form sends the tx buffer, ignoring the result. Useful for sending "commands" that return zeros
 until all the bytes in the command packet have been received:
 
-		spi.Tx(tx, nil)
+	spi.Tx(tx, nil)
 
 This form sends zeros, putting the result into the rx buffer. Good for reading a "result packet":
 
-		spi.Tx(nil, rx)
+	spi.Tx(nil, rx)
 
 
 
@@ -1276,7 +1295,7 @@ Set updates the channel value. This is used to control the channel duty
 cycle, in other words the fraction of time the channel output is high (or low
 when inverted). For example, to set it to a 25% duty cycle, use:
 
-    tcc.Set(channel, tcc.Top() / 4)
+	tcc.Set(channel, tcc.Top() / 4)
 
 tcc.Set(channel, 0) will set the output to low and tcc.Set(channel,
 tcc.Top()) will set the output to high, assuming the output isn't inverted.
@@ -1304,7 +1323,7 @@ func (tcc *TCC) SetPeriod(period uint64) error
 SetPeriod updates the period of this TCC peripheral.
 To set a particular frequency, use the following formula:
 
-    period = 1e9 / frequency
+	period = 1e9 / frequency
 
 If you use a period of 0, a period that works well for LEDs will be picked.
 
@@ -1447,7 +1466,7 @@ depending on the chip and the type of object.
 ## type UARTParity
 
 ```go
-type UARTParity int
+type UARTParity uint8
 ```
 
 UARTParity is the parity setting to be used for UART communication.

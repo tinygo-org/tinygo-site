@@ -120,6 +120,8 @@ const (
 
 TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-speed bus.
 
+Deprecated: use 100 * machine.KHz or 400 * machine.KHz instead.
+
 
 ```go
 const Device = deviceName
@@ -130,6 +132,17 @@ Device is the running program's chip name, such as "ATSAMD51J19A" or
 
 The constant is some hardcoded default value if the program does not target a
 particular chip but instead runs in WebAssembly for example.
+
+
+```go
+const (
+	KHz	= 1000
+	MHz	= 1000_000
+	GHz	= 1000_000_000
+)
+```
+
+Generic constants.
 
 
 ```go
@@ -186,28 +199,6 @@ const (
 
 ```go
 const (
-	adc0_CH	ADCChannel	= iota
-	adc1_CH
-	adc2_CH
-	adc3_CH		// Note: GPIO29 not broken out on pico board
-	ADC_TEMP_SENSOR	// Internal temperature sensor channel
-)
-```
-
-ADC channels. Only ADC_TEMP_SENSOR is public. The other channels are accessed via Machine.ADC objects
-
-
-```go
-const (
-	KHz	= 1000
-	MHz	= 1000000
-)
-```
-
-
-
-```go
-const (
 	PinOutput	PinMode	= iota
 	PinInput
 	PinInputPulldown
@@ -224,12 +215,8 @@ const (
 
 ```go
 const (
-	// PinLevelLow triggers whenever pin is at a low (around 0V) logic level.
-	PinLevelLow	PinChange	= 1 << iota
-	// PinLevelLow triggers whenever pin is at a high (around 3V) logic level.
-	PinLevelHigh
 	// Edge falling
-	PinFalling
+	PinFalling	PinChange	= 4 << iota
 	// Edge rising
 	PinRising
 )
@@ -290,17 +277,29 @@ const (
 
 ```go
 const (
+	Mode0	= 0
+	Mode1	= 1
+	Mode2	= 2
+	Mode3	= 3
+)
+```
+
+SPI phase and polarity configs CPOL and CPHA
+
+
+```go
+const (
 	// ParityNone means to not use any parity checking. This is
 	// the most common setting.
-	ParityNone	UARTParity	= 0
+	ParityNone	UARTParity	= iota
 
 	// ParityEven means to expect that the total number of 1 bits sent
 	// should be an even number.
-	ParityEven	UARTParity	= 1
+	ParityEven
 
 	// ParityOdd means to expect that the total number of 1 bits sent
 	// should be an odd number.
-	ParityOdd	UARTParity	= 2
+	ParityOdd
 )
 ```
 
@@ -433,7 +432,6 @@ SPI on the RP2040
 ```go
 var (
 	ErrLSBNotSupported	= errors.New("SPI LSB unsupported on PL022")
-	ErrTxInvalidSliceSize	= errors.New("SPI write and read slices must be same size")
 	ErrSPITimeout		= errors.New("SPI timeout")
 	ErrSPIBaud		= errors.New("SPI baud too low or above 66.5Mhz")
 )
@@ -454,6 +452,15 @@ var Serial Serialer
 ```
 
 Serial is implemented via USB (USB-CDC).
+
+
+```go
+var (
+	ErrTxInvalidSliceSize		= errors.New("SPI write and read slices must be same size")
+	errSPIInvalidMachineConfig	= errors.New("SPI port was not configured properly by the machine")
+)
+```
+
 
 
 ```go
@@ -579,6 +586,15 @@ PWM peripheral has 2 channels, A and B which correspond to 0 and 1 in the progra
 This number corresponds to the package's PWM0 throughout PWM7 handles
 
 
+### func ReadTemperature
+
+```go
+func ReadTemperature() (millicelsius int32)
+```
+
+ReadTemperature does a one-shot sample of the internal temperature sensor and returns a milli-celsius reading.
+
+
 ### func ReceiveUSBControlPacket
 
 ```go
@@ -662,7 +678,7 @@ ADCChannel is the ADC peripheral mux channel. 0-4.
 func (c ADCChannel) Configure(config ADCConfig) error
 ```
 
-Configure sets the channel's associated pin to analog input mode or powers on the temperature sensor for ADC_TEMP_SENSOR.
+Configure sets the channel's associated pin to analog input mode.
 The powered on temperature sensor increases ADC_AVDD current by approximately 40 μA.
 
 
@@ -673,16 +689,6 @@ func (c ADCChannel) Pin() (p Pin, err error)
 ```
 
 The Pin method returns the GPIO Pin associated with the ADC mux channel, if it has one.
-
-
-### func (ADCChannel) ReadTemperature
-
-```go
-func (c ADCChannel) ReadTemperature() (millicelsius uint32)
-```
-
-ReadTemperature does a one-shot sample of the internal temperature sensor and returns a milli-celsius reading.
-Only works on the ADC_TEMP_SENSOR channel. aka AINSEL=4. Other channels will return 0
 
 
 
@@ -1354,7 +1360,7 @@ depending on the chip and the type of object.
 ## type UARTParity
 
 ```go
-type UARTParity int
+type UARTParity uint8
 ```
 
 UARTParity is the parity setting to be used for UART communication.

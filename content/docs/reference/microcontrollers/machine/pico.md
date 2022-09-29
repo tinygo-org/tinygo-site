@@ -103,6 +103,8 @@ const (
 
 TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-speed bus.
 
+Deprecated: use 100 * machine.KHz or 400 * machine.KHz instead.
+
 
 ```go
 const Device = deviceName
@@ -116,6 +118,17 @@ particular chip but instead runs in WebAssembly for example.
 
 
 ```go
+const (
+	KHz	= 1000
+	MHz	= 1000_000
+	GHz	= 1000_000_000
+)
+```
+
+Generic constants.
+
+
+```go
 const NoPin = Pin(0xff)
 ```
 
@@ -126,64 +139,42 @@ of the pins in a peripheral unconfigured (if supported by the hardware).
 ```go
 const (
 	// GPIO pins
-	GPIO0	Pin	= 0
-	GPIO1	Pin	= 1
-	GPIO2	Pin	= 2
-	GPIO3	Pin	= 3
-	GPIO4	Pin	= 4
-	GPIO5	Pin	= 5
-	GPIO6	Pin	= 6
-	GPIO7	Pin	= 7
-	GPIO8	Pin	= 8
-	GPIO9	Pin	= 9
-	GPIO10	Pin	= 10
-	GPIO11	Pin	= 11
-	GPIO12	Pin	= 12
-	GPIO13	Pin	= 13
-	GPIO14	Pin	= 14
-	GPIO15	Pin	= 15
-	GPIO16	Pin	= 16
-	GPIO17	Pin	= 17
-	GPIO18	Pin	= 18
-	GPIO19	Pin	= 19
-	GPIO20	Pin	= 20
-	GPIO21	Pin	= 21
-	GPIO22	Pin	= 22
-	GPIO23	Pin	= 23
-	GPIO24	Pin	= 24
-	GPIO25	Pin	= 25
-	GPIO26	Pin	= 26
-	GPIO27	Pin	= 27
-	GPIO28	Pin	= 28
-	GPIO29	Pin	= 29
+	GPIO0	Pin	= 0	// peripherals: PWM0 channel A
+	GPIO1	Pin	= 1	// peripherals: PWM0 channel B
+	GPIO2	Pin	= 2	// peripherals: PWM1 channel A
+	GPIO3	Pin	= 3	// peripherals: PWM1 channel B
+	GPIO4	Pin	= 4	// peripherals: PWM2 channel A
+	GPIO5	Pin	= 5	// peripherals: PWM2 channel B
+	GPIO6	Pin	= 6	// peripherals: PWM3 channel A
+	GPIO7	Pin	= 7	// peripherals: PWM3 channel B
+	GPIO8	Pin	= 8	// peripherals: PWM4 channel A
+	GPIO9	Pin	= 9	// peripherals: PWM4 channel B
+	GPIO10	Pin	= 10	// peripherals: PWM5 channel A
+	GPIO11	Pin	= 11	// peripherals: PWM5 channel B
+	GPIO12	Pin	= 12	// peripherals: PWM6 channel A
+	GPIO13	Pin	= 13	// peripherals: PWM6 channel B
+	GPIO14	Pin	= 14	// peripherals: PWM7 channel A
+	GPIO15	Pin	= 15	// peripherals: PWM7 channel B
+	GPIO16	Pin	= 16	// peripherals: PWM0 channel A
+	GPIO17	Pin	= 17	// peripherals: PWM0 channel B
+	GPIO18	Pin	= 18	// peripherals: PWM1 channel A
+	GPIO19	Pin	= 19	// peripherals: PWM1 channel B
+	GPIO20	Pin	= 20	// peripherals: PWM2 channel A
+	GPIO21	Pin	= 21	// peripherals: PWM2 channel B
+	GPIO22	Pin	= 22	// peripherals: PWM3 channel A
+	GPIO23	Pin	= 23	// peripherals: PWM3 channel B
+	GPIO24	Pin	= 24	// peripherals: PWM4 channel A
+	GPIO25	Pin	= 25	// peripherals: PWM4 channel B
+	GPIO26	Pin	= 26	// peripherals: PWM5 channel A
+	GPIO27	Pin	= 27	// peripherals: PWM5 channel B
+	GPIO28	Pin	= 28	// peripherals: PWM6 channel A
+	GPIO29	Pin	= 29	// peripherals: PWM6 channel B
 
 	// Analog pins
 	ADC0	Pin	= GPIO26
 	ADC1	Pin	= GPIO27
 	ADC2	Pin	= GPIO28
 	ADC3	Pin	= GPIO29
-)
-```
-
-
-
-```go
-const (
-	adc0_CH	ADCChannel	= iota
-	adc1_CH
-	adc2_CH
-	adc3_CH		// Note: GPIO29 not broken out on pico board
-	ADC_TEMP_SENSOR	// Internal temperature sensor channel
-)
-```
-
-ADC channels. Only ADC_TEMP_SENSOR is public. The other channels are accessed via Machine.ADC objects
-
-
-```go
-const (
-	KHz	= 1000
-	MHz	= 1000000
 )
 ```
 
@@ -207,12 +198,8 @@ const (
 
 ```go
 const (
-	// PinLevelLow triggers whenever pin is at a low (around 0V) logic level.
-	PinLevelLow	PinChange	= 1 << iota
-	// PinLevelLow triggers whenever pin is at a high (around 3V) logic level.
-	PinLevelHigh
 	// Edge falling
-	PinFalling
+	PinFalling	PinChange	= 4 << iota
 	// Edge rising
 	PinRising
 )
@@ -273,17 +260,29 @@ const (
 
 ```go
 const (
+	Mode0	= 0
+	Mode1	= 1
+	Mode2	= 2
+	Mode3	= 3
+)
+```
+
+SPI phase and polarity configs CPOL and CPHA
+
+
+```go
+const (
 	// ParityNone means to not use any parity checking. This is
 	// the most common setting.
-	ParityNone	UARTParity	= 0
+	ParityNone	UARTParity	= iota
 
 	// ParityEven means to expect that the total number of 1 bits sent
 	// should be an even number.
-	ParityEven	UARTParity	= 1
+	ParityEven
 
 	// ParityOdd means to expect that the total number of 1 bits sent
 	// should be an odd number.
-	ParityOdd	UARTParity	= 2
+	ParityOdd
 )
 ```
 
@@ -416,7 +415,6 @@ SPI on the RP2040
 ```go
 var (
 	ErrLSBNotSupported	= errors.New("SPI LSB unsupported on PL022")
-	ErrTxInvalidSliceSize	= errors.New("SPI write and read slices must be same size")
 	ErrSPITimeout		= errors.New("SPI timeout")
 	ErrSPIBaud		= errors.New("SPI baud too low or above 66.5Mhz")
 )
@@ -437,6 +435,15 @@ var Serial Serialer
 ```
 
 Serial is implemented via USB (USB-CDC).
+
+
+```go
+var (
+	ErrTxInvalidSliceSize		= errors.New("SPI write and read slices must be same size")
+	errSPIInvalidMachineConfig	= errors.New("SPI port was not configured properly by the machine")
+)
+```
+
 
 
 ```go
@@ -503,6 +510,19 @@ func EnableMIDI(txHandler func(), rxHandler func([]byte), setupHandler func(usb.
 EnableMIDI enables MIDI. This function must be executed from the init().
 
 
+### func GetRNG
+
+```go
+func GetRNG() (uint32, error)
+```
+
+GetRNG returns 32 bits of semi-random data based on ring oscillator.
+
+Unlike some other implementations of GetRNG, these random numbers are not
+cryptographically secure and must not be used for cryptographic operations
+(nonces, etc).
+
+
 ### func InitADC
 
 ```go
@@ -547,6 +567,15 @@ func PWMPeripheral(pin Pin) (sliceNum uint8, err error)
 Peripheral returns the RP2040 PWM peripheral which ranges from 0 to 7. Each
 PWM peripheral has 2 channels, A and B which correspond to 0 and 1 in the program.
 This number corresponds to the package's PWM0 throughout PWM7 handles
+
+
+### func ReadTemperature
+
+```go
+func ReadTemperature() (millicelsius int32)
+```
+
+ReadTemperature does a one-shot sample of the internal temperature sensor and returns a milli-celsius reading.
 
 
 ### func ReceiveUSBControlPacket
@@ -632,7 +661,7 @@ ADCChannel is the ADC peripheral mux channel. 0-4.
 func (c ADCChannel) Configure(config ADCConfig) error
 ```
 
-Configure sets the channel's associated pin to analog input mode or powers on the temperature sensor for ADC_TEMP_SENSOR.
+Configure sets the channel's associated pin to analog input mode.
 The powered on temperature sensor increases ADC_AVDD current by approximately 40 μA.
 
 
@@ -643,16 +672,6 @@ func (c ADCChannel) Pin() (p Pin, err error)
 ```
 
 The Pin method returns the GPIO Pin associated with the ADC mux channel, if it has one.
-
-
-### func (ADCChannel) ReadTemperature
-
-```go
-func (c ADCChannel) ReadTemperature() (millicelsius uint32)
-```
-
-ReadTemperature does a one-shot sample of the internal temperature sensor and returns a milli-celsius reading.
-Only works on the ADC_TEMP_SENSOR channel. aka AINSEL=4. Other channels will return 0
 
 
 
@@ -694,11 +713,14 @@ func (i2c *I2C) Configure(config I2CConfig) error
 
 Configure initializes i2c peripheral and configures I2C config's pins passed.
 Here's a list of valid SDA and SCL GPIO pins on bus I2C0 of the rp2040:
- SDA: 0, 4, 8, 12, 16, 20
- SCL: 1, 5, 9, 13, 17, 21
+
+	SDA: 0, 4, 8, 12, 16, 20
+	SCL: 1, 5, 9, 13, 17, 21
+
 Same as above for I2C1 bus:
- SDA: 2, 6, 10, 14, 18, 26
- SCL: 3, 7, 11, 15, 19, 27
+
+	SDA: 2, 6, 10, 14, 18, 26
+	SCL: 3, 7, 11, 15, 19, 27
 
 
 ### func (*I2C) ReadRegister
@@ -737,10 +759,12 @@ in r.
 Passing a nil value for w or r skips the transfer corresponding to write
 or read, respectively.
 
- i2c.Tx(addr, nil, r)
+	i2c.Tx(addr, nil, r)
+
 Performs only a read transfer.
 
- i2c.Tx(addr, w, nil)
+	i2c.Tx(addr, w, nil)
+
 Performs only a write transfer.
 
 
@@ -1071,13 +1095,17 @@ Configure is intended to setup/initialize the SPI interface.
 Default baudrate of 115200 is used if Frequency == 0. Default
 word length (data bits) is 8.
 Below is a list of GPIO pins corresponding to SPI0 bus on the rp2040:
- SI : 0, 4, 17  a.k.a RX and MISO (if rp2040 is master)
- SO : 3, 7, 19  a.k.a TX and MOSI (if rp2040 is master)
- SCK: 2, 6, 18
+
+	SI : 0, 4, 17  a.k.a RX and MISO (if rp2040 is master)
+	SO : 3, 7, 19  a.k.a TX and MOSI (if rp2040 is master)
+	SCK: 2, 6, 18
+
 SPI1 bus GPIO pins:
- SI : 8, 12
- SO : 11, 15
- SCK: 10, 14
+
+	SI : 8, 12
+	SO : 11, 15
+	SCK: 10, 14
+
 No pin configuration is needed of SCK, SDO and SDI needed after calling Configure.
 
 
@@ -1128,21 +1156,21 @@ The Tx method knows about this, and offers a few different ways of calling it.
 This form sends the bytes in tx buffer, putting the resulting bytes read into the rx buffer.
 Note that the tx and rx buffers must be the same size:
 
-		spi.Tx(tx, rx)
+	spi.Tx(tx, rx)
 
 This form sends the tx buffer, ignoring the result. Useful for sending "commands" that return zeros
 until all the bytes in the command packet have been received:
 
-		spi.Tx(tx, nil)
+	spi.Tx(tx, nil)
 
 This form sends zeros, putting the result into the rx buffer. Good for reading a "result packet":
 
-		spi.Tx(nil, rx)
+	spi.Tx(nil, rx)
 
 Remark: This implementation (RP2040) allows reading into buffer with a custom repeated
 value on tx.
 
-		spi.Tx([]byte{0xff}, rx) // may cause unwanted heap allocations.
+	spi.Tx([]byte{0xff}, rx) // may cause unwanted heap allocations.
 
 This form sends 0xff and puts the result into rx buffer. Useful for reading from SD cards
 which require 0xff input on SI.
@@ -1315,7 +1343,7 @@ depending on the chip and the type of object.
 ## type UARTParity
 
 ```go
-type UARTParity int
+type UARTParity uint8
 ```
 
 UARTParity is the parity setting to be used for UART communication.

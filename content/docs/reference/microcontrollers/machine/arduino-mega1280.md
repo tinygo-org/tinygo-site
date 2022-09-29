@@ -115,6 +115,8 @@ const (
 
 TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-speed bus.
 
+Deprecated: use 100 * machine.KHz or 400 * machine.KHz instead.
+
 
 ```go
 const Device = deviceName
@@ -125,6 +127,17 @@ Device is the running program's chip name, such as "ATSAMD51J19A" or
 
 The constant is some hardcoded default value if the program does not target a
 particular chip but instead runs in WebAssembly for example.
+
+
+```go
+const (
+	KHz	= 1000
+	MHz	= 1000_000
+	GHz	= 1000_000_000
+)
+```
+
+Generic constants.
 
 
 ```go
@@ -149,10 +162,10 @@ const (
 	PB1	= portB + 1
 	PB2	= portB + 2
 	PB3	= portB + 3
-	PB4	= portB + 4
-	PB5	= portB + 5
-	PB6	= portB + 6
-	PB7	= portB + 7
+	PB4	= portB + 4	// peripherals: Timer2 channel A
+	PB5	= portB + 5	// peripherals: Timer1 channel A
+	PB6	= portB + 6	// peripherals: Timer1 channel B
+	PB7	= portB + 7	// peripherals: Timer0 channel A
 	PC0	= portC + 0
 	PC1	= portC + 1
 	PC2	= portC + 2
@@ -168,9 +181,9 @@ const (
 	PD7	= portD + 7
 	PE0	= portE + 0
 	PE1	= portE + 1
-	PE3	= portE + 3
-	PE4	= portE + 4
-	PE5	= portE + 5
+	PE3	= portE + 3	// peripherals: Timer3 channel A
+	PE4	= portE + 4	// peripherals: Timer3 channel B
+	PE5	= portE + 5	// peripherals: Timer3 channel C
 	PE6	= portE + 6
 	PF0	= portF + 0
 	PF1	= portF + 1
@@ -183,13 +196,13 @@ const (
 	PG0	= portG + 0
 	PG1	= portG + 1
 	PG2	= portG + 2
-	PG5	= portG + 5
+	PG5	= portG + 5	// peripherals: Timer0 channel B
 	PH0	= portH + 0
 	PH1	= portH + 1
-	PH3	= portH + 3
-	PH4	= portH + 4
-	PH5	= portH + 5
-	PH6	= portH + 6
+	PH3	= portH + 3	// peripherals: Timer4 channel A
+	PH4	= portH + 4	// peripherals: Timer4 channel B
+	PH5	= portH + 5	// peripherals: Timer4 channel C
+	PH6	= portH + 6	// peripherals: Timer0 channel B
 	PJ0	= portJ + 0
 	PJ1	= portJ + 1
 	PK0	= portK + 0
@@ -203,9 +216,9 @@ const (
 	PL0	= portL + 0
 	PL1	= portL + 1
 	PL2	= portL + 2
-	PL3	= portL + 3
-	PL4	= portL + 4
-	PL5	= portL + 5
+	PL3	= portL + 3	// peripherals: Timer5 channel A
+	PL4	= portL + 4	// peripherals: Timer5 channel B
+	PL5	= portL + 5	// peripherals: Timer5 channel C
 	PL6	= portL + 6
 	PL7	= portL + 7
 )
@@ -239,15 +252,15 @@ SPI phase and polarity configs CPOL and CPHA
 const (
 	// ParityNone means to not use any parity checking. This is
 	// the most common setting.
-	ParityNone	UARTParity	= 0
+	ParityNone	UARTParity	= iota
 
 	// ParityEven means to expect that the total number of 1 bits sent
 	// should be an even number.
-	ParityEven	UARTParity	= 1
+	ParityEven
 
 	// ParityOdd means to expect that the total number of 1 bits sent
 	// should be an odd number.
-	ParityOdd	UARTParity	= 2
+	ParityOdd
 )
 ```
 
@@ -649,7 +662,7 @@ Set updates the channel value. This is used to control the channel duty
 cycle, in other words the fraction of time the channel output is high (or low
 when inverted). For example, to set it to a 25% duty cycle, use:
 
-    pwm.Set(channel, pwm.Top() / 4)
+	pwm.Set(channel, pwm.Top() / 4)
 
 pwm.Set(channel, 0) will set the output to low and pwm.Set(channel,
 pwm.Top()) will set the output to high, assuming the output isn't inverted.
@@ -680,7 +693,7 @@ func (pwm PWM) SetPeriod(period uint64) error
 SetPeriod updates the period of this PWM peripheral.
 To set a particular frequency, use the following formula:
 
-    period = 1e9 / frequency
+	period = 1e9 / frequency
 
 If you use a period of 0, a period that works well for LEDs will be picked.
 
@@ -961,16 +974,16 @@ The Tx method knows about this, and offers a few different ways of calling it.
 This form sends the bytes in tx buffer, putting the resulting bytes read into the rx buffer.
 Note that the tx and rx buffers must be the same size:
 
-		spi.Tx(tx, rx)
+	spi.Tx(tx, rx)
 
 This form sends the tx buffer, ignoring the result. Useful for sending "commands" that return zeros
 until all the bytes in the command packet have been received:
 
-		spi.Tx(tx, nil)
+	spi.Tx(tx, nil)
 
 This form sends zeros, putting the result into the rx buffer. Good for reading a "result packet":
 
-		spi.Tx(nil, rx)
+	spi.Tx(nil, rx)
 
 
 
@@ -1099,7 +1112,7 @@ depending on the chip and the type of object.
 ## type UARTParity
 
 ```go
-type UARTParity int
+type UARTParity uint8
 ```
 
 UARTParity is the parity setting to be used for UART communication.

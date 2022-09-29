@@ -97,6 +97,17 @@ particular chip but instead runs in WebAssembly for example.
 
 
 ```go
+const (
+	KHz	= 1000
+	MHz	= 1000_000
+	GHz	= 1000_000_000
+)
+```
+
+Generic constants.
+
+
+```go
 const NoPin = Pin(0xff)
 ```
 
@@ -107,14 +118,24 @@ of the pins in a peripheral unconfigured (if supported by the hardware).
 ```go
 const (
 	PinInput	PinMode	= iota
-	PinInputPullUp
-	PinInputPullDown
+	PinInputPullup
+	PinInputPulldown
 	PinOutput
 	PinOutputOpenDrain
 	PinDisable
 )
 ```
 
+
+
+```go
+const (
+	PinInputPullUp		= PinInputPullup
+	PinInputPullDown	= PinInputPulldown
+)
+```
+
+Deprecated: use PinInputPullup and PinInputPulldown instead.
 
 
 ```go
@@ -275,15 +296,15 @@ const (
 const (
 	// ParityNone means to not use any parity checking. This is
 	// the most common setting.
-	ParityNone	UARTParity	= 0
+	ParityNone	UARTParity	= iota
 
 	// ParityEven means to expect that the total number of 1 bits sent
 	// should be an even number.
-	ParityEven	UARTParity	= 1
+	ParityEven
 
 	// ParityOdd means to expect that the total number of 1 bits sent
 	// should be an odd number.
-	ParityOdd	UARTParity	= 2
+	ParityOdd
 )
 ```
 
@@ -886,7 +907,7 @@ depending on the chip and the type of object.
 ## type UARTParity
 
 ```go
-type UARTParity int
+type UARTParity uint8
 ```
 
 UARTParity is the parity setting to be used for UART communication.
