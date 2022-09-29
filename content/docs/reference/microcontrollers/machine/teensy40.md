@@ -205,6 +205,17 @@ particular chip but instead runs in WebAssembly for example.
 
 
 ```go
+const (
+	KHz	= 1000
+	MHz	= 1000_000
+	GHz	= 1000_000_000
+)
+```
+
+Generic constants.
+
+
+```go
 const NoPin = Pin(0xff)
 ```
 
@@ -216,8 +227,8 @@ of the pins in a peripheral unconfigured (if supported by the hardware).
 const (
 	// GPIO
 	PinInput	PinMode	= iota
-	PinInputPullUp
-	PinInputPullDown
+	PinInputPullup
+	PinInputPulldown
 	PinOutput
 	PinOutputOpenDrain
 	PinDisable
@@ -245,9 +256,17 @@ const (
 
 ```go
 const (
-	PinLow	PinChange	= iota
-	PinHigh
-	PinRising
+	PinInputPullUp		= PinInputPullup
+	PinInputPullDown	= PinInputPulldown
+)
+```
+
+Deprecated: use PinInputPullup and PinInputPulldown instead.
+
+
+```go
+const (
+	PinRising	PinChange	= iota + 2
 	PinFalling
 	PinToggle
 )
@@ -397,19 +416,6 @@ const (
 
 ```go
 const (
-	TWI_FREQ_BUS		= 24000000		// LPI2C root clock is on 24 MHz OSC
-	TWI_FREQ_100KHZ		= 100000		// StandardMode (100 kHz)
-	TWI_FREQ_400KHZ		= 400000		// FastMode (400 kHz)
-	TWI_FREQ_1MHZ		= 1000000		// FastModePlus (1 MHz)
-	TWI_FREQ_5MHZ		= 5000000		// UltraFastMode (5 MHz)
-	TWI_FREQ_DEFAULT	= TWI_FREQ_100KHZ	// default to StandardMode (100 kHz)
-)
-```
-
-
-
-```go
-const (
 	Mode0	= 0
 	Mode1	= 1
 	Mode2	= 2
@@ -424,15 +430,15 @@ SPI phase and polarity configs CPOL and CPHA
 const (
 	// ParityNone means to not use any parity checking. This is
 	// the most common setting.
-	ParityNone	UARTParity	= 0
+	ParityNone	UARTParity	= iota
 
 	// ParityEven means to expect that the total number of 1 bits sent
 	// should be an even number.
-	ParityEven	UARTParity	= 1
+	ParityEven
 
 	// ParityOdd means to expect that the total number of 1 bits sent
 	// should be an odd number.
-	ParityOdd	UARTParity	= 2
+	ParityOdd
 )
 ```
 
@@ -1202,16 +1208,16 @@ The Tx method knows about this, and offers a few different ways of calling it.
 This form sends the bytes in tx buffer, putting the resulting bytes read into the rx buffer.
 Note that the tx and rx buffers must be the same size:
 
-		spi.Tx(tx, rx)
+	spi.Tx(tx, rx)
 
 This form sends the tx buffer, ignoring the result. Useful for sending "commands" that return zeros
 until all the bytes in the command packet have been received:
 
-		spi.Tx(tx, nil)
+	spi.Tx(tx, nil)
 
 This form sends zeros, putting the result into the rx buffer. Good for reading a "result packet":
 
-		spi.Tx(nil, rx)
+	spi.Tx(nil, rx)
 
 
 
@@ -1382,7 +1388,7 @@ depending on the chip and the type of object.
 ## type UARTParity
 
 ```go
-type UARTParity int
+type UARTParity uint8
 ```
 
 UARTParity is the parity setting to be used for UART communication.

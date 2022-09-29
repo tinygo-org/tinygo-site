@@ -74,6 +74,17 @@ particular chip but instead runs in WebAssembly for example.
 
 
 ```go
+const (
+	KHz	= 1000
+	MHz	= 1000_000
+	GHz	= 1000_000_000
+)
+```
+
+Generic constants.
+
+
+```go
 const NoPin = Pin(0xff)
 ```
 
@@ -123,12 +134,9 @@ const (
 
 ```go
 const (
-	PinNoInterrupt	PinChange	= iota
-	PinRising
+	PinRising	PinChange	= iota + 1
 	PinFalling
 	PinToggle
-	PinLowLevel
-	PinHighLevel
 )
 ```
 
@@ -137,28 +145,17 @@ Pin change interrupt constants for SetInterrupt.
 
 ```go
 const (
-	UARTStopBits_Default	UARTStopBits	= iota
-	UARTStopBits_1
-	UARTStopBits_1_5
-	UARTStopBits_2
-)
-```
-
-
-
-```go
-const (
 	// ParityNone means to not use any parity checking. This is
 	// the most common setting.
-	ParityNone	UARTParity	= 0
+	ParityNone	UARTParity	= iota
 
 	// ParityEven means to expect that the total number of 1 bits sent
 	// should be an even number.
-	ParityEven	UARTParity	= 1
+	ParityEven
 
 	// ParityOdd means to expect that the total number of 1 bits sent
 	// should be an odd number.
-	ParityOdd	UARTParity	= 2
+	ParityOdd
 )
 ```
 
@@ -677,21 +674,10 @@ depending on the chip and the type of object.
 ## type UARTParity
 
 ```go
-type UARTParity int
+type UARTParity uint8
 ```
 
 UARTParity is the parity setting to be used for UART communication.
-
-
-
-
-
-## type UARTStopBits
-
-```go
-type UARTStopBits int
-```
-
 
 
 

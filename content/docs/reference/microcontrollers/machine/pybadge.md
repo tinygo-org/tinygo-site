@@ -7,13 +7,6 @@ title: pybadge
 ## Constants
 
 ```go
-const RESET_MAGIC_VALUE = 0xf01669ef
-```
-
-used to reset into bootloader
-
-
-```go
 const (
 	D0	= PB17	// UART0 RX/PWM available
 	D1	= PB16	// UART0 TX/PWM available
@@ -161,6 +154,8 @@ const (
 
 TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-speed bus.
 
+Deprecated: use 100 * machine.KHz or 400 * machine.KHz instead.
+
 
 ```go
 const (
@@ -212,6 +207,17 @@ Device is the running program's chip name, such as "ATSAMD51J19A" or
 
 The constant is some hardcoded default value if the program does not target a
 particular chip but instead runs in WebAssembly for example.
+
+
+```go
+const (
+	KHz	= 1000
+	MHz	= 1000_000
+	GHz	= 1000_000_000
+)
+```
+
+Generic constants.
 
 
 ```go
@@ -274,86 +280,86 @@ const (
 	PA05	Pin	= 5
 	PA06	Pin	= 6
 	PA07	Pin	= 7
-	PA08	Pin	= 8
-	PA09	Pin	= 9
-	PA10	Pin	= 10
-	PA11	Pin	= 11
-	PA12	Pin	= 12
-	PA13	Pin	= 13
-	PA14	Pin	= 14
-	PA15	Pin	= 15
-	PA16	Pin	= 16
-	PA17	Pin	= 17
-	PA18	Pin	= 18
-	PA19	Pin	= 19
-	PA20	Pin	= 20
-	PA21	Pin	= 21
-	PA22	Pin	= 22
-	PA23	Pin	= 23
-	PA24	Pin	= 24
-	PA25	Pin	= 25
+	PA08	Pin	= 8	// peripherals: TCC0 channel 0, TCC1 channel 4
+	PA09	Pin	= 9	// peripherals: TCC0 channel 1, TCC1 channel 5
+	PA10	Pin	= 10	// peripherals: TCC0 channel 2, TCC1 channel 6
+	PA11	Pin	= 11	// peripherals: TCC0 channel 3, TCC1 channel 7
+	PA12	Pin	= 12	// peripherals: TCC0 channel 6, TCC1 channel 2
+	PA13	Pin	= 13	// peripherals: TCC0 channel 7, TCC1 channel 3
+	PA14	Pin	= 14	// peripherals: TCC2 channel 0, TCC1 channel 2
+	PA15	Pin	= 15	// peripherals: TCC2 channel 1, TCC1 channel 3
+	PA16	Pin	= 16	// peripherals: TCC1 channel 0, TCC0 channel 4
+	PA17	Pin	= 17	// peripherals: TCC1 channel 1, TCC0 channel 5
+	PA18	Pin	= 18	// peripherals: TCC1 channel 2, TCC0 channel 6
+	PA19	Pin	= 19	// peripherals: TCC1 channel 3, TCC0 channel 7
+	PA20	Pin	= 20	// peripherals: TCC1 channel 4, TCC0 channel 0
+	PA21	Pin	= 21	// peripherals: TCC1 channel 5, TCC0 channel 1
+	PA22	Pin	= 22	// peripherals: TCC1 channel 6, TCC0 channel 2
+	PA23	Pin	= 23	// peripherals: TCC1 channel 7, TCC0 channel 3
+	PA24	Pin	= 24	// peripherals: TCC2 channel 2
+	PA25	Pin	= 25	// peripherals: TCC2 channel 3
 	PA26	Pin	= 26
 	PA27	Pin	= 27
 	PA28	Pin	= 28
 	PA29	Pin	= 29
-	PA30	Pin	= 30
-	PA31	Pin	= 31
+	PA30	Pin	= 30	// peripherals: TCC2 channel 0
+	PA31	Pin	= 31	// peripherals: TCC2 channel 1
 	PB00	Pin	= 32
 	PB01	Pin	= 33
-	PB02	Pin	= 34
-	PB03	Pin	= 35
+	PB02	Pin	= 34	// peripherals: TCC2 channel 2
+	PB03	Pin	= 35	// peripherals: TCC2 channel 3
 	PB04	Pin	= 36
 	PB05	Pin	= 37
 	PB06	Pin	= 38
 	PB07	Pin	= 39
 	PB08	Pin	= 40
 	PB09	Pin	= 41
-	PB10	Pin	= 42
-	PB11	Pin	= 43
-	PB12	Pin	= 44
-	PB13	Pin	= 45
-	PB14	Pin	= 46
-	PB15	Pin	= 47
-	PB16	Pin	= 48
-	PB17	Pin	= 49
-	PB18	Pin	= 50
-	PB19	Pin	= 51
-	PB20	Pin	= 52
-	PB21	Pin	= 53
+	PB10	Pin	= 42	// peripherals: TCC0 channel 4, TCC1 channel 0
+	PB11	Pin	= 43	// peripherals: TCC0 channel 5, TCC1 channel 1
+	PB12	Pin	= 44	// peripherals: TCC3 channel 0, TCC0 channel 0
+	PB13	Pin	= 45	// peripherals: TCC3 channel 1, TCC0 channel 1
+	PB14	Pin	= 46	// peripherals: TCC4 channel 0, TCC0 channel 2
+	PB15	Pin	= 47	// peripherals: TCC4 channel 1, TCC0 channel 3
+	PB16	Pin	= 48	// peripherals: TCC3 channel 0, TCC0 channel 4
+	PB17	Pin	= 49	// peripherals: TCC3 channel 1, TCC0 channel 5
+	PB18	Pin	= 50	// peripherals: TCC1 channel 0
+	PB19	Pin	= 51	// peripherals: TCC1 channel 1
+	PB20	Pin	= 52	// peripherals: TCC1 channel 2
+	PB21	Pin	= 53	// peripherals: TCC1 channel 3
 	PB22	Pin	= 54
 	PB23	Pin	= 55
 	PB24	Pin	= 56
 	PB25	Pin	= 57
-	PB26	Pin	= 58
-	PB27	Pin	= 59
-	PB28	Pin	= 60
-	PB29	Pin	= 61
-	PB30	Pin	= 62
-	PB31	Pin	= 63
+	PB26	Pin	= 58	// peripherals: TCC1 channel 2
+	PB27	Pin	= 59	// peripherals: TCC1 channel 3
+	PB28	Pin	= 60	// peripherals: TCC1 channel 4
+	PB29	Pin	= 61	// peripherals: TCC1 channel 5
+	PB30	Pin	= 62	// peripherals: TCC4 channel 0, TCC0 channel 6
+	PB31	Pin	= 63	// peripherals: TCC4 channel 1, TCC0 channel 7
 	PC00	Pin	= 64
 	PC01	Pin	= 65
 	PC02	Pin	= 66
 	PC03	Pin	= 67
-	PC04	Pin	= 68
-	PC05	Pin	= 69
+	PC04	Pin	= 68	// peripherals: TCC0 channel 0
+	PC05	Pin	= 69	// peripherals: TCC0 channel 1
 	PC06	Pin	= 70
 	PC07	Pin	= 71
 	PC08	Pin	= 72
 	PC09	Pin	= 73
-	PC10	Pin	= 74
-	PC11	Pin	= 75
-	PC12	Pin	= 76
-	PC13	Pin	= 77
-	PC14	Pin	= 78
-	PC15	Pin	= 79
-	PC16	Pin	= 80
-	PC17	Pin	= 81
-	PC18	Pin	= 82
-	PC19	Pin	= 83
-	PC20	Pin	= 84
-	PC21	Pin	= 85
-	PC22	Pin	= 86
-	PC23	Pin	= 87
+	PC10	Pin	= 74	// peripherals: TCC0 channel 0, TCC1 channel 4
+	PC11	Pin	= 75	// peripherals: TCC0 channel 1, TCC1 channel 5
+	PC12	Pin	= 76	// peripherals: TCC0 channel 2, TCC1 channel 6
+	PC13	Pin	= 77	// peripherals: TCC0 channel 3, TCC1 channel 7
+	PC14	Pin	= 78	// peripherals: TCC0 channel 4, TCC1 channel 0
+	PC15	Pin	= 79	// peripherals: TCC0 channel 5, TCC1 channel 1
+	PC16	Pin	= 80	// peripherals: TCC0 channel 0
+	PC17	Pin	= 81	// peripherals: TCC0 channel 1
+	PC18	Pin	= 82	// peripherals: TCC0 channel 2
+	PC19	Pin	= 83	// peripherals: TCC0 channel 3
+	PC20	Pin	= 84	// peripherals: TCC0 channel 4
+	PC21	Pin	= 85	// peripherals: TCC0 channel 5
+	PC22	Pin	= 86	// peripherals: TCC0 channel 6
+	PC23	Pin	= 87	// peripherals: TCC0 channel 7
 	PC24	Pin	= 88
 	PC25	Pin	= 89
 	PC26	Pin	= 90
@@ -370,20 +376,20 @@ const (
 	PD05	Pin	= 101
 	PD06	Pin	= 102
 	PD07	Pin	= 103
-	PD08	Pin	= 104
-	PD09	Pin	= 105
-	PD10	Pin	= 106
-	PD11	Pin	= 107
-	PD12	Pin	= 108
-	PD13	Pin	= 109
+	PD08	Pin	= 104	// peripherals: TCC0 channel 1
+	PD09	Pin	= 105	// peripherals: TCC0 channel 2
+	PD10	Pin	= 106	// peripherals: TCC0 channel 3
+	PD11	Pin	= 107	// peripherals: TCC0 channel 4
+	PD12	Pin	= 108	// peripherals: TCC0 channel 5
+	PD13	Pin	= 109	// peripherals: TCC0 channel 6
 	PD14	Pin	= 110
 	PD15	Pin	= 111
 	PD16	Pin	= 112
 	PD17	Pin	= 113
 	PD18	Pin	= 114
 	PD19	Pin	= 115
-	PD20	Pin	= 116
-	PD21	Pin	= 117
+	PD20	Pin	= 116	// peripherals: TCC1 channel 0
+	PD21	Pin	= 117	// peripherals: TCC1 channel 1
 	PD22	Pin	= 118
 	PD23	Pin	= 119
 	PD24	Pin	= 120
@@ -447,17 +453,29 @@ const HSRAM_SIZE = 0x00030000
 
 ```go
 const (
+	Mode0	= 0
+	Mode1	= 1
+	Mode2	= 2
+	Mode3	= 3
+)
+```
+
+SPI phase and polarity configs CPOL and CPHA
+
+
+```go
+const (
 	// ParityNone means to not use any parity checking. This is
 	// the most common setting.
-	ParityNone	UARTParity	= 0
+	ParityNone	UARTParity	= iota
 
 	// ParityEven means to expect that the total number of 1 bits sent
 	// should be an even number.
-	ParityEven	UARTParity	= 1
+	ParityEven
 
 	// ParityOdd means to expect that the total number of 1 bits sent
 	// should be an odd number.
-	ParityOdd	UARTParity	= 2
+	ParityOdd
 )
 ```
 
@@ -515,14 +533,6 @@ var (
 
 ```go
 var (
-	ErrTxInvalidSliceSize = errors.New("SPI write and read slices must be same size")
-)
-```
-
-
-
-```go
-var (
 	DAC0	= DAC{Channel: 0}
 	DAC1	= DAC{Channel: 1}
 )
@@ -556,6 +566,15 @@ var Serial Serialer
 ```
 
 Serial is implemented via USB (USB-CDC).
+
+
+```go
+var (
+	ErrTxInvalidSliceSize		= errors.New("SPI write and read slices must be same size")
+	errSPIInvalidMachineConfig	= errors.New("SPI port was not configured properly by the machine")
+)
+```
+
 
 
 ```go
@@ -1275,16 +1294,16 @@ The Tx method knows about this, and offers a few different ways of calling it.
 This form sends the bytes in tx buffer, putting the resulting bytes read into the rx buffer.
 Note that the tx and rx buffers must be the same size:
 
-		spi.Tx(tx, rx)
+	spi.Tx(tx, rx)
 
 This form sends the tx buffer, ignoring the result. Useful for sending "commands" that return zeros
 until all the bytes in the command packet have been received:
 
-		spi.Tx(tx, nil)
+	spi.Tx(tx, nil)
 
 This form sends zeros, putting the result into the rx buffer. Good for reading a "result packet":
 
-		spi.Tx(nil, rx)
+	spi.Tx(nil, rx)
 
 
 
@@ -1380,7 +1399,7 @@ Set updates the channel value. This is used to control the channel duty
 cycle, in other words the fraction of time the channel output is high (or low
 when inverted). For example, to set it to a 25% duty cycle, use:
 
-    tcc.Set(channel, tcc.Top() / 4)
+	tcc.Set(channel, tcc.Top() / 4)
 
 tcc.Set(channel, 0) will set the output to low and tcc.Set(channel,
 tcc.Top()) will set the output to high, assuming the output isn't inverted.
@@ -1408,7 +1427,7 @@ func (tcc *TCC) SetPeriod(period uint64) error
 SetPeriod updates the period of this TCC peripheral.
 To set a particular frequency, use the following formula:
 
-    period = 1e9 / frequency
+	period = 1e9 / frequency
 
 If you use a period of 0, a period that works well for LEDs will be picked.
 
@@ -1551,7 +1570,7 @@ depending on the chip and the type of object.
 ## type UARTParity
 
 ```go
-type UARTParity int
+type UARTParity uint8
 ```
 
 UARTParity is the parity setting to be used for UART communication.

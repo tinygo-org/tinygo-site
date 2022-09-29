@@ -62,9 +62,9 @@ UART pins
 ```go
 const (
 	PB0	= portB + 0
-	PB1	= portB + 1
-	PB2	= portB + 2
-	PB3	= portB + 3
+	PB1	= portB + 1	// peripherals: Timer1 channel A
+	PB2	= portB + 2	// peripherals: Timer1 channel B
+	PB3	= portB + 3	// peripherals: Timer2 channel A
 	PB4	= portB + 4
 	PB5	= portB + 5
 	PB6	= portB + 6
@@ -80,10 +80,10 @@ const (
 	PD0	= portD + 0
 	PD1	= portD + 1
 	PD2	= portD + 2
-	PD3	= portD + 3
+	PD3	= portD + 3	// peripherals: Timer2 channel B
 	PD4	= portD + 4
-	PD5	= portD + 5
-	PD6	= portD + 6
+	PD5	= portD + 5	// peripherals: Timer0 channel B
+	PD6	= portD + 6	// peripherals: Timer0 channel A
 	PD7	= portD + 7
 )
 ```
@@ -99,6 +99,8 @@ const (
 
 TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-speed bus.
 
+Deprecated: use 100 * machine.KHz or 400 * machine.KHz instead.
+
 
 ```go
 const Device = deviceName
@@ -109,6 +111,17 @@ Device is the running program's chip name, such as "ATSAMD51J19A" or
 
 The constant is some hardcoded default value if the program does not target a
 particular chip but instead runs in WebAssembly for example.
+
+
+```go
+const (
+	KHz	= 1000
+	MHz	= 1000_000
+	GHz	= 1000_000_000
+)
+```
+
+Generic constants.
 
 
 ```go
@@ -145,15 +158,15 @@ SPI phase and polarity configs CPOL and CPHA
 const (
 	// ParityNone means to not use any parity checking. This is
 	// the most common setting.
-	ParityNone	UARTParity	= 0
+	ParityNone	UARTParity	= iota
 
 	// ParityEven means to expect that the total number of 1 bits sent
 	// should be an even number.
-	ParityEven	UARTParity	= 1
+	ParityEven
 
 	// ParityOdd means to expect that the total number of 1 bits sent
 	// should be an odd number.
-	ParityOdd	UARTParity	= 2
+	ParityOdd
 )
 ```
 
@@ -552,7 +565,7 @@ Set updates the channel value. This is used to control the channel duty
 cycle, in other words the fraction of time the channel output is high (or low
 when inverted). For example, to set it to a 25% duty cycle, use:
 
-    pwm.Set(channel, pwm.Top() / 4)
+	pwm.Set(channel, pwm.Top() / 4)
 
 pwm.Set(channel, 0) will set the output to low and pwm.Set(channel,
 pwm.Top()) will set the output to high, assuming the output isn't inverted.
@@ -583,7 +596,7 @@ func (pwm PWM) SetPeriod(period uint64) error
 SetPeriod updates the period of this PWM peripheral.
 To set a particular frequency, use the following formula:
 
-    period = 1e9 / frequency
+	period = 1e9 / frequency
 
 If you use a period of 0, a period that works well for LEDs will be picked.
 
@@ -864,16 +877,16 @@ The Tx method knows about this, and offers a few different ways of calling it.
 This form sends the bytes in tx buffer, putting the resulting bytes read into the rx buffer.
 Note that the tx and rx buffers must be the same size:
 
-		spi.Tx(tx, rx)
+	spi.Tx(tx, rx)
 
 This form sends the tx buffer, ignoring the result. Useful for sending "commands" that return zeros
 until all the bytes in the command packet have been received:
 
-		spi.Tx(tx, nil)
+	spi.Tx(tx, nil)
 
 This form sends zeros, putting the result into the rx buffer. Good for reading a "result packet":
 
-		spi.Tx(nil, rx)
+	spi.Tx(nil, rx)
 
 
 
@@ -1002,7 +1015,7 @@ depending on the chip and the type of object.
 ## type UARTParity
 
 ```go
-type UARTParity int
+type UARTParity uint8
 ```
 
 UARTParity is the parity setting to be used for UART communication.
