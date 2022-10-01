@@ -14,7 +14,7 @@ git clone --recursive https://github.com/tinygo-org/tinygo.git
 cd tinygo
 ```
 
-If you want to use the latest version of LLVM instead of the latest release, please switch over to the dev branch:
+If you want to use the latest version of TinyGo instead of the latest release, please switch over to the dev branch:
 
 ```shell
 git checkout dev
