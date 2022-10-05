@@ -23,7 +23,7 @@ If you wish to build TinyGo from source, for example if you intend to contribute
 
 ### Ubuntu/Debian
 
-You must have Go already installed on your machine in order to install TinyGo. We recommend Go v1.17 or above.
+You must have Go already installed on your machine in order to install TinyGo. We recommend Go v1.18 or above.
 
 If you are using Ubuntu or another Debian based Linux on an Intel processor, download the DEB file from Github and install it using the following commands:
 
