@@ -54,7 +54,7 @@ echo 'deb http://apt.llvm.org/xxxxx/ llvm-toolchain-xxxxx-14 main' | sudo tee /e
 
 After adding the apt repository for your distribution you may install the LLVM toolchain packages:
 
-```
+```shell
 wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
 sudo apt-get update
 sudo apt-get install clang-14 llvm-14-dev lld-14 libclang-14-dev
@@ -78,7 +78,7 @@ go install
 After LLVM has been installed, installing TinyGo should be as easy as running the following command:
 
 ```shell
-go install
+go install -tags=llvm14
 ```
 
 If you are getting an `gcc` or `g++ not found` error you most likely do not have a working C++ build environment. You'll need the `build-essential` package on Debian or `sudo dnf install make automake gcc gcc-c++` for Fedora based systems.
