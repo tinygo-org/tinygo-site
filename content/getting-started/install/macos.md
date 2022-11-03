@@ -53,12 +53,3 @@ brew tap osx-cross/avr
 brew install avr-gcc
 brew install avrdude
 ```
-
-#### Xtensa ESP32
-
-To compile TinyGo programs for the Xtensa ESP32 based processors from Espressif, you must install some extra tools:
-
-```shell
-brew tap tasanakorn/homebrew-esp32
-brew install xtensa-esp32-elf
-```
