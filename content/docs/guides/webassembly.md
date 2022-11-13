@@ -16,8 +16,10 @@ func main() {
 }
 
 // This function is imported from JavaScript, as it doesn't define a body.
-// You should define a function named 'main.add' in the WebAssembly 'env'
+// You should define a function named 'add' in the WebAssembly 'env'
 // module from JavaScript.
+//
+//export add
 func add(x, y int) int
 
 // This function is exported to JavaScript, so can be called using
@@ -34,7 +36,7 @@ Related JavaScript would look something like this:
 // Providing the environment object, used in WebAssembly.instantiateStreaming.
 // This part goes after "const go = new Go();" declaration.
 go.importObject.env = {
-    'main.add': function(x, y) {
+    'add': function(x, y) {
         return x + y
     }
     // ... other functions
