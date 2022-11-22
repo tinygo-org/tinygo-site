@@ -96,7 +96,7 @@ The following 78 devices are supported.
 | [Waveshare 4.2" e-paper B/W display](https://www.waveshare.com/w/upload/6/6a/4.2inch-e-paper-specification.pdf) | SPI |
 | [WS2812 RGB LED](https://cdn-shop.adafruit.com/datasheets/WS2812.pdf) | GPIO |
 | [XPT2046 touch controller](http://grobotronics.com/images/datasheets/xpt2046-datasheet.pdf) | GPIO |
-| [Semtech SX126x Lora](https://www.semtech.com/products/wireless-rf/lora-transceiv-ers/sx1261) | SPI |
+| [Semtech SX126x Lora](https://www.semtech.com/products/wireless-rf/lora-connect/sx1261) | SPI |
 | [SSD1289 TFT color display](http://aitendo3.sakura.ne.jp/aitendo_data/product_img/lcd/tft2/M032C1289TP/3.2-SSD1289.pdf) | GPIO |
 
 We also give you the ability to add new drivers. If your device isn't listed here, please raise an issue in the [issue tracker](https://github.com/tinygo-org/drivers/issues).
