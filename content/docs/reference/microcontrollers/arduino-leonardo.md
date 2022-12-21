@@ -12,37 +12,37 @@ Note: the AVR backend of LLVM is still experimental so you may encounter bugs.
 | Interface | Hardware Supported | TinyGo Support |
 | --------- | ------------- | ----- |
 | GPIO      | YES | YES |
-| UART      | YES | NO  |
-| SPI       | YES | NO  |
-| I2C       | YES | NO  |
+| UART      | YES | Not yet |
+| SPI       | YES | Not yet |
+| I2C       | YES | Not yet |
 | ADC       | YES | YES |
-| PWM       | YES | NO  |
-| USBDevice | YES | NO  |
+| PWM       | YES | Not yet |
+| USBDevice | YES | Not yet |
 
 ## Pins
 
-| Pin               | Hardware pin | Alternative names | PWM                  |
-| ----------------- | ------------ | ----------------- | -------------------- |
-| `D0`              | `PD2`        |                   |                      |
-| `D1`              | `PD3`        |                   |                      |
-| `D2`              | `PD1`        |                   |                      |
-| `D3`              | `PD0`        |                   |                      |
-| `D4`              | `PD4`        |                   |                      |
-| `D5`              | `PC6`        |                   |                      |
-| `D6`              | `PD7`        |                   |                      |
-| `D7`              | `PE6`        |                   |                      |
-| `D8`              | `PB4`        |                   |                      |
-| `D9`              | `PB5`        |                   |                      |
-| `D10`             | `PB6`        |                   |                      |
-| `D11`             | `PB7`        |                   |                      |
-| `D12`             | `PD6`        |                   |                      |
-| `D13`             | `PC7`        | `LED`             |                      |
-| `ADC0`            | `PF7`        |                   |                      |
-| `ADC1`            | `PF6`        |                   |                      |
-| `ADC2`            | `PF5`        |                   |                      |
-| `ADC3`            | `PF4`        |                   |                      |
-| `ADC4`            | `PF1`        |                   |                      |
-| `ADC5`            | `PF0`        |                   |                      |
+| Pin               | Hardware pin | Alternative names |
+| ----------------- | ------------ | ----------------- |
+| `D0`              | `PD2`        |                   |
+| `D1`              | `PD3`        |                   |
+| `D2`              | `PD1`        |                   |
+| `D3`              | `PD0`        |                   |
+| `D4`              | `PD4`        |                   |
+| `D5`              | `PC6`        |                   |
+| `D6`              | `PD7`        |                   |
+| `D7`              | `PE6`        |                   |
+| `D8`              | `PB4`        |                   |
+| `D9`              | `PB5`        |                   |
+| `D10`             | `PB6`        |                   |
+| `D11`             | `PB7`        |                   |
+| `D12`             | `PD6`        |                   |
+| `D13`             | `PC7`        | `LED`             |
+| `ADC0`            | `PF7`        |                   |
+| `ADC1`            | `PF6`        |                   |
+| `ADC2`            | `PF5`        |                   |
+| `ADC3`            | `PF4`        |                   |
+| `ADC4`            | `PF1`        |                   |
+| `ADC5`            | `PF0`        |                   |
 
 ## Machine Package Docs
 

@@ -8,20 +8,20 @@ title: arduino-leonardo
 
 ```go
 const (
-	D0  = PD2 // RX
-	D1  = PD3 // TX
-	D2  = PD1
-	D3  = PD0
-	D4  = PD4
-	D5  = PC6
-	D6  = PD7
-	D7  = PE6
-	D8  = PB4
-	D9  = PB5
-	D10 = PB6
-	D11 = PB7
-	D12 = PD6
-	D13 = PC7
+	D0	= PD2	// RX
+	D1	= PD3	// TX
+	D2	= PD1
+	D3	= PD0
+	D4	= PD4
+	D5	= PC6
+	D6	= PD7
+	D7	= PE6
+	D8	= PB4
+	D9	= PB5
+	D10	= PB6
+	D11	= PB7
+	D12	= PD6
+	D13	= PC7
 )
 ```
 
@@ -37,75 +37,16 @@ LED on the Arduino
 
 ```go
 const (
-	ADC0 Pin = PF7
-	ADC1 Pin = PF6
-	ADC2 Pin = PF5
-	ADC3 Pin = PF4
-	ADC4 Pin = PF1
-	ADC5 Pin = PF0
+	ADC0	Pin	= PF7
+	ADC1	Pin	= PF6
+	ADC2	Pin	= PF5
+	ADC3	Pin	= PF4
+	ADC4	Pin	= PF1
+	ADC5	Pin	= PF0
 )
 ```
 
 ADC on the Arduino
-
-
-```go
-const (
-	PB0 = portB + 0
-	PB1 = portB + 1
-	PB2 = portB + 2
-	PB3 = portB + 3
-	PB4 = portB + 4
-	PB5 = portB + 5
-	PB6 = portB + 6
-	PB7 = portB + 7
-	PC0 = portC + 0
-	PC1 = portC + 1
-	PC2 = portC + 2
-	PC3 = portC + 3
-	PC4 = portC + 4
-	PC5 = portC + 5
-	PC6 = portC + 6
-	PC7 = portC + 7
-	PD0 = portD + 0
-	PD1 = portD + 1
-	PD2 = portD + 2
-	PD3 = portD + 3
-	PD4 = portD + 4
-	PD5 = portD + 5
-	PD6 = portD + 6
-	PD7 = portD + 7
-	PE0 = portE + 0
-	PE1 = portE + 1
-	PE2 = portE + 2
-	PE3 = portE + 3
-	PE4 = portE + 4
-	PE5 = portE + 5
-	PE6 = portE + 6
-	PE7 = portE + 7
-	PF0 = portF + 0
-	PF1 = portF + 1
-	PF2 = portF + 2
-	PF3 = portF + 3
-	PF4 = portF + 4
-	PF5 = portF + 5
-	PF6 = portF + 6
-	PF7 = portF + 7
-)
-```
-
-
-
-```go
-const (
-	TWI_FREQ_100KHZ	= 100000
-	TWI_FREQ_400KHZ	= 400000
-)
-```
-
-TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-speed bus.
-
-Deprecated: use 100 * machine.KHz or 400 * machine.KHz instead.
 
 
 ```go
@@ -140,6 +81,53 @@ of the pins in a peripheral unconfigured (if supported by the hardware).
 
 ```go
 const (
+	PB0	= portB + 0
+	PB1	= portB + 1	// peripherals: Timer1 channel A
+	PB2	= portB + 2	// peripherals: Timer1 channel B
+	PB3	= portB + 3	// peripherals: Timer2 channel A
+	PB4	= portB + 4
+	PB5	= portB + 5
+	PB6	= portB + 6
+	PB7	= portB + 7
+	PC0	= portC + 0
+	PC1	= portC + 1
+	PC2	= portC + 2
+	PC3	= portC + 3
+	PC4	= portC + 4
+	PC5	= portC + 5
+	PC6	= portC + 6
+	PC7	= portC + 7
+	PD0	= portD + 0
+	PD1	= portD + 1
+	PD2	= portD + 2
+	PD3	= portD + 3
+	PD4	= portD + 4
+	PD5	= portD + 5
+	PD6	= portD + 6
+	PD7	= portD + 7
+	PE0	= portE + 0
+	PE1	= portE + 1
+	PE2	= portE + 2
+	PE3	= portE + 3
+	PE4	= portE + 4
+	PE5	= portE + 5
+	PE6	= portE + 6
+	PE7	= portE + 7
+	PF0	= portF + 0
+	PF1	= portF + 1
+	PF2	= portF + 2
+	PF3	= portF + 3
+	PF4	= portF + 4
+	PF5	= portF + 5
+	PF6	= portF + 6
+	PF7	= portF + 7
+)
+```
+
+
+
+```go
+const (
 	PinInput	PinMode	= iota
 	PinInputPullup
 	PinOutput
@@ -148,14 +136,8 @@ const (
 
 
 
-```go
-const (
-	Mode0	= 0
-	Mode1	= 1
-	Mode2	= 2
-	Mode3	= 3
-)
-```
+
+
 
 ## Variables
 
@@ -169,6 +151,26 @@ var (
 	ErrNoPinChangeChannel	= errors.New("machine: no channel available for pin interrupt")
 )
 ```
+
+
+
+```go
+var (
+	ErrPWMPeriodTooLong = errors.New("pwm: period too long")
+)
+```
+
+
+
+```go
+var Serial = NullSerial{}
+```
+
+Serial is a null device: writes to it are ignored.
+
+
+
+
 
 ### func CPUFrequency
 
@@ -186,6 +188,14 @@ func InitADC()
 ```
 
 InitADC initializes the registers needed for ADC.
+
+
+### func InitSerial
+
+```go
+func InitSerial()
+```
+
 
 
 ### func NewRingBuffer
@@ -247,6 +257,7 @@ value of each parameter will use the peripheral's default settings.
 
 
 
+
 ## type NullSerial
 
 ```go
@@ -304,6 +315,30 @@ func (ns NullSerial) WriteByte(b byte) error
 ```
 
 WriteByte is a no-op: the null serial doesn't write bytes.
+
+
+
+
+## type PWMConfig
+
+```go
+type PWMConfig struct {
+	// PWM period in nanosecond. Leaving this zero will pick a reasonable period
+	// value for use with LEDs.
+	// If you want to configure a frequency instead of a period, you can use the
+	// following formula to calculate a period from a frequency:
+	//
+	//     period = 1e9 / frequency
+	//
+	Period uint64
+}
+```
+
+PWMConfig allows setting some configuration while configuring a PWM
+peripheral. A zero PWMConfig is ready to use for simple applications such as
+dimming LEDs.
+
+
 
 
 
@@ -477,3 +512,25 @@ func (rb *RingBuffer) Used() uint8
 ```
 
 Used returns how many bytes in buffer have been used.
+
+
+
+
+## type UARTConfig
+
+```go
+type UARTConfig struct {
+	BaudRate	uint32
+	TX		Pin
+	RX		Pin
+}
+```
+
+UARTConfig is a struct with which a UART (or similar object) can be
+configured. The baud rate is usually respected, but TX and RX may be ignored
+depending on the chip and the type of object.
+
+
+
+
+
