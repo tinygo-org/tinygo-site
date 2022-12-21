@@ -222,6 +222,45 @@ func (uart *UART) WriteByte(c byte) error
 Write a single byte to the UART output.
 
 
+## EEPROM
+
+```go
+type EEPROM struct {
+}
+
+var EEPROM0 = EEPROM{}
+```
+
+The `EEPROM` struct contains the collection of methods that can be used to interact with the EEPROM. The `EEPROM` struct can be accessed through the preinitialized variable: `EEPROM0`. Depending on the type of board, you may or may not have an EEPROM built-in.
+
+
+```go
+func (e EEPROM) WriteAt(data []byte, off int64) (int, error)
+```
+
+WriteAt writes len(data) bytes in the EEPROMs at the provided offset. This method implements the `io.WriterAt` interface.
+
+```go
+func (e EEPROM) WriteByteAt(value byte, addr int64) error
+```
+
+WriteByteAt performs the logic to writes a byte into the EEPROM at the given address.
+
+```go
+func (e EEPROM) ReadAt(buf []byte, off int64) (int, error)
+```
+
+ReadAt reads exactly len(buf) into buf at the offset. It will return the amount of bytes copied or an error if one exists.
+The buffer cannot be empty, and an an error is thrown if fewer bytes are read than the size of the buffer.
+This method implements the `io.ReaderAt` interface.
+
+```go
+func (e EEPROM) ReadByteAt(addr int64) (byte, error)
+```
+
+ReadByteAt reads and returns the byte at the specified address. An error is returned if there is a failure to read.
+
+
 ## Other
 
 ```go
