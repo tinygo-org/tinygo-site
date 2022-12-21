@@ -58,7 +58,7 @@ Analog pins
 
 ```go
 const (
-	NEOPIXEL	= GPIO16
+	NEOPIXEL = GPIO16
 )
 ```
 
@@ -204,6 +204,8 @@ const (
 	PinPWM
 	PinI2C
 	PinSPI
+	PinPIO0
+	PinPIO1
 )
 ```
 
@@ -273,6 +275,17 @@ const (
 
 ```go
 const (
+	LS_SE0	= 0b00
+	LS_J	= 0b01
+	LS_K	= 0b10
+	LS_SE1	= 0b11
+)
+```
+
+
+
+```go
+const (
 	Mode0	= 0
 	Mode1	= 1
 	Mode2	= 2
@@ -312,6 +325,11 @@ var (
 	_UART0	= UART{
 		Buffer:	NewRingBuffer(),
 		Bus:	rp.UART0,
+	}
+	UART1	= &_UART1
+	_UART1	= UART{
+		Buffer:	NewRingBuffer(),
+		Bus:	rp.UART1,
 	}
 )
 ```
@@ -480,6 +498,16 @@ var (
 func CPUFrequency() uint32
 ```
 
+
+
+### func ChipVersion
+
+```go
+func ChipVersion() uint8
+```
+
+ChipVersion returns the version of the chip. 1 is returned for B0 and B1
+chip.
 
 
 ### func CurrentCore

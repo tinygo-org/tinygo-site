@@ -24,7 +24,7 @@ The [Waveshare RP2040-Zero](https://www.waveshare.com/wiki/RP2040-Zero) is a tin
 | `D0`              | `GPIO0`      | `I2C0_SDA_PIN`, `UART0_TX_PIN`, `UART_TX_PIN` | `PWM0` (channel A)   |
 | `D1`              | `GPIO1`      | `I2C0_SCL_PIN`, `UART0_RX_PIN`, `UART_RX_PIN` | `PWM0` (channel B)   |
 | `D2`              | `GPIO2`      | `I2C1_SDA_PIN`    | `PWM1` (channel A)   |
-| `D3`              | `GPIO3`      | `SPI0_SDO_PIN`, `I2C1_SCL_PIN`     | `PWM1` (channel B)   |
+| `D3`              | `GPIO3`      | `I2C1_SCL_PIN`, `SPI0_SDO_PIN` | `PWM1` (channel B)   |
 | `D4`              | `GPIO4`      | `SPI0_SDI_PIN`    | `PWM2` (channel A)   |
 | `D5`              | `GPIO5`      |                   | `PWM2` (channel B)   |
 | `D6`              | `GPIO6`      | `SPI0_SCK_PIN`    | `PWM3` (channel A)   |
@@ -37,7 +37,7 @@ The [Waveshare RP2040-Zero](https://www.waveshare.com/wiki/RP2040-Zero) is a tin
 | `D13`             | `GPIO13`     |                   | `PWM6` (channel B)   |
 | `D14`             | `GPIO14`     |                   | `PWM7` (channel A)   |
 | `D15`             | `GPIO15`     |                   | `PWM7` (channel B)   |
-| `D16`             | `GPIO16`     |                   | `PWM0` (channel A)   |
+| `D16`             | `GPIO16`     | `NEOPIXEL`        | `PWM0` (channel A)   |
 | `D17`             | `GPIO17`     |                   | `PWM0` (channel B)   |
 | `D18`             | `GPIO18`     |                   | `PWM1` (channel A)   |
 | `D19`             | `GPIO19`     |                   | `PWM1` (channel B)   |
@@ -51,7 +51,6 @@ The [Waveshare RP2040-Zero](https://www.waveshare.com/wiki/RP2040-Zero) is a tin
 | `D27`             | `GPIO27`     | `A1`, `ADC1`      | `PWM5` (channel B)   |
 | `D28`             | `GPIO28`     | `A2`, `ADC2`      | `PWM6` (channel A)   |
 | `D29`             | `GPIO29`     | `A3`, `ADC3`      | `PWM6` (channel B)   |
-| `NEOPIXEL`        | `GPIO16`     |                   | `PWM0` (channel A)   |
 
 ## Machine Package Docs
 
