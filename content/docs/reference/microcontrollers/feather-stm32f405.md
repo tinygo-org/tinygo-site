@@ -67,7 +67,7 @@ The [Adafruit Feather STM32F405](https://www.adafruit.com/product/4382) is a tin
 
 ## Flashing
 
-Flashing this board using its DFU bootloader can be a bit cumbersome (see Adafruit docs at https://learn.adafruit.com/adafruit-stm32f405-feather-express/dfu-bootloader-details), but it is possible - without requiring an external programmer - by pulling the B0 pin high (you can use the board's 3.3V output pin) at bootup when connected to host PC via USB. This puts the device in bootloader mode.
+Flashing this board using its DFU bootloader can be a bit cumbersome (see Adafruit docs at https://learn.adafruit.com/adafruit-stm32f405-feather-express/dfu-bootloader-details ), but it is possible - without requiring an external programmer - by pulling the B0 pin high (you can use the board's 3.3V output pin) at bootup when connected to host PC via USB. This puts the device in bootloader mode.
 
 Once in bootloader mode, the device can be programmed using the open-source tool `dfu-util`.
 
