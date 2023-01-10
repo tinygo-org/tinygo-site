@@ -46,10 +46,8 @@ Some boards require a special flashing tool for that particular chip, like `open
 
 #### AVR (e.g. Arduino Uno)
 
-To compile and flash TinyGo programs for AVR based processors such as the original Arduino Uno you must install some extra tools:
+To flash TinyGo programs for AVR based processors such as the original Arduino Uno you must install `avrdude`:
 
 ```shell
-brew tap osx-cross/avr
-brew install avr-gcc
 brew install avrdude
 ```
