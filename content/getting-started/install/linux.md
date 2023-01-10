@@ -70,15 +70,13 @@ If you are only interested in compiling TinyGo code for ARM microcontrollers the
 
 #### AVR (e.g. Arduino Uno)
 
-To compile and flash TinyGo programs for AVR based processors such as the original Arduino Uno you must install some extra tools:
+To flash TinyGo programs for AVR based processors such as the original Arduino Uno you must install `avrdude`:
 
 ```shell
-sudo apt-get install gcc-avr
-sudo apt-get install avr-libc
 sudo apt-get install avrdude
 ```
 
-This should allow you to compile and flash TinyGo programs on an Arduino or other supported AVR-based board.
+This should allow you to flash TinyGo programs on an Arduino Uno or other supported AVR-based board.
 
 #### You are now done with the TinyGo "Quick Install" for Ubuntu/Debian
 

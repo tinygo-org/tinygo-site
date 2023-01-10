@@ -44,17 +44,15 @@ Upgrading to the latest TinyGo version can be done via scoop with:
 
 #### AVR (e.g. Arduino Uno)
 
-If you want to develop code for older Arduino boards such as the Arduino Uno, you can install the dependencies required for AVR development  (`avr-gcc` and `avrdude`) via Scoop:
+If you want to flash programs on older Arduino boards such as the Arduino Uno, you need to install the `avrdude` tool via Scoop:
 
 ```shell
-> scoop install avr-gcc
 > scoop install avrdude
 ```
 
 Upgrading to the latest versions can be as easy as:
 
 ```shell
-> scoop update avr-gcc
 > scoop update avrdude
 ```
 
