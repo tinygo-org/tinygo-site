@@ -53,14 +53,6 @@ Note: the AVR backend of LLVM is still experimental so you may encounter bugs.
 The Arduino Leonardo needs a few extra dependencies to work, for example, if you get an error like this:
 
 ```text
-/usr/lib/gcc/avr/5.4.0/../../../avr/bin/ld: cannot find -lm
-/usr/lib/gcc/avr/5.4.0/../../../avr/bin/ld: cannot find -lc
-collect2: error: ld returned 1 exit status
-```
-
-Or like this:
-
-```text
 /bin/sh: 1: avrdude: not found
 ```
 
