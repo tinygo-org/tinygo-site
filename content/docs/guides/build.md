@@ -49,7 +49,7 @@ For **Debian** or **Ubuntu** you can install LLVM by adding a new apt repository
 | Debian | sid    | `unstable`|
 
 ```shell
-echo 'deb http://apt.llvm.org/xxxxx/ llvm-toolchain-xxxxx-14 main' | sudo tee /etc/apt/sources.list.d/llvm.list
+echo 'deb http://apt.llvm.org/xxxxx/ llvm-toolchain-xxxxx-15 main' | sudo tee /etc/apt/sources.list.d/llvm.list
 ```
 
 After adding the apt repository for your distribution you may install the LLVM toolchain packages:
@@ -57,13 +57,13 @@ After adding the apt repository for your distribution you may install the LLVM t
 ```shell
 wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
 sudo apt-get update
-sudo apt-get install clang-14 llvm-14-dev lld-14 libclang-14-dev
+sudo apt-get install clang-15 llvm-15-dev lld-15 libclang-15-dev
 ```
 
 For **MacOS**, you can install LLVM through [Homebrew](https://formulae.brew.sh/formula/llvm). The Clang/LLVM version from Apple is not supported by TinyGo.
 
 ```shell
-brew install llvm@14
+brew install llvm@15
 ```
 
 For **Fedora** users you configure the go-llvm module before installing the remaining dependencies
@@ -71,7 +71,7 @@ For **Fedora** users you configure the go-llvm module before installing the rema
 sudo dnf install llvm-devel golang-tinygo-x-llvm-devel lld-libs lld
 git clone https://github.com/tinygo-org/go-llvm.git
 cd go-llvm
-make config VERSION=14 SRCDIR=/usr/include/llvm/ BUILDIR=/usr/bin/llvm/
+make config VERSION=15 SRCDIR=/usr/include/llvm/ BUILDIR=/usr/bin/llvm/
 go install
 ```
 
