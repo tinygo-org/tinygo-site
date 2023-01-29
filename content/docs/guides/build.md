@@ -66,22 +66,31 @@ For **MacOS**, you can install LLVM through [Homebrew](https://formulae.brew.sh/
 brew install llvm@15
 ```
 
-For **Fedora** users you configure the go-llvm module before installing the remaining dependencies
+For **Fedora** users you can install LLVM from the repository. Note that the version of LLVM [varies by Fedora version](https://packages.fedoraproject.org/pkgs/llvm/llvm-libs/), for example Fedora 37 has LLVM 15.
+
 ```shell
-sudo dnf install llvm-devel golang-tinygo-x-llvm-devel lld-libs lld
-git clone https://github.com/tinygo-org/go-llvm.git
-cd go-llvm
-make config VERSION=15 SRCDIR=/usr/include/llvm/ BUILDIR=/usr/bin/llvm/
-go install
+sudo dnf install llvm-devel lld-libs lld
 ```
 
 After LLVM has been installed, installing TinyGo should be as easy as running the following command:
 
 ```shell
-go install -tags=llvm14
+go install
 ```
 
 If you are getting an `gcc` or `g++ not found` error you most likely do not have a working C++ build environment. You'll need the `build-essential` package on Debian or `sudo dnf install make automake gcc gcc-c++` for Fedora based systems.
+
+If you are getting a build error like this, LLVM is not installed as expected:
+
+```
+# tinygo.org/x/go-llvm
+../../../go/pkg/mod/tinygo.org/x/go-llvm@v0.0.0-20221028183034-8341240c0b32/analysis.go:16:10: fatal error: 'llvm-c/Analysis.h' file not found
+#include "llvm-c/Analysis.h" // If you are getting an error here you need to build or install LLVM, see https://tinygo.org/docs/guides/build/
+         ^~~~~~~~~~~~~~~~~~~
+1 error generated.
+```
+
+This can often be fixed by specifying the LLVM version as a build tag, for example `-tags=llvm14` if you have LLVM 14 instead of LLVM 15.
 
 Note that you should not use `make` when you want to build using a system-installed LLVM, just use the Go toolchain. `make` is used when you want to use a self-built LLVM, as in the next section.
 
