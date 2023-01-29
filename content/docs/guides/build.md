@@ -129,6 +129,8 @@ On Windows you can install them using [Chocolatey](https://chocolatey.org/). Ins
 choco install --confirm git golang mingw make cmake ninja python
 ```
 
+Use *Git Bash* (installed above) to run all the build commands like `make`. The TinyGo build system expects a Unix-like environment that is not normally provided by Windows but is included already in *Git Bash*.
+
 #### Building LLVM
 
 The following command takes care of downloading and building LLVM. It places the source code in `llvm-project/` and the build output in `llvm-build/`. It only needs to be done once until the next LLVM release (every half year).
