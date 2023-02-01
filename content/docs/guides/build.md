@@ -131,6 +131,12 @@ choco install --confirm git golang mingw make cmake ninja python
 
 Use *Git Bash* (installed above) to run all the build commands like `make`. The TinyGo build system expects a Unix-like environment that is not normally provided by Windows but is included already in *Git Bash*.
 
+Choco doesn't seem to add CMake automatically to the `$PATH` variable. You can do this manually if needed, in Git bash:
+
+```shell
+export PATH="$PATH:/c/Program Files/CMake/bin"
+```
+
 #### Building LLVM
 
 The following command takes care of downloading and building LLVM. It places the source code in `llvm-project/` and the build output in `llvm-build/`. It only needs to be done once until the next LLVM release (every half year).
