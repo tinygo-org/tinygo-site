@@ -145,6 +145,35 @@ Pin change interrupt constants for SetInterrupt.
 
 ```go
 const (
+	SPI_MODE0	= uint8(0)
+	SPI_MODE1	= uint8(1)
+	SPI_MODE2	= uint8(2)
+	SPI_MODE3	= uint8(3)
+
+	FSPICLK_IN_IDX	= uint32(63)
+	FSPICLK_OUT_IDX	= uint32(63)
+	FSPIQ_IN_IDX	= uint32(64)
+	FSPIQ_OUT_IDX	= uint32(64)
+	FSPID_IN_IDX	= uint32(65)
+	FSPID_OUT_IDX	= uint32(65)
+	FSPIHD_IN_IDX	= uint32(66)
+	FSPIHD_OUT_IDX	= uint32(66)
+	FSPIWP_IN_IDX	= uint32(67)
+	FSPIWP_OUT_IDX	= uint32(67)
+	FSPICS0_IN_IDX	= uint32(68)
+	FSPICS0_OUT_IDX	= uint32(68)
+	FSPICS1_OUT_IDX	= uint32(69)
+	FSPICS2_OUT_IDX	= uint32(70)
+	FSPICS3_OUT_IDX	= uint32(71)
+	FSPICS4_OUT_IDX	= uint32(72)
+	FSPICS5_OUT_IDX	= uint32(73)
+)
+```
+
+
+
+```go
+const (
 	// ParityNone means to not use any parity checking. This is
 	// the most common setting.
 	ParityNone	UARTParity	= iota
@@ -169,6 +198,8 @@ const (
 ```go
 var (
 	ErrTimeoutRNG		= errors.New("machine: RNG Timeout")
+	ErrClockRNG		= errors.New("machine: RNG Clock Error")
+	ErrSeedRNG		= errors.New("machine: RNG Seed Error")
 	ErrInvalidInputPin	= errors.New("machine: invalid input pin")
 	ErrInvalidOutputPin	= errors.New("machine: invalid output pin")
 	ErrInvalidClockPin	= errors.New("machine: invalid clock pin")
@@ -193,6 +224,24 @@ var (
 	errWrongUART		= errors.New("UART: unsupported UARTn")
 	errWrongBitSize		= errors.New("UART: invalid data size")
 	errWrongStopBitSize	= errors.New("UART: invalid bit size")
+)
+```
+
+
+
+```go
+var (
+	ErrInvalidSPIBus	= errors.New("machine: SPI bus is invalid")
+	ErrInvalidSPIMode	= errors.New("machine: SPI mode is invalid")
+)
+```
+
+
+
+```go
+var (
+	// SPI0 and SPI1 are reserved for use by the caching system etc.
+	SPI2 = SPI{esp.SPI2}
 )
 ```
 
@@ -332,6 +381,21 @@ func (ns NullSerial) WriteByte(b byte) error
 ```
 
 WriteByte is a no-op: the null serial doesn't write bytes.
+
+
+
+
+## type PDMConfig
+
+```go
+type PDMConfig struct {
+	Stereo	bool
+	DIN	Pin
+	CLK	Pin
+}
+```
+
+
 
 
 
@@ -553,6 +617,71 @@ func (rb *RingBuffer) Used() uint8
 ```
 
 Used returns how many bytes in buffer have been used.
+
+
+
+
+## type SPI
+
+```go
+type SPI struct {
+	Bus *esp.SPI2_Type
+}
+```
+
+Serial Peripheral Interface on the ESP32-C3.
+
+
+
+### func (SPI) Configure
+
+```go
+func (spi SPI) Configure(config SPIConfig) error
+```
+
+Configure and make the SPI peripheral ready to use.
+
+
+### func (SPI) Transfer
+
+```go
+func (spi SPI) Transfer(w byte) (byte, error)
+```
+
+Transfer writes/reads a single byte using the SPI interface. If you need to
+transfer larger amounts of data, Tx will be faster.
+
+
+### func (SPI) Tx
+
+```go
+func (spi SPI) Tx(w, r []byte) error
+```
+
+Tx handles read/write operation for SPI interface. Since SPI is a syncronous write/read
+interface, there must always be the same number of bytes written as bytes read.
+This is accomplished by sending zero bits if r is bigger than w or discarding
+the incoming data if w is bigger than r.
+
+
+
+
+## type SPIConfig
+
+```go
+type SPIConfig struct {
+	Frequency	uint32
+	SCK		Pin	// Serial Clock
+	SDO		Pin	// Serial Data Out (MOSI)
+	SDI		Pin	// Serial Data In  (MISO)
+	CS		Pin	// Chip Select (optional)
+	LSBFirst	bool	// MSB is default
+	Mode		uint8	// SPI_MODE0 is default
+}
+```
+
+SPIConfig is used to store config info for SPI.
+
 
 
 

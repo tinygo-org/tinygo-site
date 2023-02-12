@@ -43,6 +43,8 @@ The [Adafruit Circuit Playground Bluefruit](https://www.adafruit.com/product/433
 | `SPI0_SCK_PIN`    | `P0_19`      |                   |
 | `SPI0_SDO_PIN`    | `P0_21`      |                   |
 | `SPI0_SDI_PIN`    | `P0_23`      |                   |
+| `PDM_CLK_PIN`     | `P0_17`      |                   |
+| `PDM_DIN_PIN`     | `P0_16`      |                   |
 
 ## Machine Package Docs
 

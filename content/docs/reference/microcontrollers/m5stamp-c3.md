@@ -11,7 +11,7 @@ The [M5Stamp-C3](https://docs.m5stack.com/en/core/stamp_c3) is a development boa
 | --------- | ------------- | ----- |
 | GPIO      | YES | YES |
 | UART      | YES | YES |
-| SPI       | YES | Not yet |
+| SPI       | YES | YES |
 | I2C       | YES | Not yet |
 | ADC       | YES | Not yet |
 | PWM       | YES | Not yet |
