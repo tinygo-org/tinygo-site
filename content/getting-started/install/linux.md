@@ -98,15 +98,13 @@ There are some additional requirements to compile TinyGo programs that can run o
 
 #### AVR (e.g. Arduino Uno)
 
-To compile and flash TinyGo programs for AVR based processors such as the original Arduino Uno you must install some extra tools:
+To compile and flash TinyGo programs for AVR based processors such as the original Arduino Uno you must install avrdude:
 
 ```shell
-sudo dnf install avr-gcc
-sudo dnf install avr-libc
 sudo dnf install avrdude
 ```
 
-This should allow you to compile and flash TinyGo programs on an Arduino or other supported AVR-based board.
+This should allow you to flash TinyGo programs on an Arduino or other supported AVR-based board.
 
 #### You are now done with the TinyGo "Quick Install" for Fedora Linux
 
@@ -124,15 +122,11 @@ There are some additional requirements to compile TinyGo programs that can run o
 
 #### AVR (e.g. Arduino Uno)
 
-To compile and flash TinyGo programs for AVR based processors such as the original Arduino Uno you must install some extra tools:
-
-[avr-gcc package](https://www.archlinux.org/packages/community/x86_64/avr-gcc/)
-
-[avr-libc package](https://www.archlinux.org/packages/community/any/avr-libc/)
+To compile and flash TinyGo programs for AVR based processors such as the original Arduino Uno you must install avrdude:
 
 [avrdude package](https://www.archlinux.org/packages/community/x86_64/avrdude/)
 
-This should allow you to compile and flash TinyGo programs on an Arduino or other supported AVR-based board.
+This should allow you to flash TinyGo programs on an Arduino or other supported AVR-based board.
 
 #### You are now done with the TinyGo "Quick Install" for Arch Linux
 
