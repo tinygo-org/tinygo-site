@@ -389,6 +389,8 @@ SPI1 is connected to the NINA-W102 chip on the Arduino Nano 33.
 ```go
 var (
 	ErrTimeoutRNG		= errors.New("machine: RNG Timeout")
+	ErrClockRNG		= errors.New("machine: RNG Clock Error")
+	ErrSeedRNG		= errors.New("machine: RNG Seed Error")
 	ErrInvalidInputPin	= errors.New("machine: invalid input pin")
 	ErrInvalidOutputPin	= errors.New("machine: invalid output pin")
 	ErrInvalidClockPin	= errors.New("machine: invalid clock pin")
@@ -493,6 +495,15 @@ func EnableHID(txHandler func(), rxHandler func([]byte), setupHandler func(usb.S
 ```
 
 EnableHID enables HID. This function must be executed from the init().
+
+
+### func EnableJoystick
+
+```go
+func EnableJoystick(txHandler func(), rxHandler func([]byte), setupHandler func(usb.Setup) bool, hidDesc []byte)
+```
+
+EnableJoystick enables HID. This function must be executed from the init().
 
 
 ### func EnableMIDI
@@ -935,6 +946,21 @@ func (ns NullSerial) WriteByte(b byte) error
 ```
 
 WriteByte is a no-op: the null serial doesn't write bytes.
+
+
+
+
+## type PDMConfig
+
+```go
+type PDMConfig struct {
+	Stereo	bool
+	DIN	Pin
+	CLK	Pin
+}
+```
+
+
 
 
 
@@ -1489,7 +1515,8 @@ UARTParity is the parity setting to be used for UART communication.
 
 ```go
 type USBDevice struct {
-	initcomplete bool
+	initcomplete		bool
+	InitEndpointComplete	bool
 }
 ```
 

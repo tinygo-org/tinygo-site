@@ -190,6 +190,8 @@ const (
 	PinPWM
 	PinI2C
 	PinSPI
+	PinPIO0
+	PinPIO1
 )
 ```
 
@@ -259,6 +261,17 @@ const (
 
 ```go
 const (
+	LS_SE0	= 0b00
+	LS_J	= 0b01
+	LS_K	= 0b10
+	LS_SE1	= 0b11
+)
+```
+
+
+
+```go
+const (
 	Mode0	= 0
 	Mode1	= 1
 	Mode2	= 2
@@ -320,6 +333,8 @@ var DefaultUART = UART0
 ```go
 var (
 	ErrTimeoutRNG		= errors.New("machine: RNG Timeout")
+	ErrClockRNG		= errors.New("machine: RNG Clock Error")
+	ErrSeedRNG		= errors.New("machine: RNG Seed Error")
 	ErrInvalidInputPin	= errors.New("machine: invalid input pin")
 	ErrInvalidOutputPin	= errors.New("machine: invalid output pin")
 	ErrInvalidClockPin	= errors.New("machine: invalid clock pin")
@@ -474,6 +489,16 @@ func CPUFrequency() uint32
 
 
 
+### func ChipVersion
+
+```go
+func ChipVersion() uint8
+```
+
+ChipVersion returns the version of the chip. 1 is returned for B0 and B1
+chip.
+
+
 ### func CurrentCore
 
 ```go
@@ -498,6 +523,15 @@ func EnableHID(txHandler func(), rxHandler func([]byte), setupHandler func(usb.S
 ```
 
 EnableHID enables HID. This function must be executed from the init().
+
+
+### func EnableJoystick
+
+```go
+func EnableJoystick(txHandler func(), rxHandler func([]byte), setupHandler func(usb.Setup) bool, hidDesc []byte)
+```
+
+EnableJoystick enables HID. This function must be executed from the init().
 
 
 ### func EnableMIDI
@@ -857,6 +891,21 @@ func (ns NullSerial) WriteByte(b byte) error
 ```
 
 WriteByte is a no-op: the null serial doesn't write bytes.
+
+
+
+
+## type PDMConfig
+
+```go
+type PDMConfig struct {
+	Stereo	bool
+	DIN	Pin
+	CLK	Pin
+}
+```
+
+
 
 
 
@@ -1401,7 +1450,8 @@ type USBDPSRAM struct {
 
 ```go
 type USBDevice struct {
-	initcomplete bool
+	initcomplete		bool
+	InitEndpointComplete	bool
 }
 ```
 

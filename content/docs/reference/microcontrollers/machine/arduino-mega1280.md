@@ -274,6 +274,8 @@ const (
 ```go
 var (
 	ErrTimeoutRNG		= errors.New("machine: RNG Timeout")
+	ErrClockRNG		= errors.New("machine: RNG Clock Error")
+	ErrSeedRNG		= errors.New("machine: RNG Seed Error")
 	ErrInvalidInputPin	= errors.New("machine: invalid input pin")
 	ErrInvalidOutputPin	= errors.New("machine: invalid output pin")
 	ErrInvalidClockPin	= errors.New("machine: invalid clock pin")
@@ -590,6 +592,21 @@ func (ns NullSerial) WriteByte(b byte) error
 ```
 
 WriteByte is a no-op: the null serial doesn't write bytes.
+
+
+
+
+## type PDMConfig
+
+```go
+type PDMConfig struct {
+	Stereo	bool
+	DIN	Pin
+	CLK	Pin
+}
+```
+
+
 
 
 

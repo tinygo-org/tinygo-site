@@ -259,6 +259,8 @@ var DefaultUART = UART0
 ```go
 var (
 	ErrTimeoutRNG		= errors.New("machine: RNG Timeout")
+	ErrClockRNG		= errors.New("machine: RNG Clock Error")
+	ErrSeedRNG		= errors.New("machine: RNG Seed Error")
 	ErrInvalidInputPin	= errors.New("machine: invalid input pin")
 	ErrInvalidOutputPin	= errors.New("machine: invalid output pin")
 	ErrInvalidClockPin	= errors.New("machine: invalid clock pin")
@@ -345,6 +347,15 @@ GetRNG returns 32 bits of non-deterministic random data based on internal therma
 According to Nordic's documentation, the random output is suitable for cryptographic purposes.
 
 
+### func InitADC
+
+```go
+func InitADC()
+```
+
+InitADC initializes the registers needed for ADC.
+
+
 ### func InitSerial
 
 ```go
@@ -383,6 +394,24 @@ type ADC struct {
 ```
 
 
+
+
+### func (ADC) Configure
+
+```go
+func (a ADC) Configure(ADCConfig)
+```
+
+Configure configures an ADC pin to be able to read analog data.
+
+
+### func (ADC) Get
+
+```go
+func (a ADC) Get() uint16
+```
+
+Get returns the current value of a ADC pin in the range 0..0xffff.
 
 
 
@@ -539,6 +568,21 @@ func (ns NullSerial) WriteByte(b byte) error
 ```
 
 WriteByte is a no-op: the null serial doesn't write bytes.
+
+
+
+
+## type PDMConfig
+
+```go
+type PDMConfig struct {
+	Stereo	bool
+	DIN	Pin
+	CLK	Pin
+}
+```
+
+
 
 
 

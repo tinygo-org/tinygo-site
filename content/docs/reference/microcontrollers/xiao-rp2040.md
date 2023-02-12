@@ -30,9 +30,10 @@ The [Seeed XIAO RP2040](https://www.seeedstudio.com/XIAO-RP2040-v1-0-p-5026.html
 | `D6`              | `GPIO0`      | `UART0_TX_PIN`, `UART_TX_PIN` | `PWM0` (channel A)   |
 | `D7`              | `GPIO1`      | `UART0_RX_PIN`, `UART_RX_PIN` | `PWM0` (channel B)   |
 | `D8`              | `GPIO2`      | `SPI0_SCK_PIN`    | `PWM1` (channel A)   |
-| `D9`              | `GPIO3`      | `SPI0_SDO_PIN`    | `PWM1` (channel B)   |
-| `D10`             | `GPIO4`      | `SPI0_SDI_PIN`    | `PWM2` (channel A)   |
-| `NEOPIXEL`        | `GPIO12`     |                   | `PWM6` (channel A)   |
+| `D9`              | `GPIO4`      | `SPI0_SDI_PIN`    | `PWM2` (channel A)   |
+| `D10`             | `GPIO3`      | `SPI0_SDO_PIN`    | `PWM1` (channel B)   |
+| `NEOPIXEL`        | `GPIO12`     | `WS2812`          | `PWM6` (channel A)   |
+| `NEO_PWR`         | `GPIO11`     | `NEOPIXEL_POWER`  | `PWM5` (channel B)   |
 | `LED`             | `GPIO17`     | `LED_RED`         | `PWM0` (channel B)   |
 | `LED_GREEN`       | `GPIO16`     |                   | `PWM0` (channel A)   |
 | `LED_BLUE`        | `GPIO25`     |                   | `PWM4` (channel B)   |
