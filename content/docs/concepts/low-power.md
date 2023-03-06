@@ -38,7 +38,9 @@ Capabilities of different chips:
 
 Especially the distinction between waking up with or without RAM is important, because it greatly affects how you write software.
 
-The common way to wake up from deep sleep is to use [interrupts](compiler-internals/interrupts), such as timer, real-time-clock or an interrupt on a pin change.
+The common way to wake up from deep sleep is to use
+[interrupts]({{<ref "compiler-internals/interrupts">}}), such as timer,
+real-time-clock or an interrupt on a pin change.
 
 ### RP2040
 
@@ -57,7 +59,7 @@ The only thing you may want to tweak is to disable the UART with help of `-seria
 
 ## The Way to Low Power
 
-> Attached [debugger](../guides/debugging) usually blocks the low power state in chip.  
+> Attached [debugger]({{<ref "../guides/debugging">}}) usually blocks the low power state in chip.
 > The best way to measure when using a debugger is to flash the code, do a power cycle, and then measure.
 
 > The changes discussed in this paragraph shall be made in TinyGo and not in your application code.  
