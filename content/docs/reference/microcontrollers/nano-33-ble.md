@@ -5,7 +5,8 @@ weight: 3
 
 The [Arduino Nano33 BLE](https://store.arduino.cc/arduino-nano-33-ble) is a very small ARM development board based on the Nordic Semiconductor [nrf52840](https://www.nordicsemi.com/eng/Products/nRF52840) processor.
 
-There is also the [Arduino Nano33 BLE Sense](nano-33-ble-sense) which is the exact same board but with additional onboard sensors.
+There is also the [Arduino Nano33 BLE Sense]({{<ref "nano-33-ble-sense">}})
+which is the exact same board but with additional onboard sensors.
 
 ## Interfaces
 
@@ -118,7 +119,8 @@ Instructions needed here.
 Nordic Semiconductor's SoftDevice (s140v7) must be flashed first to enable use of [bluetooth](https://github.com/tinygo-org/bluetooth) on this board.
 
 SoftDevice overwrites original bootloader and flashing method described above is not avalable anymore.
-Instead, please use [debug](../../guides/debugging.md) probe and flash your code with `nano-33-ble-s140v7` target.
+Instead, please use [debug]({{<ref "../../guides/debugging.md">}}) probe and
+flash your code with `nano-33-ble-s140v7` target.
 
 ## Notes
 

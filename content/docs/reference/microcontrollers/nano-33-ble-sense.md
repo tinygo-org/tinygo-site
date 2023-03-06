@@ -5,9 +5,11 @@ weight: 3
 
 The [Arduino Nano 33 BLE Sense](https://store.arduino.cc/arduino-nano-33-ble-sense) is a very small ARM development board based on the Nordic Semiconductor [nrf52840](https://www.nordicsemi.com/eng/Products/nRF52840) processor.
 
-This is the same board as [Arduino Nano 33 BLE](nano-33-ble) but with additional onboard sensors (see below).
+This is the same board as [Arduino Nano 33 BLE]({{<ref "nano-33-ble.md">}}) but
+with additional onboard sensors (see below).
 
-Flash this board exactly the same way as [Arduino Nano 33 BLE](nano-33-ble) (target name is the same too).
+Flash this board exactly the same way as
+[Arduino Nano 33 BLE]({{<ref "nano-33-ble.md">}}) (target name is the same too).
 
 ## Additional onboard sensors
 

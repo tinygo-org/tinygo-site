@@ -66,4 +66,4 @@ buf2 := t.buf[2:6]
 
 For more recipes on how to avoid or minimize allocations while working with slices, please see [additional tricks](https://github.com/golang/go/wiki/SliceTricks#additional-tricks) section of [slice tricks](https://github.com/golang/go/wiki/SliceTricks) page.
 
-Familiarize yourself with [heap allocation concept](../concepts/compiler-internals/heap-allocation.md) and use it to your advantage.
+Familiarize yourself with [heap allocation concept]({{<ref "../concepts/compiler-internals/heap-allocation.md">}}) and use it to your advantage.
