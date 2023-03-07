@@ -38,6 +38,32 @@ Run the program, either directly on the host or in an emulated environment (depe
 ### flash
 Flash the program to a microcontroller.
 
+The `-monitor` flag can be given to the `flash` command to start the serial
+monitor (see below) immediately after flashing. However, some microcontrollers
+need a split second or two to configure its serial port after flashing, and
+using the `-monitor` flag can fail because the serial monitor starts too
+quickly. In that case, use the `tinygo monitor` command explicitly.
+
+### monitor
+Start the serial monitor program on the serial port that is connected to the
+microcontroller.
+
+If there are multiple microcontroller attached, use the `-port` flag to select
+the serial port. On Linux, the port will be something like `/dev/ttyUSB0` or
+`/dev/ttyACM1`. On MacOS, the port will look like `/dev/cu.usbserial-1420`.
+
+The default baud rate is 115200, but can be changed using the `-baudrate` flag.
+
+The serial monitor intercepts several control characters for its own use instead
+of sending them to the microcontroller:
+
+* Control-C: terminates the `tinygo monitor`
+* Control-Z: suspends the `tinygo monitor` and drops back into shell
+* Control-\\: terminates the `tinygo monitor` with a stack trace
+* Control-S: flow-control, suspends output to the console
+* Control-Q: flow-control, resumes output to the console
+* Control-@: thrown away by `tinygo monitor`
+
 ### gdb
 Compile the program, optionally flash it to a microcontroller if it is a remote target, and drop into a GDB shell. From there you can set breakpoints, start the program with `run` or `continue` (`run` for a local program, `continue` for on-chip debugging), single-step, show a backtrace, break and resume the program with Ctrl-C/`continue`, etc. You may need to install extra tools (like `openocd` and `arm-none-eabi-gdb`) to be able to do this. Also, you may need a dedicated debugger to be able to debug certain boards if no debugger is integrated. Some boards (like the BBC micro:bit and most professional evaluation boards) have an integrated debugger.
 
