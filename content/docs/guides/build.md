@@ -172,6 +172,12 @@ You have successfully built TinyGo from source. Congratulations!
 
 We're not done yet. Some extra things need to be built before you can start using TinyGo.
 
+If you haven't already, you need to download llvm-project (for the compiler-rt sources that are needed for most architectures):
+
+```shell
+make llvm-source
+```
+
 To be able to use TinyGo on a bare-metal target, you need to generate some files first:
 
 ```shell
