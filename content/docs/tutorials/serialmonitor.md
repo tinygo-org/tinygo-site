@@ -132,6 +132,16 @@ In this example, the serial monitor missed the first 4 lines of "Hello, World"
 (0 to 3) because the program started to print those lines immediately after
 flashing, but before the serial monitor was connected.
 
+On some AVR microcontrollers, the speed of the serial port is set to 9600
+instead of the default 115200. So you need to override the baud rate of `tinygo
+monitor` like this:
+```
+$ tinygo monitor -baudrate=9600
+```
+
+See [Alternative Serial Monitors](#alternative-serial-monitors) for an
+explanation of the "baud rate".
+
 ## Serial Input
 
 Occasionally it is useful to send characters from the host computer to the
@@ -139,7 +149,7 @@ microcontroller. The following program reads a single byte from the
 `machine.Serial` object and prints the character back to the host computer.
 
 The caveat is that the `Serial.ReadByte()` feature is *not* currently
-implemented on every microcontrollers supported by TinyGo. For example, the
+implemented on every microcontroller supported by TinyGo. For example, the
 following program does not work on the ESP32 or the ESP8266.
 
 ```go
@@ -204,14 +214,14 @@ characters](https://en.wikipedia.org/wiki/C0_and_C1_control_codes), these are
 echoed back as 2 characters: the caret character `^` and a letter representing
 the control character. For example, typing Control-P prints `^P`.
 
-A number of control characters are intercepted by the `tinygo monitor` itself
-instead of being sent to the microcontroller:
+Of the 32 possible control characters, some of them are intercepted by the
+`tinygo monitor` itself instead of being sent to the microcontroller:
 
 * Control-C: terminates the `tinygo monitor`
 * Control-Z: suspends the `tinygo monitor` and drops back into shell
 * Control-\\: terminates the `tinygo monitor` with a stack trace
-* Control-S: flow-control, suspends output to the console
-* Control-Q: flow-control, resumes output to the console
+* Control-S: flow control, suspends output to the console
+* Control-Q: flow control, resumes output to the console
 * Control-@: thrown away by `tinygo monitor`
 
 ## Alternative Serial Monitors
@@ -219,8 +229,11 @@ instead of being sent to the microcontroller:
 There are many alternative serial monitor programs that can be used instead of
 `tinygo monitor`. The setup is slightly more complicated because you need to
 know the serial port on the host computer that the microcontroller is mapped to.
+One way to discover the serial port is to use the `-x` flag on the `flash`
+command like this: `tinygo flash -x -target=xxx`. This will print diagnostic
+messages which will contain the serial port of the microcontroller.
 
-On Linux machines, the microcontrollers will be assigned a serial port that has
+On Linux machines, the microcontroller will be assigned a serial port that has
 a `USB` prefix or an `ACM` prefix like this:
 
 * `/dev/ttyUSB0`
@@ -231,19 +244,31 @@ On MacOS machines, the serial port will look like this:
 * `/dev/cu.usbserial-1420`
 * `/dev/cu.usbmodem6D8733AC53571`
 
-[TODO: No idea on Windows.]
+On Windows machines, the serial port looks something like:
+
+* `COM1`
+* `COM31`
+
+You also need to know the [baud
+rate](https://en.wikipedia.org/wiki/Serial_port#Speed) of the serial port. The
+default for almost all microcontrollers supported by TinyGo is 115200. The
+current exceptions are boards using the AVR processors ([Arduino Nano]({{<ref
+"../reference/microcontrollers/arduino-nano">}}), [Arduino Mega 1280]({{<ref
+"../reference/microcontrollers/arduino-mega1280">}}), [Arduino Mega 2560]({{<ref
+"../reference/microcontrollers/arduino-mega2560">}})). On these, the serial port
+is set to 9600.
 
 ### Arduino IDE
 
 The [Arduino IDE](https://www.arduino.cc/en/software) contains its own serial
 monitor. You may choose to use that instead. You need to set the serial port
 (something like `/dev/ttyUSB0` on Linux, or `/dev/cu.usbserial-1420` on MacOS),
-and set the baud rate to 115200.
+and set the baud rate to 115200 (or 9600 on AVR processors).
 
 ### pyserial
 
 The [pyserial](https://pyserial.readthedocs.io/en/latest/pyserial.html) is a
-Python library that comes with its own serial monitor. Setting up python3
+Python library that comes with its own serial monitor. Setting up a python3
 environment is a complex topic that is beyond the scope of this document. But if
 you are able to install `python3` and `pip3`, you can install `pyserial` and use
 its built-in `miniterm` tool roughly like this:
