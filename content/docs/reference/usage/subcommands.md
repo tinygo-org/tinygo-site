@@ -40,17 +40,19 @@ Flash the program to a microcontroller.
 
 The `-monitor` flag can be given to the `flash` command to start the serial
 monitor (see below) immediately after flashing. However, some microcontrollers
-need a split second or two to configure its serial port after flashing, and
+need a split second or two to configure the serial port after flashing, and
 using the `-monitor` flag can fail because the serial monitor starts too
 quickly. In that case, use the `tinygo monitor` command explicitly.
 
 ### monitor
-Start the serial monitor program on the serial port that is connected to the
+Start the serial monitor on the serial port that is connected to the
 microcontroller.
 
-If there are multiple microcontroller attached, use the `-port` flag to select
-the serial port. On Linux, the port will be something like `/dev/ttyUSB0` or
+If there are multiple microcontroller attached, an error message will display a
+list of potential serial ports. Use the `-port` flag to select the appropriate
+port. On Linux, the port will be something like `/dev/ttyUSB0` or
 `/dev/ttyACM1`. On MacOS, the port will look like `/dev/cu.usbserial-1420`.
+On Windows, the port will be something like `COM1` or `COM31`.
 
 The default baud rate is 115200, but can be changed using the `-baudrate` flag.
 
@@ -60,8 +62,8 @@ of sending them to the microcontroller:
 * Control-C: terminates the `tinygo monitor`
 * Control-Z: suspends the `tinygo monitor` and drops back into shell
 * Control-\\: terminates the `tinygo monitor` with a stack trace
-* Control-S: flow-control, suspends output to the console
-* Control-Q: flow-control, resumes output to the console
+* Control-S: flow control, suspends output to the console
+* Control-Q: flow control, resumes output to the console
 * Control-@: thrown away by `tinygo monitor`
 
 ### gdb
