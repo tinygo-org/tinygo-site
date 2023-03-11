@@ -7,6 +7,15 @@ description: >
   Videos/Podcasts talking about TinyGo
 ---
 
+**FOSDEM 2023 - Ron Evans - Go Even Further Without Wires** - *February 4, 2023*
+https://video.fosdem.org/2023/UD2.218A/goevenfurtherwithoutwires.mp4
+
+**FOSDEM 2023 - Daniel Esteban - Visually programming Gon** - *February 4, 2023*
+https://video.fosdem.org/2023/UD2.218A/govisuallyprogramming.mp4
+
+**GopherCon US 2022 - Donia Chaiehloudj - TinyGo: Getting the Upper Hen** - *October 8, 2022*
+https://www.youtube.com/watch?v=D46NzhBoQC0
+
 **Pragmatik.tech - Charath Ranganathan - Multiple videos on TinyGo and Raspberry Pi Pico** - *July 2022 onwards*
 https://www.youtube.com/channel/UChxDHx-FThGJscOn3ljTi6A
 
