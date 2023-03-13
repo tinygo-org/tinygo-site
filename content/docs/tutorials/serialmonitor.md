@@ -45,8 +45,8 @@ port:
 package main
 
 import (
-    "time"
     "fmt"
+    "time"
 )
 
 func main() {
@@ -116,6 +116,8 @@ serial monitor application on the host computer. There are many ways to do this,
 but the easiest is probably the `tinygo monitor` subcommand which is built
 directly into the `tinygo` program itself.
 
+### `monitor` subcommand
+
 After flashing the program above, run the `tinygo monitor` program to see the
 output every second from the microcontroller:
 
@@ -124,7 +126,6 @@ $ tinygo monitor
 Connected to /dev/ttyACM0. Press Ctrl-C to exit.
 4 : Hello, World
 5 : Hello, World
-6 : Hello, World
 [...]
 ```
 
@@ -132,15 +133,134 @@ In this example, the serial monitor missed the first 4 lines of "Hello, World"
 (0 to 3) because the program started to print those lines immediately after
 flashing, but before the serial monitor was connected.
 
-On some AVR microcontrollers, the speed of the serial port is set to 9600
-instead of the default 115200. So you need to override the baud rate of `tinygo
-monitor` like this:
+### `-monitor` flag
+
+It is often useful to automatically start the monitor immediately after flashing
+your program to the microcontroller. The `tinygo flash` command takes an
+optional `-monitor` flag to accomplish this:
+
+```
+$ tinygo flash -target=xiao -monitor
+```
+
+On some microcontrollers, the `-monitor` flag fails with the following error
+message because the monitor starts too quickly:
+
+```
+$ tinygo flash -target=arduino-zero -monitor
+[...]
+Connected to /dev/ttyACM0. Press Ctrl-C to exit.
+error: read error: Port has been closed
+```
+
+If this happens, you can chain the `flash` and `monitor` subcommands manually,
+with a 1 or 2-second delay between the two commands. On Linux or MacOS, the
+command invocation looks like this:
+
+```
+$ tinygo flash -target=arduino-zero && sleep 1 && tinygo monitor
+```
+
+(The `&&` separator runs the next command only if the previous command completed
+without errors. This is safer than using the semicolon `;` separator because the
+semicolon continues to execute commands even if the previous command returned an
+error code.)
+
+### Baud Rate
+
+The default [baud rate](https://en.wikipedia.org/wiki/Serial_port#Speed) of the
+serial port for almost all microcontrollers supported by TinyGo is 115200. The
+exceptions are boards using the AVR processors ([Arduino Nano]({{<ref
+"../reference/microcontrollers/arduino-nano">}}), [Arduino Mega 1280]({{<ref
+"../reference/microcontrollers/arduino-mega1280">}}), [Arduino Mega 2560]({{<ref
+"../reference/microcontrollers/arduino-mega2560">}})). On these, the serial port
+is set to 9600, so you need to override the baud rate of `tinygo monitor` like
+this:
+
 ```
 $ tinygo monitor -baudrate=9600
 ```
 
-See [Alternative Serial Monitors](#alternative-serial-monitors) for an
-explanation of the "baud rate".
+You can combine the `flash` subcommand, the `-monitor` flag, and the `-baudrate`
+flag into a single invocation like this:
+
+```
+$ tinygo flash -target arduino-nano -monitor -baudrate 9600
+```
+
+(Notice that the `=` after each flag has been replaced with a space. It's an
+alternative syntax that some people prefer because a space is easier to type
+than an equal sign `=`.)
+
+### Serial Port on Host
+
+The microcontroller will be assigned a serial port on the host computer. If you
+have only a single microcontroller attached, you will normally not need to worry
+about what these serial ports are called. The `tinygo monitor` will
+automatically figure out which serial port to use.
+
+On Linux machines, the serial port will have a `USB` prefix or an `ACM` prefix
+like this:
+
+* `/dev/ttyUSB0`
+* `/dev/ttyACM0`
+
+On MacOS machines, the serial port will look like this:
+
+* `/dev/cu.usbserial-1420`
+* `/dev/cu.usbmodem6D8733AC53571`
+
+On Windows machines, the serial port looks something like:
+
+* `COM1`
+* `COM31`
+
+### Multiple Microcontrollers
+
+If you have more than one microcontroller attached to the host computer, the
+`tinygo flash` and `tinygo monitor` subcommands can *sometimes* figure out which
+port it is using, but they will sometimes print out an error message, like this:
+
+```
+$ tinygo flash -target arduino-nano
+error: multiple serial ports available - use -port flag,
+available ports are /dev/ttyACM0, /dev/ttyUSB0
+```
+
+You then need to supply the `-port` flag to identify the microcontroller that
+you want to flash and monitor:
+
+```
+$ tinygo flash -target=arduino-nano -port=/dev/ttyUSB0
+
+$ tinygo monitor -port=/dev/ttyUSB0 -baudrate=9600
+```
+
+Sometimes it is possible to combine the two commands into a single command even
+in the presence of multiple microcontrollers:
+
+```
+$ tinygo flash -target xiao -monitor
+```
+
+But sometimes, combining `flash` and `monitor` into a single command does not
+work. In that case, you can issue the `flash` and `monitor` commands separately.
+But it is often easier to just pull out the extra microcontroller(s) so that
+only a single board is connected to the host computer.
+
+```
+$ tinygo flash -target=arduino-nano -monitor
+error: multiple serial ports available - use -port flag,
+available ports are /dev/ttyACM0, /dev/ttyUSB0
+
+$ tinygo flash -target=arduino-nano -monitor -port=/dev/ttyUSB0 -baudrate=9600
+[...]
+avrdude: 4238 bytes of flash verified
+avrdude done.  Thank you.
+[...]
+error: multiple serial ports available - use -port flag,
+available ports are /dev/ttyACM0, /dev/ttyUSB0
+```
 
 ## Serial Input
 
@@ -184,8 +304,8 @@ func main() {
         }
 
         // This assumes that the input is coming from a keyboard
-        // so checking 120 per second is sufficient. But if the
-        // data comes from another processor, the port can
+        // so checking 120 times per second is sufficient. But if
+        // the data comes from another processor, the port can
         // theoretically receive as much as 11000 bytes/second
         // (115200 baud). This delay can be removed and the
         // Serial.Read() method can be used to retrieve
@@ -227,36 +347,10 @@ Of the 32 possible control characters, some of them are intercepted by the
 ## Alternative Serial Monitors
 
 There are many alternative serial monitor programs that can be used instead of
-`tinygo monitor`. The setup is slightly more complicated because you need to
-know the serial port on the host computer that the microcontroller is mapped to.
-One way to discover the serial port is to use the `-x` flag on the `flash`
-command like this: `tinygo flash -x -target=xxx`. This will print diagnostic
-messages which will contain the serial port of the microcontroller.
-
-On Linux machines, the microcontroller will be assigned a serial port that has
-a `USB` prefix or an `ACM` prefix like this:
-
-* `/dev/ttyUSB0`
-* `/dev/ttyACM0`
-
-On MacOS machines, the serial port will look like this:
-
-* `/dev/cu.usbserial-1420`
-* `/dev/cu.usbmodem6D8733AC53571`
-
-On Windows machines, the serial port looks something like:
-
-* `COM1`
-* `COM31`
-
-You also need to know the [baud
-rate](https://en.wikipedia.org/wiki/Serial_port#Speed) of the serial port. The
-default for almost all microcontrollers supported by TinyGo is 115200. The
-current exceptions are boards using the AVR processors ([Arduino Nano]({{<ref
-"../reference/microcontrollers/arduino-nano">}}), [Arduino Mega 1280]({{<ref
-"../reference/microcontrollers/arduino-mega1280">}}), [Arduino Mega 2560]({{<ref
-"../reference/microcontrollers/arduino-mega2560">}})). On these, the serial port
-is set to 9600.
+`tinygo monitor`. The setup is slightly more complicated because you will need
+to supply the serial port and baud rate of the microcontroller as described in
+the [Serial Port on Host](#serial-port-on-host) and [Baud Rate](#baud-rate)
+subsections above.
 
 ### Arduino IDE
 
@@ -284,7 +378,8 @@ Another useful feature of `pyserial` is the `list_ports` command:
 $ python3 -m serial.tools.list_ports
 /dev/ttyACM0
 /dev/ttyS0
-2 ports found
+/dev/ttyUSB0
+3 ports found
 ```
 
 This is useful when you plug in a random microcontroller to the USB port, and
