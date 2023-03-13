@@ -16,16 +16,27 @@ well-supported:
 
 * [SAMD21](https://www.microchip.com/en-us/product/ATSAMD21G18) based on the
   ARM Cortex-M0+ processor
+    * Some companies (Adafruit) call these boards the "M0".
 * [SAMD51](https://www.microchip.com/en-us/product/ATSAMD51N19A) based on the
   ARM Cortex-M4 processor
-* [nRF52840](https://infocenter.nordicsemi.com/topic/ps_nrf52840/keyfeatures_html5.html)
+    * Some companies call these boards the "M4".
+* [nRF52840](https://www.nordicsemi.com/Products/nRF52840)
   based on the Arm Cortex-M4F processor
+    * Other nRF microcontrollers (e.g.
+    [nRF52832](https://www.nordicsemi.com/Products/nRF52832),
+    [nRF52833](https://www.nordicsemi.com/Products/nRF52833),
+    [nRF51822](https://www.nordicsemi.com/Products/nRF51822)) are less common
+    but should work well with TinyGo.
 * [RP2040](https://en.wikipedia.org/wiki/RP2040) with dual ARM Cortex-M0+
-  processors
+  processors (although TinyGo uses only a single core)
+    * The Raspberry Pi Pico is a famous example using this, but there are many
+      other boards using this microcontroller now.
 
 The introductory Arduino boards based on the 8-bit AVR processors work
 relatively well under TinyGo. But they have limited amounts of flash and static
-memory so they support only small applications:
+memory so they support only small applications (e.g. the `fmt` package may
+consume too much flash memory, and goroutines may consume too much static
+memory):
 
 * [ATmega328P](https://www.microchip.com/en-us/product/ATmega328P), used by
   Arduino Nano, Arduino UNO, etc.
