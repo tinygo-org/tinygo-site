@@ -245,3 +245,11 @@ func ReadTemperature() int32
 Read the current die temperature of the chip. The return value is in milli-celsius: to convert to Celsius, divide the returned value by 1000.
 
 Not all chips have a built-in temperature sensor.
+
+```go
+func SystemReset()
+```
+
+SystemReset performs a hard system reset.
+
+Not all chips support SystemReset.
