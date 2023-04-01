@@ -84,6 +84,63 @@ SetInterrupt sets an interrupt to be executed when the pin changes state. The pi
 This call will replace a previously set callback on this pin. You can pass `nil` to disable the interrupt. If you do so, the change parameter is ignored and can be set to any value (such as 0).
 
 
+## SPI
+
+```go
+type SPIConfig struct {
+    Frequency uint32
+    SCK       Pin
+    SDO       Pin
+    SDI       Pin
+    LSBFirst  bool
+    Mode      uint8
+}
+```
+
+The `SPIConfig` struct contains the configuration for the SPI peripheral.
+
+  * `Frequency` is the maximum frequency that will be used: for example `1 * MHz` for 1MHz. Depending on chip capabilities, this or a lower frequency will be selected. When not set (or set to 0), the default of 4MHz will be used.
+  * `SCK`, `SDO` and `SDI` are the clock, data out, and data in pins respectively, however support for setting pins other than the default pins may not be supported by a given SPI peripheral. Some chips are flexible and allow the use of any pin, while other boards only allow a limited range of pins or use fixed SCK/SDO/SDI pins. When these pins are left at the zero value, the default for the particular board is used.
+  * `LSBFirst` configures the SPI peripheral to clock out the least significant bit (LSB) first. The default and most commonly used configuration is the most significant bit first (`LSBFirst=false`).
+  * `Mode` is the [SPI mode (CPOL/CPHA) to be used](https://en.wikipedia.org/wiki/Serial_Peripheral_Interface#Clock_polarity_and_phase). Mode 0 is appropriate for most peripheral chips, but other modes may be needed in some cases. Check your peripheral documentation for details.
+      | Mode    | CPOL | CPHA |
+      | ------- | ---- | ---- |
+      | `Mode0` | 0    | 0    |
+      | `Mode1` | 0    | 1    |
+      | `Mode2` | 1    | 0    |
+      | `Mode3` | 1    | 1    |
+
+```go
+type SPI struct {
+    // values are unexported or vary by chip
+}
+
+var (
+    SPI0 = SPI{...}
+    SPI1 = SPI{...}
+)
+```
+
+The `SPI` object refers to a single (hardware) SPI instance. Depending on chip capabilities, various objects such as `SPI0` and perhaps others are defined.
+
+```go
+func (spi SPI) Configure(config SPIConfig) error
+```
+
+The `Configure` call enables and configures the hardware SPI for use, setting the configuration as described in `SPIConfig`. It will return an error when an incorrect configuration is provided (for example, using pins not usable with this SPI instance). See `SPIConfig` for details.
+
+```go
+func (spi SPI) Tx(w, r []byte) error
+```
+
+The `Tx` performs the actual SPI transaction, and return an error if there was an error during the transaction. Because SPI is a synchronous protocol, reading and writing happens at the same time. Therefore, `w` and `r` usually have to be the same length. There are some exceptions:
+
+  * When `r` is nil, the SPI peripheral will only transmit the bytes in `w` and ignore what it receives.
+  * When `w` is nil, the SPI peripheral will only read the given number of bytes and store it in `r`. It will send out a zero byte for each byte that it reads.
+
+Some chips may also support mismatched lengths of `w` and `r`, in which case they will behave like above for the remaining bytes in the byte slice that's the longest of the two.
+
+
 ## I2C
 
 ```go
