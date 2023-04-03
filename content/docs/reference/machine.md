@@ -148,6 +148,7 @@ type I2CConfig struct {
     Frequency uint32
     SCL       Pin
     SDA       Pin
+    Mode      I2CMode
 }
 ```
 
@@ -155,7 +156,9 @@ The `I2CConfig` struct contains the configuration for the I2C peripheral.
 
   * `Frequency` can be set to either 100kHz (`100e3`), 400kHz (`400e3`), and sometimes to other values depending on the chip. The zero value defaults to 100kHz.
   * `SCL` and `SDA` can be set as desired, however support for different pins than the default is limited. Some chips are flexible and allow the use of any pin, while other boards only allow a limited range of pins or use fixed SCL/SDA pins. When both pins are left at the zero value, the default for the particular board is used.
-
+  * `Mode` is present on peripherals that support I2C target mode.  The default
+  is I2C controller mode, setting `Mode` to `I2CModeTarget` will configure the
+  peripheral as an I2C target.
 ```go
 type I2C struct {
     // values are unexported or vary by chip
@@ -179,8 +182,39 @@ The `Configure` call enables and configures the hardware I2C for use, setting th
 func (i2c I2C) Tx(addr uint16, w, r []byte) error
 ```
 
-The `Tx` call performs the actual I2C transaction. It first writes the bytes in `w` to the peripheral device indicated in `addr` and then reads `r` bytes from the peripheral and stores the read bytes in the `r` slice. It returns an error if the transaction failed. Both `w` and `r` can be `nil`.
+_I2C Controller Mode Only_: The `Tx` call performs the actual I2C transaction. It first writes the bytes in `w` to the peripheral device indicated in `addr` and then reads `r` bytes from the peripheral and stores the read bytes in the `r` slice. It returns an error if the transaction failed. Both `w` and `r` can be `nil`.
 
+```go
+func (i2c I2C) Listen(addr uint16) error
+```
+
+_I2C Target Mode Only_: The `Listen` call starts the I2C peripheral listening for I2C transactions sent
+to `addr` by the controller.  The peripheral must have been configured in target
+mode (see `I2CConfig` struct) before `Listen` is called.
+
+```go
+func (i2c *I2C) WaitForEvent(buf []byte) (evt I2CTargetEvent, count int, err error)
+```
+
+_I2C Target Mode Only_: The `WaitForEvent` call blocks the current goroutine waiting for an I2C event.  For `I2CReceive` events, the message will be placed in `buf` and return the `count` of bytes received.  Oversize messages (those larger than `buf`) will be truncated.
+
+The underlying peripheral will perform clock stretching, if necessary, in two cases:
+
+  1. A correctly addressed message is received and the application is not blocked on a call to `WaitForEvent`,
+
+  2. The application does not call `Reply` with a single I2C clock cycle for `I2CRequest` events.
+
+Although the I2C target may perform clock stretching, controllers may implement arbitrary timeouts for pending devices.  To avoid timeouts from the perspective a controller, the application should:
+
+  1. Handle the returned event in a timely manner, calling `Reply` if appropriate.
+
+  2. Not have any go routines that may block indefinitely as `WaitForEvent` may yield the CPU to another go routine while waiting for an event.
+
+```go
+func (i2c I2C) Reply(buf []byte) error
+```
+
+_I2C Target Mode Only_: The `Reply` call sends a response to the controller when an `I2CRequest` event is received by the target.
 
 ## UART
 
