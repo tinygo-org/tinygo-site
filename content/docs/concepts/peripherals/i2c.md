@@ -35,6 +35,12 @@ You could think of this auto-increment behavior as reading a file. Step 1 opens 
 
 Writing is very similar. The main difference is that the controller writes data to the peripheral instead of starting to read bytes after the initial register number is written to the peripheral.
 
+## Target mode
+
+Typically, I2C peripherals are used in controller mode to communicate with sensors and other devices.  In I2C target mode, the peripheral instead takes the role of the target (i.e. the role of a sensor/similar device).  In this case, the application logic is responsible for processing and responding to messages initiated by an I2C controller, according to this flow diagram:
+
+![I2C Target Flow](/images/i2c-target-flow.png)
+
 ## Interacting with a device
 
 For this example, we'll use the [MPU6050](https://invensense.tdk.com/products/motion-tracking/6-axis/mpu-6050/) which is a very common (but old) sensor that measures acceleration and rotation. We won't be doing much interesting with it, but it serves as a great introduction into how to work with I2C peripherals with TinyGo.
