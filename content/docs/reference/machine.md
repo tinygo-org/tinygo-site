@@ -130,6 +130,14 @@ func (spi SPI) Configure(config SPIConfig) error
 The `Configure` call enables and configures the hardware SPI for use, setting the configuration as described in `SPIConfig`. It will return an error when an incorrect configuration is provided (for example, using pins not usable with this SPI instance). See `SPIConfig` for details.
 
 ```go
+func (spi SPI) Transfer(b byte) (byte, error)
+```
+
+Transmit and receive a single byte. Due to the nature of the SPI protocol, they happen both at the same time.
+
+Use `Tx` instead of `Transfer` for high performance bulk transfers.
+
+```go
 func (spi SPI) Tx(w, r []byte) error
 ```
 
