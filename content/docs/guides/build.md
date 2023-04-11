@@ -184,10 +184,11 @@ To be able to use TinyGo on a bare-metal target, you need to generate some files
 make gen-device
 ```
 
-To be able to use TinyGo to build WebAssembly binaries, you will need to compile [wasi-libc](https://github.com/WebAssembly/wasi-libc):
+To be able to use TinyGo to build WebAssembly binaries, you will need to compile [wasi-libc](https://github.com/WebAssembly/wasi-libc) and [Binaryen](https://github.com/WebAssembly/binaryen):
 
 ```shell
 make wasi-libc
+make binaryen
 ```
 
 These command may need to be re-run after some updates in TinyGo.
