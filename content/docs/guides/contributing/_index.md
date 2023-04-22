@@ -44,6 +44,7 @@ Here is how to contribute back some code or documentation:
 - Fork repo
 - Create a feature branch off of the `dev` branch
 - Make some useful change
+- Format the change using `make fmt`
 - Make sure the tests still pass
 - Submit a pull request against the `dev` branch.
 - Be kind
