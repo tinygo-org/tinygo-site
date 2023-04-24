@@ -57,10 +57,15 @@ sidebar_menu_truncate = 1000
 [params.links]
 # End user relevant links. These will show up on left side of footer and in the community page if you have one.
 [[params.links.user]]
+	name ="Mastodon"
+	url = "https://mastodon.social/@TinyGo"
+	icon = "fab fa-mastodon"
+		desc = "Follow us on Mastodon to get the latest news!"
+[[params.links.user]]
 	name ="Twitter"
 	url = "https://twitter.com/TinyGolang"
 	icon = "fab fa-twitter"
-        desc = "Follow us on Twitter to get the latest news!"
+		desc = "You can also follow us on Twitter"
 [[params.links.user]]
 	name ="Go Pkg Docs"
 	url = "https://pkg.go.dev/github.com/tinygo-org/tinygo?tab=doc"
