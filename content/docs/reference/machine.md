@@ -330,6 +330,14 @@ func CPUFrequency() uint32
 Return the current CPU frequency in hertz (for example, 16MHz equals 16_000_000). It is often a fixed value.
 
 ```go
+func CPUReset()
+```
+
+CPUReset performs a hard system reset.
+
+Not all chips support CPUReset.
+
+```go
 func GetRNG() uint32
 ```
 
