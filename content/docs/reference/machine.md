@@ -231,6 +231,14 @@ func CPUFrequency() uint32
 Return the current CPU frequency in hertz (for example, 16MHz equals 16_000_000). It is often a fixed value.
 
 ```go
+func CPUReset()
+```
+
+CPUReset performs a hard system reset.
+
+Not all chips support CPUReset.
+
+```go
 func GetRNG() uint32
 ```
 
@@ -245,11 +253,3 @@ func ReadTemperature() int32
 Read the current die temperature of the chip. The return value is in milli-celsius: to convert to Celsius, divide the returned value by 1000.
 
 Not all chips have a built-in temperature sensor.
-
-```go
-func SystemReset()
-```
-
-SystemReset performs a hard system reset.
-
-Not all chips support SystemReset.
