@@ -45,22 +45,24 @@ Also, note the comment, which explicitly states that using this struct is not po
 
 ### How to fix
 
-Cast the types as appropriate. For example, code like this:
+Don't use these. Instead, use [`unsafe.Slice`](https://pkg.go.dev/unsafe#Slice), [`unsafe.SliceData`](https://pkg.go.dev/unsafe#SliceData), [`unsafe.String`](https://pkg.go.dev/unsafe#String), and [`unsafe.StringData`](https://pkg.go.dev/unsafe#StringData) (available since Go 1.20).
+
+For example, here is how you can unsafely cast a string to a byte slice:
 
 ```go
-func split(s []byte) (*byte, int, int) {
-	header := (*reflect.SliceHeader)(unsafe.Pointer(&s))
-	return (*byte)(unsafe.Pointer(header.Data)), header.Len, header.Cap
+// Warning: don't ever write to this byte slice!
+func unsafeStringToBytes(s string) []byte {
+	return unsafe.Slice(unsafe.StringData(s), len(s))
 }
 ```
 
-Can easily be supported in both Go versions, with some type casts:
+And here is how you can unsafely cast a `[]uint32` to a `[]byte` slice.
 
 ```go
-func split(s []byte) (*byte, int, int) {
-	header := (*reflect.SliceHeader)(unsafe.Pointer(&s))
-	return (*byte)(unsafe.Pointer(header.Data)), int(header.Len), int(header.Cap)
+// Warning: byte slice depends on endianness!
+func unsafeIntToBytes(slice []uint32) []byte {
+	return unsafe.Slice((*byte)(unsafe.Pointer(unsafe.SliceData(slice))), len(slice)*4)
 }
 ```
 
-The difference is that `header.Len` and `header.Cap` are now cast to an int before returning.
+These functions are fully supported in TinyGo and unlike `reflect.StringHeader` and `reflect.SliceHeader` are portable across compilers and architectures.
