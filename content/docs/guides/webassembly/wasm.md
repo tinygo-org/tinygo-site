@@ -1,5 +1,5 @@
 ---
-title: "Using WebAssembly"
+title: "Using WASM"
 weight: 3
 description: |
   How to call WebAssembly from JavaScript in a browser.
