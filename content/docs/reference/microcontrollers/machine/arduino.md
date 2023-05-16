@@ -191,6 +191,12 @@ var (
 ```
 
 
+```go
+var EEPROM0 = EEPROM{}
+```
+
+EEPROM0 is the internal EEPROM on most AVRs.
+
 
 ```go
 var I2C0 *I2C = nil
@@ -359,6 +365,48 @@ type ADCConfig struct {
 ADCConfig holds ADC configuration parameters. If left unspecified, the zero
 value of each parameter will use the peripheral's default settings.
 
+
+
+
+
+## type EEPROM
+
+```go
+type EEPROM struct {
+}
+```
+
+### func (e EEPROM) WriteAt
+```go
+func (e EEPROM) WriteAt(data []byte, off int64) (int, error)
+```
+
+WriteAt writes len(data) bytes in the EEPROMs at the provided offset.
+
+
+### func (e EEPROM) WriteByteAt
+```go
+func (e EEPROM) WriteByteAt(value byte, addr int64) error
+```
+
+WriteByteAt performs the logic to writes a byte into the EEPROM at the given address.
+
+
+### func (e EEPROM) ReadAt
+```go
+func (e EEPROM) ReadAt(buf []byte, off int64) (int, error)
+```
+
+ReadAt reads exactly len(buf) into buf at the offset. It will return the amount of bytes copied or an error if one exists.
+The buffer cannot be empty, and an an error is thrown if fewer bytes are read than the size of the buffer.
+
+
+### func (e EEPROM) ReadByteAt
+```go
+func (e EEPROM) ReadByteAt(addr int64) (byte, error)
+```
+
+ReadByteAt reads and returns the byte at the specified address. An error is returned if there is a failure to read.
 
 
 
