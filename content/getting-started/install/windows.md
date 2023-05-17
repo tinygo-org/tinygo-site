@@ -42,6 +42,20 @@ Upgrading to the latest TinyGo version can be done via scoop with:
 > scoop update tinygo
 ```
 
+#### WebAssembly/WASI
+
+If you want to compile programs on Windows that will target WebAssembly or WASI, you need to install the `binaryen` tool via Scoop:
+
+```shell
+> scoop install binaryen
+```
+
+Upgrading to the latest versions can be as easy as:
+
+```shell
+> scoop update binaryen
+```
+
 #### AVR (e.g. Arduino Uno)
 
 If you want to flash programs on older Arduino boards such as the Arduino Uno, you need to install the `avrdude` tool via Scoop:
