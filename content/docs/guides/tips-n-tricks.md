@@ -67,3 +67,30 @@ buf2 := t.buf[2:6]
 For more recipes on how to avoid or minimize allocations while working with slices, please see [additional tricks](https://github.com/golang/go/wiki/SliceTricks#additional-tricks) section of [slice tricks](https://github.com/golang/go/wiki/SliceTricks) page.
 
 Familiarize yourself with [heap allocation concept]({{<ref "../concepts/compiler-internals/heap-allocation.md">}}) and use it to your advantage.
+
+## How to set build-time variables
+
+You might have some specific value that you want to set for a variable at build-time. For example, you might want to preset a serial number, or set the WiFi access point SSID that you want your device to connect to, or set the version of the code being built.
+
+This can be done using the `tinygo build` command `-ldflags` flag like this:
+
+`tinygo build -ldflags="-X 'main.version=1.0.0'" -target pyportal .`
+
+In your TinyGo program, the variable of the same package name/variable name will have its value set using the value passed in the `-ldflags` flag. Most commonly this will use the scope of the `main` package.
+
+```go
+package main
+
+var version string
+
+func main() {
+	println("the version is", version)
+}
+```
+
+One important thing to note is that you cannot use a default value in your code if you want to be able to set that value using `-ldflags`. This is due to the internals of how the Go SSA works. If you set the varible to a default value, then the value you pass using `ldflags` will be ignored. The value of the `version` variable in this code excerpt would **not** be changed by for this reason:
+
+```go
+// will not be changed by using ldflags
+var version = "default value"
+```
