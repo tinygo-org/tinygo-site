@@ -1,6 +1,7 @@
 baseURL = "https://tinygo.org/"
 title = "TinyGo"
-languageCode = "en-us"
+languageCode = "en"
+
 theme = "docsy"
 
 enableGitInfo = true
@@ -22,7 +23,6 @@ anchor = "smart"
 unsafe = true
 
 # Everything below this are Site Params
-
 [params]
 copyright = "The TinyGo Authors"
 
@@ -85,3 +85,8 @@ sidebar_menu_truncate = 1000
 
 [params.mermaid]
 enable = true
+
+[params.path_base_for_github_subdir]
+# change content/<lang>/... to content/...
+from = "content/(.*?)/(.*?)"
+to = "content/$2"
