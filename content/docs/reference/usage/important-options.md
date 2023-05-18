@@ -76,3 +76,6 @@ Use the specified scheduler. The default scheduler varies by platform. For examp
   - `scheduler=tasks` The tasks scheduler is a scheduler much like an RTOS available for non-WASM platforms. This is usually the preferred scheduler.
   - `scheduler=asyncify` The asyncify scheduler is a scheduler for WASM based off of [Binaryen's Asyncify Pass](https://github.com/WebAssembly/binaryen/blob/main/src/passes/Asyncify.cpp).
   - `scheduler=none` The none scheduler disables scheduler support, which means that goroutines and channels are not available. It can be used to reduce firmware size and RAM consumption if goroutines and channels are not needed.
+
+- `-ldflags`
+The TinyGo `ldflags` flag has the same behavior as the Go link tool `ldflags` flag. It passes a value along to the TinyGo linker. This is commonly used to set the value for a variable at the time that the program is compiled for example `-ldflags="-X 'package_path.variable_name=new_value'"`
