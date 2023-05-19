@@ -88,9 +88,11 @@ func main() {
 }
 ```
 
-One important thing to note is that you cannot use a default value in your code if you want to be able to set that value using `-ldflags`. This is due to the internals of how the Go SSA works. If you set the varible to a default value, then the value you pass using `ldflags` will be ignored. The value of the `version` variable in this code excerpt would **not** be changed by for this reason:
+One important thing to note is that you cannot use a default value in your code if you want to be able to set that value using `-ldflags`. If you set the variable to a default value, then the value you pass using `ldflags` will be ignored. The value of the `version` variable in this code excerpt would **not** be changed by for this reason:
 
 ```go
 // will not be changed by using ldflags
 var version = "default value"
 ```
+
+Another important thing to note is that the values passed in could end up cached on the machine used to build the binary, for example in `~/.cache/tinygo/thinlto/`. Because this feature is often used to pass in secrets, you will want to clear this cache as needed based on the security needs of your application.
