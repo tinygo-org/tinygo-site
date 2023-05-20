@@ -12,7 +12,7 @@ Drivers are packages designed to make it easier to use these devices from your o
 
 All of these drivers can be found in the TinyGo Drivers repository located at [https://github.com/tinygo-org/drivers/](https://github.com/tinygo-org/drivers/)
 
-The following 94 devices are supported.
+The following 95 devices are supported.
 
 | Device Name                                                             | Datasheet   | Interface Type |
 |-------------------------------------------------------------------------|-------------|----------------|
@@ -70,6 +70,7 @@ The following 94 devices are supported.
 | [Microphone - PDM](https://pkg.go.dev/tinygo.org/x/drivers/microphone) | [datasheet](https://cdn-learn.adafruit.com/assets/assets/000/049/977/original/MP34DT01-M.pdf) | I2S/PDM |
 | [MMA8653 accelerometer](https://pkg.go.dev/tinygo.org/x/drivers/mma8653) | [datasheet](https://www.nxp.com/docs/en/data-sheet/MMA8653FC.pdf) | I2C |
 | [MPU6050 accelerometer/gyroscope](https://pkg.go.dev/tinygo.org/x/drivers/mpu6050) | [datasheet](https://store.invensense.com/datasheets/invensense/MPU-6050_DataSheet_V3%204.pdf) | I2C |
+| [MPU6886 accelerometer/gyroscope](https://pkg.go.dev/tinygo.org/x/drivers/mpu6886) | [datasheet](https://github.com/m5stack/M5-Schematic/blob/master/datasheet/MPU-6886-000193%2Bv1.1_GHIC.PDF.pdf) | I2C |
 | [One Wire bus system](https://pkg.go.dev/tinygo.org/x/drivers/onewire) | [datasheet](https://en.wikipedia.org/wiki/1-Wire) | 1-wire |
 | [P1AM-100 Base Controller](https://pkg.go.dev/tinygo.org/x/drivers/p1am100) | [datasheet](https://facts-engineering.github.io/modules/P1AM-100/P1AM-100.html) | SPI |
 | [PCD8544 display](https://pkg.go.dev/tinygo.org/x/drivers/pcd8544) | [datasheet](http://eia.udg.edu/~forest/PCD8544_1.pdf) | SPI |
