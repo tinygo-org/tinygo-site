@@ -45,3 +45,9 @@ So your workflow could be:
 
 - Compile TinyGo code using the Docker container into a HEX file.
 - Flash the HEX file from your host environment to the target microcontroller.
+
+### Development Builds
+
+You can also use the Docker image with the latest builds from the TinyGo `dev` branch where active development takes place:
+
+    docker pull tinygo/tinygo-dev:latest
