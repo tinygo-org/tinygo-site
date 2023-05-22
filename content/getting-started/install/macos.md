@@ -51,3 +51,17 @@ To flash TinyGo programs for AVR based processors such as the original Arduino U
 ```shell
 brew install avrdude
 ```
+
+### Development Builds
+
+You can download the latest builds from the TinyGo `dev` branch where active development takes place.
+
+To obtain the binary, first go to the list of recent actions for the macOS build:
+
+https://github.com/tinygo-org/tinygo/actions/workflows/build-macos.yml?query=branch%3Adev
+
+Click on the link for the build you want to download. The most recent one is located at the top.
+
+Scroll down on that page to the "Artifacts" and click to download the file named "release-double-zipped".
+
+As you might suspect from the name, the file is a compressed zip file that contains the zip file with the actual TinyGo build. Extract that to your desired location, and run it to try the latest features and fixes.

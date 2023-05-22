@@ -13,6 +13,8 @@ If you want to use TinyGo to compile your own or sample code, you can install th
 
 If you wish to build TinyGo from source, for example if you intend to contribute to the project, please take a look [here](../../../docs/guides/build).
 
+You can also install the development build of TinyGo if you want to test the latest version. For more information, please see [Development Builds](#development-builds).
+
 ## Quick Install
 
 [Ubuntu/Debian](#ubuntu-debian)
@@ -130,3 +132,16 @@ This should allow you to flash TinyGo programs on an Arduino or other supported 
 
 #### You are now done with the TinyGo "Quick Install" for Arch Linux
 
+### Development Builds
+
+You can download the latest builds from the TinyGo `dev` branch where active development takes place.
+
+To obtain the binary, first go to the list of recent actions for the Linux build:
+
+https://github.com/tinygo-org/tinygo/actions/workflows/linux.yml?query=branch%3Adev
+
+Click on the link for the build you want to download. The most recent one is located at the top.
+
+Scroll down on that page to the "Artifacts" and click to download the file for your desired architecture, for example "linux-amd64-double-zipped".
+
+As you might suspect from the name, the file is a compressed zip file that contains the zip file with the actual TinyGo build. Extract that to your desired location, and run it to try the latest features and fixes.
