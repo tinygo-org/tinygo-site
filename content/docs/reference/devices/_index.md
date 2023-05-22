@@ -12,7 +12,7 @@ Drivers are packages designed to make it easier to use these devices from your o
 
 All of these drivers can be found in the TinyGo Drivers repository located at [https://github.com/tinygo-org/drivers/](https://github.com/tinygo-org/drivers/)
 
-The following 95 devices are supported.
+The following 96 devices are supported.
 
 | Device Name                                                             | Datasheet   | Interface Type |
 |-------------------------------------------------------------------------|-------------|----------------|
@@ -101,6 +101,7 @@ The following 95 devices are supported.
 | [Thermistor](https://pkg.go.dev/tinygo.org/x/drivers/thermistor) | [datasheet](https://www.farnell.com/datasheets/33552.pdf) | ADC |
 | [TM1637 7-segment LED display](https://pkg.go.dev/tinygo.org/x/drivers/tm1637) | [datasheet](https://www.mcielectronics.cl/website_MCI/static/documents/Datasheet_TM1637.pdf) | I2C |
 | [TMP102 I2C Temperature Sensor](https://pkg.go.dev/tinygo.org/x/drivers/tmp102) | [datasheet](https://download.mikroe.com/documents/datasheets/tmp102-data-sheet.pdf) | I2C |
+| [TTP229 (BSF version) 16 keys or 8 keys touch pad detector](https://pkg.go.dev/tinygo.org/x/drivers/ttp229) | [datasheet](https://www.sunrom.com/download/SUNROM-TTP229-BSF_V1.1_EN.pdf) | GPIO |
 | [UC8151 All-in-one driver IC for ESL](https://pkg.go.dev/tinygo.org/x/drivers/uc8151) | [datasheet](https://www.buydisplay.com/download/ic/UC8151C.pdf) | I2C |
 | [VEML6070 UV light sensor](https://pkg.go.dev/tinygo.org/x/drivers/veml6070) | [datasheet](https://www.vishay.com/docs/84277/veml6070.pdf) | I2C |
 | [VL53L1X time-of-flight distance sensor](https://pkg.go.dev/tinygo.org/x/drivers/vl53l1x) | [datasheet](https://www.st.com/resource/en/datasheet/vl53l1x.pdf) | I2C |
