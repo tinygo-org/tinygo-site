@@ -2,11 +2,11 @@
 
 # Default build settings
 [build]
-  command = "cd themes/docsy && git submodule update -f --init && cd ../.. && hugo"
+  command = "hugo"
 
 # "production" environment specific build settings
 [build.environment]
-  HUGO_VERSION = "0.82.0"
+  HUGO_VERSION = "0.111.3"
 
 # "production" environment specific build settings
 [context.release.environment]
