@@ -24,6 +24,8 @@ It has onboard LoRa®, (G)FSK, (G)MSK, and BPSK as well as 1 user LED, 1 user bu
 | Pin               | Hardware pin | Alternative names |
 | ----------------- | ------------ | ----------------- |
 | `LED`             | `PB5`        |                   |
+| `POWER_EN3V3`     | `PA9`        |                   |
+| `POWER_EN5V`      | `PB10`       |                   |
 | `SPI0_NSS_PIN`    | `PA4`        |                   |
 | `SPI0_SCK_PIN`    | `PA5`        |                   |
 | `SPI0_SDO_PIN`    | `PA6`        |                   |
@@ -32,8 +34,8 @@ It has onboard LoRa®, (G)FSK, (G)MSK, and BPSK as well as 1 user LED, 1 user bu
 | `UART1_RX_PIN`    | `PB7`        | `UART_RX_PIN`     |
 | `UART2_TX_PIN`    | `PA2`        |                   |
 | `UART2_RX_PIN`    | `PA3`        |                   |
-| `I2C1_SCL_PIN`    | `PA9`        | `I2C0_SCL_PIN`    |
-| `I2C1_SDA_PIN`    | `PA10`       | `I2C0_SDA_PIN`    |
+| `I2C2_SCL_PIN`    | `PB15`       | `I2C0_SCL_PIN`    |
+| `I2C2_SDA_PIN`    | `PA15`       | `I2C0_SDA_PIN`    |
 
 ## Machine Package Docs
 

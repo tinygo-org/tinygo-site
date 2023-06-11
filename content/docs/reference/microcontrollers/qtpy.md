@@ -21,8 +21,8 @@ The [Adafruit QtPy](https://www.adafruit.com/product/4600) is a tiny ARM develop
 
 | Pin               | Hardware pin | Alternative names | PWM                  |
 | ----------------- | ------------ | ----------------- | -------------------- |
-| `D0`              | `PA02`       |                   |                      |
-| `D1`              | `PA03`       | `A0`, `A1`        |                      |
+| `D0`              | `PA02`       | `A0`              |                      |
+| `D1`              | `PA03`       | `A1`              |                      |
 | `D2`              | `PA04`       | `A2`              | `TCC0` (channel 0)   |
 | `D3`              | `PA05`       | `A3`              | `TCC0` (channel 1)   |
 | `D4`              | `PA16`       | `A4`, `SDA_PIN`   | `TCC2` (channel 0), `TCC0` (channel 2) |
