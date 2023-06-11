@@ -12,8 +12,13 @@ import (
 	"text/template"
 )
 
+const (
+	testGOOS   = "linux"
+	testGOARCH = "amd64"
+)
+
 // The environment to pass to `go` commands when they are invoked.
-var commandEnv = []string{"GOPATH=/does-not-exist", "GO111MODULE=off"}
+var commandEnv = []string{"GOPATH=/does-not-exist", "GO111MODULE=off", "GOOS=" + testGOOS, "GOARCH=" + testGOARCH}
 
 var markdownTemplate = template.Must(template.New("markdown").Parse(`
 ---
@@ -24,11 +29,13 @@ The following table shows all Go standard library packages and whether they can 
 
 Note that the fact they can be imported, does not mean that all functions and types in the program can be used. For example, sometimes using some functions or types of the package will still trigger compiler errors.
 
+Test results are for {{.goos}}/{{.goarch}}.
+
 Package | Importable | Passes tests
---- | --- | --- |{{ range .}}
+--- | --- | --- |{{ range .pkgs}}
 {{.Path}} | {{if .CanBeCompiled}} <span style="color: green">✔</span> yes {{else}} [<span style="color: red">✗</span> no](#{{.Link}}) {{end}} | {{if .PassesTests}} <span style="color: green">✔</span> yes {{else if .CanBeCompiled}} [<span style="color: red">✗</span> no](#{{.Link}}) {{else}} <span style="color: gray">✗</span> no {{end}} | {{ end }}
 
-{{range .}}
+{{range .pkgs}}
 {{if not .PassesTests }}
 ## {{.Path}}
 
@@ -234,7 +241,11 @@ func checkPackages(goroot string) error {
 	}
 
 	// Print the output to stdout.
-	return markdownTemplate.Execute(os.Stdout, pkgMap)
+	return markdownTemplate.Execute(os.Stdout, map[string]interface{}{
+		"pkgs":   pkgMap,
+		"goos":   testGOOS,
+		"goarch": testGOARCH,
+	})
 }
 
 func (pkg *Package) runTest() (result testResult) {
@@ -252,6 +263,7 @@ func (pkg *Package) runTest() (result testResult) {
 
 	// Run the compile test.
 	cmd := exec.Command("tinygo", "build", "-o", temporaryExecutableFile, temporaryGoFile)
+	cmd.Env = append(cmd.Environ(), "GOOS="+testGOOS, "GOARCH="+testGOARCH)
 	buf := new(bytes.Buffer)
 	cmd.Stdout = buf
 	cmd.Stderr = buf
@@ -261,6 +273,7 @@ func (pkg *Package) runTest() (result testResult) {
 	// Run the actual test.
 	if result.compiles {
 		cmd := exec.Command("tinygo", "test", pkg.Path)
+		cmd.Env = append(cmd.Environ(), "GOOS="+testGOOS, "GOARCH="+testGOARCH)
 		buf := new(bytes.Buffer)
 		cmd.Stdout = buf
 		cmd.Stderr = buf
