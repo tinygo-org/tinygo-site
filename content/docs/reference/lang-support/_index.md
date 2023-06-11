@@ -5,33 +5,21 @@ description: |
   Which Go language features are supported by TinyGo and which are still a work in progress.
 ---
 
-While TinyGo supports a big subset of the Go language, not everything is supported yet.
+The TinyGo compiler implements all major Go language features, although some details are missing. Below you will find a description of some of the missing features, as of june 2023.
 
-Here is a list of features that are supported:
-
-* The subset of Go that directly translates to C is well supported. This includes all basic types and all regular control flow (including `switch`).
-* Slices are well supported.
-* Interfaces are quite stable and should work well in almost all cases. Type switches and type asserts are also supported, as well as calling methods on interfaces. The only exception is comparing two interface values (but comparing against `nil` works).
-* Closures and bound methods are supported, for example inline anonymous (lambda-like) functions.
-* The `defer` keyword is almost entirely supported, with the exception of deferring some builtin functions.
-
-## Concurrency
-
-At the time of writing (2019-11-27), support for goroutines and channels works for the most part. Support for concurrency on ARM microcontrollers is complete but may have some edge cases that don't work. Support for other platforms (such as WebAssembly) is a bit more limited: calling a blocking function may for example allocate heap memory.
+If you're wondering "Does TinyGo support feature X", we often cannot give a good answer! The rest of this page gives a good indication, but other than that you will just have to try for yourself to see whether a particular piece of software works with TinyGo. There are just way too many edge cases that are not entirely supported or work slightly differently, many of which we don't even know about.
 
 ## Cgo
 
-While TinyGo embeds the [Clang](https://clang.llvm.org/) compiler to parse `import "C"` blocks, many features of Cgo are still unsupported. For example, `#cgo` statements are only partially supported.
+While TinyGo embeds the [Clang](https://clang.llvm.org/) compiler to parse `import "C"` blocks, some features of Cgo are still unsupported or may work slightly differently. For example, `#cgo` statements are only partially supported.
 
 ## Reflection
 
-Many packages, especially in the standard library, rely on reflection to work. The `reflect` package has been re-implemented in TinyGo and most common types like numbers, strings, and structs are supported now.
+Many packages, especially in the standard library, rely on reflection to work. The `reflect` package has been re-implemented in TinyGo and most of it works, but some parts are not yet fully supported.
 
 ## Maps
 
-Support for maps is not yet complete but is usable. You can use any type as a value, but only some types are acceptable as map keys. Also, they have not been optimized for performance and will cause linear lookup times in some cases.
-
-Types supported as map keys include strings, integers, pointers, and structs/arrays that contain only these types.
+Maps generally work fine, but may be slower than you expect them to be. There are a few reasons for this, one of which is that some types (like structs) may internally be compared using reflection instead of using a dedicated hash/compare function.
 
 ## Standard library
 
@@ -39,14 +27,17 @@ Due to the above missing pieces and because parts of the standard library depend
 
 ## Garbage collection
 
-While not directly a language feature (the Go spec doesn't mention it), garbage collection is important for most Go programs to make sure their memory usage stays in reasonable bounds.
+Garbage collection generally works fine, but may work not as well on very small chips (AVR) and on WebAssembly. It is also a lot slower than the usual Go garbage collector.
 
-Garbage collection is currently supported on all platforms, although it works best on 32-bit chips. A simple conservative mark-sweep collector is used that will trigger a collection cycle when the heap runs out (that is fixed at compile time) or when requested manually using `runtime.GC()`. Some other collector designs are used for other targets, TinyGo will automatically pick a good GC for a given target.
+Careful design may avoid memory allocations in main loops where they can reduce performance a lot. You may want to compile with `-print-allocs=.` to find out where allocations happen and why they happen. For more information, see [heap allocation]({{<ref "heap-allocation.md">}}).
 
-Careful design may avoid memory allocations in main loops. You may want to compile with `-print-allocs=.` to find out where allocations happen and why they happen. For more information, see [heap allocation]({{<ref "heap-allocation.md">}}).
+## `recover` builtin
 
-## A note on the `recover` builtin
+The `recover` builtin is supported on most architectures, with the notable exception of WebAssembly. For WebAssembly, we need the [exception handling proposal](https://webassembly.org/roadmap/) which is implemented in browsers but is not implemented in many WASI runtimes.
 
-The `recover` builtin is not yet supported. Instead, a `panic` will always terminate a program and `recover` simply returns nil.
+On architectures where `recover` is not implemented, a panic will always exit the program without running any deferred functions.
 
-This is a deviation from the Go spec but so far works well in practice. While there are no immediate plans to implement `recover`, if it can be shown to be necessary for compatibility it will be implemented. Please note that this comes at a cost: it means that every `defer` call will need some extra memory (both code and stack), so this feature is not free. It might also be architecture dependent. If it gets implemented, it will likely be opt-in to not increase code size for existing projects.
+Some notes on `recover` support in TinyGo:
+
+  * We don't follow the Go language specification to the letter, in particular `recover()` also returns a value in functions that aren't directly called by `defer` (meaning, it returns a value inside a function that is called by a deferred function). In practice, this happens very rarely. This inconsistency should eventually be fixed.
+  * Runtime panics can currently not be recovered from. This includes things like divide-by-zero and nil pointer dereferences, which are used in some standard library tests.
