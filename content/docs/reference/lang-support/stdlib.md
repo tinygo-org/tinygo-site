@@ -7,14 +7,14 @@ The following table shows all Go standard library packages and whether they can 
 
 Note that the fact they can be imported, does not mean that all functions and types in the program can be used. For example, sometimes using some functions or types of the package will still trigger compiler errors.
 
-Test results shown are for Linux.
+Test results are for linux/amd64.
 
 Package | Importable | Passes tests
 --- | --- | --- |
 archive/tar |  [<span style="color: red">✗</span> no](#archivetar)  |  <span style="color: gray">✗</span> no  | 
 archive/zip |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 bufio |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#bufio)  | 
-bytes |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#bytes)  | 
+bytes |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 compress/bzip2 |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 compress/flate |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 compress/gzip |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#compressgzip)  | 
@@ -29,8 +29,9 @@ crypto/aes |  <span style="color: green">✔</span> yes  |  [<span style="color:
 crypto/cipher |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#cryptocipher)  | 
 crypto/des |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 crypto/dsa |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
+crypto/ecdh |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#cryptoecdh)  | 
 crypto/ecdsa |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#cryptoecdsa)  | 
-crypto/ed25519 |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#cryptoed25519)  | 
+crypto/ed25519 |  [<span style="color: red">✗</span> no](#cryptoed25519)  |  <span style="color: gray">✗</span> no  | 
 crypto/elliptic |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#cryptoelliptic)  | 
 crypto/hmac |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 crypto/md5 |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
@@ -42,10 +43,10 @@ crypto/sha256 |  <span style="color: green">✔</span> yes  |  <span style="colo
 crypto/sha512 |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 crypto/subtle |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#cryptosubtle)  | 
 crypto/tls |  [<span style="color: red">✗</span> no](#cryptotls)  |  <span style="color: gray">✗</span> no  | 
-crypto/x509 |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#cryptox509)  | 
+crypto/x509 |  [<span style="color: red">✗</span> no](#cryptox509)  |  <span style="color: gray">✗</span> no  | 
 crypto/x509/pkix |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 database/sql |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#databasesql)  | 
-database/sql/driver |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#databasesqldriver)  | 
+database/sql/driver |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 debug/buildinfo |  [<span style="color: red">✗</span> no](#debugbuildinfo)  |  <span style="color: gray">✗</span> no  | 
 debug/dwarf |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 debug/elf |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#debugelf)  | 
@@ -56,29 +57,30 @@ debug/plan9obj |  <span style="color: green">✔</span> yes  |  <span style="col
 embed |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#embed)  | 
 encoding |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 encoding/ascii85 |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
-encoding/asn1 |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#encodingasn1)  | 
+encoding/asn1 |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 encoding/base32 |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 encoding/base64 |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 encoding/binary |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#encodingbinary)  | 
 encoding/csv |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
-encoding/gob |  [<span style="color: red">✗</span> no](#encodinggob)  |  <span style="color: gray">✗</span> no  | 
+encoding/gob |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#encodinggob)  | 
 encoding/hex |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 encoding/json |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#encodingjson)  | 
 encoding/pem |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#encodingpem)  | 
-encoding/xml |  [<span style="color: red">✗</span> no](#encodingxml)  |  <span style="color: gray">✗</span> no  | 
+encoding/xml |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#encodingxml)  | 
 errors |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#errors)  | 
 expvar |  [<span style="color: red">✗</span> no](#expvar)  |  <span style="color: gray">✗</span> no  | 
 flag |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#flag)  | 
 fmt |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#fmt)  | 
-go/ast |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#goast)  | 
+go/ast |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 go/build |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#gobuild)  | 
-go/build/constraint |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#gobuildconstraint)  | 
+go/build/constraint |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 go/constant |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#goconstant)  | 
 go/doc |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#godoc)  | 
-go/format |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#goformat)  | 
-go/importer |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#goimporter)  | 
+go/doc/comment |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#godoccomment)  | 
+go/format |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
+go/importer |  [<span style="color: red">✗</span> no](#goimporter)  |  <span style="color: gray">✗</span> no  | 
 go/parser |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#goparser)  | 
-go/printer |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#goprinter)  | 
+go/printer |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 go/scanner |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 go/token |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#gotoken)  | 
 go/types |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#gotypes)  | 
@@ -95,11 +97,11 @@ image/color |  <span style="color: green">✔</span> yes  |  [<span style="color
 image/color/palette |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 image/draw |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#imagedraw)  | 
 image/gif |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#imagegif)  | 
-image/jpeg |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
+image/jpeg |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#imagejpeg)  | 
 image/png |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#imagepng)  | 
 index/suffixarray |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 io |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#io)  | 
-io/fs |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#iofs)  | 
+io/fs |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 io/ioutil |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 log |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#log)  | 
 log/syslog |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#logsyslog)  | 
@@ -109,7 +111,7 @@ math/bits |  <span style="color: green">✔</span> yes  |  [<span style="color: 
 math/cmplx |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 math/rand |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#mathrand)  | 
 mime |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#mime)  | 
-mime/multipart |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#mimemultipart)  | 
+mime/multipart |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 mime/quotedprintable |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 net |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 net/http |  [<span style="color: red">✗</span> no](#nethttp)  |  <span style="color: gray">✗</span> no  | 
@@ -125,7 +127,7 @@ net/netip |  <span style="color: green">✔</span> yes  |  [<span style="color: 
 net/rpc |  [<span style="color: red">✗</span> no](#netrpc)  |  <span style="color: gray">✗</span> no  | 
 net/rpc/jsonrpc |  [<span style="color: red">✗</span> no](#netrpcjsonrpc)  |  <span style="color: gray">✗</span> no  | 
 net/smtp |  [<span style="color: red">✗</span> no](#netsmtp)  |  <span style="color: gray">✗</span> no  | 
-net/textproto |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#nettextproto)  | 
+net/textproto |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 net/url |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#neturl)  | 
 os |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 os/exec |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#osexec)  | 
@@ -136,7 +138,7 @@ path/filepath |  <span style="color: green">✔</span> yes  |  [<span style="col
 plugin |  [<span style="color: red">✗</span> no](#plugin)  |  <span style="color: gray">✗</span> no  | 
 reflect |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 regexp |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#regexp)  | 
-regexp/syntax |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#regexpsyntax)  | 
+regexp/syntax |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 sort |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#sort)  | 
 strconv |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 strings |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#strings)  | 
@@ -183,37 +185,9 @@ The compiler gave the following error when running the tests for this package:
     --- FAIL: TestReadStringAllocs (0.00s)
         Unexpected number of allocations, got 0.000000, want 1
     FAIL
-    FAIL	bufio	0.315s
-    FAIL
+    FAIL	bufio	0.833s
 
 
-
-
-
-
-## bytes
-
-
-
-The compiler gave the following error when running the tests for this package:
-
-
-    # bytes_test
-    /home/ayke/src/github.com/tinygo-org/tinygo/src/sync/mutex.go:17:7: interp: running for more than 3m0s, timing out (executed calls: 304674)
-      <badref> = icmp eqfatal error: unexpected signal during runtime execution
-    [signal SIGSEGV: segmentation violation code=0x1 addr=0x30 pc=0x7f60eff95d44]
-    
-    runtime stack:
-    runtime.throw({0x2c7b65?, 0x2?})
-    	/usr/local/go/src/runtime/panic.go:992 +0x71
-    runtime.sigpanic()
-    	/usr/local/go/src/runtime/signal_unix.go:802 +0x389
-    
-    goroutine 21 [syscall]:
-    runtime.cgocall(0x85f840, 0xc0069f5ba0)
-    	/usr/local/go/src/runtime/cgocall.go:157 +0x5c fp=0xc0069f5b78 sp=0xc0069f5b40 pc=0x50e8dc
-    tinygo.org/x/go-llvm._Cfunc_LLVMDumpValue(0x7f60bc3ba6c0)
-    [...more lines following...]
 
 
 
@@ -231,12 +205,22 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    --- FAIL: TestGZIPFilesHaveZeroMTimes (0.67s)
-        skipping test on non-builder
-        SkipNow is incomplete, requires runtime.Goexit()
-    FAIL
-    FAIL	compress/gzip	72.849s
-    FAIL
+    ld.lld: error: undefined symbol: vendor/golang.org/x/sys/cpu.cpuid
+    >>> referenced by main
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-DC599358A5C8BD4AABB7CE20F999F63B34961798:(runtime.initAll)
+    >>> referenced by main
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-DC599358A5C8BD4AABB7CE20F999F63B34961798:(runtime.initAll)
+    >>> referenced by main
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-DC599358A5C8BD4AABB7CE20F999F63B34961798:(runtime.initAll)
+    >>> referenced 1 more times
+    
+    ld.lld: error: undefined symbol: vendor/golang.org/x/sys/cpu.xgetbv
+    >>> referenced by main
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-DC599358A5C8BD4AABB7CE20F999F63B34961798:(runtime.initAll)
+    
+    ld.lld: error: undefined symbol: crypto/subtle.xorBytes
+    >>> referenced by xor.go:22 (/usr/local/go1.20/src/crypto/subtle/xor.go:22)
+    [...more lines following...]
 
 
 
@@ -260,21 +244,21 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
+    FAIL	context	0.000s
     # context_test
-    /usr/local/go1.18.6/src/context/x_test.go:12:74: cannot use t (variable of type *testing.T) as context.testingT value in argument to XTestBackground: *testing.T does not implement context.testingT (missing method Deadline)
-    /usr/local/go1.18.6/src/context/x_test.go:13:68: cannot use t (variable of type *testing.T) as context.testingT value in argument to XTestTODO: *testing.T does not implement context.testingT (missing method Deadline)
-    /usr/local/go1.18.6/src/context/x_test.go:14:74: cannot use t (variable of type *testing.T) as context.testingT value in argument to XTestWithCancel: *testing.T does not implement context.testingT (missing method Deadline)
-    /usr/local/go1.18.6/src/context/x_test.go:15:83: cannot use t (variable of type *testing.T) as context.testingT value in argument to XTestParentFinishesChild: *testing.T does not implement context.testingT (missing method Deadline)
-    /usr/local/go1.18.6/src/context/x_test.go:16:82: cannot use t (variable of type *testing.T) as context.testingT value in argument to XTestChildFinishesFirst: *testing.T does not implement context.testingT (missing method Deadline)
-    /usr/local/go1.18.6/src/context/x_test.go:17:72: cannot use t (variable of type *testing.T) as context.testingT value in argument to XTestDeadline: *testing.T does not implement context.testingT (missing method Deadline)
-    /usr/local/go1.18.6/src/context/x_test.go:18:71: cannot use t (variable of type *testing.T) as context.testingT value in argument to XTestTimeout: *testing.T does not implement context.testingT (missing method Deadline)
-    /usr/local/go1.18.6/src/context/x_test.go:19:79: cannot use t (variable of type *testing.T) as context.testingT value in argument to XTestCanceledTimeout: *testing.T does not implement context.testingT (missing method Deadline)
-    /usr/local/go1.18.6/src/context/x_test.go:20:70: cannot use t (variable of type *testing.T) as context.testingT value in argument to XTestValues: *testing.T does not implement context.testingT (missing method Deadline)
-    /usr/local/go1.18.6/src/context/x_test.go:21:70: cannot use t (variable of type *testing.T) as context.testingT value in argument to XTestAllocs: *testing.T does not implement context.testingT (missing method Deadline)
-    /usr/local/go1.18.6/src/context/x_test.go:22:83: cannot use t (variable of type *testing.T) as context.testingT value in argument to XTestSimultaneousCancels: *testing.T does not implement context.testingT (missing method Deadline)
-    /usr/local/go1.18.6/src/context/x_test.go:23:82: cannot use t (variable of type *testing.T) as context.testingT value in argument to XTestInterlockedCancels: *testing.T does not implement context.testingT (missing method Deadline)
-    /usr/local/go1.18.6/src/context/x_test.go:24:76: cannot use t (variable of type *testing.T) as context.testingT value in argument to XTestLayersCancel: *testing.T does not implement context.testingT (missing method Deadline)
-    /usr/local/go1.18.6/src/context/x_test.go:25:77: cannot use t (variable of type *testing.T) as context.testingT value in argument to XTestLayersTimeout: *testing.T does not implement context.testingT (missing method Deadline)
+    /usr/local/go1.20/src/context/x_test.go:12:74: cannot use t (variable of type *testing.T) as context.testingT value in argument to XTestBackground: *testing.T does not implement context.testingT (missing method Deadline)
+    /usr/local/go1.20/src/context/x_test.go:13:68: cannot use t (variable of type *testing.T) as context.testingT value in argument to XTestTODO: *testing.T does not implement context.testingT (missing method Deadline)
+    /usr/local/go1.20/src/context/x_test.go:14:74: cannot use t (variable of type *testing.T) as context.testingT value in argument to XTestWithCancel: *testing.T does not implement context.testingT (missing method Deadline)
+    /usr/local/go1.20/src/context/x_test.go:15:83: cannot use t (variable of type *testing.T) as context.testingT value in argument to XTestParentFinishesChild: *testing.T does not implement context.testingT (missing method Deadline)
+    /usr/local/go1.20/src/context/x_test.go:16:82: cannot use t (variable of type *testing.T) as context.testingT value in argument to XTestChildFinishesFirst: *testing.T does not implement context.testingT (missing method Deadline)
+    /usr/local/go1.20/src/context/x_test.go:17:72: cannot use t (variable of type *testing.T) as context.testingT value in argument to XTestDeadline: *testing.T does not implement context.testingT (missing method Deadline)
+    /usr/local/go1.20/src/context/x_test.go:18:71: cannot use t (variable of type *testing.T) as context.testingT value in argument to XTestTimeout: *testing.T does not implement context.testingT (missing method Deadline)
+    /usr/local/go1.20/src/context/x_test.go:19:79: cannot use t (variable of type *testing.T) as context.testingT value in argument to XTestCanceledTimeout: *testing.T does not implement context.testingT (missing method Deadline)
+    /usr/local/go1.20/src/context/x_test.go:20:70: cannot use t (variable of type *testing.T) as context.testingT value in argument to XTestValues: *testing.T does not implement context.testingT (missing method Deadline)
+    /usr/local/go1.20/src/context/x_test.go:21:70: cannot use t (variable of type *testing.T) as context.testingT value in argument to XTestAllocs: *testing.T does not implement context.testingT (missing method Deadline)
+    /usr/local/go1.20/src/context/x_test.go:22:83: cannot use t (variable of type *testing.T) as context.testingT value in argument to XTestSimultaneousCancels: *testing.T does not implement context.testingT (missing method Deadline)
+    /usr/local/go1.20/src/context/x_test.go:23:82: cannot use t (variable of type *testing.T) as context.testingT value in argument to XTestInterlockedCancels: *testing.T does not implement context.testingT (missing method Deadline)
+    /usr/local/go1.20/src/context/x_test.go:24:76: cannot use t (variable of type *testing.T) as context.testingT value in argument to XTestLayersCancel: *testing.T does not implement context.testingT (missing method Deadline)
     [...more lines following...]
 
 
@@ -289,15 +273,15 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    ld.lld-14: error: undefined symbol: crypto/cipher.xorBytesSSE2
-    >>> referenced by xor_amd64.go:18 (/usr/local/go1.18.6/src/crypto/cipher/xor_amd64.go:18)
-    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-949791DEA8E6E45F71C8B6AE668E125F19F36856:(crypto/cipher.xorBytes)
+    ld.lld: error: undefined symbol: crypto/subtle.xorBytes
+    >>> referenced by xor.go:22 (/usr/local/go1.20/src/crypto/subtle/xor.go:22)
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-2488623C069C9DC12EF6E37F26080642CE5B006E:(crypto/subtle.XORBytes)
     
-    ld.lld-14: error: undefined symbol: crypto/aes.encryptBlockAsm
-    >>> referenced by cipher_asm.go:68 (/usr/local/go1.18.6/src/crypto/aes/cipher_asm.go:68)
-    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-949791DEA8E6E45F71C8B6AE668E125F19F36856:((*crypto/aes.aesCipherAsm).Encrypt)
-    error: failed to link /tmp/tinygo2862753490/main: exit status 1
-    FAIL
+    ld.lld: error: undefined symbol: crypto/aes.encryptBlockAsm
+    >>> referenced by cipher_asm.go:81 (/usr/local/go1.20/src/crypto/aes/cipher_asm.go:81)
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-2488623C069C9DC12EF6E37F26080642CE5B006E:((*crypto/aes.aesCipherAsm).Encrypt)
+    FAIL	crypto	0.000s
+    error: failed to link /tmp/tinygo1116462727/main: exit status 1
 
 
 
@@ -311,15 +295,15 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    ld.lld-14: error: undefined symbol: crypto/aes.decryptBlockAsm
-    >>> referenced by cipher_asm.go:81 (/usr/local/go1.18.6/src/crypto/aes/cipher_asm.go:81)
-    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-CA4753056032B6CD353BF1476BC8AE01682D11C8:((*crypto/aes.aesCipherAsm).Decrypt)
+    ld.lld: error: undefined symbol: crypto/aes.decryptBlockAsm
+    >>> referenced by cipher_asm.go:95 (/usr/local/go1.20/src/crypto/aes/cipher_asm.go:95)
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-2D00ED78EE01FF7528848C59DF182739099E48B0:((*crypto/aes.aesCipherAsm).Decrypt)
     
-    ld.lld-14: error: undefined symbol: crypto/aes.encryptBlockAsm
-    >>> referenced by cipher_asm.go:68 (/usr/local/go1.18.6/src/crypto/aes/cipher_asm.go:68)
-    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-CA4753056032B6CD353BF1476BC8AE01682D11C8:((*crypto/aes.aesCipherAsm).Encrypt)
-    error: failed to link /tmp/tinygo2032559460/main: exit status 1
-    FAIL
+    ld.lld: error: undefined symbol: crypto/aes.encryptBlockAsm
+    >>> referenced by cipher_asm.go:81 (/usr/local/go1.20/src/crypto/aes/cipher_asm.go:81)
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-2D00ED78EE01FF7528848C59DF182739099E48B0:((*crypto/aes.aesCipherAsm).Encrypt)
+    FAIL	crypto/aes	0.000s
+    error: failed to link /tmp/tinygo3158500475/main: exit status 1
 
 
 
@@ -333,26 +317,55 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    ld.lld-14: error: undefined symbol: crypto/cipher.xorBytesSSE2
-    >>> referenced by xor_amd64.go:18 (/usr/local/go1.18.6/src/crypto/cipher/xor_amd64.go:18)
-    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-25FB53323ADDEF3CCF37F77FC23E8FFFE1088DD9:(crypto/cipher.xorBytes)
+    ld.lld: error: undefined symbol: crypto/subtle.xorBytes
+    >>> referenced by xor.go:22 (/usr/local/go1.20/src/crypto/subtle/xor.go:22)
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-85892024269DA2D4324A4B2FCF26D2931ACFD6C2:(crypto/subtle.XORBytes)
+    >>> referenced by xor.go:22 (/usr/local/go1.20/src/crypto/subtle/xor.go:22)
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-85892024269DA2D4324A4B2FCF26D2931ACFD6C2:((*crypto/cipher.gcm).auth)
     
-    ld.lld-14: error: undefined symbol: crypto/aes.gcmAesInit
-    >>> referenced by aes_gcm.go:56 (/usr/local/go1.18.6/src/crypto/aes/aes_gcm.go:56)
-    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-25FB53323ADDEF3CCF37F77FC23E8FFFE1088DD9:(crypto/cipher.newGCMWithNonceAndTagSize)
+    ld.lld: error: undefined symbol: crypto/aes.gcmAesInit
+    >>> referenced by aes_gcm.go:49 (/usr/local/go1.20/src/crypto/aes/aes_gcm.go:49)
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-85892024269DA2D4324A4B2FCF26D2931ACFD6C2:(crypto/cipher.newGCMWithNonceAndTagSize)
     
-    ld.lld-14: error: undefined symbol: crypto/aes.decryptBlockAsm
-    >>> referenced by cipher_asm.go:81 (/usr/local/go1.18.6/src/crypto/aes/cipher_asm.go:81)
-    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-25FB53323ADDEF3CCF37F77FC23E8FFFE1088DD9:((*crypto/aes.aesCipherAsm).Decrypt)
+    ld.lld: error: undefined symbol: crypto/aes.decryptBlockAsm
+    >>> referenced by cipher_asm.go:95 (/usr/local/go1.20/src/crypto/aes/cipher_asm.go:95)
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-85892024269DA2D4324A4B2FCF26D2931ACFD6C2:((*crypto/aes.aesCipherAsm).Decrypt)
     
-    ld.lld-14: error: undefined symbol: crypto/aes.encryptBlockAsm
-    >>> referenced by cipher_asm.go:68 (/usr/local/go1.18.6/src/crypto/aes/cipher_asm.go:68)
-    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-25FB53323ADDEF3CCF37F77FC23E8FFFE1088DD9:((*crypto/aes.aesCipherAsm).Encrypt)
+    ld.lld: error: undefined symbol: crypto/aes.encryptBlockAsm
     [...more lines following...]
 
 
 
 
+
+
+
+
+
+
+## crypto/ecdh
+
+
+
+The compiler gave the following error when running the tests for this package:
+
+
+    ld.lld: error: undefined symbol: crypto/internal/edwards25519/field.feSquare
+    >>> referenced by fe.go:309 (/usr/local/go1.20/src/crypto/internal/edwards25519/field/fe.go:309)
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-8B5337492012101A96AFD7F823C76B7EE0629FAF:((*crypto/internal/edwards25519/field.Element).Square)
+    
+    ld.lld: error: undefined symbol: crypto/internal/edwards25519/field.feMul
+    >>> referenced by fe.go:303 (/usr/local/go1.20/src/crypto/internal/edwards25519/field/fe.go:303)
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-8B5337492012101A96AFD7F823C76B7EE0629FAF:((*crypto/internal/edwards25519/field.Element).Multiply)
+    
+    ld.lld: error: undefined symbol: crypto/internal/nistec.p256Sqr
+    >>> referenced by p256_asm.go:563 (/usr/local/go1.20/src/crypto/internal/nistec/p256_asm.go:563)
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-8B5337492012101A96AFD7F823C76B7EE0629FAF:(crypto/internal/nistec.p256Inverse)
+    >>> referenced by p256_asm.go:565 (/usr/local/go1.20/src/crypto/internal/nistec/p256_asm.go:565)
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-8B5337492012101A96AFD7F823C76B7EE0629FAF:(crypto/internal/nistec.p256Inverse)
+    >>> referenced by p256_asm.go:567 (/usr/local/go1.20/src/crypto/internal/nistec/p256_asm.go:567)
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-8B5337492012101A96AFD7F823C76B7EE0629FAF:(crypto/internal/nistec.p256Inverse)
+    [...more lines following...]
 
 
 
@@ -366,21 +379,21 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    ld.lld-14: error: undefined symbol: crypto/cipher.xorBytesSSE2
-    >>> referenced by xor_amd64.go:18 (/usr/local/go1.18.6/src/crypto/cipher/xor_amd64.go:18)
-    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-96614A4D104165B16CF0826152A1C9CCA84DA924:((crypto/cipher.StreamReader).Read)
+    ld.lld: error: undefined symbol: crypto/subtle.xorBytes
+    >>> referenced by xor.go:22 (/usr/local/go1.20/src/crypto/subtle/xor.go:22)
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-D2CF4BBB69E0C8F4FB42E53CB99819414C667E08:((crypto/cipher.StreamReader).Read)
     
-    ld.lld-14: error: undefined symbol: crypto/aes.encryptBlockAsm
-    >>> referenced by cipher_asm.go:68 (/usr/local/go1.18.6/src/crypto/aes/cipher_asm.go:68)
-    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-96614A4D104165B16CF0826152A1C9CCA84DA924:((*crypto/aes.aesCipherAsm).Encrypt)
+    ld.lld: error: undefined symbol: crypto/aes.encryptBlockAsm
+    >>> referenced by cipher_asm.go:81 (/usr/local/go1.20/src/crypto/aes/cipher_asm.go:81)
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-D2CF4BBB69E0C8F4FB42E53CB99819414C667E08:((*crypto/aes.aesCipherAsm).Encrypt)
     
-    ld.lld-14: error: undefined symbol: crypto/elliptic.p256Mul
-    >>> referenced by p256_asm.go:284 (/usr/local/go1.18.6/src/crypto/elliptic/p256_asm.go:284)
-    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-96614A4D104165B16CF0826152A1C9CCA84DA924:((crypto/elliptic.p256Curve).ScalarMult)
-    >>> referenced by p256_asm.go:285 (/usr/local/go1.18.6/src/crypto/elliptic/p256_asm.go:285)
-    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-96614A4D104165B16CF0826152A1C9CCA84DA924:((crypto/elliptic.p256Curve).ScalarMult)
-    >>> referenced by p256_asm.go:356 (/usr/local/go1.18.6/src/crypto/elliptic/p256_asm.go:356)
-    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-96614A4D104165B16CF0826152A1C9CCA84DA924:((*crypto/elliptic.p256Point).p256PointToAffine)
+    ld.lld: error: undefined symbol: crypto/internal/edwards25519/field.feSquare
+    >>> referenced by fe.go:309 (/usr/local/go1.20/src/crypto/internal/edwards25519/field/fe.go:309)
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-D2CF4BBB69E0C8F4FB42E53CB99819414C667E08:((*crypto/internal/edwards25519/field.Element).Square)
+    
+    ld.lld: error: undefined symbol: crypto/internal/edwards25519/field.feMul
+    >>> referenced by fe.go:303 (/usr/local/go1.20/src/crypto/internal/edwards25519/field/fe.go:303)
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-D2CF4BBB69E0C8F4FB42E53CB99819414C667E08:((*crypto/internal/edwards25519/field.Element).Multiply)
     [...more lines following...]
 
 
@@ -392,21 +405,17 @@ The compiler gave the following error when running the tests for this package:
 
 
 
-The compiler gave the following error when running the tests for this package:
+The compiler gave the following error when this package was imported:
 
 
-    --- FAIL: TestEd25519Vectors (0.00s)
-        failed to run `go mod download -json filippo.io/mostly-harmless/ed25519vectors@v0.0.0-20210322192420-30a2d7243a94`, output: 
-        FailNow is incomplete, requires runtime.Goexit()
-        unexpected end of JSON input
-        FailNow is incomplete, requires runtime.Goexit()
-        failed to read ed25519vectors.json: open ed25519vectors.json: file does not exist
-        FailNow is incomplete, requires runtime.Goexit()
-        unexpected end of JSON input
-        FailNow is incomplete, requires runtime.Goexit()
-    FAIL
-    FAIL	crypto/ed25519	0.861s
-    FAIL
+    ld.lld: error: undefined symbol: crypto/internal/edwards25519/field.feSquare
+    >>> referenced by fe.go:309 (/usr/local/go1.20/src/crypto/internal/edwards25519/field/fe.go:309)
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-0789AEB7EFB32DDEE9CB09DBEDFBFD637F9C1A48:((*crypto/internal/edwards25519/field.Element).Square)
+    
+    ld.lld: error: undefined symbol: crypto/internal/edwards25519/field.feMul
+    >>> referenced by fe.go:303 (/usr/local/go1.20/src/crypto/internal/edwards25519/field/fe.go:303)
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-0789AEB7EFB32DDEE9CB09DBEDFBFD637F9C1A48:((*crypto/internal/edwards25519/field.Element).Multiply)
+    error: failed to link /tmp/tinygo3040995961/main: exit status 1
 
 
 
@@ -420,21 +429,21 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    ld.lld-14: error: undefined symbol: crypto/elliptic.p256Mul
-    >>> referenced by p256_asm.go:284 (/usr/local/go1.18.6/src/crypto/elliptic/p256_asm.go:284)
-    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-8693EC8B52B2B3F99B7E1A375582EB30DEBD4532:((crypto/elliptic.p256Curve).ScalarMult)
-    >>> referenced by p256_asm.go:285 (/usr/local/go1.18.6/src/crypto/elliptic/p256_asm.go:285)
-    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-8693EC8B52B2B3F99B7E1A375582EB30DEBD4532:((crypto/elliptic.p256Curve).ScalarMult)
-    >>> referenced by p256_asm.go:319 (/usr/local/go1.18.6/src/crypto/elliptic/p256_asm.go:319)
-    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-8693EC8B52B2B3F99B7E1A375582EB30DEBD4532:((*crypto/elliptic.p256Point).p256PointToAffine)
-    >>> referenced 20 more times
+    ld.lld: error: undefined symbol: crypto/internal/nistec.p256PointAddAsm
+    >>> referenced by p256_asm.go:372 (/usr/local/go1.20/src/crypto/internal/nistec/p256_asm.go:372)
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-21418DD625739E361D10381CEF2116024FD473AA:((*crypto/internal/nistec.P256Point).Add)
+    >>> referenced by p256_asm.go:652 (/usr/local/go1.20/src/crypto/internal/nistec/p256_asm.go:652)
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-21418DD625739E361D10381CEF2116024FD473AA:((*crypto/internal/nistec.P256Point).ScalarMult)
+    >>> referenced by p256_asm.go:653 (/usr/local/go1.20/src/crypto/internal/nistec/p256_asm.go:653)
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-21418DD625739E361D10381CEF2116024FD473AA:((*crypto/internal/nistec.P256Point).ScalarMult)
+    >>> referenced 7 more times
     
-    ld.lld-14: error: undefined symbol: crypto/elliptic.p256PointDoubleAsm
-    >>> referenced by p256_asm.go:460 (/usr/local/go1.18.6/src/crypto/elliptic/p256_asm.go:460)
-    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-8693EC8B52B2B3F99B7E1A375582EB30DEBD4532:((*crypto/elliptic.p256Point).p256ScalarMult)
-    >>> referenced by p256_asm.go:461 (/usr/local/go1.18.6/src/crypto/elliptic/p256_asm.go:461)
-    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-8693EC8B52B2B3F99B7E1A375582EB30DEBD4532:((*crypto/elliptic.p256Point).p256ScalarMult)
-    >>> referenced by p256_asm.go:462 (/usr/local/go1.18.6/src/crypto/elliptic/p256_asm.go:462)
+    ld.lld: error: undefined symbol: crypto/internal/nistec.p256PointDoubleAsm
+    >>> referenced by p256_asm.go:373 (/usr/local/go1.20/src/crypto/internal/nistec/p256_asm.go:373)
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-21418DD625739E361D10381CEF2116024FD473AA:((*crypto/internal/nistec.P256Point).Add)
+    >>> referenced by p256_asm.go:643 (/usr/local/go1.20/src/crypto/internal/nistec/p256_asm.go:643)
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-21418DD625739E361D10381CEF2116024FD473AA:((*crypto/internal/nistec.P256Point).ScalarMult)
+    >>> referenced by p256_asm.go:644 (/usr/local/go1.20/src/crypto/internal/nistec/p256_asm.go:644)
     [...more lines following...]
 
 
@@ -457,21 +466,21 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    ld.lld-14: error: undefined symbol: crypto/cipher.xorBytesSSE2
-    >>> referenced by xor_amd64.go:18 (/usr/local/go1.18.6/src/crypto/cipher/xor_amd64.go:18)
-    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-B6384F61356C78646301C371098314DAECF7356F:((crypto/cipher.StreamReader).Read)
+    ld.lld: error: undefined symbol: crypto/internal/bigmod.montgomeryLoop
+    >>> referenced by nat.go:599 (/usr/local/go1.20/src/crypto/internal/bigmod/nat.go:599)
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-3EBC3D31FF2668FC7A7C761DEF96D971602D6951:((*crypto/internal/bigmod.Nat).montgomeryMul)
     
-    ld.lld-14: error: undefined symbol: crypto/aes.encryptBlockAsm
-    >>> referenced by cipher_asm.go:68 (/usr/local/go1.18.6/src/crypto/aes/cipher_asm.go:68)
-    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-B6384F61356C78646301C371098314DAECF7356F:((*crypto/aes.aesCipherAsm).Encrypt)
+    ld.lld: error: undefined symbol: crypto/subtle.xorBytes
+    >>> referenced by xor.go:22 (/usr/local/go1.20/src/crypto/subtle/xor.go:22)
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-3EBC3D31FF2668FC7A7C761DEF96D971602D6951:((crypto/cipher.StreamReader).Read)
     
-    ld.lld-14: error: undefined symbol: crypto/elliptic.p256Mul
-    >>> referenced by p256_asm.go:284 (/usr/local/go1.18.6/src/crypto/elliptic/p256_asm.go:284)
-    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-B6384F61356C78646301C371098314DAECF7356F:((crypto/elliptic.p256Curve).ScalarMult)
-    >>> referenced by p256_asm.go:285 (/usr/local/go1.18.6/src/crypto/elliptic/p256_asm.go:285)
-    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-B6384F61356C78646301C371098314DAECF7356F:((crypto/elliptic.p256Curve).ScalarMult)
-    >>> referenced by p256_asm.go:356 (/usr/local/go1.18.6/src/crypto/elliptic/p256_asm.go:356)
-    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-B6384F61356C78646301C371098314DAECF7356F:((*crypto/elliptic.p256Point).p256PointToAffine)
+    ld.lld: error: undefined symbol: crypto/aes.encryptBlockAsm
+    >>> referenced by cipher_asm.go:81 (/usr/local/go1.20/src/crypto/aes/cipher_asm.go:81)
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-3EBC3D31FF2668FC7A7C761DEF96D971602D6951:((*crypto/aes.aesCipherAsm).Encrypt)
+    
+    ld.lld: error: undefined symbol: crypto/internal/edwards25519/field.feSquare
+    >>> referenced by fe.go:309 (/usr/local/go1.20/src/crypto/internal/edwards25519/field/fe.go:309)
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-3EBC3D31FF2668FC7A7C761DEF96D971602D6951:((*crypto/internal/edwards25519/field.Element).Square)
     [...more lines following...]
 
 
@@ -492,9 +501,11 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    panic: unimplemented: (reflect.Type).NumIn()
-    FAIL	crypto/subtle	0.001s
-    FAIL
+    ld.lld: error: undefined symbol: crypto/subtle.xorBytes
+    >>> referenced by xor.go:22 (/usr/local/go1.20/src/crypto/subtle/xor.go:22)
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-414ED2EC413D93DD8C112FA3A0B6257CABEB7F13:(crypto/subtle.XORBytes)
+    FAIL	crypto/subtle	0.000s
+    error: failed to link /tmp/tinygo3362733111/main: exit status 1
 
 
 
@@ -504,24 +515,10 @@ The compiler gave the following error when running the tests for this package:
 ## crypto/tls
 
 
+This package cannot be imported because the following dependencies cannot be compiled:
 
-The compiler gave the following error when this package was imported:
-
-
-    ld.lld-14: error: undefined symbol: vendor/golang.org/x/sys/cpu.cpuid
-    >>> referenced by cpu_x86.go:64 (/usr/local/go1.18.6/src/vendor/golang.org/x/sys/cpu/cpu_x86.go:64)
-    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-D1D261DAB7C6E5F4D5E1B9FA8DF98FB03DF78C31:(runtime.run$1$gowrapper)
-    >>> referenced by cpu_x86.go:70 (/usr/local/go1.18.6/src/vendor/golang.org/x/sys/cpu/cpu_x86.go:70)
-    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-D1D261DAB7C6E5F4D5E1B9FA8DF98FB03DF78C31:(runtime.run$1$gowrapper)
-    >>> referenced by cpu_x86.go:109 (/usr/local/go1.18.6/src/vendor/golang.org/x/sys/cpu/cpu_x86.go:109)
-    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-D1D261DAB7C6E5F4D5E1B9FA8DF98FB03DF78C31:(runtime.run$1$gowrapper)
-    >>> referenced 1 more times
-    
-    ld.lld-14: error: undefined symbol: vendor/golang.org/x/sys/cpu.xgetbv
-    >>> referenced by cpu_x86.go:88 (/usr/local/go1.18.6/src/vendor/golang.org/x/sys/cpu/cpu_x86.go:88)
-    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-D1D261DAB7C6E5F4D5E1B9FA8DF98FB03DF78C31:(runtime.run$1$gowrapper)
-    error: failed to link /tmp/tinygo3417349174/main: exit status 1
-
+  * [crypto/ed25519](#cryptoed25519)
+  * [crypto/x509](#cryptox509)
 
 
 
@@ -530,27 +527,9 @@ The compiler gave the following error when this package was imported:
 ## crypto/x509
 
 
+This package cannot be imported because the following dependencies cannot be compiled:
 
-The compiler gave the following error when running the tests for this package:
-
-
-    ld.lld-14: error: undefined symbol: crypto/cipher.xorBytesSSE2
-    >>> referenced by xor_amd64.go:18 (/usr/local/go1.18.6/src/crypto/cipher/xor_amd64.go:18)
-    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-3EDAFF76F77DB8AE43A27641CDCE98BBE04FAD89:(crypto/cipher.xorBytes)
-    
-    ld.lld-14: error: undefined symbol: crypto/aes.decryptBlockAsm
-    >>> referenced by cipher_asm.go:81 (/usr/local/go1.18.6/src/crypto/aes/cipher_asm.go:81)
-    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-3EDAFF76F77DB8AE43A27641CDCE98BBE04FAD89:((*crypto/aes.aesCipherAsm).Decrypt)
-    
-    ld.lld-14: error: undefined symbol: crypto/aes.encryptBlockAsm
-    >>> referenced by cipher_asm.go:68 (/usr/local/go1.18.6/src/crypto/aes/cipher_asm.go:68)
-    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-3EDAFF76F77DB8AE43A27641CDCE98BBE04FAD89:((*crypto/aes.aesCipherAsm).Encrypt)
-    
-    ld.lld-14: error: undefined symbol: vendor/golang.org/x/sys/cpu.cpuid
-    >>> referenced by cpu_x86.go:64 (/usr/local/go1.18.6/src/vendor/golang.org/x/sys/cpu/cpu_x86.go:64)
-    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-3EDAFF76F77DB8AE43A27641CDCE98BBE04FAD89:(runtime.run$1$gowrapper)
-    [...more lines following...]
-
+  * [crypto/ed25519](#cryptoed25519)
 
 
 
@@ -565,25 +544,11 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
+    FAIL	database/sql	0.000s
     # database/sql
-    /usr/local/go1.18.6/src/database/sql/sql_test.go:4556:4: b.SetParallelism undefined (type *testing.B has no field or method SetParallelism)
-    FAIL
+    /usr/local/go1.20/src/database/sql/sql_test.go:4574:4: b.SetParallelism undefined (type *testing.B has no field or method SetParallelism)
 
 
-
-
-
-
-## database/sql/driver
-
-
-
-The compiler gave the following error when running the tests for this package:
-
-
-    panic: unimplemented: (reflect.Value).Bytes()
-    FAIL	database/sql/driver	0.002s
-    FAIL
 
 
 
@@ -598,7 +563,7 @@ The compiler gave the following error when this package was imported:
 
 
     # debug/buildinfo
-    /usr/local/go1.18.6/src/debug/buildinfo/buildinfo.go:78:19: ParseBuildInfo not declared by package debug
+    /usr/local/go1.20/src/debug/buildinfo/buildinfo.go:79:19: undefined: debug.ParseBuildInfo
 
 
 
@@ -614,9 +579,9 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when running the tests for this package:
 
 
+    FAIL	debug/elf	0.000s
     # debug/elf
-    /usr/local/go1.18.6/src/debug/elf/file_test.go:905:10: ResolveIPAddr not declared by package net
-    FAIL
+    /usr/local/go1.20/src/debug/elf/file_test.go:906:10: undefined: net.ResolveIPAddr
 
 
 
@@ -630,9 +595,8 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    panic: runtime error: nil pointer dereference
-    FAIL	debug/gosym	0.004s
-    FAIL
+    panic: runtime error at 0x00000000002549ab: nil pointer dereference
+    FAIL	debug/gosym	1.671s
 
 
 
@@ -648,9 +612,8 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    panic: runtime error: index out of range
-    FAIL	debug/pe	0.004s
-    FAIL
+    panic: runtime error at 0x00000000002737d1: index out of range
+    FAIL	debug/pe	1.148s
 
 
 
@@ -666,40 +629,28 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    ld.lld-14: error: undefined symbol: vendor/golang.org/x/sys/cpu.cpuid
+    ld.lld: error: undefined symbol: vendor/golang.org/x/sys/cpu.cpuid
     >>> referenced by main
-    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-C43B0A7BA1F52489FB49202AC232B5E3D0CEDFF4:(runtime.initAll)
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-3B6D6B682F19B044232E3E4C73B8A78F898E93C6:(runtime.initAll)
     >>> referenced by main
-    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-C43B0A7BA1F52489FB49202AC232B5E3D0CEDFF4:(runtime.initAll)
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-3B6D6B682F19B044232E3E4C73B8A78F898E93C6:(runtime.initAll)
     >>> referenced by main
-    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-C43B0A7BA1F52489FB49202AC232B5E3D0CEDFF4:(runtime.initAll)
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-3B6D6B682F19B044232E3E4C73B8A78F898E93C6:(runtime.initAll)
     >>> referenced 1 more times
     
-    ld.lld-14: error: undefined symbol: vendor/golang.org/x/sys/cpu.xgetbv
+    ld.lld: error: undefined symbol: vendor/golang.org/x/sys/cpu.xgetbv
     >>> referenced by main
-    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-C43B0A7BA1F52489FB49202AC232B5E3D0CEDFF4:(runtime.initAll)
-    error: failed to link /tmp/tinygo1088601438/main: exit status 1
-    FAIL
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-3B6D6B682F19B044232E3E4C73B8A78F898E93C6:(runtime.initAll)
+    
+    ld.lld: error: undefined symbol: crypto/internal/edwards25519/field.feSquare
+    >>> referenced by fe.go:309 (/usr/local/go1.20/src/crypto/internal/edwards25519/field/fe.go:309)
+    [...more lines following...]
 
 
 
 
 
 
-
-
-
-
-## encoding/asn1
-
-
-
-The compiler gave the following error when running the tests for this package:
-
-
-    panic: unimplemented: (reflect.Value).Addr()
-    FAIL	encoding/asn1	0.003s
-    FAIL
 
 
 
@@ -717,9 +668,7 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    panic: unimplemented: (reflect.Value).Slice()
-    FAIL	encoding/binary	0.002s
-    FAIL
+    FAIL	encoding/binary	1.025s
 
 
 
@@ -732,11 +681,11 @@ The compiler gave the following error when running the tests for this package:
 
 
 
-The compiler gave the following error when this package was imported:
+The compiler gave the following error when running the tests for this package:
 
 
-    # encoding/gob
-    /usr/local/go1.18.6/src/encoding/gob/decode.go:562:21: MakeMapWithSize not declared by package reflect
+    panic: reflect: unimplemented: AssignableTo with interface
+    FAIL	encoding/gob	1.418s
 
 
 
@@ -752,10 +701,22 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when running the tests for this package:
 
 
-    # encoding/json
-    /usr/local/go1.18.6/src/encoding/json/bench_test.go:344:22: StructOf not declared by package reflect
-    /usr/local/go1.18.6/src/encoding/json/stream_test.go:298:15: Pipe not declared by package net
-    FAIL
+    ld.lld: error: undefined symbol: vendor/golang.org/x/sys/cpu.cpuid
+    >>> referenced by main
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-B546F5E015501B15C784EB346D71B542493E6867:(runtime.initAll)
+    >>> referenced by main
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-B546F5E015501B15C784EB346D71B542493E6867:(runtime.initAll)
+    >>> referenced by main
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-B546F5E015501B15C784EB346D71B542493E6867:(runtime.initAll)
+    >>> referenced 1 more times
+    
+    ld.lld: error: undefined symbol: vendor/golang.org/x/sys/cpu.xgetbv
+    >>> referenced by main
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-B546F5E015501B15C784EB346D71B542493E6867:(runtime.initAll)
+    
+    ld.lld: error: undefined symbol: crypto/subtle.xorBytes
+    >>> referenced by xor.go:22 (/usr/local/go1.20/src/crypto/subtle/xor.go:22)
+    [...more lines following...]
 
 
 
@@ -769,9 +730,15 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    panic: unimplemented: (reflect.Value).MapKeys()
-    FAIL	encoding/pem	0.007s
-    FAIL
+    ld.lld: error: undefined symbol: crypto/internal/edwards25519/field.feSquare
+    >>> referenced by fe.go:309 (/usr/local/go1.20/src/crypto/internal/edwards25519/field/fe.go:309)
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-FD0540891799D0F9AF48E24892644EB0DE3691B1:((*crypto/internal/edwards25519/field.Element).Square)
+    
+    ld.lld: error: undefined symbol: crypto/internal/edwards25519/field.feMul
+    >>> referenced by fe.go:303 (/usr/local/go1.20/src/crypto/internal/edwards25519/field/fe.go:303)
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-FD0540891799D0F9AF48E24892644EB0DE3691B1:((*crypto/internal/edwards25519/field.Element).Multiply)
+    FAIL	encoding/pem	0.000s
+    error: failed to link /tmp/tinygo1826234130/main: exit status 1
 
 
 
@@ -782,12 +749,10 @@ The compiler gave the following error when running the tests for this package:
 
 
 
-The compiler gave the following error when this package was imported:
+The compiler gave the following error when running the tests for this package:
 
 
-    # encoding/xml
-    /usr/local/go1.18.6/src/encoding/xml/typeinfo.go:318:14: typ.FieldByIndex undefined (type reflect.Type has no field or method FieldByIndex)
-    /usr/local/go1.18.6/src/encoding/xml/typeinfo.go:319:14: typ.FieldByIndex undefined (type reflect.Type has no field or method FieldByIndex)
+    FAIL	encoding/xml	1.169s
 
 
 
@@ -801,9 +766,20 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when running the tests for this package:
 
 
-    panic: unimplemented: reflect.Zero()
-    FAIL	errors	0.006s
+    --- FAIL: TestAs (0.01s)
+        --- FAIL: TestAs/8:As(Errorf(...,_err),_0x400081ee90) (0.00s)
+            match: got true; want false
+            FailNow is incomplete, requires runtime.Goexit()
+            got &errors.errorString{s:"err"}, want <nil>
+            FailNow is incomplete, requires runtime.Goexit()
+        --- FAIL: TestAs/10:As(Errorf(...,_path_error),_0x400081ee90) (0.00s)
+            got errors_test.wrapped{msg:"path error", err:(*fs.PathError)(0x400081eef0)}, want &fs.PathError{Op:"open", Path:"non-existing", Err:(*errors.errorString)(0x2520d8)}
+            FailNow is incomplete, requires runtime.Goexit()
+        --- FAIL: TestAs/16:As(Errorf(...,_multiError),_0x400081ee90) (0.00s)
+            got errors_test.multiErr{errors_test.wrapped{msg:"path error", err:(*fs.PathError)(0x400081eef0)}}, want &fs.PathError{Op:"open", Path:"non-existing", Err:(*errors.errorString)(0x2520d8)}
+            FailNow is incomplete, requires runtime.Goexit()
     FAIL
+    FAIL	errors	0.038s
 
 
 
@@ -828,10 +804,19 @@ This package cannot be imported because the following dependencies cannot be com
 The compiler gave the following error when running the tests for this package:
 
 
-    flag provided but not defined: -x
-    panic: unimplemented: reflect.Zero()
-    FAIL	flag	0.004s
+    --- FAIL: TestExitCode (0.01s)
+        unexpected exit code for test case {flag:-h flagHandle: expectExit:0} 
+            : got -1, expect 0
+        unexpected exit code for test case {flag:-help flagHandle: expectExit:0} 
+            : got -1, expect 0
+        unexpected exit code for test case {flag:-undefined flagHandle: expectExit:2} 
+            : got -1, expect 2
+        unexpected exit code for test case {flag:-h flagHandle:h expectExit:123} 
+            : got -1, expect 123
+        unexpected exit code for test case {flag:-help flagHandle:help expectExit:123} 
+            : got -1, expect 123
     FAIL
+    FAIL	flag	0.047s
 
 
 
@@ -845,25 +830,10 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    panic: unimplemented: (reflect.Value).Slice()
-    FAIL	fmt	0.003s
-    FAIL
+    panic: reflect: call of Slice on array Value
+    FAIL	fmt	1.154s
 
 
-
-
-
-
-## go/ast
-
-
-
-The compiler gave the following error when running the tests for this package:
-
-
-    panic: runtime error: type assert failed
-    FAIL	go/ast	0.014s
-    FAIL
 
 
 
@@ -877,33 +847,24 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    # go/build
-    /usr/local/go1.18.6/src/go/build/build_test.go:556:4: t.Setenv undefined (type *testing.T has no field or method Setenv)
-    /usr/local/go1.18.6/src/go/build/build_test.go:577:4: t.Setenv undefined (type *testing.T has no field or method Setenv)
-    /usr/local/go1.18.6/src/go/build/build_test.go:599:4: t.Setenv undefined (type *testing.T has no field or method Setenv)
-    /usr/local/go1.18.6/src/go/build/build_test.go:629:4: t.Setenv undefined (type *testing.T has no field or method Setenv)
-    /usr/local/go1.18.6/src/go/build/build_test.go:641:4: t.Setenv undefined (type *testing.T has no field or method Setenv)
-    /usr/local/go1.18.6/src/go/build/build_test.go:642:4: t.Setenv undefined (type *testing.T has no field or method Setenv)
-    /usr/local/go1.18.6/src/go/build/build_test.go:695:4: t.Setenv undefined (type *testing.T has no field or method Setenv)
-    /usr/local/go1.18.6/src/go/build/build_test.go:696:4: t.Setenv undefined (type *testing.T has no field or method Setenv)
-    /usr/local/go1.18.6/src/go/build/build_test.go:697:4: t.Setenv undefined (type *testing.T has no field or method Setenv)
-    FAIL
+    --- FAIL: TestDotSlashImport (0.01s)
+        import ".": unknown compiler "tinygo"
+        FailNow is incomplete, requires runtime.Goexit()
+        import "./file": unknown compiler "tinygo"
+        FailNow is incomplete, requires runtime.Goexit()
+    --- FAIL: TestLocalDirectory (0.01s)
+        import ".": unknown compiler "tinygo"
+        FailNow is incomplete, requires runtime.Goexit()
+    --- FAIL: TestImportCmd (0.00s)
+        import "cmd/internal/objfile": unknown compiler "tinygo"
+        FailNow is incomplete, requires runtime.Goexit()
+    --- FAIL: TestImportDirNotExist (0.01s)
+        --- FAIL: TestImportDirNotExist/GO111MODULE=on (0.00s)
+            Import(full, 0) got error: "go/build: go list go/build/doesnotexist: fork/exec /usr/local/go/bin/go: operation not implemented\n\n", want "cannot find package" or "is not in GOROOT" error
+            Import(full, FindOnly) got error: "go/build: go list go/build/doesnotexist: fork/exec /usr/local/go/bin/go: operation not implemented\n\n", want "cannot find package" or "is not in GOROOT" error
+    [...more lines following...]
 
 
-
-
-
-
-## go/build/constraint
-
-
-
-The compiler gave the following error when running the tests for this package:
-
-
-    panic: unimplemented: (reflect.Value).MapKeys()
-    FAIL	go/build/constraint	0.007s
-    FAIL
 
 
 
@@ -917,9 +878,8 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    panic: runtime error: divide by zero
-    FAIL	go/constant	0.013s
-    FAIL
+    panic: runtime error at 0x00000000002549ec: divide by zero
+    FAIL	go/constant	1.037s
 
 
 
@@ -934,23 +894,38 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).NumOut()
-    FAIL	go/doc	0.011s
-    FAIL
+    FAIL	go/doc	1.349s
 
 
 
 
 
 
-## go/format
+## go/doc/comment
 
 
 
 The compiler gave the following error when running the tests for this package:
 
 
-    FAIL	go/format	374.574s
-    FAIL
+    --- FAIL: TestStd (0.01s)
+        fork/exec /usr/local/go/bin/go: operation not implemented
+        FailNow is incomplete, requires runtime.Goexit()
+        stdPkgs is out of date: regenerate with 'go generate'
+            diff stdPkgs want
+            --- stdPkgs
+            +++ want
+            @@ -1,33 +1,1 @@
+            -bufio
+            -bytes
+            -context
+            -crypto
+            -embed
+            -encoding
+            -errors
+    [...more lines following...]
+
+
 
 
 
@@ -961,12 +936,11 @@ The compiler gave the following error when running the tests for this package:
 
 
 
-The compiler gave the following error when running the tests for this package:
+The compiler gave the following error when this package was imported:
 
 
-    panic: runtime error: nil pointer dereference
-    FAIL	go/importer	0.001s
-    FAIL
+    # internal/pkgbits
+    /usr/local/go1.20/src/internal/pkgbits/sync.go:38:64: frame.Entry undefined (type runtime.Frame has no field or method Entry)
 
 
 
@@ -980,23 +954,9 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    FAIL	go/parser	750.695s
-    FAIL
+    FAIL	go/parser	1.963s
 
 
-
-
-
-
-## go/printer
-
-
-
-The compiler gave the following error when running the tests for this package:
-
-
-    FAIL	go/printer	740.362s
-    FAIL
 
 
 
@@ -1012,9 +972,8 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    # encoding/gob
-    /usr/local/go1.18.6/src/encoding/gob/decode.go:562:21: MakeMapWithSize not declared by package reflect
-    FAIL
+    panic: reflect: unimplemented: AssignableTo with interface
+    FAIL	go/token	1.369s
 
 
 
@@ -1028,9 +987,9 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    # go/types_test
-    /usr/local/go1.18.6/src/go/types/self_test.go:98:4: b.ReportMetric undefined (type *testing.B has no field or method ReportMetric)
-    FAIL
+    FAIL	go/types	0.000s
+    # internal/pkgbits
+    /usr/local/go1.20/src/internal/pkgbits/sync.go:38:64: frame.Entry undefined (type runtime.Frame has no field or method Entry)
 
 
 
@@ -1049,8 +1008,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: not available
-    FAIL	hash/crc32	0.007s
-    FAIL
+    FAIL	hash/crc32	1.532s
 
 
 
@@ -1068,9 +1026,8 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    panic: runtime error: out of memory
-    FAIL	hash/maphash	100.856s
-    FAIL
+    panic: runtime error at 0x0000000000223ba1: out of memory
+    FAIL	hash/maphash	144.258s
 
 
 
@@ -1087,8 +1044,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).NumOut()
-    FAIL	html/template	0.006s
-    FAIL
+    FAIL	html/template	1.105s
 
 
 
@@ -1105,8 +1061,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).NumIn()
-    FAIL	image/color	0.007s
-    FAIL
+    FAIL	image/color	1.340s
 
 
 
@@ -1123,8 +1078,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).NumIn()
-    FAIL	image/draw	0.094s
-    FAIL
+    FAIL	image/draw	1.669s
 
 
 
@@ -1138,14 +1092,26 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
+    FAIL	image/gif	0.000s
     # image/gif
-    /usr/local/go1.18.6/src/image/gif/reader_test.go:415:14: SetGCPercent not declared by package debug
-    /usr/local/go1.18.6/src/image/gif/reader_test.go:415:33: SetGCPercent not declared by package debug
-    /usr/local/go1.18.6/src/image/gif/reader_test.go:421:26: s1.HeapAlloc undefined (type *runtime.MemStats has no field or method HeapAlloc)
-    /usr/local/go1.18.6/src/image/gif/reader_test.go:421:41: s0.HeapAlloc undefined (type *runtime.MemStats has no field or method HeapAlloc)
-    FAIL
+    /usr/local/go1.20/src/image/gif/reader_test.go:421:26: s1.HeapAlloc undefined (type *runtime.MemStats has no field or method HeapAlloc)
+    /usr/local/go1.20/src/image/gif/reader_test.go:421:41: s0.HeapAlloc undefined (type *runtime.MemStats has no field or method HeapAlloc)
 
 
+
+
+
+
+## image/jpeg
+
+
+
+The compiler gave the following error when running the tests for this package:
+
+
+    FAIL	image/jpeg	0.000s
+    # image/jpeg
+    /usr/local/go1.20/src/image/jpeg/reader_test.go:253:9: undefined: debug.SetTraceback
 
 
 
@@ -1159,9 +1125,8 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    panic: runtime error: out of memory
-    FAIL	image/png	2.921s
-    FAIL
+    panic: runtime error at 0x00000000002593d3: out of memory
+    FAIL	image/png	3.639s
 
 
 
@@ -1187,23 +1152,9 @@ The compiler gave the following error when running the tests for this package:
         timeout waiting for collection of buf1
         FailNow is incomplete, requires runtime.Goexit()
     FAIL
-    FAIL	io	5.083s
-    FAIL
+    FAIL	io	5.193s
 
 
-
-
-
-
-## io/fs
-
-
-
-The compiler gave the following error when running the tests for this package:
-
-
-    FAIL	io/fs	0.010s
-    FAIL
 
 
 
@@ -1219,21 +1170,21 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    --- FAIL: TestAll (0.01s)
+    --- FAIL: TestAll (0.02s)
         log output should match "^.*/[A-Za-z0-9_\\-]+\\.go:(61|63): hello 23 world$" is "???:0: hello 23 world"
         log output should match "^.*/[A-Za-z0-9_\\-]+\\.go:(61|63): hello 23 world$" is "???:0: hello 23 world"
         log output should match "^[A-Za-z0-9_\\-]+\\.go:(61|63): hello 23 world$" is "???:0: hello 23 world"
         log output should match "^[A-Za-z0-9_\\-]+\\.go:(61|63): hello 23 world$" is "???:0: hello 23 world"
         log output should match "^[A-Za-z0-9_\\-]+\\.go:(61|63): hello 23 world$" is "???:0: hello 23 world"
         log output should match "^[A-Za-z0-9_\\-]+\\.go:(61|63): hello 23 world$" is "???:0: hello 23 world"
-        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(61|63): hello 23 world$" is "XXX2022/09/29 18:41:45.180641 ???:0: hello 23 world"
-        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(61|63): hello 23 world$" is "XXX2022/09/29 18:41:45.180706 ???:0: hello 23 world"
-        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(61|63): hello 23 world$" is "XXX2022/09/29 18:41:45.181471 ???:0: hello 23 world"
-        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(61|63): hello 23 world$" is "XXX2022/09/29 18:41:45.181544 ???:0: hello 23 world"
-        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(61|63): XXXhello 23 world$" is "2022/09/29 18:41:45.182159 ???:0: XXXhello 23 world"
-        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(61|63): XXXhello 23 world$" is "2022/09/29 18:41:45.182420 ???:0: XXXhello 23 world"
-        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(61|63): XXXhello 23 world$" is "2022/09/29 18:41:45.182505 ???:0: XXXhello 23 world"
-        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(61|63): XXXhello 23 world$" is "2022/09/29 18:41:45.182696 ???:0: XXXhello 23 world"
+        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(61|63): hello 23 world$" is "XXX2023/06/11 18:35:24.852021 ???:0: hello 23 world"
+        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(61|63): hello 23 world$" is "XXX2023/06/11 18:35:24.852221 ???:0: hello 23 world"
+        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(61|63): hello 23 world$" is "XXX2023/06/11 18:35:24.853505 ???:0: hello 23 world"
+        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(61|63): hello 23 world$" is "XXX2023/06/11 18:35:24.853693 ???:0: hello 23 world"
+        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(61|63): XXXhello 23 world$" is "2023/06/11 18:35:24.854965 ???:0: XXXhello 23 world"
+        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(61|63): XXXhello 23 world$" is "2023/06/11 18:35:24.855138 ???:0: XXXhello 23 world"
+        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(61|63): XXXhello 23 world$" is "2023/06/11 18:35:24.856385 ???:0: XXXhello 23 world"
+        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(61|63): XXXhello 23 world$" is "2023/06/11 18:35:24.856563 ???:0: XXXhello 23 world"
     [...more lines following...]
 
 
@@ -1248,11 +1199,11 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
+    FAIL	log/syslog	0.000s
     # log/syslog
-    /usr/local/go1.18.6/src/log/syslog/syslog_test.go:22:25: PacketConn not declared by package net
-    /usr/local/go1.18.6/src/log/syslog/syslog_test.go:35:21: oe.Temporary undefined (type *net.OpError has no field or method Temporary)
-    /usr/local/go1.18.6/src/log/syslog/syslog_test.go:110:15: ListenPacket not declared by package net
-    FAIL
+    /usr/local/go1.20/src/log/syslog/syslog_test.go:22:25: undefined: net.PacketConn
+    /usr/local/go1.20/src/log/syslog/syslog_test.go:35:21: oe.Temporary undefined (type *net.OpError has no field or method Temporary)
+    /usr/local/go1.20/src/log/syslog/syslog_test.go:110:15: undefined: net.ListenPacket
 
 
 
@@ -1268,9 +1219,22 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    # encoding/gob
-    /usr/local/go1.18.6/src/encoding/gob/decode.go:562:21: MakeMapWithSize not declared by package reflect
-    FAIL
+    FAIL	math/big	0.000s
+    # math/big
+    /usr/local/go1.20/src/math/bits/bits.go:472:10: interp: running for more than 3m0s, timing out (executed calls: 28656473)
+      <badref> = and half <badref>, <null operand!>fatal error: unexpected signal during runtime execution
+    [signal SIGSEGV: segmentation violation code=0x1 addr=0xfff12bed61e4 pc=0xffff100db604]
+    
+    runtime stack:
+    runtime.throw({0x7e48c2?, 0xfffee2c86230?})
+    	/usr/local/go/src/runtime/panic.go:1047 +0x40 fp=0xfffee2c85ed0 sp=0xfffee2c85ea0 pc=0x44fa50
+    runtime.sigpanic()
+    	/usr/local/go/src/runtime/signal_unix.go:821 +0x240 fp=0xfffee2c85f10 sp=0xfffee2c85ed0 pc=0x466a90
+    
+    goroutine 8 [syscall]:
+    runtime.cgocall(0x72cb60, 0x400bb79bf8)
+    	/usr/local/go/src/runtime/cgocall.go:157 +0x50 fp=0x400bb79bc0 sp=0x400bb79b80 pc=0x4203e0
+    [...more lines following...]
 
 
 
@@ -1284,9 +1248,8 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    panic: runtime error: divide by zero
-    FAIL	math/bits	0.003s
-    FAIL
+    panic: runtime error at 0x0000000000246ace: divide by zero
+    FAIL	math/bits	1.337s
 
 
 
@@ -1302,10 +1265,8 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    # math/rand_test
-    /usr/local/go1.18.6/src/math/rand/regress_test.go:38:18: rv.Type().Method undefined (type reflect.Type has no field or method Method)
-    /usr/local/go1.18.6/src/math/rand/regress_test.go:39:12: rv.Method undefined (type reflect.Value has no field or method Method)
-    FAIL
+    panic: unimplemented: (reflect.Type).Method()
+    FAIL	math/rand	26.906s
 
 
 
@@ -1319,25 +1280,10 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    panic: unimplemented: (reflect.Value).MapKeys()
-    FAIL	mime	0.007s
-    FAIL
+    panic: runtime error at 0x000000000022dc26: deadlocked: no event source
+    FAIL	mime	1.292s
 
 
-
-
-
-
-## mime/multipart
-
-
-
-The compiler gave the following error when running the tests for this package:
-
-
-    panic: unimplemented: (reflect.Value).MapRange()
-    FAIL	mime/multipart	0.007s
-    FAIL
 
 
 
@@ -1401,6 +1347,7 @@ This package cannot be imported because the following dependencies cannot be com
 This package cannot be imported because the following dependencies cannot be compiled:
 
   * [crypto/tls](#cryptotls)
+  * [crypto/x509](#cryptox509)
   * [net/http](#nethttp)
 
 
@@ -1424,6 +1371,7 @@ This package cannot be imported because the following dependencies cannot be com
 This package cannot be imported because the following dependencies cannot be compiled:
 
   * [net/http](#nethttp)
+  * [net/http/httptrace](#nethttphttptrace)
 
 
 
@@ -1449,10 +1397,9 @@ This package cannot be imported because the following dependencies cannot be com
 The compiler gave the following error when running the tests for this package:
 
 
+    FAIL	net/netip	0.000s
     # net/netip_test
-    /usr/local/go1.18.6/src/net/netip/netip_test.go:1815:25: UDPAddr not declared by package net
-    /usr/local/go1.18.6/src/net/netip/fuzz_test.go:177:32: stdip.IsPrivate undefined (type net.IP has no field or method IsPrivate)
-    FAIL
+    /usr/local/go1.20/src/net/netip/fuzz_test.go:177:32: stdip.IsPrivate undefined (type net.IP has no field or method IsPrivate)
 
 
 
@@ -1464,7 +1411,6 @@ The compiler gave the following error when running the tests for this package:
 
 This package cannot be imported because the following dependencies cannot be compiled:
 
-  * [encoding/gob](#encodinggob)
   * [net/http](#nethttp)
 
 
@@ -1493,20 +1439,6 @@ This package cannot be imported because the following dependencies cannot be com
 
 
 
-## net/textproto
-
-
-
-The compiler gave the following error when running the tests for this package:
-
-
-    panic: unimplemented: (reflect.Value).MapKeys()
-    FAIL	net/textproto	0.006s
-    FAIL
-
-
-
-
 
 
 ## net/url
@@ -1516,9 +1448,8 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    # encoding/gob
-    /usr/local/go1.18.6/src/encoding/gob/decode.go:562:21: MakeMapWithSize not declared by package reflect
-    FAIL
+    panic: reflect: unimplemented: AssignableTo with interface
+    FAIL	net/url	1.292s
 
 
 
@@ -1534,9 +1465,9 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
+    FAIL	os/exec	0.000s
     # os/user
-    ../../../../../usr/local/go1.18.6/src/os/user/cgo_lookup_unix.go:18:6: not implemented: build constraints in #cgo line
-    FAIL
+    ../../../../../../usr/local/go1.20/src/os/user/cgo_lookup_cgo.go:14:6: not implemented: build constraints in #cgo line
 
 
 
@@ -1550,13 +1481,10 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    # os/signal
-    /usr/local/go1.18.6/src/os/signal/signal_test.go:435:23: t.Deadline undefined (type *testing.T has no field or method Deadline)
-    /usr/local/go1.18.6/src/os/signal/signal_test.go:479:23: t.Deadline undefined (type *testing.T has no field or method Deadline)
-    /usr/local/go1.18.6/src/os/signal/signal_test.go:549:24: t.Deadline undefined (type *testing.T has no field or method Deadline)
-    /usr/local/go1.18.6/src/os/signal/signal_test.go:599:23: t.Deadline undefined (type *testing.T has no field or method Deadline)
-    /usr/local/go1.18.6/src/os/signal/signal_test.go:735:25: t.Deadline undefined (type *testing.T has no field or method Deadline)
-    FAIL
+    FAIL	os/signal	0.000s
+    # internal/testpty
+    ../../tinygo/lib/musl/include/fcntl.h:22:10: fatal: 'bits/fcntl.h' file not found
+    ../../../../../../usr/local/go1.20/src/internal/testpty/pty_cgo.go:11:10: note: in file included from pty_cgo.go!cgo.c:4:
 
 
 
@@ -1571,7 +1499,7 @@ The compiler gave the following error when this package was imported:
 
 
     # os/user
-    ../../../../../usr/local/go1.18.6/src/os/user/cgo_lookup_unix.go:18:6: not implemented: build constraints in #cgo line
+    ../../../../../../usr/local/go1.20/src/os/user/cgo_lookup_cgo.go:14:6: not implemented: build constraints in #cgo line
 
 
 
@@ -1587,8 +1515,7 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when running the tests for this package:
 
 
-    FAIL	path/filepath	0.011s
-    FAIL
+    FAIL	path/filepath	1.372s
 
 
 
@@ -1603,7 +1530,7 @@ The compiler gave the following error when this package was imported:
 
 
     # plugin
-    ../../../../../usr/local/go1.18.6/src/plugin/plugin_dlopen.go:10:6: not implemented: build constraints in #cgo line
+    ../../../../../../usr/local/go1.20/src/plugin/plugin_dlopen.go:10:6: not implemented: build constraints in #cgo line
 
 
 
@@ -1619,37 +1546,9 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when running the tests for this package:
 
 
-    FAIL	regexp	0.266s
-    FAIL
+    FAIL	regexp	10.812s
 
 
-
-
-
-
-## regexp/syntax
-
-
-
-The compiler gave the following error when running the tests for this package:
-
-
-    # regexp/syntax
-    /usr/local/go1.18.6/src/unicode/letter.go:122:6: interp: running for more than 3m0s, timing out (executed calls: 2918928)
-      <badref> = alloca fatal error: unexpected signal during runtime execution
-    [signal SIGSEGV: segmentation violation code=0x1 addr=0x108 pc=0x7f83239ef3b7]
-    
-    runtime stack:
-    runtime.throw({0x2c7b65?, 0x7f83239c054f?})
-    	/usr/local/go/src/runtime/panic.go:992 +0x71
-    runtime.sigpanic()
-    	/usr/local/go/src/runtime/signal_unix.go:802 +0x389
-    
-    goroutine 8 [syscall]:
-    runtime.cgocall(0x85f840, 0xc004fadba0)
-    	/usr/local/go/src/runtime/cgocall.go:157 +0x5c fp=0xc004fadb78 sp=0xc004fadb40 pc=0x50e8dc
-    tinygo.org/x/go-llvm._Cfunc_LLVMDumpValue(0x2f79250)
-    [...more lines following...]
 
 
 
@@ -1663,19 +1562,19 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    --- FAIL: TestCountStableOps (4.91s)
+    --- FAIL: TestCountStableOps (9.51s)
         Counting skipped as non-verbose mode.
         SkipNow is incomplete, requires runtime.Goexit()
-        Stable      100 elements:         900 Swap,        774 Less
-        Stable      300 elements:        3896 Swap,       3023 Less
-        Stable     1000 elements:       19935 Swap,      12480 Less
-        Stable     3000 elements:       82471 Swap,      42842 Less
-        Stable    10000 elements:      349396 Swap,     165950 Less
-        Stable    30000 elements:     1339352 Swap,     558151 Less
-        Stable   100000 elements:     5787542 Swap,    2084840 Less
-        Stable   300000 elements:    20444960 Swap,    6868106 Less
-        Stable  1000000 elements:    84504188 Swap,   25119300 Less
-    --- FAIL: TestCountSortOps (0.99s)
+        Stable      100 elements:         930 Swap,        820 Less
+        Stable      300 elements:        3937 Swap,       2993 Less
+        Stable     1000 elements:       19510 Swap,      12224 Less
+        Stable     3000 elements:       82341 Swap,      43082 Less
+        Stable    10000 elements:      349590 Swap,     165816 Less
+        Stable    30000 elements:     1341046 Swap,     558467 Less
+        Stable   100000 elements:     5787139 Swap,    2084649 Less
+        Stable   300000 elements:    20447012 Swap,    6868979 Less
+        Stable  1000000 elements:    84481603 Swap,   25116491 Less
+    --- FAIL: TestCountSortOps (1.47s)
         Counting skipped as non-verbose mode.
         SkipNow is incomplete, requires runtime.Goexit()
     [...more lines following...]
@@ -1694,22 +1593,15 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    # strings_test
-    /home/ayke/src/github.com/tinygo-org/tinygo/src/runtime/runtime.go:37:6: interp: running for more than 3m0s, timing out (executed calls: 303856)
-      callfatal error: unexpected signal during runtime execution
-    [signal SIGSEGV: segmentation violation code=0x1 addr=0x0 pc=0x7ff97639c5d8]
-    
-    runtime stack:
-    runtime.throw({0x2c7b65?, 0x7ff97923d1f6?})
-    	/usr/local/go/src/runtime/panic.go:992 +0x71
-    runtime.sigpanic()
-    	/usr/local/go/src/runtime/signal_unix.go:802 +0x389
-    
-    goroutine 35 [syscall]:
-    runtime.cgocall(0x85f840, 0xc004269ba0)
-    	/usr/local/go/src/runtime/cgocall.go:157 +0x5c fp=0xc004269b78 sp=0xc004269b40 pc=0x50e8dc
-    tinygo.org/x/go-llvm._Cfunc_LLVMDumpValue(0x7ff92cafd6b0)
-    [...more lines following...]
+    --- FAIL: TestBuilderGrow (0.18s)
+        growLen=100: got 0 allocs during Write; want 1
+        growLen=1000: got 0 allocs during Write; want 1
+        growLen=10000: got 0 allocs during Write; want 1
+        growLen=100000: got 0 allocs during Write; want 1
+    --- FAIL: TestBuilderAllocs (0.02s)
+        Builder allocs = 0; want 1
+    FAIL
+    FAIL	strings	40.097s
 
 
 
@@ -1725,10 +1617,7 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    # sync/atomic_test
-    /usr/local/go1.18.6/src/sync/atomic/atomic_test.go:1202:14: SetGCPercent not declared by package debug
-    /usr/local/go1.18.6/src/sync/atomic/atomic_test.go:1202:33: SetGCPercent not declared by package debug
-    FAIL
+    FAIL	sync/atomic	5.916s
 
 
 
@@ -1742,9 +1631,9 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
+    FAIL	syscall	0.000s
     # os/user
-    ../../../../../usr/local/go1.18.6/src/os/user/cgo_lookup_unix.go:18:6: not implemented: build constraints in #cgo line
-    FAIL
+    ../../../../../../usr/local/go1.20/src/os/user/cgo_lookup_cgo.go:14:6: not implemented: build constraints in #cgo line
 
 
 
@@ -1765,8 +1654,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).NumIn()
-    FAIL	testing/quick	0.004s
-    FAIL
+    FAIL	testing/quick	0.972s
 
 
 
@@ -1785,8 +1673,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).NumOut()
-    FAIL	text/template	0.003s
-    FAIL
+    FAIL	text/template	1.088s
 
 
 
@@ -1802,9 +1689,14 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    # encoding/gob
-    /usr/local/go1.18.6/src/encoding/gob/decode.go:562:21: MakeMapWithSize not declared by package reflect
-    FAIL
+    FAIL	time	0.000s
+    # time_test
+    /usr/local/go1.20/src/time/sleep_test.go:714:4: b.ReportMetric undefined (type *testing.B has no field or method ReportMetric)
+    /usr/local/go1.20/src/time/sleep_test.go:715:4: b.ReportMetric undefined (type *testing.B has no field or method ReportMetric)
+    /usr/local/go1.20/src/time/sleep_test.go:716:4: b.ReportMetric undefined (type *testing.B has no field or method ReportMetric)
+    /usr/local/go1.20/src/time/sleep_test.go:787:8: b.ReportMetric undefined (type *testing.B has no field or method ReportMetric)
+    /usr/local/go1.20/src/time/sleep_test.go:788:8: b.ReportMetric undefined (type *testing.B has no field or method ReportMetric)
+    /usr/local/go1.20/src/time/sleep_test.go:789:8: b.ReportMetric undefined (type *testing.B has no field or method ReportMetric)
 
 
 
@@ -1818,10 +1710,10 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when this package was imported:
 
 
-    ld.lld-14: error: undefined symbol: time.registerLoadFromEmbeddedTZData
-    >>> referenced by scheduler_any.go:25 (/home/ayke/src/github.com/tinygo-org/tinygo/src/runtime/scheduler_any.go:25)
-    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-191D9438BAF043FD1177ECD11661EC8F3C4DE9FE:(runtime.run$1$gowrapper)
-    error: failed to link /tmp/tinygo831970216/main: exit status 1
+    ld.lld: error: undefined symbol: time.registerLoadFromEmbeddedTZData
+    >>> referenced by scheduler_any.go:24 (/home/ayke/src/tinygo/tinygo/src/runtime/scheduler_any.go:24)
+    >>>               /home/ayke/.cache/tinygo/thinlto/llvmcache-809755382705B4E52ACE223C1D98D60EC110E4FB:(runtime.run$1$gowrapper)
+    error: failed to link /tmp/tinygo4244802663/main: exit status 1
 
 
 
