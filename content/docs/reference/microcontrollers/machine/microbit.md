@@ -164,6 +164,37 @@ Deprecated: use 100 * machine.KHz or 400 * machine.KHz instead.
 
 
 ```go
+const (
+	// I2CReceive indicates target has received a message from the controller.
+	I2CReceive	I2CTargetEvent	= iota
+
+	// I2CRequest indicates the controller is expecting a message from the target.
+	I2CRequest
+
+	// I2CFinish indicates the controller has ended the transaction.
+	//
+	// I2C controllers can chain multiple receive/request messages without
+	// relinquishing the bus by doing 'restarts'.  I2CFinish indicates the
+	// bus has been relinquished by an I2C 'stop'.
+	I2CFinish
+)
+```
+
+
+
+```go
+const (
+	// I2CModeController represents an I2C peripheral in controller mode.
+	I2CModeController	I2CMode	= iota
+
+	// I2CModeTarget represents an I2C peripheral in target mode.
+	I2CModeTarget
+)
+```
+
+
+
+```go
 const Device = deviceName
 ```
 
@@ -283,13 +314,9 @@ UART
 
 
 ```go
-var (
-	I2C0	= (*I2C)(unsafe.Pointer(nrf.TWI0))
-	I2C1	= (*I2C)(unsafe.Pointer(nrf.TWI1))
-)
+var Flash flashBlockDevice
 ```
 
-There are 2 I2C interfaces on the NRF.
 
 
 ```go
@@ -300,6 +327,16 @@ var (
 ```
 
 There are 2 SPI interfaces on the NRF51.
+
+
+```go
+var (
+	I2C0	= &I2C{Bus: nrf.TWI0}
+	I2C1	= &I2C{Bus: nrf.TWI1}
+)
+```
+
+There are 2 I2C interfaces on the NRF.
 
 
 ```go
@@ -335,6 +372,35 @@ var (
 func CPUFrequency() uint32
 ```
 
+
+
+### func CPUReset
+
+```go
+func CPUReset()
+```
+
+CPUReset performs a hard system reset.
+
+
+### func FlashDataEnd
+
+```go
+func FlashDataEnd() uintptr
+```
+
+Return the end of the writable flash area. Usually this is the address one
+past the end of the on-chip flash.
+
+
+### func FlashDataStart
+
+```go
+func FlashDataStart() uintptr
+```
+
+Return the start of the writable flash area, aligned on a page boundary. This
+is usually just after the program and static data.
 
 
 ### func GetRNG
@@ -423,6 +489,7 @@ type ADCConfig struct {
 	Reference	uint32	// analog reference voltage (AREF) in millivolts
 	Resolution	uint32	// number of bits for a single conversion (e.g., 8, 10, 12)
 	Samples		uint32	// number of samples for a single conversion (e.g., 4, 8, 16, 32)
+	SampleTime	uint32	// sample time, in microseconds (µs)
 }
 ```
 
@@ -433,15 +500,53 @@ value of each parameter will use the peripheral's default settings.
 
 
 
+## type BlockDevice
+
+```go
+type BlockDevice interface {
+	// ReadAt reads the given number of bytes from the block device.
+	io.ReaderAt
+
+	// WriteAt writes the given number of bytes to the block device.
+	io.WriterAt
+
+	// Size returns the number of bytes in this block device.
+	Size() int64
+
+	// WriteBlockSize returns the block size in which data can be written to
+	// memory. It can be used by a client to optimize writes, non-aligned writes
+	// should always work correctly.
+	WriteBlockSize() int64
+
+	// EraseBlockSize returns the smallest erasable area on this particular chip
+	// in bytes. This is used for the block size in EraseBlocks.
+	// It must be a power of two, and may be as small as 1. A typical size is 4096.
+	EraseBlockSize() int64
+
+	// EraseBlocks erases the given number of blocks. An implementation may
+	// transparently coalesce ranges of blocks into larger bundles if the chip
+	// supports this. The start and len parameters are in block numbers, use
+	// EraseBlockSize to map addresses to blocks.
+	EraseBlocks(start, len int64) error
+}
+```
+
+BlockDevice is the raw device that is meant to store flash data.
+
+
+
+
+
 ## type I2C
 
 ```go
 type I2C struct {
-	Bus nrf.TWI_Type
+	Bus	*nrf.TWI_Type
+	mode	I2CMode
 }
 ```
 
-I2C on the NRF.
+I2C on the NRF51 and NRF52.
 
 
 
@@ -502,10 +607,35 @@ type I2CConfig struct {
 	Frequency	uint32
 	SCL		Pin
 	SDA		Pin
+	Mode		I2CMode
 }
 ```
 
 I2CConfig is used to store config info for I2C.
+
+
+
+
+
+## type I2CMode
+
+```go
+type I2CMode int
+```
+
+I2CMode determines if an I2C peripheral is in Controller or Target mode.
+
+
+
+
+
+## type I2CTargetEvent
+
+```go
+type I2CTargetEvent uint8
+```
+
+I2CTargetEvent reflects events on the I2C bus
 
 
 

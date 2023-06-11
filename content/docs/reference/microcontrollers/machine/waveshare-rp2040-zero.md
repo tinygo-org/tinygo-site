@@ -120,6 +120,37 @@ Deprecated: use 100 * machine.KHz or 400 * machine.KHz instead.
 
 
 ```go
+const (
+	// I2CReceive indicates target has received a message from the controller.
+	I2CReceive	I2CTargetEvent	= iota
+
+	// I2CRequest indicates the controller is expecting a message from the target.
+	I2CRequest
+
+	// I2CFinish indicates the controller has ended the transaction.
+	//
+	// I2C controllers can chain multiple receive/request messages without
+	// relinquishing the bus by doing 'restarts'.  I2CFinish indicates the
+	// bus has been relinquished by an I2C 'stop'.
+	I2CFinish
+)
+```
+
+
+
+```go
+const (
+	// I2CModeController represents an I2C peripheral in controller mode.
+	I2CModeController	I2CMode	= iota
+
+	// I2CModeTarget represents an I2C peripheral in target mode.
+	I2CModeTarget
+)
+```
+
+
+
+```go
 const Device = deviceName
 ```
 
@@ -380,6 +411,11 @@ var (
 	ErrInvalidTgtAddr	= errors.New("invalid target i2c address not in 0..0x80 or is reserved")
 	ErrI2CGeneric		= errors.New("i2c error")
 	ErrRP2040I2CDisable	= errors.New("i2c rp2040 peripheral timeout in disable")
+	errInvalidI2CSDA	= errors.New("invalid I2C SDA pin")
+	errInvalidI2CSCL	= errors.New("invalid I2C SCL pin")
+	ErrI2CAlreadyListening	= errors.New("i2c already listening")
+	ErrI2CWrongMode		= errors.New("i2c wrong mode")
+	ErrI2CUnderflow		= errors.New("i2c underflow")
 )
 ```
 
@@ -424,6 +460,21 @@ reaching TOP, until it reaches 0 again.
 
 
 ```go
+var RTC = (*rtcType)(unsafe.Pointer(rp.RTC))
+```
+
+
+
+```go
+var (
+	ErrRtcDelayTooSmall	= errors.New("RTC interrupt deplay is too small, shall be at least 1 second")
+	ErrRtcDelayTooLarge	= errors.New("RTC interrupt deplay is too large, shall be no more than 1 day")
+)
+```
+
+
+
+```go
 var (
 	SPI0	= &_SPI0
 	_SPI0	= SPI{
@@ -444,6 +495,9 @@ var (
 	ErrLSBNotSupported	= errors.New("SPI LSB unsupported on PL022")
 	ErrSPITimeout		= errors.New("SPI timeout")
 	ErrSPIBaud		= errors.New("SPI baud too low or above 66.5Mhz")
+	errSPIInvalidSDI	= errors.New("invalid SPI SDI pin")
+	errSPIInvalidSDO	= errors.New("invalid SPI SDO pin")
+	errSPIInvalidSCK	= errors.New("invalid SPI SCK pin")
 )
 ```
 
@@ -502,6 +556,15 @@ func CPUFrequency() uint32
 
 
 
+### func CPUReset
+
+```go
+func CPUReset()
+```
+
+CPUReset performs a hard system reset.
+
+
 ### func ChipVersion
 
 ```go
@@ -554,6 +617,26 @@ func EnableMIDI(txHandler func(), rxHandler func([]byte), setupHandler func(usb.
 ```
 
 EnableMIDI enables MIDI. This function must be executed from the init().
+
+
+### func FlashDataEnd
+
+```go
+func FlashDataEnd() uintptr
+```
+
+Return the end of the writable flash area. Usually this is the address one
+past the end of the on-chip flash.
+
+
+### func FlashDataStart
+
+```go
+func FlashDataStart() uintptr
+```
+
+Return the start of the writable flash area, aligned on a page boundary. This
+is usually just after the program and static data.
 
 
 ### func GetRNG
@@ -729,6 +812,7 @@ type ADCConfig struct {
 	Reference	uint32	// analog reference voltage (AREF) in millivolts
 	Resolution	uint32	// number of bits for a single conversion (e.g., 8, 10, 12)
 	Samples		uint32	// number of samples for a single conversion (e.g., 4, 8, 16, 32)
+	SampleTime	uint32	// sample time, in microseconds (µs)
 }
 ```
 
@@ -739,12 +823,50 @@ value of each parameter will use the peripheral's default settings.
 
 
 
+## type BlockDevice
+
+```go
+type BlockDevice interface {
+	// ReadAt reads the given number of bytes from the block device.
+	io.ReaderAt
+
+	// WriteAt writes the given number of bytes to the block device.
+	io.WriterAt
+
+	// Size returns the number of bytes in this block device.
+	Size() int64
+
+	// WriteBlockSize returns the block size in which data can be written to
+	// memory. It can be used by a client to optimize writes, non-aligned writes
+	// should always work correctly.
+	WriteBlockSize() int64
+
+	// EraseBlockSize returns the smallest erasable area on this particular chip
+	// in bytes. This is used for the block size in EraseBlocks.
+	// It must be a power of two, and may be as small as 1. A typical size is 4096.
+	EraseBlockSize() int64
+
+	// EraseBlocks erases the given number of blocks. An implementation may
+	// transparently coalesce ranges of blocks into larger bundles if the chip
+	// supports this. The start and len parameters are in block numbers, use
+	// EraseBlockSize to map addresses to blocks.
+	EraseBlocks(start, len int64) error
+}
+```
+
+BlockDevice is the raw device that is meant to store flash data.
+
+
+
+
+
 ## type I2C
 
 ```go
 type I2C struct {
 	Bus		*rp.I2C0_Type
-	restartOnNext	bool
+	mode		I2CMode
+	txInProgress	bool
 }
 ```
 
@@ -769,6 +891,17 @@ Same as above for I2C1 bus:
 	SCL: 3, 7, 11, 15, 19, 27
 
 
+### func (*I2C) Listen
+
+```go
+func (i2c *I2C) Listen(addr uint16) error
+```
+
+Listen starts listening for I2C requests sent to specified address
+
+addr is the address to listen to
+
+
 ### func (*I2C) ReadRegister
 
 ```go
@@ -781,6 +914,14 @@ operation, and reads the response.
 Many I2C-compatible devices are organized in terms of registers. This method
 is a shortcut to easily read such registers. Also, it only works for devices
 with 7-bit addresses, which is the vast majority.
+
+
+### func (*I2C) Reply
+
+```go
+func (i2c *I2C) Reply(buf []byte) error
+```
+
 
 
 ### func (*I2C) SetBaudRate
@@ -814,6 +955,14 @@ Performs only a read transfer.
 Performs only a write transfer.
 
 
+### func (*I2C) WaitForEvent
+
+```go
+func (i2c *I2C) WaitForEvent(buf []byte) (evt I2CTargetEvent, count int, err error)
+```
+
+
+
 ### func (*I2C) WriteRegister
 
 ```go
@@ -838,10 +987,35 @@ type I2CConfig struct {
 	// SDA/SCL Serial Data and clock pins. Refer to datasheet to see
 	// which pins match the desired bus.
 	SDA, SCL	Pin
+	Mode		I2CMode
 }
 ```
 
 I2CConfig is used to store config info for I2C.
+
+
+
+
+
+## type I2CMode
+
+```go
+type I2CMode int
+```
+
+I2CMode determines if an I2C peripheral is in Controller or Target mode.
+
+
+
+
+
+## type I2CTargetEvent
+
+```go
+type I2CTargetEvent uint8
+```
+
+I2CTargetEvent reflects events on the I2C bus
 
 
 
@@ -1153,7 +1327,7 @@ func (spi SPI) Configure(config SPIConfig) error
 ```
 
 Configure is intended to setup/initialize the SPI interface.
-Default baudrate of 115200 is used if Frequency == 0. Default
+Default baudrate of 4MHz is used if Frequency == 0. Default
 word length (data bits) is 8.
 Below is a list of GPIO pins corresponding to SPI0 bus on the rp2040:
 
@@ -1248,8 +1422,6 @@ type SPIConfig struct {
 	LSBFirst	bool
 	// Mode's two most LSB are CPOL and CPHA. i.e. Mode==2 (0b10) is CPOL=1, CPHA=0
 	Mode	uint8
-	// Number of data bits per transfer. Valid values 4..16. Default and recommended is 8.
-	DataBits	uint8
 	// Serial clock pin
 	SCK	Pin
 	// TX or Serial Data Out (MOSI if rp2040 is master)

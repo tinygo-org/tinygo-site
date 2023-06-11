@@ -38,20 +38,20 @@ of the pins in a peripheral unconfigured (if supported by the hardware).
 
 ```go
 const (
-	IRQ_VBLANK	= interrupt.IRQ_VBLANK
-	IRQ_HBLANK	= interrupt.IRQ_HBLANK
-	IRQ_VCOUNT	= interrupt.IRQ_VCOUNT
-	IRQ_TIMER0	= interrupt.IRQ_TIMER0
-	IRQ_TIMER1	= interrupt.IRQ_TIMER1
-	IRQ_TIMER2	= interrupt.IRQ_TIMER2
-	IRQ_TIMER3	= interrupt.IRQ_TIMER3
-	IRQ_COM		= interrupt.IRQ_COM
-	IRQ_DMA0	= interrupt.IRQ_DMA0
-	IRQ_DMA1	= interrupt.IRQ_DMA1
-	IRQ_DMA2	= interrupt.IRQ_DMA2
-	IRQ_DMA3	= interrupt.IRQ_DMA3
-	IRQ_KEYPAD	= interrupt.IRQ_KEYPAD
-	IRQ_GAMEPAK	= interrupt.IRQ_GAMEPAK
+	IRQ_VBLANK	= gba.IRQ_VBLANK
+	IRQ_HBLANK	= gba.IRQ_HBLANK
+	IRQ_VCOUNT	= gba.IRQ_VCOUNT
+	IRQ_TIMER0	= gba.IRQ_TIMER0
+	IRQ_TIMER1	= gba.IRQ_TIMER1
+	IRQ_TIMER2	= gba.IRQ_TIMER2
+	IRQ_TIMER3	= gba.IRQ_TIMER3
+	IRQ_COM		= gba.IRQ_COM
+	IRQ_DMA0	= gba.IRQ_DMA0
+	IRQ_DMA1	= gba.IRQ_DMA1
+	IRQ_DMA2	= gba.IRQ_DMA2
+	IRQ_DMA3	= gba.IRQ_DMA3
+	IRQ_KEYPAD	= gba.IRQ_KEYPAD
+	IRQ_GAMEPAK	= gba.IRQ_GAMEPAK
 )
 ```
 
@@ -80,7 +80,7 @@ var (
 
 
 ```go
-var Display = FramebufDisplay{(*[160][240]volatile.Register16)(unsafe.Pointer(uintptr(0x06000000)))}
+var Display = DisplayMode3{(*[160][240]volatile.Register16)(unsafe.Pointer(uintptr(gba.MEM_VRAM)))}
 ```
 
 
@@ -142,6 +142,7 @@ type ADCConfig struct {
 	Reference	uint32	// analog reference voltage (AREF) in millivolts
 	Resolution	uint32	// number of bits for a single conversion (e.g., 8, 10, 12)
 	Samples		uint32	// number of samples for a single conversion (e.g., 4, 8, 16, 32)
+	SampleTime	uint32	// sample time, in microseconds (µs)
 }
 ```
 
@@ -152,10 +153,10 @@ value of each parameter will use the peripheral's default settings.
 
 
 
-## type FramebufDisplay
+## type DisplayMode3
 
 ```go
-type FramebufDisplay struct {
+type DisplayMode3 struct {
 	port *[160][240]volatile.Register16
 }
 ```
@@ -163,34 +164,34 @@ type FramebufDisplay struct {
 
 
 
-### func (FramebufDisplay) Configure
+### func (*DisplayMode3) Configure
 
 ```go
-func (d FramebufDisplay) Configure()
+func (d *DisplayMode3) Configure()
 ```
 
 
 
-### func (FramebufDisplay) Display
+### func (*DisplayMode3) Display
 
 ```go
-func (d FramebufDisplay) Display() error
+func (d *DisplayMode3) Display() error
 ```
 
 
 
-### func (FramebufDisplay) SetPixel
+### func (*DisplayMode3) SetPixel
 
 ```go
-func (d FramebufDisplay) SetPixel(x, y int16, c color.RGBA)
+func (d *DisplayMode3) SetPixel(x, y int16, c color.RGBA)
 ```
 
 
 
-### func (FramebufDisplay) Size
+### func (*DisplayMode3) Size
 
 ```go
-func (d FramebufDisplay) Size() (x, y int16)
+func (d *DisplayMode3) Size() (x, y int16)
 ```
 
 

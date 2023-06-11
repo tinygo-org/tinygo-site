@@ -9,7 +9,15 @@ title: lorae5
 ```go
 const (
 	// We assume a LED is connected on PB5
-	LED = PB5	// Default LED
+	LED	= PB5	// Default LED
+
+	// Set the POWER_EN3V3 pin to high to turn
+	// on the 3.3V power for all peripherals
+	POWER_EN3V3	= PA9
+
+	// Set the POWER_EN5V pin to high to turn
+	// on the 5V bus power for all peripherals
+	POWER_EN5V	= PB10
 )
 ```
 
@@ -29,11 +37,11 @@ SubGhz (SPI3)
 
 ```go
 const (
-	//MCU USART1
+	// MCU USART1
 	UART1_TX_PIN	= PB6
 	UART1_RX_PIN	= PB7
 
-	//MCU USART2
+	// MCU USART2
 	UART2_TX_PIN	= PA2
 	UART2_RX_PIN	= PA3
 
@@ -41,15 +49,14 @@ const (
 	UART_TX_PIN	= UART1_TX_PIN
 	UART_RX_PIN	= UART1_RX_PIN
 
-	// I2C1 pins
-	// I2C1 is connected to Flash, Accelerometer, Env. Sensor, Crypto Element)
-	I2C1_SCL_PIN	= PA9
-	I2C1_SDA_PIN	= PA10
-	I2C1_ALT_FUNC	= 4
+	// I2C2 pins
+	I2C2_SCL_PIN	= PB15
+	I2C2_SDA_PIN	= PA15
+	I2C2_ALT_FUNC	= 4
 
-	// I2C0 alias for I2C1
-	I2C0_SDA_PIN	= I2C1_SDA_PIN
-	I2C0_SCL_PIN	= I2C1_SCL_PIN
+	// I2C0 alias for I2C2
+	I2C0_SDA_PIN	= I2C2_SDA_PIN
+	I2C0_SCL_PIN	= I2C2_SCL_PIN
 )
 ```
 
@@ -66,6 +73,37 @@ const (
 TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-speed bus.
 
 Deprecated: use 100 * machine.KHz or 400 * machine.KHz instead.
+
+
+```go
+const (
+	// I2CReceive indicates target has received a message from the controller.
+	I2CReceive	I2CTargetEvent	= iota
+
+	// I2CRequest indicates the controller is expecting a message from the target.
+	I2CRequest
+
+	// I2CFinish indicates the controller has ended the transaction.
+	//
+	// I2C controllers can chain multiple receive/request messages without
+	// relinquishing the bus by doing 'restarts'.  I2CFinish indicates the
+	// bus has been relinquished by an I2C 'stop'.
+	I2CFinish
+)
+```
+
+
+
+```go
+const (
+	// I2CModeController represents an I2C peripheral in controller mode.
+	I2CModeController	I2CMode	= iota
+
+	// I2CModeTarget represents an I2C peripheral in target mode.
+	I2CModeTarget
+)
+```
+
 
 
 ```go
@@ -314,13 +352,27 @@ var (
 	}
 	DefaultUART	= UART0
 
-	// I2C Busses
-	I2C1	= &I2C{
-		Bus:			stm32.I2C1,
-		AltFuncSelector:	I2C1_ALT_FUNC,
+	// Since we treat UART1 as zero, let's also call it by the real name
+	UART1	= UART0
+
+	// UART2
+	UART2	= &_UART2
+	_UART2	= UART{
+		Buffer:			NewRingBuffer(),
+		Bus:			stm32.USART2,
+		TxAltFuncSelector:	AF7_USART1_2,
+		RxAltFuncSelector:	AF7_USART1_2,
 	}
 
-	I2C0	= I2C1
+	// I2C Busses
+	I2C2	= &I2C{
+		Bus:			stm32.I2C2,
+		AltFuncSelector:	I2C2_ALT_FUNC,
+	}
+
+	// Set "default" I2C bus to I2C2
+	I2C0	= I2C2
+
 	// SPI
 	SPI3	= SPI{
 		Bus: stm32.SPI3,
@@ -341,6 +393,12 @@ var (
 	ErrInvalidDataPin	= errors.New("machine: invalid data pin")
 	ErrNoPinChangeChannel	= errors.New("machine: no channel available for pin interrupt")
 )
+```
+
+
+
+```go
+var Flash flashBlockDevice
 ```
 
 
@@ -435,6 +493,35 @@ func CPUFrequency() uint32
 
 
 
+### func CPUReset
+
+```go
+func CPUReset()
+```
+
+CPUReset performs a hard system reset.
+
+
+### func FlashDataEnd
+
+```go
+func FlashDataEnd() uintptr
+```
+
+Return the end of the writable flash area. Usually this is the address one
+past the end of the on-chip flash.
+
+
+### func FlashDataStart
+
+```go
+func FlashDataStart() uintptr
+```
+
+Return the start of the writable flash area, aligned on a page boundary. This
+is usually just after the program and static data.
+
+
 ### func GetRNG
 
 ```go
@@ -483,11 +570,49 @@ type ADCConfig struct {
 	Reference	uint32	// analog reference voltage (AREF) in millivolts
 	Resolution	uint32	// number of bits for a single conversion (e.g., 8, 10, 12)
 	Samples		uint32	// number of samples for a single conversion (e.g., 4, 8, 16, 32)
+	SampleTime	uint32	// sample time, in microseconds (µs)
 }
 ```
 
 ADCConfig holds ADC configuration parameters. If left unspecified, the zero
 value of each parameter will use the peripheral's default settings.
+
+
+
+
+
+## type BlockDevice
+
+```go
+type BlockDevice interface {
+	// ReadAt reads the given number of bytes from the block device.
+	io.ReaderAt
+
+	// WriteAt writes the given number of bytes to the block device.
+	io.WriterAt
+
+	// Size returns the number of bytes in this block device.
+	Size() int64
+
+	// WriteBlockSize returns the block size in which data can be written to
+	// memory. It can be used by a client to optimize writes, non-aligned writes
+	// should always work correctly.
+	WriteBlockSize() int64
+
+	// EraseBlockSize returns the smallest erasable area on this particular chip
+	// in bytes. This is used for the block size in EraseBlocks.
+	// It must be a power of two, and may be as small as 1. A typical size is 4096.
+	EraseBlockSize() int64
+
+	// EraseBlocks erases the given number of blocks. An implementation may
+	// transparently coalesce ranges of blocks into larger bundles if the chip
+	// supports this. The start and len parameters are in block numbers, use
+	// EraseBlockSize to map addresses to blocks.
+	EraseBlocks(start, len int64) error
+}
+```
+
+BlockDevice is the raw device that is meant to store flash data.
 
 
 
@@ -572,6 +697,30 @@ type I2CConfig struct {
 ```
 
 I2CConfig is used to store config info for I2C.
+
+
+
+
+
+## type I2CMode
+
+```go
+type I2CMode int
+```
+
+I2CMode determines if an I2C peripheral is in Controller or Target mode.
+
+
+
+
+
+## type I2CTargetEvent
+
+```go
+type I2CTargetEvent uint8
+```
+
+I2CTargetEvent reflects events on the I2C bus
 
 
 

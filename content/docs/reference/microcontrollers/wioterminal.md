@@ -23,11 +23,11 @@ The [Seeed Wio Terminal](https://www.seeedstudio.com/Wio-Terminal-p-4509.html) i
 | ----------------- | ------------ | ----------------- | -------------------- |
 | `ADC0`            | `PB08`       | `D0`, `A0`, `BCM27`, `RPI_A0` |                      |
 | `ADC1`            | `PB09`       | `D1`, `A1`, `BCM22`, `RPI_A1` |                      |
-| `ADC2`            | `PA07`       | `D2`, `A2`, `BCM13`, `BCM23`, `RPI_A2` |                      |
+| `ADC2`            | `PA07`       | `D2`, `A2`, `BCM23`, `RPI_A2` |                      |
 | `ADC3`            | `PB04`       | `D3`, `A3`, `BCM24`, `RPI_A3` |                      |
 | `ADC4`            | `PB05`       | `D4`, `A4`, `BCM25`, `RPI_A4` |                      |
 | `ADC5`            | `PB06`       | `D5`, `A5`, `BCM12`, `RPI_A5` |                      |
-| `ADC6`            | `PA04`       | `D6`, `A6`, `RPI_A6` |                      |
+| `ADC6`            | `PA04`       | `D6`, `A6`, `BCM13`, `RPI_A6` |                      |
 | `ADC7`            | `PB07`       | `D7`, `A7`, `BCM16`, `RPI_A7` |                      |
 | `ADC8`            | `PA06`       | `D8`, `A8`, `BCM26`, `RPI_A8` |                      |
 | `LED`             | `PA15`       | `PIN_LED_13`, `PIN_LED_RXL`, `PIN_LED_TXL`, `PIN_LED`, `PIN_LED2`, `PIN_LED3`, `LED_BUILTIN`, `PIN_NEOPIXEL` | `TCC2` (channel 1), `TCC1` (channel 3) |

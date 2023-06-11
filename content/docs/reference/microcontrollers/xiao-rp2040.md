@@ -23,10 +23,10 @@ The [Seeed XIAO RP2040](https://www.seeedstudio.com/XIAO-RP2040-v1-0-p-5026.html
 | ----------------- | ------------ | ----------------- | -------------------- |
 | `D0`              | `GPIO26`     | `A0`, `ADC0`      | `PWM5` (channel A)   |
 | `D1`              | `GPIO27`     | `A1`, `ADC1`      | `PWM5` (channel B)   |
-| `D2`              | `GPIO28`     | `A2`, `ADC2`      | `PWM6` (channel A)   |
-| `D3`              | `GPIO29`     | `A3`, `ADC3`      | `PWM6` (channel B)   |
-| `D4`              | `GPIO6`      | `I2C0_SDA_PIN`    | `PWM3` (channel A)   |
-| `D5`              | `GPIO7`      | `I2C0_SCL_PIN`    | `PWM3` (channel B)   |
+| `D2`              | `GPIO28`     | `A2`, `I2C0_SDA_PIN`, `ADC2` | `PWM6` (channel A)   |
+| `D3`              | `GPIO29`     | `A3`, `I2C0_SCL_PIN`, `ADC3` | `PWM6` (channel B)   |
+| `D4`              | `GPIO6`      | `I2C1_SDA_PIN`    | `PWM3` (channel A)   |
+| `D5`              | `GPIO7`      | `I2C1_SCL_PIN`    | `PWM3` (channel B)   |
 | `D6`              | `GPIO0`      | `UART0_TX_PIN`, `UART_TX_PIN` | `PWM0` (channel A)   |
 | `D7`              | `GPIO1`      | `UART0_RX_PIN`, `UART_RX_PIN` | `PWM0` (channel B)   |
 | `D8`              | `GPIO2`      | `SPI0_SCK_PIN`    | `PWM1` (channel A)   |

@@ -401,6 +401,15 @@ func CPUFrequency() uint32
 CPUFrequency returns the frequency of the ARM core clock (180MHz)
 
 
+### func CPUReset
+
+```go
+func CPUReset()
+```
+
+CPUReset performs a hard system reset.
+
+
 ### func ClockFrequency
 
 ```go
@@ -469,6 +478,7 @@ type ADCConfig struct {
 	Reference	uint32	// analog reference voltage (AREF) in millivolts
 	Resolution	uint32	// number of bits for a single conversion (e.g., 8, 10, 12)
 	Samples		uint32	// number of samples for a single conversion (e.g., 4, 8, 16, 32)
+	SampleTime	uint32	// sample time, in microseconds (µs)
 }
 ```
 
