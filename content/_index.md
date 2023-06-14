@@ -14,7 +14,6 @@ title: "TinyGo Home"
 		See the code <i class="fab fa-github ml-2 "></i>
 	</a>
 	<p class="h2 mt-5">Go on embedded systems and WebAssembly</p>
-	{{< blocks/link-down color="info" >}}
 </div>
 {{< /blocks/cover >}}
 
