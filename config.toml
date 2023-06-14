@@ -25,6 +25,7 @@ unsafe = true
 # Everything below this are Site Params
 [params]
 copyright = "The TinyGo Authors"
+description = "A Go compiler for small places"
 
 # Google Custom Search Engine ID. Remove or comment out to disable search.
 # gcs_engine_id = "feba5f0a3db52897d"
