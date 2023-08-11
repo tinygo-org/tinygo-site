@@ -320,6 +320,34 @@ func (uart *UART) WriteByte(c byte) error
 
 Write a single byte to the UART output.
 
+## Watchdog
+
+```go
+type WatchdogConfig struct {
+	TimeoutMillis uint32
+}
+```
+
+The `WatchdogConfig` struct contains configuration for the watchdog peripheral.
+
+  * `TimeoutMillis` is the requested maximum delay between calls to `Update`.
+
+```go
+func (wd *Watchdog) Configure(config WatchdogConfig) error
+```
+Configures the watchdog.
+
+This method should not be called after the watchdog is started and on some platforms attempting to reconfigure after starting the watchdog is explicitly forbidden / will not work.
+
+```go
+func (wd *Watchdog) Start() error
+```
+Starts the watchdog.  After calling this method, `Update` must be called periodically.
+
+```go
+func (wd *Watchdog) Update()
+```
+Updates the watchdog, indicating that the app is healthy.  This method must be called periodically to prevent the CPU from resetting.
 
 ## Other
 
