@@ -112,7 +112,7 @@ This should allow you to flash TinyGo programs on an Arduino or other supported 
 
 ### Arch Linux
 
-There is an [Arch package](https://archlinux.org/packages/community/x86_64/tinygo/) available for the latest TinyGo release.
+There is an [Arch package](https://archlinux.org/packages/extra/x86_64/tinygo/) available for the latest TinyGo release.
 
 If you are only interested in compiling TinyGo code for WebAssembly then you are now done with the installation.
 
@@ -126,7 +126,7 @@ There are some additional requirements to compile TinyGo programs that can run o
 
 To compile and flash TinyGo programs for AVR based processors such as the original Arduino Uno you must install avrdude:
 
-[avrdude package](https://www.archlinux.org/packages/community/x86_64/avrdude/)
+[avrdude package](https://archlinux.org/packages/extra/x86_64/avrdude/)
 
 This should allow you to flash TinyGo programs on an Arduino or other supported AVR-based board.
 
