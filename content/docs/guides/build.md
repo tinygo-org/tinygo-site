@@ -57,13 +57,13 @@ After adding the apt repository for your distribution you may install the LLVM t
 ```shell
 wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
 sudo apt-get update
-sudo apt-get install clang-15 llvm-15-dev lld-15 libclang-15-dev
+sudo apt-get install clang-16 llvm-16-dev lld-16 libclang-16-dev
 ```
 
 For **MacOS**, you can install LLVM through [Homebrew](https://formulae.brew.sh/formula/llvm). The Clang/LLVM version from Apple is not supported by TinyGo.
 
 ```shell
-brew install llvm@15
+brew install llvm
 ```
 
 For **Fedora** users you can install LLVM from the repository. Note that the version of LLVM [varies by Fedora version](https://packages.fedoraproject.org/pkgs/llvm/llvm-libs/), for example Fedora 37 has LLVM 15.
@@ -90,7 +90,7 @@ If you are getting a build error like this, LLVM is not installed as expected:
 1 error generated.
 ```
 
-This can often be fixed by specifying the LLVM version as a build tag, for example `-tags=llvm14` if you have LLVM 14 instead of LLVM 15.
+This can often be fixed by specifying the LLVM version as a build tag, for example `-tags=llvm14` if you have LLVM 14 instead of LLVM 16.
 
 Note that you should not use `make` when you want to build using a system-installed LLVM, just use the Go toolchain. `make` is used when you want to use a self-built LLVM, as in the next section.
 
@@ -163,7 +163,7 @@ This results in a `tinygo` binary in the `build` directory:
 
 ```shell
 $ ./build/tinygo version
-tinygo version 0.29.0 linux/amd64 (using go version go1.21 and LLVM version 15.0.0)
+tinygo version 0.30.0 linux/amd64 (using go version go1.21 and LLVM version 16.0.0)
 ```
 
 You have successfully built TinyGo from source. Congratulations!
