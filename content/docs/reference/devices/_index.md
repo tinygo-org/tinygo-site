@@ -12,7 +12,7 @@ Drivers are packages designed to make it easier to use these devices from your o
 
 All of these drivers can be found in the TinyGo Drivers repository located at [https://github.com/tinygo-org/drivers/](https://github.com/tinygo-org/drivers/)
 
-The following 96 devices are supported.
+The following 101 devices are supported.
 
 | Device Name                                                             | Datasheet   | Interface Type |
 |-------------------------------------------------------------------------|-------------|----------------|
@@ -29,6 +29,7 @@ The following 96 devices are supported.
 | [BBC micro:bit LED matrix](https://pkg.go.dev/tinygo.org/x/drivers/microbitmatrix) | [datasheet](https://github.com/bbcmicrobit/hardware/blob/master/SCH_BBC-Microbit_V1.3B.pdf) | GPIO |
 | [BH1750 ambient light sensor](https://pkg.go.dev/tinygo.org/x/drivers/bh1750) | [datasheet](https://www.mouser.com/ds/2/348/bh1750fvi-e-186247.pdf) | I2C |
 | [BlinkM RGB LED](https://pkg.go.dev/tinygo.org/x/drivers/blinkm) | [datasheet](http://thingm.com/fileadmin/thingm/downloads/BlinkM_datasheet.pdf) | I2C |
+| [BMA42X triaxial acceleration sensor](https://pkg.go.dev/tinygo.org/x/drivers/bma427) | [datasheet](https://files.pine64.org/doc/datasheet/pinetime/BST-BMA421-FL000.pdf) | I2C |
 | [BME280 humidity/pressure sensor](https://pkg.go.dev/tinygo.org/x/drivers/bme280) | [datasheet](https://cdn-shop.adafruit.com/datasheets/BST-BME280_DS001-10.pdf) | I2C |
 | [BMI160 accelerometer/gyroscope](https://pkg.go.dev/tinygo.org/x/drivers/bmi160) | [datasheet](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmi160-ds000.pdf) | SPI |
 | [BMP180 barometer](https://pkg.go.dev/tinygo.org/x/drivers/bmp180) | [datasheet](https://cdn-shop.adafruit.com/datasheets/BST-BMP180-DS000-09.pdf) | I2C |
@@ -71,9 +72,12 @@ The following 96 devices are supported.
 | [MMA8653 accelerometer](https://pkg.go.dev/tinygo.org/x/drivers/mma8653) | [datasheet](https://www.nxp.com/docs/en/data-sheet/MMA8653FC.pdf) | I2C |
 | [MPU6050 accelerometer/gyroscope](https://pkg.go.dev/tinygo.org/x/drivers/mpu6050) | [datasheet](https://store.invensense.com/datasheets/invensense/MPU-6050_DataSheet_V3%204.pdf) | I2C |
 | [MPU6886 accelerometer/gyroscope](https://pkg.go.dev/tinygo.org/x/drivers/mpu6886) | [datasheet](https://github.com/m5stack/M5-Schematic/blob/master/datasheet/MPU-6886-000193%2Bv1.1_GHIC.PDF.pdf) | I2C |
+| [MPU9150 accelerometer/gyroscope](https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-9150-Datasheet.pdf) | I2C |
+| [NDIR CO2 Sensor](https://pkg.go.dev/tinygo.org/x/drivers/ndir) | [datasheet](http://sandboxelectronics.com/?p=1126) | I2C |
 | [One Wire bus system](https://pkg.go.dev/tinygo.org/x/drivers/onewire) | [datasheet](https://en.wikipedia.org/wiki/1-Wire) | 1-wire |
 | [P1AM-100 Base Controller](https://pkg.go.dev/tinygo.org/x/drivers/p1am100) | [datasheet](https://facts-engineering.github.io/modules/P1AM-100/P1AM-100.html) | SPI |
 | [PCD8544 display](https://pkg.go.dev/tinygo.org/x/drivers/pcd8544) | [datasheet](http://eia.udg.edu/~forest/PCD8544_1.pdf) | SPI |
+| [PCF8523 real time clock](https://pkg.go.dev/tinygo.org/x/drivers/pcf8523) | [datasheet](https://www.nxp.com/docs/en/data-sheet/PCF8523.pdf) | I2C |
 | [PCF8563 real time clock](https://pkg.go.dev/tinygo.org/x/drivers/pcf8563) | [datasheet](https://www.nxp.com/docs/en/data-sheet/PCF8563.pdf) | I2C |
 | [QMI8658C accelerometer/gyroscope](https://pkg.go.dev/tinygo.org/x/drivers/qmi8658c) | [datasheet](https://www.qstcorp.com/upload/pdf/202202/%EF%BC%88%E5%B7%B2%E4%BC%A0%EF%BC%89QMI8658C%20datasheet%20rev%200.9.pdf) | I2C |
 | [Resistive Touchscreen (4-wire)](https://pkg.go.dev/tinygo.org/x/drivers/touch/resistive) | [datasheet](http://ww1.microchip.com/downloads/en/Appnotes/doc8091.pdf) | GPIO |
@@ -86,7 +90,8 @@ The following 96 devices are supported.
 | [SH1106 OLED display](https://pkg.go.dev/tinygo.org/x/drivers/sh1106) | [datasheet](https://www.velleman.eu/downloads/29/infosheets/sh1106_datasheet.pdf) | I2C / SPI |
 | [Shift register (PISO)](https://pkg.go.dev/tinygo.org/x/drivers/shiftregister) | [datasheet](https://en.wikipedia.org/wiki/Shift_register#Parallel-in_serial-out_\(PISO\)) | GPIO |
 | [Shift registers (SIPO)](https://pkg.go.dev/tinygo.org/x/drivers/shiftregister) | [datasheet](https://en.wikipedia.org/wiki/Shift_register#Serial-in_parallel-out_(SIPO)) | GPIO |
-| [SHT3x Digital Humidity Sensor](https://pkg.go.dev/tinygo.org/x/drivers/sht3x) | [datasheet](https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/2_Humidity_Sensors/Datasheets/Sensirion_Humidity_Sensors_SHT3x_Datasheet_digital.pdf) | I2C |
+| [SHT3x Digital Humidity Sensor](https://pkg.go.dev/tinygo.org/x/drivers/sht3x) | [datasheet](https://sensirion.com/media/documents/213E6A3B/63A5A569/Datasheet_SHT3x_DIS.pdf) | I2C |
+| [SHT4x Digital Humidity Sensor](https://pkg.go.dev/tinygo.org/x/drivers/sht4x) | [datasheet](https://sensirion.com/media/documents/33FD6951/63E1087C/Datasheet_SHT4x_1.pdf) | I2C |
 | [SHTC3 Digital Humidity Sensor (RH/T)](https://pkg.go.dev/tinygo.org/x/drivers/shtc3) | [datasheet](https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/2_Humidity_Sensors/Datasheets/Sensirion_Humidity_Sensors_SHTC3_Datasheet.pdf)  | I2C |
 | [software I2C driver](https://pkg.go.dev/tinygo.org/x/drivers/i2csoft) | [datasheet](https://www.ti.com/lit/an/slva704/slva704.pdf) | GPIO |
 | [SPI NOR Flash Memory](https://pkg.go.dev/tinygo.org/x/drivers/flash) | [datasheet](https://en.wikipedia.org/wiki/Flash_memory#NOR_flash) | SPI/QSPI |
