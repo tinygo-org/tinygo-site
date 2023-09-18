@@ -25,7 +25,7 @@ You can also install the development build of TinyGo if you want to test the lat
 
 ### Ubuntu/Debian
 
-You must have Go already installed on your machine in order to install TinyGo. We recommend Go v1.18 or above.
+You must have Go already installed on your machine in order to install TinyGo. We recommend Go v1.19 or above.
 
 If you are using Ubuntu or another Debian based Linux on an Intel processor, download the DEB file from Github and install it using the following commands:
 
