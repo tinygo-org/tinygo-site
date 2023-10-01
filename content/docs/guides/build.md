@@ -90,7 +90,7 @@ If you are getting a build error like this, LLVM is not installed as expected:
 1 error generated.
 ```
 
-This can often be fixed by specifying the LLVM version as a build tag, for example `-tags=llvm14` if you have LLVM 14 instead of LLVM 16.
+This can often be fixed by specifying the LLVM version as a build tag, for example `-tags=llvm15` if you have LLVM 15 instead of LLVM 16.
 
 Note that you should not use `make` when you want to build using a system-installed LLVM, just use the Go toolchain. `make` is used when you want to use a self-built LLVM, as in the next section.
 
