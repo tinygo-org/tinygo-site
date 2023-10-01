@@ -69,7 +69,7 @@ brew install llvm@16
 For **Fedora** users you can install LLVM from the repository. Note that the version of LLVM [varies by Fedora version](https://packages.fedoraproject.org/pkgs/llvm/llvm-libs/), for example Fedora 37 has LLVM 15.
 
 ```shell
-sudo dnf install llvm-devel lld-libs lld
+sudo dnf install llvm-devel clang-libs lld
 ```
 
 After LLVM has been installed, installing TinyGo should be as easy as running the following command:
