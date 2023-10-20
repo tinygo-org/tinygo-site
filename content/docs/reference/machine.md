@@ -366,6 +366,14 @@ CPUReset performs a hard system reset.
 Not all chips support CPUReset.
 
 ```go
+func DeviceID() []byte
+```
+
+DeviceID returns a byte array containing a unique id (aka Serial Number) specific to this chip.  In some architectures (notably RP2040) the device ID is actually the ID of the flash chip.  The device ID can be useful for identifying specific devices within a family.  There is no guarantee the ID is globally unique.  The size of the ID is chip-family specific with 8 bytes (64 bits) and 16 bytes (128 bits) being common.
+
+Not all chips have a hardware ID.
+
+```go
 func GetRNG() uint32
 ```
 
