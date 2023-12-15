@@ -44,6 +44,13 @@ If you are only interested in compiling TinyGo code for ARM microcontrollers the
 
 Some boards require a special flashing tool for that particular chip, like `openocd` or `nrfjprog`. See the documentation page for your board as listed [here](../../../docs/reference/microcontrollers/) to see which flashing tool is required for your target board.
 
+The boards with USB Mass Storage Device flashing method, like Raspberry Pi Pico (RP2040), reboot and detach "unsafely" during flashing procedure.  
+This behaviour upsets OS and it shows a modal notification one shall unmount USB drive properly first.  
+To suppress this notification, run the following command and restarting your Mac after that.  
+```
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.DiskArbitration.diskarbitrationd.plist DADisableEjectNotification -bool YES && sudo pkill diskarbitrationd
+```
+
 #### AVR (e.g. Arduino Uno)
 
 To flash TinyGo programs for AVR based processors such as the original Arduino Uno you must install `avrdude`:
