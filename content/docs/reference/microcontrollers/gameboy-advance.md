@@ -36,6 +36,11 @@ tinygo build -o main.gba -target gameboy-advance examples/gba-display
 
 You can now use the GBA file with your emulator or flash it onto your physical hardware.
 
+## Examples
+
+* [gba-display](https://github.com/tinygo-org/tinygo/blob/release/src/examples/gba-display/gba-display.go)
+* [Other GBA examples (Buttons, Gopher, Snake...)](https://github.com/tinygo-org/tinygba/tree/main/examples)
+
 ## Flashing
 
 Information needed here...
