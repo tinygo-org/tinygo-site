@@ -1,11 +1,11 @@
 ---
 title: "Build with system-installed LLVM"
-weight: 4
+weight: 3
 description: >
   How to build TinyGo with a system-installed version of LLVM.
 ---
 
-⚠️ Halt! This is the system installed LLVM guide! Please check the following table and make sure you don't need the [manual LLVM install guide](./manual-llvm.md) instead! 
+⚠️ Halt! This is the system installed LLVM guide! Please check the following table and make sure you don't need the [manual LLVM install guide](./manual-llvm) instead! 
 
 
 | You need to build LLVM manually in the following cases |
