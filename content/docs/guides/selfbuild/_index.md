@@ -7,7 +7,7 @@ description: >
 
 This page details how to build TinyGo from source. If you would like to install a pre-built binary release, please see our [quick install guide](../../../getting-started/install).
 
-A major dependency of TinyGo is [LLVM](https://llvm.org/). You can either use a version of LLVM already on your system or build LLVM manually. Building manually takes a long time (around an hour depending on how fast your system is) so it is recommended to use a version of LLVM already on your system if that's possible. The links provided above show how to install LLVM one way or the other.
+A major dependency of TinyGo is [LLVM](https://llvm.org/). You can either use a version of LLVM already on your system or build LLVM manually. Building manually takes a long time (around an hour depending on how fast your system is) so it is recommended to use a version of LLVM already on your system if that's possible. The links provided below show how to install LLVM one way or the other.
 
 ### Repository cloning (before build)
 Start with getting the source code. On Windows, you might want to install the [build dependencies](#build-dependencies) first.
@@ -29,4 +29,4 @@ Once the branch is selected, pull submodules:
 git submodule update --init
 ```
 
-Now you are ready to build TinyGo- but you must choose whether to build with a [manual LLVM install](./manual-llvm.md) or with a [system installed LLVM](./byollvm.md). See the links above.
+Now you are ready to build TinyGo- but you must choose whether to build with a [manual LLVM install](./manual-llvm) or with a [system installed LLVM](./byollvm). See the links below.
