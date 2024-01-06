@@ -7,7 +7,7 @@ description: >
   macOS install guide
 ---
 
-This page has information on how to install and use TinyGo on macOS. If you wish to build TinyGo from source, for example if you intend to contribute to the project, please take a look [here](../../../docs/guides/build).
+This page has information on how to install and use TinyGo on macOS. If you wish to build TinyGo from source, for example if you intend to contribute to the project, please take a look at [Guides: Build from source](../../../docs/guides/build).
 
 You must have Go v1.19+ already installed on your machine in order to install TinyGo.
 
@@ -20,17 +20,20 @@ brew install tinygo
 
 ### Alternative installation
 
-Download [this](https://github.com/tinygo-org/tinygo/releases/download/v0.30.0/tinygo0.30.0.darwin-amd64.tar.gz) file. Then, run the following commands:
-
-```shell
-tar xvzf tinygo-0.30.0.darwin-amd64.tar.gz
-export PATH=<extract location>/tinygo/bin:$PATH
-```
+1. Download [tinygo0.30.0.darwin-amd64.tar.gz](https://github.com/tinygo-org/tinygo/releases/download/v0.30.0/tinygo0.30.0.darwin-amd64.tar.gz).
+2. Extract the package and update your PATH:
+   ```shell
+   tar xvf tinygo-0.30.0.darwin-amd64.tar.gz
+   export PATH=<extract location>/tinygo/bin:$PATH
+   ```
 
 You can test that the installation is working properly by running this code which should display the version number:
 
 ```shell
-$ tinygo version
+tinygo version
+```
+
+```text
 tinygo version 0.30.0 darwin/amd64 (using go version go1.21 and LLVM version 16.0.0)
 ```
 
@@ -42,7 +45,9 @@ Otherwise, please continue with the installation of the additional requirements 
 
 If you are only interested in compiling TinyGo code for ARM microcontrollers then you are now done with the installation.
 
-Some boards require a special flashing tool for that particular chip, like `openocd` or `nrfjprog`. See the documentation page for your board as listed [here](../../../docs/reference/microcontrollers/) to see which flashing tool is required for your target board.
+Some boards require a special flashing tool for that particular chip, like `openocd` or `nrfjprog`.
+
+[The Microcontrollers List](../../../docs/reference/microcontrollers/) documents which flashing tool is required for the supported target board.
 
 #### AVR (e.g. Arduino Uno)
 
@@ -58,7 +63,7 @@ You can download the latest builds from the TinyGo `dev` branch where active dev
 
 To obtain the binary, first go to the list of recent actions for the macOS build:
 
-https://github.com/tinygo-org/tinygo/actions/workflows/build-macos.yml?query=branch%3Adev
+<https://github.com/tinygo-org/tinygo/actions/workflows/build-macos.yml?query=branch%3Adev>
 
 Click on the link for the build you want to download. The most recent one is located at the top.
 
