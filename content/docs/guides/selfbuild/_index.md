@@ -29,4 +29,4 @@ Once the branch is selected, pull submodules:
 git submodule update --init
 ```
 
-Now you are ready to build TinyGo- but you must choose whether to build with a [manual LLVM install](./manual-llvm) or with a [system installed LLVM](./byollvm). See the links below.
+Now you are ready to build TinyGo- but you must choose whether to build with a [manual LLVM install](./manual-llvm) or with a [system installed LLVM](./bring-your-own-llvm). After building you should also read [additional requirements](./additional-requirements) to make sure you've fulfilled all the requirements for the features of TinyGo you'll be using.
