@@ -78,6 +78,17 @@ func (uart *UART) handleInterrupt(intr interrupt.Interrupt) {
 }
 ```
 
+## Tips, Tricks and Gotchas
+
+When writing an interrupt handler you have to take care that your code does not block. This is important because the interrupt execution typically has higher priority than your regular code. This means in case your interrupt handler code needs to wait for anything it will wait forever. In general, it is good advice to avoid the following:
+
+  * Memory allocation, for details see [heap allocation]({{<ref "heap-allocation.md">}}).
+  * Blocking on channels, better use a select with a default clause to implement non-blocking send and receives.
+  * Any IO operations like `fmt.Printf`, maybe an `LED` is more appropriate than a debug print statement.
+
+One design goal of your interrupt handler shall be to be as lean as possible. In a modern OS techniques like Bottom-Half Processing is used. This basically splits your interrupt handler in two parts the one which handles the interrupt and the part which performs the heavy lift.
+
+In languages like C/C++, there is a keyword `volatile` to instruct the compiler that a variable can change or have side effects the compiler is not aware of. This comes in handy when an interrupt handler shares variables with the rest of your code. How to handle this in tinygo see [The volatile keyword]({{<ref "volatile.md">}}).
 
 ## Troubleshooting
 
