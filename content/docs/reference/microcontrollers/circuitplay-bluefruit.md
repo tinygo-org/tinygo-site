@@ -3,7 +3,17 @@ title: "Adafruit Circuit Playground Bluefruit"
 weight: 3
 ---
 
-The [Adafruit Circuit Playground Bluefruit](https://www.adafruit.com/product/4333) is small ARM development board based on the Nordic Semiconductor [nrf52840](https://www.nordicsemi.com/eng/Products/nRF52840) processor. It has several built-in devices such as WS2812 "NeoPixel" LEDs, buttons, an accelerometer, and some other sensors.
+The [Circuit Playground Bluefruit](https://www.adafruit.com/product/4333) is small ARM development board based on the Nordic Semiconductor [nRF52840](https://www.nordicsemi.com/eng/Products/nRF52840) processor.
+
+## Peripherals and Drivers
+
+- [nRF52840](https://github.com/tinygo-org/bluetooth) Bluetooth
+- [LIS3DH](https://pkg.go.dev/tinygo.org/x/drivers/lis3dh) IMU chip (acceleration, tap detection, free-fall detection)
+- MEMS microphone
+- [Thermistor](https://pkg.go.dev/tinygo.org/x/drivers/thermistor) temperature sensor
+- Light sensor (phototransistor)
+- [WS2812](https://pkg.go.dev/tinygo.org/x/drivers/ws2812) Neopixel via the `D8` pin, [example](https://github.com/tinygo-org/drivers/tree/release/examples/ws2812)
+- Buttons
 
 ## Interfaces
 
@@ -87,19 +97,13 @@ Once you have updated your Circuit Playground Bluefruit board the first time, af
 
 You can use the USB port to the Circuit Playground Bluefruit as a serial port. `UART0` refers to this connection.
 
-The Neopixel LED on the Circuit Playground Bluefruit can be accessed using the [WS2812](https://pkg.go.dev/tinygo.org/x/drivers/ws2812) driver via the `D8` pin.
-
-For an example that uses the built-in Neopixel LEDs, take a look at the TinyGo drivers repository located at [https://github.com/tinygo-org/drivers/tree/release/examples](https://github.com/tinygo-org/drivers)
-
-Bluetooth support is now available for the Circuit Playground Bluefruit board. See https://github.com/tinygo-org/bluetooth for more information.
-
 ## Updating the UF2 bootloader
 
 This board uses a UF2 bootloader created by Adafruit: https://github.com/adafruit/Adafruit_nRF52_Bootloader
 
 We recommend bootloader version 0.4.1 or above. You can check what version is installed on your board by double-clicking the button on the board to launch the bootloader. When you do this, a USB volume that should automatically be mounted on your computer. Check the file named "INFO_UF2.TXT" on that drive. The bootloader firmware version should be listed in that file, for example:
 
-```
+```shell
 UF2 Bootloader 0.4.1 lib/nrfx (v2.0.0) lib/tinyusb (0.6.0-272-g4e6aa0d8) lib/uf2 (remotes/origin/configupdate-9-gadbb8c7)
 Model: Adafruit Circuit Playground nRF52840
 Board-ID: nRF52840-CircuitPlayground-revD
@@ -107,7 +111,7 @@ SoftDevice: S140 version 6.1.1
 Date: Jan 19 2021
 ```
 
-To update the bootloader, you will need to install the `adafruit-nrfutil` program. 
+To update the bootloader, you will need to install the `adafruit-nrfutil` program.
 
 You can install it by running:
 
@@ -115,10 +119,10 @@ You can install it by running:
 pip3 install --user adafruit-nrfutil
 ```
 
-Once you have installed the `adafruit-nrfutil` program, download the firmware here: 
+Once you have installed the `adafruit-nrfutil` program, download the firmware here:
 https://github.com/adafruit/Adafruit_nRF52_Bootloader/releases/download/0.4.1/circuitplayground_nrf52840_bootloader-0.4.1.zip
 
-Unzip the files in this zip file and save them to a convenient location. 
+Unzip the files in this zip file and save them to a convenient location.
 
 Plug in your Circuit Playground Bluefruit board to your computer's USB port.
 

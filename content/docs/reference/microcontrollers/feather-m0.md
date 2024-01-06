@@ -3,7 +3,7 @@ title: "Adafruit Feather M0"
 weight: 3
 ---
 
-The [Adafruit Feather M0](https://www.adafruit.com/product/3403) is a tiny ARM development board based on the Atmel [ATSAMD21G18](https://www.microchip.com/wwwproducts/en/ATSAMD21G18) family of SoC.
+The [Feather M0](https://www.adafruit.com/product/3403) is a tiny ARM development board based on the Atmel [ATSAMD21G18](https://www.microchip.com/wwwproducts/en/ATSAMD21G18) family of SoC.
 
 ## Interfaces
 
@@ -76,10 +76,9 @@ If you have troubles getting your Feather M0 board to receive code, try this:
 - The Feather M0 board will appear to your computer like a USB drive.
 - Now try running the command as above:
 
-
-```shell
-tinygo flash -target=feather-m0 [PATH TO YOUR PROGRAM]
-```
+    ```shell
+    tinygo flash -target=feather-m0 [PATH TO YOUR PROGRAM]
+    ```
 
 Once you have updated your Feather M0 board the first time, after that you should be able to flash it entirely from the command line.
 

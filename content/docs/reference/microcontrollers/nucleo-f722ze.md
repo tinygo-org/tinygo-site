@@ -1,9 +1,11 @@
 ---
-title: 'ST Micro "Nucleo" F722ZE'
+title: 'ST Micro STM32 Nucleo-144 F722ZE'
 weight: 3
 ---
 
-The [STM32 Nucleo F722ZE](https://www.st.com/en/evaluation-tools/nucleo-f722ze.html) is an ARM development board based on the ST Micro [STM32F722ZE](https://www.st.com/en/microcontrollers-microprocessors/stm32f722ze.html) SoC.
+The [STM32 Nucleo-144 F722ZE](https://www.st.com/en/evaluation-tools/nucleo-f722ze.html) is an ARM development board based on the ST Micro [STM32F722ZE](https://www.st.com/en/microcontrollers-microprocessors/stm32f722ze.html) SoC.
+
+## Peripherals and Drivers
 
 It has 2 user buttons, and 3 user LEDs.
 

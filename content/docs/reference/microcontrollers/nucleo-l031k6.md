@@ -1,9 +1,11 @@
 ---
-title: 'ST Micro "Nucleo" L031K6'
+title: 'ST Micro STM32 Nucleo-32 L031K6'
 weight: 3
 ---
 
-The [STM32 Nucleo L031K6](https://www.st.com/en/evaluation-tools/nucleo-l031k6.html) is an ARM development board based on the ST Micro [STM32L031K6](https://www.st.com/en/microcontrollers-microprocessors/stm32l031k6.html) SoC.
+The [STM32 Nucleo-32 L031K6](https://www.st.com/en/evaluation-tools/nucleo-l031k6.html) is an ARM development board based on the ST Micro [STM32L031K6](https://www.st.com/en/microcontrollers-microprocessors/stm32l031k6.html) SoC.
+
+## Peripherals and Drivers
 
 It has 2 user buttons, and 3 user LEDs.
 

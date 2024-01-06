@@ -3,7 +3,12 @@ title: "Particle Boron"
 weight: 3
 ---
 
-[The Particle Boron](https://docs.particle.io/datasheets/cellular/boron-datasheet/) The Boron is a powerful LTE CAT-M1/2G/3G enabled development kit that supports cellular networks and Bluetooth LE (BLE). It is based on the Nordic [nRF52840](https://www.nordicsemi.com/eng/Products/nRF52840) and u-blox SARA coprocessor.
+The [Boron](https://docs.particle.io/datasheets/cellular/boron-datasheet/) is based on the Nordic [nRF52840](https://www.nordicsemi.com/eng/Products/nRF52840).
+
+## Peripherals and Drivers
+
+- [nRF52840](https://github.com/tinygo-org/bluetooth) Bluetooth
+- u-blox SARA coprocessor: LTE CAT-M1/2G/3G, supports cellular networks
 
 ## Interfaces
 
@@ -83,5 +88,3 @@ Programs are loaded onto the Particle Boron board using the `openocd` command li
 ## Notes
 
 You can use the USB port to the Particle Boron as a serial port. `UART0` refers to this connection.
-
-Bluetooth support is in development but not yet completed.

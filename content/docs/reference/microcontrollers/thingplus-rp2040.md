@@ -3,11 +3,12 @@ title: "Sparkfun Thing Plus RP2040"
 weight: 3
 ---
 
-The [Sparkfun Thing Plus RP2040](https://www.sparkfun.com/products/17745) is a tiny development board based on the Raspberry Pi [RP2040](https://datasheets.raspberrypi.org/rp2040/rp2040-datasheet.pdf) microcontroller. 
+The [Thing Plus RP2040](https://www.sparkfun.com/products/17745) is a tiny development board based on the Raspberry Pi [RP2040](https://datasheets.raspberrypi.org/rp2040/rp2040-datasheet.pdf) microcontroller.
 
-Peripherals: 
-- ws2812 Neopixel
-- sdcard
+## Peripherals and Drivers
+
+- [WS2812](https://pkg.go.dev/tinygo.org/x/drivers/ws2812) Neopixel (built-in)
+- [SD-Card](https://pkg.go.dev/tinygo.org/x/drivers/sdcard)
 
 ## Interfaces
 
@@ -80,5 +81,3 @@ Any troubleshooting tips go here.
 ## Notes
 
 You can use the USB port to the Thing Plus RP2040 as a serial port.
-
-The Neopixel LED and the SD Card are supported by [tinygo drivers](https://github.com/tinygo-org/drivers)

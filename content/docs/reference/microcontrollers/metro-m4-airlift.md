@@ -3,7 +3,13 @@ title: "Adafruit Metro M4 Express AirLift"
 weight: 3
 ---
 
-The [Adafruit Metro M4 Express AirLift](https://www.adafruit.com/product/4000) is an ARM development board based on the Atmel [ATSAMD51J19](https://www.microchip.com/wwwproducts/en/ATSAMD51J19) family of SoC that has Arduino shield compatible form factor, and a built-in EspressIf ESP32 Wi-Fi Co processor.
+The [Metro M4 Express AirLift](https://www.adafruit.com/product/4000) is an ARM development board based on the Atmel [ATSAMD51J19](https://www.microchip.com/wwwproducts/en/ATSAMD51J19) family of SoC that has Arduino shield compatible
+form factor.
+
+## Peripherals and Drivers
+
+- [WS2812](https://pkg.go.dev/tinygo.org/x/drivers/ws2812) Neopixel via the `PB22` pin
+- ESP32 Wi-Fi coprocessor (built-in)
 
 ## Interfaces
 
@@ -101,5 +107,3 @@ Once you have updated your Metro M4 Express board the first time, after that you
 ## Notes
 
 You can use the USB port to the Metro M4 Express as a serial port. `UART0` refers to this connection.
-
-The Neopixel LED on the Metro M4 Express can be accessed using the [WS2812](https://pkg.go.dev/tinygo.org/x/drivers/ws2812) driver via the `PB22` pin

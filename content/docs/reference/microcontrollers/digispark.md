@@ -3,7 +3,7 @@ title: "Digispark"
 weight: 3
 ---
 
-The [Digispark](http://digistump.com/products/1) is an [ATtiny85](https://www.microchip.com/wwwproducts/en/ATtiny85) based microcontroller development board similar to the Arduino line, only cheaper, smaller, and a bit less powerful. 
+The [Digispark](http://digistump.com/products/1) is an [ATtiny85](https://www.microchip.com/wwwproducts/en/ATtiny85) based microcontroller development board similar to the Arduino line, only cheaper, smaller, and a bit less powerful.
 
 There is very limited support at the moment for this board.
 

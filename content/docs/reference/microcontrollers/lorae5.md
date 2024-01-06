@@ -1,11 +1,16 @@
 ---
-title: "Seeed Studio LoRa-E5 Development Kit"
+title: "Seeed LoRa-E5 Development Kit"
 weight: 3
 ---
 
 The [LoRa-E5 Development Kit](https://www.seeedstudio.com/LoRa-E5-Dev-Kit-p-4868.html) is an ARM development board based on the ST Micro [STM32WLE5JC](https://www.st.com/en/microcontrollers-microprocessors/stm32wle5jc.html) SoC.
 
-It has onboard LoRa®, (G)FSK, (G)MSK, and BPSK as well as 1 user LED, 1 user buttons and 1 reset push-button
+## Peripherals and Drivers
+
+- LoRa®, (G)FSK, (G)MSK, and BPSK.
+- Button
+- LED
+- Temperature sensor
 
 ## Interfaces
 

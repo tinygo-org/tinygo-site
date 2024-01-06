@@ -1,9 +1,9 @@
 ---
-title: 'ST Micro STM32F103XX "Bluepill"'
+title: 'ST Micro STM32 "Blue Pill" F103XX'
 weight: 3
 ---
 
-The [Bluepill](http://wiki.stm32duino.com/index.php?title=Blue_Pill) is a popular, ultra-cheap and compact ARM development board based on the ST Micro [STM32F103C8](https://www.st.com/en/microcontrollers/stm32f103c8.html) SoC.
+The ["Blue Pill"](https://stm32-base.org/boards/STM32F103C8T6-Blue-Pill.html) is a popular, ultra-cheap and compact ARM development board based on the ST Micro [STM32F103C8](https://www.st.com/en/microcontrollers/stm32f103c8.html) SoC.
 
 ## Interfaces
 

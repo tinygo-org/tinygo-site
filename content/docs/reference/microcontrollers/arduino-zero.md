@@ -113,12 +113,11 @@ Once you have installed the needed BOSSA command line utility, as in the previou
 - Plug your Arduino Zero board into your computer's USB port.
 - Build and flash your TinyGo code using the `tinygo flash` command. This command flashes the Arduino Zero with the blinky1 example:
 
-    ```
+    ```shell
     tinygo flash -target=arduino-zero examples/blinky1
     ```
 
 - The Arduino Zero board should restart and then begin running your program.
-
 
 ### Troubleshooting
 

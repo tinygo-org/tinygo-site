@@ -1,9 +1,13 @@
 ---
-title: "ESP32 - Core board"
+title: "ESP32 Core Board V2"
 weight: 3
 ---
 
-The esp32-coreboard-v2 is a development board based on the [Espressif ESP32](https://www.espressif.com/en/products/socs/esp32) a powerful chip that is used on many different board mostly because of the built-in radio that can be used for WiFi or Bluetooth wireless connections.
+The [ESP32 Core Board V2](https://docs.espressif.com/projects/esp-idf/en/release-v3.0/hw-reference/modules-and-boards.html#esp32-core-board-v2-esp32-devkitc) is a development board based on the [Espressif ESP32](https://www.espressif.com/en/products/socs/esp32).
+
+## Peripherals and Drivers
+
+A powerful chip that is used on many different boards mostly because of the built-in radio that can be used for WiFi or Bluetooth wireless connections.
 
 ## Interfaces
 
@@ -73,7 +77,7 @@ Now you should be able to flash your board as follows:
 - Plug your ESP32 board into your computer's USB port.
 - Build and flash your TinyGo code using the `tinygo flash` command. This command flashes the ESP32 with the blinky1 example:
 
-    ```
+    ```shell
     tinygo flash -target=esp32-coreboard-v2 -port=/dev/ttyUSB0 examples/blinky1
     ```
 
@@ -90,7 +94,7 @@ Now you should be able to flash your board as follows:
 - Plug your ESP32 board into your computer's USB port.
 - Build and flash your TinyGo code using the `tinygo flash` command. This command flashes the ESP32 with the blinky1 example:
 
-    ```
+    ```shell
     tinygo flash -target=esp32-coreboard-v2 examples/blinky1
     ```
 
@@ -107,16 +111,8 @@ Now you should be able to flash your board as follows:
 - Plug your ESP32 board into your computer's USB port.
 - Build and flash your TinyGo code using the `tinygo flash` command. This command flashes the ESP32 with the blinky1 example:
 
-    ```
+    ```shell
     tinygo flash -target=esp32-coreboard-v2 examples/blinky1
     ```
 
 - The ESP32 board should restart and then begin running your program.
-
-### Troubleshooting
-
-Goes here
-
-## Notes
-
-Goes here

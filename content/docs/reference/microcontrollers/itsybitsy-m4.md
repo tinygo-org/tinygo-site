@@ -3,7 +3,11 @@ title: "Adafruit ItsyBitsy M4"
 weight: 3
 ---
 
-The [Adafruit ItsyBitsy M4](https://www.adafruit.com/product/3800) is very compact ARM development board based on the Atmel [SAMD51](https://www.microchip.com/wwwproducts/en/ATSAMD51G19A) family of SoC.
+The [ItsyBitsy M4](https://www.adafruit.com/product/3800) is very compact ARM development board based on the Atmel [SAMD51](https://www.microchip.com/wwwproducts/en/ATSAMD51G19A) family of SoC.
+
+## Peripherals and Drivers
+
+The DotStar LED on the ItsyBitsy M4 can be accessed using the [APA102](https://pkg.go.dev/tinygo.org/x/drivers/apa102) driver via a software SPI on the `PB02` and `PB03` pins.
 
 ## Interfaces
 
@@ -93,5 +97,3 @@ Once you have updated your ItsyBitsy M4 board the first time, after that you sho
 ## Notes
 
 You can use the USB port to the ItsyBitsy M4 as a serial port. `UART0` refers to this connection.
-
-The DotStar LED on the ItsyBitsy M4 can be accessed using the [APA102](https://pkg.go.dev/tinygo.org/x/drivers/apa102) driver via a software SPI on the `PB02` and `PB03` pins

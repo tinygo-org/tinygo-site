@@ -1,12 +1,22 @@
 ---
-title: "Arduino Nano 33 BLE"
+title: "Arduino Nano 33 BLE (Sense)"
 weight: 3
 ---
 
-The [Arduino Nano33 BLE](https://store.arduino.cc/arduino-nano-33-ble) is a very small ARM development board based on the Nordic Semiconductor [nrf52840](https://www.nordicsemi.com/eng/Products/nRF52840) processor.
+The [Arduino Nano 33 BLE](https://store.arduino.cc/arduino-nano-33-ble) is a very small ARM development board based on the Nordic Semiconductor [nRF52840](https://www.nordicsemi.com/eng/Products/nRF52840) processor.
 
-There is also the [Arduino Nano33 BLE Sense]({{<ref "nano-33-ble-sense">}})
-which is the exact same board but with additional onboard sensors.
+There is also the [Arduino Nano 33 BLE Sense](https://store.arduino.cc/arduino-nano-33-ble-sense) which is the exact same board but with additional onboard sensors, see below. Flash this board exactly the same way (target name is the same too).
+
+## Peripherals and Drivers
+
+- [nRF52840](https://github.com/tinygo-org/bluetooth) Bluetooth
+- [LSM9DS1](https://github.com/tinygo-org/drivers/tree/release/lsm9ds1) 9-axis IMU
+- [APDS9960](https://github.com/tinygo-org/drivers/tree/release/apds9960) Proximity
+- [LPS22HB](https://github.com/tinygo-org/drivers/tree/release/lps22hb) Pressure
+- [HTS221](https://github.com/tinygo-org/drivers/tree/release/hts221) Humidity
+- [MP34DT06JTR](https://github.com/tinygo-org/drivers/tree/release/microphone) Microphone
+
+> The sensors are available on the "Sense" version only.
 
 ## Interfaces
 
@@ -59,10 +69,6 @@ which is the exact same board but with additional onboard sensors.
 | `MIC_CLK`         | `P0_26`      |                   |
 | `MIC_DIN`         | `P0_25`      |                   |
 
-## Onboard sensors
-
-* 9-axis IMU: [LSM9DS1](https://github.com/tinygo-org/drivers/tree/release/lsm9ds1)
-
 ## Machine Package Docs
 
 [Documentation for the machine package for the Arduino Nano33 BLE](../machine/nano-33-ble)
@@ -73,7 +79,7 @@ In order to flash your TinyGo programs onto the Arduino Nano33 BLE board, you wi
 
 ### macOS
 
-If you have a Mac computer with an Intel processor, download the `bossac_arduino2` program from http://downloads.arduino.cc/tools/bossac-1.9.1-arduino2-osx.tar.gz
+If you have a Mac computer with an Intel processor, download the `bossac_arduino2` program from <http://downloads.arduino.cc/tools/bossac-1.9.1-arduino2-osx.tar.gz>
 
 Extract the downloaded file to a directory on your computer.
 
@@ -81,7 +87,7 @@ Make sure to add that directory into your PATH.
 
 ### Linux
 
-Download the `bossac_arduino2` program from http://downloads.arduino.cc/tools/bossac-1.9.1-arduino2-linux64.tar.gz
+Download the `bossac_arduino2` program from <http://downloads.arduino.cc/tools/bossac-1.9.1-arduino2-linux64.tar.gz>
 
 Extract the downloaded file to a directory on your computer.
 
@@ -89,7 +95,7 @@ Make sure to add that directory into your PATH.
 
 ### Windows
 
-Download the `bossac_arduino2` program from http://downloads.arduino.cc/tools/bossac-1.9.1-arduino2-windows.tar.gz
+Download the `bossac_arduino2` program from <http://downloads.arduino.cc/tools/bossac-1.9.1-arduino2-windows.tar.gz>
 
 Extract the downloaded file to a directory on your computer.
 
@@ -116,11 +122,11 @@ Instructions needed here.
 
 ## Bluetooth
 
-Nordic Semiconductor's SoftDevice (s140v7) must be flashed first to enable use of [bluetooth](https://github.com/tinygo-org/bluetooth) on this board.
+Nordic Semiconductor's SoftDevice (s140v7) must be flashed first to enable use of bluetooth on this board.
 
 SoftDevice overwrites original bootloader and flashing method described above is not avalable anymore.
-Instead, please use [debug]({{<ref "../../guides/debugging.md">}}) probe and
-flash your code with `nano-33-ble-s140v7` target.
+
+Instead, please use [debug]({{<ref "../../guides/debugging.md">}}) probe and flash your code with `nano-33-ble-s140v7` target.
 
 ## Notes
 

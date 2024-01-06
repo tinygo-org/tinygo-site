@@ -3,9 +3,20 @@ title: "Adafruit PyPortal"
 weight: 3
 ---
 
-The [Adafruit PyPortal](https://www.adafruit.com/product/4116) is a ARM board based on the Microchip [ATSAMD51J20A](https://www.microchip.com/wwwproducts/en/ATSAMD51J20A) family of SoC.
+The [PyPortal](https://www.adafruit.com/product/4116) is a ARM board based on the Microchip [ATSAMD51J20A](https://www.microchip.com/wwwproducts/en/ATSAMD51J20A) family of SoC.
 
-The PyPortal also has an Espressif ESP32 Wi-Fi coprocessor with TLS/SSL support built-in. PyPortal has a 3.2″ 320 x 240 color TFT with resistive touch screen. PyPortal includes: speaker, light sensor, temperature sensor, NeoPixel, microSD card slot, 8MB flash, plug-in ports for I2C and 2 analog/digital pins,
+## Peripherals and Drivers
+
+- [LIS3DH](https://pkg.go.dev/tinygo.org/x/drivers/lis3dh) IMU chip (acceleration, tap detection, free-fall detection)
+- 3.2″ 320 x 240 color TFT with resistive touch screen
+- [WS2812](https://pkg.go.dev/tinygo.org/x/drivers/ws2812) 5 x NeoPixels
+- 8 x buttons
+- Light sensor
+- Temperature sensor
+- Speaker
+- ESP32 Wi-Fi coprocessor with TLS/SSL support built-in
+- [SD-Card](https://pkg.go.dev/tinygo.org/x/drivers/sdcard) slot
+- 8MB flash
 
 ## Interfaces
 
@@ -100,10 +111,9 @@ If you have troubles getting your PyPortal board to receive code, try this:
 - The PyPortal board will appear to your computer like a USB drive.
 - Now try running the command as above:
 
-
-```shell
-tinygo flash -target=pyportal [PATH TO YOUR PROGRAM]
-```
+    ```shell
+    tinygo flash -target=pyportal [PATH TO YOUR PROGRAM]
+    ```
 
 Once you have updated your PyPortal board the first time, after that you should be able to flash it entirely from the command line.
 

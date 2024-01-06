@@ -5,7 +5,14 @@ weight: 3
 
 The [reel board](https://www.phytec.eu/product-eu/internet-of-things/reelboard/) is an evaluation board based on the Nordic Semiconductor [nRF52840](https://www.nordicsemi.com/eng/Products/nRF52840) SoC.
 
-It is equipped with an Electrophoretic (electronic ink) Display (EPD), along with temperature, humidity, light, and accelerometer sensors, and Bluetooth connectivity.
+## Peripherals and Drivers
+
+- [nRF52840](https://github.com/tinygo-org/bluetooth) Bluetooth
+- Electrophoretic (electronic ink) Display (EPD)
+- temperature sensor
+- humidity sensor
+- light sensor
+- accelerometer
 
 ## Interfaces
 
@@ -70,5 +77,3 @@ Programs can also be loaded onto the reelboard using the `openocd` command line 
 
 - Plug your reelboard into your computer's USB port.
 - Build and flash your TinyGo program using `tinygo flash -target=reelboard`
-
-Bluetooth support is now available for reelboard. See https://github.com/tinygo-org/bluetooth for more information.

@@ -3,7 +3,7 @@ title: "Arduino Mega 1280"
 weight: 3
 ---
 
-The [Arduino Mega 1280](https://www.arduino.cc/en/Main/arduinoBoardMega/) is based on the AVR [ATmega1280](https://www.microchip.com/wwwproducts/en/ATMEGA1280) microcontroller.
+The [Arduino Mega 1280](https://docs.arduino.cc/retired/other/arduino-older-boards#arduino-mega/) is based on the AVR [ATmega1280](https://www.microchip.com/wwwproducts/en/ATMEGA1280) microcontroller.
 
 Note: the AVR backend of LLVM is still experimental so you may encounter bugs.
 

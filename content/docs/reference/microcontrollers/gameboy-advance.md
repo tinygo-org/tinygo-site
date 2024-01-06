@@ -23,8 +23,7 @@ The [Game Boy Advance](https://en.wikipedia.org/wiki/Game_Boy_Advance) is a hand
 
 ## Installing dependencies
 
-You can use a Game Boy Advance software emulator such as MGBA (https://mgba.io) to test your programs.
-
+You can use a Game Boy Advance software emulator such as [MGBA](https://mgba.io) to test your programs.
 
 ## Building code
 
