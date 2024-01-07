@@ -75,7 +75,7 @@ This results in a `tinygo` binary in the `build` directory:
 
 ```shell
 $ ./build/tinygo version
-tinygo version 0.30.0 linux/amd64 (using go version go1.21 and LLVM version 16.0.0)
+tinygo version 0.31.0-dev-d4189fec linux/amd64 (using go version go1.21.4 and LLVM version 16.0.1)
 ```
 
 You have successfully built TinyGo from source. Congratulations!
