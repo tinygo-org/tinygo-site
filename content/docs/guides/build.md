@@ -49,7 +49,7 @@ For **Debian** or **Ubuntu** you can install LLVM by adding a new apt repository
 | Debian | sid    | `unstable`|
 
 ```shell
-echo 'deb http://apt.llvm.org/xxxxx/ llvm-toolchain-xxxxx-15 main' | sudo tee /etc/apt/sources.list.d/llvm.list
+echo 'deb http://apt.llvm.org/xxxxx/ llvm-toolchain-xxxxx-16 main' | sudo tee /etc/apt/sources.list.d/llvm.list
 ```
 
 After adding the apt repository for your distribution you may install the LLVM toolchain packages:
