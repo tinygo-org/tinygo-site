@@ -49,8 +49,9 @@ export PATH="$PATH:/c/Program Files/CMake/bin"
 ```
 
 #### Building LLVM
+We build LLVM from inside the TinyGo repository we cloned in the [previous step](../). The following command when run inside the TinyGo repo will take care of first downloading the LLVM source code to later build it in the next step. It places the source code in `llvm-project/` and the build output in `llvm-build/`. It only needs to be done once until the next LLVM release (every half year).
 
-The following command takes care of downloading and building LLVM. It places the source code in `llvm-project/` and the build output in `llvm-build/`. It only needs to be done once until the next LLVM release (every half year).
+Note that the build step may take some time- feel free to grab a drink meanwhile. Warnings emitted through the compilation in this part are normal as of LLVM 17.
 
 ```shell
 make llvm-source llvm-build
