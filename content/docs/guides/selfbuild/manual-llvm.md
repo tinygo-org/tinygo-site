@@ -81,4 +81,12 @@ tinygo version 0.31.0-dev-d4189fec linux/amd64 (using go version go1.21.4 and LL
 
 You have successfully built TinyGo from source. Congratulations!
 
+To run TinyGo from any directory you may want to move the built binary to a location on your path
+or add the `./build` directory to your path. The following shell command moves the TinyGo binary to `/user/bin`. You may need root privileges to complete this step.
+```shell
+mv ./build/tinygo /usr/bin/
+```
+If you ran the above command, **uninstalling** TinyGo is as easy as running `rm /usr/bin/tinygo`.
+
+
 If you have gotten this far, please refer to [Additional requirements](./additional-requirements) to further set up TinyGo.
