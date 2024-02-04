@@ -13,34 +13,40 @@ description: >
 | Your Linux distribution (if you use Linux) does not ship the right LLVM version. |
 
 
-#### Build dependencies
+## Build dependencies
+***Depending on which OS you use the command to install
+the dependencies needed to build LLVM will differ.*** Skip over to the command for your Operating System (OS) in this section (OS names are bolded):
 
-Debian and Ubuntu users can install all required tools this way:
 
+**Debian and Ubuntu** users may install all required tools this way:
 ```shell
 sudo apt-get install build-essential git cmake ninja-build
 ```
 
-Fedora users can install all required tools with:
+---
 
+**Fedora** users may install all required tools with:
 ```shell
 sudo dnf groupinstall "Development Tools"
 sudo dnf install cmake ninja-build
 ```
 
-On MacOS you can install these tools using [Homebrew](https://brew.sh/):
+---
+
+**MacOS** users may install these tools using [Homebrew](https://brew.sh/):
 
 ```shell
 brew install cmake ninja
 ```
 
-On Windows you can install them using [Chocolatey](https://chocolatey.org/). Install Chocolatey first, then run the following in a command prompt or PowerShell with administrative privileges:
+---
+
+**Windows** users may install build dependencies using [Chocolatey](https://chocolatey.org/). Install Chocolatey first, then run the following in a command prompt or PowerShell with administrative privileges:
 
 ```shell
 choco install --confirm git golang mingw make cmake ninja python
 ```
-
-Use *Git Bash* (installed above) to run all the build commands like `make`. The TinyGo build system expects a Unix-like environment that is not normally provided by Windows but is included already in *Git Bash*.
+**Windows** users should also use *Git Bash* (installed above) to run all the build commands like `make`. The TinyGo build system expects a Unix-like environment that is not normally provided by Windows but is included already in *Git Bash*.
 
 Choco doesn't seem to add CMake automatically to the `$PATH` variable. You can do this manually if needed, in Git bash:
 
@@ -48,7 +54,11 @@ Choco doesn't seem to add CMake automatically to the `$PATH` variable. You can d
 export PATH="$PATH:/c/Program Files/CMake/bin"
 ```
 
-#### Building LLVM
+## Building LLVM
+***The following instructions are common to all operating systems.***
+
+Background: *[LLVM](https://llvm.org/) is used by TinyGo to create smaller programs than can be compiled with normal Go distribution. It is commonly referred to as a *compiler infrastructure* since it provides several tools to build, link and optimize programs which adhere to its framework.*
+
 We build LLVM from inside the TinyGo repository we cloned in the [previous step](../). The following command when run inside the TinyGo repo will take care of first downloading the LLVM source code to later build it in the next step. It places the source code in `llvm-project/` and the build output in `llvm-build/`. It only needs to be done once until the next LLVM release (every half year).
 
 Note that the build step may take some time- feel free to grab a drink meanwhile. Warnings emitted through the compilation in this part are normal as of LLVM 17.
@@ -64,7 +74,7 @@ make llvm-source llvm-build CCACHE=OFF
 ```
 
 
-#### Building TinyGo
+## Building TinyGo
 
 Once this is finished, you can build TinyGo against this manually built LLVM:
 
@@ -81,7 +91,8 @@ tinygo version 0.31.0-dev-d4189fec linux/amd64 (using go version go1.21.4 and LL
 
 You have successfully built TinyGo from source. Congratulations!
 
-To run TinyGo from any directory you may want to move the built binary to a location on your path
+
+**Linux** users may choose to run TinyGo from any directory you may want to move the built binary to a location on your path
 or add the `./build` directory to your path. The following shell command moves the TinyGo binary to `/user/bin`. You may need root privileges to complete this step.
 ```shell
 mv ./build/tinygo /usr/bin/
