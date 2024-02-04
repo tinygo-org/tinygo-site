@@ -11,7 +11,9 @@ You'll need [Go](https://go.dev) installed on your machine to build TinyGo. The 
 
 A major dependency of TinyGo is [LLVM](https://llvm.org/). You can either use a version of LLVM already on your system or build LLVM manually. Building manually takes a long time (around an hour depending on how fast your system is) so it is recommended to use a version of LLVM already on your system if that's possible. The links provided below show how to install LLVM one way or the other.
 
-### Repository cloning (before build)
+
+
+## Repository cloning (before build)
 Start with getting the source code. On Windows, you might want to install the [build dependencies](#build-dependencies) first.
 
 ```shell
@@ -32,3 +34,44 @@ git submodule update --init --recursive
 ```
 
 Now you are ready to build TinyGo- but you must choose whether to build with a [manual LLVM install](./manual-llvm) or with a [system installed LLVM](./bring-your-own-llvm). After building you should also read [additional requirements](./additional-requirements) to make sure you've fulfilled all the requirements for the features of TinyGo you'll be using.
+
+## Uninstalling TinyGo
+It's highly suggested you uninstall an existing installation of TinyGo before proceeding.
+
+***If you installed TinyGo via a package manager the command will depend on your operating system.***
+
+**Linux Debian and Ubuntu** users may run the following command to uninstall TinyGo:
+```shell
+sudo apt remove tinygo
+```
+
+---
+
+**Linux Fedora** users may uninstall TinyGo with:
+```shell
+sudo dnf remove tinygo
+```
+
+---
+
+**MacOS** users may uninstall TinyGo with the following command:
+```shell
+brew uninstall tinygo
+```
+
+---
+
+**Windows** users who installed with Scoop may run the following command to uninstall TinyGo:
+```shell
+scoop uninstall tinygo
+```
+
+---
+
+**Any OS with a manually installed TinyGo**: Remove the cloned repository. This will remove LLVM along with the TinyGo root. 
+
+You should also check if there's a remaining `tinygo` executable in your path and remove it too. 
+
+**Linux and MacOS** run `echo $(which tinygo)` to print the path to the existing TinyGo executable.
+
+**Windows** users may run `where tinygo` to see the where any remaining TinyGo executable is located at.
