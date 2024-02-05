@@ -18,14 +18,14 @@ description: >
 the dependencies needed to build LLVM will differ.*** Skip over to the command for your Operating System (OS) in this section (OS names are bolded):
 
 
-**Debian and Ubuntu** users may install all required tools this way:
+**Linux Debian and Ubuntu** users may install all required tools this way:
 ```shell
 sudo apt-get install build-essential git cmake ninja-build
 ```
 
 ---
 
-**Fedora** users may install all required tools with:
+**Linux Fedora** users may install all required tools with:
 ```shell
 sudo dnf groupinstall "Development Tools"
 sudo dnf install cmake ninja-build
@@ -89,15 +89,15 @@ $ ./build/tinygo version
 tinygo version 0.31.0-dev-d4189fec linux/amd64 (using go version go1.21.4 and LLVM version 16.0.1)
 ```
 
-You have successfully built TinyGo from source. Congratulations!
+You have successfully built TinyGo from source. Congratulations! What's left now is to complete the [additional requirements](../additional-requirements)
 
+#### Adding tinygo to your path
 
 **Linux** users may choose to run TinyGo from any directory you may want to move the built binary to a location on your path
-or add the `./build` directory to your path. The following shell command moves the TinyGo binary to `/user/bin`. You may need root privileges to complete this step.
+or add the `./build` directory to your path. The following shell command moves the TinyGo binary to `/user/bin` so that any user can run TinyGo. You may need root privileges to complete this step.
 ```shell
 mv ./build/tinygo /usr/bin/
 ```
 If you ran the above command, **uninstalling** TinyGo is as easy as running `rm /usr/bin/tinygo`.
 
-
-If you have gotten this far, please refer to [Additional requirements](./additional-requirements) to further set up TinyGo.
+If you'd prefer a user-based install you can move TinyGo to your `$HOME/go/bin` directory, where the Go compiler installs binaries by default. The directory should be added to your PATH if it hasn't already been added for this to work.
