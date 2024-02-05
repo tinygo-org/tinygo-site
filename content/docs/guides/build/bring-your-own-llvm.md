@@ -5,7 +5,7 @@ description: >
   How to build TinyGo with a system-installed version of LLVM.
 ---
 
-⚠️ Halt! This is the system installed LLVM guide! Please check the following table and make sure you don't need the [manual LLVM install guide](./manual-llvm) instead! 
+⚠️ Halt! This is the system installed LLVM guide! Please check the following table and make sure you don't need the [manual LLVM install guide](../manual-llvm) instead! 
 
 
 | You need to build LLVM manually in the following cases |
@@ -73,7 +73,7 @@ After LLVM has been installed, installing TinyGo should be as easy as running th
 go install
 ```
 
-You should now have a working TinyGo installation!
+You should now have a working TinyGo installation! What's left now is to complete the [additional requirements](../additional-requirements)
 
 Below is an example of running `tinygo version` and example output to check that
 TinyGo was installed correctly (copy only what's in front of the `$` sign to your terminal!):
@@ -83,8 +83,6 @@ tinygo version 0.31.0-dev-d4189fec linux/amd64 (using go version go1.21.4 and LL
 ```
 
 If not see the [troubleshooting](#troubleshooting) section.
-
-If you have gotten this far, please refer to [Additional requirements](./additional-requirements) to further set up TinyGo.
 
 ## Troubleshooting
 
