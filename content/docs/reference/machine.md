@@ -148,6 +148,30 @@ The `Tx` performs the actual SPI transaction, and return an error if there was a
 
 Some chips may also support mismatched lengths of `w` and `r`, in which case they will behave like above for the remaining bytes in the byte slice that's the longest of the two.
 
+```go
+func (spi SPI) IsAsync() bool
+```
+
+Return whether the SPI supports asynchronous operation (usually using [DMA](https://en.wikipedia.org/wiki/Direct_memory_access)). Asynchronous operation may be supported for some or all transfers, for example it may only be supported for send-only transfers.
+
+```go
+func (spi SPI) StartTx(w, r []byte) error
+```
+
+Start a SPI transmission in the background (usually, using DMA). This has the same effect as running `Tx` in a goroutine, but doesn't spawn a new goroutine. The `w` and `r` byte slices must not be used while the transmission is in progress, but must be stored somewhere outside the `StartTx` function to avoid garbage collecting them.
+
+It is allowed to start multiple transactions without waiting for the first to finish. They will have the effect as if `Tx` was called multiple times in sequence. Lots of hardware won't support this however and will simply wait for the first to finish before starting a new transmission.
+
+If `IsAsync` returns false, this is an alias for `Tx`.
+
+```go
+func (spi SPI) Wait() error
+```
+
+Wait until all active transactions (started by `StartTx`) have finished. The buffers provided in `StartTx` will be available after calling `Wait`.
+
+If `IsAsync` returns false, this is a no-op.
+
 
 ## I2C
 
