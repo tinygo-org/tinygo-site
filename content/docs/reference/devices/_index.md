@@ -81,7 +81,7 @@ The following 101 devices are supported.
 | [PCF8563 real time clock](https://pkg.go.dev/tinygo.org/x/drivers/pcf8563) | [datasheet](https://www.nxp.com/docs/en/data-sheet/PCF8563.pdf) | I2C |
 | [QMI8658C accelerometer/gyroscope](https://pkg.go.dev/tinygo.org/x/drivers/qmi8658c) | [datasheet](https://www.qstcorp.com/upload/pdf/202202/%EF%BC%88%E5%B7%B2%E4%BC%A0%EF%BC%89QMI8658C%20datasheet%20rev%200.9.pdf) | I2C |
 | [Resistive Touchscreen (4-wire)](https://pkg.go.dev/tinygo.org/x/drivers/touch/resistive) | [datasheet](http://ww1.microchip.com/downloads/en/Appnotes/doc8091.pdf) | GPIO |
-| [Rotary Encoder](https://pkg.go.dev/tinygo.org/x/drivers/rotary-encoder) | [datasheet](https://www.mouser.com/datasheet/2/414/TTRB_S_A0002793947_1-2565369.pdf) | GPIO |
+| [Rotary Encoder](https://pkg.go.dev/tinygo.org/x/drivers/encoders) | [datasheet](https://www.mouser.com/datasheet/2/414/TTRB_S_A0002793947_1-2565369.pdf) | GPIO |
 | [RTL8720DN 2.4G/5G Dual Bands Wireless and BLE5.0](https://pkg.go.dev/tinygo.org/x/drivers/lsm6ds0xhttps://pkg.go.dev/tinygo.org/x/drivers/rtl8720dn) | [datasheet](https://www.seeedstudio.com/Realtek8720DN-2-4G-5G-Dual-Bands-Wireless-and-BLE5-0-Combo-Module-p-4442.html) | UART |
 | [SCD4x CO2 Sensor](https://pkg.go.dev/tinygo.org/x/drivers/scd4x) | [datasheet](https://sensirion.com/media/documents/C4B87CE6/627C2DCD/CD_DS_SCD40_SCD41_Datasheet_D1.pdf) | I2C |
 | [Semihosting](https://pkg.go.dev/tinygo.org/x/drivers/semihosting) | [datasheet](https://wiki.segger.com/Semihosting) | Debug |
