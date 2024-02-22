@@ -12,7 +12,7 @@ Drivers are packages designed to make it easier to use these devices from your o
 
 All of these drivers can be found in the TinyGo Drivers repository located at [https://github.com/tinygo-org/drivers/](https://github.com/tinygo-org/drivers/)
 
-The following 101 devices are supported.
+The following 102 devices are supported.
 
 | Device Name                                                             | Datasheet   | Interface Type |
 |-------------------------------------------------------------------------|-------------|----------------|
