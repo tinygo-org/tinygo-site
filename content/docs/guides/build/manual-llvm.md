@@ -57,7 +57,7 @@ export PATH="$PATH:/c/Program Files/CMake/bin"
 ## Building LLVM
 ***The following instructions are common to all operating systems.***
 
-Background: *[LLVM](https://llvm.org/) is used by TinyGo to create smaller programs than can be compiled with normal Go distribution. It is commonly referred to as a *compiler infrastructure* since it provides several tools to build, link and optimize programs which adhere to its framework.*
+Background: *[LLVM](https://llvm.org/) is a library and collection of tools for building compilers. It is the base of many newer compilers, like Clang, Swift, and the Rust compiler so they can all build on the same high-quality base. Similarly, TinyGo uses LLVM for all its low-level optimization and machine code generation so that it can produce code that's roughly as small and efficient as all these other modern compilers.*
 
 We build LLVM from inside the TinyGo repository we cloned in the [previous step](../). The following command when run inside the TinyGo repo will take care of first downloading the LLVM source code to later build it in the next step. It places the source code in `llvm-project/` and the build output in `llvm-build/`. It only needs to be done once until the next LLVM release (every half year).
 

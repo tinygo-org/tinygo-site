@@ -38,7 +38,7 @@ For **Debian** or **Ubuntu** you can install LLVM by adding a new apt repository
 | Debian | sid    | `unstable`|
 
 ```shell
-echo 'deb http://apt.llvm.org/xxxxx/ llvm-toolchain-xxxxx-16 main' | sudo tee /etc/apt/sources.list.d/llvm.list
+echo 'deb http://apt.llvm.org/xxxxx/ llvm-toolchain-xxxxx-17 main' | sudo tee /etc/apt/sources.list.d/llvm.list
 ```
 
 After adding the apt repository for your distribution you may install the LLVM toolchain packages:
@@ -46,7 +46,7 @@ After adding the apt repository for your distribution you may install the LLVM t
 ```shell
 wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
 sudo apt-get update
-sudo apt-get install clang-16 llvm-16-dev lld-16 libclang-16-dev
+sudo apt-get install clang-17 llvm-17-dev lld-17 libclang-17-dev
 ```
 
 #### MacOS
@@ -100,8 +100,7 @@ The `go install` command will build the `tinygo` executable and store it to your
     ```
 
 ### Debian LLVM repository manual addition
-If `sudo apt-get install clang-16 llvm-16-dev lld-16 libclang-16-dev` does not work you
-can try manually adding the repository. Run the following command and try the steps above again.
+If `sudo apt-get install clang-xx llvm-xx-dev lld-xx libclang-xx-dev` does not work, where `xx` is the LLVM version required by the TinyGo branch you are building i.e: 17, please try manually adding the repository. Run the following command and try the steps above again.
 ```shell
 wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
 ```
