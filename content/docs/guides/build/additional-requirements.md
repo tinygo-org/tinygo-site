@@ -7,7 +7,8 @@ description: >
 
 We're not done yet. Some extra things need to be built before you can start using TinyGo.
 
-If you haven't already, you need to download llvm-project (for the compiler-rt sources that are needed for most architectures):
+If you haven't already, you need to download llvm-project (for the compiler-rt sources that are needed for most architectures).
+Run the following commands inside your cloned TinyGo repository:
 
 ```shell
 make llvm-source
@@ -28,7 +29,7 @@ make binaryen
 
 These command may need to be re-run after some updates in TinyGo.
 
-There are also some extra tools you will need to install, depending on your operating system. These tools are gcc-avr, avr-libc, avrdude, and openocd. Check the additional requirements for your operating system:
+There are also some extra tools you will need to install, depending on your operating system. These tools are avrdude and openocd. Check the additional requirements for your operating system:
 
   * [Linux](/getting-started/install/linux/)
   * [MacOS](/getting-started/install/macos/)
