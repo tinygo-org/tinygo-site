@@ -3,7 +3,7 @@ title: "Pimoroni Tufty2040"
 weight: 3
 ---
 
-The [Pimoroni Tufty2040](https://shop.pimoroni.com/products/tufty-2040) is a tiny development board based on the Raspberry Pi [RP2040](https://datasheets.raspberrypi.org/rp2040/rp2040-datasheet.pdf) microcontroller.
+The [Tufty2040](https://shop.pimoroni.com/products/tufty-2040) is a tiny development board based on the Raspberry Pi [RP2040](https://datasheets.raspberrypi.org/rp2040/rp2040-datasheet.pdf) microcontroller.
 
 ## Interfaces
 

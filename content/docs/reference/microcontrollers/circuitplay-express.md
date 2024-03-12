@@ -3,7 +3,18 @@ title: "Adafruit Circuit Playground Express"
 weight: 3
 ---
 
-The [Adafruit Circuit Playground Express](https://www.adafruit.com/product/3333) is small ARM development board based on the Atmel [SAMD21](https://www.microchip.com/wwwproducts/en/ATSAMD21G18) family of processors. It has several built-in devices such as WS2812 "NeoPixel" LEDs, buttons, an accelerometer, and some other sensors.
+The [Circuit Playground Express](https://www.adafruit.com/product/3333) is small ARM development board based on the Atmel [SAMD21](https://www.microchip.com/wwwproducts/en/ATSAMD21G18) family of processors.
+
+## Peripherals and Drivers
+
+- [LIS3DH](https://pkg.go.dev/tinygo.org/x/drivers/lis3dh) IMU chip (acceleration, tap detection, free-fall detection)
+- MEMS microphone
+- Mini speaker
+- [Thermistor](https://pkg.go.dev/tinygo.org/x/drivers/thermistor) temperature sensor
+- Light sensor (phototransistor)
+- [WS2812](https://pkg.go.dev/tinygo.org/x/drivers/ws2812) Neopixel via the `PB23` pin, [example](https://github.com/tinygo-org/drivers/tree/release/examples/ws2812)
+
+- Buttons, Slide switch
 
 ## Interfaces
 
@@ -85,7 +96,3 @@ Once you have updated your Circuit Playground Express board the first time, afte
 ## Notes
 
 You can use the USB port to the Circuit Playground Express as a serial port. `UART0` refers to this connection.
-
-The Neopixel LED on the Circuit Playground Express can be accessed using the [WS2812](https://pkg.go.dev/tinygo.org/x/drivers/ws2812) driver via the `PB23` pin.
-
-For an example that uses the built-in Neopixel LEDs, take a look at the TinyGo drivers repository located at [https://github.com/tinygo-org/drivers/tree/release/examples](https://github.com/tinygo-org/drivers)

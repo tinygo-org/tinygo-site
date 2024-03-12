@@ -3,7 +3,11 @@ title: "Adafruit ItsyBitsy M0"
 weight: 3
 ---
 
-The [Adafruit ItsyBitsy M0](https://www.adafruit.com/product/3727) is very compact ARM development board based on the Atmel [SAMD21](https://www.microchip.com/wwwproducts/en/ATSAMD21G18) family of SoC.
+The [ItsyBitsy M0](https://www.adafruit.com/product/3727) is very compact ARM development board based on the Atmel [SAMD21](https://www.microchip.com/wwwproducts/en/ATSAMD21G18) family of SoC.
+
+## Peripherals and Drivers
+
+The DotStar LED on the ItsyBitsy M0 can be accessed using the [APA102](https://pkg.go.dev/tinygo.org/x/drivers/apa102) driver via a software SPI on the `PA00` and `PA01` pins.
 
 ## Interfaces
 
@@ -91,5 +95,3 @@ Once you have updated your ItsyBitsy M0 board the first time, after that you sho
 ## Notes
 
 You can use the USB port to the ItsyBitsy M0 as a serial port. `UART0` refers to this connection.
-
-The DotStar LED on the ItsyBitsy M0 can be accessed using the [APA102](https://pkg.go.dev/tinygo.org/x/drivers/apa102) driver via a software SPI on the `PA00` and `PA01` pins

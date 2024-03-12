@@ -3,7 +3,9 @@ title: "Blues Wireless Swan"
 weight: 3
 ---
 
-The [Swan](https://blues.io/products/swan/) is an ARM development board based on the ST Micro [stm32l4r5zi](https://www.st.com/en/microcontrollers-microprocessors/stm32l4r5zi.html) SoC.
+The [Wireless Swan](https://blues.io/products/swan/) is an ARM development board based on the ST Micro [stm32l4r5zi](https://www.st.com/en/microcontrollers-microprocessors/stm32l4r5zi.html) SoC.
+
+## Peripherals and Drivers
 
 The Swan has a user button and an LED, LiPo charging and USB.
 

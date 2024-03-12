@@ -80,4 +80,5 @@ You may get the following error when flashing the MAix Bit:
 ```shell
 error: unable to locate a serial port
 ```
+
 To resolve this, just specify the MAix Bit's serial port when flashing using `tinygo flash -target=maixbit -port=[MAIXBIT PORT] [PATH TO YOUR PROGRAM]`.

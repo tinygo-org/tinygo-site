@@ -3,7 +3,11 @@ title: "Adafruit Trinket M0"
 weight: 3
 ---
 
-The [Adafruit Trinket M0](https://www.adafruit.com/product/3500) is a tiny ARM development board based on the Atmel [ATSAMD21E18](https://www.microchip.com/wwwproducts/en/ATSAMD21E18) family of SoC.
+The [Trinket M0](https://www.adafruit.com/product/3500) is a tiny ARM development board based on the Atmel [ATSAMD21E18](https://www.microchip.com/wwwproducts/en/ATSAMD21E18) family of SoC.
+
+## Peripherals and Drivers
+
+The DotStar LED on the Trinket M0 can be accessed using the [APA102](https://pkg.go.dev/tinygo.org/x/drivers/apa102) driver via a software SPI on the `PA01` and `PA00` pins
 
 ## Interfaces
 
@@ -68,5 +72,3 @@ Once you have updated your Trinket M0 board the first time, after that you shoul
 ## Notes
 
 You can use the USB port to the Trinket M0 as a serial port. `UART0` refers to this connection.
-
-The DotStar LED on the Trinket M0 can be accessed using the [APA102](https://pkg.go.dev/tinygo.org/x/drivers/apa102) driver via a software SPI on the `PA01` and `PA00` pins

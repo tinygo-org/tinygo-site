@@ -3,7 +3,18 @@ title: "Seeed Wio Terminal"
 weight: 3
 ---
 
-The [Seeed Wio Terminal](https://www.seeedstudio.com/Wio-Terminal-p-4509.html) is a tiny ARM development board based on the Atmel [ATSAMD51P20](https://www.microchip.com/wwwproducts/en/ATSAMD51P20A) family of SoC.
+The [Wio Terminal](https://www.seeedstudio.com/Wio-Terminal-p-4509.html) is a tiny ARM development board based on the Atmel [ATSAMD51P20](https://www.microchip.com/wwwproducts/en/ATSAMD51P20A) family of SoC.
+
+## Peripherals and Drivers
+
+- RTL8720DN: Bluetooth and Wi-Fi Wireless
+- 2.4” LCD Screen
+- LIS3DHTR: IMU
+- Microphone
+- Buzzer
+- [SD-Card](https://pkg.go.dev/tinygo.org/x/drivers/sdcard) slot
+- Light sensor
+- Infrared emitter(940nm)
 
 ## Interfaces
 
@@ -142,10 +153,9 @@ If you have troubles getting your Wio Terminal board to receive code, try this:
 - The Wio Terminal board will appear to your computer like a USB drive.
 - Now try running the command as above:
 
-
-```shell
-tinygo flash -target=wioterminal [PATH TO YOUR PROGRAM]
-```
+    ```shell
+    tinygo flash -target=wioterminal [PATH TO YOUR PROGRAM]
+    ```
 
 Once you have updated your Wio Terminal board the first time, after that you should be able to flash it entirely from the command line.
 

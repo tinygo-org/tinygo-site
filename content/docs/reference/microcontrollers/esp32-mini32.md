@@ -3,7 +3,11 @@ title: "ESP32 - mini32"
 weight: 3
 ---
 
-The mini32 is a small development board based on the popular [Espressif ESP32](https://www.espressif.com/en/products/socs/esp32). The ESP32 includes a built-in radio that can be used for WiFi or Bluetooth wireless connections.
+The [ESP32 - mini32](https://www.lilygo.cc/en-pl/products/t7-v1-3-mini-32-esp32) is a small development board based on the popular [Espressif ESP32](https://www.espressif.com/en/products/socs/esp32).
+
+## Peripherals and Drivers
+
+The ESP32 includes a built-in radio that can be used for WiFi or Bluetooth wireless connections.
 
 ## Interfaces
 
@@ -73,7 +77,7 @@ Now you should be able to flash your board as follows:
 - Plug your ESP32 board into your computer's USB port.
 - Build and flash your TinyGo code using the `tinygo flash` command. This command flashes the ESP32 with the blinky1 example:
 
-    ```
+    ```shell
     tinygo flash -target=esp32-mini32 -port=/dev/ttyUSB0 examples/blinky1
     ```
 
@@ -90,7 +94,7 @@ Now you should be able to flash your board as follows:
 - Plug your ESP32 board into your computer's USB port.
 - Build and flash your TinyGo code using the `tinygo flash` command. This command flashes the ESP32 with the blinky1 example:
 
-    ```
+    ```shell
     tinygo flash -target=esp32-mini32 examples/blinky1
     ```
 
@@ -107,16 +111,8 @@ Now you should be able to flash your board as follows:
 - Plug your ESP32 board into your computer's USB port.
 - Build and flash your TinyGo code using the `tinygo flash` command. This command flashes the ESP32 with the blinky1 example:
 
-    ```
+    ```shell
     tinygo flash -target=esp32-mini32 examples/blinky1
     ```
 
 - The ESP32 board should restart and then begin running your program.
-
-### Troubleshooting
-
-Goes here
-
-## Notes
-
-Goes here

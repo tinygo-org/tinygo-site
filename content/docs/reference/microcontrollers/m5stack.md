@@ -1,9 +1,13 @@
 ---
-title: "M5Stack"
+title: "M5Stack BASIC Kit"
 weight: 3
 ---
 
-The [m5stack](https://docs.m5stack.com/en/core/basic) is a development board based on the Espressif ESP32 a powerful chip that is used on many different board mostly because of the built-in radio that can be used for WiFi or Bluetooth wireless connections.
+The [BASIC Kit](https://docs.m5stack.com/en/core/basic) is a development board  based on the [Espressif ESP32](https://www.espressif.com/en/products/socs/esp32).
+
+## Peripherals and Drivers
+
+A powerful chip that is used on many different boards mostly because of the built-in radio that can be used for WiFi or Bluetooth wireless connections.
 
 ## Interfaces
 
@@ -75,7 +79,7 @@ Now you should be able to flash your board as follows:
 - Plug your ESP32 board into your computer's USB port.
 - Build and flash your TinyGo code using the `tinygo flash` command. This command flashes the ESP32 with the serial example:
 
-    ```
+    ```shell
     tinygo flash -target=m5stack -port=/dev/ttyUSB0 examples/serial
     ```
 
@@ -92,7 +96,7 @@ Now you should be able to flash your board as follows:
 - Plug your ESP32 board into your computer's USB port.
 - Build and flash your TinyGo code using the `tinygo flash` command. This command flashes the ESP32 with the serial example:
 
-    ```
+    ```shell
     tinygo flash -target=m5stack examples/serial
     ```
 
@@ -109,16 +113,8 @@ Now you should be able to flash your board as follows:
 - Plug your ESP32 board into your computer's USB port.
 - Build and flash your TinyGo code using the `tinygo flash` command. This command flashes the ESP32 with the serial example:
 
-    ```
+    ```shell
     tinygo flash -target=m5stack examples/serial
     ```
 
 - The ESP32 board should restart and then begin running your program.
-
-### Troubleshooting
-
-Goes here
-
-## Notes
-
-Goes here

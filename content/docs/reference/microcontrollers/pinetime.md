@@ -1,9 +1,13 @@
 ---
-title: "PineTime DevKit"
+title: "Pine64 PineTime"
 weight: 3
 ---
 
 The [PineTime](https://wiki.pine64.org/index.php/PineTime) is a smartwatch by [Pine64](https://www.pine64.org/) that is based on the Nordic Semiconductor [nRF52832](https://www.nordicsemi.com/eng/Products/Bluetooth-low-energy/nRF52832) SoC. As of October 2019, a limited amount has been produced for developers.
+
+## Peripherals and Drivers
+
+- [nRF52832](https://github.com/tinygo-org/bluetooth) Bluetooth
 
 ## Interfaces
 
@@ -24,7 +28,6 @@ The [PineTime](https://wiki.pine64.org/index.php/PineTime) is a smartwatch by [P
 | `LED1`            | `P0_23`      | `LED`, `LCD_BACKLIGHT_HIGH` |
 | `LED2`            | `P0_22`      | `LCD_BACKLIGHT_MID` |
 | `LED3`            | `P0_14`      | `LCD_BACKLIGHT_LOW` |
-| `UART_TX_PIN`     | `P0_11`      |                   |
 | `SPI0_SCK_PIN`    | `P0_02`      | `LCD_SCK`         |
 | `SPI0_SDO_PIN`    | `P0_03`      | `LCD_SDI`         |
 | `SPI0_SDI_PIN`    | `P0_04`      |                   |
@@ -70,7 +73,8 @@ You can find how to install nrfjprog in the [documentation for the pca10040 boar
 
 ### Unlock chip using OpenOCD
 
-Recent OpenOCD versions support unlocking/erasing the flash. Unfortunately, it isn't supported by OpenOCD 0.10, which is (as of October 2019) included in most Linux distributions. So you'll have to compile OpenOCD from source and use that. See [this StackOverflow answer](https://stackoverflow.com/questions/52308978/problem-flashing-nrf52-chip-using-openocd#54372481) for more details.
+Recent OpenOCD versions support unlocking/erasing the flash. Unfortunately, it isn't supported by OpenOCD 0.10, which is (as of October 2019) included in most Linux distributions. So you'll have to compile OpenOCD from source and use that.
+See [this StackOverflow answer](https://stackoverflow.com/questions/52308978/problem-flashing-nrf52-chip-using-openocd#54372481) for more details.
 
 After unlocking, you can use a regular OpenOCD version (like 0.10) for flashing.
 
@@ -78,6 +82,6 @@ After unlocking, you can use a regular OpenOCD version (like 0.10) for flashing.
 
 See above for how to connect the PineTime to your computer. When it is connected, you can flash programs to it. For example, to blink the LCD backlight:
 
-```sh
-tinygo flash -target=pinetime-devkit0 examples/blinky1
+```shell
+tinygo flash -target=pinetime examples/blinky1
 ```

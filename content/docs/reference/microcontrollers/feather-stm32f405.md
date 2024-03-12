@@ -3,7 +3,7 @@ title: "Adafruit Feather STM32F405 Express"
 weight: 3
 ---
 
-The [Adafruit Feather STM32F405](https://www.adafruit.com/product/4382) is a tiny ARM development board based on the ST Micro [STM32F405](https://www.st.com/resource/en/datasheet/dm00037051.pdf) family of microcontrollers.
+The [Feather STM32F405 Express](https://www.adafruit.com/product/4382) is a tiny ARM development board based on the ST Micro [STM32F405](https://www.st.com/resource/en/datasheet/dm00037051.pdf) family of microcontrollers.
 
 ## Interfaces
 
@@ -89,14 +89,10 @@ You must first install the `dfu-util` program in order to flash the Adafruit Fea
 
 You must first install the `dfu-util` program in order to flash the Adafruit Feather STM32F405 board.
 
-- Download dfu-util from the website here: http://dfu-util.sourceforge.net/releases/dfu-util-0.9-win64.zip
+- Download dfu-util from the website here: https://dfu-util.sourceforge.net/releases/dfu-util-0.9-win64.zip
 - Decompress the files to a directory such as `C:\dfu-util`
 - Add `C:\dfu-util` to your `PATH`.
 
 ### Troubleshooting
 
 If you run into trouble getting dfu-util installed and working on Windows, see the blog post at https://www.hanselman.com/blog/HowToFixDfuutilSTMWinUSBZadigBootloadersAndOtherFirmwareFlashingIssuesOnWindows.aspx
-
-## Notes
-
-Goes here

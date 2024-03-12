@@ -1,9 +1,9 @@
 ---
-title: "Adafruit Qt Py"
+title: "Adafruit QT Py"
 weight: 3
 ---
 
-The [Adafruit QtPy](https://www.adafruit.com/product/4600) is a tiny ARM development board based on the Atmel [ATSAMD21E18](https://www.microchip.com/wwwproducts/en/ATSAMD21E18) family of SoC.
+The [QT Py](https://www.adafruit.com/product/4600) is a tiny ARM development board based on the Atmel [ATSAMD21E18](https://www.microchip.com/wwwproducts/en/ATSAMD21E18) family of SoC.
 
 ## Interfaces
 
