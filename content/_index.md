@@ -28,7 +28,7 @@ Ready to get started? [Click here](getting-started).
 
 {{% /blocks/lead %}}
 
-{{< blocks/section color="primary-light" >}}
+{{< blocks/section color="primary-light" type="row" >}}
 {{% blocks/feature icon="fa-lightbulb" title="TinyGo Playground" url="https://play.tinygo.org/" %}}
 Try TinyGo online
 {{% /blocks/feature %}}
