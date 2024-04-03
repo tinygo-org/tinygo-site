@@ -3,7 +3,7 @@ title: "Seeed Seeeduino XIAO"
 weight: 3
 ---
 
-The [Seeed Seeeduino XIAO](https://www.seeedstudio.com/Seeeduino-XIAO-Arduino-Microcontroller-SAMD21-Cortex-M0+-p-4426.html) is a tiny ARM development board based on the Atmel [ATSAMD21G18](https://www.microchip.com/wwwproducts/en/ATSAMD21G18) family of SoC.
+The [Seeeduino XIAO](https://www.seeedstudio.com/Seeeduino-XIAO-Arduino-Microcontroller-SAMD21-Cortex-M0+-p-4426.html) is a tiny ARM development board based on the Atmel [ATSAMD21G18](https://www.microchip.com/wwwproducts/en/ATSAMD21G18) family of SoC.
 
 ## Interfaces
 
@@ -67,14 +67,12 @@ If you have troubles getting your XIAO board to receive code, try this:
 - The XIAO board will appear to your computer like a USB drive.
 - Now try running the command as above:
 
-
-```shell
-tinygo flash -target=xiao [PATH TO YOUR PROGRAM]
-```
+    ```shell
+    tinygo flash -target=xiao [PATH TO YOUR PROGRAM]
+    ```
 
 Once you have updated your XIAO board the first time, after that you should be able to flash it entirely from the command line.
 
 ## Notes
 
 You can use the USB port to the XIAO as a serial port. `UART0` refers to this connection.
-

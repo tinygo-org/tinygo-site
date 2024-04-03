@@ -3,7 +3,11 @@ title: "iLabs Challenger RP2040 LoRa"
 weight: 3
 ---
 
-The [iLabs Challenger RP2040 LoRa](https://ilabs.se/product/challenger-rp2040-lora/) is a tiny development board based on the Raspberry Pi [RP2040](https://datasheets.raspberrypi.org/rp2040/rp2040-datasheet.pdf) microcontroller.
+The [Challenger RP2040 LoRa](https://ilabs.se/product/challenger-rp2040-lora/) is a tiny development board based on the Raspberry Pi [RP2040](https://datasheets.raspberrypi.org/rp2040/rp2040-datasheet.pdf) microcontroller.
+
+## Peripherals and Drivers
+
+- RFM95W LoRa via SPI
 
 ## Interfaces
 

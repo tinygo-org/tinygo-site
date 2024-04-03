@@ -3,7 +3,12 @@ title: "Dragino LoRaWAN GPS Tracker LGT-92"
 weight: 3
 ---
 
-The [Dragino LGT-92](https://www.dragino.com/products/lora-lorawan-end-node/item/142-lgt-92.html) includes a low power GPS module L76-L and 9-axis accelerometer for motion and attitude detection. It is based on the ST Micro [STM32L072CZT6](https://www.st.com/en/microcontrollers-microprocessors/stm32l072cz.html) SoC.
+The [LoRaWAN GPS Tracker LGT-92](https://www.dragino.com/products/lora-lorawan-end-node/item/142-lgt-92.html) is based on the ST Micro [STM32L072CZT6](https://www.st.com/en/microcontrollers-microprocessors/stm32l072cz.html) SoC.
+
+## Peripherals and Drivers
+
+- low power GPS module L76-L
+- 9-axis accelerometer for motion and attitude detection
 
 ## Interfaces
 

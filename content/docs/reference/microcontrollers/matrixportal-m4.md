@@ -3,7 +3,14 @@ title: "Adafruit Matrix Portal M4"
 weight: 3
 ---
 
-The [Adafruit Matrix Portal M4](https://www.adafruit.com/product/4745) is an ARM development system based on the [ATSAMD51J19 Cortex M4 processor](https://www.microchip.com/wwwproducts/en/ATSAMD51J19). The Adafruit Matrix Portal M4 is designed to plugin easily to any HUB-75 LED display. In addition it has a built-in ESP32 Wi-Fi coprocessor, along with a LIS3DH accelerometer.
+The [Matrix Portal M4](https://www.adafruit.com/product/4745) is an ARM development system based on the [ATSAMD51J19 Cortex M4 processor](https://www.microchip.com/wwwproducts/en/ATSAMD51J19). The Adafruit Matrix Portal M4 is designed to plugin easily to any HUB-75 LED display.
+
+## Peripherals and Drivers
+
+- [LIS3DH](https://pkg.go.dev/tinygo.org/x/drivers/lis3dh) IMU chip (acceleration, tap detection, free-fall detection)
+- [WS2812](https://pkg.go.dev/tinygo.org/x/drivers/ws2812) Neopixel (built-in)
+- Buttons
+- ESP32 Wi-Fi coprocessor (built-in)
 
 ## Interfaces
 

@@ -3,7 +3,7 @@ title: "Adafruit QT Py RP2040"
 weight: 3
 ---
 
-The [Adafruit QT Py RP2040](https://www.adafruit.com/product/4900) is a tiny development board based on the Raspberry Pi [RP2040](https://datasheets.raspberrypi.org/rp2040/rp2040-datasheet.pdf) microcontroller.
+The [QT Py RP2040](https://www.adafruit.com/product/4900) is a tiny development board based on the Raspberry Pi [RP2040](https://datasheets.raspberrypi.org/rp2040/rp2040-datasheet.pdf) microcontroller.
 
 ## Interfaces
 

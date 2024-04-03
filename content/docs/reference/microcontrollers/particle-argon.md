@@ -3,7 +3,12 @@ title: "Particle Argon"
 weight: 3
 ---
 
-[The Particle Argon](https://docs.particle.io/datasheets/wi-fi/argon-datasheet/) is a powerful Wi-Fi enabled development board. It is based on the Nordic [nRF52840](https://www.nordicsemi.com/eng/Products/nRF52840) and ESP32 2.4 GHz Wi-Fi coprocessor.
+The [Argon](https://docs.particle.io/datasheets/wi-fi/argon-datasheet/) is a powerful Wi-Fi enabled development board. It is based on the Nordic [nRF52840](https://www.nordicsemi.com/eng/Products/nRF52840).
+
+## Peripherals and Drivers
+
+- [nRF52840](https://github.com/tinygo-org/bluetooth) Bluetooth
+- ESP32 2.4 GHz Wi-Fi coprocessor
 
 ## Interfaces
 

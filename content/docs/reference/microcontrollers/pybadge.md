@@ -3,9 +3,16 @@ title: "Adafruit PyBadge"
 weight: 3
 ---
 
-The [Adafruit PyBadge](https://www.adafruit.com/product/4200) is a ARM development board based on the Atmel [ATSAMD51J19A](https://www.microchip.com/wwwproducts/en/ATSAMD51J19A) family of SoC.
+The [PyBadge](https://www.adafruit.com/product/4200) is a ARM development board based on the Atmel [ATSAMD51J19A](https://www.microchip.com/wwwproducts/en/ATSAMD51J19A) family of SoC.
 
-It has many built-in devices, such as a 1.8" 160x128 Color TFT Display, 8 x buttons, 5 x NeoPixels, a triple-axis accelerometer, a light sensor, and a speaker. The PyBadge uses the ST7735 display, so you may use the tinygo-org st7735 driver. The accelerometer is the LIS3DH so you may use the tinygo lis3dh driver
+## Peripherals and Drivers
+
+- [LIS3DH](https://pkg.go.dev/tinygo.org/x/drivers/lis3dh) IMU chip (acceleration, tap detection, free-fall detection)
+- [ST7735](https://pkg.go.dev/tinygo.org/x/drivers/st7735) 1.8" 160x128 Color TFT Display
+- [WS2812](https://pkg.go.dev/tinygo.org/x/drivers/ws2812) 5 x NeoPixels
+- 8 x buttons
+- Light sensor
+- Speaker
 
 ## Interfaces
 
@@ -98,10 +105,9 @@ If you have troubles getting your PyBadge board to receive code, try this:
 - The PyBadge board will appear to your computer like a USB drive.
 - Now try running the command as above:
 
-
-```shell
-tinygo flash -target=pybadge [PATH TO YOUR PROGRAM]
-```
+    ```shell
+    tinygo flash -target=pybadge [PATH TO YOUR PROGRAM]
+    ```
 
 Once you have updated your PyBadge board the first time, after that you should be able to flash it entirely from the command line.
 

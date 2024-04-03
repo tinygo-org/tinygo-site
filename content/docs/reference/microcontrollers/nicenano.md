@@ -1,9 +1,13 @@
 ---
-title: "nice!nano"
+title: "Nice Keyboards nice!nano"
 weight: 3
 ---
 
-The [nice!nano](https://nicekeyboards.com/products/nice-nano-v1-0) is a wireless, BLE enabled replacement for the Pro Micro powered by the Nordic Semiconductor [nrf52840](https://www.nordicsemi.com/eng/Products/nRF52840) processor.
+The [nice!nano](https://nicekeyboards.com/products/nice-nano-v1-0) is a wireless, BLE enabled replacement for the Pro Micro powered by the Nordic Semiconductor [nRF52840](https://www.nordicsemi.com/eng/Products/nRF52840) processor.
+
+## Peripherals and Drivers
+
+- [nRF52840](https://github.com/tinygo-org/bluetooth) Bluetooth
 
 ## Interfaces
 
@@ -90,15 +94,13 @@ Once you have updated your nice!nano board the first time, after that you should
 
 You can use the USB port to the nice!nano as a serial port. `UART0` refers to this connection.
 
-Bluetooth support is available for the nice!nano board. See https://github.com/tinygo-org/bluetooth for more information.
-
 ## Updating the UF2 bootloader
 
 This board uses a UF2 bootloader created by Adafruit: https://github.com/adafruit/Adafruit_nRF52_Bootloader
 
 We recommend bootloader version 0.4.1 or above. You can check what version is installed on your board by double-clicking the button on the board to launch the bootloader. When you do this, a USB volume that should automatically be mounted on your computer. Check the file named "INFO_UF2.TXT" on that drive. The bootloader firmware version should be listed in that file, for example:
 
-```
+```shell
 UF2 Bootloader 0.4.1 lib/nrfx (v2.0.0) lib/tinyusb (0.6.0-272-g4e6aa0d8) lib/uf2 (remotes/origin/configupdate-9-gadbb8c7)
 Model: Adafruit ItsyBitsy nRF52840 Express
 Board-ID: nRF52840-ItsyBitsy-revA
@@ -106,7 +108,7 @@ SoftDevice: S140 version 6.1.1
 Date: Jan 19 2021
 ```
 
-To update the bootloader, you will need to install the `adafruit-nrfutil` program. 
+To update the bootloader, you will need to install the `adafruit-nrfutil` program.
 
 You can install it by running:
 
@@ -114,10 +116,10 @@ You can install it by running:
 pip3 install --user adafruit-nrfutil
 ```
 
-Once you have installed the `adafruit-nrfutil` program, download the firmware here: 
+Once you have installed the `adafruit-nrfutil` program, download the firmware here:
 https://github.com/adafruit/Adafruit_nRF52_Bootloader/releases/download/0.4.1/nice_nano_bootloader-0.4.1.zip
 
-Unzip the files in this zip file and save them to a convenient location. 
+Unzip the files in this zip file and save them to a convenient location.
 
 Plug in your board to your computer's USB port.
 

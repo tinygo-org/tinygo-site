@@ -3,7 +3,7 @@ title: "Adafruit Feather M4 CAN"
 weight: 3
 ---
 
-The [Adafruit Feather M4 CAN](https://www.adafruit.com/product/4759) is a tiny ARM development board based on the Atmel [ATSAME51J19](https://www.microchip.com/wwwproducts/en/ATSAME51J19A) family of SoC.
+The [Feather M4 CAN](https://www.adafruit.com/product/4759) is a tiny ARM development board based on the Atmel [ATSAME51J19](https://www.microchip.com/wwwproducts/en/ATSAME51J19A) family of SoC.
 
 ## Interfaces
 
@@ -78,7 +78,6 @@ The Feather M4 CAN comes with the [UF2 bootloader](https://github.com/Microsoft/
 
 - The Feather M4 CAN board should restart and then begin running your program.
 
-
 ### Troubleshooting
 
 If you have troubles getting your Feather M4 CAN board to receive code, try this:
@@ -87,10 +86,9 @@ If you have troubles getting your Feather M4 CAN board to receive code, try this
 - The Feather M4 CAN board will appear to your computer like a USB drive.
 - Now try running the command as above:
 
-
-```shell
-tinygo flash -target=feather-m4-can [PATH TO YOUR PROGRAM]
-```
+    ```shell
+    tinygo flash -target=feather-m4-can [PATH TO YOUR PROGRAM]
+    ```
 
 Once you have updated your Feather M4 CAN board the first time, after that you should be able to flash it entirely from the command line.
 

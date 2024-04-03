@@ -1,9 +1,11 @@
 ---
-title: "STM32 Nucleo WL55JC"
+title: "ST Micro STM32WL Nucleo-64 WL55JC"
 weight: 3
 ---
 
-The [STM32 Nucleo WL55JC](https://www.st.com/en/evaluation-tools/nucleo-wl55jc.html) is an ARM development board based on the ST Micro [STM32WL55JCI](https://www.st.com/en/microcontrollers-microprocessors/stm32wl55jc.html) SoC.
+The [STM32WL Nucleo-64 WL55JC](https://www.st.com/en/evaluation-tools/nucleo-wl55jc.html) is an ARM development board based on the ST Micro [STM32WL55JCI](https://www.st.com/en/microcontrollers-microprocessors/stm32wl55jc.html) SoC.
+
+## Peripherals and Drivers
 
 It has onboard LoRa®, (G)FSK, (G)MSK, and BPSK as well as 3 user LEDs, 3 user buttons and 1 reset push-button
 

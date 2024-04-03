@@ -3,7 +3,7 @@ title: "Microchip SAM E54 Xplained Pro"
 weight: 3
 ---
 
-The [Microchip SAM E54 Xplained Pro](https://www.microchip.com/developmenttools/productdetails/atsame54-xpro) is a tiny ARM development board based on the Atmel [ATSAME54P20](https://www.microchip.com/wwwproducts/en/ATSAME54P20A) family of SoC.
+The [SAM E54 Xplained Pro](https://www.microchip.com/developmenttools/productdetails/atsame54-xpro) is a tiny ARM development board based on the Atmel [ATSAME54P20](https://www.microchip.com/wwwproducts/en/ATSAME54P20A) family of SoC.
 
 ## Interfaces
 

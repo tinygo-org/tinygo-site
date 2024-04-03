@@ -3,7 +3,13 @@ title: "Arduino MKR WiFi 1010"
 weight: 3
 ---
 
-The [Arduino MKR WiFi 1010](https://store.arduino.cc/usa/mkr-wifi-1010) is a very small ARM development board based on the Microchip [SAMD21](https://www.microchip.com/wwwproducts/en/ATSAMD21G18) family of processors. It also has a NINA-W102 chip onboard which provides an wireless communication abilities based on the popular ESP32 family of wireless chips from Espressif.
+The [Arduino MKR WiFi 1010](https://store.arduino.cc/usa/mkr-wifi-1010) is a very small ARM development board based on the Microchip [SAMD21](https://www.microchip.com/wwwproducts/en/ATSAMD21G18) family of processors.
+
+## Peripherals and Drivers
+
+- [NINA-W102](https://github.com/tinygo-org/drivers/tree/release/wifinina) chip for WiFi, Bluetooth
+
+You can also use the Espressif ESP-AT firmware, although you will need to flash it yourself. Please see the [espat driver](https://github.com/tinygo-org/drivers/tree/release/espat).
 
 ## Interfaces
 
@@ -134,7 +140,3 @@ Once you have updated your Arduino MKR WiFi 1010 board the first time, after tha
 ## Notes
 
 You can use the USB port to the Arduino MKR WiFi 1010 as a serial port. `UART0` refers to this connection.
-
-For information on how to use the built-in NINA-W102 wireless chip with the default firmware, please see the "wifinina" driver in the TinyGo drivers repository located at [https://github.com/tinygo-org/drivers/tree/release/wifinina](https://github.com/tinygo-org/drivers/tree/release/wifinina).
-
-You can also use the Espressif ESP-AT firmware, although you will need to flash it yourself. Please see the "espat" driver in the TinyGo drivers repository located at [https://github.com/tinygo-org/drivers/tree/release/espat](https://github.com/tinygo-org/drivers/tree/release/espat).

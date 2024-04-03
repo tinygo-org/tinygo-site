@@ -1,9 +1,9 @@
 ---
-title: 'ST Micro "Nucleo" F103RB'
+title: 'ST Micro STM32 Nucleo-64 F103RB'
 weight: 3
 ---
 
-The [Nucleo F103RB](https://www.st.com/en/evaluation-tools/nucleo-f103rb.html) is a rather affordable ARM development board based on the ST Micro [STM32F103RB](https://www.st.com/en/microcontrollers/stm32f103rb.html) SoC providing lots of GPIO pins and an onboard programmer/debugger with mini-USB connector.
+The [STM32 Nucleo-64 F103RB](https://www.st.com/en/evaluation-tools/nucleo-f103rb.html) is a rather affordable ARM development board based on the ST Micro [STM32F103RB](https://www.st.com/en/microcontrollers/stm32f103rb.html) SoC providing lots of GPIO pins and an onboard programmer/debugger with mini-USB connector.
 
 ## Interfaces
 

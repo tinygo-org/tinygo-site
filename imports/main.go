@@ -3,7 +3,6 @@ package main
 import (
 	"bytes"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -252,13 +251,13 @@ func (pkg *Package) runTest() (result testResult) {
 	result.pkg = pkg
 
 	// Prepare test files.
-	dir, err := ioutil.TempDir("", "tinygo-test-*")
+	dir, err := os.MkdirTemp("", "tinygo-test-*")
 	if err != nil {
 		panic("could not create temporary directory: " + err.Error())
 	}
 	defer os.RemoveAll(dir)
 	temporaryGoFile := filepath.Join(dir, "main.go")
-	ioutil.WriteFile(temporaryGoFile, []byte(fmt.Sprintf("package main\nimport _ \"%s\"\nfunc main(){}\n", pkg.Path)), 0600)
+	os.WriteFile(temporaryGoFile, []byte(fmt.Sprintf("package main\nimport _ \"%s\"\nfunc main(){}\n", pkg.Path)), 0600)
 	temporaryExecutableFile := filepath.Join(dir, "main")
 
 	// Run the compile test.

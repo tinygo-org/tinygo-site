@@ -3,19 +3,19 @@ title: "Nintendo Switch"
 weight: 3
 ---
 
-The [Nintendo Switch](https://en.wikipedia.org/wiki/Nintendo_Switch) is a handheld videogame platform based on the [Nvidia Tegra X1](https://en.wikipedia.org/wiki/Tegra#Tegra_X1) SoC.
+The [Switch](https://en.wikipedia.org/wiki/Nintendo_Switch) is a handheld videogame platform based on the [Nvidia Tegra X1](https://en.wikipedia.org/wiki/Tegra#Tegra_X1) SoC.
 
 ## Interfaces
 
 | Interface | Hardware Supported | TinyGo Support |
 | --------- | ------------- | ----- |
-| GPIO      | ? | ? |
-| UART      | ? | ? |
-| SPI       | ? | ? |
-| I2C       | ? | ? |
-| ADC       | ? | ? |
-| PWM       | ? | ? |
-| USBDevice | ? | ? |
+| GPIO      | ?   | ?   |
+| UART      | ?   | ?   |
+| SPI       | ?   | ?   |
+| I2C       | ?   | ?   |
+| ADC       | ?   | ?   |
+| PWM       | ?   | ?   |
+| USBDevice | ?   | ?   |
 
 ## Machine Package Docs
 
@@ -23,9 +23,9 @@ The [Nintendo Switch](https://en.wikipedia.org/wiki/Nintendo_Switch) is a handhe
 
 ## Installing dependencies
 
-You will need the `linkle` (https://github.com/MegatonHammer/linkle) program to convert to the NRO format needed by the Switch:
+You will need the [linkle](https://github.com/MegatonHammer/linkle) program to convert to the NRO format needed by the Switch.
 
-You can use a Nintendo Switch software emulator such as yuzu (https://yuzu-emu.org/) to test your programs.
+You can use a Nintendo Switch software emulator such as [yuzu](https://yuzu-emu.org/) to test your programs.
 
 ## Building code
 
@@ -49,6 +49,6 @@ Information needed here...
 
 ## Notes
 
-See the gonx package (https://github.com/racerxdl/gonx) for wrappers around Nintendo Switch APIs.
+See the [gonx package](https://github.com/racerxdl/gonx) for wrappers around Nintendo Switch APIs.
 
 Examples using gonx can be found at https://github.com/racerxdl/go-switch-examples

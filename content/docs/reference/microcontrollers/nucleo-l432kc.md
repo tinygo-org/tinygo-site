@@ -1,9 +1,11 @@
 ---
-title: 'ST Micro "Nucleo" L432KC'
+title: 'ST Micro STM32 Nucleo-32 L432KC'
 weight: 3
 ---
 
-The [STM32 Nucleo L432KC](https://www.st.com/en/evaluation-tools/nucleo-l432kc.html) is an ARM development board based on the ST Micro [STM32L432KC](https://www.st.com/en/microcontrollers-microprocessors/stm32l432kc.html) SoC.
+The [STM32 Nucleo-32 L432KC](https://www.st.com/en/evaluation-tools/nucleo-l432kc.html) is an ARM development board based on the ST Micro [STM32L432KC](https://www.st.com/en/microcontrollers-microprocessors/stm32l432kc.html) SoC.
+
+## Peripherals and Drivers
 
 It has 2 user buttons, and 3 user LEDs.
 

@@ -1,12 +1,17 @@
 ---
-title: 'ST Micro STM32F407 "Discovery"'
+title: 'ST Micro STM32F4 Discovery'
 weight: 3
 ---
 
 The [STM32F4 Discovery](https://www.st.com/en/evaluation-tools/stm32f4discovery.html) is an ARM development board based on the ST Micro [STM32F407](https://www.st.com/resource/en/datasheet/stm32f407vg.pdf) SoC.
 
-It has an onboard LIS302DL or LIS3DSH accelerometer, MP45DT02 MEMS digital microphone, an
-CS43L22 audio DAC, 2 user buttons, and 4 user LEDs.
+## Peripherals and Drivers
+
+- LIS302DL or LIS3DSH accelerometer
+- MP45DT02 MEMS digital microphone
+- CS43L22 audio DAC
+- 2 user buttons
+- 4 user LEDs
 
 ## Interfaces
 

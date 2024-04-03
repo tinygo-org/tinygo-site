@@ -3,7 +3,11 @@ title: "Seeed XIAO BLE"
 weight: 3
 ---
 
-The [Seeed XIAO BLE](https://www.seeedstudio.com/Seeed-XIAO-BLE-nRF52840-p-5201.html) is a tiny ARM development board based on the Nordic Semiconductor [nrf52840](https://www.nordicsemi.com/eng/Products/nRF52840) processor.
+The [XIAO BLE](https://www.seeedstudio.com/Seeed-XIAO-BLE-nRF52840-p-5201.html) is a tiny ARM development board based on the Nordic Semiconductor [nRF52840](https://www.nordicsemi.com/eng/Products/nRF52840) processor.
+
+## Peripherals and Drivers
+
+- [nRF52840](https://github.com/tinygo-org/bluetooth) Bluetooth
 
 ## Interfaces
 
@@ -73,4 +77,3 @@ Add troubleshooting tips here.
 ## Notes
 
 You can use the USB port to the XIAO BLE as a serial port. `UART0` refers to this connection.
-

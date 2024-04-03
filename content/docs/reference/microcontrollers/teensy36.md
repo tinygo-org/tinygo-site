@@ -3,7 +3,7 @@ title: "PJRC Teensy 3.6"
 weight: 3
 ---
 
-The [PJRC Teensy 3.6](https://www.pjrc.com/store/teensy36.html) is a small ARM development board based on the NXP [MK66FX1M0VMD18](https://www.nxp.com/docs/en/data-sheet/K66P144M180SF5V2.pdf) 32-bit 180 MHz ARM Cortex-M4.
+The [Teensy 3.6](https://www.pjrc.com/store/teensy36.html) is a small ARM development board based on the NXP [MK66FX1M0VMD18](https://www.nxp.com/docs/en/data-sheet/K66P144M180SF5V2.pdf) 32-bit 180 MHz ARM Cortex-M4.
 
 ## Interfaces
 
@@ -94,7 +94,7 @@ The [PJRC Teensy 3.6](https://www.pjrc.com/store/teensy36.html) is a small ARM d
 
 ### teensy_loader_cli
 
-In order to flash your TinyGo programs onto the Teensy 3.6 board, you will need to install the `teensy_loader_cli` (https://github.com/PaulStoffregen/teensy_loader_cli) on your machine.
+In order to flash your TinyGo programs onto the Teensy 3.6 board, you will need to install the [teensy_loader_cli](https://github.com/PaulStoffregen/teensy_loader_cli) on your machine.
 
 ### CLI Flashing
 

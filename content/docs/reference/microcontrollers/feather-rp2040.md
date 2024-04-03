@@ -3,7 +3,7 @@ title: "Adafruit Feather RP2040"
 weight: 3
 ---
 
-The [Adafruit Feather RP2040](https://www.adafruit.com/product/4884) is a tiny development board based on the Raspberry Pi [RP2040](https://datasheets.raspberrypi.org/rp2040/rp2040-datasheet.pdf) microcontroller.
+The [Feather RP2040](https://www.adafruit.com/product/4884) is a tiny development board based on the Raspberry Pi [RP2040](https://datasheets.raspberrypi.org/rp2040/rp2040-datasheet.pdf) microcontroller.
 
 ## Interfaces
 

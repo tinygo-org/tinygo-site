@@ -3,7 +3,11 @@ title: "Particle Xenon"
 weight: 3
 ---
 
-[The Particle Xenon](https://docs.particle.io/datasheets/discontinued/xenon-datasheet/) is a low cost mesh-enabled development board.
+The [Xenon](https://docs.particle.io/datasheets/discontinued/xenon-datasheet/) is based on the Nordic [nRF52840](https://www.nordicsemi.com/eng/Products/nRF52840).
+
+## Peripherals and Drivers
+
+- [nRF52840](https://github.com/tinygo-org/bluetooth) Bluetooth
 
 ## Interfaces
 
@@ -75,5 +79,3 @@ Programs are loaded onto the Particle Xenon board using the `openocd` command li
 ## Notes
 
 You can use the USB port to the Particle Xenon as a serial port. `UART0` refers to this connection.
-
-Bluetooth support is in development but not yet completed.

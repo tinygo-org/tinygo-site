@@ -3,7 +3,7 @@ title: "Waveshare RP2040-Zero"
 weight: 3
 ---
 
-The [Waveshare RP2040-Zero](https://www.waveshare.com/wiki/RP2040-Zero) is a tiny development board based on the Raspberry Pi [RP2040](https://datasheets.raspberrypi.org/rp2040/rp2040-datasheet.pdf) microcontroller.
+The [RP2040-Zero](https://www.waveshare.com/wiki/RP2040-Zero) is a tiny development board based on the Raspberry Pi [RP2040](https://datasheets.raspberrypi.org/rp2040/rp2040-datasheet.pdf) microcontroller.
 
 ## Interfaces
 

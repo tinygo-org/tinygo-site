@@ -3,7 +3,7 @@ title: "PJRC Teensy 4.0"
 weight: 3
 ---
 
-The [PJRC Teensy 4.0](https://www.pjrc.com/store/teensy40.html) is a small ARM development board based on the NXP [iMXRT1062](https://www.nxp.com/docs/en/nxp/data-sheets/IMXRT1060CEC.pdf) 32-bit 600 MHz ARM Cortex-M7.
+The [Teensy 4.0](https://www.pjrc.com/store/teensy40.html) is a small ARM development board based on the NXP [iMXRT1062](https://www.nxp.com/docs/en/nxp/data-sheets/IMXRT1060CEC.pdf) 32-bit 600 MHz ARM Cortex-M7.
 
 ## Interfaces
 
@@ -70,7 +70,7 @@ The [PJRC Teensy 4.0](https://www.pjrc.com/store/teensy40.html) is a small ARM d
 
 ### teensy_loader_cli
 
-In order to flash your TinyGo programs onto the Teensy 4.0 board, you will need to install the `teensy_loader_cli` (https://github.com/PaulStoffregen/teensy_loader_cli) on your machine.
+In order to flash your TinyGo programs onto the Teensy 4.0 board, you will need to install the [teensy_loader_cli](https://github.com/PaulStoffregen/teensy_loader_cli) on your machine.
 
 ### CLI Flashing
 

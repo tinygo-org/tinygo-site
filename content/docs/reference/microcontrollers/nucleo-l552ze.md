@@ -1,9 +1,11 @@
 ---
-title: 'ST Micro "Nucleo" L552ZE'
+title: 'ST Micro STM32 Nucleo-144 L552ZE'
 weight: 3
 ---
 
-The [STM32 Nucleo L552ZE](https://www.st.com/en/evaluation-tools/nucleo-l552ze-q.html) is an ARM development board based on the ST Micro [STM32L552ZE](https://www.st.com/en/microcontrollers-microprocessors/stm32l552ze.html) SoC.
+The [STM32 Nucleo-144 L552ZE](https://www.st.com/en/evaluation-tools/nucleo-l552ze-q.html) is an ARM development board based on the ST Micro [STM32L552ZE](https://www.st.com/en/microcontrollers-microprocessors/stm32l552ze.html) SoC.
+
+## Peripherals and Drivers
 
 It has onboard ethernet, 2 user buttons, and 3 user LEDs.
 
