@@ -47,10 +47,9 @@ The [Adafruit Metro M4 Express AirLift](https://www.adafruit.com/product/4000) i
 | `UART2_TX_PIN`    | `PA04`       | `NINA_TX`         |                      |
 | `UART2_RX_PIN`    | `PA07`       | `NINA_RX`         |                      |
 | `NINA_CS`         | `PA15`       |                   | `TCC2` (channel 1), `TCC1` (channel 3) |
-| `NINA_ACK`        | `PB04`       |                   |                      |
-| `NINA_GPIO0`      | `PB01`       |                   |                      |
+| `NINA_ACK`        | `PB04`       | `NINA_CTS`        |                      |
+| `NINA_GPIO0`      | `PB01`       | `NINA_RTS`        |                      |
 | `NINA_RESETN`     | `PB05`       |                   |                      |
-| `NINA_RTS`        | `PB23`       |                   |                      |
 | `SDA_PIN`         | `PB02`       |                   | `TCC2` (channel 2)   |
 | `SCL_PIN`         | `PB03`       |                   | `TCC2` (channel 3)   |
 | `SPI0_SCK_PIN`    | `PA13`       | `NINA_SCK`        | `TCC0` (channel 7), `TCC1` (channel 3) |

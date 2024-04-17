@@ -46,10 +46,10 @@ Peripherals:
 | `D19`             | `GPIO13`     | `I2C0_SCL_PIN`    | `PWM6` (channel B)   |
 | `SPI1_SCK_PIN`    | `GPIO22`     | `SPI1_SDO_PIN`, `SPI1_SDI_PIN` | `PWM3` (channel A)   |
 | `NINA_SCK`        | `GPIO14`     |                   | `PWM7` (channel A)   |
-| `NINA_SDO`        | `GPIO11`     |                   | `PWM5` (channel B)   |
-| `NINA_SDI`        | `GPIO8`      | `NINA_RX`         | `PWM4` (channel A)   |
-| `NINA_CS`         | `GPIO9`      | `NINA_TX`         | `PWM4` (channel B)   |
-| `NINA_ACK`        | `GPIO10`     |                   | `PWM5` (channel A)   |
+| `NINA_SDO`        | `GPIO11`     | `NINA_RTS`        | `PWM5` (channel B)   |
+| `NINA_SDI`        | `GPIO8`      | `NINA_TX`         | `PWM4` (channel A)   |
+| `NINA_CS`         | `GPIO9`      | `NINA_RX`         | `PWM4` (channel B)   |
+| `NINA_ACK`        | `GPIO10`     | `NINA_CTS`        | `PWM5` (channel A)   |
 | `NINA_GPIO0`      | `GPIO2`      |                   | `PWM1` (channel A)   |
 | `NINA_RESETN`     | `GPIO3`      |                   | `PWM1` (channel B)   |
 | `UART0_TX_PIN`    | `GPIO0`      | `UART_TX_PIN`     | `PWM0` (channel A)   |

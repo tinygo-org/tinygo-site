@@ -231,6 +231,18 @@ var (
 
 ```go
 var (
+	_USBCDC	= &USB_DEVICE{
+		Bus: esp.USB_DEVICE,
+	}
+
+	USBCDC	Serialer	= _USBCDC
+)
+```
+
+
+
+```go
+var (
 	ErrInvalidSPIBus	= errors.New("machine: SPI bus is invalid")
 	ErrInvalidSPIMode	= errors.New("machine: SPI mode is invalid")
 )
@@ -273,6 +285,19 @@ func CPUFrequency() uint32
 
 CPUFrequency returns the current CPU frequency of the chip.
 Currently it is a fixed frequency but it may allow changing in the future.
+
+
+### func GetRNG
+
+```go
+func GetRNG() (ret uint32, err error)
+```
+
+GetRNG returns 32-bit random numbers using the ESP32-C3 true random number generator,
+Random numbers are generated based on the thermal noise in the system and the
+asynchronous clock mismatch.
+For maximum entropy also make sure that the SAR_ADC is enabled.
+See esp32-c3_technical_reference_manual_en.pdf p.524
 
 
 ### func InitSerial
@@ -687,6 +712,25 @@ SPIConfig is used to store config info for SPI.
 
 
 
+## type Serialer
+
+```go
+type Serialer interface {
+	WriteByte(c byte) error
+	Write(data []byte) (n int, err error)
+	Configure(config UARTConfig) error
+	Buffered() int
+	ReadByte() (byte, error)
+	DTR() bool
+	RTS() bool
+}
+```
+
+
+
+
+
+
 ## type UART
 
 ```go
@@ -770,15 +814,18 @@ func (uart *UART) SetFormat(dataBits, stopBits int, parity UARTParity) error
 func (uart *UART) Write(data []byte) (n int, err error)
 ```
 
-Write data to the UART.
+Write data over the UART's Tx.
+This function blocks until the data is finished being sent.
 
 
 ### func (*UART) WriteByte
 
 ```go
-func (uart *UART) WriteByte(b byte) error
+func (uart *UART) WriteByte(c byte) error
 ```
 
+WriteByte writes a byte of data over the UART's Tx.
+This function blocks until the data is finished being sent.
 
 
 
@@ -790,6 +837,8 @@ type UARTConfig struct {
 	BaudRate	uint32
 	TX		Pin
 	RX		Pin
+	RTS		Pin
+	CTS		Pin
 }
 ```
 
@@ -808,6 +857,78 @@ type UARTParity uint8
 ```
 
 UARTParity is the parity setting to be used for UART communication.
+
+
+
+
+
+## type USB_DEVICE
+
+```go
+type USB_DEVICE struct {
+	Bus *esp.USB_DEVICE_Type
+}
+```
+
+USB Serial/JTAG Controller
+See esp32-c3_technical_reference_manual_en.pdf
+pg. 736
+
+
+
+### func (*USB_DEVICE) Buffered
+
+```go
+func (usbdev *USB_DEVICE) Buffered() int
+```
+
+
+
+### func (*USB_DEVICE) Configure
+
+```go
+func (usbdev *USB_DEVICE) Configure(config UARTConfig) error
+```
+
+
+
+### func (*USB_DEVICE) DTR
+
+```go
+func (usbdev *USB_DEVICE) DTR() bool
+```
+
+
+
+### func (*USB_DEVICE) RTS
+
+```go
+func (usbdev *USB_DEVICE) RTS() bool
+```
+
+
+
+### func (*USB_DEVICE) ReadByte
+
+```go
+func (usbdev *USB_DEVICE) ReadByte() (byte, error)
+```
+
+
+
+### func (*USB_DEVICE) Write
+
+```go
+func (usbdev *USB_DEVICE) Write(data []byte) (n int, err error)
+```
+
+
+
+### func (*USB_DEVICE) WriteByte
+
+```go
+func (usbdev *USB_DEVICE) WriteByte(c byte) error
+```
 
 
 

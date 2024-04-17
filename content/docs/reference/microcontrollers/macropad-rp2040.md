@@ -21,7 +21,7 @@ The [Adafruit MacroPad RP2040](https://www.adafruit.com/product/5100) is a tiny 
 
 | Pin               | Hardware pin | Alternative names | PWM                  |
 | ----------------- | ------------ | ----------------- | -------------------- |
-| `SWITCH`          | `GPIO0`      | `UART0_TX_PIN`, `UART_TX_PIN` | `PWM0` (channel A)   |
+| `SWITCH`          | `GPIO0`      | `BUTTON`, `UART0_TX_PIN`, `UART_TX_PIN` | `PWM0` (channel A)   |
 | `KEY1`            | `GPIO1`      | `UART0_RX_PIN`, `UART_RX_PIN` | `PWM0` (channel B)   |
 | `KEY2`            | `GPIO2`      |                   | `PWM1` (channel A)   |
 | `KEY3`            | `GPIO3`      |                   | `PWM1` (channel B)   |

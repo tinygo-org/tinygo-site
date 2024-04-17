@@ -169,6 +169,38 @@ of the pins in a peripheral unconfigured (if supported by the hardware).
 
 ```go
 const (
+	PinOutput	PinMode	= iota
+	PinInput
+	PinInputPulldown
+	PinInputPullup
+	PinAnalog
+	PinUART
+	PinPWM
+	PinI2C
+	PinSPI
+	PinPIO0
+	PinPIO1
+)
+```
+
+
+
+```go
+const (
+	// Edge falling
+	PinFalling	PinChange	= 4 << iota
+	// Edge rising
+	PinRising
+
+	PinToggle	= PinFalling | PinRising
+)
+```
+
+Pin change interrupt constants for SetInterrupt.
+
+
+```go
+const (
 	// GPIO pins
 	GPIO0	Pin	= 0	// peripherals: PWM0 channel A
 	GPIO1	Pin	= 1	// peripherals: PWM0 channel B
@@ -209,36 +241,6 @@ const (
 )
 ```
 
-
-
-```go
-const (
-	PinOutput	PinMode	= iota
-	PinInput
-	PinInputPulldown
-	PinInputPullup
-	PinAnalog
-	PinUART
-	PinPWM
-	PinI2C
-	PinSPI
-	PinPIO0
-	PinPIO1
-)
-```
-
-
-
-```go
-const (
-	// Edge falling
-	PinFalling	PinChange	= 4 << iota
-	// Edge rising
-	PinRising
-)
-```
-
-Pin change interrupt constants for SetInterrupt.
 
 
 ```go
@@ -304,6 +306,28 @@ const (
 
 ```go
 const (
+	// WatchdogMaxTimeout in milliseconds (approx 8.3s).
+	//
+	// Nominal 1us per watchdog tick, 24-bit counter,
+	// but due to errata two ticks consumed per 1us.
+	// See: Errata RP2040-E1
+	WatchdogMaxTimeout = (rp.WATCHDOG_LOAD_LOAD_Msk / 1000) / 2
+)
+```
+
+
+
+```go
+const XOSC_STARTUP_DELAY_MULTIPLIER = 64
+```
+
+On some boards, the XOSC can take longer than usual to stabilize. On such
+boards, this is needed to avoid a hard fault on boot/reset. Refer to
+PICO_XOSC_STARTUP_DELAY_MULTIPLIER in the Pico SDK for additional details.
+
+
+```go
+const (
 	Mode0	= 0
 	Mode1	= 1
 	Mode2	= 2
@@ -338,25 +362,6 @@ const (
 ## Variables
 
 ```go
-var (
-	UART0	= &_UART0
-	_UART0	= UART{
-		Buffer:	NewRingBuffer(),
-		Bus:	rp.UART0,
-	}
-
-	UART1	= &_UART1
-	_UART1	= UART{
-		Buffer:	NewRingBuffer(),
-		Bus:	rp.UART1,
-	}
-)
-```
-
-UART on the RP2040
-
-
-```go
 var DefaultUART = UART0
 ```
 
@@ -375,6 +380,31 @@ var (
 )
 ```
 
+
+
+```go
+var Flash flashBlockDevice
+```
+
+
+
+```go
+var (
+	UART0	= &_UART0
+	_UART0	= UART{
+		Buffer:	NewRingBuffer(),
+		Bus:	rp.UART0,
+	}
+
+	UART1	= &_UART1
+	_UART1	= UART{
+		Buffer:	NewRingBuffer(),
+		Bus:	rp.UART1,
+	}
+)
+```
+
+UART on the RP2040
 
 
 ```go
@@ -492,6 +522,14 @@ var (
 
 
 ```go
+var Watchdog = &watchdogImpl{}
+```
+
+Watchdog provides access to the hardware watchdog available
+in the RP2040.
+
+
+```go
 var (
 	ErrPWMPeriodTooLong = errors.New("pwm: period too long")
 )
@@ -528,6 +566,7 @@ var (
 var (
 	ErrUSBReadTimeout	= errors.New("USB read timeout")
 	ErrUSBBytesRead		= errors.New("USB invalid number of bytes read")
+	ErrUSBBytesWritten	= errors.New("USB invalid number of bytes written")
 )
 ```
 
@@ -563,6 +602,14 @@ ChipVersion returns the version of the chip. 1 is returned for B0 and B1
 chip.
 
 
+### func ConfigureUSBEndpoint
+
+```go
+func ConfigureUSBEndpoint(desc descriptor.Descriptor, epSettings []usb.EndpointConfig, setup []usb.SetupConfig)
+```
+
+
+
 ### func CurrentCore
 
 ```go
@@ -570,6 +617,26 @@ func CurrentCore() int
 ```
 
 CurrentCore returns the core number the call was made from.
+
+
+### func DeviceID
+
+```go
+func DeviceID() []byte
+```
+
+DeviceID returns an identifier that is unique within
+a particular chipset.
+
+The identity is one burnt into the MCU itself, or the
+flash chip at time of manufacture.
+
+It's possible that two different vendors may allocate
+the same DeviceID, so callers should take this into
+account if needing to generate a globally unique id.
+
+The length of the hardware ID is vendor-specific, but
+8 bytes (64 bits) is common.
 
 
 ### func EnableCDC
@@ -580,31 +647,14 @@ func EnableCDC(txHandler func(), rxHandler func([]byte), setupHandler func(usb.S
 
 
 
-### func EnableHID
+### func EnterBootloader
 
 ```go
-func EnableHID(txHandler func(), rxHandler func([]byte), setupHandler func(usb.Setup) bool)
+func EnterBootloader()
 ```
 
-EnableHID enables HID. This function must be executed from the init().
-
-
-### func EnableJoystick
-
-```go
-func EnableJoystick(txHandler func(), rxHandler func([]byte), setupHandler func(usb.Setup) bool, hidDesc []byte)
-```
-
-EnableJoystick enables HID. This function must be executed from the init().
-
-
-### func EnableMIDI
-
-```go
-func EnableMIDI(txHandler func(), rxHandler func([]byte), setupHandler func(usb.Setup) bool)
-```
-
-EnableMIDI enables MIDI. This function must be executed from the init().
+EnterBootloader should perform a system reset in preparation
+to switch to the bootloader to flash new firmware.
 
 
 ### func FlashDataEnd
@@ -1529,7 +1579,8 @@ SetFormat for number of data bits, stop bits, and parity for the UART.
 func (uart *UART) Write(data []byte) (n int, err error)
 ```
 
-Write data to the UART.
+Write data over the UART's Tx.
+This function blocks until the data is finished being sent.
 
 
 ### func (*UART) WriteByte
@@ -1538,7 +1589,8 @@ Write data to the UART.
 func (uart *UART) WriteByte(c byte) error
 ```
 
-WriteByte writes a byte of data to the UART.
+WriteByte writes a byte of data over the UART's Tx.
+This function blocks until the data is finished being sent.
 
 
 
@@ -1550,6 +1602,8 @@ type UARTConfig struct {
 	BaudRate	uint32
 	TX		Pin
 	RX		Pin
+	RTS		Pin
+	CTS		Pin
 }
 ```
 
@@ -1651,6 +1705,24 @@ type USBEndpointControlRegister struct {
 }
 ```
 
+
+
+
+
+
+## type WatchdogConfig
+
+```go
+type WatchdogConfig struct {
+	// The timeout (in milliseconds) before the watchdog fires.
+	//
+	// If the requested timeout exceeds `MaxTimeout` it will be rounded
+	// down.
+	TimeoutMillis uint32
+}
+```
+
+WatchdogConfig holds configuration for the watchdog timer.
 
 
 

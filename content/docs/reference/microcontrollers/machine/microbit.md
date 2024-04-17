@@ -383,6 +383,26 @@ func CPUReset()
 CPUReset performs a hard system reset.
 
 
+### func DeviceID
+
+```go
+func DeviceID() []byte
+```
+
+DeviceID returns an identifier that is unique within
+a particular chipset.
+
+The identity is one burnt into the MCU itself, or the
+flash chip at time of manufacture.
+
+It's possible that two different vendors may allocate
+the same DeviceID, so callers should take this into
+account if needing to generate a globally unique id.
+
+The length of the hardware ID is vendor-specific, but
+8 bytes (64 bits) is common.
+
+
 ### func FlashDataEnd
 
 ```go
@@ -571,6 +591,16 @@ operation, and reads the response.
 Many I2C-compatible devices are organized in terms of registers. This method
 is a shortcut to easily read such registers. Also, it only works for devices
 with 7-bit addresses, which is the vast majority.
+
+
+### func (*I2C) SetBaudRate
+
+```go
+func (i2c *I2C) SetBaudRate(br uint32) error
+```
+
+SetBaudRate sets the I2C frequency. It has the side effect of also
+enabling the I2C hardware if disabled beforehand.
 
 
 ### func (*I2C) Tx
@@ -948,7 +978,7 @@ SPI on the NRF.
 ### func (SPI) Configure
 
 ```go
-func (spi SPI) Configure(config SPIConfig)
+func (spi SPI) Configure(config SPIConfig) error
 ```
 
 Configure is intended to setup the SPI interface.
@@ -1083,7 +1113,8 @@ SetBaudRate sets the communication speed for the UART.
 func (uart *UART) Write(data []byte) (n int, err error)
 ```
 
-Write data to the UART.
+Write data over the UART's Tx.
+This function blocks until the data is finished being sent.
 
 
 ### func (*UART) WriteByte
@@ -1092,7 +1123,8 @@ Write data to the UART.
 func (uart *UART) WriteByte(c byte) error
 ```
 
-WriteByte writes a byte of data to the UART.
+WriteByte writes a byte of data over the UART's Tx.
+This function blocks until the data is finished being sent.
 
 
 
@@ -1104,6 +1136,8 @@ type UARTConfig struct {
 	BaudRate	uint32
 	TX		Pin
 	RX		Pin
+	RTS		Pin
+	CTS		Pin
 }
 ```
 

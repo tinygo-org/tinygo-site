@@ -49,12 +49,12 @@ Peripherals:
 | `A7`              | `PB03`       |                   |                      |
 | `USBCDC_DM_PIN`   | `PA24`       |                   | `TCC1` (channel 2)   |
 | `USBCDC_DP_PIN`   | `PA25`       |                   | `TCC1` (channel 3)   |
-| `UART_TX_PIN`     | `PA22`       | `NINA_TX`         | `TCC0` (channel 0)   |
-| `UART_RX_PIN`     | `PA23`       | `NINA_RX`         | `TCC0` (channel 1)   |
-| `NINA_SDO`        | `PA12`       |                   | `TCC2` (channel 0), `TCC0` (channel 2) |
-| `NINA_SDI`        | `PA13`       |                   | `TCC2` (channel 1), `TCC0` (channel 3) |
-| `NINA_CS`         | `PA14`       |                   | `TCC0` (channel 0)   |
-| `NINA_SCK`        | `PA15`       |                   | `TCC0` (channel 1)   |
+| `UART_TX_PIN`     | `PA22`       |                   | `TCC0` (channel 0)   |
+| `UART_RX_PIN`     | `PA23`       |                   | `TCC0` (channel 1)   |
+| `NINA_SDO`        | `PA12`       | `NINA_TX`         | `TCC2` (channel 0), `TCC0` (channel 2) |
+| `NINA_SDI`        | `PA13`       | `NINA_RX`         | `TCC2` (channel 1), `TCC0` (channel 3) |
+| `NINA_CS`         | `PA14`       | `NINA_RTS`        | `TCC0` (channel 0)   |
+| `NINA_SCK`        | `PA15`       | `NINA_CTS`        | `TCC0` (channel 1)   |
 | `NINA_GPIO0`      | `PA27`       |                   |                      |
 | `NINA_RESETN`     | `PA08`       | `I2S_SD_PIN`      | `TCC0` (channel 0), `TCC1` (channel 2) |
 | `NINA_ACK`        | `PA28`       |                   |                      |

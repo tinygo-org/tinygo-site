@@ -54,9 +54,12 @@ const (
 	NINA_GPIO0	= D6
 	NINA_RESETN	= D7
 
+	// pins used for the ESP32 connection do not allow hardware
+	// flow control, which is required. have to emulate with software.
 	NINA_TX		= D1
 	NINA_RX		= D0
-	NINA_RTS	= D51
+	NINA_CTS	= NINA_ACK
+	NINA_RTS	= NINA_GPIO0
 
 	LCD_DATA0	= D34
 
@@ -126,6 +129,17 @@ const (
 ```
 
 UART1 aka NINA_TX/NINA_RX
+
+
+```go
+const (
+	NINA_BAUDRATE		= 115200
+	NINA_RESET_INVERTED	= true
+	NINA_SOFT_FLOWCONTROL	= true
+)
+```
+
+NINA-W102 settings
 
 
 ```go
@@ -485,6 +499,15 @@ The QSPI peripheral on ATSAMD51 is only available on the following pins
 
 
 ```go
+const (
+	// WatchdogMaxTimeout in milliseconds (16s)
+	WatchdogMaxTimeout = (16384 * 1000) / 1024	// CYC16384/1024kHz
+)
+```
+
+
+
+```go
 const HSRAM_SIZE = 0x00040000
 ```
 
@@ -530,6 +553,8 @@ var (
 	UART1	= &sercomUSART4
 
 	DefaultUART	= UART1
+
+	UART_NINA	= UART1
 )
 ```
 
@@ -585,6 +610,14 @@ var Flash flashBlockDevice
 
 
 ```go
+var Watchdog = &watchdogImpl{}
+```
+
+Watchdog provides access to the hardware watchdog available
+in the SAMD51.
+
+
+```go
 var (
 	TCC0	= (*TCC)(sam.TCC0)
 	TCC1	= (*TCC)(sam.TCC1)
@@ -634,6 +667,7 @@ var (
 var (
 	ErrUSBReadTimeout	= errors.New("USB read timeout")
 	ErrUSBBytesRead		= errors.New("USB invalid number of bytes read")
+	ErrUSBBytesWritten	= errors.New("USB invalid number of bytes written")
 )
 ```
 
@@ -659,39 +693,40 @@ func CPUReset()
 CPUReset performs a hard system reset.
 
 
+### func ConfigureUSBEndpoint
+
+```go
+func ConfigureUSBEndpoint(desc descriptor.Descriptor, epSettings []usb.EndpointConfig, setup []usb.SetupConfig)
+```
+
+
+
+### func DeviceID
+
+```go
+func DeviceID() []byte
+```
+
+DeviceID returns an identifier that is unique within
+a particular chipset.
+
+The identity is one burnt into the MCU itself, or the
+flash chip at time of manufacture.
+
+It's possible that two different vendors may allocate
+the same DeviceID, so callers should take this into
+account if needing to generate a globally unique id.
+
+The length of the hardware ID is vendor-specific, but
+8 bytes (64 bits) and 16 bytes (128 bits) are common.
+
+
 ### func EnableCDC
 
 ```go
 func EnableCDC(txHandler func(), rxHandler func([]byte), setupHandler func(usb.Setup) bool)
 ```
 
-
-
-### func EnableHID
-
-```go
-func EnableHID(txHandler func(), rxHandler func([]byte), setupHandler func(usb.Setup) bool)
-```
-
-EnableHID enables HID. This function must be executed from the init().
-
-
-### func EnableJoystick
-
-```go
-func EnableJoystick(txHandler func(), rxHandler func([]byte), setupHandler func(usb.Setup) bool, hidDesc []byte)
-```
-
-EnableJoystick enables HID. This function must be executed from the init().
-
-
-### func EnableMIDI
-
-```go
-func EnableMIDI(txHandler func(), rxHandler func([]byte), setupHandler func(usb.Setup) bool)
-```
-
-EnableMIDI enables MIDI. This function must be executed from the init().
 
 
 ### func EnterBootloader
@@ -958,10 +993,10 @@ with 7-bit addresses, which is the vast majority.
 ### func (*I2C) SetBaudRate
 
 ```go
-func (i2c *I2C) SetBaudRate(br uint32)
+func (i2c *I2C) SetBaudRate(br uint32) error
 ```
 
-SetBaudRate sets the communication speed for the I2C.
+SetBaudRate sets the communication speed for I2C.
 
 
 ### func (*I2C) Tx
@@ -1694,7 +1729,8 @@ SetBaudRate sets the communication speed for the UART.
 func (uart *UART) Write(data []byte) (n int, err error)
 ```
 
-Write data to the UART.
+Write data over the UART's Tx.
+This function blocks until the data is finished being sent.
 
 
 ### func (*UART) WriteByte
@@ -1703,7 +1739,8 @@ Write data to the UART.
 func (uart *UART) WriteByte(c byte) error
 ```
 
-WriteByte writes a byte of data to the UART.
+WriteByte writes a byte of data over the UART's Tx.
+This function blocks until the data is finished being sent.
 
 
 
@@ -1715,6 +1752,8 @@ type UARTConfig struct {
 	BaudRate	uint32
 	TX		Pin
 	RX		Pin
+	RTS		Pin
+	CTS		Pin
 }
 ```
 
@@ -1757,6 +1796,24 @@ func (dev *USBDevice) Configure(config UARTConfig)
 ```
 
 Configure the USB peripheral. The config is here for compatibility with the UART interface.
+
+
+
+
+## type WatchdogConfig
+
+```go
+type WatchdogConfig struct {
+	// The timeout (in milliseconds) before the watchdog fires.
+	//
+	// If the requested timeout exceeds `MaxTimeout` it will be rounded
+	// down.
+	TimeoutMillis uint32
+}
+```
+
+WatchdogConfig holds configuration for the watchdog timer.
+
 
 
 

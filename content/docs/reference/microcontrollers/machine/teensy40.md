@@ -194,6 +194,49 @@ const (
 
 
 ```go
+const (
+	TWI_FREQ_100KHZ	= 100000
+	TWI_FREQ_400KHZ	= 400000
+)
+```
+
+TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-speed bus.
+
+Deprecated: use 100 * machine.KHz or 400 * machine.KHz instead.
+
+
+```go
+const (
+	// I2CReceive indicates target has received a message from the controller.
+	I2CReceive	I2CTargetEvent	= iota
+
+	// I2CRequest indicates the controller is expecting a message from the target.
+	I2CRequest
+
+	// I2CFinish indicates the controller has ended the transaction.
+	//
+	// I2C controllers can chain multiple receive/request messages without
+	// relinquishing the bus by doing 'restarts'.  I2CFinish indicates the
+	// bus has been relinquished by an I2C 'stop'.
+	I2CFinish
+)
+```
+
+
+
+```go
+const (
+	// I2CModeController represents an I2C peripheral in controller mode.
+	I2CModeController	I2CMode	= iota
+
+	// I2CModeTarget represents an I2C peripheral in target mode.
+	I2CModeTarget
+)
+```
+
+
+
+```go
 const Device = deviceName
 ```
 
@@ -838,16 +881,16 @@ type I2C struct {
 ### func (*I2C) Configure
 
 ```go
-func (i2c *I2C) Configure(config I2CConfig)
+func (i2c *I2C) Configure(config I2CConfig) error
 ```
 
 Configure is intended to setup an I2C interface for transmit/receive.
 
 
-### func (I2C) ReadRegister
+### func (*I2C) ReadRegister
 
 ```go
-func (i2c I2C) ReadRegister(address uint8, register uint8, data []byte) error
+func (i2c *I2C) ReadRegister(address uint8, register uint8, data []byte) error
 ```
 
 ReadRegister transmits the register, restarts the connection as a read
@@ -858,6 +901,29 @@ is a shortcut to easily read such registers. Also, it only works for devices
 with 7-bit addresses, which is the vast majority.
 
 
+### func (I2C) ReadRegisterEx
+
+```go
+func (i2c I2C) ReadRegisterEx(address uint8, register uint8, data []byte) error
+```
+
+ReadRegisterEx transmits the register, restarts the connection as a read
+operation, and reads the response.
+
+Many I2C-compatible devices are organized in terms of registers. This method
+is a shortcut to easily read such registers. Also, it only works for devices
+with 7-bit addresses, which is the vast majority.
+
+
+### func (I2C) SetBaudRate
+
+```go
+func (i2c I2C) SetBaudRate(br uint32) error
+```
+
+SetBaudRate sets the communication speed for I2C.
+
+
 ### func (I2C) Tx
 
 ```go
@@ -866,13 +932,27 @@ func (i2c I2C) Tx(addr uint16, w, r []byte) error
 
 
 
-### func (I2C) WriteRegister
+### func (*I2C) WriteRegister
 
 ```go
-func (i2c I2C) WriteRegister(address uint8, register uint8, data []byte) error
+func (i2c *I2C) WriteRegister(address uint8, register uint8, data []byte) error
 ```
 
 WriteRegister transmits first the register and then the data to the
+peripheral device.
+
+Many I2C-compatible devices are organized in terms of registers. This method
+is a shortcut to easily write to such registers. Also, it only works for
+devices with 7-bit addresses, which is the vast majority.
+
+
+### func (I2C) WriteRegisterEx
+
+```go
+func (i2c I2C) WriteRegisterEx(address uint8, register uint8, data []byte) error
+```
+
+WriteRegisterEx transmits first the register and then the data to the
 peripheral device.
 
 Many I2C-compatible devices are organized in terms of registers. This method
@@ -893,6 +973,30 @@ type I2CConfig struct {
 ```
 
 I2CConfig is used to store config info for I2C.
+
+
+
+
+
+## type I2CMode
+
+```go
+type I2CMode int
+```
+
+I2CMode determines if an I2C peripheral is in Controller or Target mode.
+
+
+
+
+
+## type I2CTargetEvent
+
+```go
+type I2CTargetEvent uint8
+```
+
+I2CTargetEvent reflects events on the I2C bus
 
 
 
@@ -1207,7 +1311,7 @@ type SPI struct {
 ### func (*SPI) Configure
 
 ```go
-func (spi *SPI) Configure(config SPIConfig)
+func (spi *SPI) Configure(config SPIConfig) error
 ```
 
 Configure is intended to setup an SPI interface for transmit/receive.
@@ -1380,7 +1484,8 @@ been transmitted.
 func (uart *UART) Write(data []byte) (n int, err error)
 ```
 
-Write data to the UART.
+Write data over the UART's Tx.
+This function blocks until the data is finished being sent.
 
 
 ### func (*UART) WriteByte
@@ -1389,7 +1494,8 @@ Write data to the UART.
 func (uart *UART) WriteByte(c byte) error
 ```
 
-WriteByte writes a single byte of data to the UART interface.
+WriteByte writes a byte of data over the UART's Tx.
+This function blocks until the data is finished being sent.
 
 
 
@@ -1401,6 +1507,8 @@ type UARTConfig struct {
 	BaudRate	uint32
 	TX		Pin
 	RX		Pin
+	RTS		Pin
+	CTS		Pin
 }
 ```
 

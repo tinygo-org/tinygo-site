@@ -318,13 +318,6 @@ var (
 
 
 ```go
-var I2C0 *I2C = nil
-```
-
-I2C0 is the only I2C interface on most AVRs.
-
-
-```go
 var DefaultUART = UART0
 ```
 
@@ -496,6 +489,18 @@ value of each parameter will use the peripheral's default settings.
 
 ```go
 type I2C struct {
+	srReg	*volatile.Register8
+	brReg	*volatile.Register8
+	crReg	*volatile.Register8
+	drReg	*volatile.Register8
+
+	srPS0	byte
+	srPS1	byte
+	crEN	byte
+	crINT	byte
+	crSTO	byte
+	crEA	byte
+	crSTA	byte
 }
 ```
 
@@ -524,6 +529,15 @@ operation, and reads the response.
 Many I2C-compatible devices are organized in terms of registers. This method
 is a shortcut to easily read such registers. Also, it only works for devices
 with 7-bit addresses, which is the vast majority.
+
+
+### func (*I2C) SetBaudRate
+
+```go
+func (i2c *I2C) SetBaudRate(br uint32) error
+```
+
+SetBaudRate sets the communication speed for I2C.
 
 
 ### func (*I2C) Tx
@@ -1003,6 +1017,17 @@ type SPI struct {
 	spdr	*volatile.Register8
 	spsr	*volatile.Register8
 
+	spcrR0		byte
+	spcrR1		byte
+	spcrCPHA	byte
+	spcrCPOL	byte
+	spcrDORD	byte
+	spcrSPE		byte
+	spcrMSTR	byte
+
+	spsrI2X		byte
+	spsrSPIF	byte
+
 	// The io pins for the SPIx port set by the chip
 	sck	Pin
 	sdi	Pin
@@ -1150,7 +1175,8 @@ Usually called by the IRQ handler for a machine.
 func (uart *UART) Write(data []byte) (n int, err error)
 ```
 
-Write data to the UART.
+Write data over the UART's Tx.
+This function blocks until the data is finished being sent.
 
 
 ### func (*UART) WriteByte
@@ -1159,7 +1185,8 @@ Write data to the UART.
 func (uart *UART) WriteByte(c byte) error
 ```
 
-WriteByte writes a byte of data to the UART.
+WriteByte writes a byte of data over the UART's Tx.
+This function blocks until the data is finished being sent.
 
 
 
@@ -1171,6 +1198,8 @@ type UARTConfig struct {
 	BaudRate	uint32
 	TX		Pin
 	RX		Pin
+	RTS		Pin
+	CTS		Pin
 }
 ```
 

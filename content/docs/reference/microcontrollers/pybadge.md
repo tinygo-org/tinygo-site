@@ -23,8 +23,8 @@ It has many built-in devices, such as a 1.8" 160x128 Color TFT Display, 8 x butt
 
 | Pin               | Hardware pin | Alternative names | PWM                  |
 | ----------------- | ------------ | ----------------- | -------------------- |
-| `D0`              | `PB17`       | `UART_RX_PIN`     | `TCC3` (channel 1), `TCC0` (channel 5) |
-| `D1`              | `PB16`       | `UART_TX_PIN`     | `TCC3` (channel 0), `TCC0` (channel 4) |
+| `D0`              | `PB17`       | `UART_RX_PIN`, `NINA_RX` | `TCC3` (channel 1), `TCC0` (channel 5) |
+| `D1`              | `PB16`       | `UART_TX_PIN`, `NINA_TX` | `TCC3` (channel 0), `TCC0` (channel 4) |
 | `D2`              | `PB03`       | `A8`              | `TCC2` (channel 3)   |
 | `D3`              | `PB02`       | `A9`              | `TCC2` (channel 2)   |
 | `D4`              | `PA14`       |                   | `TCC2` (channel 0), `TCC1` (channel 2) |
@@ -33,10 +33,10 @@ It has many built-in devices, such as a 1.8" 160x128 Color TFT Display, 8 x butt
 | `D7`              | `PB14`       |                   | `TCC4` (channel 0), `TCC0` (channel 2) |
 | `D8`              | `PA15`       | `NEOPIXELS`, `WS2812` | `TCC2` (channel 1), `TCC1` (channel 3) |
 | `D9`              | `PA19`       |                   | `TCC1` (channel 3), `TCC0` (channel 7) |
-| `D10`             | `PA20`       |                   | `TCC1` (channel 4), `TCC0` (channel 0) |
-| `D11`             | `PA21`       |                   | `TCC1` (channel 5), `TCC0` (channel 1) |
-| `D12`             | `PA22`       |                   | `TCC1` (channel 6), `TCC0` (channel 2) |
-| `D13`             | `PA23`       | `LED`             | `TCC1` (channel 7), `TCC0` (channel 3) |
+| `D10`             | `PA20`       | `NINA_GPIO0`, `NINA_RTS` | `TCC1` (channel 4), `TCC0` (channel 0) |
+| `D11`             | `PA21`       | `NINA_ACK`, `NINA_CTS` | `TCC1` (channel 5), `TCC0` (channel 1) |
+| `D12`             | `PA22`       | `NINA_RESETN`     | `TCC1` (channel 6), `TCC0` (channel 2) |
+| `D13`             | `PA23`       | `LED`, `NINA_CS`  | `TCC1` (channel 7), `TCC0` (channel 3) |
 | `A0`              | `PA02`       |                   |                      |
 | `A1`              | `PA05`       |                   |                      |
 | `A2`              | `PB08`       |                   |                      |
@@ -57,9 +57,9 @@ It has many built-in devices, such as a 1.8" 160x128 Color TFT Display, 8 x butt
 | `USBCDC_DP_PIN`   | `PA25`       |                   | `TCC2` (channel 3)   |
 | `SDA_PIN`         | `PA12`       |                   | `TCC0` (channel 6), `TCC1` (channel 2) |
 | `SCL_PIN`         | `PA13`       |                   | `TCC0` (channel 7), `TCC1` (channel 3) |
-| `SPI0_SCK_PIN`    | `PA17`       |                   | `TCC1` (channel 1), `TCC0` (channel 5) |
-| `SPI0_SDO_PIN`    | `PB23`       |                   |                      |
-| `SPI0_SDI_PIN`    | `PB22`       |                   |                      |
+| `SPI0_SCK_PIN`    | `PA17`       | `NINA_SCK`        | `TCC1` (channel 1), `TCC0` (channel 5) |
+| `SPI0_SDO_PIN`    | `PB23`       | `NINA_SDO`        |                      |
+| `SPI0_SDI_PIN`    | `PB22`       | `NINA_SDI`        |                      |
 | `SPI1_SCK_PIN`    | `PB13`       |                   | `TCC3` (channel 1), `TCC0` (channel 1) |
 | `SPI1_SDO_PIN`    | `PB15`       |                   | `TCC4` (channel 1), `TCC0` (channel 3) |
 | `QSPI_SCK`        | `PB10`       |                   | `TCC0` (channel 4), `TCC1` (channel 0) |

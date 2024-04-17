@@ -899,16 +899,18 @@ Usually called by the IRQ handler for a machine.
 func (uart *UART) Write(data []byte) (n int, err error)
 ```
 
-Write data to the UART.
+Write data over the UART's Tx.
+This function blocks until the data is finished being sent.
 
 
 ### func (*UART) WriteByte
 
 ```go
-func (u *UART) WriteByte(c byte) error
+func (uart *UART) WriteByte(c byte) error
 ```
 
-WriteByte writes a byte of data to the UART.
+WriteByte writes a byte of data over the UART's Tx.
+This function blocks until the data is finished being sent.
 
 
 
@@ -920,6 +922,8 @@ type UARTConfig struct {
 	BaudRate	uint32
 	TX		Pin
 	RX		Pin
+	RTS		Pin
+	CTS		Pin
 }
 ```
 

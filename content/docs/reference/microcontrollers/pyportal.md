@@ -28,8 +28,8 @@ The PyPortal also has an Espressif ESP32 Wi-Fi coprocessor with TLS/SSL support 
 | `D2`              | `PB22`       | `NEOPIXEL`, `WS2812` |                      |
 | `D3`              | `PA04`       | `A1`              |                      |
 | `D4`              | `PA05`       | `A3`              |                      |
-| `D5`              | `PB16`       | `NINA_ACK`        | `TCC3` (channel 0), `TCC0` (channel 4) |
-| `D6`              | `PB15`       | `NINA_GPIO0`      | `TCC4` (channel 1), `TCC0` (channel 3) |
+| `D5`              | `PB16`       | `NINA_ACK`, `NINA_CTS` | `TCC3` (channel 0), `TCC0` (channel 4) |
+| `D6`              | `PB15`       | `NINA_GPIO0`, `NINA_RTS` | `TCC4` (channel 1), `TCC0` (channel 3) |
 | `D7`              | `PB17`       | `NINA_RESETN`     | `TCC3` (channel 1), `TCC0` (channel 5) |
 | `D8`              | `PB14`       | `NINA_CS`         | `TCC4` (channel 0), `TCC0` (channel 2) |
 | `D9`              | `PB04`       | `TFT_RD`          |                      |
@@ -62,7 +62,7 @@ The PyPortal also has an Espressif ESP32 Wi-Fi coprocessor with TLS/SSL support 
 | `D46`             | `PA10`       | `QSPI_DATA2`      | `TCC0` (channel 2), `TCC1` (channel 6) |
 | `D47`             | `PA11`       | `QSPI_DATA3`      | `TCC0` (channel 3), `TCC1` (channel 7) |
 | `D50`             | `PA02`       | `SPK_SD`, `A0`, `AUDIO_OUT` |                      |
-| `D51`             | `PA15`       | `NINA_RTS`        | `TCC2` (channel 1), `TCC1` (channel 3) |
+| `D51`             | `PA15`       |                   | `TCC2` (channel 1), `TCC1` (channel 3) |
 | `A2`              | `PA07`       | `LIGHT`           |                      |
 | `A4`              | `PB00`       | `TOUCH_YD`        |                      |
 | `A5`              | `PB01`       | `TOUCH_XL`        |                      |

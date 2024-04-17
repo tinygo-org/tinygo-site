@@ -220,6 +220,18 @@ I2C fast mode (Fm) duty cycle
 
 
 ```go
+const (
+	// WatchdogMaxTimeout in milliseconds (32.768s)
+	//
+	// Timeout is based on 12-bit counter with /256 divider on
+	// 32.768kHz clock.  See 21.3.3 of RM0090 for table.
+	WatchdogMaxTimeout = ((0xfff + 1) * 256 * 1024) / 32768
+)
+```
+
+
+
+```go
 const PWM_MODE1 = 0x6
 ```
 
@@ -456,6 +468,14 @@ var (
 	ErrInvalidClockPin	= errors.New("machine: invalid clock pin")
 	ErrInvalidDataPin	= errors.New("machine: invalid data pin")
 	ErrNoPinChangeChannel	= errors.New("machine: no channel available for pin interrupt")
+)
+```
+
+
+
+```go
+var (
+	Watchdog = &watchdogImpl{}
 )
 ```
 
@@ -714,6 +734,20 @@ func CPUReset()
 CPUReset performs a hard system reset.
 
 
+### func DeviceID
+
+```go
+func DeviceID() []byte
+```
+
+DeviceID returns an identifier that is unique within
+a particular chipset.
+
+The identity is one burnt into the MCU itself.
+
+The length of the device ID for STM32 is 12 bytes (96 bits).
+
+
 ### func InitADC
 
 ```go
@@ -835,6 +869,15 @@ operation, and reads the response.
 Many I2C-compatible devices are organized in terms of registers. This method
 is a shortcut to easily read such registers. Also, it only works for devices
 with 7-bit addresses, which is the vast majority.
+
+
+### func (*I2C) SetBaudRate
+
+```go
+func (i2c *I2C) SetBaudRate(br uint32) error
+```
+
+SetBaudRate sets the communication speed for I2C.
 
 
 ### func (*I2C) Tx
@@ -1224,7 +1267,7 @@ type SPI struct {
 ### func (SPI) Configure
 
 ```go
-func (spi SPI) Configure(config SPIConfig)
+func (spi SPI) Configure(config SPIConfig) error
 ```
 
 Configure is intended to setup the STM32 SPI1 interface.
@@ -1544,7 +1587,8 @@ routines for calculation
 func (uart *UART) Write(data []byte) (n int, err error)
 ```
 
-Write data to the UART.
+Write data over the UART's Tx.
+This function blocks until the data is finished being sent.
 
 
 ### func (*UART) WriteByte
@@ -1553,7 +1597,8 @@ Write data to the UART.
 func (uart *UART) WriteByte(c byte) error
 ```
 
-WriteByte writes a byte of data to the UART.
+WriteByte writes a byte of data over the UART's Tx.
+This function blocks until the data is finished being sent.
 
 
 
@@ -1565,6 +1610,8 @@ type UARTConfig struct {
 	BaudRate	uint32
 	TX		Pin
 	RX		Pin
+	RTS		Pin
+	CTS		Pin
 }
 ```
 
@@ -1583,6 +1630,24 @@ type UARTParity uint8
 ```
 
 UARTParity is the parity setting to be used for UART communication.
+
+
+
+
+
+## type WatchdogConfig
+
+```go
+type WatchdogConfig struct {
+	// The timeout (in milliseconds) before the watchdog fires.
+	//
+	// If the requested timeout exceeds `MaxTimeout` it will be rounded
+	// down.
+	TimeoutMillis uint32
+}
+```
+
+WatchdogConfig holds configuration for the watchdog timer.
 
 
 

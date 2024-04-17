@@ -7,7 +7,7 @@ title: feather-nrf52840-sense
 ## Constants
 
 ```go
-const HasLowFrequencyCrystal = true
+const HasLowFrequencyCrystal = false
 ```
 
 
@@ -274,6 +274,15 @@ Pin change interrupt constants for SetInterrupt.
 
 ```go
 const (
+	// WatchdogMaxTimeout in milliseconds (approx 36h)
+	WatchdogMaxTimeout = (0xffffffff * 1000) / 32768
+)
+```
+
+
+
+```go
+const (
 	Mode0	= 0
 	Mode1	= 1
 	Mode2	= 2
@@ -371,6 +380,14 @@ There are 2 I2C interfaces on the NRF.
 
 ```go
 var (
+	Watchdog = &watchdogImpl{}
+)
+```
+
+
+
+```go
+var (
 	SPI0	= SPI{Bus: nrf.SPIM0, buf: new([1]byte)}
 	SPI1	= SPI{Bus: nrf.SPIM1, buf: new([1]byte)}
 	SPI2	= SPI{Bus: nrf.SPIM2, buf: new([1]byte)}
@@ -417,6 +434,7 @@ var (
 var (
 	ErrUSBReadTimeout	= errors.New("USB read timeout")
 	ErrUSBBytesRead		= errors.New("USB invalid number of bytes read")
+	ErrUSBBytesWritten	= errors.New("USB invalid number of bytes written")
 )
 ```
 
@@ -442,39 +460,40 @@ func CPUReset()
 CPUReset performs a hard system reset.
 
 
+### func ConfigureUSBEndpoint
+
+```go
+func ConfigureUSBEndpoint(desc descriptor.Descriptor, epSettings []usb.EndpointConfig, setup []usb.SetupConfig)
+```
+
+
+
+### func DeviceID
+
+```go
+func DeviceID() []byte
+```
+
+DeviceID returns an identifier that is unique within
+a particular chipset.
+
+The identity is one burnt into the MCU itself, or the
+flash chip at time of manufacture.
+
+It's possible that two different vendors may allocate
+the same DeviceID, so callers should take this into
+account if needing to generate a globally unique id.
+
+The length of the hardware ID is vendor-specific, but
+8 bytes (64 bits) is common.
+
+
 ### func EnableCDC
 
 ```go
 func EnableCDC(txHandler func(), rxHandler func([]byte), setupHandler func(usb.Setup) bool)
 ```
 
-
-
-### func EnableHID
-
-```go
-func EnableHID(txHandler func(), rxHandler func([]byte), setupHandler func(usb.Setup) bool)
-```
-
-EnableHID enables HID. This function must be executed from the init().
-
-
-### func EnableJoystick
-
-```go
-func EnableJoystick(txHandler func(), rxHandler func([]byte), setupHandler func(usb.Setup) bool, hidDesc []byte)
-```
-
-EnableJoystick enables HID. This function must be executed from the init().
-
-
-### func EnableMIDI
-
-```go
-func EnableMIDI(txHandler func(), rxHandler func([]byte), setupHandler func(usb.Setup) bool)
-```
-
-EnableMIDI enables MIDI. This function must be executed from the init().
 
 
 ### func EnterBootloader
@@ -751,6 +770,16 @@ func (i2c *I2C) Reply(buf []byte) error
 ```
 
 Reply supplies the response data the controller.
+
+
+### func (*I2C) SetBaudRate
+
+```go
+func (i2c *I2C) SetBaudRate(br uint32) error
+```
+
+SetBaudRate sets the I2C frequency. It has the side effect of also
+enabling the I2C hardware if disabled beforehand.
 
 
 ### func (*I2C) Tx
@@ -1282,7 +1311,7 @@ SPI on the NRF.
 ### func (SPI) Configure
 
 ```go
-func (spi SPI) Configure(config SPIConfig)
+func (spi SPI) Configure(config SPIConfig) error
 ```
 
 Configure is intended to setup the SPI interface.
@@ -1424,7 +1453,8 @@ SetBaudRate sets the communication speed for the UART.
 func (uart *UART) Write(data []byte) (n int, err error)
 ```
 
-Write data to the UART.
+Write data over the UART's Tx.
+This function blocks until the data is finished being sent.
 
 
 ### func (*UART) WriteByte
@@ -1433,7 +1463,8 @@ Write data to the UART.
 func (uart *UART) WriteByte(c byte) error
 ```
 
-WriteByte writes a byte of data to the UART.
+WriteByte writes a byte of data over the UART's Tx.
+This function blocks until the data is finished being sent.
 
 
 
@@ -1445,6 +1476,8 @@ type UARTConfig struct {
 	BaudRate	uint32
 	TX		Pin
 	RX		Pin
+	RTS		Pin
+	CTS		Pin
 }
 ```
 
@@ -1487,6 +1520,24 @@ func (dev *USBDevice) Configure(config UARTConfig)
 ```
 
 Configure the USB peripheral. The config is here for compatibility with the UART interface.
+
+
+
+
+## type WatchdogConfig
+
+```go
+type WatchdogConfig struct {
+	// The timeout (in milliseconds) before the watchdog fires.
+	//
+	// If the requested timeout exceeds `MaxTimeout` it will be rounded
+	// down.
+	TimeoutMillis uint32
+}
+```
+
+WatchdogConfig holds configuration for the watchdog timer.
+
 
 
 

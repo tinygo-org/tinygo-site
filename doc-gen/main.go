@@ -153,10 +153,17 @@ func updateDocumentation(target, path, docPath string) {
 	}
 
 	// Do some sanity checking.
-	if len(pkgs[0].Errors) != 0 {
-		for _, err := range pkgs[0].Errors {
-			fmt.Fprintln(os.Stderr, err)
+	hasError := false
+	for _, err := range pkgs[0].Errors {
+		if err.Kind == packages.TypeError {
+			// Ignore type errors, they happen sometimes because TinyGo CGo is
+			// missing.
+			continue
 		}
+		hasError = true
+		fmt.Fprintln(os.Stderr, err)
+	}
+	if hasError {
 		os.Exit(1)
 	}
 	pkg := pkgs[0]
