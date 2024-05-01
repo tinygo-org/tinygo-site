@@ -50,10 +50,10 @@ breadcrumb_disable = false
 sidebar_search_disable = true
 #  Set to false if you don't want to display a logo (/assets/icons/logo.svg) in the top nav bar
 navbar_logo = true
-# Set to true to disable the About link in the site footer
-footer_about_disable = false
 # Set the maximum number of menus to be displayed in the sidebar
 sidebar_menu_truncate = 1000
+# Show a menu to the left of the search menu to toggle light/dark mode (or set it to auto).
+showLightDarkModeMenu = true
 
 [params.links]
 # End user relevant links. These will show up on left side of footer and in the community page if you have one.
