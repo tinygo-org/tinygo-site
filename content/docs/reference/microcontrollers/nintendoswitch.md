@@ -25,7 +25,7 @@ The [Nintendo Switch](https://en.wikipedia.org/wiki/Nintendo_Switch) is a handhe
 
 You will need the `linkle` (https://github.com/MegatonHammer/linkle) program to convert to the NRO format needed by the Switch:
 
-You can use a Nintendo Switch software emulator such as yuzu (https://yuzu-emu.org/) to test your programs.
+You can use a Nintendo Switch software emulator such as [suyu https://suyu.dev/](https://suyu.dev/) to test your programs.
 
 ## Building code
 
