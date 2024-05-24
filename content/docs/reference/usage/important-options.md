@@ -70,6 +70,20 @@ Use the specified panic strategy. That is, what the compiled program should do w
   - `-panic=trap`
     Do not print the panic message but instead of printing anything, it directly hits a trap instruction. This instruction varies by platform but it will result in the immediate termination of the program. It could either exit with `SIGILL` or cause a call to the `HardFault_Handler`. It can be used to reduce the size of the compiled program while keeping standard Go safety rules intact at the cost of debuggability.
 
+- `-serial` Use the specified serial output as the default stdout. This applies to various runtime outputs such as `println` and `panic`, but also to `os.Stdout` (and therefore `fmt.Println`).
+
+  The default varies by board, but it's usually `-serial=usb` on many newer boards (those with a rp2040, samd21, samd51, or nrf52 chip). Older boards like the Arduino Uno typically use `-serial=uart`, and very small chips like the attiny1616 will use `-serial=none` to disable serial output entirely.
+
+  To see the output, you can use the `-monitor` flag to `tinygo flash`, or use `tinygo monitor`.
+
+  - `-serial=uart` Use the default UART as set in `machine.DefaultUART`. Which UART this is varies by board, but it's typically the first UART indicated on the silkscreen (with TX/RX markings). You may need an external USB-UART connector to receive output this way.
+
+  - `-serial=usb` Use USB-CDC as the serial transport. This will usually not need any extra cables: chips with USB-CDC support are usually also programmed this way.
+
+  - `-serial=rtt` Use [Segger RTT](https://wiki.segger.com/index.php?title=RTT). This only works if you are connected to the chip using a debug probe (most debug probes will work, not just the one from Segger). There are a few boards with a built-in debugger where it might work out of the box, but in most cases you will need an [external debugger]({{< ref "/docs/guides/debugging" >}}).
+
+  - `-serial=none` Disable serial output entirely. This can be useful if you want to use the default serial output for something else. In some cases, disabling serial output will reduce current consumption and/or reduce binary size.
+
 - `-scheduler`
 Use the specified scheduler. The default scheduler varies by platform. For example, `AVR` currently defaults to `none` because it has such limited memory while `asyncify` and `tasks` are used for other platforms. Normally you do not need to override the default except on AVR where you can optionally select the tasks scheduler if you want concurrency.
 
