@@ -48,6 +48,7 @@ Ready to get started? [Click here](getting-started).
 			</div>
 			<div class="col col-auto">
 				<button class="btn btn-secondary playground-btn-flash" disabled>Download binary</button>
+				<a href="/tour/" class="btn btn-link">Tour of TinyGo</a>
 			</div>
 		</div>
 		<textarea placeholder="Loading..." class="form-control input" rows="20" style="font-family: monospace; tab-size: 4" spellcheck="false"></textarea>

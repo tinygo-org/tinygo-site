@@ -25,6 +25,7 @@ addEventListener('DOMContentLoaded', async () => {
 		firmwareButton: firmwareButton,
 		baseURL: new URL('/playground/', document.baseURI),
 		apiURL: PLAYGROUND_API,
+		features: [],
 	});
 	await simulator.setState(state, state.target);
 

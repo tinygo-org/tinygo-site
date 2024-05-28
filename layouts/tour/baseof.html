@@ -1,0 +1,83 @@
+<!doctype html>
+<html itemscope itemtype="http://schema.org/WebPage"
+    {{- with .Site.Language.LanguageDirection }} dir="{{ . }}" {{- end -}}
+    {{ with .Site.Language.Lang }} lang="{{ . }}" {{- end }} {{/**/ -}}
+    class="no-js">
+  <head>
+    {{ partial "head.html" . }}
+    <link rel="stylesheet" href="/playground/simulator.css">
+  </head>
+  <body class="td-{{ .Kind }}{{ with .Page.Params.body_class }} {{ . }}{{ end }}">
+    <header>
+      {{ partial "navbar.html" . }}
+    </header>
+    <div class="container-fluid td-outer">
+      <div class="td-main">
+        <div class="row flex-xl-nowrap">
+          <aside class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
+            {{ partial "sidebar.html" . }}
+          </aside>
+          <main class="col-12 col-md-9 col-xl-10 ps-md-5" role="main">
+            <div class="row">
+              <div class="col-12 col-xl-6">
+                {{ partial "version-banner.html" . }}
+                {{ if not .Site.Params.ui.breadcrumb_disable }}{{ partial "breadcrumb.html" . }}{{ end }}
+                {{ block "main" . }}{{ end }}
+              </div>
+              <div class="col-12 col-xl-6">
+                <div class="mb-3">
+                  <textarea placeholder="Loading..." class="form-control input" rows="20" style="font-family: monospace; tab-size: 4" spellcheck="false">{{ block "code" .}}{{ end }}</textarea>
+                </div>
+                <div class="row justify-content-end">
+                  <div class="col col-auto">
+                    <div id="board" class="btn-group mb-3">
+                      <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Select a developer board">...</button>
+                      <div class="dropdown-menu">
+                      </div>
+                    </div>
+                    <button class="btn btn-secondary mb-3 playground-btn-reset" disabled title="Restore code and simulator to the beginning state">Reset</button>
+                    <button class="btn btn-secondary mb-3 playground-btn-flash" disabled title="Download firmware image to flash to a board">Flash</button>
+                  </div>
+                </div>
+                <div class="simulator">
+                  <div class="schematic-buttons">
+                    <button class="schematic-button-pause schematic-button" title="Pause/resume the simulation">
+                      <!-- only one of these two images is visible at a time -->
+                      <img src="/playground/resources/codicon/debug-pause.svg" class="button-img-pause"/>
+                      <img src="/playground/resources/codicon/play.svg" class="button-img-play"/>
+                    </button>
+                  </div>
+                  <svg class="schematic" tabindex="0">
+                    <g class="schematic-wrapper" style="transform: translate(50%, 50%)">
+                      <g class="schematic-parts"></g>
+                      <g class="schematic-wires"></g>
+                    </g>
+                  </svg>
+                  <div class="panels">
+                    <div class="tabbar">
+                      <span class="tab active panel-tab-terminal"><a>Terminal</a></span>
+                      <span class="tab"><a>Properties</a></span>
+                      <span class="tab"><a>Add</a></span>
+                    </div>
+                    <div class="tabcontent active terminal-box">
+                      <textarea class="terminal" readonly></textarea>
+                    </div>
+                    <div class="tabcontent panel-properties">
+                      <div class="content"></div>
+                    </div>
+                    <div class="tabcontent panel-add">
+                      Loading...
+                    </div>
+                  </div>
+                  <div class="schematic-tooltip"></div>
+                </div>
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
+      {{ partial "footer.html" . }}
+    </div>
+    {{ partial "scripts.html" . }}
+  </body>
+</html>
