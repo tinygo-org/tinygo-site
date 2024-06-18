@@ -9,7 +9,7 @@ description: >
 
 This page has information on how to install and use TinyGo on Windows 10. If you wish to build TinyGo from source, for example if you intend to contribute to the project, please take a look [here](../../../docs/guides/build).
 
-TinyGo requires Go v1.19+ to be already installed on your machine.
+TinyGo requires Go v1.20+ to be already installed on your machine.
 
 ### Quick Install via Scoop
 
@@ -33,7 +33,7 @@ You can test that the installation was successful by running the `version` comma
 
 ```shell
 > tinygo version
-tinygo version 0.31.2 windows/amd64 (using go version go1.22 and LLVM version 17.0.1)
+tinygo version 0.32.0 windows/amd64 (using go version go1.22 and LLVM version 18.1.2)
 ```
 
 Upgrading to the latest TinyGo version can be done via scoop with:
@@ -73,13 +73,13 @@ Upgrading to the latest versions can be as easy as:
 
 ### Manual Install
 
-- You MUST use Go 1.19.x+ with the Windows 10 native install of TinyGo.
+- You MUST use Go 1.20.x+ with the Windows 10 native install of TinyGo.
 
     - If you have not installed it yet, you can get it from https://golang.org/dl/
 
     - Choose the download link for Microsoft Windows, Windows 7 or later, Intel 64-bit processor.
 
-- Download the TinyGo binary for Windows file from https://github.com/tinygo-org/tinygo/releases/download/v0.31.2/tinygo0.31.2.windows-amd64.zip
+- Download the TinyGo binary for Windows file from https://github.com/tinygo-org/tinygo/releases/download/v0.32.0/tinygo0.32.0.windows-amd64.zip
 
 - Decompress the file like this:
 
@@ -99,7 +99,7 @@ Upgrading to the latest versions can be as easy as:
 
     ```
     > tinygo version
-    tinygo version 0.31.2 windows/amd64 (using go version go1.22 and LLVM version 17.0.1)
+    tinygo version 0.32.0 windows/amd64 (using go version go1.22 and LLVM version 18.1.2)
     ```
 
 ### Flashing boards

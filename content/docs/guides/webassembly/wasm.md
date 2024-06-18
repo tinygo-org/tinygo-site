@@ -62,13 +62,13 @@ Note the `--no-debug` flag, which reduces the size of the final binary by removi
 debug symbols from the output. Also note that you must change the path to your Wasm file from `/go/src/github.com/myuser/myrepo/wasm-main.go` to whatever the actual path to your file is:
 
 ```
-docker run -v $GOPATH:/go -e "GOPATH=/go" tinygo/tinygo:0.31.2 tinygo build -o /go/src/github.com/myuser/myrepo/wasm.wasm -target wasm --no-debug /go/src/github.com/myuser/myrepo/wasm-main.go
+docker run -v $GOPATH:/go -e "GOPATH=/go" tinygo/tinygo:0.32.0 tinygo build -o /go/src/github.com/myuser/myrepo/wasm.wasm -target wasm --no-debug /go/src/github.com/myuser/myrepo/wasm-main.go
 ```
 
 Make sure you copy `wasm_exec.js` to your runtime environment:
 
 ```
-docker run -v $GOPATH:/go -e "GOPATH=/go" tinygo/tinygo:0.31.2 /bin/bash -c "cp /usr/local/tinygo/targets/wasm_exec.js /go/src/github.com/myuser/myrepo/
+docker run -v $GOPATH:/go -e "GOPATH=/go" tinygo/tinygo:0.32.0 /bin/bash -c "cp /usr/local/tinygo/targets/wasm_exec.js /go/src/github.com/myuser/myrepo/
 ```
 
 More complete examples are provided in the [wasm examples](https://github.com/tinygo-org/tinygo/tree/release/src/examples/wasm).

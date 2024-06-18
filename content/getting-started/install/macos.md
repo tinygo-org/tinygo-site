@@ -9,7 +9,7 @@ description: >
 
 This page has information on how to install and use TinyGo on macOS. If you wish to build TinyGo from source, for example if you intend to contribute to the project, please take a look [here](../../../docs/guides/build).
 
-You must have Go v1.19+ already installed on your machine in order to install TinyGo.
+You must have Go v1.20+ already installed on your machine in order to install TinyGo.
 
 You can use Homebrew to install TinyGo using the following commands:
 
@@ -22,10 +22,10 @@ brew install tinygo
 
 #### Mac M1/M2
 
-Download [this](https://github.com/tinygo-org/tinygo/releases/download/v0.31.2/tinygo0.31.2.darwin-arm64.tar.gz) file. Then, run the following commands:
+Download [this](https://github.com/tinygo-org/tinygo/releases/download/v0.32.0/tinygo0.32.0.darwin-arm64.tar.gz) file. Then, run the following commands:
 
 ```shell
-tar xvzf tinygo0.31.2.darwin-arm64.tar.gz
+tar xvzf tinygo0.32.0.darwin-arm64.tar.gz
 export PATH=<extract location>/tinygo/bin:$PATH
 ```
 
@@ -33,7 +33,7 @@ You can test that the installation is working properly by running this code whic
 
 ```shell
 $ tinygo version
-tinygo version 0.31.2 darwin/arm64 (using go version go1.22 and LLVM version 17.0.1)
+tinygo version 0.32.0 darwin/arm64 (using go version go1.22 and LLVM version 18.1.2)
 ```
 
 If you are only interested in compiling TinyGo code for WebAssembly then you are done with the installation.
@@ -42,10 +42,10 @@ Otherwise, please continue with the installation of the additional requirements 
 
 #### Mac Intel
 
-Download [this](https://github.com/tinygo-org/tinygo/releases/download/v0.31.2/tinygo0.31.2.darwin-amd64.tar.gz) file. Then, run the following commands:
+Download [this](https://github.com/tinygo-org/tinygo/releases/download/v0.32.0/tinygo0.32.0.darwin-amd64.tar.gz) file. Then, run the following commands:
 
 ```shell
-tar xvzf tinygo0.31.2.darwin-amd64.tar.gz
+tar xvzf tinygo0.32.0.darwin-amd64.tar.gz
 export PATH=<extract location>/tinygo/bin:$PATH
 ```
 
@@ -53,7 +53,7 @@ You can test that the installation is working properly by running this code whic
 
 ```shell
 $ tinygo version
-tinygo version 0.31.2 darwin/amd64 (using go version go1.22 and LLVM version 17.0.1)
+tinygo version 0.32.0 darwin/amd64 (using go version go1.22 and LLVM version 18.1.2)
 ```
 
 If you are only interested in compiling TinyGo code for WebAssembly then you are done with the installation.
