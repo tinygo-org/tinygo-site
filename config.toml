@@ -19,6 +19,9 @@ resampleFilter = "CatmullRom"
 quality = 75
 anchor = "smart"
 
+[markup.highlight]
+noClasses = false
+
 [markup.goldmark.renderer]
 unsafe = true
 
