@@ -1,4 +1,5 @@
 import { Simulator } from './playground/simulator.js';
+import { Editor } from '/playground/resources/editor.bundle.min.js';
 
 export { setupTour };
 
@@ -76,7 +77,7 @@ async function setupTour(config) {
 	}
 
 	let root = document.querySelector('.simulator');
-	let textarea = document.querySelector('textarea.input');
+	let editor = new Editor(document.querySelector('.playground-editor'));
 	let firmwareButton = document.querySelector('.playground-btn-flash');
 	let resetButton = document.querySelector('.playground-btn-reset');
 
@@ -108,7 +109,7 @@ async function setupTour(config) {
 			boardButton.textContent = boardName;
 			currentBoard = board;
 			state = createState(currentBoard);
-			textarea.value = state.code;
+			editor.setText(state.code);
 			await simulator.setState(state, currentBoard);
 		})
 		boardMenu.appendChild(a);
@@ -116,10 +117,10 @@ async function setupTour(config) {
 
 	// Load simulator.
 	let state = createState(currentBoard);
-	textarea.value = state.code;
+	editor.setText(state.code);
 	let simulator = new Simulator({
 		root: root,
-		input: textarea,
+		editor: editor,
 		features: [],
 		firmwareButton: firmwareButton,
 		baseURL: new URL('/playground/', document.baseURI),
@@ -131,7 +132,7 @@ async function setupTour(config) {
 	resetButton.addEventListener('click', async e => {
 		resetButton.disabled = true;
 		state = createState(currentBoard);
-		textarea.value = state.code;
+		editor.setText(state.code);
 		await simulator.setState(state, currentBoard);
 		resetButton.disabled = false;
 	});

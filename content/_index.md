@@ -31,6 +31,7 @@ Ready to get started? [Click here](getting-started).
 {{% blocks/section color="primary-light" %}}
 <link rel="stylesheet" href="playground/simulator.css">
 <script type="module" src="playground.js"></script>
+<link rel="modulepreload" href="/playground/resources/editor.bundle.min.js"/>
 <div class="col">
 	<div class="container" id="playground">
 		<h1 class="text-center">Try TinyGo</h1>
@@ -47,11 +48,11 @@ Ready to get started? [Click here](getting-started).
 				</div>
 			</div>
 			<div class="col col-auto">
-				<button class="btn btn-secondary playground-btn-flash" disabled>Download binary</button>
-				<a href="/tour/" class="btn btn-link">Tour of TinyGo</a>
+				<button class="btn btn-secondary playground-btn-flash mb-3" disabled>Download binary</button>
+				<a href="/tour/" class="btn btn-link mb-3">Tour of TinyGo</a>
 			</div>
 		</div>
-		<textarea placeholder="Loading..." class="form-control input" rows="20" style="font-family: monospace; tab-size: 4" spellcheck="false"></textarea>
+		<div class="playground-editor mb-3" tabindex="-1"></div>
 		<div class="simulator inline">
 			<div class="schematic-buttons">
 				<button class="schematic-button-pause schematic-button" title="Pause/resume the simulation">

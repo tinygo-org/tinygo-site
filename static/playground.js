@@ -1,4 +1,5 @@
 import { Simulator } from './playground/simulator.js';
+import { Editor } from './playground/resources/editor.bundle.min.js';
 
 // Note: to test this locally, run the playground server!
 // Run the following in a terminal:
@@ -13,15 +14,17 @@ addEventListener('DOMContentLoaded', async () => {
 	let playground = document.querySelector('#playground');
 	let exampleSelect = playground.querySelector('.example_select');
 	let root = playground.querySelector('.simulator');
-	let textarea = playground.querySelector('textarea.input');
 	let firmwareButton = playground.querySelector('.playground-btn-flash');
+
+	// Load editor.
+	let editor = new Editor(playground.querySelector('.playground-editor'));
 
 	// Load simulator.
 	let state = structuredClone(examples[exampleSelect.value]);
-	textarea.value = state.code;
+	editor.setText(state.code);
 	let simulator = new Simulator({
 		root: root,
-		input: textarea,
+		editor: editor,
 		firmwareButton: firmwareButton,
 		baseURL: new URL('/playground/', document.baseURI),
 		apiURL: PLAYGROUND_API,
@@ -34,7 +37,7 @@ addEventListener('DOMContentLoaded', async () => {
 	exampleSelect.addEventListener('change', async () => {
 		exampleSelect.disabled = true;
 		state = structuredClone(examples[exampleSelect.value]);
-		textarea.value = state.code;
+		editor.setText(state.code);
 		await simulator.setState(state, state.target);
 		exampleSelect.disabled = false;
 	})

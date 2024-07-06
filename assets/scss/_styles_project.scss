@@ -3,3 +3,38 @@
 code {
     tab-size: 4;
 }
+
+.playground-editor {
+    /* make the editor scrollable */
+    overflow: auto;
+}
+.playground-editor:not([style*="height"]) {
+    /* set a default max-height of 20 lines that is resizable (resizing will set
+     * style="height: ..." which invalidates this style) */
+    max-height: calc(20em * var(--bs-body-line-height) + .375rem * 2);
+}
+
+/* Match the appearance of a Bootstrap <textarea>, including the focused state
+ * (for accessibility). */
+.playground-editor {
+    border: solid 1px var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+    box-shadow: var(--bs-box-shadow-inset);
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    resize: vertical;
+}
+.playground-editor > .cm-editor {
+    background-color: var(--bs-body-bg);
+    outline: initial;
+    height: 100%;
+}
+.playground-editor .cm-content {
+    padding: .375rem 0; /* match Bootstrap in vertical padding */
+}
+.playground-editor .cm-scroller {
+    line-height: var(--bs-body-line-height); /* match Bootstrap */
+}
+.playground-editor:has( > .cm-focused) {
+    box-shadow: var(--bs-box-shadow-inset), 0 0 0 0.25rem rgba(4, 110, 143, 0.25);
+    border-color: #82b7c7;
+}

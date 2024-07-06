@@ -6,6 +6,7 @@
   <head>
     {{ partial "head.html" . }}
     <link rel="stylesheet" href="/playground/simulator.css">
+    <link rel="modulepreload" href="/playground/resources/editor.bundle.min.js"/>
   </head>
   <body class="td-{{ .Kind }}{{ with .Page.Params.body_class }} {{ . }}{{ end }}">
     <header>
@@ -26,7 +27,7 @@
               </div>
               <div class="col-12 col-xl-6">
                 <div class="mb-3">
-                  <textarea placeholder="Loading..." class="form-control input" rows="20" style="font-family: monospace; tab-size: 4" spellcheck="false">{{ block "code" .}}{{ end }}</textarea>
+                  <div class="playground-editor" tabindex="-1"></div>
                 </div>
                 <div class="row justify-content-end">
                   <div class="col col-auto">
