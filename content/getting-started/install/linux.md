@@ -37,8 +37,8 @@ sudo dpkg -i tinygo_0.32.0_amd64.deb
 If you are on a Raspberry Pi or other ARM-based Linux computer, you should use this command instead:
 
 ```shell
-wget https://github.com/tinygo-org/tinygo/releases/download/v0.32.0/tinygo_0.32.0_armhf.deb
-sudo dpkg -i tinygo_0.32.0_armhf.deb
+wget https://github.com/tinygo-org/tinygo/releases/download/v0.32.0/tinygo_0.32.0_arm64.deb
+sudo dpkg -i tinygo_0.32.0_arm64.deb
 ```
 
 You will need to ensure that the path to the `tinygo` executable file is in your `PATH` variable.
@@ -57,7 +57,7 @@ tinygo version 0.32.0 linux/amd64 (using go version go1.22 and LLVM version 18.1
 If you are on a 64 bit ARM OS, and running tinygo fails with "no such file or directory", you may need to install the 32 bit C++ runtime library, e.g.:
 
 ```shell
-sudo apt install libstdc++6:armhf
+sudo apt install libstdc++6:arm64
 ```
 
 If you are only interested in compiling TinyGo code for WebAssembly then you are now done with the installation.
