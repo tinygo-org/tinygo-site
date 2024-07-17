@@ -1,6 +1,12 @@
 ---
 title: "Tour of TinyGo"
 type: "docs"
+
+cascade:
+  github_repo: https://github.com/tinygo-org/tinygo-site
+  github_subdir: content/tour
+  path_base_for_github_subdir: content/tour
+  github_branch: dev
 ---
 
 Welcome to the tour of TinyGo!
