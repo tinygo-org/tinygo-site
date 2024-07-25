@@ -118,7 +118,7 @@ Instructions needed here.
 
 Nordic Semiconductor's SoftDevice (s140v7) must be flashed first to enable use of [bluetooth](https://github.com/tinygo-org/bluetooth) on this board.
 
-SoftDevice overwrites original bootloader and flashing method described above is not avalable anymore.
+SoftDevice overwrites original bootloader and flashing method described above is not available anymore.
 Instead, please use [debug]({{<ref "../../guides/debugging.md">}}) probe and
 flash your code with `nano-33-ble-s140v7` target.
 

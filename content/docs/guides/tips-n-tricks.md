@@ -57,7 +57,7 @@ func (t *MyType) SomeMethod() {
 }
 ```
 
-You may even find yourself having two or more slices pointing at diferent regions of the same array simultaneously, if you are careful.
+You may even find yourself having two or more slices pointing at different regions of the same array simultaneously, if you are careful.
 
 ```
 buf1 := t.buf[:2]

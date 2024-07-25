@@ -150,5 +150,5 @@ tinygo flash -target=wioterminal [PATH TO YOUR PROGRAM]
 Once you have updated your Wio Terminal board the first time, after that you should be able to flash it entirely from the command line.
 
 ## Notes
-If your Linux Distro doesnt auto mount devices you have to manually mount it to /media/Arduino for the command above to work.
+If your Linux Distro doesn't auto mount devices you have to manually mount it to /media/Arduino for the command above to work.
 You can use the USB port to the Wio Terminal as a serial port. `UART0` refers to this connection.

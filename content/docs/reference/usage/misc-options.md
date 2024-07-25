@@ -24,7 +24,7 @@ Note: while there is some support for debug symbols, only line numbers have been
         ```
     
     - `full`
-        Try to determine per package how much space is used. Note that these calculations are merely guesses and can somethimes be way off due to various reasons like inlining:
+        Try to determine per package how much space is used. Note that these calculations are merely guesses and can sometimes be way off due to various reasons like inlining:
         ```
         code  rodata    data     bss |   flash     ram | package
         876        0       4       0 |     880       4 | (bootstrap)

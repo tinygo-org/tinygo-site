@@ -8,7 +8,7 @@ description: >
 ---
 
 Microcontrollers are usually rather non-demanding when it comes to power consumption.
-Couple hudreds mW is the most you may expect a hobby project would use.
+Couple hundreds mW is the most you may expect a hobby project would use.
 
 Sometimes, even that is not low enough.
 Power your project from a battery, and it'd benefit greatly from consuming less.
@@ -17,7 +17,7 @@ Common scenario for such projects is sleeping most of the time, and only rarely 
 The main caveat here is if not configured properly, microcontroller and peripherals continue to consume power while your program "sleeps".
 
 The standard way to pause execution in Go is to use `time.Sleep()` function that is available in TinyGo too. Depending on the chip and effort put into its support, the efficiency of this function may vary. The only thing certain: this is _not worse_ than busy looping until a certain time has passed.  
-Still, with such high-level function as `time.Sleep()` it is not always possible to disable everything that consumes power as the decisions may depend on the application, presense of peripherals and the board used.
+Still, with such high-level function as `time.Sleep()` it is not always possible to disable everything that consumes power as the decisions may depend on the application, presence of peripherals and the board used.
 
 Most microcontrollers have one or more "low power" modes, also known as "deep sleep" and, sometimes, "dormant".  
 In such modes microcontroller may consume as low as milli- or even micro-Watts.  
@@ -25,7 +25,7 @@ TinyGo gives you low level access to hardware to try and make most of it.
 
 ## Implementations
 
-Manufacturers implement different modes, depending of capabilites of their products and name these modes differently too.
+Manufacturers implement different modes, depending of capabilities of their products and name these modes differently too.
 Hence no naming consistency across microcontrollers, unfortunately.
 
 Always consult "Power consumption" part of a respective datasheet to understand capabilities of your hardware.  

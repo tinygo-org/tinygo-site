@@ -49,7 +49,7 @@ Here is how to contribute back some code or documentation:
 - Submit a pull request against the `dev` branch.
 - Be kind
 
-Please rebase (not merge) from the dev branch if your PR needs to incorporate changes that occured after your feature branch was created. You can accomplish that via the git command line:
+Please rebase (not merge) from the dev branch if your PR needs to incorporate changes that occurred after your feature branch was created. You can accomplish that via the git command line:
 
 ```
 git checkout dev
