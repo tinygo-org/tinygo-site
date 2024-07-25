@@ -28,11 +28,7 @@ Change directories into the tinygo-site directory:
 
     cd tinygo-site
 
-Install the "Docsy" theme:
-
-    git submodule update --init --recursive
-
-Now you should be able to run the site locally:
+You are now able to run the site locally, "Docsy" theme will be automatically downloaded as module:
 
     hugo serve
 

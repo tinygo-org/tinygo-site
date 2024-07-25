@@ -1,4 +1,6 @@
 public
 ./build
 node_modules
+resources
 npm-debug.log
+.hugo_build.lock
