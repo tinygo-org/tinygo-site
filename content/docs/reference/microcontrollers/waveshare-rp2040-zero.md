@@ -37,7 +37,7 @@ The [Waveshare RP2040-Zero](https://www.waveshare.com/wiki/RP2040-Zero) is a tin
 | `D13`             | `GPIO13`     |                   | `PWM6` (channel B)   |
 | `D14`             | `GPIO14`     |                   | `PWM7` (channel A)   |
 | `D15`             | `GPIO15`     |                   | `PWM7` (channel B)   |
-| `D16`             | `GPIO16`     | `NEOPIXEL`        | `PWM0` (channel A)   |
+| `D16`             | `GPIO16`     | `NEOPIXEL`, `WS2812` | `PWM0` (channel A)   |
 | `D17`             | `GPIO17`     |                   | `PWM0` (channel B)   |
 | `D18`             | `GPIO18`     |                   | `PWM1` (channel A)   |
 | `D19`             | `GPIO19`     |                   | `PWM1` (channel B)   |

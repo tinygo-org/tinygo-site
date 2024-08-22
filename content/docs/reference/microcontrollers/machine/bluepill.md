@@ -1288,7 +1288,7 @@ Transfer writes/reads a single byte using the SPI interface.
 func (spi SPI) Tx(w, r []byte) error
 ```
 
-Tx handles read/write operation for SPI interface. Since SPI is a syncronous write/read
+Tx handles read/write operation for SPI interface. Since SPI is a synchronous write/read
 interface, there must always be the same number of bytes written as bytes read.
 The Tx method knows about this, and offers a few different ways of calling it.
 

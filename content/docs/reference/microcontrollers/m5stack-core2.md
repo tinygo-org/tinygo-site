@@ -12,7 +12,7 @@ The [m5stack-core2](https://shop.m5stack.com/products/m5stack-core2-esp32-iot-de
 | GPIO      | YES | YES |
 | UART      | YES | YES |
 | SPI       | YES | YES |
-| I2C       | YES | Not yet |
+| I2C       | YES | YES |
 | ADC       | YES | Not yet |
 | PWM       | YES | Not yet |
 | USBDevice | NO  | NO  |

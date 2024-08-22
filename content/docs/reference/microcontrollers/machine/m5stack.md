@@ -140,6 +140,49 @@ UART pins
 
 
 ```go
+const (
+	TWI_FREQ_100KHZ	= 100000
+	TWI_FREQ_400KHZ	= 400000
+)
+```
+
+TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-speed bus.
+
+Deprecated: use 100 * machine.KHz or 400 * machine.KHz instead.
+
+
+```go
+const (
+	// I2CReceive indicates target has received a message from the controller.
+	I2CReceive	I2CTargetEvent	= iota
+
+	// I2CRequest indicates the controller is expecting a message from the target.
+	I2CRequest
+
+	// I2CFinish indicates the controller has ended the transaction.
+	//
+	// I2C controllers can chain multiple receive/request messages without
+	// relinquishing the bus by doing 'restarts'.  I2CFinish indicates the
+	// bus has been relinquished by an I2C 'stop'.
+	I2CFinish
+)
+```
+
+
+
+```go
+const (
+	// I2CModeController represents an I2C peripheral in controller mode.
+	I2CModeController	I2CMode	= iota
+
+	// I2CModeTarget represents an I2C peripheral in target mode.
+	I2CModeTarget
+)
+```
+
+
+
+```go
 const Device = deviceName
 ```
 
@@ -311,6 +354,15 @@ var (
 
 ```go
 var (
+	I2C0	= &I2C{Bus: esp.I2C0, funcSCL: 29, funcSDA: 30}
+	I2C1	= &I2C{Bus: esp.I2C1, funcSCL: 95, funcSDA: 96}
+)
+```
+
+
+
+```go
+var (
 	ErrPWMPeriodTooLong = errors.New("pwm: period too long")
 )
 ```
@@ -391,6 +443,127 @@ type ADCConfig struct {
 
 ADCConfig holds ADC configuration parameters. If left unspecified, the zero
 value of each parameter will use the peripheral's default settings.
+
+
+
+
+
+## type I2C
+
+```go
+type I2C struct {
+	Bus			*esp.I2C_Type
+	funcSCL, funcSDA	uint32
+	config			I2CConfig
+}
+```
+
+
+
+
+### func (*I2C) CheckDevice
+
+```go
+func (i2c *I2C) CheckDevice(addr uint16) bool
+```
+
+CheckDevice does an empty I2C transaction at the specified address.
+This can be used to find out if any device with that address is
+connected, e.g. for enumerating all devices on the bus.
+
+
+### func (*I2C) Configure
+
+```go
+func (i2c *I2C) Configure(config I2CConfig) error
+```
+
+
+
+### func (*I2C) ReadRegister
+
+```go
+func (i2c *I2C) ReadRegister(address uint8, register uint8, data []byte) error
+```
+
+ReadRegister transmits the register, restarts the connection as a read
+operation, and reads the response.
+
+Many I2C-compatible devices are organized in terms of registers. This method
+is a shortcut to easily read such registers. Also, it only works for devices
+with 7-bit addresses, which is the vast majority.
+
+
+### func (*I2C) SetBaudRate
+
+```go
+func (i2c *I2C) SetBaudRate(br uint32) error
+```
+
+
+
+### func (*I2C) Tx
+
+```go
+func (i2c *I2C) Tx(addr uint16, w, r []byte) (err error)
+```
+
+Tx does a single I2C transaction at the specified address.
+It clocks out the given address, writes the bytes in w, reads back len(r)
+bytes and stores them in r, and generates a stop condition on the bus.
+
+
+### func (*I2C) WriteRegister
+
+```go
+func (i2c *I2C) WriteRegister(address uint8, register uint8, data []byte) error
+```
+
+WriteRegister transmits first the register and then the data to the
+peripheral device.
+
+Many I2C-compatible devices are organized in terms of registers. This method
+is a shortcut to easily write to such registers. Also, it only works for
+devices with 7-bit addresses, which is the vast majority.
+
+
+
+
+## type I2CConfig
+
+```go
+type I2CConfig struct {
+	Frequency	uint32	// in Hz
+	SCL		Pin
+	SDA		Pin
+}
+```
+
+I2CConfig is used to store config info for I2C.
+
+
+
+
+
+## type I2CMode
+
+```go
+type I2CMode int
+```
+
+I2CMode determines if an I2C peripheral is in Controller or Target mode.
+
+
+
+
+
+## type I2CTargetEvent
+
+```go
+type I2CTargetEvent uint8
+```
+
+I2CTargetEvent reflects events on the I2C bus
 
 
 
@@ -703,7 +876,7 @@ transfer larger amounts of data, Tx will be faster.
 func (spi SPI) Tx(w, r []byte) error
 ```
 
-Tx handles read/write operation for SPI interface. Since SPI is a syncronous write/read
+Tx handles read/write operation for SPI interface. Since SPI is a synchronous write/read
 interface, there must always be the same number of bytes written as bytes read.
 This is accomplished by sending zero bits if r is bigger than w or discarding
 the incoming data if w is bigger than r.

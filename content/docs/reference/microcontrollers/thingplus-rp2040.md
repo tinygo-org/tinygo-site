@@ -32,7 +32,7 @@ Peripherals:
 | `GP4`             | `GPIO4`      | `SPI0_SDI_PIN`    | `PWM2` (channel A)   |
 | `GP6`             | `GPIO6`      | `I2C0_SCL_PIN`, `I2C1_SDA_PIN`, `SDA_PIN` | `PWM3` (channel A)   |
 | `GP7`             | `GPIO7`      | `I2C0_SDA_PIN`, `I2C1_SCL_PIN`, `SCL_PIN` | `PWM3` (channel B)   |
-| `GP8`             | `GPIO8`      |                   | `PWM4` (channel A)   |
+| `GP8`             | `GPIO8`      | `WS2812`          | `PWM4` (channel A)   |
 | `GP9`             | `GPIO9`      |                   | `PWM4` (channel B)   |
 | `GP10`            | `GPIO10`     |                   | `PWM5` (channel A)   |
 | `GP11`            | `GPIO11`     |                   | `PWM5` (channel B)   |

@@ -684,7 +684,7 @@ transfer larger amounts of data, Tx will be faster.
 func (spi SPI) Tx(w, r []byte) error
 ```
 
-Tx handles read/write operation for SPI interface. Since SPI is a syncronous write/read
+Tx handles read/write operation for SPI interface. Since SPI is a synchronous write/read
 interface, there must always be the same number of bytes written as bytes read.
 This is accomplished by sending zero bits if r is bigger than w or discarding
 the incoming data if w is bigger than r.

@@ -12,7 +12,7 @@ The [m5stack](https://docs.m5stack.com/en/core/basic) is a development board bas
 | GPIO      | YES | YES |
 | UART      | YES | YES |
 | SPI       | YES | YES |
-| I2C       | YES | Not yet |
+| I2C       | YES | YES |
 | ADC       | YES | Not yet |
 | PWM       | YES | Not yet |
 | USBDevice | NO  | NO  |

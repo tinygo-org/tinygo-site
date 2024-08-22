@@ -35,15 +35,15 @@ The [Pimoroni Badger2040](https://shop.pimoroni.com/products/badger-2040) is a b
 | `EPD_SCK_PIN`     | `GPIO18`     | `SPI0_SCK_PIN`    | `PWM1` (channel A)   |
 | `EPD_SDO_PIN`     | `GPIO19`     | `SPI0_SDO_PIN`    | `PWM1` (channel B)   |
 | `VBUS_DETECT`     | `GPIO24`     |                   | `PWM4` (channel A)   |
-| `BATTERY`         | `GPIO29`     | `ADC3`            | `PWM6` (channel B)   |
+| `VREF_POWER`      | `GPIO27`     | `ADC1`            | `PWM5` (channel B)   |
+| `VREF_1V24`       | `GPIO28`     | `ADC2`            | `PWM6` (channel A)   |
+| `VBAT_SENSE`      | `GPIO29`     | `BATTERY`, `ADC3` | `PWM6` (channel B)   |
 | `ENABLE_3V3`      | `GPIO10`     |                   | `PWM5` (channel A)   |
 | `I2C0_SDA_PIN`    | `GPIO4`      |                   | `PWM2` (channel A)   |
 | `I2C0_SCL_PIN`    | `GPIO5`      |                   | `PWM2` (channel B)   |
 | `SPI0_SDI_PIN`    | `GPIO16`     |                   | `PWM0` (channel A)   |
 | `UART0_TX_PIN`    | `GPIO0`      | `UART_TX_PIN`     | `PWM0` (channel A)   |
 | `UART0_RX_PIN`    | `GPIO1`      | `UART_RX_PIN`     | `PWM0` (channel B)   |
-| `ADC1`            | `GPIO27`     |                   | `PWM5` (channel B)   |
-| `ADC2`            | `GPIO28`     |                   | `PWM6` (channel A)   |
 
 ## Machine Package Docs
 

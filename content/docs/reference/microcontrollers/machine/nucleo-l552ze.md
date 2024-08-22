@@ -796,8 +796,9 @@ devices with 7-bit addresses, which is the vast majority.
 
 ```go
 type I2CConfig struct {
-	SCL	Pin
-	SDA	Pin
+	Frequency	uint32
+	SCL		Pin
+	SDA		Pin
 }
 ```
 
