@@ -19,12 +19,13 @@ func main() {
 // You should define a function named 'add' in the WebAssembly 'env'
 // module from JavaScript.
 //
-//export add
+//go:export add
 func add(x, y int) int
 
 // This function is exported to JavaScript, so can be called using
 // exports.multiply() in JavaScript.
-//export multiply
+//
+//go:export multiply
 func multiply(x, y int) int {
     return x * y;
 }
@@ -54,7 +55,7 @@ implementation of WebAssembly.
 If you have `tinygo` installed, it's as simple as providing the correct target:
 
 ```
-tinygo build -o wasm.wasm -target wasm ./main.go
+GOOS=js GOARCH=wasm tinygo build -o wasm.wasm ./main.go
 ```
 
 If you're using the docker image, you need to mount your workspace into the image.
@@ -62,7 +63,7 @@ Note the `--no-debug` flag, which reduces the size of the final binary by removi
 debug symbols from the output. Also note that you must change the path to your Wasm file from `/go/src/github.com/myuser/myrepo/wasm-main.go` to whatever the actual path to your file is:
 
 ```
-docker run -v $GOPATH:/go -e "GOPATH=/go" tinygo/tinygo:0.33.0 tinygo build -o /go/src/github.com/myuser/myrepo/wasm.wasm -target wasm --no-debug /go/src/github.com/myuser/myrepo/wasm-main.go
+docker run -v $GOPATH:/go -e "GOPATH=/go" tinygo/tinygo:0.33.0 GOOS=js GOARCH=wasm tinygo build -o /go/src/github.com/myuser/myrepo/wasm.wasm --no-debug /go/src/github.com/myuser/myrepo/wasm-main.go
 ```
 
 Make sure you copy `wasm_exec.js` to your runtime environment:
@@ -136,7 +137,8 @@ func main() {
 			resp.Header().Set("content-type", "application/wasm")
 		}
 		fs.ServeHTTP(resp, req)
-	}))}
+	}))
+}
 ```
 
 This simple server serves anything inside the `./html` directory on port
