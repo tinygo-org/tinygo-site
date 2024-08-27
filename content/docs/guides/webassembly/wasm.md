@@ -19,13 +19,13 @@ func main() {
 // You should define a function named 'add' in the WebAssembly 'env'
 // module from JavaScript.
 //
-//go:export add
+//export add
 func add(x, y int) int
 
 // This function is exported to JavaScript, so can be called using
 // exports.multiply() in JavaScript.
 //
-//go:export multiply
+//export multiply
 func multiply(x, y int) int {
     return x * y;
 }
