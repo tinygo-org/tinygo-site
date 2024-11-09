@@ -98,7 +98,7 @@ image |  <span style="color: green">✔</span> yes  |  <span style="color: green
 image/color |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#imagecolor)  | 
 image/color/palette |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 image/draw |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#imagedraw)  | 
-image/gif |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#imagegif)  | 
+image/gif |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 image/jpeg |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#imagejpeg)  | 
 image/png |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#imagepng)  | 
 index/suffixarray |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
@@ -109,7 +109,7 @@ iter |  <span style="color: green">✔</span> yes  |  [<span style="color: red">
 log |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#log)  | 
 log/slog |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#logslog)  | 
 log/syslog |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#logsyslog)  | 
-maps |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#maps)  | 
+maps |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 math |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 math/big |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#mathbig)  | 
 math/bits |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#mathbits)  | 
@@ -180,8 +180,8 @@ The compiler gave the following error when running the tests for this package:
 
 
     [tinygo: panic at <Go interface method>]
-    panic: runtime error at 0x000000000026eae5: nil pointer dereference
-    FAIL	archive/tar	0.269s
+    panic: runtime error at 0x000000000026eb43: nil pointer dereference
+    FAIL	archive/tar	0.169s
 
 
 
@@ -200,7 +200,7 @@ The compiler gave the following error when running the tests for this package:
     --- FAIL: TestReadStringAllocs (0.00s)
         Unexpected number of allocations, got 0.000000, want 1
     FAIL
-    FAIL	bufio	0.130s
+    FAIL	bufio	0.084s
 
 
 
@@ -215,8 +215,8 @@ The compiler gave the following error when running the tests for this package:
 
 
     [tinygo: panic at /home/ron/Development/tinygo/tinygo-122/src/internal/bytealg/bytealg.go:304:13]
-    panic: runtime error at 0x000000000022d209: out of memory
-    FAIL	bytes	5.732s
+    panic: runtime error at 0x000000000022bb32: out of memory
+    FAIL	bytes	5.594s
 
 
 
@@ -237,7 +237,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     FAIL		0.000s
-    /home/ron/.gvm/gos/go1.23/src/compress/gzip/example_test.go:14:2: package net/http/httptest is not in std (/home/ron/.cache/tinygo/goroot-8dfa52493353b482ef2f92e428ccd70087bafb9ea49be4487874c40c866336de/src/net/http/httptest)
+    /home/ron/.gvm/gos/go1.23/src/compress/gzip/example_test.go:14:2: package net/http/httptest is not in std (/home/ron/.cache/tinygo/goroot-59c0c8df7700d2980b426f170e6754c2d2901b0680adb52840eeef4402e8c177/src/net/http/httptest)
 
 
 
@@ -263,7 +263,7 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    panic: runtime error at 0x000000000028df55: index out of range
+    panic: runtime error at 0x000000000028e227: index out of range
     FAIL	crypto	0.004s
 
 
@@ -280,11 +280,11 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    --- FAIL: TestGCMAsm (0.31s)
+    --- FAIL: TestGCMAsm (0.33s)
         no assembly implementation of GCM
         SkipNow is incomplete, requires runtime.Goexit()
     FAIL
-    FAIL	crypto/cipher	0.311s
+    FAIL	crypto/cipher	0.334s
 
 
 
@@ -347,7 +347,7 @@ The compiler gave the following error when running the tests for this package:
         unexpected end of JSON input
         FailNow is incomplete, requires runtime.Goexit()
     FAIL
-    FAIL	crypto/ed25519	0.208s
+    FAIL	crypto/ed25519	0.152s
     [...more lines following...]
 
 
@@ -373,7 +373,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).NumOut()
-    FAIL	crypto/rsa	0.034s
+    FAIL	crypto/rsa	0.037s
 
 
 
@@ -480,8 +480,8 @@ The compiler gave the following error when running the tests for this package:
 
 
     [tinygo: panic at /home/ron/.gvm/gos/go1.23/src/debug/elf/file.go]
-    panic: runtime error at 0x000000000025bf84: nil pointer dereference
-    FAIL	debug/gosym	0.003s
+    panic: runtime error at 0x000000000025c02b: nil pointer dereference
+    FAIL	debug/gosym	0.004s
 
 
 
@@ -498,7 +498,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     [tinygo: panic at /home/ron/.gvm/gos/go1.23/src/debug/pe/file_test.go]
-    panic: runtime error at 0x0000000000275b0d: index out of range
+    panic: runtime error at 0x0000000000275fa9: index out of range
     FAIL	debug/pe	0.004s
 
 
@@ -528,8 +528,8 @@ The compiler gave the following error when running the tests for this package:
 
 
     [tinygo: panic at /home/ron/.gvm/gos/go1.23/src/encoding/binary/binary.go:109:7]
-    panic: runtime error at 0x000000000024bf78: index out of range
-    FAIL	encoding/binary	0.005s
+    panic: runtime error at 0x000000000024c031: index out of range
+    FAIL	encoding/binary	0.006s
 
 
 
@@ -546,7 +546,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: reflect: unimplemented: AssignableTo with interface
-    FAIL	encoding/gob	0.000s
+    FAIL	encoding/gob	0.001s
 
 
 
@@ -563,7 +563,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     FAIL		0.000s
-    /home/ron/.gvm/gos/go1.23/src/encoding/json/stream_test.go:14:2: package net/http/httptest is not in std (/home/ron/.cache/tinygo/goroot-8dfa52493353b482ef2f92e428ccd70087bafb9ea49be4487874c40c866336de/src/net/http/httptest)
+    /home/ron/.gvm/gos/go1.23/src/encoding/json/stream_test.go:14:2: package net/http/httptest is not in std (/home/ron/.cache/tinygo/goroot-59c0c8df7700d2980b426f170e6754c2d2901b0680adb52840eeef4402e8c177/src/net/http/httptest)
 
 
 
@@ -578,7 +578,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).NumOut()
-    FAIL	encoding/pem	1.549s
+    FAIL	encoding/pem	1.136s
 
 
 
@@ -607,16 +607,16 @@ The compiler gave the following error when running the tests for this package:
 
 
     --- FAIL: TestAs (0.00s)
-        --- FAIL: TestAs/8:As(Errorf(...,_err),_0x78b942e17bd0) (0.00s)
+        --- FAIL: TestAs/8:As(Errorf(...,_err),_0x78d6cd613c10) (0.00s)
             match: got true; want false
             FailNow is incomplete, requires runtime.Goexit()
             got &errors.errorString{s:"err"}, want <nil>
             FailNow is incomplete, requires runtime.Goexit()
-        --- FAIL: TestAs/10:As(Errorf(...,_path_error),_0x78b942e17bd0) (0.00s)
-            got errors_test.wrapped{msg:"path error", err:(*fs.PathError)(0x78b942e17c30)}, want &fs.PathError{Op:"open", Path:"non-existing", Err:(*errors.errorString)(0x253968)}
+        --- FAIL: TestAs/10:As(Errorf(...,_path_error),_0x78d6cd613c10) (0.00s)
+            got errors_test.wrapped{msg:"path error", err:(*fs.PathError)(0x78d6cd613c70)}, want &fs.PathError{Op:"open", Path:"non-existing", Err:(*errors.errorString)(0x253a08)}
             FailNow is incomplete, requires runtime.Goexit()
-        --- FAIL: TestAs/16:As(Errorf(...,_multiError),_0x78b942e17bd0) (0.00s)
-            got errors_test.multiErr{errors_test.wrapped{msg:"path error", err:(*fs.PathError)(0x78b942e17c30)}}, want &fs.PathError{Op:"open", Path:"non-existing", Err:(*errors.errorString)(0x253968)}
+        --- FAIL: TestAs/16:As(Errorf(...,_multiError),_0x78d6cd613c10) (0.00s)
+            got errors_test.multiErr{errors_test.wrapped{msg:"path error", err:(*fs.PathError)(0x78d6cd613c70)}}, want &fs.PathError{Op:"open", Path:"non-existing", Err:(*errors.errorString)(0x253a08)}
             FailNow is incomplete, requires runtime.Goexit()
     FAIL
     FAIL	errors	0.001s
@@ -673,9 +673,9 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    [tinygo: panic at /home/ron/Development/tinygo/tinygo-122/src/reflect/type.go:507:11]
-    panic: runtime error at 0x0000000000228ecc: nil pointer dereference
-    FAIL	fmt	0.003s
+    [tinygo: panic at /home/ron/Development/tinygo/tinygo-122/src/reflect/type.go:508:11]
+    panic: runtime error at 0x0000000000228f19: nil pointer dereference
+    FAIL	fmt	0.004s
 
 
 
@@ -723,7 +723,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     [tinygo: panic at /home/ron/.gvm/gos/go1.23/src/go/constant/value.go]
-    panic: runtime error at 0x00000000002549e8: divide by zero
+    panic: runtime error at 0x0000000000254be1: divide by zero
     FAIL	go/constant	0.004s
 
 
@@ -739,7 +739,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).NumOut()
-    FAIL	go/doc	0.000s
+    FAIL	go/doc	0.001s
 
 
 
@@ -785,7 +785,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     [tinygo: panic at <Go interface method>]
-    panic: runtime error at 0x0000000000320e41: nil pointer dereference
+    panic: runtime error at 0x000000000032148c: nil pointer dereference
     FAIL	go/importer	0.006s
 
 
@@ -800,7 +800,7 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    FAIL	go/parser	0.092s
+    FAIL	go/parser	0.075s
 
 
 
@@ -856,7 +856,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: not available
-    FAIL	hash/crc32	0.012s
+    FAIL	hash/crc32	0.014s
 
 
 
@@ -874,9 +874,9 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    [tinygo: panic at /home/ron/Development/tinygo/tinygo-122/src/runtime/slice.go:50:14]
-    panic: runtime error at 0x0000000000224be8: out of memory
-    FAIL	hash/maphash	30.162s
+    [tinygo: panic at /home/ron/Development/tinygo/tinygo-122/src/runtime/slice.go:57:14]
+    panic: runtime error at 0x0000000000224cde: out of memory
+    FAIL	hash/maphash	24.756s
 
 
 
@@ -893,7 +893,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).NumOut()
-    FAIL	html/template	0.002s
+    FAIL	html/template	0.003s
 
 
 
@@ -910,7 +910,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).NumIn()
-    FAIL	image/color	0.000s
+    FAIL	image/color	0.001s
 
 
 
@@ -927,24 +927,9 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).NumIn()
-    FAIL	image/draw	0.033s
+    FAIL	image/draw	0.040s
 
 
-
-
-
-
-## image/gif
-
-
-
-The compiler gave the following error when running the tests for this package:
-
-
-    FAIL	image/gif	0.000s
-    # image/gif
-    /home/ron/.gvm/gos/go1.23/src/image/gif/reader_test.go:422:26: s1.HeapAlloc undefined (type *runtime.MemStats has no field or method HeapAlloc)
-    /home/ron/.gvm/gos/go1.23/src/image/gif/reader_test.go:422:41: s0.HeapAlloc undefined (type *runtime.MemStats has no field or method HeapAlloc)
 
 
 
@@ -975,8 +960,8 @@ The compiler gave the following error when running the tests for this package:
 
 
     [tinygo: panic at /home/ron/.gvm/gos/go1.23/src/image/png/reader.go:506:12]
-    panic: runtime error at 0x0000000000259314: out of memory
-    FAIL	image/png	0.880s
+    panic: runtime error at 0x00000000002593c3: out of memory
+    FAIL	image/png	0.864s
 
 
 
@@ -1002,7 +987,7 @@ The compiler gave the following error when running the tests for this package:
         timeout waiting for collection of buf1
         FailNow is incomplete, requires runtime.Goexit()
     FAIL
-    FAIL	io	5.053s
+    FAIL	io	5.033s
 
 
 
@@ -1016,7 +1001,7 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    FAIL	io/fs	0.003s
+    FAIL	io/fs	0.004s
 
 
 
@@ -1032,13 +1017,9 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    FAIL	iter	0.000s
-    /home/ron/.gvm/gos/go1.23/src/iter/iter.go:251: linker could not find symbol runtime.newcoro
-    /home/ron/.gvm/gos/go1.23/src/iter/iter.go:267: linker could not find symbol runtime.coroswitch
-    /home/ron/.gvm/gos/go1.23/src/iter/iter.go:297: linker could not find symbol runtime.coroswitch
-    /home/ron/.gvm/gos/go1.23/src/iter/iter.go:317: linker could not find symbol runtime.coroswitch
-    /home/ron/.gvm/gos/go1.23/src/iter/iter.go:367: linker could not find symbol runtime.newcoro
-    /home/ron/.gvm/gos/go1.23/src/iter/iter.go:367: linker could not find symbol runtime.newcoro
+    [tinygo: panic at /home/ron/.gvm/gos/go1.23/src/iter/pull_test.go]
+    panic: runtime error at 0x0000000000242613: nil pointer dereference
+    FAIL	iter	0.005s
 
 
 
@@ -1059,14 +1040,14 @@ The compiler gave the following error when running the tests for this package:
         log output should match "^[A-Za-z0-9_\\-]+\\.go:(63|65): hello 23 world$" is "???:0: hello 23 world"
         log output should match "^[A-Za-z0-9_\\-]+\\.go:(63|65): hello 23 world$" is "???:0: hello 23 world"
         log output should match "^[A-Za-z0-9_\\-]+\\.go:(63|65): hello 23 world$" is "???:0: hello 23 world"
-        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(63|65): hello 23 world$" is "XXX2024/08/22 20:03:20.722555 ???:0: hello 23 world"
-        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(63|65): hello 23 world$" is "XXX2024/08/22 20:03:20.722586 ???:0: hello 23 world"
-        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(63|65): hello 23 world$" is "XXX2024/08/22 20:03:20.722990 ???:0: hello 23 world"
-        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(63|65): hello 23 world$" is "XXX2024/08/22 20:03:20.723033 ???:0: hello 23 world"
-        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(63|65): XXXhello 23 world$" is "2024/08/22 20:03:20.723067 ???:0: XXXhello 23 world"
-        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(63|65): XXXhello 23 world$" is "2024/08/22 20:03:20.723497 ???:0: XXXhello 23 world"
-        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(63|65): XXXhello 23 world$" is "2024/08/22 20:03:20.723537 ???:0: XXXhello 23 world"
-        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(63|65): XXXhello 23 world$" is "2024/08/22 20:03:20.723951 ???:0: XXXhello 23 world"
+        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(63|65): hello 23 world$" is "XXX2024/10/26 11:27:22.813528 ???:0: hello 23 world"
+        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(63|65): hello 23 world$" is "XXX2024/10/26 11:27:22.813562 ???:0: hello 23 world"
+        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(63|65): hello 23 world$" is "XXX2024/10/26 11:27:22.813600 ???:0: hello 23 world"
+        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(63|65): hello 23 world$" is "XXX2024/10/26 11:27:22.813798 ???:0: hello 23 world"
+        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(63|65): XXXhello 23 world$" is "2024/10/26 11:27:22.813838 ???:0: XXXhello 23 world"
+        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(63|65): XXXhello 23 world$" is "2024/10/26 11:27:22.814041 ???:0: XXXhello 23 world"
+        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(63|65): XXXhello 23 world$" is "2024/10/26 11:27:22.814243 ???:0: XXXhello 23 world"
+        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(63|65): XXXhello 23 world$" is "2024/10/26 11:27:22.814269 ???:0: XXXhello 23 world"
     [...more lines following...]
 
 
@@ -1082,7 +1063,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: runtime.Caller failed
-    FAIL	log/slog	0.000s
+    FAIL	log/slog	0.001s
 
 
 
@@ -1106,20 +1087,6 @@ The compiler gave the following error when running the tests for this package:
 
 
 
-## maps
-
-
-
-The compiler gave the following error when running the tests for this package:
-
-
-    FAIL	maps	0.000s
-    /home/ron/.gvm/gos/go1.23/src/maps/maps.go:55: linker could not find symbol maps.clone
-    /home/ron/.gvm/gos/go1.23/src/maps/maps.go:55: linker could not find symbol maps.clone
-
-
-
-
 
 
 
@@ -1133,18 +1100,18 @@ The compiler gave the following error when running the tests for this package:
 
     FAIL	math/big	0.000s
     # math/big
-    /home/ron/.gvm/gos/go1.23/src/math/bits/bits.go:472:10: interp: running for more than 3m0s, timing out (executed calls: 28856372)
-      %0 = and i64 %x, 4294967295, !dbg !30909
+    /home/ron/.gvm/gos/go1.23/src/math/bits/bits.go:472:10: interp: running for more than 3m0s, timing out (executed calls: 30224089)
+      %0 = and i64 %x, 4294967295, !dbg !30956
     
     traceback:
     /home/ron/.gvm/gos/go1.23/src/math/bits/bits.go:472:10:
-      %0 = and i64 %x, 4294967295, !dbg !30909
+      %0 = and i64 %x, 4294967295, !dbg !30956
     /home/ron/.gvm/gos/go1.23/src/math/bits/bits.go:450:15:
-      %9 = call { i64, i64 } @"math/bits.Mul64"(i64 %x, i64 %y, ptr undef), !dbg !30917
+      %9 = call { i64, i64 } @"math/bits.Mul64"(i64 %x, i64 %y, ptr undef), !dbg !30964
     /home/ron/.gvm/gos/go1.23/src/math/big/arith.go:51:20:
-      %0 = call { i64, i64 } @"math/bits.Mul"(i64 %x, i64 %y, ptr undef), !dbg !30904
+      %0 = call { i64, i64 } @"math/bits.Mul"(i64 %x, i64 %y, ptr undef), !dbg !30951
     /home/ron/.gvm/gos/go1.23/src/math/big/arith.go:192:24:
-      %13 = call { i64, i64 } @"math/big.mulAddWWW_g"(i64 %12, i64 %y, i64 %6, ptr undef), !dbg !30922
+      %13 = call { i64, i64 } @"math/big.mulAddWWW_g"(i64 %12, i64 %y, i64 %6, ptr undef), !dbg !30969
     /home/ron/.gvm/gos/go1.23/src/math/big/arith_decl_pure.go:44:20:
     [...more lines following...]
 
@@ -1161,7 +1128,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     [tinygo: panic at /home/ron/.gvm/gos/go1.23/src/math/bits/bits.go:510:21]
-    panic: runtime error at 0x000000000021dde5: divide by zero
+    panic: runtime error at 0x000000000021de1a: divide by zero
     FAIL	math/bits	0.002s
 
 
@@ -1179,7 +1146,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).Method()
-    FAIL	math/rand	1.890s
+    FAIL	math/rand	1.918s
 
 
 
@@ -1274,7 +1241,7 @@ This package cannot be imported because the following dependencies cannot be com
 The compiler gave the following error when this package was imported:
 
 
-    ../../../../../tmp/tinygo-test-713677031/main.go:2:8: package net/http/httptrace is not in std (/home/ron/.cache/tinygo/goroot-8dfa52493353b482ef2f92e428ccd70087bafb9ea49be4487874c40c866336de/src/net/http/httptrace)
+    ../../../../../tmp/tinygo-test-340311014/main.go:2:8: package net/http/httptrace is not in std (/home/ron/.cache/tinygo/goroot-59c0c8df7700d2980b426f170e6754c2d2901b0680adb52840eeef4402e8c177/src/net/http/httptrace)
 
 
 
@@ -1400,7 +1367,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     FAIL		0.000s
-    /home/ron/.gvm/gos/go1.23/src/os/exec/exec_test.go:23:2: package net/http/httptest is not in std (/home/ron/.cache/tinygo/goroot-8dfa52493353b482ef2f92e428ccd70087bafb9ea49be4487874c40c866336de/src/net/http/httptest)
+    /home/ron/.gvm/gos/go1.23/src/os/exec/exec_test.go:23:2: package net/http/httptest is not in std (/home/ron/.cache/tinygo/goroot-59c0c8df7700d2980b426f170e6754c2d2901b0680adb52840eeef4402e8c177/src/net/http/httptest)
 
 
 
@@ -1466,7 +1433,7 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when running the tests for this package:
 
 
-    FAIL	regexp	2.220s
+    FAIL	regexp	0.860s
 
 
 
@@ -1483,8 +1450,8 @@ The compiler gave the following error when running the tests for this package:
 
 
     [tinygo: panic at /home/ron/.gvm/gos/go1.23/src/slices/slices.go]
-    panic: runtime error at 0x000000000027fd24: slice out of range
-    FAIL	slices	0.007s
+    panic: runtime error at 0x000000000027fdad: slice out of range
+    FAIL	slices	0.005s
 
 
 
@@ -1498,19 +1465,19 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    --- FAIL: TestCountStableOps (1.06s)
+    --- FAIL: TestCountStableOps (1.17s)
         Counting skipped as non-verbose mode.
         SkipNow is incomplete, requires runtime.Goexit()
-        Stable      100 elements:         936 Swap,        803 Less
-        Stable      300 elements:        4036 Swap,       3116 Less
-        Stable     1000 elements:       19431 Swap,      12165 Less
-        Stable     3000 elements:       82543 Swap,      43007 Less
-        Stable    10000 elements:      348377 Swap,     165656 Less
-        Stable    30000 elements:     1341022 Swap,     558390 Less
-        Stable   100000 elements:     5786769 Swap,    2084974 Less
-        Stable   300000 elements:    20452019 Swap,    6869316 Less
-        Stable  1000000 elements:    84471267 Swap,   25121542 Less
-    --- FAIL: TestCountSortOps (0.61s)
+        Stable      100 elements:         934 Swap,        840 Less
+        Stable      300 elements:        3965 Swap,       3007 Less
+        Stable     1000 elements:       19722 Swap,      12157 Less
+        Stable     3000 elements:       82381 Swap,      43169 Less
+        Stable    10000 elements:      347890 Swap,     165488 Less
+        Stable    30000 elements:     1340159 Swap,     559016 Less
+        Stable   100000 elements:     5788412 Swap,    2086988 Less
+        Stable   300000 elements:    20452076 Swap,    6864623 Less
+        Stable  1000000 elements:    84469132 Swap,   25114223 Less
+    --- FAIL: TestCountSortOps (0.76s)
         Counting skipped as non-verbose mode.
         SkipNow is incomplete, requires runtime.Goexit()
     [...more lines following...]
@@ -1530,8 +1497,8 @@ The compiler gave the following error when running the tests for this package:
 
 
     [tinygo: panic at /home/ron/Development/tinygo/tinygo-122/src/internal/bytealg/bytealg.go:304:13]
-    panic: runtime error at 0x000000000022b226: out of memory
-    FAIL	strings	8.086s
+    panic: runtime error at 0x000000000022a7f3: out of memory
+    FAIL	strings	8.484s
 
 
 
@@ -1550,8 +1517,8 @@ The compiler gave the following error when running the tests for this package:
 
 
     [tinygo: panic at /home/ron/.gvm/gos/go1.23/src/sync/atomic/doc.go:94:6]
-    panic: runtime error at 0x00000000002502e8: caught signal SIGSEGV
-    FAIL	sync/atomic	0.939s
+    panic: runtime error at 0x000000000025039d: caught signal SIGSEGV
+    FAIL	sync/atomic	0.906s
 
 
 
@@ -1589,7 +1556,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     [tinygo: panic at <Go interface method>]
-    panic: runtime error at 0x000000000022291a: nil pointer dereference
+    panic: runtime error at 0x0000000000222947: nil pointer dereference
     FAIL	testing/fstest	0.007s
 
 
@@ -1622,7 +1589,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: runtime.Caller failed
-    FAIL	testing/slogtest	0.000s
+    FAIL	testing/slogtest	0.001s
 
 
 
