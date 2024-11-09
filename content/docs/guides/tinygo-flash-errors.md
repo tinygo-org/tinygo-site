@@ -7,6 +7,7 @@ description: |
 
 Flashing to a port may be a source of pain with a unconfigured computer. Here are some common problems when trying to get your first program on a device.
 
+* [Unable to locate any volume (Linux)](#unable-to-locate-any-volume-inux)
 * [Serial port permission problems (Linux)](#permission-denied-linux)
 
 ### Unable to locate any volume (Linux)
@@ -17,48 +18,48 @@ is to flash that image onto the device.
 
 For the pico with `target=pico`, `tinygo` expects to see this device in the current directory under the name `RPI-RP2`. If this volume is is not found,
 you will get an error message like this:
-```
+```bash
 failed to flash /tmp/tinygo173718394/main.uf2: unable to locate any volume: [RPI-RP2]
 ```
 
 To fix this problem, you need to mount the volume after restarting the Pico while holding down the `BOOTSEL` button. You can do this manually, but it
 is better to edit the `/etc/fstab` file to allow users to do this themselves. You can do this by adding a line like this to `/etc/fstab`:
-```
+```bash
 LABEL=RPI-RP2  /path/to/volume/RPI-RP2  vfat	defaults,umask=000,users
 ```
 where you replace `/path/to/volume` with a pathname of your choosing. It is common for this to be put in your home directory or in a system standard
 place such as `/mnt/RPI-RP2`, but it can also be in the directory where you expect to run `tinygo`. You will also need to create a directory with the path 
 `/path/to/volume/RPI-RP2`. Once you have done this and after restarting the Pico in
 `BOOTSEL` mode, you should be able to see the Pico's block device using this command
-```
+```bash
 lsblock -f
 ```
 On a typical system, the Pico will show up like this
-```
+```bash
 sda                                                                                  
 └─sda1      vfat     RPI-RP2     000A-9BF3
 ```
 you can mount the Pico using this command:
-```
+```bash
 mount /path/to/volume/RPI-RP2
 ```
 You can verify that this has worked using this command:
-```
+```bash
 mount | grep RPI
 ```
 If you get output that looks like this, you have succeeded in mounting the volume
-```
+```bash
 /dev/sda1 on /mnt/RPI-RP2 type vfat (rw,nosuid,...lots more stuff...)
 ```
 If you mounted your Pico someplace other than in your development directory, you should create a symbolic
 link to the mounted volume in the directory where you plan to run `tinygo`. This can be done using
-```
+```bash
 ln -s /mnt/RPI-RP2/
 ```
 Note that editing `/etc/fstab`, creating the mount point directory with `mkdir` and creating your symbolic
 link all only need to be done once. During development, you will only need to do the `mount` command
 after restarting the Pico. After flashing the Pico, it is good practice to unmount the drive using the command
-```
+```bash
 umount /path/to/volume/RPI-RP2
 ```
 ### Permission Denied (Linux)
