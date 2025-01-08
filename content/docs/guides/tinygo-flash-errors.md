@@ -86,3 +86,19 @@ sudo usermod -aG dialout $(whoami)
 This will add our current user to dialout group. **Log out and log in again to complete the procedure**. You should now be able to flash to your device. 
 
 As a last resort if this does not work you can try to modify the permissions with `chmod`. For the error above we may try `sudo chmod a+rw /dev/ttyACM0` where `/dev/ttyACM0` is the serial port we are trying to flash to.
+
+### Disable "not ejected safely" notification (Mac)
+
+Some boards are flashed by copying over `.uf2` file to the board mounted as Mass Storage Device.  
+Upon successful flashing, the board reboots and this looks to the OS as the board was _unsafely_ ejected (yanked out by user), so OS warns with a notification that has to be acknowledged (it does not disappear itself).  
+This can become annoying very quickly during intense flash-run-debug sessions. Thankfully, it is possible to disable this behaviour.  
+
+In terminal, execute following and **restart the system**:
+```
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.DiskArbitration.diskarbitrationd.plist DADisableEjectNotification -bool YES && sudo pkill diskarbitrationd
+```
+
+Revert to the default behaviour:
+```
+sudo defaults delete /Library/Preferences/SystemConfiguration/com.apple.DiskArbitration.diskarbitrationd.plist DADisableEjectNotification && sudo pkill diskarbitrationd
+```
