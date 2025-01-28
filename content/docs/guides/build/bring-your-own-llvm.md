@@ -56,7 +56,7 @@ sudo apt-get install clang-18 llvm-18-dev lld-18 libclang-18-dev
 For **MacOS**, you can install LLVM through [Homebrew](https://formulae.brew.sh/formula/llvm). The Clang/LLVM version from Apple is not supported by TinyGo.
 
 ```shell
-brew install llvm
+brew install llvm lld
 ```
 #### Fedora
 
