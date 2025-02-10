@@ -7,10 +7,31 @@ description: >
   Videos/Podcasts talking about TinyGo
 ---
 
+**FOSDEM 2025 - Ron Evans - "Return To Go Without Wires"** - *February 8, 2025*
+https://cuddly.tube/w/pkw3cCH4NFbTht7vHttChg
+
+**FOSDEM 2025 - Daniel Esteban - "Playing games without a computer: Hardware fun with TinyGo"** - *February 8, 2025*
+https://cuddly.tube/w/2UGxR1utDVN8S6vcyW64rB
+
+**FOSDEM 2025 - Ayke van Laethem - "Implementing parallelism: how we added threading and multicore support in TinyGo"** - *February 8, 2025*
+https://cuddly.tube/w/32DjftoiTssyT1tPyjxr1w
+
+**GoLab 2024 - Josephine Winter - "TinyGo for Pet Automation"** - *November 13, 2024*
+https://www.youtube.com/watch?v=CmSohy0CNdk
+
+**GopherCon US 2024 - Patricio Whittingslow - "Go in the Smallest of Places"** - *July 10, 2024*
+https://www.youtube.com/watch?v=CQJJ6KS-PF4
+
+**FOSDEM 2024 - Ayke van Laethem - "Smartwatch firmware... in Go? On TinyGo, small displays, and building a delightful developer experience"** - *February 3, 2024*
+https://video.fosdem.org/2024/ud2218a/fosdem-2024-2562-smartwatch-firmware-in-go-on-tinygo-small-displays-and-building-a-delightful-developer-experience.av1.webm
+
+**FOSDEM 2024 - Ron Evans - "Go Without Wires Strikes Back"** - *February 3, 2024*
+https://video.fosdem.org/2024/ud2218a/fosdem-2024-2270-go-without-wires-strikes-back.av1.webm
+
 **FOSDEM 2023 - Ron Evans - Go Even Further Without Wires** - *February 4, 2023*
 https://video.fosdem.org/2023/UD2.218A/goevenfurtherwithoutwires.mp4
 
-**FOSDEM 2023 - Daniel Esteban - Visually programming Gon** - *February 4, 2023*
+**FOSDEM 2023 - Daniel Esteban - Visually programming Go** - *February 4, 2023*
 https://video.fosdem.org/2023/UD2.218A/govisuallyprogramming.mp4
 
 **GopherCon US 2022 - Donia Chaiehloudj - TinyGo: Getting the Upper Hen** - *October 8, 2022*

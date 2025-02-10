@@ -6,6 +6,15 @@ weight: 45
 description: >
   Articles and blog posts talking about TinyGo
 ---
+**Hriday Keni - "TinyGo for Embedded Applications: Coding Without the Code-Phobia"** - *February 1, 2025*
+https://medium.com/@hrkeni/tinygo-for-embedded-applications-coding-without-the-code-phobia-28ed90b5bcb0
+
+**Eric Gregory - "Compile Go directly to WebAssembly components with TinyGo and WASI P2"** - *July 2, 2024*
+https://wasmcloud.com/blog/compile-go-directly-to-webassembly-components-with-tinygo-and-wasi-p2/
+
+**Matt Butcher - "4 Big Developments in WebAssembly"** - *April 18, 2024*
+https://thenewstack.io/4-big-developments-in-webassembly/
+
 **Pragmatik.tech - Multiple articles on TinyGo and Raspberry Pi Pico** - *July 2022 onwards*
 https://pragmatik.tech/tags/tinygo/
 
