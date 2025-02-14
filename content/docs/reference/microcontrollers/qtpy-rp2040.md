@@ -63,4 +63,14 @@ Any troubleshooting tips go here.
 
 ## Notes
 
+To use the Qwiic/StemmaQT port on this board with I2C drivers you'll need to configure the `I2C1` device:
+
+```go
+i2c := machine.I2C1
+i2c.Configure(machine.I2CConfig{
+	SCL: machine.I2C1_QT_SCL_PIN,
+	SDA: machine.I2C1_QT_SDA_PIN,
+})
+```
+
 You can use the USB port to the QT Py RP2040 as a serial port.
