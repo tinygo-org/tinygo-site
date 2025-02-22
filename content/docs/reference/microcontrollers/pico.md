@@ -78,4 +78,8 @@ Any troubleshooting tips go here.
 
 You can use the USB port to the Pico as a serial port.
 
+TinyGo has support for the RP2040's on-board Programmable Input/Output (PIO) block.
+
+For more informantion, see [https://github.com/tinygo-org/pio](https://github.com/tinygo-org/pio)
+
 You can refer to [getting started with Raspberry Pi Pico](https://datasheets.raspberrypi.org/pico/getting-started-with-pico.pdf) documentation on how to connect two Picos together (see Appendix A: Using Picoprobe) to debug and convert `UART0` output on target pico to USB output on picoprobe. You will need the [Picoprobe UF2](https://www.raspberrypi.org/documentation/rp2040/getting-started/#board-specifications), available on the Pico's website under "About" tab.

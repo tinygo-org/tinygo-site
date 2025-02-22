@@ -78,3 +78,9 @@ Any troubleshooting tips go here.
 ## Notes
 
 You can use the USB port to the Tufty2040 as a serial port.
+
+TinyGo has support for the RP2040's on-board Programmable Input/Output (PIO) block.
+
+For more informantion, see [https://github.com/tinygo-org/pio](https://github.com/tinygo-org/pio)
+
+For support for the Tufty's display please see [https://github.com/tinygo-org/pio/tree/main/rp2-pio/examples/tufty](https://github.com/tinygo-org/pio/tree/main/rp2-pio/examples/tufty)

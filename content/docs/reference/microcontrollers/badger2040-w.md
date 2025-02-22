@@ -74,3 +74,7 @@ Any troubleshooting tips go here.
 You can use the USB port to the Badger2040-W as a serial port.
 
 The Badger2040-W has an onboard CYW43439 wireless chip for WiFi and Bluetooth communication.
+
+TinyGo has support for the RP2040's on-board Programmable Input/Output (PIO) block.
+
+For more informantion, see [https://github.com/tinygo-org/pio](https://github.com/tinygo-org/pio)

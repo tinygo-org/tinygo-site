@@ -72,3 +72,7 @@ Any troubleshooting tips go here.
 ## Notes
 
 You can use the USB port to the Badger2040 as a serial port.
+
+TinyGo has support for the RP2040's on-board Programmable Input/Output (PIO) block.
+
+For more informantion, see [https://github.com/tinygo-org/pio](https://github.com/tinygo-org/pio)

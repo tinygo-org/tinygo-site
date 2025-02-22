@@ -82,3 +82,7 @@ Any troubleshooting tips go here.
 You can use the USB port to the Thing Plus RP2040 as a serial port.
 
 The Neopixel LED and the SD Card are supported by [tinygo drivers](https://github.com/tinygo-org/drivers)
+
+TinyGo has support for the RP2040's on-board Programmable Input/Output (PIO) block.
+
+For more informantion, see [https://github.com/tinygo-org/pio](https://github.com/tinygo-org/pio)
