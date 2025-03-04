@@ -30,15 +30,15 @@ You must have Go already installed on your machine in order to install TinyGo. W
 If you are using Ubuntu or another Debian based Linux on an Intel processor, download the DEB file from Github and install it using the following commands:
 
 ```shell
-wget https://github.com/tinygo-org/tinygo/releases/download/v0.35.0/tinygo_0.35.0_amd64.deb
-sudo dpkg -i tinygo_0.35.0_amd64.deb
+wget https://github.com/tinygo-org/tinygo/releases/download/v0.36.0/tinygo_0.36.0_amd64.deb
+sudo dpkg -i tinygo_0.36.0_amd64.deb
 ```
 
 If you are on a Raspberry Pi or other ARM-based Linux computer, you should use this command instead:
 
 ```shell
-wget https://github.com/tinygo-org/tinygo/releases/download/v0.35.0/tinygo_0.35.0_armhf.deb
-sudo dpkg -i tinygo_0.35.0_armhf.deb
+wget https://github.com/tinygo-org/tinygo/releases/download/v0.36.0/tinygo_0.36.0_armhf.deb
+sudo dpkg -i tinygo_0.36.0_armhf.deb
 ```
 
 You will need to ensure that the path to the `tinygo` executable file is in your `PATH` variable.
@@ -51,7 +51,7 @@ You can test that the installation is working properly by running this code whic
 
 ```shell
 $ tinygo version
-tinygo version 0.35.0 linux/amd64 (using go version go1.23 and LLVM version 18.1.2)
+tinygo version 0.36.0 linux/amd64 (using go version go1.24 and LLVM version 19.1.2)
 ```
 
 If you are on a 64 bit ARM OS, and running tinygo fails with "no such file or directory", you may need to install the 32 bit C++ runtime library, e.g.:

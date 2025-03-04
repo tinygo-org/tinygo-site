@@ -22,10 +22,10 @@ brew install tinygo
 
 #### Mac M1/M2
 
-Download [this](https://github.com/tinygo-org/tinygo/releases/download/v0.35.0/tinygo0.35.0.darwin-arm64.tar.gz) file. Then, run the following commands:
+Download [this](https://github.com/tinygo-org/tinygo/releases/download/v0.36.0/tinygo0.36.0.darwin-arm64.tar.gz) file. Then, run the following commands:
 
 ```shell
-tar xvzf tinygo0.35.0.darwin-arm64.tar.gz
+tar xvzf tinygo0.36.0.darwin-arm64.tar.gz
 export PATH=<extract location>/tinygo/bin:$PATH
 ```
 
@@ -33,7 +33,7 @@ You can test that the installation is working properly by running this code whic
 
 ```shell
 $ tinygo version
-tinygo version 0.35.0 darwin/arm64 (using go version go1.23 and LLVM version 18.1.2)
+tinygo version 0.36.0 darwin/arm64 (using go version go1.24 and LLVM version 19.1.2)
 ```
 
 If you are only interested in compiling TinyGo code for WebAssembly then you are done with the installation.
@@ -42,10 +42,10 @@ Otherwise, please continue with the installation of the additional requirements 
 
 #### Mac Intel
 
-Download [this](https://github.com/tinygo-org/tinygo/releases/download/v0.35.0/tinygo0.35.0.darwin-amd64.tar.gz) file. Then, run the following commands:
+Download [this](https://github.com/tinygo-org/tinygo/releases/download/v0.36.0/tinygo0.36.0.darwin-amd64.tar.gz) file. Then, run the following commands:
 
 ```shell
-tar xvzf tinygo0.35.0.darwin-amd64.tar.gz
+tar xvzf tinygo0.36.0.darwin-amd64.tar.gz
 export PATH=<extract location>/tinygo/bin:$PATH
 ```
 
@@ -53,7 +53,7 @@ You can test that the installation is working properly by running this code whic
 
 ```shell
 $ tinygo version
-tinygo version 0.35.0 darwin/amd64 (using go version go1.23 and LLVM version 18.1.2)
+tinygo version 0.36.0 darwin/amd64 (using go version go1.24 and LLVM version 19.1.2)
 ```
 
 If you are only interested in compiling TinyGo code for WebAssembly then you are done with the installation.

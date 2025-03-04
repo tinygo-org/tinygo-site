@@ -9,7 +9,7 @@ You can use our Docker image to be able to run the TinyGo compiler on your compu
 
 ## Installing
 
-    docker pull tinygo/tinygo:0.35.0
+    docker pull tinygo/tinygo:0.36.0
 
 ## Using
 
@@ -18,24 +18,24 @@ For your own code, you will probably want to use absolute paths.
 
 A docker container exists for easy access to the TinyGo CLI. For example, to compile `wasm.wasm` for the WebAssembly export example:
 
-    docker run --rm -v $(pwd):/src tinygo/tinygo:0.35.0 tinygo build -o wasm.wasm -target=wasm examples/wasm/export
+    docker run --rm -v $(pwd):/src tinygo/tinygo:0.36.0 tinygo build -o wasm.wasm -target=wasm examples/wasm/export
 
 See the [WebAssembly page](../../../docs/guides/webassembly) for more information on executing the compiled
 WebAssembly.
 
 To compile `blinky1.hex` targeting an ARM microcontroller, such as the PCA10040:
 
-    docker run --rm -v $(pwd):/src tinygo/tinygo:0.35.0 tinygo build -o /src/blinky1.hex -size=short -target=pca10040 examples/blinky1
+    docker run --rm -v $(pwd):/src tinygo/tinygo:0.36.0 tinygo build -o /src/blinky1.hex -size=short -target=pca10040 examples/blinky1
 
 To compile `blinky1.hex` targeting an AVR microcontroller such as the Arduino:
 
-    docker run --rm -v $(pwd):/src tinygo/tinygo:0.35.0 tinygo build -o /src/blinky1.hex -size=short -target=arduino examples/blinky1
+    docker run --rm -v $(pwd):/src tinygo/tinygo:0.36.0 tinygo build -o /src/blinky1.hex -size=short -target=arduino examples/blinky1
 
 For projects that have remote dependencies outside of the standard library and
 go code within your own project, you will need to map your entire `$GOPATH`
 into the docker image for those dependencies to be found:
 
-    docker run -v $GOPATH:/go -e "GOPATH=/go" tinygo/tinygo:0.35.0 tinygo build -o /go/src/github.com/myuser/myrepo/wasm.wasm -target wasm --no-debug /go/src/github.com/myuser/myrepo/wasm-main.go
+    docker run -v $GOPATH:/go -e "GOPATH=/go" tinygo/tinygo:0.36.0 tinygo build -o /go/src/github.com/myuser/myrepo/wasm.wasm -target wasm --no-debug /go/src/github.com/myuser/myrepo/wasm-main.go
 
 **note: At this time, tinygo does not resolve dependencies from the /vendor/ folder within your project.**
 
