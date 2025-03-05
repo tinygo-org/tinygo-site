@@ -40,10 +40,8 @@
 			<p class="mb-0 mt-3"><strong>Note:</strong> these numbers are estimates, based on datasheets and measurements. They don't include everything and may be wrong.</p>
 		</div>
 	</div>
-	<div class="tab-pane" id="simulator-panel-add" role="tabpanel" aria-labelledby="simulator-add-tab" tabindex="0">
-		<div class="panel-add">
-			Loading...
-		</div>
+	<div class="tab-pane panel-add" id="simulator-panel-add" role="tabpanel" aria-labelledby="simulator-add-tab">
+			<div class="content" tabindex="0">Loading...</div>
 	</div>
 </div>
 <div class="schematic-tooltip"></div>

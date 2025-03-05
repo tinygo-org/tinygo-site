@@ -48,13 +48,14 @@ async function setupTour(config) {
 	function createState(board) {
 		let state = {
 			target: board,
-			parts: {
-				main: {
+			parts: [
+				{
+					id: 'main',
 					location: `parts/${board}.json`,
 					x: 0,
 					y: 0,
 				}
-			},
+			],
 			wires: [],
 		}
 		let boardConfig = config.boards[board];
@@ -65,9 +66,14 @@ async function setupTour(config) {
 		}
 		for (let key in boardConfig.parts) {
 			let value = structuredClone(boardConfig.parts[key]);
+			value.id = key;
 			value.x = value.x || 0;
 			value.y = value.y || 0;
-			state.parts[key] = value;
+			if (key === 'main') {
+				Object.assign(state.parts[0], value);
+			} else {
+				state.parts.push(value);
+			}
 		}
 		for (let wire of (boardConfig.wires) || []) {
 			state.wires.push(wire);

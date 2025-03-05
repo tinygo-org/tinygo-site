@@ -164,13 +164,14 @@ var examples = {
 	hello: {
 		target: 'console',
 		code: exampleHello,
-		parts: {
-			main: {
+		parts: [
+			{
+				id: 'main',
 				location: 'parts/console.json',
 				x: 0,
 				y: 0,
 			}
-		},
+		],
 		wires: [],
 	},
 
@@ -180,13 +181,14 @@ var examples = {
 	arduino: {
 		target: 'arduino',
 		code: exampleBlink,
-		parts: {
-			main: {
+		parts: [
+			{
+				id: 'main',
 				location: 'parts/arduino.json',
 				x: 0,
 				y: 0,
 			}
-		},
+		],
 		wires: [],
 	},
 
@@ -194,13 +196,14 @@ var examples = {
 	circuitplay_express: {
 		target: 'circuitplay_express',
 		code: exampleLEDs,
-		parts: {
-			main: {
+		parts: [
+			{
+				id: 'main',
 				location: 'parts/circuitplay-express.json',
 				x: 0,
 				y: 0,
 			},
-		},
+		],
 		wires: [],
 	},
 
@@ -208,13 +211,14 @@ var examples = {
 	gopher_badge: {
 		target: 'gopher_badge',
 		code: exampleST7789,
-		parts: {
-			main: {
+		parts: [
+			{
+				id: 'main',
 				location: 'parts/gopher-badge.json',
 				x: 0,
 				y: 0,
 			},
-		},
+		],
 		wires: [],
 	},
 };
