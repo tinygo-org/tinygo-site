@@ -1,4 +1,4 @@
-import { Simulator } from './playground/simulator.js';
+import { Simulator, upgradeOldState } from './playground/simulator.js';
 import { Editor } from './playground/resources/editor.bundle.min.js';
 import { boards } from './playground/boards.js';
 
@@ -20,7 +20,7 @@ function updateBoards(state) {
   // Try to figure out the board name based on the saved state.
   let activeName = '';
   if (state) {
-    let matches = RegExp('parts/([a-z0-9-]+).json$').exec(state.parts.main.location);
+    let matches = RegExp('parts/([a-z0-9-]+).json$').exec(state.parts[0].location);
     if (matches) {
       activeName = matches[1];
       if (activeName === 'console' && state.compiler === 'go') {
@@ -65,13 +65,14 @@ async function setBoard(name) {
   let state = {
     code: board.code,
     compiler: board.compiler,
-    parts: {
-      main: {
+    parts: [
+      {
+        id: 'main',
         location: board.location,
         x: 0,
         y: 0,
       },
-    },
+    ],
     wires: [],
   };
 
@@ -85,6 +86,7 @@ async function setBoard(name) {
 
 // Reset the editor and simulator to use the given state.
 async function setState(state) {
+  upgradeOldState(state);
   updateBoards(state);
   editor.setText(state.code);
 
@@ -208,6 +210,7 @@ document.addEventListener('DOMContentLoaded', async function(e) {
       // Strip /s/* URL suffix.
       clearShareURL();
       localStorage.tinygo_playground_state = JSON.stringify(simulator.schematic.state);
+      console.log(simulator.schematic.state);
     },
   });
 
