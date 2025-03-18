@@ -92,4 +92,4 @@ Use the specified scheduler. The default scheduler varies by platform. For examp
   - `scheduler=none` The none scheduler disables scheduler support, which means that goroutines and channels are not available. It can be used to reduce firmware size and RAM consumption if goroutines and channels are not needed.
 
 - `-ldflags`
-The TinyGo `ldflags` flag has the same behavior as the Go link tool `ldflags` flag. It passes a value along to the TinyGo linker. This is commonly used to set the value for a variable at the time that the program is compiled for example `-ldflags="-X 'package_path.variable_name=new_value'"`
+The TinyGo `ldflags` flag has the same behavior as the Go link tool `ldflags` flag. It passes a value along to the TinyGo linker. This is commonly used to set the value for a variable at the time that the program is compiled for example `-ldflags="-X 'package_path.variable_name=new_value'"` See [How to set build-time variables](https://tinygo.org/docs/guides/tips-n-tricks/) for more information.
