@@ -422,8 +422,7 @@ func detectSupportedFeatures(pkg *packages.Package, buildTags []string) map[stri
 	if pkg.Types.Scope().Lookup("I2C") != nil {
 		features["I2C"] = true
 	}
-	adcType := pkg.Types.Scope().Lookup("ADC").Type()
-	if types.NewMethodSet(adcType).Lookup(pkg.Types, "Configure") != nil {
+	if pkg.Types.Scope().Lookup("ADC") != nil {
 		features["ADC"] = true
 	}
 	for _, tag := range buildTags {
