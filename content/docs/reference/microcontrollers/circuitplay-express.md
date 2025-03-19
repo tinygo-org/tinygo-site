@@ -45,7 +45,7 @@ The [Adafruit Circuit Playground Express](https://www.adafruit.com/product/3333)
 | `SPI0_SDO_PIN`    | `PA20`       |                   | `TCC0` (channel 2)   |
 | `SPI0_SDI_PIN`    | `PA16`       |                   | `TCC2` (channel 0), `TCC0` (channel 2) |
 | `I2S_SCK_PIN`     | `PA10`       |                   | `TCC1` (channel 0), `TCC0` (channel 2) |
-| `I2S_SD_PIN`      | `PA08`       |                   | `TCC0` (channel 0), `TCC1` (channel 2) |
+| `I2S_SDO_PIN`     | `PA08`       |                   | `TCC0` (channel 0), `TCC1` (channel 2) |
 
 ## Machine Package Docs
 

@@ -15,7 +15,7 @@ It has 2 user buttons, and 3 user LEDs.
 | UART      | YES | YES |
 | SPI       | YES | Not yet |
 | I2C       | YES | YES |
-| ADC       | YES | Not yet |
+| ADC       | YES | YES |
 | PWM       | YES | Not yet |
 | USBDevice | YES | Not yet |
 

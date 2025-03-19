@@ -15,7 +15,7 @@ The Swan has a user button and an LED, LiPo charging and USB.
 | UART      | YES | YES |
 | SPI       | YES | YES |
 | I2C       | YES | YES |
-| ADC       | YES | Not yet |
+| ADC       | YES | YES |
 | PWM       | YES | Not yet |
 | USBDevice | YES | Not yet |
 

@@ -38,7 +38,7 @@ The [Adafruit QtPy](https://www.adafruit.com/product/4600) is a tiny ARM develop
 | `D14`             | `PA23`       |                   | `TCC0` (channel 1)   |
 | `D15`             | `PA19`       |                   | `TCC0` (channel 3)   |
 | `D16`             | `PA22`       |                   | `TCC0` (channel 0)   |
-| `D17`             | `PA08`       | `I2S_SD_PIN`      | `TCC0` (channel 0), `TCC1` (channel 2) |
+| `D17`             | `PA08`       | `I2S_SDO_PIN`     | `TCC0` (channel 0), `TCC1` (channel 2) |
 | `USBCDC_DM_PIN`   | `PA24`       |                   | `TCC1` (channel 2)   |
 | `USBCDC_DP_PIN`   | `PA25`       |                   | `TCC1` (channel 3)   |
 

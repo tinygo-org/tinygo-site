@@ -30,7 +30,7 @@ The [Arduino Zero](https://store.arduino.cc/arduino-zero) is a very small ARM de
 | `D6`              | `PA20`       |                   | `TCC0` (channel 2)   |
 | `D7`              | `PA21`       |                   | `TCC0` (channel 3)   |
 | `D8`              | `PA06`       |                   | `TCC1` (channel 0)   |
-| `D9`              | `PA07`       | `I2S_SD_PIN`      | `TCC1` (channel 1)   |
+| `D9`              | `PA07`       | `I2S_SDO_PIN`     | `TCC1` (channel 1)   |
 | `D10`             | `PA18`       |                   | `TCC0` (channel 2)   |
 | `D11`             | `PA16`       | `SPI0_SDO_PIN`    | `TCC2` (channel 0), `TCC0` (channel 2) |
 | `D12`             | `PA19`       | `SPI0_SDI_PIN`    | `TCC0` (channel 3)   |

@@ -100,8 +100,9 @@ SPI pins
 ```go
 const (
 	I2S_SCK_PIN	Pin	= PA10
-	I2S_SD_PIN	Pin	= PA07
-	I2S_WS_PIN		= NoPin	// TODO: figure out what this is on Arduino Nano 33.
+	I2S_SDO_PIN	Pin	= PA07
+	I2S_SDI_PIN		= NoPin
+	I2S_WS_PIN		= NoPin	// TODO: figure out what this is on Arduino MKR1000
 )
 ```
 
@@ -228,6 +229,7 @@ const (
 	I2SModeSource	I2SMode	= iota
 	I2SModeReceiver
 	I2SModePDM
+	I2SModeSourceReceiver
 )
 ```
 
@@ -360,6 +362,14 @@ const (
 
 
 ## Variables
+
+```go
+var (
+	ErrInvalidSampleFrequency = errors.New("i2s: invalid sample frequency")
+)
+```
+
+
 
 ```go
 var (
@@ -847,7 +857,9 @@ I2CTargetEvent reflects events on the I2C bus
 
 ```go
 type I2S struct {
-	Bus *sam.I2S_Type
+	Bus		*sam.I2S_Type
+	Frequency	uint32
+	DataFormat	I2SDataFormat
 }
 ```
 
@@ -855,42 +867,71 @@ I2S
 
 
 
-### func (I2S) Close
+### func (*I2S) Configure
 
 ```go
-func (i2s I2S) Close() error
-```
-
-Close the I2S bus.
-
-
-### func (I2S) Configure
-
-```go
-func (i2s I2S) Configure(config I2SConfig)
+func (i2s *I2S) Configure(config I2SConfig) error
 ```
 
 Configure is used to configure the I2S interface. You must call this
 before you can use the I2S bus.
 
 
-### func (I2S) Read
+### func (*I2S) Enable
 
 ```go
-func (i2s I2S) Read(p []uint32) (n int, err error)
+func (i2s *I2S) Enable(enabled bool)
 ```
 
-Read data from the I2S bus into the provided slice.
+Enabled is used to enable or disable the I2S bus.
+
+
+### func (*I2S) ReadMono
+
+```go
+func (i2s *I2S) ReadMono(p []uint16) (n int, err error)
+```
+
+Read mono data from the I2S bus into the provided slice.
 The I2S bus must already have been configured correctly.
 
 
-### func (I2S) Write
+### func (*I2S) ReadStereo
 
 ```go
-func (i2s I2S) Write(p []uint32) (n int, err error)
+func (i2s *I2S) ReadStereo(p []uint32) (n int, err error)
 ```
 
-Write data to the I2S bus from the provided slice.
+Read stereo data from the I2S bus into the provided slice.
+The I2S bus must already have been configured correctly.
+
+
+### func (*I2S) SetSampleFrequency
+
+```go
+func (i2s *I2S) SetSampleFrequency(freq uint32) error
+```
+
+SetSampleFrequency is used to set the sample frequency for the I2S bus.
+
+
+### func (*I2S) WriteMono
+
+```go
+func (i2s *I2S) WriteMono(p []uint16) (n int, err error)
+```
+
+Write mono data to the I2S bus from the provided slice.
+The I2S bus must already have been configured correctly.
+
+
+### func (*I2S) WriteStereo
+
+```go
+func (i2s *I2S) WriteStereo(p []uint32) (n int, err error)
+```
+
+Write stereo data to the I2S bus from the provided slice.
 The I2S bus must already have been configured correctly.
 
 
@@ -911,9 +952,14 @@ type I2SClockSource uint8
 
 ```go
 type I2SConfig struct {
-	SCK		Pin
-	WS		Pin
-	SD		Pin
+	// clock
+	SCK	Pin
+	// word select
+	WS	Pin
+	// data out
+	SDO	Pin
+	// data in
+	SDI		Pin
 	Mode		I2SMode
 	Standard	I2SStandard
 	ClockSource	I2SClockSource
@@ -1268,28 +1314,28 @@ SPI
 
 
 
-### func (SPI) Configure
+### func (*SPI) Configure
 
 ```go
-func (spi SPI) Configure(config SPIConfig) error
+func (spi *SPI) Configure(config SPIConfig) error
 ```
 
 Configure is intended to setup the SPI interface.
 
 
-### func (SPI) Transfer
+### func (*SPI) Transfer
 
 ```go
-func (spi SPI) Transfer(w byte) (byte, error)
+func (spi *SPI) Transfer(w byte) (byte, error)
 ```
 
 Transfer writes/reads a single byte using the SPI interface.
 
 
-### func (SPI) Tx
+### func (*SPI) Tx
 
 ```go
-func (spi SPI) Tx(w, r []byte) error
+func (spi *SPI) Tx(w, r []byte) error
 ```
 
 Tx handles read/write operation for SPI interface. Since SPI is a synchronous write/read

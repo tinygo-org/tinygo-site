@@ -25,7 +25,7 @@ The [Adafruit ItsyBitsy M0](https://www.adafruit.com/product/3727) is very compa
 | `D1`              | `PA10`       | `I2S_SCK_PIN`     | `TCC1` (channel 0), `TCC0` (channel 2) |
 | `D2`              | `PA14`       |                   | `TCC0` (channel 0)   |
 | `D3`              | `PA09`       |                   | `TCC0` (channel 1), `TCC1` (channel 3) |
-| `D4`              | `PA08`       | `I2S_SD_PIN`      | `TCC0` (channel 0), `TCC1` (channel 2) |
+| `D4`              | `PA08`       | `I2S_SDO_PIN`     | `TCC0` (channel 0), `TCC1` (channel 2) |
 | `D5`              | `PA15`       |                   | `TCC0` (channel 1)   |
 | `D6`              | `PA20`       |                   | `TCC0` (channel 2)   |
 | `D7`              | `PA21`       |                   | `TCC0` (channel 3)   |

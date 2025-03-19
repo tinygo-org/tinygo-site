@@ -47,10 +47,10 @@ The [Seeed Wio Terminal](https://www.seeedstudio.com/Wio-Terminal-p-4509.html) i
 | `BCM14`           | `PB27`       | `PIN_SERIAL1_RX`, `UART_RX_PIN` | `TCC1` (channel 3)   |
 | `BCM15`           | `PB26`       | `PIN_SERIAL1_TX`, `UART_TX_PIN` | `TCC1` (channel 2)   |
 | `BCM17`           | `PA02`       | `PIN_DAC0`        |                      |
-| `BCM18`           | `PB28`       | `FPC1`            | `TCC1` (channel 4)   |
-| `BCM19`           | `PA20`       | `PIN_I2S_FS`, `I2S_LRCLK` | `TCC1` (channel 4), `TCC0` (channel 0) |
-| `BCM20`           | `PA21`       | `PIN_I2S_SDI`, `I2S_SDIN` | `TCC1` (channel 5), `TCC0` (channel 1) |
-| `BCM21`           | `PA22`       | `PIN_I2S_SDO`, `I2S_SDOUT` | `TCC1` (channel 6), `TCC0` (channel 2) |
+| `BCM18`           | `PB28`       | `FPC1`, `I2S_SCK_PIN` | `TCC1` (channel 4)   |
+| `BCM19`           | `PA20`       | `PIN_I2S_FS`, `I2S_LRCLK`, `I2S_WS_PIN` | `TCC1` (channel 4), `TCC0` (channel 0) |
+| `BCM20`           | `PA21`       | `PIN_I2S_SDI`, `I2S_SDIN`, `I2S_SDI_PIN` | `TCC1` (channel 5), `TCC0` (channel 1) |
+| `BCM21`           | `PA22`       | `PIN_I2S_SDO`, `I2S_SDOUT`, `I2S_SDO_PIN` | `TCC1` (channel 6), `TCC0` (channel 2) |
 | `FPC2`            | `PB17`       |                   | `TCC3` (channel 1), `TCC0` (channel 5) |
 | `FPC3`            | `PB29`       |                   | `TCC1` (channel 5)   |
 | `FPC4`            | `PA14`       |                   | `TCC2` (channel 0), `TCC1` (channel 2) |

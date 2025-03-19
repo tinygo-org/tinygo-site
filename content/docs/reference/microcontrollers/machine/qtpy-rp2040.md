@@ -179,6 +179,45 @@ of the pins in a peripheral unconfigured (if supported by the hardware).
 
 ```go
 const (
+	LS_SE0	= 0b00
+	LS_J	= 0b01
+	LS_K	= 0b10
+	LS_SE1	= 0b11
+)
+```
+
+
+
+```go
+const (
+	cpuFreq			= 200 * MHz
+	_NUMBANK0_GPIOS		= 30
+	_NUMBANK0_IRQS		= 4
+	_NUMIRQ			= 32
+	rp2350ExtraReg		= 0
+	RESETS_RESET_Msk	= 0x01ffffff
+	initUnreset		= rp.RESETS_RESET_ADC |
+		rp.RESETS_RESET_RTC |
+		rp.RESETS_RESET_SPI0 |
+		rp.RESETS_RESET_SPI1 |
+		rp.RESETS_RESET_UART0 |
+		rp.RESETS_RESET_UART1 |
+		rp.RESETS_RESET_USBCTRL
+	initDontReset	= rp.RESETS_RESET_IO_QSPI |
+		rp.RESETS_RESET_PADS_QSPI |
+		rp.RESETS_RESET_PLL_USB |
+		rp.RESETS_RESET_USBCTRL |
+		rp.RESETS_RESET_SYSCFG |
+		rp.RESETS_RESET_PLL_SYS
+	padEnableMask	= rp.PADS_BANK0_GPIO0_IE_Msk |
+		rp.PADS_BANK0_GPIO0_OD_Msk
+)
+```
+
+
+
+```go
+const (
 	PinOutput	PinMode	= iota
 	PinInput
 	PinInputPulldown
@@ -193,6 +232,20 @@ const (
 )
 ```
 
+
+
+```go
+const (
+	ADC0	Pin	= GPIO26
+	ADC1	Pin	= GPIO27
+	ADC2	Pin	= GPIO28
+	ADC3	Pin	= GPIO29
+
+	thermADC	= 30
+)
+```
+
+Analog pins on RP2040.
 
 
 ```go
@@ -242,73 +295,6 @@ const (
 	GPIO27	Pin	= 27	// peripherals: PWM5 channel B
 	GPIO28	Pin	= 28	// peripherals: PWM6 channel A
 	GPIO29	Pin	= 29	// peripherals: PWM6 channel B
-
-	// Analog pins
-	ADC0	Pin	= GPIO26
-	ADC1	Pin	= GPIO27
-	ADC2	Pin	= GPIO28
-	ADC3	Pin	= GPIO29
-)
-```
-
-
-
-```go
-const RESETS_RESET_Msk = 0x01ffffff
-```
-
-RESETS_RESET_Msk is bitmask to reset all peripherals
-
-TODO: This field is not available in the device file.
-
-
-```go
-const (
-	// DPRAM : Endpoint control register
-	usbEpControlEnable			= 0x80000000
-	usbEpControlDoubleBuffered		= 0x40000000
-	usbEpControlInterruptPerBuff		= 0x20000000
-	usbEpControlInterruptPerDoubleBuff	= 0x10000000
-	usbEpControlEndpointType		= 0x0c000000
-	usbEpControlInterruptOnStall		= 0x00020000
-	usbEpControlInterruptOnNak		= 0x00010000
-	usbEpControlBufferAddress		= 0x0000ffff
-
-	usbEpControlEndpointTypeControl		= 0x00000000
-	usbEpControlEndpointTypeISO		= 0x04000000
-	usbEpControlEndpointTypeBulk		= 0x08000000
-	usbEpControlEndpointTypeInterrupt	= 0x0c000000
-
-	// Endpoint buffer control bits
-	usbBuf1CtrlFull		= 0x80000000
-	usbBuf1CtrlLast		= 0x40000000
-	usbBuf1CtrlData0Pid	= 0x20000000
-	usbBuf1CtrlData1Pid	= 0x00000000
-	usbBuf1CtrlSel		= 0x10000000
-	usbBuf1CtrlStall	= 0x08000000
-	usbBuf1CtrlAvail	= 0x04000000
-	usbBuf1CtrlLenMask	= 0x03FF0000
-	usbBuf0CtrlFull		= 0x00008000
-	usbBuf0CtrlLast		= 0x00004000
-	usbBuf0CtrlData0Pid	= 0x00000000
-	usbBuf0CtrlData1Pid	= 0x00002000
-	usbBuf0CtrlSel		= 0x00001000
-	usbBuf0CtrlStall	= 0x00000800
-	usbBuf0CtrlAvail	= 0x00000400
-	usbBuf0CtrlLenMask	= 0x000003FF
-
-	USBBufferLen	= 64
-)
-```
-
-
-
-```go
-const (
-	LS_SE0	= 0b00
-	LS_J	= 0b01
-	LS_K	= 0b10
-	LS_SE1	= 0b11
 )
 ```
 
@@ -393,12 +379,6 @@ var (
 
 
 ```go
-var Flash flashBlockDevice
-```
-
-
-
-```go
 var (
 	UART0	= &_UART0
 	_UART0	= UART{
@@ -418,6 +398,27 @@ UART on the RP2040
 
 
 ```go
+var RTC = (*rtcType)(unsafe.Pointer(rp.RTC))
+```
+
+
+
+```go
+var (
+	ErrRtcDelayTooSmall	= errors.New("RTC interrupt deplay is too small, shall be at least 1 second")
+	ErrRtcDelayTooLarge	= errors.New("RTC interrupt deplay is too large, shall be no more than 1 day")
+)
+```
+
+
+
+```go
+var Flash flashBlockDevice
+```
+
+
+
+```go
 var (
 	I2C0	= &_I2C0
 	_I2C0	= I2C{
@@ -430,7 +431,7 @@ var (
 )
 ```
 
-I2C on the RP2040.
+I2C on the RP2040/RP2350
 
 
 ```go
@@ -488,28 +489,11 @@ reaching TOP, until it reaches 0 again.
 
 
 ```go
-var RTC = (*rtcType)(unsafe.Pointer(rp.RTC))
-```
-
-
-
-```go
 var (
-	ErrRtcDelayTooSmall	= errors.New("RTC interrupt deplay is too small, shall be at least 1 second")
-	ErrRtcDelayTooLarge	= errors.New("RTC interrupt deplay is too large, shall be no more than 1 day")
-)
-```
-
-
-
-```go
-var (
-	SPI0	= &_SPI0
-	_SPI0	= SPI{
+	SPI0	= &SPI{
 		Bus: rp.SPI0,
 	}
-	SPI1	= &_SPI1
-	_SPI1	= SPI{
+	SPI1	= &SPI{
 		Bus: rp.SPI1,
 	}
 )
@@ -1368,10 +1352,10 @@ type SPI struct {
 
 
 
-### func (SPI) Configure
+### func (*SPI) Configure
 
 ```go
-func (spi SPI) Configure(config SPIConfig) error
+func (spi *SPI) Configure(config SPIConfig) error
 ```
 
 Configure is intended to setup/initialize the SPI interface.
@@ -1392,44 +1376,44 @@ SPI1 bus GPIO pins:
 No pin configuration is needed of SCK, SDO and SDI needed after calling Configure.
 
 
-### func (SPI) GetBaudRate
+### func (*SPI) GetBaudRate
 
 ```go
-func (spi SPI) GetBaudRate() uint32
+func (spi *SPI) GetBaudRate() uint32
 ```
 
 
 
-### func (SPI) PrintRegs
+### func (*SPI) PrintRegs
 
 ```go
-func (spi SPI) PrintRegs()
+func (spi *SPI) PrintRegs()
 ```
 
 PrintRegs prints SPI's peripheral common registries current values
 
 
-### func (SPI) SetBaudRate
+### func (*SPI) SetBaudRate
 
 ```go
-func (spi SPI) SetBaudRate(br uint32) error
+func (spi *SPI) SetBaudRate(br uint32) error
 ```
 
 
 
-### func (SPI) Transfer
+### func (*SPI) Transfer
 
 ```go
-func (spi SPI) Transfer(w byte) (byte, error)
+func (spi *SPI) Transfer(w byte) (byte, error)
 ```
 
 Write a single byte and read a single byte from TX/RX FIFO.
 
 
-### func (SPI) Tx
+### func (*SPI) Tx
 
 ```go
-func (spi SPI) Tx(w, r []byte) (err error)
+func (spi *SPI) Tx(w, r []byte) (err error)
 ```
 
 Tx handles read/write operation for SPI interface. Since SPI is a synchronous write/read
@@ -1637,52 +1621,6 @@ UARTParity is the parity setting to be used for UART communication.
 
 
 
-## type USBBuffer
-
-```go
-type USBBuffer struct {
-	Buffer0	[USBBufferLen]byte
-	Buffer1	[USBBufferLen]byte
-}
-```
-
-
-
-
-
-
-## type USBBufferControlRegister
-
-```go
-type USBBufferControlRegister struct {
-	In	volatile.Register32
-	Out	volatile.Register32
-}
-```
-
-
-
-
-
-
-## type USBDPSRAM
-
-```go
-type USBDPSRAM struct {
-	// Note that EPxControl[0] is not EP0Control but 8-byte setup data.
-	EPxControl	[16]USBEndpointControlRegister
-
-	EPxBufferControl	[16]USBBufferControlRegister
-
-	EPxBuffer	[16]USBBuffer
-}
-```
-
-
-
-
-
-
 ## type USBDevice
 
 ```go
@@ -1702,20 +1640,6 @@ func (dev *USBDevice) Configure(config UARTConfig)
 ```
 
 Configure the USB peripheral. The config is here for compatibility with the UART interface.
-
-
-
-
-## type USBEndpointControlRegister
-
-```go
-type USBEndpointControlRegister struct {
-	In	volatile.Register32
-	Out	volatile.Register32
-}
-```
-
-
 
 
 

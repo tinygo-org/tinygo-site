@@ -56,7 +56,7 @@ Peripherals:
 | `NINA_CS`         | `PA14`       | `NINA_RTS`        | `TCC0` (channel 0)   |
 | `NINA_SCK`        | `PA15`       | `NINA_CTS`        | `TCC0` (channel 1)   |
 | `NINA_GPIO0`      | `PA27`       |                   |                      |
-| `NINA_RESETN`     | `PA08`       | `I2S_SD_PIN`      | `TCC0` (channel 0), `TCC1` (channel 2) |
+| `NINA_RESETN`     | `PA08`       | `I2S_SDO_PIN`     | `TCC0` (channel 0), `TCC1` (channel 2) |
 | `NINA_ACK`        | `PA28`       |                   |                      |
 
 ## Machine Package Docs

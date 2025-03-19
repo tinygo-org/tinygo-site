@@ -42,7 +42,7 @@ The [Arduino MKR1000](https://store.arduino.cc/arduino-mkr1000-wifi) is a very s
 | `A3`              | `PA04`       |                   | `TCC0` (channel 0)   |
 | `A4`              | `PA05`       |                   | `TCC0` (channel 1)   |
 | `A5`              | `PA06`       |                   | `TCC1` (channel 0)   |
-| `A6`              | `PA07`       | `I2S_SD_PIN`      | `TCC1` (channel 1)   |
+| `A6`              | `PA07`       | `I2S_SDO_PIN`     | `TCC1` (channel 1)   |
 | `USBCDC_DM_PIN`   | `PA24`       |                   | `TCC1` (channel 2)   |
 | `USBCDC_DP_PIN`   | `PA25`       |                   | `TCC1` (channel 3)   |
 

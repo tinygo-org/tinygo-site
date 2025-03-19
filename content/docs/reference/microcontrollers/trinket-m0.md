@@ -21,7 +21,7 @@ The [Adafruit Trinket M0](https://www.adafruit.com/product/3500) is a tiny ARM d
 
 | Pin               | Hardware pin | Alternative names | PWM                  |
 | ----------------- | ------------ | ----------------- | -------------------- |
-| `D0`              | `PA08`       | `A2`, `SDA_PIN`, `I2S_SD_PIN` | `TCC0` (channel 0), `TCC1` (channel 2) |
+| `D0`              | `PA08`       | `A2`, `SDA_PIN`, `I2S_SDO_PIN` | `TCC0` (channel 0), `TCC1` (channel 2) |
 | `D1`              | `PA02`       | `A0`              |                      |
 | `D2`              | `PA09`       | `A1`, `SPI0_SDI_PIN`, `SCL_PIN` | `TCC0` (channel 1), `TCC1` (channel 3) |
 | `D3`              | `PA07`       | `A3`, `UART_RX_PIN`, `SPI0_SCK_PIN` | `TCC1` (channel 1)   |

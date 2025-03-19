@@ -601,8 +601,7 @@ var (
 ```go
 var (
 	SPI0	= SPI1	// SPI0 is an alias of SPI1 (LPSPI4)
-	SPI1	= &_SPI1
-	_SPI1	= SPI{
+	SPI1	= &SPI{
 		Bus:	nxp.LPSPI4,
 		muxSDI: muxSelect{
 			mux:	nxp.IOMUXC_LPSPI4_SDI_SELECT_INPUT_DAISY_GPIO_B0_01_ALT3,
@@ -621,8 +620,7 @@ var (
 			sel:	&nxp.IOMUXC.LPSPI4_PCS0_SELECT_INPUT,
 		},
 	}
-	SPI2	= &_SPI2
-	_SPI2	= SPI{
+	SPI2	= &SPI{
 		Bus:	nxp.LPSPI3,
 		muxSDI: muxSelect{
 			mux:	nxp.IOMUXC_LPSPI3_SDI_SELECT_INPUT_DAISY_GPIO_AD_B0_02_ALT7,
@@ -641,8 +639,7 @@ var (
 			sel:	&nxp.IOMUXC.LPSPI3_PCS0_SELECT_INPUT,
 		},
 	}
-	SPI3	= &_SPI3
-	_SPI3	= SPI{
+	SPI3	= &SPI{
 		Bus:	nxp.LPSPI1,
 		muxSDI: muxSelect{
 			mux:	nxp.IOMUXC_LPSPI1_SDI_SELECT_INPUT_DAISY_GPIO_SD_B0_03_ALT4,
@@ -1326,10 +1323,10 @@ func (spi *SPI) Transfer(w byte) (byte, error)
 Transfer writes/reads a single byte using the SPI interface.
 
 
-### func (SPI) Tx
+### func (*SPI) Tx
 
 ```go
-func (spi SPI) Tx(w, r []byte) error
+func (spi *SPI) Tx(w, r []byte) error
 ```
 
 Tx handles read/write operation for SPI interface. Since SPI is a synchronous write/read

@@ -329,8 +329,8 @@ var (
 ```go
 var (
 	// SPI0 and SPI1 are reserved for use by the caching system etc.
-	SPI2	= SPI{esp.SPI2}
-	SPI3	= SPI{esp.SPI3}
+	SPI2	= &SPI{esp.SPI2}
+	SPI3	= &SPI{esp.SPI3}
 )
 ```
 
@@ -835,29 +835,29 @@ Serial Peripheral Interface on the ESP32.
 
 
 
-### func (SPI) Configure
+### func (*SPI) Configure
 
 ```go
-func (spi SPI) Configure(config SPIConfig) error
+func (spi *SPI) Configure(config SPIConfig) error
 ```
 
 Configure and make the SPI peripheral ready to use.
 
 
-### func (SPI) Transfer
+### func (*SPI) Transfer
 
 ```go
-func (spi SPI) Transfer(w byte) (byte, error)
+func (spi *SPI) Transfer(w byte) (byte, error)
 ```
 
 Transfer writes/reads a single byte using the SPI interface. If you need to
 transfer larger amounts of data, Tx will be faster.
 
 
-### func (SPI) Tx
+### func (*SPI) Tx
 
 ```go
-func (spi SPI) Tx(w, r []byte) error
+func (spi *SPI) Tx(w, r []byte) error
 ```
 
 Tx handles read/write operation for SPI interface. Since SPI is a synchronous write/read

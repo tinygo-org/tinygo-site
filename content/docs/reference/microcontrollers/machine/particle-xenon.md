@@ -379,9 +379,9 @@ var (
 
 ```go
 var (
-	SPI0	= SPI{Bus: nrf.SPIM0, buf: new([1]byte)}
-	SPI1	= SPI{Bus: nrf.SPIM1, buf: new([1]byte)}
-	SPI2	= SPI{Bus: nrf.SPIM2, buf: new([1]byte)}
+	SPI0	= &SPI{Bus: nrf.SPIM0, buf: new([1]byte)}
+	SPI1	= &SPI{Bus: nrf.SPIM1, buf: new([1]byte)}
+	SPI2	= &SPI{Bus: nrf.SPIM2, buf: new([1]byte)}
 )
 ```
 
@@ -630,22 +630,26 @@ type ADC struct {
 
 
 
-### func (ADC) Configure
+### func (*ADC) Configure
 
 ```go
-func (a ADC) Configure(config ADCConfig)
+func (a *ADC) Configure(config ADCConfig)
 ```
 
 Configure configures an ADC pin to be able to read analog data.
+Reference voltage can be 150, 300, 600, 1200, 1800, 2400, 3000(default), 3600 mV
+Resolution can be 8, 10, 12(default), 14 bits
+SampleTime will be ceiled to 3(default), 5, 10, 15, 20 or 40(max) µS respectively
+Samples can be 1(default), 2, 4, 8, 16, 32, 64, 128, 256 samples
 
 
-### func (ADC) Get
+### func (*ADC) Get
 
 ```go
-func (a ADC) Get() uint16
+func (a *ADC) Get() uint16
 ```
 
-Get returns the current value of a ADC pin in the range 0..0xffff.
+Get returns the current value of an ADC pin in the range 0..0xffff.
 
 
 
@@ -1298,28 +1302,28 @@ SPI on the NRF.
 
 
 
-### func (SPI) Configure
+### func (*SPI) Configure
 
 ```go
-func (spi SPI) Configure(config SPIConfig) error
+func (spi *SPI) Configure(config SPIConfig) error
 ```
 
-Configure is intended to setup the SPI interface.
+Configure is intended to set up the SPI interface.
 
 
-### func (SPI) Transfer
+### func (*SPI) Transfer
 
 ```go
-func (spi SPI) Transfer(w byte) (byte, error)
+func (spi *SPI) Transfer(w byte) (byte, error)
 ```
 
 Transfer writes/reads a single byte using the SPI interface.
 
 
-### func (SPI) Tx
+### func (*SPI) Tx
 
 ```go
-func (spi SPI) Tx(w, r []byte) error
+func (spi *SPI) Tx(w, r []byte) error
 ```
 
 Tx handles read/write operation for SPI interface. Since SPI is a synchronous

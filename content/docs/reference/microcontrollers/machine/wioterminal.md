@@ -352,6 +352,18 @@ I2C pins
 
 ```go
 const (
+	I2S_SCK_PIN	= BCM18
+	I2S_SDO_PIN	= BCM21
+	I2S_SDI_PIN	= BCM20
+	I2S_WS_PIN	= BCM19
+)
+```
+
+I2S pins
+
+
+```go
+const (
 	SPI0_SCK_PIN	= SCK	// SCK:  SERCOM5/PAD[1]
 	SPI0_SDO_PIN	= SDO	// SDO: SERCOM5/PAD[0]
 	SPI0_SDI_PIN	= SDI	// SDI: SERCOM5/PAD[2]
@@ -414,47 +426,6 @@ const (
 
 	// I2CModeTarget represents an I2C peripheral in target mode.
 	I2CModeTarget
-)
-```
-
-
-
-```go
-const (
-	I2SModeSource	I2SMode	= iota
-	I2SModeReceiver
-	I2SModePDM
-)
-```
-
-
-
-```go
-const (
-	I2StandardPhilips	I2SStandard	= iota
-	I2SStandardMSB
-	I2SStandardLSB
-)
-```
-
-
-
-```go
-const (
-	I2SClockSourceInternal	I2SClockSource	= iota
-	I2SClockSourceExternal
-)
-```
-
-
-
-```go
-const (
-	I2SDataFormatDefault	I2SDataFormat	= 0
-	I2SDataFormat8bit			= 8
-	I2SDataFormat16bit			= 16
-	I2SDataFormat24bit			= 24
-	I2SDataFormat32bit			= 32
 )
 ```
 
@@ -1300,73 +1271,6 @@ I2CTargetEvent reflects events on the I2C bus
 
 
 
-## type I2SClockSource
-
-```go
-type I2SClockSource uint8
-```
-
-
-
-
-
-
-## type I2SConfig
-
-```go
-type I2SConfig struct {
-	SCK		Pin
-	WS		Pin
-	SD		Pin
-	Mode		I2SMode
-	Standard	I2SStandard
-	ClockSource	I2SClockSource
-	DataFormat	I2SDataFormat
-	AudioFrequency	uint32
-	MainClockOutput	bool
-	Stereo		bool
-}
-```
-
-All fields are optional and may not be required or used on a particular platform.
-
-
-
-
-
-## type I2SDataFormat
-
-```go
-type I2SDataFormat uint8
-```
-
-
-
-
-
-
-## type I2SMode
-
-```go
-type I2SMode uint8
-```
-
-
-
-
-
-
-## type I2SStandard
-
-```go
-type I2SStandard uint8
-```
-
-
-
-
-
-
 ## type NullSerial
 
 ```go
@@ -1682,28 +1586,28 @@ SPI
 
 
 
-### func (SPI) Configure
+### func (*SPI) Configure
 
 ```go
-func (spi SPI) Configure(config SPIConfig) error
+func (spi *SPI) Configure(config SPIConfig) error
 ```
 
 Configure is intended to setup the SPI interface.
 
 
-### func (SPI) Transfer
+### func (*SPI) Transfer
 
 ```go
-func (spi SPI) Transfer(w byte) (byte, error)
+func (spi *SPI) Transfer(w byte) (byte, error)
 ```
 
 Transfer writes/reads a single byte using the SPI interface.
 
 
-### func (SPI) Tx
+### func (*SPI) Tx
 
 ```go
-func (spi SPI) Tx(w, r []byte) error
+func (spi *SPI) Tx(w, r []byte) error
 ```
 
 Tx handles read/write operation for SPI interface. Since SPI is a synchronous write/read

@@ -42,7 +42,7 @@ The [Arduino MKR WiFi 1010](https://store.arduino.cc/usa/mkr-wifi-1010) is a ver
 | `A3`              | `PA04`       |                   | `TCC0` (channel 0)   |
 | `A4`              | `PA05`       |                   | `TCC0` (channel 1)   |
 | `A5`              | `PA06`       |                   | `TCC1` (channel 0)   |
-| `A6`              | `PA07`       | `I2S_SD_PIN`      | `TCC1` (channel 1)   |
+| `A6`              | `PA07`       | `I2S_SDO_PIN`     | `TCC1` (channel 1)   |
 | `USBCDC_DM_PIN`   | `PA24`       |                   | `TCC1` (channel 2)   |
 | `USBCDC_DP_PIN`   | `PA25`       |                   | `TCC1` (channel 3)   |
 | `NINA_SDO`        | `PA12`       |                   | `TCC2` (channel 0), `TCC0` (channel 2) |

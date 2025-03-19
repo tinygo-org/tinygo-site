@@ -53,7 +53,7 @@ The [Adafruit Grand Central M4](https://www.adafruit.com/product/4064) is a tiny
 | `D29`             | `PB19`       |                   | `TCC1` (channel 1)   |
 | `D30`             | `PA23`       |                   | `TCC1` (channel 7), `TCC0` (channel 3) |
 | `D31`             | `PA22`       | `I2S0_SDI_PIN`    | `TCC1` (channel 6), `TCC0` (channel 2) |
-| `D32`             | `PA21`       | `I2S0_SDO_PIN`, `I2S_SD_PIN` | `TCC1` (channel 5), `TCC0` (channel 1) |
+| `D32`             | `PA21`       | `I2S0_SDO_PIN`, `I2S_SDO_PIN` | `TCC1` (channel 5), `TCC0` (channel 1) |
 | `D33`             | `PA20`       | `I2S0_FS_PIN`, `I2S_WS_PIN` | `TCC1` (channel 4), `TCC0` (channel 0) |
 | `D34`             | `PA19`       |                   | `TCC1` (channel 3), `TCC0` (channel 7) |
 | `D35`             | `PA18`       |                   | `TCC1` (channel 2), `TCC0` (channel 6) |
