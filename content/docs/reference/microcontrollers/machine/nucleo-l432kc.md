@@ -1227,28 +1227,28 @@ SPI on the STM32Fxxx using MODER / alternate function pins
 
 
 
-### func (SPI) Configure
+### func (*SPI) Configure
 
 ```go
-func (spi SPI) Configure(config SPIConfig) error
+func (spi *SPI) Configure(config SPIConfig) error
 ```
 
 Configure is intended to setup the STM32 SPI1 interface.
 
 
-### func (SPI) Transfer
+### func (*SPI) Transfer
 
 ```go
-func (spi SPI) Transfer(w byte) (byte, error)
+func (spi *SPI) Transfer(w byte) (byte, error)
 ```
 
 Transfer writes/reads a single byte using the SPI interface.
 
 
-### func (SPI) Tx
+### func (*SPI) Tx
 
 ```go
-func (spi SPI) Tx(w, r []byte) error
+func (spi *SPI) Tx(w, r []byte) error
 ```
 
 Tx handles read/write operation for SPI interface. Since SPI is a synchronous write/read

@@ -13,7 +13,7 @@ The [Dragino LGT-92](https://www.dragino.com/products/lora-lorawan-end-node/item
 | UART      | YES | YES |
 | SPI       | YES | YES |
 | I2C       | YES | YES |
-| ADC       | YES | Not yet |
+| ADC       | YES | YES |
 | PWM       | YES | Not yet |
 | USBDevice | YES | Not yet |
 

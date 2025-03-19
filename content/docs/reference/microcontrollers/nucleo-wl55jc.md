@@ -15,7 +15,7 @@ It has onboard LoRa®, (G)FSK, (G)MSK, and BPSK as well as 3 user LEDs, 3 user b
 | UART      | YES | YES |
 | SPI       | YES | YES |
 | I2C       | YES | YES |
-| ADC       | YES | Not yet |
+| ADC       | YES | YES |
 | PWM       | YES | Not yet |
 | USBDevice | NO  | NO  |
 

@@ -24,7 +24,7 @@ The [Adafruit Feather M0](https://www.adafruit.com/product/3403) is a tiny ARM d
 | `D0`              | `PA11`       |                   | `TCC1` (channel 1), `TCC0` (channel 3) |
 | `D1`              | `PA10`       | `I2S_SCK_PIN`     | `TCC1` (channel 0), `TCC0` (channel 2) |
 | `D3`              | `PA09`       |                   | `TCC0` (channel 1), `TCC1` (channel 3) |
-| `D4`              | `PA08`       | `I2S_SD_PIN`      | `TCC0` (channel 0), `TCC1` (channel 2) |
+| `D4`              | `PA08`       | `I2S_SDO_PIN`     | `TCC0` (channel 0), `TCC1` (channel 2) |
 | `D5`              | `PA15`       |                   | `TCC0` (channel 1)   |
 | `D6`              | `PA20`       |                   | `TCC0` (channel 2)   |
 | `D8`              | `PA06`       |                   | `TCC1` (channel 0)   |

@@ -290,7 +290,7 @@ I2C0 is the only I2C interface on most AVRs.
 
 
 ```go
-var SPI0 = SPI{
+var SPI0 = &SPI{
 	spcr:	avr.SPCR,
 	spdr:	avr.SPDR,
 	spsr:	avr.SPSR,
@@ -1006,28 +1006,28 @@ Data is taken from http://ww1.microchip.com/downloads/en/DeviceDoc/ATmega48A-PA-
 
 
 
-### func (SPI) Configure
+### func (*SPI) Configure
 
 ```go
-func (s SPI) Configure(config SPIConfig) error
+func (s *SPI) Configure(config SPIConfig) error
 ```
 
 Configure is intended to setup the SPI interface.
 
 
-### func (SPI) Transfer
+### func (*SPI) Transfer
 
 ```go
-func (s SPI) Transfer(b byte) (byte, error)
+func (s *SPI) Transfer(b byte) (byte, error)
 ```
 
 Transfer writes the byte into the register and returns the read content
 
 
-### func (SPI) Tx
+### func (*SPI) Tx
 
 ```go
-func (spi SPI) Tx(w, r []byte) error
+func (spi *SPI) Tx(w, r []byte) error
 ```
 
 Tx handles read/write operation for SPI interface. Since SPI is a synchronous write/read

@@ -25,7 +25,7 @@ The [Seeed Seeeduino XIAO, which has been renamed to Seeed Studio XIAO SAMD21](h
 | `D1`              | `PA04`       | `A1`              | `TCC0` (channel 0)   |
 | `D2`              | `PA10`       | `A2`, `I2S_SCK_PIN` | `TCC1` (channel 0), `TCC0` (channel 2) |
 | `D3`              | `PA11`       | `A3`              | `TCC1` (channel 1), `TCC0` (channel 3) |
-| `D4`              | `PA08`       | `A4`, `SDA_PIN`, `I2S_SD_PIN` | `TCC0` (channel 0), `TCC1` (channel 2) |
+| `D4`              | `PA08`       | `A4`, `SDA_PIN`, `I2S_SDO_PIN` | `TCC0` (channel 0), `TCC1` (channel 2) |
 | `D5`              | `PA09`       | `A5`, `SCL_PIN`   | `TCC0` (channel 1), `TCC1` (channel 3) |
 | `D6`              | `PB08`       | `A6`, `UART_TX_PIN` |                      |
 | `D7`              | `PB09`       | `A7`, `UART_RX_PIN` |                      |
