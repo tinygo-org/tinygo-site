@@ -24,13 +24,15 @@ When designing a peripheral driver with which one interacts with over a communic
     - Are some configuration parameters codependent and require calculating? Add a method on the `Config` type to set them consistently! Adding a `Validation() error` method is also useful during the `func (d *Device) Configure(cfg Config) error` call as well as letting users read the validation logic and understand what is a correct configuration. It's a great source for intuition on how the driver works!
 - **Avoid**: Floating point operations. 
     - Peripherals rarely work with or return floating point representations of their measurements. More often than not you'll find they work with integers. There's a reason for this: integer operation hardware is widespread. Most small processors do not support floating point operations, and even if they do it is much slower than modern desktop PCs compared with integer operations
-    - There is huge difficulty in working exclusively with integer operations instead of floats. If possible define the API return values of sensors with integers and work internally with floats if that is easier for you. This will allow the API to remove the internal floating point bits in the future while not breaking existing users. The usage of floats vs integers has been discussed here: https://github.com/tinygo-org/drivers/pull/345
+    - There is huge difficulty in working exclusively with integer operations instead of floats without losing precision. If possible define the API return values of sensors with integers and work internally with floats if that is easier for you. This will allow the API to remove the internal floating point bits in the future while not breaking existing users. The usage of floats vs integers has been discussed here: https://github.com/tinygo-org/drivers/pull/345
 
 ### Constrain memory use at compile time
 
 TinyGo allows for heap allocations and that is a wonderful feature but can also subject embedded Go users to some pain
 if the drivers they use make heavy use of heap allocations. 
 Heap allocations over time can crash your program if memory becomes sufficiently fragmented. This is a huge problem for users who want their programs to run a long time.
+
+Below is a short recap on heap allocations. There is also a separate section on this page, see the compiler internal page [Heap Allocations]({{<ref "heap-allocation.md">}}) for a more in depth dive.
 
 
 #### Heap allocations: an introduction
@@ -65,7 +67,7 @@ type slice struct {
     capacity  int   // This is returned when calling builtin cap: cap(s)
 }
 ```
-Why is it important to know slices are referential? Well it is because the compile is aware of this and will check
+Why is it important to know slices are referential? Well it is because the compiler is aware of this and will check
 referential arguments to function and "escape" them if it can't prove their reference (pointer) is not held by the calling function.
 When a reference is escaped it will be forced to be heap allocated by the compiler.
 
@@ -84,7 +86,9 @@ type Device struct {
 }
 
 func (d *Device) readRegister(addr uint8) (value uint8, err error) {
-    d.bufWrite = [2]byte{addr, 0}
+    // The assignment below is equivalent to a uint16 assignment to the compiler.
+    // Static arrays in Go are not pointers so this will always be on the stack.
+    d.bufWrite = [2]byte{addr, 0} 
     err= d.spi.Tx(d.bufWrite[:], d.bufRead[:])
     return d.bufRead[1], err
 }
@@ -95,10 +99,13 @@ func (d *Device) writeRegister(addr, newValue uint8) error {
     return d.spi.Tx(d.bufWrite[:], d.bufRead[:])
 }
 ```
+| Note on Go's array type in TinyGo |
+|------|
+| Note the use of static arrays types like `[2]byte`. "Arrays", as they are called in Go, if small enough will always be stack allocated. TinyGo currently has a **Max Stack Object Size** configuration which runs around the 256 byte size. That said, this fact is not relevant in this case since the array is attached to the `Device` struct which almost certainly is heap allocated. Most drivers, if not all, initialize and use a pointer type (`*Device`). If the `Device` is heap allocated then the arrays it contains will also be heap allocated- and this is OK! Remember, we are trying to constrain our allocations, not completely eliminate heap allocations. We win if during the lifetime of the program there are **ZERO** heap allocations. Allowing heap allocations at initialization is a good practice and actually encouraged in NASA's coding standards for extraplanetary missions. |
 
 This can solve many such cases, but there are few cases where data to be read/written is also variable length.
 The semantics for reading and writing data over the SPI bus are hypothetical, what is important is to take note on how to 
-deal with variable length buffers.
+deal with variable length buffers. See [SliceTricks](https://go.dev/wiki/SliceTricks#additional-tricks) for more tips on slice manipulation.
 ```go
 const maxCommSize = 32 // Never send more than 32 bytes in a single transaction.
 
@@ -116,8 +123,8 @@ func (d *Device) Configure() error {
 }
 
 func (d *Device) writeData(addr uint8, data []byte) error {
-    d.data[0] = addr
-    n := copy(d.data[1:], data)
+    n := copy(d.wdata[1:], data) // First byte reserved for address.
+    d.wdata[0] = addr
     return d.spi.Tx(d.wdata[:n+1], d.rdata[:n+1])
 }
 
@@ -184,6 +191,9 @@ type (d *DeviceSPI) Update(which drivers.Measurement) error {
     return d.update(d.rbuf[1:4])
 }
 ```
+| Note on `drivers.Sensor` API (`Update`/`Pressure`) |
+|----|
+| When designing a sensor API be sure to read [this PR](https://github.com/tinygo-org/drivers/pull/345). It is a good practice to separate the update from reading sensor data to have a way of allowing users of the sensor API to either do a calculation with the most recently read pressure or update the latest pressure value. This is because it is costly to update a pressure value and at times some sensors can also get multiple different readings like pressure and humidity in a single call. This API exposes this functionality in a composable and performant way. Users are responsible of calling `Update` regularly and having applications call the sensor value method (`Pressure`/`AngularVelocity`/etc) |
 
 There are times where the logic is much more complex and having separate types for different protocols would make the driver implementation much harder to read. 
 In these cases it is justified to have a single `Device` type which has a generic bus interface.
