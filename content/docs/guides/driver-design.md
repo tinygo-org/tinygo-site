@@ -231,3 +231,131 @@ func (b *bus) ReadRegister(addr uint8) (uint8, error) {
     }
 }
 ```
+
+
+
+## Hot loops
+Hot loops are a natural part of writing drivers. Sometimes you need to check a driver state before proceeding like during initialization.
+If hot loops run a couple of times the impact is negligible (but one still must mitigate risks of hot loops!). An issue does arise when the loop happens thousands  or even millions of times.
+Below is an example of a hot loop in which the developer is debugging to see how many times the hot loop runs:
+
+```go
+func (d *Device) Configure(cfg Config) error {
+    d.Reset()
+    start := time.Now()
+    hotloops := 0
+    for !d.IsConnected() {
+        hotloops++
+    }
+    // Make sure to not print in hot loop when measuring!
+    println(time.Since(start).String(), "elapsed during hot loop in Configure with calls done=", hotloops)
+    // ...
+}
+```
+
+After measuring one can evaluate the impact of a hot loop. When working with peripheral drivers one usually looks at the time 
+it took for the hot loop to finish. This is the amount of time the CPU thread was blocked and unable to do other possibly important work.
+Unmitigated blocking hot loops raise the CPU usage and can bring the program to a standstill. In certain cases where the peripheral hardware
+is inconsistent or unstable it can freeze your computer.
+
+One mitigates hot loop effects by yielding the processor inside the hot loop and also setting a maximum number
+of times to retry the hot loop before "giving up" and returning an error. A good number of retries to use is x2 the number of retries measured and at least 10.
+Remember the number of retries performed will vary from CPU to CPU since some CPUs are faster. When measuring use the highest communication bitrate for the peripheral to get the best case scenario.
+```go
+// Make sure `retries` makes sense. Use a larger number than the maximum typical hotloops done.
+retries := 1000 
+for retries > 0 && !ready() {
+    runtime.Gosched() // For short hot loops around <1ms
+    retries--
+}
+if retries <= 0 {
+    return errFailedReady
+}
+
+for retries > 0 && !longready() {
+    time.Sleep(typicalLongDuration/5)
+    retries--
+}
+if retries <= 0 {
+    return errFailedReady
+}
+
+// Very friendly to CPU mitigation. We sleep for the typical duration
+// and then start the hot loop.
+// This avoids using the CPU during the time the peripheral is almost certainly not ready.
+time.Sleep(reallyLongDuration)
+for retries > 0 && !reallyLongReady() {
+    time.Sleep(reallyLongDuration/10)
+    retries--
+}
+if retries <= 0 {
+    return errFailedReady
+}
+```
+Note the retry check is in front of the hot loop check in the `for` statement condition: this is for a reason! If not ordered that way then maybe the hot loop check passes but retry fails resulting in a zero retry and a returned error even though the check passed.
+
+## Miscellaneous tips
+### Consolidate I/O into as few dynamic calls as possible
+
+Consider the code below, it does some configuration over an SPI bus and a pin which apparently selects if spi bytes are data or commands.
+```go
+func (d *Device) Configure(cfg Config) {
+    d.Command(CONFIG_BYTE)
+    d.Data(0x01)
+    d.Data(0x02)
+    d.Data(0x03)
+    d.Data(0x04)
+    d.Data(0x05)
+}
+
+func (d *Device) Data(data uint8) {
+    d.pinData(true)
+    d.spi.Tx([]byte{data}, nil)
+}
+
+func (d *Device) Command(cmd uint8) {
+    d.pinData(false)
+    d.spi.Tx([]byte{cmd}, nil)
+}
+```
+
+Note the string of `d.Data` calls, they all do two I/O operations: turn the data pin on and send a single byte over SPI.
+Below are some problems that can be solved with this approach regarding I/O overhead:
+- Successive `Data` calls turn a pin on that has remained on since last `Data` call
+- Every call of Data does a dynamic call to the SPI `Tx` method
+
+If we are aware of how a `SPI` bus works then we'll know we can concatenate the single byte `Tx` calls into a single multi-byte `Tx` call.
+
+```go
+func (d *Device) Configure(cfg Config) {
+    d.Command(CONFIG_BYTE)
+    d.Data(0x01, 0x02, 0x03, 0x04, 0x05)
+}
+func (d *Device) Data(data ...byte) {
+    d.pinData(true)
+    d.spi.Tx(data, nil)
+}
+```
+The above code is equivalent in functionality. One may worry we are not calling `d.pinData(true)` between bytes sent over SPI until one realizes calling `d.pinData(true)` after the first call is completely inneffective. Once a pin turns on it stays that way until it is turned off with `d.pinData(false)`.
+
+To get the gold star though we'd want to eliminate heap allocations. Since `Data` may receive thousands of bytes at a time in some cases we define a helper method:
+
+```go
+func (d *Device) Configure(cfg Config) {
+    d.Command(CONFIG_BYTE)
+    d.dataShort(0x01, 0x02, 0x03, 0x04, 0x05)
+}
+func (d *Device) dataShort(data ...byte) {
+    n := copy(d.buf[:], data) // Buf is a static array that is the max size of calls performed by the library internally.
+    d.Data(d.buf[:n])
+}
+func (d *Device) Data(data []byte) {
+    d.pinData(true)
+    d.spi.Tx(data, nil)
+}
+func (d *Device) Command(cmd uint8) {
+    d.pinData(false)
+    d.buf[0] = cmd
+    d.spi.Tx(d.buf[:1], nil)
+}
+```
