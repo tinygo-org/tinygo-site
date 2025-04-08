@@ -17,7 +17,7 @@ When designing a peripheral driver with which one interacts with over a communic
     - Store HAL required for peripheral operation here such as communication buses (I2C, SPI drivers) and pins
     - **Avoid**: using TinyGo `machine` package constructs in your driver (read as *don't import `"machine"`*). Users of the Go language (not only TinyGo) also consume the drivers package and they can't compile a program that uses the `"machine"` package. To abstract `machine.Pin` one can define `type PinOutput func(level bool)` and `type PinInput func() bool` functional interfaces.
 
-- Define a `Config` struct for peripherals with many configuration options. See example of a Config struct in action: https://github.com/soypat/lora/blob/main/lora.go
+- Define a `Config` struct for peripherals with many configuration options.
     - Define new types for configuration enums. Try to use values in the datasheet, if a register has 3 possible values for a configuration that a user may want to set in the `Config` define a type for that register value and provide the 3 exported values with that type as package level constants.
     - **Avoid**: [Functional options](https://dave.cheney.net/2014/10/17/functional-options-for-friendly-apis) or interface options. These carry with them a higher overhead in both performance, memory and binary size. A peripheral API will never change after being manufactured so most benefits of this pattern are lost
     - Define a `DefaultConfig` at the package level so that the user may easily instantiate a configuration. Maybe add a parameter or two to `DefaultConfig` to allow the user to easily tweak the most important parameters that they may want to change.
@@ -25,6 +25,15 @@ When designing a peripheral driver with which one interacts with over a communic
 - **Avoid**: Floating point operations. 
     - Peripherals rarely work with or return floating point representations of their measurements. More often than not you'll find they work with integers. There's a reason for this: integer operation hardware is widespread. Most small processors do not support floating point operations, and even if they do it is much slower than modern desktop PCs compared with integer operations
     - There is huge difficulty in working exclusively with integer operations instead of floats without losing precision. If possible define the API return values of sensors with integers and work internally with floats if that is easier for you. This will allow the API to remove the internal floating point bits in the future while not breaking existing users. The usage of floats vs integers has been discussed here: https://github.com/tinygo-org/drivers/pull/345
+- Adhere to [`drivers.Sensor`](https://github.com/tinygo-org/drivers/blob/release/sensor.go) interface when designing a driver for a sensor peripheral
+    - The API for methods which return the actual values is still a WIP. See the discussion in the Sensor interface PR: https://github.com/tinygo-org/drivers/pull/345
+- **Avoid** Heap allocations. More on that below.
+
+Provided is a list of drivers which adhere to these rules:
+- [tinygo-org/drivers/lsm6ds3](https://github.com/tinygo-org/drivers/blob/release/lsm6ds3/lsm6ds3.go) and [tinygo-org/drivers/l3gd20](https://github.com/tinygo-org/drivers/blob/release/l3gd20/l3gd20.go) - 6 dof IMU units for measuring acceleration and angular velocity over I2C.
+- [tinygo-org/drivers/pca9685](https://github.com/tinygo-org/drivers/blob/release/pca9685/pca9685.go) - 16 channel PWM controller over I2C.
+- [tinygo-org/drivers/ndir](https://github.com/tinygo-org/drivers/blob/release/ndir/ndir.go) - CO2 sensor for range 0 to 10000ppm over I2C.
+
 
 ### Constrain memory use at compile time
 
