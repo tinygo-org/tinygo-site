@@ -6,6 +6,25 @@ description: |
 ---
 # Driver Design with TinyGo
 
+This document compiles several guidelines that may be useful to developers of drivers that are used in TinyGo and upstream Go.
+That said, most suggestions are pretty general and are independent of the language used- good driver design
+in Go, Rust or C turns out to have more in common than what one may think.
+
+## General guidelines
+
+- **Avoid**: Floating point operations. 
+    - Peripherals rarely work with or return floating point representations of their measurements. More often than not you'll find they work with integers. There's a reason for this: integer operation hardware is widespread. Most small processors do not support floating point operations, and even if they do it is much slower than modern desktop PCs compared with integer operations
+    - There is huge difficulty in working exclusively with integer operations instead of floats without losing precision. If possible define the API return values of sensors with integers and work internally with floats if that is easier for you. This will allow the API to remove the internal floating point bits in the future while not breaking existing users. The usage of floats vs integers has been discussed here: https://github.com/tinygo-org/drivers/pull/345
+- **Avoid**: Heap allocations. More on that below.
+- **Avoid**: Concurrent code. For your sake, for the PR reviewer's sake and for the sake of our users.
+    - Concurrent code is already hard to write and harder to debug, and having to debug it on baremetal targets makes it much harder.
+    - Even if the reference implementation we are porting from is asynchronous or uses threads we go through the additional effort to make that code single-threaded like the case of the CYW43439 driver, ported from an async rust driver in embassy-rs. The CYW43439 driver is a textbook example of a successful high-complexity port.
+    - If possible make the API parallelizable. If not we can worry about that in the future :)
+    - **Avoid**: channels, goroutines, select statements. 
+    - **Consider using**: Mutexes for the API you believe will be used across multiple goroutines.
+- Adhere to [`drivers.Sensor`](https://github.com/tinygo-org/drivers/blob/release/sensor.go) interface when designing a driver for a sensor.
+    - The API for methods which return the actual values is still a WIP. See the discussion in the Sensor interface PR: https://github.com/tinygo-org/drivers/pull/345
+
 ## Driver for a peripheral
 When designing a peripheral driver with which one interacts with over a communications bus one can usually adhere to the following rules
 
@@ -22,20 +41,13 @@ When designing a peripheral driver with which one interacts with over a communic
     - **Avoid**: [Functional options](https://dave.cheney.net/2014/10/17/functional-options-for-friendly-apis) or interface options. These carry with them a higher overhead in both performance, memory and binary size. A peripheral API will never change after being manufactured so most benefits of this pattern are lost
     - Define a `DefaultConfig` at the package level so that the user may easily instantiate a configuration. Maybe add a parameter or two to `DefaultConfig` to allow the user to easily tweak the most important parameters that they may want to change.
     - Are some configuration parameters codependent and require calculating? Add a method on the `Config` type to set them consistently! Adding a `Validation() error` method is also useful during the `func (d *Device) Configure(cfg Config) error` call as well as letting users read the validation logic and understand what is a correct configuration. It's a great source for intuition on how the driver works!
-- **Avoid**: Floating point operations. 
-    - Peripherals rarely work with or return floating point representations of their measurements. More often than not you'll find they work with integers. There's a reason for this: integer operation hardware is widespread. Most small processors do not support floating point operations, and even if they do it is much slower than modern desktop PCs compared with integer operations
-    - There is huge difficulty in working exclusively with integer operations instead of floats without losing precision. If possible define the API return values of sensors with integers and work internally with floats if that is easier for you. This will allow the API to remove the internal floating point bits in the future while not breaking existing users. The usage of floats vs integers has been discussed here: https://github.com/tinygo-org/drivers/pull/345
-- Adhere to [`drivers.Sensor`](https://github.com/tinygo-org/drivers/blob/release/sensor.go) interface when designing a driver for a sensor peripheral
-    - The API for methods which return the actual values is still a WIP. See the discussion in the Sensor interface PR: https://github.com/tinygo-org/drivers/pull/345
-- **Avoid** Heap allocations. More on that below.
 
 Provided is a list of drivers which adhere to these rules:
-- [tinygo-org/drivers/lsm6ds3](https://github.com/tinygo-org/drivers/blob/release/lsm6ds3/lsm6ds3.go) and [tinygo-org/drivers/l3gd20](https://github.com/tinygo-org/drivers/blob/release/l3gd20/l3gd20.go) - 6 dof IMU units for measuring acceleration and angular velocity over I2C.
 - [tinygo-org/drivers/pca9685](https://github.com/tinygo-org/drivers/blob/release/pca9685/pca9685.go) - 16 channel PWM controller over I2C.
 - [tinygo-org/drivers/ndir](https://github.com/tinygo-org/drivers/blob/release/ndir/ndir.go) - CO2 sensor for range 0 to 10000ppm over I2C.
+- [tinygo-org/drivers/lsm6ds3](https://github.com/tinygo-org/drivers/blob/release/lsm6ds3/lsm6ds3.go) and [tinygo-org/drivers/l3gd20](https://github.com/tinygo-org/drivers/blob/release/l3gd20/l3gd20.go) - 6 dof IMU units for measuring acceleration and angular velocity over I2C. *Note: These still use the legacy I2C API which does not adhere to these guidelines and may allocate.*
 
-
-### Constrain memory use at compile time
+## Constrain memory use at compile time
 
 TinyGo allows for heap allocations and that is a wonderful feature but can also subject embedded Go users to some pain
 if the drivers they use make heavy use of heap allocations. 
@@ -44,7 +56,7 @@ Heap allocations over time can crash your program if memory becomes sufficiently
 Below is a short recap on heap allocations. There is also a separate section on this page, see the compiler internal page [Heap Allocations]({{<ref "heap-allocation.md">}}) for a more in depth dive.
 
 
-#### Heap allocations: an introduction
+### Heap allocations: an introduction
 The most common source of heap allocations in TinyGo drivers are in bus communications. Take for example the following code:
 ```go
 type Device struct {
@@ -84,8 +96,8 @@ Returning to the `Device` example above we started with: any referential argumen
 `spi` is an interface. So every time we call `writeRegister` or `readRegister`, at worst two heap allocations will be performed, one being the `data [2]byte` array
 and the second being the inline composite literal slice declaration `[]byte{x, x}`. Usually heap allocators have limitations on size allocated so it is likely that more than 4 bytes are allocated for every call.
 
-#### Heap allocations: Mitigations
-Luckily it can be relatively easy to mitigate heap allocations and eliminate them altogether. To do so with a driver that uses slices for bus communications one can include the array memory within the device struct:
+### Heap allocations: Mitigations
+Luckily it can be relatively easy to mitigate heap allocations and eliminate them altogether. To do so with a driver that uses slices for bus communications one can include the array memory within the device struct. This can solve many such cases of heap allocations, but there are few cases where data to be read/written is also variable length, which we'll deal with later on.
 
 ```go
 type Device struct {
@@ -112,7 +124,7 @@ func (d *Device) writeRegister(addr, newValue uint8) error {
 |------|
 | Note the use of static arrays types like `[2]byte`. "Arrays", as they are called in Go, if small enough will always be stack allocated. TinyGo currently has a **Max Stack Object Size** configuration which runs around the 256 byte size. That said, this fact is not relevant in this case since the array is attached to the `Device` struct which almost certainly is heap allocated. Most drivers, if not all, initialize and use a pointer type (`*Device`). If the `Device` is heap allocated then the arrays it contains will also be heap allocated- and this is OK! Remember, we are trying to constrain our allocations, not completely eliminate heap allocations. We win if during the lifetime of the program there are **ZERO** heap allocations. Allowing heap allocations at initialization is a good practice and actually encouraged in [NASA's coding standards for extraplanetary missions.](https://en.m.wikipedia.org/wiki/The_Power_of_10:_Rules_for_Developing_Safety-Critical_Code) |
 
-This can solve many such cases, but there are few cases where data to be read/written is also variable length.
+
 The semantics for reading and writing data over the SPI bus are hypothetical, what is important is to take note on how to 
 deal with variable length buffers. See [SliceTricks](https://go.dev/wiki/SliceTricks#additional-tricks) for more tips on slice manipulation.
 ```go
@@ -152,11 +164,11 @@ func (d *Device) readData(addr uint8, data []byte) error {
 }
 ```
 
-### Multi-protocol devices
+## Multi-protocol devices
 Some devices support SPI and I2C interfaces (UART, RS485, etc.). What's the ideal approach to this? Should one generate a separate driver for each protocol?
 
-The answer is, as usual in engineering "it depends". That said more often than not a peripheral which supports different protocols shares a whole lot of 
-functioning. Take for example the Honeywell HSC TruStability pressure sensors. They are a VERY simple pressure sensor which come in SPI and I2C varieties.
+The answer is, as is usual in engineering: "it depends". That said more often than not a peripheral which supports different protocols shares a whole lot of 
+functioning. Take for example the Honeywell HSC TruStability pressure sensors. These are VERY simple pressure sensors which come in SPI and I2C varieties.
 One can write a driver that shares the underlying shared logic like so:
 
 ```go
@@ -268,7 +280,7 @@ Unmitigated blocking hot loops raise the CPU usage and can bring the program to 
 is inconsistent or unstable it can freeze your computer.
 
 One mitigates hot loop effects by yielding the processor inside the hot loop and also setting a maximum number
-of times to retry the hot loop before "giving up" and returning an error. A good number of retries to use is x2 the number of retries measured and at least 10.
+of times to retry the hot loop before "giving up" and returning an error. The latter rule comes from [NASA's power of 10 rulebook](https://en.m.wikipedia.org/wiki/The_Power_of_10:_Rules_for_Developing_Safety-Critical_Code): *"All loops must have fixed bounds. This prevents runaway code."*. A good number of retries to use is x2 the number of retries measured, and as another good rule of thumb: never retry less than 10 times if the retry operation is fast.
 Remember the number of retries performed will vary from CPU to CPU since some CPUs are faster. When measuring use the highest communication bitrate for the peripheral to get the best case scenario.
 ```go
 // Make sure `retries` makes sense. Use a larger number than the maximum typical hotloops done.
@@ -306,7 +318,7 @@ Note the retry check is in front of the hot loop check in the `for` statement co
 ## Miscellaneous tips
 ### Consolidate I/O into as few dynamic calls as possible
 
-Consider the code below, it does some configuration over an SPI bus and a pin which apparently selects if spi bytes are data or commands.
+Consider the code below, it does some configuration over an SPI bus and a pin which apparently selects if SPI bytes are data or commands.
 ```go
 func (d *Device) Configure(cfg Config) {
     d.Command(CONFIG_BYTE)
@@ -333,7 +345,7 @@ Below are some problems that can be solved with this approach regarding I/O over
 - Successive `Data` calls turn a pin on that has remained on since last `Data` call
 - Every call of Data does a dynamic call to the SPI `Tx` method
 
-If we are aware of how a `SPI` bus works then we'll know we can concatenate the single byte `Tx` calls into a single multi-byte `Tx` call.
+If we are aware of how a `SPI` bus works then we'll know we can concatenate all the single byte `Tx` calls into a single multi-byte `Tx` call.
 
 ```go
 func (d *Device) Configure(cfg Config) {
