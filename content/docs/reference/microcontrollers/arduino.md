@@ -66,3 +66,14 @@ Programs are loaded onto the Arduino Uno using the `avrdude` command line utilit
 
 - Plug your Arduino Uno into your computer's USB port.
 - Build and flash your TinyGo program using `tinygo flash -target arduino /path/to/code`
+
+### Arduino Uno R4 Support and other unsupported Arduino boards
+Currently Arduino Uno R4's are not yet supported. See [this PR](https://github.com/tinygo-org/tinygo/pull/4265) for more details.
+If you're receiving error messages like this 
+```
+Error: programmer is not responding
+Warning: attempt 1 of 10: not in sync: resp=0x00
+```
+when attempting to run 
+```tinygo flash -target=arduino -port=COM5```
+this is likely the cause.
