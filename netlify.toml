@@ -7,7 +7,7 @@
 # "production" environment specific build settings
 [build.environment]
   NODE_VERSION = "20.16.0" # LTS version
-  HUGO_VERSION = "0.129.0"
+  HUGO_VERSION = "0.133.1"
   GO_VERSION = "1.22.x" # any reasonably recent version
 
 # "production" environment specific build settings
