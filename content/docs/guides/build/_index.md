@@ -59,6 +59,12 @@ You should also check if there's a remaining `tinygo` executable in your path an
 ## Repository cloning (before build)
 Start with getting the source code. On Windows, you might want to install the [build dependencies](#build-dependencies) first.
 
+***Warning: Some users have encountered issues when the TinyGo source path is located within a Go workspace (indicated by the presence of a go.work file in a parent directory).
+These issues may result in runtime errors such as:
+panic: unknown type: any
+To avoid this, try building TinyGo from a directory that is outside the scope of the Go workspace.***
+
+
 ```shell
 git clone https://github.com/tinygo-org/tinygo.git
 cd tinygo
