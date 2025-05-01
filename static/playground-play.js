@@ -210,7 +210,6 @@ document.addEventListener('DOMContentLoaded', async function(e) {
       // Strip /s/* URL suffix.
       clearShareURL();
       localStorage.tinygo_playground_state = JSON.stringify(simulator.schematic.state);
-      console.log(simulator.schematic.state);
     },
   });
 
