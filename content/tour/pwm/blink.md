@@ -44,7 +44,7 @@ Next up, we connect the PWM peripheral to the given output pin:
 
 We get a channel number back. One PWM peripheral typically has 2-4 channels, which can be connected to certain pins. Which pins can be used depends a lot on the hardware, which we'll [get to later](../multiple/#finding-the-correct-pwm-peripheral-and-pins). For now, all you need to know is that the PWM channel is now connected to a single GPIO pin.
 
-To actually make the LED blink, we will set the duty cycle to half the "top" value of the LED:
+To actually make the LED blink, we will need to set the duty cycle. The duty cycle refers to the part of the time when the PWM is turned on. In this case, we will set the duty cycle to half the "top" value of the LED:
 
 ```go
 	// Blink the LED, setting it to "on" half the time.

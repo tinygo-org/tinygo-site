@@ -4,7 +4,7 @@ description: "Control a servo motor directly using PWM"
 weight: 10
 ---
 
-Servos are controlled using a form of pulse-width modification (PWM) to control their position. Every 20ms or so (the precise interval doesn't matter too much) a pulse of 1ms to 2ms is sent that indicates the target position for the motor. The pulse width is what matters here: 1.5ms indicates the center position, 1ms all the way to the right, and 2ms all the way to the left.
+Servos are rotary motors that allow for precise control of their angular position. The position is set using a form of pulse-width modification (PWM). Every 20ms or so (the precise interval doesn't matter too much) a pulse of 1ms to 2ms is sent that indicates the target position for the motor. The pulse width is what matters here: 1.5ms indicates the center position, 1ms all the way to the right, and 2ms all the way to the left.
 
 There is a decent amount of variation among servo motors:
 
