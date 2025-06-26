@@ -7,7 +7,7 @@ The [Nano RP2040 Connect](https://store.arduino.cc/nano-rp2040-connect) is a tin
 
 Peripherals: 
 - NINA-W102 chip with [wifinina](https://github.com/tinygo-org/drivers/tree/release/wifinina) firmware (wifi and bluetooth)
-- [lsm6dox](https://github.com/tinygo-org/drivers/tree/release/lsm6dox) IMU chip (acceleration, rotation and temperature)
+- [lsm6dsox](https://github.com/tinygo-org/drivers/tree/release/lsm6dsox) IMU chip (acceleration, rotation and temperature)
 - microphone
 
 ## Interfaces
