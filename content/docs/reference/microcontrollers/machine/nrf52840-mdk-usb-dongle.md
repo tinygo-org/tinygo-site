@@ -216,6 +216,12 @@ Pin change interrupt constants for SetInterrupt.
 
 
 ```go
+const NumberOfUSBEndpoints = 8
+```
+
+
+
+```go
 const (
 	// WatchdogMaxTimeout in milliseconds (approx 36h)
 	WatchdogMaxTimeout = (0xffffffff * 1000) / 32768
@@ -376,6 +382,15 @@ var (
 
 
 
+
+
+### func AckUsbOutTransfer
+
+```go
+func AckUsbOutTransfer(ep uint32)
+```
+
+AckUsbOutTransfer is called to acknowledge the completion of a USB OUT transfer.
 
 
 ### func CPUFrequency
