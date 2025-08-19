@@ -265,37 +265,43 @@ Pin change interrupt constants for SetInterrupt.
 ```go
 const (
 	// GPIO pins
-	GPIO0	Pin	= 0	// peripherals: PWM0 channel A
-	GPIO1	Pin	= 1	// peripherals: PWM0 channel B
-	GPIO2	Pin	= 2	// peripherals: PWM1 channel A
-	GPIO3	Pin	= 3	// peripherals: PWM1 channel B
-	GPIO4	Pin	= 4	// peripherals: PWM2 channel A
-	GPIO5	Pin	= 5	// peripherals: PWM2 channel B
-	GPIO6	Pin	= 6	// peripherals: PWM3 channel A
-	GPIO7	Pin	= 7	// peripherals: PWM3 channel B
-	GPIO8	Pin	= 8	// peripherals: PWM4 channel A
-	GPIO9	Pin	= 9	// peripherals: PWM4 channel B
-	GPIO10	Pin	= 10	// peripherals: PWM5 channel A
-	GPIO11	Pin	= 11	// peripherals: PWM5 channel B
-	GPIO12	Pin	= 12	// peripherals: PWM6 channel A
-	GPIO13	Pin	= 13	// peripherals: PWM6 channel B
-	GPIO14	Pin	= 14	// peripherals: PWM7 channel A
-	GPIO15	Pin	= 15	// peripherals: PWM7 channel B
-	GPIO16	Pin	= 16	// peripherals: PWM0 channel A
-	GPIO17	Pin	= 17	// peripherals: PWM0 channel B
-	GPIO18	Pin	= 18	// peripherals: PWM1 channel A
-	GPIO19	Pin	= 19	// peripherals: PWM1 channel B
-	GPIO20	Pin	= 20	// peripherals: PWM2 channel A
-	GPIO21	Pin	= 21	// peripherals: PWM2 channel B
+	GPIO0	Pin	= 0	// peripherals: PWM0 channel A, I2C0 SDA
+	GPIO1	Pin	= 1	// peripherals: PWM0 channel B, I2C0 SCL
+	GPIO2	Pin	= 2	// peripherals: PWM1 channel A, I2C1 SDA
+	GPIO3	Pin	= 3	// peripherals: PWM1 channel B, I2C1 SCL
+	GPIO4	Pin	= 4	// peripherals: PWM2 channel A, I2C0 SDA
+	GPIO5	Pin	= 5	// peripherals: PWM2 channel B, I2C0 SCL
+	GPIO6	Pin	= 6	// peripherals: PWM3 channel A, I2C1 SDA
+	GPIO7	Pin	= 7	// peripherals: PWM3 channel B, I2C1 SCL
+	GPIO8	Pin	= 8	// peripherals: PWM4 channel A, I2C0 SDA
+	GPIO9	Pin	= 9	// peripherals: PWM4 channel B, I2C0 SCL
+	GPIO10	Pin	= 10	// peripherals: PWM5 channel A, I2C1 SDA
+	GPIO11	Pin	= 11	// peripherals: PWM5 channel B, I2C1 SCL
+	GPIO12	Pin	= 12	// peripherals: PWM6 channel A, I2C0 SDA
+	GPIO13	Pin	= 13	// peripherals: PWM6 channel B, I2C0 SCL
+	GPIO14	Pin	= 14	// peripherals: PWM7 channel A, I2C1 SDA
+	GPIO15	Pin	= 15	// peripherals: PWM7 channel B, I2C1 SCL
+	GPIO16	Pin	= 16	// peripherals: PWM0 channel A, I2C0 SDA
+	GPIO17	Pin	= 17	// peripherals: PWM0 channel B, I2C0 SCL
+	GPIO18	Pin	= 18	// peripherals: PWM1 channel A, I2C1 SDA
+	GPIO19	Pin	= 19	// peripherals: PWM1 channel B, I2C1 SCL
+	GPIO20	Pin	= 20	// peripherals: PWM2 channel A, I2C0 SDA
+	GPIO21	Pin	= 21	// peripherals: PWM2 channel B, I2C0 SCL
 	GPIO22	Pin	= 22	// peripherals: PWM3 channel A
 	GPIO23	Pin	= 23	// peripherals: PWM3 channel B
 	GPIO24	Pin	= 24	// peripherals: PWM4 channel A
 	GPIO25	Pin	= 25	// peripherals: PWM4 channel B
-	GPIO26	Pin	= 26	// peripherals: PWM5 channel A
-	GPIO27	Pin	= 27	// peripherals: PWM5 channel B
+	GPIO26	Pin	= 26	// peripherals: PWM5 channel A, I2C1 SDA
+	GPIO27	Pin	= 27	// peripherals: PWM5 channel B, I2C1 SCL
 	GPIO28	Pin	= 28	// peripherals: PWM6 channel A
 	GPIO29	Pin	= 29	// peripherals: PWM6 channel B
 )
+```
+
+
+
+```go
+const NumberOfUSBEndpoints = 8
 ```
 
 
@@ -436,22 +442,6 @@ I2C on the RP2040/RP2350
 
 ```go
 var (
-	ErrInvalidI2CBaudrate	= errors.New("invalid i2c baudrate")
-	ErrInvalidTgtAddr	= errors.New("invalid target i2c address not in 0..0x80 or is reserved")
-	ErrI2CGeneric		= errors.New("i2c error")
-	ErrRP2040I2CDisable	= errors.New("i2c rp2040 peripheral timeout in disable")
-	errInvalidI2CSDA	= errors.New("invalid I2C SDA pin")
-	errInvalidI2CSCL	= errors.New("invalid I2C SCL pin")
-	ErrI2CAlreadyListening	= errors.New("i2c already listening")
-	ErrI2CWrongMode		= errors.New("i2c wrong mode")
-	ErrI2CUnderflow		= errors.New("i2c underflow")
-)
-```
-
-
-
-```go
-var (
 	ErrBadPeriod = errors.New("period outside valid range 8ns..268ms")
 )
 ```
@@ -567,6 +557,15 @@ var (
 
 
 
+
+
+### func AckUsbOutTransfer
+
+```go
+func AckUsbOutTransfer(ep uint32)
+```
+
+AckUsbOutTransfer is called to acknowledge the completion of a USB OUT transfer.
 
 
 ### func CPUFrequency
@@ -1633,6 +1632,24 @@ type USBDevice struct {
 
 
 
+### func (*USBDevice) ClearStallEPIn
+
+```go
+func (dev *USBDevice) ClearStallEPIn(ep uint32)
+```
+
+Clear the ENDPOINT_HALT/stall on a USB IN endpoint.
+
+
+### func (*USBDevice) ClearStallEPOut
+
+```go
+func (dev *USBDevice) ClearStallEPOut(ep uint32)
+```
+
+Clear the ENDPOINT_HALT/stall on a USB OUT endpoint.
+
+
 ### func (*USBDevice) Configure
 
 ```go
@@ -1640,6 +1657,24 @@ func (dev *USBDevice) Configure(config UARTConfig)
 ```
 
 Configure the USB peripheral. The config is here for compatibility with the UART interface.
+
+
+### func (*USBDevice) SetStallEPIn
+
+```go
+func (dev *USBDevice) SetStallEPIn(ep uint32)
+```
+
+Set ENDPOINT_HALT/stall status on a USB IN endpoint.
+
+
+### func (*USBDevice) SetStallEPOut
+
+```go
+func (dev *USBDevice) SetStallEPOut(ep uint32)
+```
+
+Set ENDPOINT_HALT/stall status on a USB OUT endpoint.
 
 
 
