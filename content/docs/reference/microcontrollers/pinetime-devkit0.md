@@ -3,7 +3,7 @@ title: "PineTime DevKit"
 weight: 3
 ---
 
-The [PineTime](https://wiki.pine64.org/index.php/PineTime) is a smartwatch by [Pine64](https://www.pine64.org/) that is based on the Nordic Semiconductor [nRF52832](https://www.nordicsemi.com/eng/Products/Bluetooth-low-energy/nRF52832) SoC. As of October 2019, a limited amount has been produced for developers.
+The [PineTime](https://wiki.pine64.org/index.php/PineTime) is a smartwatch by [Pine64](https://www.pine64.org/) that is based on the Nordic Semiconductor [nRF52832](https://www.nordicsemi.com/eng/Products/Bluetooth-low-energy/nRF52832) SoC.
 
 ## Interfaces
 
