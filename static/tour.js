@@ -17,8 +17,10 @@ const boardNames = {
 	'circuitplay-bluefruit': 'Adafruit Circuit Playground Bluefruit',
 	'circuitplay-express': 'Adafruit Circuit Playground Express',
 	'gopher-badge': 'Gopher Badge',
+	'hifive1b': 'SiFive HiFive1 rev B',
 	'microbit': 'BBC micro:bit v1',
 	'pico': 'Raspberry Pi Pico',
+	'reelboard': 'Phytec reel board',
 }
 
 // Configure the tour. This works on pages that use the "tour" layout.
