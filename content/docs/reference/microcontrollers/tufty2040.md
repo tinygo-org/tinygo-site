@@ -19,37 +19,37 @@ The [Pimoroni Tufty2040](https://shop.pimoroni.com/products/tufty-2040) is a tin
 
 ## Pins
 
-| Pin               | Hardware pin | Alternative names | PWM                  |
-| ----------------- | ------------ | ----------------- | -------------------- |
-| `LED`             | `GPIO25`     | `USER_LED`        | `PWM4` (channel B)   |
-| `BUTTON_A`        | `GPIO7`      |                   | `PWM3` (channel B)   |
-| `BUTTON_B`        | `GPIO8`      |                   | `PWM4` (channel A)   |
-| `BUTTON_C`        | `GPIO9`      |                   | `PWM4` (channel B)   |
-| `BUTTON_UP`       | `GPIO22`     |                   | `PWM3` (channel A)   |
-| `BUTTON_DOWN`     | `GPIO6`      |                   | `PWM3` (channel A)   |
-| `BUTTON_USER`     | `GPIO23`     |                   | `PWM3` (channel B)   |
-| `LCD_BACKLIGHT`   | `GPIO2`      |                   | `PWM1` (channel A)   |
-| `LCD_CS`          | `GPIO10`     |                   | `PWM5` (channel A)   |
-| `LCD_DC`          | `GPIO11`     |                   | `PWM5` (channel B)   |
-| `LCD_WR`          | `GPIO12`     |                   | `PWM6` (channel A)   |
-| `LCD_RD`          | `GPIO13`     |                   | `PWM6` (channel B)   |
-| `LCD_DB0`         | `GPIO14`     |                   | `PWM7` (channel A)   |
-| `LCD_DB1`         | `GPIO15`     |                   | `PWM7` (channel B)   |
-| `LCD_DB2`         | `GPIO16`     |                   | `PWM0` (channel A)   |
-| `LCD_DB3`         | `GPIO17`     |                   | `PWM0` (channel B)   |
-| `LCD_DB4`         | `GPIO18`     |                   | `PWM1` (channel A)   |
-| `LCD_DB5`         | `GPIO19`     |                   | `PWM1` (channel B)   |
-| `LCD_DB6`         | `GPIO20`     |                   | `PWM2` (channel A)   |
-| `LCD_DB7`         | `GPIO21`     |                   | `PWM2` (channel B)   |
-| `VBUS_DETECT`     | `GPIO24`     |                   | `PWM4` (channel A)   |
-| `BATTERY`         | `GPIO29`     | `ADC3`            | `PWM6` (channel B)   |
-| `LIGHT_SENSE`     | `GPIO26`     | `ADC0`            | `PWM5` (channel A)   |
-| `SENSOR_POWER`    | `GPIO27`     | `ADC1`            | `PWM5` (channel B)   |
-| `I2C0_SDA_PIN`    | `GPIO4`      |                   | `PWM2` (channel A)   |
-| `I2C0_SCL_PIN`    | `GPIO5`      |                   | `PWM2` (channel B)   |
-| `UART0_TX_PIN`    | `GPIO0`      | `UART_TX_PIN`     | `PWM0` (channel A)   |
-| `UART0_RX_PIN`    | `GPIO1`      | `UART_RX_PIN`     | `PWM0` (channel B)   |
-| `ADC2`            | `GPIO28`     |                   | `PWM6` (channel A)   |
+| Pin               | Hardware pin | Alternative names | I2C                  | PWM                  |
+| ----------------- | ------------ | ----------------- | -------------------- | -------------------- |
+| `LED`             | `GPIO25`     | `USER_LED`        |                      | `PWM4` (channel B)   |
+| `BUTTON_A`        | `GPIO7`      |                   | `I2C1` (SCL)         | `PWM3` (channel B)   |
+| `BUTTON_B`        | `GPIO8`      |                   | `I2C0` (SDA)         | `PWM4` (channel A)   |
+| `BUTTON_C`        | `GPIO9`      |                   | `I2C0` (SCL)         | `PWM4` (channel B)   |
+| `BUTTON_UP`       | `GPIO22`     |                   |                      | `PWM3` (channel A)   |
+| `BUTTON_DOWN`     | `GPIO6`      |                   | `I2C1` (SDA)         | `PWM3` (channel A)   |
+| `BUTTON_USER`     | `GPIO23`     |                   |                      | `PWM3` (channel B)   |
+| `LCD_BACKLIGHT`   | `GPIO2`      |                   | `I2C1` (SDA)         | `PWM1` (channel A)   |
+| `LCD_CS`          | `GPIO10`     |                   | `I2C1` (SDA)         | `PWM5` (channel A)   |
+| `LCD_DC`          | `GPIO11`     |                   | `I2C1` (SCL)         | `PWM5` (channel B)   |
+| `LCD_WR`          | `GPIO12`     |                   | `I2C0` (SDA)         | `PWM6` (channel A)   |
+| `LCD_RD`          | `GPIO13`     |                   | `I2C0` (SCL)         | `PWM6` (channel B)   |
+| `LCD_DB0`         | `GPIO14`     |                   | `I2C1` (SDA)         | `PWM7` (channel A)   |
+| `LCD_DB1`         | `GPIO15`     |                   | `I2C1` (SCL)         | `PWM7` (channel B)   |
+| `LCD_DB2`         | `GPIO16`     |                   | `I2C0` (SDA)         | `PWM0` (channel A)   |
+| `LCD_DB3`         | `GPIO17`     |                   | `I2C0` (SCL)         | `PWM0` (channel B)   |
+| `LCD_DB4`         | `GPIO18`     |                   | `I2C1` (SDA)         | `PWM1` (channel A)   |
+| `LCD_DB5`         | `GPIO19`     |                   | `I2C1` (SCL)         | `PWM1` (channel B)   |
+| `LCD_DB6`         | `GPIO20`     |                   | `I2C0` (SDA)         | `PWM2` (channel A)   |
+| `LCD_DB7`         | `GPIO21`     |                   | `I2C0` (SCL)         | `PWM2` (channel B)   |
+| `VBUS_DETECT`     | `GPIO24`     |                   |                      | `PWM4` (channel A)   |
+| `BATTERY`         | `GPIO29`     | `ADC3`            |                      | `PWM6` (channel B)   |
+| `LIGHT_SENSE`     | `GPIO26`     | `ADC0`            | `I2C1` (SDA)         | `PWM5` (channel A)   |
+| `SENSOR_POWER`    | `GPIO27`     | `ADC1`            | `I2C1` (SCL)         | `PWM5` (channel B)   |
+| `I2C0_SDA_PIN`    | `GPIO4`      |                   | `I2C0` (SDA)         | `PWM2` (channel A)   |
+| `I2C0_SCL_PIN`    | `GPIO5`      |                   | `I2C0` (SCL)         | `PWM2` (channel B)   |
+| `UART0_TX_PIN`    | `GPIO0`      | `UART_TX_PIN`     | `I2C0` (SDA)         | `PWM0` (channel A)   |
+| `UART0_RX_PIN`    | `GPIO1`      | `UART_RX_PIN`     | `I2C0` (SCL)         | `PWM0` (channel B)   |
+| `ADC2`            | `GPIO28`     |                   |                      | `PWM6` (channel A)   |
 
 ## Machine Package Docs
 

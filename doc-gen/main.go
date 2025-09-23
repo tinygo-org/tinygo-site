@@ -463,19 +463,32 @@ func detectSupportedFeatures(pkg *packages.Package, buildTags []string) map[stri
 }
 
 func getPinsSection(pkg *packages.Package) (string, error) {
-	supportedPeripherals := map[string]bool{
-		"PWM": true,
-	}
-
 	// Find board pin names
 	pinNames := make(map[string]uint64)
 	hardwarePins := make(map[string]struct{})
 	pinPeripherals := make(map[string][]string)
+	variableAssigns := make(map[string][]string)
 	var pinNamesSlice []string
 	for _, file := range pkg.Syntax {
 		for _, decl := range file.Decls {
 			switch decl := decl.(type) {
 			case *ast.GenDecl:
+				if decl.Tok == token.VAR {
+					for _, spec := range decl.Specs {
+						spec := spec.(*ast.ValueSpec)
+						if len(spec.Names) != 1 || len(spec.Values) != 1 {
+							continue
+						}
+						name := spec.Names[0]
+						value := spec.Values[0]
+						if !token.IsExported(name.Name) {
+							continue
+						}
+						if value, ok := value.(*ast.Ident); ok {
+							variableAssigns[value.Name] = append(variableAssigns[value.Name], name.Name)
+						}
+					}
+				}
 				if decl.Tok != token.CONST {
 					continue
 				}
@@ -530,11 +543,27 @@ func getPinsSection(pkg *packages.Package) (string, error) {
 			}
 			pin.HardwareName = name
 			for _, peripheral := range pinPeripherals[name] {
-				peripheralName := strings.SplitN(peripheral, " ", 2)[0]
-				peripheralType := classifyPeripheral(pkg, peripheralName)
-				if supportedPeripherals[peripheralType] {
-					pin.Peripherals[peripheralType] = append(pin.Peripherals[peripheralType], peripheral)
-					hasPeripheral[peripheralType] = true
+				parts := strings.SplitN(peripheral, " ", 2)
+				peripheralName := parts[0]
+				peripheralSuffix := parts[1]
+				var peripheralType string
+				peripherals := []string{peripheral}
+				if strings.HasPrefix(peripheralName, "I2C") {
+					peripheralType = "I2C"
+				} else if strings.HasPrefix(peripheralName, "sercomI2CM") {
+					peripheralType = "I2C"
+					peripherals = nil
+					for _, name := range variableAssigns[peripheralName] {
+						peripherals = append(peripherals, name+" "+peripheralSuffix)
+					}
+				} else {
+					peripheralType = classifyPeripheral(pkg, peripheralName)
+				}
+				if peripheralType == "I2C" || peripheralType == "PWM" {
+					for _, name := range peripherals {
+						pin.Peripherals[peripheralType] = append(pin.Peripherals[peripheralType], name)
+						hasPeripheral[peripheralType] = true
+					}
 				}
 			}
 		} else {
@@ -547,6 +576,9 @@ func getPinsSection(pkg *packages.Package) (string, error) {
 	}
 
 	pinsText := "## Pins\n\n| Pin               | Hardware pin | Alternative names |"
+	if hasPeripheral["I2C"] {
+		pinsText += " I2C                  |"
+	}
 	if hasPeripheral["PWM"] {
 		pinsText += " PWM                  |"
 	}
@@ -564,7 +596,7 @@ func getPinsSection(pkg *packages.Package) (string, error) {
 			alternativeNames = append(alternativeNames, "`"+name+"`")
 		}
 		pinsText += fmt.Sprintf("| %-17s | %-12s | %-17s |", "`"+pin.OtherNames[0]+"`", "`"+pin.HardwareName+"`", strings.Join(alternativeNames, ", "))
-		for _, peripheralType := range []string{"PWM"} {
+		for _, peripheralType := range []string{"I2C", "PWM"} {
 			if !hasPeripheral[peripheralType] {
 				continue
 			}

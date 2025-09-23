@@ -19,24 +19,24 @@ The [Seeed XIAO RP2040](https://www.seeedstudio.com/XIAO-RP2040-v1-0-p-5026.html
 
 ## Pins
 
-| Pin               | Hardware pin | Alternative names | PWM                  |
-| ----------------- | ------------ | ----------------- | -------------------- |
-| `D0`              | `GPIO26`     | `A0`, `ADC0`      | `PWM5` (channel A)   |
-| `D1`              | `GPIO27`     | `A1`, `ADC1`      | `PWM5` (channel B)   |
-| `D2`              | `GPIO28`     | `A2`, `I2C0_SDA_PIN`, `ADC2` | `PWM6` (channel A)   |
-| `D3`              | `GPIO29`     | `A3`, `I2C0_SCL_PIN`, `ADC3` | `PWM6` (channel B)   |
-| `D4`              | `GPIO6`      | `I2C1_SDA_PIN`    | `PWM3` (channel A)   |
-| `D5`              | `GPIO7`      | `I2C1_SCL_PIN`    | `PWM3` (channel B)   |
-| `D6`              | `GPIO0`      | `UART0_TX_PIN`, `UART_TX_PIN` | `PWM0` (channel A)   |
-| `D7`              | `GPIO1`      | `UART0_RX_PIN`, `UART_RX_PIN` | `PWM0` (channel B)   |
-| `D8`              | `GPIO2`      | `SPI0_SCK_PIN`    | `PWM1` (channel A)   |
-| `D9`              | `GPIO4`      | `SPI0_SDI_PIN`    | `PWM2` (channel A)   |
-| `D10`             | `GPIO3`      | `SPI0_SDO_PIN`    | `PWM1` (channel B)   |
-| `NEOPIXEL`        | `GPIO12`     | `WS2812`          | `PWM6` (channel A)   |
-| `NEO_PWR`         | `GPIO11`     | `NEOPIXEL_POWER`  | `PWM5` (channel B)   |
-| `LED`             | `GPIO17`     | `LED_RED`         | `PWM0` (channel B)   |
-| `LED_GREEN`       | `GPIO16`     |                   | `PWM0` (channel A)   |
-| `LED_BLUE`        | `GPIO25`     |                   | `PWM4` (channel B)   |
+| Pin               | Hardware pin | Alternative names | I2C                  | PWM                  |
+| ----------------- | ------------ | ----------------- | -------------------- | -------------------- |
+| `D0`              | `GPIO26`     | `A0`, `ADC0`      | `I2C1` (SDA)         | `PWM5` (channel A)   |
+| `D1`              | `GPIO27`     | `A1`, `ADC1`      | `I2C1` (SCL)         | `PWM5` (channel B)   |
+| `D2`              | `GPIO28`     | `A2`, `I2C0_SDA_PIN`, `ADC2` |                      | `PWM6` (channel A)   |
+| `D3`              | `GPIO29`     | `A3`, `I2C0_SCL_PIN`, `ADC3` |                      | `PWM6` (channel B)   |
+| `D4`              | `GPIO6`      | `I2C1_SDA_PIN`    | `I2C1` (SDA)         | `PWM3` (channel A)   |
+| `D5`              | `GPIO7`      | `I2C1_SCL_PIN`    | `I2C1` (SCL)         | `PWM3` (channel B)   |
+| `D6`              | `GPIO0`      | `UART0_TX_PIN`, `UART_TX_PIN` | `I2C0` (SDA)         | `PWM0` (channel A)   |
+| `D7`              | `GPIO1`      | `UART0_RX_PIN`, `UART_RX_PIN` | `I2C0` (SCL)         | `PWM0` (channel B)   |
+| `D8`              | `GPIO2`      | `SPI0_SCK_PIN`    | `I2C1` (SDA)         | `PWM1` (channel A)   |
+| `D9`              | `GPIO4`      | `SPI0_SDI_PIN`    | `I2C0` (SDA)         | `PWM2` (channel A)   |
+| `D10`             | `GPIO3`      | `SPI0_SDO_PIN`    | `I2C1` (SCL)         | `PWM1` (channel B)   |
+| `NEOPIXEL`        | `GPIO12`     | `WS2812`          | `I2C0` (SDA)         | `PWM6` (channel A)   |
+| `NEO_PWR`         | `GPIO11`     | `NEOPIXEL_POWER`  | `I2C1` (SCL)         | `PWM5` (channel B)   |
+| `LED`             | `GPIO17`     | `LED_RED`         | `I2C0` (SCL)         | `PWM0` (channel B)   |
+| `LED_GREEN`       | `GPIO16`     |                   | `I2C0` (SDA)         | `PWM0` (channel A)   |
+| `LED_BLUE`        | `GPIO25`     |                   |                      | `PWM4` (channel B)   |
 
 ## Machine Package Docs
 

@@ -19,34 +19,34 @@ The [iLabs Challenger RP2040 LoRa](https://ilabs.se/product/challenger-rp2040-lo
 
 ## Pins
 
-| Pin               | Hardware pin | Alternative names | PWM                  |
-| ----------------- | ------------ | ----------------- | -------------------- |
-| `LED`             | `GPIO24`     | `I2C0_SDA_PIN`    | `PWM4` (channel A)   |
-| `D5`              | `GPIO2`      | `I2C1_SDA_PIN`, `SDA_PIN` | `PWM1` (channel A)   |
-| `D6`              | `GPIO3`      | `I2C1_SCL_PIN`, `SCL_PIN` | `PWM1` (channel B)   |
-| `D9`              | `GPIO4`      | `UART1_TX_PIN`    | `PWM2` (channel A)   |
-| `D10`             | `GPIO5`      | `UART1_RX_PIN`    | `PWM2` (channel B)   |
-| `D11`             | `GPIO6`      |                   | `PWM3` (channel A)   |
-| `D12`             | `GPIO7`      |                   | `PWM3` (channel B)   |
-| `D13`             | `GPIO8`      |                   | `PWM4` (channel A)   |
-| `A0`              | `GPIO26`     | `ADC0`            | `PWM5` (channel A)   |
-| `A1`              | `GPIO27`     | `ADC1`            | `PWM5` (channel B)   |
-| `A2`              | `GPIO28`     | `ADC2`            | `PWM6` (channel A)   |
-| `A3`              | `GPIO29`     | `ADC3`            | `PWM6` (channel B)   |
-| `I2C0_SCL_PIN`    | `GPIO25`     |                   | `PWM4` (channel B)   |
-| `SPI0_SCK_PIN`    | `GPIO22`     |                   | `PWM3` (channel A)   |
-| `SPI0_SDO_PIN`    | `GPIO23`     |                   | `PWM3` (channel B)   |
-| `SPI0_SDI_PIN`    | `GPIO20`     |                   | `PWM2` (channel A)   |
-| `SPI1_SCK_PIN`    | `GPIO10`     | `LORA_SCK`        | `PWM5` (channel A)   |
-| `SPI1_SDO_PIN`    | `GPIO11`     | `LORA_SDO`        | `PWM5` (channel B)   |
-| `SPI1_SDI_PIN`    | `GPIO12`     | `LORA_SDI`        | `PWM6` (channel A)   |
-| `LORA_CS`         | `GPIO9`      |                   | `PWM4` (channel B)   |
-| `LORA_RESET`      | `GPIO13`     |                   | `PWM6` (channel B)   |
-| `LORA_DIO0`       | `GPIO14`     |                   | `PWM7` (channel A)   |
-| `LORA_DIO1`       | `GPIO15`     |                   | `PWM7` (channel B)   |
-| `LORA_DIO2`       | `GPIO18`     |                   | `PWM1` (channel A)   |
-| `UART0_TX_PIN`    | `GPIO16`     | `UART_TX_PIN`     | `PWM0` (channel A)   |
-| `UART0_RX_PIN`    | `GPIO17`     | `UART_RX_PIN`     | `PWM0` (channel B)   |
+| Pin               | Hardware pin | Alternative names | I2C                  | PWM                  |
+| ----------------- | ------------ | ----------------- | -------------------- | -------------------- |
+| `LED`             | `GPIO24`     | `I2C0_SDA_PIN`    |                      | `PWM4` (channel A)   |
+| `D5`              | `GPIO2`      | `I2C1_SDA_PIN`, `SDA_PIN` | `I2C1` (SDA)         | `PWM1` (channel A)   |
+| `D6`              | `GPIO3`      | `I2C1_SCL_PIN`, `SCL_PIN` | `I2C1` (SCL)         | `PWM1` (channel B)   |
+| `D9`              | `GPIO4`      | `UART1_TX_PIN`    | `I2C0` (SDA)         | `PWM2` (channel A)   |
+| `D10`             | `GPIO5`      | `UART1_RX_PIN`    | `I2C0` (SCL)         | `PWM2` (channel B)   |
+| `D11`             | `GPIO6`      |                   | `I2C1` (SDA)         | `PWM3` (channel A)   |
+| `D12`             | `GPIO7`      |                   | `I2C1` (SCL)         | `PWM3` (channel B)   |
+| `D13`             | `GPIO8`      |                   | `I2C0` (SDA)         | `PWM4` (channel A)   |
+| `A0`              | `GPIO26`     | `ADC0`            | `I2C1` (SDA)         | `PWM5` (channel A)   |
+| `A1`              | `GPIO27`     | `ADC1`            | `I2C1` (SCL)         | `PWM5` (channel B)   |
+| `A2`              | `GPIO28`     | `ADC2`            |                      | `PWM6` (channel A)   |
+| `A3`              | `GPIO29`     | `ADC3`            |                      | `PWM6` (channel B)   |
+| `I2C0_SCL_PIN`    | `GPIO25`     |                   |                      | `PWM4` (channel B)   |
+| `SPI0_SCK_PIN`    | `GPIO22`     |                   |                      | `PWM3` (channel A)   |
+| `SPI0_SDO_PIN`    | `GPIO23`     |                   |                      | `PWM3` (channel B)   |
+| `SPI0_SDI_PIN`    | `GPIO20`     |                   | `I2C0` (SDA)         | `PWM2` (channel A)   |
+| `SPI1_SCK_PIN`    | `GPIO10`     | `LORA_SCK`        | `I2C1` (SDA)         | `PWM5` (channel A)   |
+| `SPI1_SDO_PIN`    | `GPIO11`     | `LORA_SDO`        | `I2C1` (SCL)         | `PWM5` (channel B)   |
+| `SPI1_SDI_PIN`    | `GPIO12`     | `LORA_SDI`        | `I2C0` (SDA)         | `PWM6` (channel A)   |
+| `LORA_CS`         | `GPIO9`      |                   | `I2C0` (SCL)         | `PWM4` (channel B)   |
+| `LORA_RESET`      | `GPIO13`     |                   | `I2C0` (SCL)         | `PWM6` (channel B)   |
+| `LORA_DIO0`       | `GPIO14`     |                   | `I2C1` (SDA)         | `PWM7` (channel A)   |
+| `LORA_DIO1`       | `GPIO15`     |                   | `I2C1` (SCL)         | `PWM7` (channel B)   |
+| `LORA_DIO2`       | `GPIO18`     |                   | `I2C1` (SDA)         | `PWM1` (channel A)   |
+| `UART0_TX_PIN`    | `GPIO16`     | `UART_TX_PIN`     | `I2C0` (SDA)         | `PWM0` (channel A)   |
+| `UART0_RX_PIN`    | `GPIO17`     | `UART_RX_PIN`     | `I2C0` (SCL)         | `PWM0` (channel B)   |
 
 ## Machine Package Docs
 
