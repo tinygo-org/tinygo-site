@@ -19,14 +19,14 @@ The [Adafruit Trinkey QT2040](https://www.adafruit.com/product/5056) is a tiny d
 
 ## Pins
 
-| Pin               | Hardware pin | Alternative names | PWM                  |
-| ----------------- | ------------ | ----------------- | -------------------- |
-| `NEOPIXEL`        | `GPIO27`     | `WS2812`, `ADC1`  | `PWM5` (channel B)   |
-| `I2C0_SDA_PIN`    | `GPIO16`     |                   | `PWM0` (channel A)   |
-| `I2C0_SCL_PIN`    | `GPIO17`     |                   | `PWM0` (channel B)   |
-| `ADC0`            | `GPIO26`     |                   | `PWM5` (channel A)   |
-| `ADC2`            | `GPIO28`     |                   | `PWM6` (channel A)   |
-| `ADC3`            | `GPIO29`     |                   | `PWM6` (channel B)   |
+| Pin               | Hardware pin | Alternative names | I2C                  | PWM                  |
+| ----------------- | ------------ | ----------------- | -------------------- | -------------------- |
+| `NEOPIXEL`        | `GPIO27`     | `WS2812`, `ADC1`  | `I2C1` (SCL)         | `PWM5` (channel B)   |
+| `I2C0_SDA_PIN`    | `GPIO16`     |                   | `I2C0` (SDA)         | `PWM0` (channel A)   |
+| `I2C0_SCL_PIN`    | `GPIO17`     |                   | `I2C0` (SCL)         | `PWM0` (channel B)   |
+| `ADC0`            | `GPIO26`     |                   | `I2C1` (SDA)         | `PWM5` (channel A)   |
+| `ADC2`            | `GPIO28`     |                   |                      | `PWM6` (channel A)   |
+| `ADC3`            | `GPIO29`     |                   |                      | `PWM6` (channel B)   |
 
 ## Machine Package Docs
 

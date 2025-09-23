@@ -24,36 +24,36 @@ Peripherals:
 
 ## Pins
 
-| Pin               | Hardware pin | Alternative names | PWM                  |
-| ----------------- | ------------ | ----------------- | -------------------- |
-| `D2`              | `GPIO25`     |                   | `PWM4` (channel B)   |
-| `D3`              | `GPIO15`     |                   | `PWM7` (channel B)   |
-| `D4`              | `GPIO16`     |                   | `PWM0` (channel A)   |
-| `D5`              | `GPIO17`     |                   | `PWM0` (channel B)   |
-| `D6`              | `GPIO18`     | `I2C1_SDA_PIN`    | `PWM1` (channel A)   |
-| `D7`              | `GPIO19`     | `I2C1_SCL_PIN`    | `PWM1` (channel B)   |
-| `D8`              | `GPIO20`     |                   | `PWM2` (channel A)   |
-| `D9`              | `GPIO21`     |                   | `PWM2` (channel B)   |
-| `D10`             | `GPIO5`      |                   | `PWM2` (channel B)   |
-| `D11`             | `GPIO7`      | `SPI0_SDO_PIN`    | `PWM3` (channel B)   |
-| `D12`             | `GPIO4`      | `SPI0_SDI_PIN`    | `PWM2` (channel A)   |
-| `D13`             | `GPIO6`      | `LED`, `SPI0_SCK_PIN` | `PWM3` (channel A)   |
-| `D14`             | `GPIO26`     | `A0`, `ADC0`      | `PWM5` (channel A)   |
-| `D15`             | `GPIO27`     | `A1`, `ADC1`      | `PWM5` (channel B)   |
-| `D16`             | `GPIO28`     | `A2`, `ADC2`      | `PWM6` (channel A)   |
-| `D17`             | `GPIO29`     | `A3`, `ADC3`      | `PWM6` (channel B)   |
-| `D18`             | `GPIO12`     | `I2C0_SDA_PIN`    | `PWM6` (channel A)   |
-| `D19`             | `GPIO13`     | `I2C0_SCL_PIN`    | `PWM6` (channel B)   |
-| `SPI1_SCK_PIN`    | `GPIO22`     | `SPI1_SDO_PIN`, `SPI1_SDI_PIN` | `PWM3` (channel A)   |
-| `NINA_SCK`        | `GPIO14`     |                   | `PWM7` (channel A)   |
-| `NINA_SDO`        | `GPIO11`     | `NINA_RTS`        | `PWM5` (channel B)   |
-| `NINA_SDI`        | `GPIO8`      | `NINA_TX`         | `PWM4` (channel A)   |
-| `NINA_CS`         | `GPIO9`      | `NINA_RX`         | `PWM4` (channel B)   |
-| `NINA_ACK`        | `GPIO10`     | `NINA_CTS`        | `PWM5` (channel A)   |
-| `NINA_GPIO0`      | `GPIO2`      |                   | `PWM1` (channel A)   |
-| `NINA_RESETN`     | `GPIO3`      |                   | `PWM1` (channel B)   |
-| `UART0_TX_PIN`    | `GPIO0`      | `UART_TX_PIN`     | `PWM0` (channel A)   |
-| `UART0_RX_PIN`    | `GPIO1`      | `UART_RX_PIN`     | `PWM0` (channel B)   |
+| Pin               | Hardware pin | Alternative names | I2C                  | PWM                  |
+| ----------------- | ------------ | ----------------- | -------------------- | -------------------- |
+| `D2`              | `GPIO25`     |                   |                      | `PWM4` (channel B)   |
+| `D3`              | `GPIO15`     |                   | `I2C1` (SCL)         | `PWM7` (channel B)   |
+| `D4`              | `GPIO16`     |                   | `I2C0` (SDA)         | `PWM0` (channel A)   |
+| `D5`              | `GPIO17`     |                   | `I2C0` (SCL)         | `PWM0` (channel B)   |
+| `D6`              | `GPIO18`     | `I2C1_SDA_PIN`    | `I2C1` (SDA)         | `PWM1` (channel A)   |
+| `D7`              | `GPIO19`     | `I2C1_SCL_PIN`    | `I2C1` (SCL)         | `PWM1` (channel B)   |
+| `D8`              | `GPIO20`     |                   | `I2C0` (SDA)         | `PWM2` (channel A)   |
+| `D9`              | `GPIO21`     |                   | `I2C0` (SCL)         | `PWM2` (channel B)   |
+| `D10`             | `GPIO5`      |                   | `I2C0` (SCL)         | `PWM2` (channel B)   |
+| `D11`             | `GPIO7`      | `SPI0_SDO_PIN`    | `I2C1` (SCL)         | `PWM3` (channel B)   |
+| `D12`             | `GPIO4`      | `SPI0_SDI_PIN`    | `I2C0` (SDA)         | `PWM2` (channel A)   |
+| `D13`             | `GPIO6`      | `LED`, `SPI0_SCK_PIN` | `I2C1` (SDA)         | `PWM3` (channel A)   |
+| `D14`             | `GPIO26`     | `A0`, `ADC0`      | `I2C1` (SDA)         | `PWM5` (channel A)   |
+| `D15`             | `GPIO27`     | `A1`, `ADC1`      | `I2C1` (SCL)         | `PWM5` (channel B)   |
+| `D16`             | `GPIO28`     | `A2`, `ADC2`      |                      | `PWM6` (channel A)   |
+| `D17`             | `GPIO29`     | `A3`, `ADC3`      |                      | `PWM6` (channel B)   |
+| `D18`             | `GPIO12`     | `I2C0_SDA_PIN`    | `I2C0` (SDA)         | `PWM6` (channel A)   |
+| `D19`             | `GPIO13`     | `I2C0_SCL_PIN`    | `I2C0` (SCL)         | `PWM6` (channel B)   |
+| `SPI1_SCK_PIN`    | `GPIO22`     | `SPI1_SDO_PIN`, `SPI1_SDI_PIN` |                      | `PWM3` (channel A)   |
+| `NINA_SCK`        | `GPIO14`     |                   | `I2C1` (SDA)         | `PWM7` (channel A)   |
+| `NINA_SDO`        | `GPIO11`     | `NINA_RTS`        | `I2C1` (SCL)         | `PWM5` (channel B)   |
+| `NINA_SDI`        | `GPIO8`      | `NINA_TX`         | `I2C0` (SDA)         | `PWM4` (channel A)   |
+| `NINA_CS`         | `GPIO9`      | `NINA_RX`         | `I2C0` (SCL)         | `PWM4` (channel B)   |
+| `NINA_ACK`        | `GPIO10`     | `NINA_CTS`        | `I2C1` (SDA)         | `PWM5` (channel A)   |
+| `NINA_GPIO0`      | `GPIO2`      |                   | `I2C1` (SDA)         | `PWM1` (channel A)   |
+| `NINA_RESETN`     | `GPIO3`      |                   | `I2C1` (SCL)         | `PWM1` (channel B)   |
+| `UART0_TX_PIN`    | `GPIO0`      | `UART_TX_PIN`     | `I2C0` (SDA)         | `PWM0` (channel A)   |
+| `UART0_RX_PIN`    | `GPIO1`      | `UART_RX_PIN`     | `I2C0` (SCL)         | `PWM0` (channel B)   |
 
 ## Machine Package Docs
 

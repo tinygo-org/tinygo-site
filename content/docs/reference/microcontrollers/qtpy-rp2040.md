@@ -19,23 +19,23 @@ The [Adafruit QT Py RP2040](https://www.adafruit.com/product/4900) is a tiny dev
 
 ## Pins
 
-| Pin               | Hardware pin | Alternative names | PWM                  |
-| ----------------- | ------------ | ----------------- | -------------------- |
-| `SDA`             | `GPIO24`     | `I2C0_SDA_PIN`, `SDA_PIN`, `SPI1_SDI_PIN` | `PWM4` (channel A)   |
-| `SCL`             | `GPIO25`     | `I2C0_SCL_PIN`, `SCL_PIN`, `SPI1_CS` | `PWM4` (channel B)   |
-| `TX`              | `GPIO20`     | `UART1_TX_PIN`    | `PWM2` (channel A)   |
-| `MO`              | `GPIO3`      | `MOSI`, `SPI0_SDO_PIN` | `PWM1` (channel B)   |
-| `MI`              | `GPIO4`      | `MISO`, `SPI0_SDI_PIN` | `PWM2` (channel A)   |
-| `SCK`             | `GPIO6`      | `SPI0_SCK_PIN`    | `PWM3` (channel A)   |
-| `RX`              | `GPIO5`      | `SPI0_CS`, `UART1_RX_PIN` | `PWM2` (channel B)   |
-| `QT_SCL1`         | `GPIO23`     | `I2C1_QT_SCL_PIN` | `PWM3` (channel B)   |
-| `QT_SDA1`         | `GPIO22`     | `I2C1_QT_SDA_PIN` | `PWM3` (channel A)   |
-| `A0`              | `GPIO29`     | `UART0_RX_PIN`, `UART_RX_PIN`, `ADC3` | `PWM6` (channel B)   |
-| `A1`              | `GPIO28`     | `UART0_TX_PIN`, `UART_TX_PIN`, `ADC2` | `PWM6` (channel A)   |
-| `A2`              | `GPIO27`     | `I2C1_SCL_PIN`, `SPI1_SDO_PIN`, `ADC1` | `PWM5` (channel B)   |
-| `A3`              | `GPIO26`     | `I2C1_SDA_PIN`, `SPI1_SCK_PIN`, `ADC0` | `PWM5` (channel A)   |
-| `NEOPIXEL`        | `GPIO12`     | `WS2812`          | `PWM6` (channel A)   |
-| `NEOPIXEL_POWER`  | `GPIO11`     |                   | `PWM5` (channel B)   |
+| Pin               | Hardware pin | Alternative names | I2C                  | PWM                  |
+| ----------------- | ------------ | ----------------- | -------------------- | -------------------- |
+| `SDA`             | `GPIO24`     | `I2C0_SDA_PIN`, `SDA_PIN`, `SPI1_SDI_PIN` |                      | `PWM4` (channel A)   |
+| `SCL`             | `GPIO25`     | `I2C0_SCL_PIN`, `SCL_PIN`, `SPI1_CS` |                      | `PWM4` (channel B)   |
+| `TX`              | `GPIO20`     | `UART1_TX_PIN`    | `I2C0` (SDA)         | `PWM2` (channel A)   |
+| `MO`              | `GPIO3`      | `MOSI`, `SPI0_SDO_PIN` | `I2C1` (SCL)         | `PWM1` (channel B)   |
+| `MI`              | `GPIO4`      | `MISO`, `SPI0_SDI_PIN` | `I2C0` (SDA)         | `PWM2` (channel A)   |
+| `SCK`             | `GPIO6`      | `SPI0_SCK_PIN`    | `I2C1` (SDA)         | `PWM3` (channel A)   |
+| `RX`              | `GPIO5`      | `SPI0_CS`, `UART1_RX_PIN` | `I2C0` (SCL)         | `PWM2` (channel B)   |
+| `QT_SCL1`         | `GPIO23`     | `I2C1_QT_SCL_PIN` |                      | `PWM3` (channel B)   |
+| `QT_SDA1`         | `GPIO22`     | `I2C1_QT_SDA_PIN` |                      | `PWM3` (channel A)   |
+| `A0`              | `GPIO29`     | `UART0_RX_PIN`, `UART_RX_PIN`, `ADC3` |                      | `PWM6` (channel B)   |
+| `A1`              | `GPIO28`     | `UART0_TX_PIN`, `UART_TX_PIN`, `ADC2` |                      | `PWM6` (channel A)   |
+| `A2`              | `GPIO27`     | `I2C1_SCL_PIN`, `SPI1_SDO_PIN`, `ADC1` | `I2C1` (SCL)         | `PWM5` (channel B)   |
+| `A3`              | `GPIO26`     | `I2C1_SDA_PIN`, `SPI1_SCK_PIN`, `ADC0` | `I2C1` (SDA)         | `PWM5` (channel A)   |
+| `NEOPIXEL`        | `GPIO12`     | `WS2812`          | `I2C0` (SDA)         | `PWM6` (channel A)   |
+| `NEOPIXEL_POWER`  | `GPIO11`     |                   | `I2C1` (SCL)         | `PWM5` (channel B)   |
 
 ## Machine Package Docs
 

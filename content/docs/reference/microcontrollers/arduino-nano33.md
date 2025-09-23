@@ -23,41 +23,41 @@ Peripherals:
 
 ## Pins
 
-| Pin               | Hardware pin | Alternative names | PWM                  |
-| ----------------- | ------------ | ----------------- | -------------------- |
-| `RX0`             | `PB23`       |                   |                      |
-| `TX1`             | `PB22`       |                   |                      |
-| `D2`              | `PB10`       |                   | `TCC0` (channel 0)   |
-| `D3`              | `PB11`       |                   | `TCC0` (channel 1)   |
-| `D4`              | `PA07`       |                   | `TCC1` (channel 1)   |
-| `D5`              | `PA05`       |                   | `TCC0` (channel 1)   |
-| `D6`              | `PA04`       |                   | `TCC0` (channel 0)   |
-| `D7`              | `PA06`       |                   | `TCC1` (channel 0)   |
-| `D8`              | `PA18`       |                   | `TCC0` (channel 2)   |
-| `D9`              | `PA20`       |                   | `TCC0` (channel 2)   |
-| `D10`             | `PA21`       |                   | `TCC0` (channel 3)   |
-| `D11`             | `PA16`       | `SPI0_SDO_PIN`    | `TCC2` (channel 0), `TCC0` (channel 2) |
-| `D12`             | `PA19`       | `SPI0_SDI_PIN`    | `TCC0` (channel 3)   |
-| `D13`             | `PA17`       | `LED`, `SPI0_SCK_PIN` | `TCC2` (channel 1), `TCC0` (channel 3) |
-| `A0`              | `PA02`       |                   |                      |
-| `A1`              | `PB02`       |                   |                      |
-| `A2`              | `PA11`       |                   | `TCC1` (channel 1), `TCC0` (channel 3) |
-| `A3`              | `PA10`       | `I2S_SCK_PIN`     | `TCC1` (channel 0), `TCC0` (channel 2) |
-| `A4`              | `PB08`       | `SDA_PIN`         |                      |
-| `A5`              | `PB09`       | `SCL_PIN`         |                      |
-| `A6`              | `PA09`       |                   | `TCC0` (channel 1), `TCC1` (channel 3) |
-| `A7`              | `PB03`       |                   |                      |
-| `USBCDC_DM_PIN`   | `PA24`       |                   | `TCC1` (channel 2)   |
-| `USBCDC_DP_PIN`   | `PA25`       |                   | `TCC1` (channel 3)   |
-| `UART_TX_PIN`     | `PA22`       |                   | `TCC0` (channel 0)   |
-| `UART_RX_PIN`     | `PA23`       |                   | `TCC0` (channel 1)   |
-| `NINA_SDO`        | `PA12`       | `NINA_TX`         | `TCC2` (channel 0), `TCC0` (channel 2) |
-| `NINA_SDI`        | `PA13`       | `NINA_RX`         | `TCC2` (channel 1), `TCC0` (channel 3) |
-| `NINA_CS`         | `PA14`       | `NINA_RTS`        | `TCC0` (channel 0)   |
-| `NINA_SCK`        | `PA15`       | `NINA_CTS`        | `TCC0` (channel 1)   |
-| `NINA_GPIO0`      | `PA27`       |                   |                      |
-| `NINA_RESETN`     | `PA08`       | `I2S_SDO_PIN`     | `TCC0` (channel 0), `TCC1` (channel 2) |
-| `NINA_ACK`        | `PA28`       |                   |                      |
+| Pin               | Hardware pin | Alternative names | I2C                  | PWM                  |
+| ----------------- | ------------ | ----------------- | -------------------- | -------------------- |
+| `RX0`             | `PB23`       |                   |                      |                      |
+| `TX1`             | `PB22`       |                   |                      |                      |
+| `D2`              | `PB10`       |                   |                      | `TCC0` (channel 0)   |
+| `D3`              | `PB11`       |                   |                      | `TCC0` (channel 1)   |
+| `D4`              | `PA07`       |                   |                      | `TCC1` (channel 1)   |
+| `D5`              | `PA05`       |                   |                      | `TCC0` (channel 1)   |
+| `D6`              | `PA04`       |                   |                      | `TCC0` (channel 0)   |
+| `D7`              | `PA06`       |                   |                      | `TCC1` (channel 0)   |
+| `D8`              | `PA18`       |                   |                      | `TCC0` (channel 2)   |
+| `D9`              | `PA20`       |                   |                      | `TCC0` (channel 2)   |
+| `D10`             | `PA21`       |                   |                      | `TCC0` (channel 3)   |
+| `D11`             | `PA16`       | `SPI0_SDO_PIN`    |                      | `TCC2` (channel 0), `TCC0` (channel 2) |
+| `D12`             | `PA19`       | `SPI0_SDI_PIN`    |                      | `TCC0` (channel 3)   |
+| `D13`             | `PA17`       | `LED`, `SPI0_SCK_PIN` |                      | `TCC2` (channel 1), `TCC0` (channel 3) |
+| `A0`              | `PA02`       |                   |                      |                      |
+| `A1`              | `PB02`       |                   |                      |                      |
+| `A2`              | `PA11`       |                   |                      | `TCC1` (channel 1), `TCC0` (channel 3) |
+| `A3`              | `PA10`       | `I2S_SCK_PIN`     |                      | `TCC1` (channel 0), `TCC0` (channel 2) |
+| `A4`              | `PB08`       | `SDA_PIN`         | `I2C0` (SDA)         |                      |
+| `A5`              | `PB09`       | `SCL_PIN`         | `I2C0` (SCL)         |                      |
+| `A6`              | `PA09`       |                   |                      | `TCC0` (channel 1), `TCC1` (channel 3) |
+| `A7`              | `PB03`       |                   |                      |                      |
+| `USBCDC_DM_PIN`   | `PA24`       |                   |                      | `TCC1` (channel 2)   |
+| `USBCDC_DP_PIN`   | `PA25`       |                   |                      | `TCC1` (channel 3)   |
+| `UART_TX_PIN`     | `PA22`       |                   |                      | `TCC0` (channel 0)   |
+| `UART_RX_PIN`     | `PA23`       |                   |                      | `TCC0` (channel 1)   |
+| `NINA_SDO`        | `PA12`       | `NINA_TX`         | `I2C0` (SDA)         | `TCC2` (channel 0), `TCC0` (channel 2) |
+| `NINA_SDI`        | `PA13`       | `NINA_RX`         | `I2C0` (SCL)         | `TCC2` (channel 1), `TCC0` (channel 3) |
+| `NINA_CS`         | `PA14`       | `NINA_RTS`        |                      | `TCC0` (channel 0)   |
+| `NINA_SCK`        | `PA15`       | `NINA_CTS`        |                      | `TCC0` (channel 1)   |
+| `NINA_GPIO0`      | `PA27`       |                   |                      |                      |
+| `NINA_RESETN`     | `PA08`       | `I2S_SDO_PIN`     |                      | `TCC0` (channel 0), `TCC1` (channel 2) |
+| `NINA_ACK`        | `PA28`       |                   |                      |                      |
 
 ## Machine Package Docs
 

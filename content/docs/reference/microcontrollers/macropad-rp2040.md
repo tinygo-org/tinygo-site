@@ -19,36 +19,36 @@ The [Adafruit MacroPad RP2040](https://www.adafruit.com/product/5100) is a tiny 
 
 ## Pins
 
-| Pin               | Hardware pin | Alternative names | PWM                  |
-| ----------------- | ------------ | ----------------- | -------------------- |
-| `SWITCH`          | `GPIO0`      | `BUTTON`, `UART0_TX_PIN`, `UART_TX_PIN` | `PWM0` (channel A)   |
-| `KEY1`            | `GPIO1`      | `UART0_RX_PIN`, `UART_RX_PIN` | `PWM0` (channel B)   |
-| `KEY2`            | `GPIO2`      |                   | `PWM1` (channel A)   |
-| `KEY3`            | `GPIO3`      |                   | `PWM1` (channel B)   |
-| `KEY4`            | `GPIO4`      |                   | `PWM2` (channel A)   |
-| `KEY5`            | `GPIO5`      |                   | `PWM2` (channel B)   |
-| `KEY6`            | `GPIO6`      |                   | `PWM3` (channel A)   |
-| `KEY7`            | `GPIO7`      |                   | `PWM3` (channel B)   |
-| `KEY8`            | `GPIO8`      |                   | `PWM4` (channel A)   |
-| `KEY9`            | `GPIO9`      |                   | `PWM4` (channel B)   |
-| `KEY10`           | `GPIO10`     |                   | `PWM5` (channel A)   |
-| `KEY11`           | `GPIO11`     |                   | `PWM5` (channel B)   |
-| `KEY12`           | `GPIO12`     |                   | `PWM6` (channel A)   |
-| `LED`             | `GPIO13`     |                   | `PWM6` (channel B)   |
-| `SPEAKER_ENABLE`  | `GPIO14`     |                   | `PWM7` (channel A)   |
-| `SPEAKER`         | `GPIO16`     |                   | `PWM0` (channel A)   |
-| `ROT_A`           | `GPIO18`     |                   | `PWM1` (channel A)   |
-| `ROT_B`           | `GPIO17`     |                   | `PWM0` (channel B)   |
-| `OLED_CS`         | `GPIO22`     |                   | `PWM3` (channel A)   |
-| `OLED_RST`        | `GPIO23`     |                   | `PWM3` (channel B)   |
-| `OLED_DC`         | `GPIO24`     |                   | `PWM4` (channel A)   |
-| `NEOPIXEL`        | `GPIO19`     | `WS2812`          | `PWM1` (channel B)   |
-| `I2C0_SDA_PIN`    | `GPIO20`     |                   | `PWM2` (channel A)   |
-| `I2C0_SCL_PIN`    | `GPIO21`     |                   | `PWM2` (channel B)   |
-| `SPI1_SCK_PIN`    | `GPIO26`     | `ADC0`            | `PWM5` (channel A)   |
-| `SPI1_SDO_PIN`    | `GPIO27`     | `ADC1`            | `PWM5` (channel B)   |
-| `SPI1_SDI_PIN`    | `GPIO28`     | `ADC2`            | `PWM6` (channel A)   |
-| `ADC3`            | `GPIO29`     |                   | `PWM6` (channel B)   |
+| Pin               | Hardware pin | Alternative names | I2C                  | PWM                  |
+| ----------------- | ------------ | ----------------- | -------------------- | -------------------- |
+| `SWITCH`          | `GPIO0`      | `BUTTON`, `UART0_TX_PIN`, `UART_TX_PIN` | `I2C0` (SDA)         | `PWM0` (channel A)   |
+| `KEY1`            | `GPIO1`      | `UART0_RX_PIN`, `UART_RX_PIN` | `I2C0` (SCL)         | `PWM0` (channel B)   |
+| `KEY2`            | `GPIO2`      |                   | `I2C1` (SDA)         | `PWM1` (channel A)   |
+| `KEY3`            | `GPIO3`      |                   | `I2C1` (SCL)         | `PWM1` (channel B)   |
+| `KEY4`            | `GPIO4`      |                   | `I2C0` (SDA)         | `PWM2` (channel A)   |
+| `KEY5`            | `GPIO5`      |                   | `I2C0` (SCL)         | `PWM2` (channel B)   |
+| `KEY6`            | `GPIO6`      |                   | `I2C1` (SDA)         | `PWM3` (channel A)   |
+| `KEY7`            | `GPIO7`      |                   | `I2C1` (SCL)         | `PWM3` (channel B)   |
+| `KEY8`            | `GPIO8`      |                   | `I2C0` (SDA)         | `PWM4` (channel A)   |
+| `KEY9`            | `GPIO9`      |                   | `I2C0` (SCL)         | `PWM4` (channel B)   |
+| `KEY10`           | `GPIO10`     |                   | `I2C1` (SDA)         | `PWM5` (channel A)   |
+| `KEY11`           | `GPIO11`     |                   | `I2C1` (SCL)         | `PWM5` (channel B)   |
+| `KEY12`           | `GPIO12`     |                   | `I2C0` (SDA)         | `PWM6` (channel A)   |
+| `LED`             | `GPIO13`     |                   | `I2C0` (SCL)         | `PWM6` (channel B)   |
+| `SPEAKER_ENABLE`  | `GPIO14`     |                   | `I2C1` (SDA)         | `PWM7` (channel A)   |
+| `SPEAKER`         | `GPIO16`     |                   | `I2C0` (SDA)         | `PWM0` (channel A)   |
+| `ROT_A`           | `GPIO18`     |                   | `I2C1` (SDA)         | `PWM1` (channel A)   |
+| `ROT_B`           | `GPIO17`     |                   | `I2C0` (SCL)         | `PWM0` (channel B)   |
+| `OLED_CS`         | `GPIO22`     |                   |                      | `PWM3` (channel A)   |
+| `OLED_RST`        | `GPIO23`     |                   |                      | `PWM3` (channel B)   |
+| `OLED_DC`         | `GPIO24`     |                   |                      | `PWM4` (channel A)   |
+| `NEOPIXEL`        | `GPIO19`     | `WS2812`          | `I2C1` (SCL)         | `PWM1` (channel B)   |
+| `I2C0_SDA_PIN`    | `GPIO20`     |                   | `I2C0` (SDA)         | `PWM2` (channel A)   |
+| `I2C0_SCL_PIN`    | `GPIO21`     |                   | `I2C0` (SCL)         | `PWM2` (channel B)   |
+| `SPI1_SCK_PIN`    | `GPIO26`     | `ADC0`            | `I2C1` (SDA)         | `PWM5` (channel A)   |
+| `SPI1_SDO_PIN`    | `GPIO27`     | `ADC1`            | `I2C1` (SCL)         | `PWM5` (channel B)   |
+| `SPI1_SDI_PIN`    | `GPIO28`     | `ADC2`            |                      | `PWM6` (channel A)   |
+| `ADC3`            | `GPIO29`     |                   |                      | `PWM6` (channel B)   |
 
 ## Machine Package Docs
 

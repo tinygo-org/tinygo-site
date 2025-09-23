@@ -19,36 +19,36 @@ The [Raspberry Pi Pico 2](https://www.raspberrypi.com/products/raspberry-pi-pico
 
 ## Pins
 
-| Pin               | Hardware pin | Alternative names | PWM                  |
-| ----------------- | ------------ | ----------------- | -------------------- |
-| `GP0`             | `GPIO0`      | `UART0_TX_PIN`, `UART_TX_PIN` | `PWM0` (channel A)   |
-| `GP1`             | `GPIO1`      | `UART0_RX_PIN`, `UART_RX_PIN` | `PWM0` (channel B)   |
-| `GP2`             | `GPIO2`      | `I2C1_SDA_PIN`    | `PWM1` (channel A)   |
-| `GP3`             | `GPIO3`      | `I2C1_SCL_PIN`    | `PWM1` (channel B)   |
-| `GP4`             | `GPIO4`      | `I2C0_SDA_PIN`    | `PWM2` (channel A)   |
-| `GP5`             | `GPIO5`      | `I2C0_SCL_PIN`    | `PWM2` (channel B)   |
-| `GP6`             | `GPIO6`      |                   | `PWM3` (channel A)   |
-| `GP7`             | `GPIO7`      |                   | `PWM3` (channel B)   |
-| `GP8`             | `GPIO8`      | `UART1_TX_PIN`    | `PWM4` (channel A)   |
-| `GP9`             | `GPIO9`      | `UART1_RX_PIN`    | `PWM4` (channel B)   |
-| `GP10`            | `GPIO10`     | `SPI1_SCK_PIN`    | `PWM5` (channel A)   |
-| `GP11`            | `GPIO11`     | `SPI1_SDO_PIN`    | `PWM5` (channel B)   |
-| `GP12`            | `GPIO12`     | `SPI1_SDI_PIN`    | `PWM6` (channel A)   |
-| `GP13`            | `GPIO13`     |                   | `PWM6` (channel B)   |
-| `GP14`            | `GPIO14`     |                   | `PWM7` (channel A)   |
-| `GP15`            | `GPIO15`     |                   | `PWM7` (channel B)   |
-| `GP16`            | `GPIO16`     | `SPI0_SDI_PIN`    | `PWM0` (channel A)   |
-| `GP17`            | `GPIO17`     |                   | `PWM0` (channel B)   |
-| `GP18`            | `GPIO18`     | `SPI0_SCK_PIN`    | `PWM1` (channel A)   |
-| `GP19`            | `GPIO19`     | `SPI0_SDO_PIN`    | `PWM1` (channel B)   |
-| `GP20`            | `GPIO20`     |                   | `PWM2` (channel A)   |
-| `GP21`            | `GPIO21`     |                   | `PWM2` (channel B)   |
-| `GP22`            | `GPIO22`     |                   | `PWM3` (channel A)   |
-| `GP26`            | `GPIO26`     | `ADC0`            | `PWM5` (channel A)   |
-| `GP27`            | `GPIO27`     | `ADC1`            | `PWM5` (channel B)   |
-| `GP28`            | `GPIO28`     | `ADC2`            | `PWM6` (channel A)   |
-| `LED`             | `GPIO25`     |                   | `PWM4` (channel B)   |
-| `ADC3`            | `GPIO29`     |                   | `PWM6` (channel B)   |
+| Pin               | Hardware pin | Alternative names | I2C                  | PWM                  |
+| ----------------- | ------------ | ----------------- | -------------------- | -------------------- |
+| `GP0`             | `GPIO0`      | `UART0_TX_PIN`, `UART_TX_PIN` | `I2C0` (SDA)         | `PWM0` (channel A)   |
+| `GP1`             | `GPIO1`      | `UART0_RX_PIN`, `UART_RX_PIN` | `I2C0` (SCL)         | `PWM0` (channel B)   |
+| `GP2`             | `GPIO2`      | `I2C1_SDA_PIN`    | `I2C1` (SDA)         | `PWM1` (channel A)   |
+| `GP3`             | `GPIO3`      | `I2C1_SCL_PIN`    | `I2C1` (SCL)         | `PWM1` (channel B)   |
+| `GP4`             | `GPIO4`      | `I2C0_SDA_PIN`    | `I2C0` (SDA)         | `PWM2` (channel A)   |
+| `GP5`             | `GPIO5`      | `I2C0_SCL_PIN`    | `I2C0` (SCL)         | `PWM2` (channel B)   |
+| `GP6`             | `GPIO6`      |                   | `I2C1` (SDA)         | `PWM3` (channel A)   |
+| `GP7`             | `GPIO7`      |                   | `I2C1` (SCL)         | `PWM3` (channel B)   |
+| `GP8`             | `GPIO8`      | `UART1_TX_PIN`    | `I2C0` (SDA)         | `PWM4` (channel A)   |
+| `GP9`             | `GPIO9`      | `UART1_RX_PIN`    | `I2C0` (SCL)         | `PWM4` (channel B)   |
+| `GP10`            | `GPIO10`     | `SPI1_SCK_PIN`    | `I2C1` (SDA)         | `PWM5` (channel A)   |
+| `GP11`            | `GPIO11`     | `SPI1_SDO_PIN`    | `I2C1` (SCL)         | `PWM5` (channel B)   |
+| `GP12`            | `GPIO12`     | `SPI1_SDI_PIN`    | `I2C0` (SDA)         | `PWM6` (channel A)   |
+| `GP13`            | `GPIO13`     |                   | `I2C0` (SCL)         | `PWM6` (channel B)   |
+| `GP14`            | `GPIO14`     |                   | `I2C1` (SDA)         | `PWM7` (channel A)   |
+| `GP15`            | `GPIO15`     |                   | `I2C1` (SCL)         | `PWM7` (channel B)   |
+| `GP16`            | `GPIO16`     | `SPI0_SDI_PIN`    | `I2C0` (SDA)         | `PWM0` (channel A)   |
+| `GP17`            | `GPIO17`     |                   | `I2C0` (SCL)         | `PWM0` (channel B)   |
+| `GP18`            | `GPIO18`     | `SPI0_SCK_PIN`    | `I2C1` (SDA)         | `PWM1` (channel A)   |
+| `GP19`            | `GPIO19`     | `SPI0_SDO_PIN`    | `I2C1` (SCL)         | `PWM1` (channel B)   |
+| `GP20`            | `GPIO20`     |                   | `I2C0` (SDA)         | `PWM2` (channel A)   |
+| `GP21`            | `GPIO21`     |                   | `I2C0` (SCL)         | `PWM2` (channel B)   |
+| `GP22`            | `GPIO22`     |                   |                      | `PWM3` (channel A)   |
+| `GP26`            | `GPIO26`     | `ADC0`            | `I2C1` (SDA)         | `PWM5` (channel A)   |
+| `GP27`            | `GPIO27`     | `ADC1`            | `I2C1` (SCL)         | `PWM5` (channel B)   |
+| `GP28`            | `GPIO28`     | `ADC2`            |                      | `PWM6` (channel A)   |
+| `LED`             | `GPIO25`     |                   |                      | `PWM4` (channel B)   |
+| `ADC3`            | `GPIO29`     |                   |                      | `PWM6` (channel B)   |
 
 ## Machine Package Docs
 
