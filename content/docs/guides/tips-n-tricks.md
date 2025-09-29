@@ -8,8 +8,7 @@ description: |
 
 ## Ensure Concurrency
 
-TinyGo code runs on a single core, in a single thread (think `GOMAXPROCS=1`).
-Since scheduling in TinyGo is [cooperative](https://en.wikipedia.org/wiki/Cooperative_multitasking), a goroutine that never does IO or other blocking calls (f.ex. `time.Sleep()`) will lock the single available thread only for itself and never allow other goroutines to execute. In such cases, you can use `runtime.Gosched()` as a workaround.
+In many cases (especially on microcontrollers), TinyGo is running on a single core with only [cooperative scheduling](https://en.wikipedia.org/wiki/Cooperative_multitasking). This means that a goroutine that never does IO or other blocking calls (f.ex. `time.Sleep()`) will lock the single available thread only for itself and never allow other goroutines to execute. In such cases, you can use `runtime.Gosched()` as a workaround.
 
 ```
 package main
