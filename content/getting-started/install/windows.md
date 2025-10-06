@@ -95,6 +95,16 @@ Upgrading to the latest versions can be as easy as:
     > set PATH=%PATH%;"C:\tinygo\bin";
     ```
 
+- The above is fine for testing, but to change your PATH in a way that survives reboots, you'll need to use a different method, e.g.
+
+    - Click the Start button or press the Windows key.
+    - In the search bar, type env.
+    - From the search results, choose the option that says "Edit the system environment variables." This will open the System Properties window.
+    - In the System Properties window, navigate to the "Advanced" tab and then click the "Environment Variables..." button. This will open the Environment Variables window.
+    - Select PATH in User Variables and click edit, then add C:\tinygo\bin to the list.
+    - Click "OK" on all open dialog boxes to save them
+    - Reboot
+
 - Now you should be able to run the TinyGo command:
 
     ```
