@@ -24,7 +24,7 @@ compress/zlib |  <span style="color: green">✔</span> yes  |  <span style="colo
 container/heap |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 container/list |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 container/ring |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
-context |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
+context |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#context)  | 
 crypto |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#crypto)  | 
 crypto/aes |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#cryptoaes)  | 
 crypto/cipher |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#cryptocipher)  | 
@@ -38,7 +38,7 @@ crypto/fips140 |  <span style="color: green">✔</span> yes  |  <span style="col
 crypto/hkdf |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 crypto/hmac |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#cryptohmac)  | 
 crypto/md5 |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
-crypto/mlkem |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#cryptomlkem)  | 
+crypto/mlkem |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 crypto/pbkdf2 |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 crypto/rand |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 crypto/rc4 |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#cryptorc4)  | 
@@ -187,8 +187,8 @@ The compiler gave the following error when running the tests for this package:
 
 
     [tinygo: panic at <Go interface method>]
-    panic: runtime error at 0x000000000027ce50: nil pointer dereference
-    FAIL	archive/tar	1.265s
+    panic: runtime error at 0x000000000027f886: nil pointer dereference
+    FAIL	archive/tar	1.413s
 
 
 
@@ -206,8 +206,8 @@ The compiler gave the following error when running the tests for this package:
 
     FAIL	bufio	0.000s
     # bufio_test
-    /home/ron/.gvm/gos/go1.25/src/bufio/net_test.go:31:21: undefined: net.ListenUnix
-    /home/ron/.gvm/gos/go1.25/src/bufio/net_test.go:70:25: undefined: net.DialUnix
+    /home/ron/.gvm/gos/go1.25.5/src/bufio/net_test.go:31:21: undefined: net.ListenUnix
+    /home/ron/.gvm/gos/go1.25.5/src/bufio/net_test.go:70:25: undefined: net.DialUnix
 
 
 
@@ -223,19 +223,19 @@ The compiler gave the following error when running the tests for this package:
 
     FAIL	bytes	0.000s
     # bytes_test
-    /home/ron/.gvm/gos/go1.25/src/math/rand/rng.go:239:6: interp: running for more than 3m0s, timing out (executed calls: 459674)
-      %0 = icmp eq ptr %rng, null, !dbg !19916
+    /home/ron/.gvm/gos/go1.25.5/src/math/rand/rng.go:239:6: interp: running for more than 3m0s, timing out (executed calls: 582422)
+      %0 = icmp eq ptr %rng, null, !dbg !19942
     
     traceback:
-    /home/ron/.gvm/gos/go1.25/src/math/rand/rng.go:239:6:
-      %0 = icmp eq ptr %rng, null, !dbg !19916
-    /home/ron/.gvm/gos/go1.25/src/math/rand/rng.go:234:25:
-      %0 = call i64 @"(*math/rand.rngSource).Uint64"(ptr %rng, ptr undef), !dbg !19913
-    /home/ron/.gvm/gos/go1.25/src/math/rand/rand.go:96:50:
-      %4 = call i64 @"interface:{Int63:func:{}{basic:int64},Seed:func:{basic:int64}{}}.Int63$invoke"(ptr %invoke.func.value, ptr %invoke.func.typecode, ptr undef), !dbg !19907
-    /home/ron/.gvm/gos/go1.25/src/math/rand/rand.go:110:52:
-      %0 = call i64 @"(*math/rand.Rand).Int63"(ptr %r, ptr undef), !dbg !19906
-    /home/ron/.gvm/gos/go1.25/src/math/rand/rand.go:145:14:
+    /home/ron/.gvm/gos/go1.25.5/src/math/rand/rng.go:239:6:
+      %0 = icmp eq ptr %rng, null, !dbg !19942
+    /home/ron/.gvm/gos/go1.25.5/src/math/rand/rng.go:234:25:
+      %0 = call i64 @"(*math/rand.rngSource).Uint64"(ptr %rng, ptr undef), !dbg !19939
+    /home/ron/.gvm/gos/go1.25.5/src/math/rand/rand.go:96:50:
+      %4 = call i64 @"interface:{Int63:func:{}{basic:int64},Seed:func:{basic:int64}{}}.Int63$invoke"(ptr %invoke.func.value, ptr %invoke.func.typecode, ptr undef), !dbg !19933
+    /home/ron/.gvm/gos/go1.25.5/src/math/rand/rand.go:110:52:
+      %0 = call i64 @"(*math/rand.Rand).Int63"(ptr %r, ptr undef), !dbg !19932
+    /home/ron/.gvm/gos/go1.25.5/src/math/rand/rand.go:145:14:
     [...more lines following...]
 
 
@@ -268,7 +268,7 @@ The compiler gave the following error when running the tests for this package:
         expected to find some .gz files under GOROOT
         FailNow is incomplete, requires runtime.Goexit()
     FAIL
-    FAIL	compress/gzip	0.926s
+    FAIL	compress/gzip	0.551s
 
 
 
@@ -281,6 +281,21 @@ The compiler gave the following error when running the tests for this package:
 
 
 
+
+
+
+
+## context
+
+
+
+The compiler gave the following error when running the tests for this package:
+
+
+    --- FAIL: TestCauseRace (0.00s)
+        Cause returned context canceled, want TestCauseRace
+    FAIL
+    FAIL	context	0.024s
 
 
 
@@ -295,8 +310,8 @@ The compiler gave the following error when running the tests for this package:
 
 
     [tinygo: panic at <Go interface method>]
-    panic: runtime error at 0x0000000000265cab: nil pointer dereference
-    FAIL	crypto	1.139s
+    panic: runtime error at 0x00000000002662d7: nil pointer dereference
+    FAIL	crypto	1.120s
 
 
 
@@ -311,7 +326,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).Method()
-    FAIL	crypto/aes	1.140s
+    FAIL	crypto/aes	1.091s
 
 
 
@@ -325,9 +340,8 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    FAIL	crypto/cipher	0.000s
-    /home/ron/.gvm/gos/go1.25/src/crypto/internal/sysrand/rand.go:48: linker could not find symbol crypto/internal/sysrand.fatal
-    /home/ron/Development/tinygo/tinygo-122/src/internal/syscall/unix/getrandom.go:26: linker could not find symbol runtime.vgetrandom
+    panic: unimplemented: (reflect.Type).Method()
+    FAIL	crypto/cipher	1.097s
 
 
 
@@ -346,9 +360,9 @@ The compiler gave the following error when running the tests for this package:
 
 
     --- FAIL: TestLinker (0.00s)
-        skipping test: 'go build' unavailable: /home/ron/.gvm/gos/go1.25/bin/go tool -n compile: files setting not implemented
+        skipping test: 'go build' unavailable: /home/ron/.gvm/gos/go1.25.5/bin/go tool -n compile: files setting not implemented
         SkipNow is incomplete, requires runtime.Goexit()
-        skipping test: 'go build' unavailable: /home/ron/.gvm/gos/go1.25/bin/go tool -n compile: files setting not implemented
+        skipping test: 'go build' unavailable: /home/ron/.gvm/gos/go1.25.5/bin/go tool -n compile: files setting not implemented
         SkipNow is incomplete, requires runtime.Goexit()
         platform cannot run go tool
         FailNow is incomplete, requires runtime.Goexit()
@@ -374,9 +388,9 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    [tinygo: panic at /home/ron/.gvm/gos/go1.25/src/crypto/ecdsa/ecdsa_test.go:563:6]
-    panic: runtime error at 0x00000000002bd314: index out of range
-    FAIL	crypto/ecdsa	1.968s
+    [tinygo: panic at /home/ron/.gvm/gos/go1.25.5/src/crypto/ecdsa/ecdsa_test.go:563:6]
+    panic: runtime error at 0x00000000002bf5e1: index out of range
+    FAIL	crypto/ecdsa	1.970s
 
 
 
@@ -391,7 +405,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     --- FAIL: TestEd25519Vectors (0.00s)
-        skipping test: 'go build' unavailable: /home/ron/.gvm/gos/go1.25/bin/go tool -n compile: files setting not implemented
+        skipping test: 'go build' unavailable: /home/ron/.gvm/gos/go1.25.5/bin/go tool -n compile: files setting not implemented
         SkipNow is incomplete, requires runtime.Goexit()
         platform cannot run go tool
         FailNow is incomplete, requires runtime.Goexit()
@@ -426,25 +440,11 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).Method()
-    FAIL	crypto/hmac	1.145s
+    FAIL	crypto/hmac	1.141s
 
 
 
 
-
-
-
-
-## crypto/mlkem
-
-
-
-The compiler gave the following error when running the tests for this package:
-
-
-    FAIL	crypto/mlkem	0.000s
-    /home/ron/.gvm/gos/go1.25/src/crypto/internal/sysrand/rand.go:48: linker could not find symbol crypto/internal/sysrand.fatal
-    /home/ron/Development/tinygo/tinygo-122/src/internal/syscall/unix/getrandom.go:26: linker could not find symbol runtime.vgetrandom
 
 
 
@@ -462,9 +462,9 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    [tinygo: panic at /home/ron/.gvm/gos/go1.25/src/crypto/rc4/rc4.go]
-    panic: runtime error at 0x000000000025dd2d: index out of range
-    FAIL	crypto/rc4	1.171s
+    [tinygo: panic at /home/ron/.gvm/gos/go1.25.5/src/crypto/rc4/rc4.go]
+    panic: runtime error at 0x00000000002607c7: index out of range
+    FAIL	crypto/rc4	1.140s
 
 
 
@@ -478,9 +478,8 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    FAIL	crypto/rsa	0.000s
-    /home/ron/.gvm/gos/go1.25/src/crypto/internal/sysrand/rand.go:48: linker could not find symbol crypto/internal/sysrand.fatal
-    /home/ron/Development/tinygo/tinygo-122/src/internal/syscall/unix/getrandom.go:26: linker could not find symbol runtime.vgetrandom
+    panic: unimplemented: (reflect.Type).NumOut()
+    FAIL	crypto/rsa	1.101s
 
 
 
@@ -497,7 +496,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).Method()
-    FAIL	crypto/sha256	1.171s
+    FAIL	crypto/sha256	1.165s
 
 
 
@@ -514,7 +513,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).Method()
-    FAIL	crypto/sha512	1.937s
+    FAIL	crypto/sha512	2.168s
 
 
 
@@ -529,7 +528,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).NumIn()
-    FAIL	crypto/subtle	1.112s
+    FAIL	crypto/subtle	2.273s
 
 
 
@@ -547,7 +546,7 @@ The compiler gave the following error when running the tests for this package:
 
     FAIL	crypto/x509	0.000s
     # crypto/x509_test
-    /home/ron/.gvm/gos/go1.25/src/crypto/x509/hybrid_pool_test.go:63:17: c.ConnectionState undefined (type *net.TLSConn has no field or method ConnectionState)
+    /home/ron/.gvm/gos/go1.25.5/src/crypto/x509/hybrid_pool_test.go:63:17: c.ConnectionState undefined (type *net.TLSConn has no field or method ConnectionState)
 
 
 
@@ -565,17 +564,7 @@ The compiler gave the following error when running the tests for this package:
 
     FAIL	database/sql	0.000s
     # database/sql
-    /home/ron/.gvm/gos/go1.25/src/database/sql/sql_test.go:1378:11: t.Context undefined (type *testing.T has no field or method Context, but does have unexported field context)
-    /home/ron/.gvm/gos/go1.25/src/database/sql/sql_test.go:1405:11: t.Context undefined (type *testing.T has no field or method Context, but does have unexported field context)
-    /home/ron/.gvm/gos/go1.25/src/database/sql/sql_test.go:1520:13: t.Context undefined (type *testing.T has no field or method Context, but does have unexported field context)
-    /home/ron/.gvm/gos/go1.25/src/database/sql/sql_test.go:1548:11: t.Context undefined (type *testing.T has no field or method Context, but does have unexported field context)
-    /home/ron/.gvm/gos/go1.25/src/database/sql/sql_test.go:2793:11: t.Context undefined (type *testing.T has no field or method Context, but does have unexported field context)
-    /home/ron/.gvm/gos/go1.25/src/database/sql/sql_test.go:2934:11: t.Context undefined (type *testing.T has no field or method Context, but does have unexported field context)
-    /home/ron/.gvm/gos/go1.25/src/database/sql/sql_test.go:3784:11: t.Context undefined (type *testing.T has no field or method Context, but does have unexported field context)
-    /home/ron/.gvm/gos/go1.25/src/database/sql/sql_test.go:4139:11: t.Context undefined (type *testing.T has no field or method Context, but does have unexported field context)
-    /home/ron/.gvm/gos/go1.25/src/database/sql/sql_test.go:4187:11: t.Context undefined (type *testing.T has no field or method Context, but does have unexported field context)
-    /home/ron/.gvm/gos/go1.25/src/database/sql/sql_test.go:4298:11: t.Context undefined (type *testing.T has no field or method Context, but does have unexported field context)
-    /home/ron/.gvm/gos/go1.25/src/database/sql/sql_test.go:4840:4: b.SetParallelism undefined (type *testing.B has no field or method SetParallelism)
+    /home/ron/.gvm/gos/go1.25.5/src/database/sql/sql_test.go:4840:4: b.SetParallelism undefined (type *testing.B has no field or method SetParallelism)
 
 
 
@@ -592,7 +581,7 @@ The compiler gave the following error when this package was imported:
 
 
     # debug/buildinfo
-    /home/ron/.gvm/gos/go1.25/src/debug/buildinfo/buildinfo.go:93:19: undefined: debug.ParseBuildInfo
+    /home/ron/.gvm/gos/go1.25.5/src/debug/buildinfo/buildinfo.go:93:19: undefined: debug.ParseBuildInfo
 
 
 
@@ -610,9 +599,9 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when running the tests for this package:
 
 
-    [tinygo: panic at /home/ron/.gvm/gos/go1.25/src/debug/elf/file.go:129:5]
-    panic: runtime error at 0x000000000026c8de: nil pointer dereference
-    FAIL	debug/gosym	1.203s
+    [tinygo: panic at /home/ron/.gvm/gos/go1.25.5/src/debug/elf/file.go:129:5]
+    panic: runtime error at 0x000000000026cff6: nil pointer dereference
+    FAIL	debug/gosym	1.167s
 
 
 
@@ -628,9 +617,9 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    [tinygo: panic at /home/ron/.gvm/gos/go1.25/src/debug/pe/file_test.go]
-    panic: runtime error at 0x0000000000289e3d: index out of range
-    FAIL	debug/pe	1.191s
+    [tinygo: panic at /home/ron/.gvm/gos/go1.25.5/src/debug/pe/file_test.go]
+    panic: runtime error at 0x000000000028a7f4: index out of range
+    FAIL	debug/pe	1.122s
 
 
 
@@ -658,9 +647,9 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    [tinygo: panic at /home/ron/.gvm/gos/go1.25/src/encoding/binary/binary.go:116:7]
-    panic: runtime error at 0x0000000000259ba1: index out of range
-    FAIL	encoding/binary	1.179s
+    [tinygo: panic at /home/ron/.gvm/gos/go1.25.5/src/encoding/binary/binary.go:116:7]
+    panic: runtime error at 0x000000000025c723: index out of range
+    FAIL	encoding/binary	1.091s
 
 
 
@@ -677,7 +666,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: reflect: unimplemented: AssignableTo with interface
-    FAIL	encoding/gob	1.124s
+    FAIL	encoding/gob	1.110s
 
 
 
@@ -695,7 +684,7 @@ The compiler gave the following error when running the tests for this package:
 
     FAIL	encoding/json	0.000s
     # encoding/json
-    /home/ron/.gvm/gos/go1.25/src/encoding/json/encode_test.go:1415:6: wg.Go undefined (type sync.WaitGroup has no field or method Go)
+    /home/ron/.gvm/gos/go1.25.5/src/encoding/json/encode_test.go:1415:6: wg.Go undefined (type sync.WaitGroup has no field or method Go)
 
 
 
@@ -710,7 +699,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).NumOut()
-    FAIL	encoding/pem	2.134s
+    FAIL	encoding/pem	1.567s
 
 
 
@@ -727,19 +716,19 @@ The compiler gave the following error when running the tests for this package:
 
 
     --- FAIL: TestAs (0.00s)
-        --- FAIL: TestAs/8:As(Errorf(...,_err),_0x74454aab5b60) (0.00s)
+        --- FAIL: TestAs/8:As(Errorf(...,_err),_0x73ef014b8840) (0.00s)
             match: got true; want false
             FailNow is incomplete, requires runtime.Goexit()
             got &errors.errorString{s:"err"}, want <nil>
             FailNow is incomplete, requires runtime.Goexit()
-        --- FAIL: TestAs/10:As(Errorf(...,_path_error),_0x74454aab5b60) (0.00s)
-            got errors_test.wrapped{msg:"path error", err:(*fs.PathError)(0x74454aabdd80)}, want &fs.PathError{Op:"open", Path:"non-existing", Err:(*errors.errorString)(0x264ed8)}
+        --- FAIL: TestAs/10:As(Errorf(...,_path_error),_0x73ef014b8840) (0.00s)
+            got errors_test.wrapped{msg:"path error", err:(*fs.PathError)(0x73ef014c1d80)}, want &fs.PathError{Op:"open", Path:"non-existing", Err:(*errors.errorString)(0x267b88)}
             FailNow is incomplete, requires runtime.Goexit()
-        --- FAIL: TestAs/16:As(Errorf(...,_multiError),_0x74454aab5b60) (0.00s)
-            got errors_test.multiErr{errors_test.wrapped{msg:"path error", err:(*fs.PathError)(0x74454aabdd80)}}, want &fs.PathError{Op:"open", Path:"non-existing", Err:(*errors.errorString)(0x264ed8)}
+        --- FAIL: TestAs/16:As(Errorf(...,_multiError),_0x73ef014b8840) (0.00s)
+            got errors_test.multiErr{errors_test.wrapped{msg:"path error", err:(*fs.PathError)(0x73ef014c1d80)}}, want &fs.PathError{Op:"open", Path:"non-existing", Err:(*errors.errorString)(0x267b88)}
             FailNow is incomplete, requires runtime.Goexit()
     FAIL
-    FAIL	errors	0.002s
+    FAIL	errors	0.001s
 
 
 
@@ -785,7 +774,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Value).Method()
-    FAIL	fmt	1.137s
+    FAIL	fmt	1.093s
 
 
 
@@ -801,7 +790,7 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    --- FAIL: TestDotSlashImport (0.01s)
+    --- FAIL: TestDotSlashImport (0.00s)
         import ".": unknown compiler "tinygo"
         FailNow is incomplete, requires runtime.Goexit()
         import "./file": unknown compiler "tinygo"
@@ -832,9 +821,9 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    [tinygo: panic at /home/ron/.gvm/gos/go1.25/src/go/constant/value.go]
-    panic: runtime error at 0x0000000000268d95: divide by zero
-    FAIL	go/constant	1.096s
+    [tinygo: panic at /home/ron/.gvm/gos/go1.25.5/src/go/constant/value.go]
+    panic: runtime error at 0x000000000026b79c: divide by zero
+    FAIL	go/constant	1.129s
 
 
 
@@ -849,7 +838,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).NumOut()
-    FAIL	go/doc	1.126s
+    FAIL	go/doc	1.106s
 
 
 
@@ -864,7 +853,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     --- FAIL: TestStd (0.00s)
-        skipping test: 'go build' unavailable: /home/ron/.gvm/gos/go1.25/bin/go tool -n compile: files setting not implemented
+        skipping test: 'go build' unavailable: /home/ron/.gvm/gos/go1.25.5/bin/go tool -n compile: files setting not implemented
         SkipNow is incomplete, requires runtime.Goexit()
         platform cannot run go tool
         FailNow is incomplete, requires runtime.Goexit()
@@ -895,8 +884,8 @@ The compiler gave the following error when running the tests for this package:
 
 
     [tinygo: panic at <Go interface method>]
-    panic: runtime error at 0x000000000033f5b1: nil pointer dereference
-    FAIL	go/importer	1.091s
+    panic: runtime error at 0x000000000033f069: nil pointer dereference
+    FAIL	go/importer	1.087s
 
 
 
@@ -910,7 +899,7 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    FAIL	go/parser	1.237s
+    FAIL	go/parser	1.171s
 
 
 
@@ -929,7 +918,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: reflect: unimplemented: AssignableTo with interface
-    FAIL	go/token	1.130s
+    FAIL	go/token	1.135s
 
 
 
@@ -945,7 +934,7 @@ The compiler gave the following error when running the tests for this package:
 
     FAIL	go/types	0.000s
     # go/types_test
-    /home/ron/.gvm/gos/go1.25/src/go/types/self_test.go:102:4: b.ReportMetric undefined (type *testing.B has no field or method ReportMetric)
+    /home/ron/.gvm/gos/go1.25.5/src/go/types/self_test.go:102:4: b.ReportMetric undefined (type *testing.B has no field or method ReportMetric)
 
 
 
@@ -966,7 +955,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: not available
-    FAIL	hash/crc32	1.194s
+    FAIL	hash/crc32	1.152s
 
 
 
@@ -985,8 +974,8 @@ The compiler gave the following error when this package was imported:
 
 
     # hash/maphash
-    /home/ron/.gvm/gos/go1.25/src/hash/maphash/maphash.go:295:6: undefined: abi.EscapeNonString
-    /home/ron/.gvm/gos/go1.25/src/hash/maphash/maphash.go:301:6: undefined: abi.EscapeNonString
+    /home/ron/.gvm/gos/go1.25.5/src/hash/maphash/maphash.go:295:6: undefined: abi.EscapeNonString
+    /home/ron/.gvm/gos/go1.25.5/src/hash/maphash/maphash.go:301:6: undefined: abi.EscapeNonString
 
 
 
@@ -1003,7 +992,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).NumOut()
-    FAIL	html/template	1.124s
+    FAIL	html/template	1.105s
 
 
 
@@ -1020,7 +1009,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).NumIn()
-    FAIL	image/color	1.614s
+    FAIL	image/color	1.095s
 
 
 
@@ -1037,7 +1026,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).NumIn()
-    FAIL	image/draw	1.592s
+    FAIL	image/draw	1.158s
 
 
 
@@ -1054,7 +1043,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     FAIL	image/jpeg	0.000s
-    /home/ron/.gvm/gos/go1.25/src/image/jpeg/reader_test.go:253: linker could not find symbol runtime/debug.SetTraceback
+    /home/ron/.gvm/gos/go1.25.5/src/image/jpeg/reader_test.go:253: linker could not find symbol runtime/debug.SetTraceback
 
 
 
@@ -1082,7 +1071,7 @@ The compiler gave the following error when running the tests for this package:
         timeout waiting for collection of buf1
         FailNow is incomplete, requires runtime.Goexit()
     FAIL
-    FAIL	io	5.030s
+    FAIL	io	5.028s
 
 
 
@@ -1136,14 +1125,14 @@ The compiler gave the following error when running the tests for this package:
         log output should match "^[A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "???:0: hello 23 world"
         log output should match "^[A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "???:0: hello 23 world"
         log output should match "^[A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "???:0: hello 23 world"
-        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "XXX2025/08/19 17:27:53.073915 ???:0: hello 23 world"
-        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "XXX2025/08/19 17:27:53.073938 ???:0: hello 23 world"
-        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "XXX2025/08/19 17:27:53.074037 ???:0: hello 23 world"
-        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "XXX2025/08/19 17:27:53.074058 ???:0: hello 23 world"
-        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(67|69): XXXhello 23 world$" is "2025/08/19 17:27:53.074159 ???:0: XXXhello 23 world"
-        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(67|69): XXXhello 23 world$" is "2025/08/19 17:27:53.074179 ???:0: XXXhello 23 world"
-        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(67|69): XXXhello 23 world$" is "2025/08/19 17:27:53.074275 ???:0: XXXhello 23 world"
-        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(67|69): XXXhello 23 world$" is "2025/08/19 17:27:53.074379 ???:0: XXXhello 23 world"
+        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "XXX2025/12/15 13:33:52.466132 ???:0: hello 23 world"
+        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "XXX2025/12/15 13:33:52.466247 ???:0: hello 23 world"
+        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "XXX2025/12/15 13:33:52.466279 ???:0: hello 23 world"
+        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "XXX2025/12/15 13:33:52.466305 ???:0: hello 23 world"
+        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(67|69): XXXhello 23 world$" is "2025/12/15 13:33:52.466329 ???:0: XXXhello 23 world"
+        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(67|69): XXXhello 23 world$" is "2025/12/15 13:33:52.466443 ???:0: XXXhello 23 world"
+        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(67|69): XXXhello 23 world$" is "2025/12/15 13:33:52.466548 ???:0: XXXhello 23 world"
+        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(67|69): XXXhello 23 world$" is "2025/12/15 13:33:52.466578 ???:0: XXXhello 23 world"
     [...more lines following...]
 
 
@@ -1158,9 +1147,8 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    FAIL	log/slog	0.000s
-    # log/slog
-    /home/ron/.gvm/gos/go1.25/src/log/slog/handler_test.go:661:27: t.Context undefined (type *testing.T has no field or method Context, but does have unexported field context)
+    panic: runtime.Caller failed
+    FAIL	log/slog	1.114s
 
 
 
@@ -1176,8 +1164,8 @@ The compiler gave the following error when running the tests for this package:
 
     FAIL	log/syslog	0.000s
     # log/syslog
-    /home/ron/.gvm/gos/go1.25/src/log/syslog/syslog_test.go:35:21: oe.Temporary undefined (type *net.OpError has no field or method Temporary)
-    /home/ron/.gvm/gos/go1.25/src/log/syslog/syslog_test.go:110:15: undefined: net.ListenPacket
+    /home/ron/.gvm/gos/go1.25.5/src/log/syslog/syslog_test.go:35:21: oe.Temporary undefined (type *net.OpError has no field or method Temporary)
+    /home/ron/.gvm/gos/go1.25.5/src/log/syslog/syslog_test.go:110:15: undefined: net.ListenPacket
 
 
 
@@ -1197,19 +1185,19 @@ The compiler gave the following error when running the tests for this package:
 
     FAIL	math/big	0.000s
     # math/big
-    /home/ron/.gvm/gos/go1.25/src/math/bits/bits.go:387:10: interp: running for more than 3m0s, timing out (executed calls: 28402189)
-      %0 = add i64 %x, %y, !dbg !31773
+    /home/ron/.gvm/gos/go1.25.5/src/math/bits/bits.go:472:10: interp: running for more than 3m0s, timing out (executed calls: 31156621)
+      %0 = and i64 %x, 4294967295, !dbg !31805
     
     traceback:
-    /home/ron/.gvm/gos/go1.25/src/math/bits/bits.go:387:10:
-      %0 = add i64 %x, %y, !dbg !31773
-    /home/ron/.gvm/gos/go1.25/src/math/bits/bits.go:365:19:
-      %10 = call { i64, i64 } @"math/bits.Add64"(i64 %x, i64 %y, i64 %carry, ptr undef), !dbg !31791
-    /home/ron/.gvm/gos/go1.25/src/math/big/arith.go:52:19:
-      %3 = call { i64, i64 } @"math/bits.Add"(i64 %2, i64 %c, i64 0, ptr undef), !dbg !31780
-    /home/ron/.gvm/gos/go1.25/src/math/big/arith.go:250:24:
-      %14 = call { i64, i64 } @"math/big.mulAddWWW_g"(i64 %13, i64 %y, i64 %7, ptr undef), !dbg !31791
-    /home/ron/.gvm/gos/go1.25/src/math/big/arith_decl_pure.go:26:20:
+    /home/ron/.gvm/gos/go1.25.5/src/math/bits/bits.go:472:10:
+      %0 = and i64 %x, 4294967295, !dbg !31805
+    /home/ron/.gvm/gos/go1.25.5/src/math/bits/bits.go:450:15:
+      %9 = call { i64, i64 } @"math/bits.Mul64"(i64 %x, i64 %y, ptr undef), !dbg !31813
+    /home/ron/.gvm/gos/go1.25.5/src/math/big/arith.go:50:20:
+      %0 = call { i64, i64 } @"math/bits.Mul"(i64 %x, i64 %y, ptr undef), !dbg !31800
+    /home/ron/.gvm/gos/go1.25.5/src/math/big/arith.go:250:24:
+      %14 = call { i64, i64 } @"math/big.mulAddWWW_g"(i64 %13, i64 %y, i64 %7, ptr undef), !dbg !31817
+    /home/ron/.gvm/gos/go1.25.5/src/math/big/arith_decl_pure.go:26:20:
     [...more lines following...]
 
 
@@ -1224,9 +1212,9 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    [tinygo: panic at /home/ron/.gvm/gos/go1.25/src/math/bits/bits.go:510:21]
-    panic: runtime error at 0x000000000022bbc6: divide by zero
-    FAIL	math/bits	1.133s
+    [tinygo: panic at /home/ron/.gvm/gos/go1.25.5/src/math/bits/bits.go:510:21]
+    panic: runtime error at 0x000000000022d830: divide by zero
+    FAIL	math/bits	1.623s
 
 
 
@@ -1243,7 +1231,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).Method()
-    FAIL	math/rand	3.214s
+    FAIL	math/rand	3.081s
 
 
 
@@ -1258,7 +1246,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).Method()
-    FAIL	math/rand/v2	5.460s
+    FAIL	math/rand/v2	3.623s
 
 
 
@@ -1282,7 +1270,7 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when this package was imported:
 
 
-    ../../../../../tmp/tinygo-test-2530946319/main.go:2:8: package net/http/cgi is not in std (/home/ron/.cache/tinygo/goroot-238b5dc21737dc58a4711a1403436936af03af6c444855d3b1e3097f3f44652b/src/net/http/cgi)
+    ../../../../../tmp/tinygo-test-1980316787/main.go:2:8: package net/http/cgi is not in std (/home/ron/.cache/tinygo/goroot-ab68f8ed5d891c12323b7956a84922b36d555b19c5ca444b3d1f322300c5d23f/src/net/http/cgi)
 
 
 
@@ -1296,7 +1284,7 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when this package was imported:
 
 
-    ../../../../../tmp/tinygo-test-3869624494/main.go:2:8: package net/http/cookiejar is not in std (/home/ron/.cache/tinygo/goroot-238b5dc21737dc58a4711a1403436936af03af6c444855d3b1e3097f3f44652b/src/net/http/cookiejar)
+    ../../../../../tmp/tinygo-test-3073495770/main.go:2:8: package net/http/cookiejar is not in std (/home/ron/.cache/tinygo/goroot-ab68f8ed5d891c12323b7956a84922b36d555b19c5ca444b3d1f322300c5d23f/src/net/http/cookiejar)
 
 
 
@@ -1325,7 +1313,7 @@ This package cannot be imported because the following dependencies cannot be com
 The compiler gave the following error when this package was imported:
 
 
-    ../../../../../tmp/tinygo-test-4082382619/main.go:2:8: package net/http/httputil is not in std (/home/ron/.cache/tinygo/goroot-238b5dc21737dc58a4711a1403436936af03af6c444855d3b1e3097f3f44652b/src/net/http/httputil)
+    ../../../../../tmp/tinygo-test-1974920281/main.go:2:8: package net/http/httputil is not in std (/home/ron/.cache/tinygo/goroot-ab68f8ed5d891c12323b7956a84922b36d555b19c5ca444b3d1f322300c5d23f/src/net/http/httputil)
 
 
 
@@ -1339,7 +1327,7 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when this package was imported:
 
 
-    ../../../../../tmp/tinygo-test-2746811948/main.go:2:8: package net/http/pprof is not in std (/home/ron/.cache/tinygo/goroot-238b5dc21737dc58a4711a1403436936af03af6c444855d3b1e3097f3f44652b/src/net/http/pprof)
+    ../../../../../tmp/tinygo-test-530727302/main.go:2:8: package net/http/pprof is not in std (/home/ron/.cache/tinygo/goroot-ab68f8ed5d891c12323b7956a84922b36d555b19c5ca444b3d1f322300c5d23f/src/net/http/pprof)
 
 
 
@@ -1356,9 +1344,9 @@ The compiler gave the following error when running the tests for this package:
 
 
     --- FAIL: TestInlining (0.00s)
-        skipping test: 'go build' unavailable: /home/ron/.gvm/gos/go1.25/bin/go tool -n compile: files setting not implemented
+        skipping test: 'go build' unavailable: /home/ron/.gvm/gos/go1.25.5/bin/go tool -n compile: files setting not implemented
         SkipNow is incomplete, requires runtime.Goexit()
-        skipping test: 'go build' unavailable: /home/ron/.gvm/gos/go1.25/bin/go tool -n compile: files setting not implemented
+        skipping test: 'go build' unavailable: /home/ron/.gvm/gos/go1.25.5/bin/go tool -n compile: files setting not implemented
         SkipNow is incomplete, requires runtime.Goexit()
         platform cannot run go tool
         FailNow is incomplete, requires runtime.Goexit()
@@ -1385,7 +1373,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: reflect: unimplemented: AssignableTo with interface
-    FAIL	net/rpc	1.093s
+    FAIL	net/rpc	1.101s
 
 
 
@@ -1400,7 +1388,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: reflect: unimplemented: AssignableTo with interface
-    FAIL	net/rpc/jsonrpc	1.100s
+    FAIL	net/rpc/jsonrpc	1.089s
 
 
 
@@ -1415,8 +1403,8 @@ The compiler gave the following error when this package was imported:
 
 
     # net/smtp
-    /home/ron/.gvm/gos/go1.25/src/net/smtp/smtp.go:72:24: undefined: tls.Conn
-    /home/ron/.gvm/gos/go1.25/src/net/smtp/smtp.go:172:25: undefined: tls.Conn
+    /home/ron/.gvm/gos/go1.25.5/src/net/smtp/smtp.go:72:24: undefined: tls.Conn
+    /home/ron/.gvm/gos/go1.25.5/src/net/smtp/smtp.go:172:25: undefined: tls.Conn
 
 
 
@@ -1433,7 +1421,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: reflect: unimplemented: AssignableTo with interface
-    FAIL	net/url	1.168s
+    FAIL	net/url	1.112s
 
 
 
@@ -1451,12 +1439,12 @@ The compiler gave the following error when running the tests for this package:
 
     FAIL	os/exec	0.000s
     # os/exec_test
-    /home/ron/.gvm/gos/go1.25/src/os/exec/exec_test.go:260:17: undefined: net.FileListener
-    /home/ron/.gvm/gos/go1.25/src/os/exec/exec_test.go:405:92: cmd.ProcessState.Pid undefined (type *os.ProcessState has no field or method Pid)
-    /home/ron/.gvm/gos/go1.25/src/os/exec/exec_test.go:704:34: ln.(*net.TCPListener).File undefined (type *net.TCPListener has no field or method File)
-    /home/ron/.gvm/gos/go1.25/src/os/exec/exec_test.go:709:18: undefined: net.FileListener
-    /home/ron/.gvm/gos/go1.25/src/os/exec/exec_test.go:720:5: ts.StartTLS undefined (type *httptest.Server has no field or method StartTLS)
-    /home/ron/.gvm/gos/go1.25/src/os/exec/exec_test.go:809:35: ln.(*net.TCPListener).File undefined (type *net.TCPListener has no field or method File)
+    /home/ron/.gvm/gos/go1.25.5/src/os/exec/exec_test.go:260:17: undefined: net.FileListener
+    /home/ron/.gvm/gos/go1.25.5/src/os/exec/exec_test.go:405:92: cmd.ProcessState.Pid undefined (type *os.ProcessState has no field or method Pid)
+    /home/ron/.gvm/gos/go1.25.5/src/os/exec/exec_test.go:704:34: ln.(*net.TCPListener).File undefined (type *net.TCPListener has no field or method File)
+    /home/ron/.gvm/gos/go1.25.5/src/os/exec/exec_test.go:709:18: undefined: net.FileListener
+    /home/ron/.gvm/gos/go1.25.5/src/os/exec/exec_test.go:720:5: ts.StartTLS undefined (type *httptest.Server has no field or method StartTLS)
+    /home/ron/.gvm/gos/go1.25.5/src/os/exec/exec_test.go:809:35: ln.(*net.TCPListener).File undefined (type *net.TCPListener has no field or method File)
 
 
 
@@ -1471,7 +1459,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     FAIL	os/signal	0.000s
-    /home/ron/.gvm/gos/go1.25/src/os/signal/signal_unix.go:61: linker could not find symbol os/signal.signal_ignored
+    /home/ron/.gvm/gos/go1.25.5/src/os/signal/signal_unix.go:61: linker could not find symbol os/signal.signal_ignored
     /home/ron/Development/tinygo/tinygo-122/src/syscall/syscall_linux.go:1127: linker could not find symbol syscall.runtime_doAllThreadsSyscall
 
 
@@ -1490,21 +1478,21 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    --- FAIL: TestWindowsGlob (0.01s)
+    --- FAIL: TestWindowsGlob (0.00s)
         skipping windows specific test
         SkipNow is incomplete, requires runtime.Goexit()
-        tmpDir path "/tmp/TestWindowsGlob235874332/000" must have drive letter in it
+        tmpDir path "/tmp/TestWindowsGlob227586258/000" must have drive letter in it
         FailNow is incomplete, requires runtime.Goexit()
-        Glob("/tmp/TestWindowsGlob235874332/000\\a") returns [], but ["/tmp/TestWindowsGlob235874332/000\\a"] expected
-        Glob("/tmp/TestWindowsGlob235874332/000\\a") returns [], but ["/tmp/TestWindowsGlob235874332/000\\a"] expected
-        Glob("/tmp/TestWindowsGlob235874332/000\\a") returns [], but ["/tmp/TestWindowsGlob235874332/000\\a"] expected
-        Glob("/tmp/TestWindowsGlob235874332/000\\b") returns [], but ["/tmp/TestWindowsGlob235874332/000\\b"] expected
-        Glob("/tmp/TestWindowsGlob235874332/000\\b") returns [], but ["/tmp/TestWindowsGlob235874332/000\\b"] expected
-        Glob("/tmp/TestWindowsGlob235874332/000\\b") returns [], but ["/tmp/TestWindowsGlob235874332/000\\b"] expected
-        Glob("/tmp/TestWindowsGlob235874332/000\\*") returns [], but ["/tmp/TestWindowsGlob235874332/000\\a" "/tmp/TestWindowsGlob235874332/000\\b" "/tmp/TestWindowsGlob235874332/000\\dir"] expected
-        Glob("/tmp/TestWindowsGlob235874332/000\\*") returns [], but ["/tmp/TestWindowsGlob235874332/000\\a" "/tmp/TestWindowsGlob235874332/000\\b" "/tmp/TestWindowsGlob235874332/000\\dir"] expected
-        Glob("/tmp/TestWindowsGlob235874332/000\\*") returns [], but ["/tmp/TestWindowsGlob235874332/000\\a" "/tmp/TestWindowsGlob235874332/000\\b" "/tmp/TestWindowsGlob235874332/000\\dir"] expected
-        Glob("/tmp/TestWindowsGlob235874332/000\\d*") returns [], but ["/tmp/TestWindowsGlob235874332/000\\dir"] expected
+        Glob("/tmp/TestWindowsGlob227586258/000\\a") returns [], but ["/tmp/TestWindowsGlob227586258/000\\a"] expected
+        Glob("/tmp/TestWindowsGlob227586258/000\\a") returns [], but ["/tmp/TestWindowsGlob227586258/000\\a"] expected
+        Glob("/tmp/TestWindowsGlob227586258/000\\a") returns [], but ["/tmp/TestWindowsGlob227586258/000\\a"] expected
+        Glob("/tmp/TestWindowsGlob227586258/000\\b") returns [], but ["/tmp/TestWindowsGlob227586258/000\\b"] expected
+        Glob("/tmp/TestWindowsGlob227586258/000\\b") returns [], but ["/tmp/TestWindowsGlob227586258/000\\b"] expected
+        Glob("/tmp/TestWindowsGlob227586258/000\\b") returns [], but ["/tmp/TestWindowsGlob227586258/000\\b"] expected
+        Glob("/tmp/TestWindowsGlob227586258/000\\*") returns [], but ["/tmp/TestWindowsGlob227586258/000\\a" "/tmp/TestWindowsGlob227586258/000\\b" "/tmp/TestWindowsGlob227586258/000\\dir"] expected
+        Glob("/tmp/TestWindowsGlob227586258/000\\*") returns [], but ["/tmp/TestWindowsGlob227586258/000\\a" "/tmp/TestWindowsGlob227586258/000\\b" "/tmp/TestWindowsGlob227586258/000\\dir"] expected
+        Glob("/tmp/TestWindowsGlob227586258/000\\*") returns [], but ["/tmp/TestWindowsGlob227586258/000\\a" "/tmp/TestWindowsGlob227586258/000\\b" "/tmp/TestWindowsGlob227586258/000\\dir"] expected
+        Glob("/tmp/TestWindowsGlob227586258/000\\d*") returns [], but ["/tmp/TestWindowsGlob227586258/000\\dir"] expected
     [...more lines following...]
 
 
@@ -1520,7 +1508,7 @@ The compiler gave the following error when this package was imported:
 
 
     # plugin
-    /home/ron/.gvm/gos/go1.25/src/plugin/plugin_dlopen.go:10:6: not implemented: build constraints in #cgo line
+    /home/ron/.gvm/gos/go1.25.5/src/plugin/plugin_dlopen.go:10:6: not implemented: build constraints in #cgo line
 
 
 
@@ -1540,9 +1528,9 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when running the tests for this package:
 
 
-    [tinygo: panic at /home/ron/.gvm/gos/go1.25/src/slices/slices.go]
-    panic: runtime error at 0x000000000028c61f: slice out of range
-    FAIL	slices	1.098s
+    [tinygo: panic at /home/ron/.gvm/gos/go1.25.5/src/slices/slices.go]
+    panic: runtime error at 0x000000000028f2a0: slice out of range
+    FAIL	slices	1.099s
 
 
 
@@ -1556,19 +1544,19 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    --- FAIL: TestCountStableOps (1.11s)
+    --- FAIL: TestCountStableOps (1.02s)
         Counting skipped as non-verbose mode.
         SkipNow is incomplete, requires runtime.Goexit()
-        Stable      100 elements:         963 Swap,        835 Less
-        Stable      300 elements:        3953 Swap,       3030 Less
-        Stable     1000 elements:       19708 Swap,      12302 Less
-        Stable     3000 elements:       81453 Swap,      42760 Less
-        Stable    10000 elements:      347361 Swap,     165461 Less
-        Stable    30000 elements:     1341839 Swap,     558511 Less
-        Stable   100000 elements:     5790294 Swap,    2084460 Less
-        Stable   300000 elements:    20448959 Swap,    6866868 Less
-        Stable  1000000 elements:    84452769 Swap,   25115173 Less
-    --- FAIL: TestCountSortOps (0.94s)
+        Stable      100 elements:         939 Swap,        809 Less
+        Stable      300 elements:        3892 Swap,       2931 Less
+        Stable     1000 elements:       19580 Swap,      12290 Less
+        Stable     3000 elements:       81917 Swap,      42714 Less
+        Stable    10000 elements:      347895 Swap,     165662 Less
+        Stable    30000 elements:     1345166 Swap,     559451 Less
+        Stable   100000 elements:     5785163 Swap,    2086453 Less
+        Stable   300000 elements:    20448330 Swap,    6867550 Less
+        Stable  1000000 elements:    84484245 Swap,   25118775 Less
+    --- FAIL: TestCountSortOps (0.59s)
         Counting skipped as non-verbose mode.
         SkipNow is incomplete, requires runtime.Goexit()
     [...more lines following...]
@@ -1589,18 +1577,18 @@ The compiler gave the following error when running the tests for this package:
 
     FAIL	strings	0.000s
     # strings_test
-    /home/ron/Development/tinygo/tinygo-122/src/runtime/runtime.go:48:6: interp: running for more than 3m0s, timing out (executed calls: 661832)
-      call void @llvm.memmove.p0.p0.i64(ptr %dst, ptr %src, i64 %size, i1 false), !dbg !20231
+    /home/ron/Development/tinygo/tinygo-122/src/runtime/runtime.go:48:6: interp: running for more than 3m0s, timing out (executed calls: 842273)
+      call void @llvm.memmove.p0.p0.i64(ptr %dst, ptr %src, i64 %size, i1 false), !dbg !20241
     
     traceback:
     /home/ron/Development/tinygo/tinygo-122/src/runtime/runtime.go:48:6:
-      call void @llvm.memmove.p0.p0.i64(ptr %dst, ptr %src, i64 %size, i1 false), !dbg !20231
+      call void @llvm.memmove.p0.p0.i64(ptr %dst, ptr %src, i64 %size, i1 false), !dbg !20241
     /home/ron/Development/tinygo/tinygo-122/src/runtime/slice.go:21:10:
-      call void @runtime.memmove(ptr %7, ptr %elemsBuf, i64 %8, ptr undef), !dbg !20261
-    /home/ron/.gvm/gos/go1.25/src/strings/strings_test.go:1884:13:
-      %append.new = call { ptr, i64, i64 } @runtime.sliceAppend(ptr %append.srcBuf, ptr %append.elemsBuf, i64 %append.srcLen, i64 %append.srcCap, i64 %append.elemsLen, i64 1, ptr undef), !dbg !20263
-    /home/ron/.gvm/gos/go1.25/src/strings:
-      %56 = call %runtime._string @strings_test.makeBenchInputHard(ptr undef), !dbg !20242
+      call void @runtime.memmove(ptr %7, ptr %elemsBuf, i64 %8, ptr undef), !dbg !20271
+    /home/ron/.gvm/gos/go1.25.5/src/strings/strings_test.go:1884:13:
+      %append.new = call { ptr, i64, i64 } @runtime.sliceAppend(ptr %append.srcBuf, ptr %append.elemsBuf, i64 %append.srcLen, i64 %append.srcCap, i64 %append.elemsLen, i64 1, ptr undef), !dbg !20273
+    /home/ron/.gvm/gos/go1.25.5/src/strings:
+      %56 = call %runtime._string @strings_test.makeBenchInputHard(ptr undef), !dbg !20252
     
     [...more lines following...]
 
@@ -1620,9 +1608,9 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    [tinygo: panic at /home/ron/.gvm/gos/go1.25/src/sync/atomic/doc.go:93:6]
-    panic: runtime error at 0x000000000025ef75: caught signal SIGSEGV
-    FAIL	sync/atomic	3.845s
+    [tinygo: panic at /home/ron/.gvm/gos/go1.25.5/src/sync/atomic/doc.go:93:6]
+    panic: runtime error at 0x000000000026029b: caught signal SIGSEGV
+    FAIL	sync/atomic	3.639s
 
 
 
@@ -1638,13 +1626,11 @@ The compiler gave the following error when running the tests for this package:
 
     FAIL	syscall	0.000s
     # syscall_test
-    /home/ron/.gvm/gos/go1.25/src/syscall/creds_test.go:53:19: undefined: net.FileConn
-    /home/ron/.gvm/gos/go1.25/src/syscall/creds_test.go:60:19: undefined: net.FileConn
-    /home/ron/.gvm/gos/go1.25/src/syscall/syscall_linux_test.go:758:37: t.Context undefined (type *testing.T has no field or method Context, but does have unexported field context)
-    /home/ron/.gvm/gos/go1.25/src/syscall/syscall_linux_test.go:851:37: t.Context undefined (type *testing.T has no field or method Context, but does have unexported field context)
-    /home/ron/.gvm/gos/go1.25/src/syscall/syscall_unix_test.go:183:16: undefined: net.FileConn
-    /home/ron/.gvm/gos/go1.25/src/syscall/syscall_unix_test.go:238:14: undefined: net.UnixConn
-    /home/ron/.gvm/gos/go1.25/src/syscall/syscall_unix_test.go:242:18: undefined: net.FileConn
+    /home/ron/.gvm/gos/go1.25.5/src/syscall/creds_test.go:53:19: undefined: net.FileConn
+    /home/ron/.gvm/gos/go1.25.5/src/syscall/creds_test.go:60:19: undefined: net.FileConn
+    /home/ron/.gvm/gos/go1.25.5/src/syscall/syscall_unix_test.go:183:16: undefined: net.FileConn
+    /home/ron/.gvm/gos/go1.25.5/src/syscall/syscall_unix_test.go:238:14: undefined: net.UnixConn
+    /home/ron/.gvm/gos/go1.25.5/src/syscall/syscall_unix_test.go:242:18: undefined: net.FileConn
 
 
 
@@ -1661,8 +1647,8 @@ The compiler gave the following error when running the tests for this package:
 
 
     [tinygo: panic at <Go interface method>]
-    panic: runtime error at 0x0000000000230594: nil pointer dereference
-    FAIL	testing/fstest	1.149s
+    panic: runtime error at 0x0000000000232228: nil pointer dereference
+    FAIL	testing/fstest	1.108s
 
 
 
@@ -1679,7 +1665,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).NumIn()
-    FAIL	testing/quick	2.031s
+    FAIL	testing/quick	1.102s
 
 
 
@@ -1694,7 +1680,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: runtime.Caller failed
-    FAIL	testing/slogtest	1.130s
+    FAIL	testing/slogtest	1.115s
 
 
 
@@ -1710,11 +1696,8 @@ The compiler gave the following error when running the tests for this package:
 
     FAIL	testing/synctest	0.000s
     # testing/synctest_test
-    /home/ron/.gvm/gos/go1.25/src/testing/synctest/example_test.go:49:39: t.Context undefined (type *testing.T has no field or method Context, but does have unexported field context)
-    /home/ron/.gvm/gos/go1.25/src/testing/synctest/example_test.go:78:40: t.Context undefined (type *testing.T has no field or method Context, but does have unexported field context)
-    /home/ron/.gvm/gos/go1.25/src/testing/synctest/example_test.go:109:4: unknown field DialContext in struct literal of type http.Transport
-    /home/ron/.gvm/gos/go1.25/src/testing/synctest/example_test.go:113:4: unknown field ExpectContinueTimeout in struct literal of type http.Transport
-    /home/ron/.gvm/gos/go1.25/src/testing/synctest/synctest_test.go:106:8: t.Context undefined (type *testing.T has no field or method Context, but does have unexported field context)
+    /home/ron/.gvm/gos/go1.25.5/src/testing/synctest/example_test.go:109:4: unknown field DialContext in struct literal of type http.Transport
+    /home/ron/.gvm/gos/go1.25.5/src/testing/synctest/example_test.go:113:4: unknown field ExpectContinueTimeout in struct literal of type http.Transport
 
 
 
@@ -1733,7 +1716,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).NumOut()
-    FAIL	text/template	1.128s
+    FAIL	text/template	1.105s
 
 
 
@@ -1751,12 +1734,12 @@ The compiler gave the following error when running the tests for this package:
 
     FAIL	time	0.000s
     # time_test
-    /home/ron/.gvm/gos/go1.25/src/time/sleep_test.go:977:4: b.ReportMetric undefined (type *testing.B has no field or method ReportMetric)
-    /home/ron/.gvm/gos/go1.25/src/time/sleep_test.go:978:4: b.ReportMetric undefined (type *testing.B has no field or method ReportMetric)
-    /home/ron/.gvm/gos/go1.25/src/time/sleep_test.go:979:4: b.ReportMetric undefined (type *testing.B has no field or method ReportMetric)
-    /home/ron/.gvm/gos/go1.25/src/time/sleep_test.go:1050:8: b.ReportMetric undefined (type *testing.B has no field or method ReportMetric)
-    /home/ron/.gvm/gos/go1.25/src/time/sleep_test.go:1051:8: b.ReportMetric undefined (type *testing.B has no field or method ReportMetric)
-    /home/ron/.gvm/gos/go1.25/src/time/sleep_test.go:1052:8: b.ReportMetric undefined (type *testing.B has no field or method ReportMetric)
+    /home/ron/.gvm/gos/go1.25.5/src/time/sleep_test.go:977:4: b.ReportMetric undefined (type *testing.B has no field or method ReportMetric)
+    /home/ron/.gvm/gos/go1.25.5/src/time/sleep_test.go:978:4: b.ReportMetric undefined (type *testing.B has no field or method ReportMetric)
+    /home/ron/.gvm/gos/go1.25.5/src/time/sleep_test.go:979:4: b.ReportMetric undefined (type *testing.B has no field or method ReportMetric)
+    /home/ron/.gvm/gos/go1.25.5/src/time/sleep_test.go:1050:8: b.ReportMetric undefined (type *testing.B has no field or method ReportMetric)
+    /home/ron/.gvm/gos/go1.25.5/src/time/sleep_test.go:1051:8: b.ReportMetric undefined (type *testing.B has no field or method ReportMetric)
+    /home/ron/.gvm/gos/go1.25.5/src/time/sleep_test.go:1052:8: b.ReportMetric undefined (type *testing.B has no field or method ReportMetric)
 
 
 
@@ -1795,8 +1778,8 @@ The compiler gave the following error when running the tests for this package:
 
 
     FAIL	weak	0.000s
-    /home/ron/.gvm/gos/go1.25/src/weak/pointer.go: linker could not find symbol weak.runtime_makeStrongFromWeak
-    /home/ron/.gvm/gos/go1.25/src/weak/pointer.go: linker could not find symbol weak.runtime_makeStrongFromWeak
+    /home/ron/.gvm/gos/go1.25.5/src/weak/pointer.go: linker could not find symbol weak.runtime_makeStrongFromWeak
+    /home/ron/.gvm/gos/go1.25.5/src/weak/pointer.go: linker could not find symbol weak.runtime_makeStrongFromWeak
 
 
 
