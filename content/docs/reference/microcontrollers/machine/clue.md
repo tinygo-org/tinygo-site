@@ -395,6 +395,14 @@ PWM
 
 
 ```go
+var ADC_VDDH = ADC{adcVDDHPin}
+```
+
+ADC instance for the VDDH input pin. This pin is typically connected to USB
+input voltage (~5V) or directly to a battery.
+
+
+```go
 var (
 	I2C0	= &I2C{Bus: nrf.TWIM0, BusT: nrf.TWIS0}
 	I2C1	= &I2C{Bus: nrf.TWIM1, BusT: nrf.TWIS1}
@@ -725,6 +733,11 @@ type BlockDevice interface {
 	io.ReaderAt
 
 	// WriteAt writes the given number of bytes to the block device.
+	//
+	// This interface directly writes data to the underlying block device.
+	// Different kinds of devices have different requirements: most can only
+	// write data after the page has been erased, and many can only write data
+	// with specific alignment (such as 4-byte alignment).
 	io.WriterAt
 
 	// Size returns the number of bytes in this block device.
