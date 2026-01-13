@@ -7,6 +7,24 @@ description: >
   Videos/Podcasts talking about TinyGo
 ---
 
+**TinyGo Code Review by Patricio Whittingslow** - *ongoing (playlist)*
+https://www.youtube.com/playlist?list=PLx6oFeWGZv8nV1blgYXrC9VI0Dgs-CcJ_
+
+**TinyGo Conference 2025 in JAPAN** - *October 12, 2025 (playlist)*
+https://www.youtube.com/playlist?list=PLAKUkp2tL1dAqyvrwx_2z2lUKGvLNl-GO
+
+**Volcamp - Mes trains Jouef passent au numérique, avec des Raspberry et TinyGo!** - *October 2, 2025*
+https://www.youtube.com/watch?v=u5fTwN7ExZg
+
+**GopherCon EU 2025 - Implementing Parallelism - Ayke van Laethem** - *June 17, 2025*
+https://www.youtube.com/watch?v=t7SOnE6SfwU
+
+**(TinyGo and Arduino) A Soil Moisture Monitor for my Snake Plant** - *April 23, 2025*
+https://www.youtube.com/watch?v=zCdLJc0XgaU
+
+**GolangSP - Um CD Player open source com Go + Tiny Go e Linux** - *March 22, 2025*
+https://www.youtube.com/watch?v=zHuGVFyEhhU
+
 **FOSDEM 2025 - Ron Evans - "Return To Go Without Wires"** - *February 8, 2025*
 https://cuddly.tube/w/pkw3cCH4NFbTht7vHttChg
 

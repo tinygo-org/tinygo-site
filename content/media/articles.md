@@ -15,6 +15,9 @@ https://wasmcloud.com/blog/compile-go-directly-to-webassembly-components-with-ti
 **Matt Butcher - "4 Big Developments in WebAssembly"** - *April 18, 2024*
 https://thenewstack.io/4-big-developments-in-webassembly/
 
+**Tobenna Kelvin Abanofor - Hardware Simulation with Wokwi x TinyGo** - *September 8, 2023*
+https://medium.com/@micatovin/hardware-simulation-with-wokwi-x-tinygo-d85d1a3986
+
 **Pragmatik.tech - Multiple articles on TinyGo and Raspberry Pi Pico** - *July 2022 onwards*
 https://pragmatik.tech/tags/tinygo/
 
