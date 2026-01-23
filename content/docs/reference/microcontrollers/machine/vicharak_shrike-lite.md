@@ -1,111 +1,131 @@
+
 ---
-title: shrike-lite
+title: vicharak_shrike-lite
 ---
+
 
 ## Constants
 
 ```go
 const (
-	IO0  Pin 	= GPIO0
-	IO1  Pin 	= GPIO1
-	IO2  Pin 	= GPIO2
-	IO3  Pin 	= GPIO3
-	IO4  Pin 	= GPIO4
-	IO5  Pin 	= GPIO5
-	IO6  Pin 	= GPIO6
-	IO7  Pin 	= GPIO7
-	IO8  Pin 	= GPIO8
-	IO9  Pin 	= GPIO9
-	IO10 Pin 	= GPIO10
-	IO11 Pin 	= GPIO11
-	IO12 Pin 	= GPIO12
-	IO13 Pin 	= GPIO13
-	IO14 Pin 	= GPIO14
-	IO15 Pin 	= GPIO15
-	IO16 Pin 	= GPIO16
-	IO17 Pin 	= GPIO17
-	IO18 Pin 	= GPIO18
-	IO19 Pin 	= GPIO19
-	IO20 Pin 	= GPIO20
-	IO21 Pin 	= GPIO21
-	IO22 Pin 	= GPIO22
-	IO23 Pin 	= GPIO23
-	IO24 Pin 	= GPIO24
-	IO25 Pin 	= GPIO25
-	IO26 Pin 	= GPIO26
-	IO27 Pin 	= GPIO27
-	IO28 Pin 	= GPIO28
-	IO29 Pin 	= GPIO29
-
-	// Onboard LED
-	LED Pin 	= IO4
-
-	// Onboard crystal oscillator frequency, in MHz.
-	xoscFreq	= 12	// MHz
+	IO0	Pin	= GPIO0
+	IO1	Pin	= GPIO1
+	IO2	Pin	= GPIO2
+	IO3	Pin	= GPIO3
+	IO4	Pin	= GPIO4
+	IO5	Pin	= GPIO5
+	IO6	Pin	= GPIO6
+	IO7	Pin	= GPIO7
+	IO8	Pin	= GPIO8
+	IO9	Pin	= GPIO9
+	IO10	Pin	= GPIO10
+	IO11	Pin	= GPIO11
+	IO12	Pin	= GPIO12
+	IO13	Pin	= GPIO13
+	IO14	Pin	= GPIO14
+	IO15	Pin	= GPIO15
+	IO16	Pin	= GPIO16
+	IO17	Pin	= GPIO17
+	IO18	Pin	= GPIO18
+	IO19	Pin	= GPIO19
+	IO20	Pin	= GPIO20
+	IO21	Pin	= GPIO21
+	IO22	Pin	= GPIO22
+	IO23	Pin	= GPIO23
+	IO24	Pin	= GPIO24
+	IO25	Pin	= GPIO25
+	IO26	Pin	= GPIO26
+	IO27	Pin	= GPIO27
+	IO28	Pin	= GPIO28
+	IO29	Pin	= GPIO29
 )
 ```
 
-GPIO pins
+Digital
+
 
 ```go
 const (
-	FPGA_EN	 = IO13 // Enable
-	FPGA_PWR = IO12 // Power
-	F3		 = IO2 // SPI_SCLK
-	F4		 = IO1 // SPI_SS
-	F5		 = IO3 // SPI_SI (MOSI)
-	F6		 = IO0 // SPI_SO (MISO) / CONFIG
-	F18		 = IO14
-	F17		 = IO15
+	FPGA_EN		Pin	= IO13
+	FPGA_PWR	Pin	= IO12
+	// SPI_SCLK
+	F3	Pin	= IO2
+	// SPI_SS
+	F4	Pin	= IO1
+	// SPI_SI (MOSI)
+	F5	Pin	= IO3
+	// SPI_SO (MISO) / CONFIG
+	F6	Pin	= IO0
+	F18	Pin	= IO14
+	F17	Pin	= IO15
 )
 ```
 
-Pins connected from microcontroller to the FPGA
+FPGA Pins
+
 
 ```go
 const (
-	I2C0_SDA_PIN = IO24
-	I2C0_SCL_PIN = IO25
-
-	I2C1_SDA_PIN = IO6
-	I2C1_SCL_PIN = IO7
+	A0	Pin	= IO26
+	A1	Pin	= IO27
+	A2	Pin	= IO28
+	A3	Pin	= IO29
 )
 ```
 
-I2C Default pins
+Analog pins
+
 
 ```go
 const (
-	// Default Serial Clock Bus 0 for SPI communications
-	SPI0_SCK_PIN	= IO18
-	// Default Serial Out Bus 0 for SPI communications
-	SPI0_SDO_PIN	= IO19	// Tx
-	// Default Serial In Bus 0 for SPI communications
-	SPI0_SDI_PIN	= IO20	// Rx
-
-	// Default Serial Clock Bus 1 for SPI communications
-	SPI1_SCK_PIN	= IO10
-	// Default Serial Out Bus 1 for SPI communications
-	SPI1_SDO_PIN	= IO11	// Tx
-	// Default Serial In Bus 1 for SPI communications
-	SPI1_SDI_PIN	= IO8	// Rx
+	LED = IO4
 )
 ```
 
-SPI default pins
+LED
+
+
+```go
+const (
+	I2C0_SDA_PIN	Pin	= IO24
+	I2C0_SCL_PIN	Pin	= IO25
+
+	I2C1_SDA_PIN	Pin	= IO6
+	I2C1_SCL_PIN	Pin	= IO7
+)
+```
+
+I2C pins
+
+
+```go
+const (
+	SPI0_SCK_PIN	Pin	= IO18
+	SPI0_SDO_PIN	Pin	= IO19
+	SPI0_SDI_PIN	Pin	= IO20
+
+	SPI1_SCK_PIN	Pin	= IO10
+	SPI1_SDO_PIN	Pin	= IO11
+	SPI1_SDI_PIN	Pin	= IO8
+)
+```
+
+SPI pins
+
 
 ```go
 const (
 	UART0_TX_PIN	= IO28
 	UART0_RX_PIN	= IO29
+	UART_TX_PIN	= UART0_TX_PIN
+	UART_RX_PIN	= UART0_RX_PIN
 	UART1_TX_PIN	= IO24
 	UART1_RX_PIN	= IO25
-	UART_TX_PIN		= UART0_TX_PIN
-	UART_RX_PIN		= UART0_RX_PIN
 )
 ```
 
 UART pins
+
 
 ```go
 const (
@@ -116,7 +136,8 @@ const (
 
 TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-speed bus.
 
-Deprecated: use 100 _ machine.KHz or 400 _ machine.KHz instead.
+Deprecated: use 100 * machine.KHz or 400 * machine.KHz instead.
+
 
 ```go
 const (
@@ -135,6 +156,8 @@ const (
 )
 ```
 
+
+
 ```go
 const (
 	// I2CModeController represents an I2C peripheral in controller mode.
@@ -144,6 +167,8 @@ const (
 	I2CModeTarget
 )
 ```
+
+
 
 ```go
 const Device = deviceName
@@ -155,6 +180,7 @@ Device is the running program's chip name, such as "ATSAMD51J19A" or
 The constant is some hardcoded default value if the program does not target a
 particular chip but instead runs in WebAssembly for example.
 
+
 ```go
 const (
 	KHz	= 1000
@@ -165,12 +191,14 @@ const (
 
 Generic constants.
 
+
 ```go
 const NoPin = Pin(0xff)
 ```
 
 NoPin explicitly indicates "not a pin". Use this pin if you want to leave one
 of the pins in a peripheral unconfigured (if supported by the hardware).
+
 
 ```go
 const (
@@ -180,6 +208,8 @@ const (
 	LS_SE1	= 0b11
 )
 ```
+
+
 
 ```go
 const (
@@ -207,6 +237,8 @@ const (
 )
 ```
 
+
+
 ```go
 const (
 	PinOutput	PinMode	= iota
@@ -223,6 +255,8 @@ const (
 )
 ```
 
+
+
 ```go
 const (
 	ADC0	Pin	= GPIO26
@@ -236,6 +270,7 @@ const (
 
 Analog pins on RP2040.
 
+
 ```go
 const (
 	// Edge falling
@@ -248,6 +283,7 @@ const (
 ```
 
 Pin change interrupt constants for SetInterrupt.
+
 
 ```go
 const (
@@ -285,9 +321,13 @@ const (
 )
 ```
 
+
+
 ```go
 const NumberOfUSBEndpoints = 8
 ```
+
+
 
 ```go
 const (
@@ -300,6 +340,8 @@ const (
 )
 ```
 
+
+
 ```go
 const XOSC_STARTUP_DELAY_MULTIPLIER = 64
 ```
@@ -307,6 +349,7 @@ const XOSC_STARTUP_DELAY_MULTIPLIER = 64
 On some boards, the XOSC can take longer than usual to stabilize. On such
 boards, this is needed to avoid a hard fault on boot/reset. Refer to
 PICO_XOSC_STARTUP_DELAY_MULTIPLIER in the Pico SDK for additional details.
+
 
 ```go
 const (
@@ -318,6 +361,7 @@ const (
 ```
 
 SPI phase and polarity configs CPOL and CPHA
+
 
 ```go
 const (
@@ -335,11 +379,18 @@ const (
 )
 ```
 
+
+
+
+
+
 ## Variables
 
 ```go
 var DefaultUART = UART0
 ```
+
+
 
 ```go
 var (
@@ -353,6 +404,8 @@ var (
 	ErrNoPinChangeChannel	= errors.New("machine: no channel available for pin interrupt")
 )
 ```
+
+
 
 ```go
 var (
@@ -372,9 +425,12 @@ var (
 
 UART on the RP2040
 
+
 ```go
 var RTC = (*rtcType)(unsafe.Pointer(rp.RTC))
 ```
+
+
 
 ```go
 var (
@@ -383,9 +439,13 @@ var (
 )
 ```
 
+
+
 ```go
 var Flash flashBlockDevice
 ```
+
+
 
 ```go
 var (
@@ -402,11 +462,14 @@ var (
 
 I2C on the RP2040/RP2350
 
+
 ```go
 var (
 	ErrBadPeriod = errors.New("period outside valid range 8ns..268ms")
 )
 ```
+
+
 
 ```go
 var (
@@ -437,6 +500,7 @@ The default behaviour of a PWM slice is to count upward until the wrap value (\r
 immediately wrap to 0. PWM slices also offer a phase-correct mode, where the counter starts to count downward after
 reaching TOP, until it reaches 0 again.
 
+
 ```go
 var (
 	SPI0	= &SPI{
@@ -450,6 +514,7 @@ var (
 
 SPI on the RP2040
 
+
 ```go
 var (
 	ErrLSBNotSupported	= errors.New("SPI LSB unsupported on PL022")
@@ -461,6 +526,8 @@ var (
 )
 ```
 
+
+
 ```go
 var Watchdog = &watchdogImpl{}
 ```
@@ -468,17 +535,21 @@ var Watchdog = &watchdogImpl{}
 Watchdog provides access to the hardware watchdog available
 in the RP2040.
 
+
 ```go
 var (
 	ErrPWMPeriodTooLong = errors.New("pwm: period too long")
 )
 ```
 
+
+
 ```go
 var Serial Serialer
 ```
 
 Serial is implemented via USB (USB-CDC).
+
 
 ```go
 var (
@@ -487,12 +558,16 @@ var (
 )
 ```
 
+
+
 ```go
 var (
 	USBDev	= &USBDevice{}
 	USBCDC	Serialer
 )
 ```
+
+
 
 ```go
 var (
@@ -502,6 +577,11 @@ var (
 )
 ```
 
+
+
+
+
+
 ### func AckUsbOutTransfer
 
 ```go
@@ -510,11 +590,14 @@ func AckUsbOutTransfer(ep uint32)
 
 AckUsbOutTransfer is called to acknowledge the completion of a USB OUT transfer.
 
+
 ### func CPUFrequency
 
 ```go
 func CPUFrequency() uint32
 ```
+
+
 
 ### func CPUReset
 
@@ -523,6 +606,7 @@ func CPUReset()
 ```
 
 CPUReset performs a hard system reset.
+
 
 ### func ChipVersion
 
@@ -533,11 +617,14 @@ func ChipVersion() uint8
 ChipVersion returns the version of the chip. 1 is returned for B0 and B1
 chip.
 
+
 ### func ConfigureUSBEndpoint
 
 ```go
 func ConfigureUSBEndpoint(desc descriptor.Descriptor, epSettings []usb.EndpointConfig, setup []usb.SetupConfig)
 ```
+
+
 
 ### func CurrentCore
 
@@ -546,6 +633,7 @@ func CurrentCore() int
 ```
 
 CurrentCore returns the core number the call was made from.
+
 
 ### func DeviceID
 
@@ -566,11 +654,14 @@ account if needing to generate a globally unique id.
 The length of the hardware ID is vendor-specific, but
 8 bytes (64 bits) is common.
 
+
 ### func EnableCDC
 
 ```go
 func EnableCDC(txHandler func(), rxHandler func([]byte), setupHandler func(usb.Setup) bool)
 ```
+
+
 
 ### func EnterBootloader
 
@@ -581,6 +672,7 @@ func EnterBootloader()
 EnterBootloader should perform a system reset in preparation
 to switch to the bootloader to flash new firmware.
 
+
 ### func FlashDataEnd
 
 ```go
@@ -590,6 +682,7 @@ func FlashDataEnd() uintptr
 Return the end of the writable flash area. Usually this is the address one
 past the end of the on-chip flash.
 
+
 ### func FlashDataStart
 
 ```go
@@ -598,6 +691,7 @@ func FlashDataStart() uintptr
 
 Return the start of the writable flash area, aligned on a page boundary. This
 is usually just after the program and static data.
+
 
 ### func GetRNG
 
@@ -611,6 +705,7 @@ Unlike some other implementations of GetRNG, these random numbers are not
 cryptographically secure and must not be used for cryptographic operations
 (nonces, etc).
 
+
 ### func InitADC
 
 ```go
@@ -619,11 +714,14 @@ func InitADC()
 
 InitADC resets the ADC peripheral.
 
+
 ### func InitSerial
 
 ```go
 func InitSerial()
 ```
+
+
 
 ### func NewRingBuffer
 
@@ -633,6 +731,7 @@ func NewRingBuffer() *RingBuffer
 
 NewRingBuffer returns a new ring buffer.
 
+
 ### func NumCores
 
 ```go
@@ -640,6 +739,7 @@ func NumCores() int
 ```
 
 NumCores returns number of cores available on the device.
+
 
 ### func PWMPeripheral
 
@@ -651,6 +751,7 @@ Peripheral returns the RP2040 PWM peripheral which ranges from 0 to 7. Each
 PWM peripheral has 2 channels, A and B which correspond to 0 and 1 in the program.
 This number corresponds to the package's PWM0 throughout PWM7 handles
 
+
 ### func ReadTemperature
 
 ```go
@@ -659,11 +760,14 @@ func ReadTemperature() (millicelsius int32)
 
 ReadTemperature does a one-shot sample of the internal temperature sensor and returns a milli-celsius reading.
 
+
 ### func ReceiveUSBControlPacket
 
 ```go
 func ReceiveUSBControlPacket() ([cdcLineInfoSize]byte, error)
 ```
+
+
 
 ### func SendUSBInPacket
 
@@ -673,11 +777,16 @@ func SendUSBInPacket(ep uint32, data []byte) bool
 
 SendUSBInPacket sends a packet for USB (interrupt in / bulk in).
 
+
 ### func SendZlp
 
 ```go
 func SendZlp()
 ```
+
+
+
+
 
 ## type ADC
 
@@ -687,6 +796,9 @@ type ADC struct {
 }
 ```
 
+
+
+
 ### func (ADC) Configure
 
 ```go
@@ -694,6 +806,7 @@ func (a ADC) Configure(config ADCConfig) error
 ```
 
 Configure sets the ADC pin to analog input mode.
+
 
 ### func (ADC) Get
 
@@ -703,6 +816,7 @@ func (a ADC) Get() uint16
 
 Get returns a one-shot ADC sample reading.
 
+
 ### func (ADC) GetADCChannel
 
 ```go
@@ -711,6 +825,9 @@ func (a ADC) GetADCChannel() (c ADCChannel, err error)
 
 GetADCChannel returns the channel associated with the ADC pin.
 
+
+
+
 ## type ADCChannel
 
 ```go
@@ -718,6 +835,8 @@ type ADCChannel uint8
 ```
 
 ADCChannel is the ADC peripheral mux channel. 0-4.
+
+
 
 ### func (ADCChannel) Configure
 
@@ -728,6 +847,7 @@ func (c ADCChannel) Configure(config ADCConfig) error
 Configure sets the channel's associated pin to analog input mode.
 The powered on temperature sensor increases ADC_AVDD current by approximately 40 μA.
 
+
 ### func (ADCChannel) Pin
 
 ```go
@@ -735,6 +855,9 @@ func (c ADCChannel) Pin() (p Pin, err error)
 ```
 
 The Pin method returns the GPIO Pin associated with the ADC mux channel, if it has one.
+
+
+
 
 ## type ADCConfig
 
@@ -749,6 +872,10 @@ type ADCConfig struct {
 
 ADCConfig holds ADC configuration parameters. If left unspecified, the zero
 value of each parameter will use the peripheral's default settings.
+
+
+
+
 
 ## type BlockDevice
 
@@ -788,6 +915,10 @@ type BlockDevice interface {
 
 BlockDevice is the raw device that is meant to store flash data.
 
+
+
+
+
 ## type I2C
 
 ```go
@@ -798,7 +929,10 @@ type I2C struct {
 }
 ```
 
-### func (\*I2C) Configure
+
+
+
+### func (*I2C) Configure
 
 ```go
 func (i2c *I2C) Configure(config I2CConfig) error
@@ -807,15 +941,16 @@ func (i2c *I2C) Configure(config I2CConfig) error
 Configure initializes i2c peripheral and configures I2C config's pins passed.
 Here's a list of valid SDA and SCL GPIO pins on bus I2C0 of the rp2040:
 
-    SDA: 0, 4, 8, 12, 16, 20
-    SCL: 1, 5, 9, 13, 17, 21
+	SDA: 0, 4, 8, 12, 16, 20
+	SCL: 1, 5, 9, 13, 17, 21
 
 Same as above for I2C1 bus:
 
-    SDA: 2, 6, 10, 14, 18, 26
-    SCL: 3, 7, 11, 15, 19, 27
+	SDA: 2, 6, 10, 14, 18, 26
+	SCL: 3, 7, 11, 15, 19, 27
 
-### func (\*I2C) Listen
+
+### func (*I2C) Listen
 
 ```go
 func (i2c *I2C) Listen(addr uint16) error
@@ -825,7 +960,8 @@ Listen starts listening for I2C requests sent to specified address
 
 addr is the address to listen to
 
-### func (\*I2C) ReadRegister
+
+### func (*I2C) ReadRegister
 
 ```go
 func (i2c *I2C) ReadRegister(address uint8, register uint8, data []byte) error
@@ -838,13 +974,16 @@ Many I2C-compatible devices are organized in terms of registers. This method
 is a shortcut to easily read such registers. Also, it only works for devices
 with 7-bit addresses, which is the vast majority.
 
-### func (\*I2C) Reply
+
+### func (*I2C) Reply
 
 ```go
 func (i2c *I2C) Reply(buf []byte) error
 ```
 
-### func (\*I2C) SetBaudRate
+
+
+### func (*I2C) SetBaudRate
 
 ```go
 func (i2c *I2C) SetBaudRate(br uint32) error
@@ -853,7 +992,8 @@ func (i2c *I2C) SetBaudRate(br uint32) error
 SetBaudRate sets the I2C frequency. It has the side effect of also
 enabling the I2C hardware if disabled beforehand.
 
-### func (\*I2C) Tx
+
+### func (*I2C) Tx
 
 ```go
 func (i2c *I2C) Tx(addr uint16, w, r []byte) error
@@ -865,21 +1005,24 @@ in r.
 Passing a nil value for w or r skips the transfer corresponding to write
 or read, respectively.
 
-    i2c.Tx(addr, nil, r)
+	i2c.Tx(addr, nil, r)
 
 Performs only a read transfer.
 
-    i2c.Tx(addr, w, nil)
+	i2c.Tx(addr, w, nil)
 
 Performs only a write transfer.
 
-### func (\*I2C) WaitForEvent
+
+### func (*I2C) WaitForEvent
 
 ```go
 func (i2c *I2C) WaitForEvent(buf []byte) (evt I2CTargetEvent, count int, err error)
 ```
 
-### func (\*I2C) WriteRegister
+
+
+### func (*I2C) WriteRegister
 
 ```go
 func (i2c *I2C) WriteRegister(address uint8, register uint8, data []byte) error
@@ -891,6 +1034,9 @@ peripheral device.
 Many I2C-compatible devices are organized in terms of registers. This method
 is a shortcut to easily write to such registers. Also, it only works for
 devices with 7-bit addresses, which is the vast majority.
+
+
+
 
 ## type I2CConfig
 
@@ -906,6 +1052,10 @@ type I2CConfig struct {
 
 I2CConfig is used to store config info for I2C.
 
+
+
+
+
 ## type I2CMode
 
 ```go
@@ -914,6 +1064,10 @@ type I2CMode int
 
 I2CMode determines if an I2C peripheral is in Controller or Target mode.
 
+
+
+
+
 ## type I2CTargetEvent
 
 ```go
@@ -921,6 +1075,10 @@ type I2CTargetEvent uint8
 ```
 
 I2CTargetEvent reflects events on the I2C bus
+
+
+
+
 
 ## type NullSerial
 
@@ -932,6 +1090,8 @@ type NullSerial struct {
 NullSerial is a serial version of /dev/null (or null router): it drops
 everything that is written to it.
 
+
+
 ### func (NullSerial) Buffered
 
 ```go
@@ -941,6 +1101,7 @@ func (ns NullSerial) Buffered() int
 Buffered returns how many bytes are buffered in the UART. It always returns 0
 as there are no bytes to read.
 
+
 ### func (NullSerial) Configure
 
 ```go
@@ -949,6 +1110,7 @@ func (ns NullSerial) Configure(config UARTConfig) error
 
 Configure does nothing: the null serial has no configuration.
 
+
 ### func (NullSerial) ReadByte
 
 ```go
@@ -956,6 +1118,7 @@ func (ns NullSerial) ReadByte() (byte, error)
 ```
 
 ReadByte always returns an error because there aren't any bytes to read.
+
 
 ### func (NullSerial) Write
 
@@ -966,6 +1129,7 @@ func (ns NullSerial) Write(p []byte) (n int, err error)
 Write is a no-op: none of the data is being written and it will not return an
 error.
 
+
 ### func (NullSerial) WriteByte
 
 ```go
@@ -973,6 +1137,9 @@ func (ns NullSerial) WriteByte(b byte) error
 ```
 
 WriteByte is a no-op: the null serial doesn't write bytes.
+
+
+
 
 ## type PDMConfig
 
@@ -983,6 +1150,11 @@ type PDMConfig struct {
 	CLK	Pin
 }
 ```
+
+
+
+
+
 
 ## type PWMConfig
 
@@ -1003,6 +1175,10 @@ PWMConfig allows setting some configuration while configuring a PWM
 peripheral. A zero PWMConfig is ready to use for simple applications such as
 dimming LEDs.
 
+
+
+
+
 ## type Pin
 
 ```go
@@ -1013,6 +1189,8 @@ Pin is a single pin on a chip, which may be connected to other hardware
 devices. It can either be used directly as GPIO pin or it can be used in
 other peripherals like ADC, I2C, etc.
 
+
+
 ### func (Pin) Configure
 
 ```go
@@ -1021,6 +1199,7 @@ func (p Pin) Configure(config PinConfig)
 
 Configure configures the gpio pin as per mode.
 
+
 ### func (Pin) Get
 
 ```go
@@ -1028,6 +1207,7 @@ func (p Pin) Get() bool
 ```
 
 Get reads the pin value.
+
 
 ### func (Pin) High
 
@@ -1039,6 +1219,7 @@ High sets this GPIO pin to high, assuming it has been configured as an output
 pin. It is hardware dependent (and often undefined) what happens if you set a
 pin to high that is not configured as an output pin.
 
+
 ### func (Pin) Low
 
 ```go
@@ -1049,17 +1230,22 @@ Low sets this GPIO pin to low, assuming it has been configured as an output
 pin. It is hardware dependent (and often undefined) what happens if you set a
 pin to low that is not configured as an output pin.
 
+
 ### func (Pin) PortMaskClear
 
 ```go
 func (p Pin) PortMaskClear() (*uint32, uint32)
 ```
 
+
+
 ### func (Pin) PortMaskSet
 
 ```go
 func (p Pin) PortMaskSet() (*uint32, uint32)
 ```
+
+
 
 ### func (Pin) Set
 
@@ -1068,6 +1254,7 @@ func (p Pin) Set(value bool)
 ```
 
 Set drives the pin high if value is true else drives it low.
+
 
 ### func (Pin) SetInterrupt
 
@@ -1083,6 +1270,9 @@ This call will replace a previously set callback on this pin. You can pass a
 nil func to unset the pin change interrupt. If you do so, the change
 parameter is ignored and can be set to any value (such as 0).
 
+
+
+
 ## type PinChange
 
 ```go
@@ -1092,6 +1282,10 @@ type PinChange uint8
 PinChange represents one or more trigger events that can happen on a given GPIO pin
 on the RP2040. ORed PinChanges are valid input to most IRQ functions.
 
+
+
+
+
 ## type PinConfig
 
 ```go
@@ -1099,6 +1293,11 @@ type PinConfig struct {
 	Mode PinMode
 }
 ```
+
+
+
+
+
 
 ## type PinMode
 
@@ -1109,6 +1308,10 @@ type PinMode uint8
 PinMode sets the direction and pull mode of the pin. For example, PinOutput
 sets the pin as an output and PinInputPullup sets the pin as an input with a
 pull-up.
+
+
+
+
 
 ## type RingBuffer
 
@@ -1123,7 +1326,9 @@ type RingBuffer struct {
 RingBuffer is ring buffer implementation inspired by post at
 https://www.embeddedrelated.com/showthread/comp.arch.embedded/77084-1.php
 
-### func (\*RingBuffer) Clear
+
+
+### func (*RingBuffer) Clear
 
 ```go
 func (rb *RingBuffer) Clear()
@@ -1131,7 +1336,8 @@ func (rb *RingBuffer) Clear()
 
 Clear resets the head and tail pointer to zero.
 
-### func (\*RingBuffer) Get
+
+### func (*RingBuffer) Get
 
 ```go
 func (rb *RingBuffer) Get() (byte, bool)
@@ -1140,7 +1346,8 @@ func (rb *RingBuffer) Get() (byte, bool)
 Get returns a byte from the buffer. If the buffer is empty,
 the method will return a false as the second value.
 
-### func (\*RingBuffer) Put
+
+### func (*RingBuffer) Put
 
 ```go
 func (rb *RingBuffer) Put(val byte) bool
@@ -1149,13 +1356,17 @@ func (rb *RingBuffer) Put(val byte) bool
 Put stores a byte in the buffer. If the buffer is already
 full, the method will return false.
 
-### func (\*RingBuffer) Used
+
+### func (*RingBuffer) Used
 
 ```go
 func (rb *RingBuffer) Used() uint8
 ```
 
 Used returns how many bytes in buffer have been used.
+
+
+
 
 ## type SPI
 
@@ -1165,7 +1376,10 @@ type SPI struct {
 }
 ```
 
-### func (\*SPI) Configure
+
+
+
+### func (*SPI) Configure
 
 ```go
 func (spi *SPI) Configure(config SPIConfig) error
@@ -1176,25 +1390,28 @@ Default baudrate of 4MHz is used if Frequency == 0. Default
 word length (data bits) is 8.
 Below is a list of GPIO pins corresponding to SPI0 bus on the rp2040:
 
-    SI : 0, 4, 17  a.k.a RX and MISO (if rp2040 is master)
-    SO : 3, 7, 19  a.k.a TX and MOSI (if rp2040 is master)
-    SCK: 2, 6, 18
+	SI : 0, 4, 17  a.k.a RX and MISO (if rp2040 is master)
+	SO : 3, 7, 19  a.k.a TX and MOSI (if rp2040 is master)
+	SCK: 2, 6, 18
 
 SPI1 bus GPIO pins:
 
-    SI : 8, 12
-    SO : 11, 15
-    SCK: 10, 14
+	SI : 8, 12
+	SO : 11, 15
+	SCK: 10, 14
 
 No pin configuration is needed of SCK, SDO and SDI needed after calling Configure.
 
-### func (\*SPI) GetBaudRate
+
+### func (*SPI) GetBaudRate
 
 ```go
 func (spi *SPI) GetBaudRate() uint32
 ```
 
-### func (\*SPI) PrintRegs
+
+
+### func (*SPI) PrintRegs
 
 ```go
 func (spi *SPI) PrintRegs()
@@ -1202,13 +1419,16 @@ func (spi *SPI) PrintRegs()
 
 PrintRegs prints SPI's peripheral common registries current values
 
-### func (\*SPI) SetBaudRate
+
+### func (*SPI) SetBaudRate
 
 ```go
 func (spi *SPI) SetBaudRate(br uint32) error
 ```
 
-### func (\*SPI) Transfer
+
+
+### func (*SPI) Transfer
 
 ```go
 func (spi *SPI) Transfer(w byte) (byte, error)
@@ -1216,7 +1436,8 @@ func (spi *SPI) Transfer(w byte) (byte, error)
 
 Write a single byte and read a single byte from TX/RX FIFO.
 
-### func (\*SPI) Tx
+
+### func (*SPI) Tx
 
 ```go
 func (spi *SPI) Tx(w, r []byte) (err error)
@@ -1229,24 +1450,27 @@ The Tx method knows about this, and offers a few different ways of calling it.
 This form sends the bytes in tx buffer, putting the resulting bytes read into the rx buffer.
 Note that the tx and rx buffers must be the same size:
 
-    spi.Tx(tx, rx)
+	spi.Tx(tx, rx)
 
 This form sends the tx buffer, ignoring the result. Useful for sending "commands" that return zeros
 until all the bytes in the command packet have been received:
 
-    spi.Tx(tx, nil)
+	spi.Tx(tx, nil)
 
 This form sends zeros, putting the result into the rx buffer. Good for reading a "result packet":
 
-    spi.Tx(nil, rx)
+	spi.Tx(nil, rx)
 
 Remark: This implementation (RP2040) allows reading into buffer with a custom repeated
 value on tx.
 
-    spi.Tx([]byte{0xff}, rx) // may cause unwanted heap allocations.
+	spi.Tx([]byte{0xff}, rx) // may cause unwanted heap allocations.
 
 This form sends 0xff and puts the result into rx buffer. Useful for reading from SD cards
 which require 0xff input on SI.
+
+
+
 
 ## type SPIConfig
 
@@ -1268,6 +1492,10 @@ type SPIConfig struct {
 
 SPIConfig is used to store config info for SPI.
 
+
+
+
+
 ## type Serialer
 
 ```go
@@ -1282,6 +1510,11 @@ type Serialer interface {
 }
 ```
 
+
+
+
+
+
 ## type UART
 
 ```go
@@ -1294,7 +1527,9 @@ type UART struct {
 
 UART on the RP2040.
 
-### func (\*UART) Buffered
+
+
+### func (*UART) Buffered
 
 ```go
 func (uart *UART) Buffered() int
@@ -1302,7 +1537,8 @@ func (uart *UART) Buffered() int
 
 Buffered returns the number of bytes currently stored in the RX buffer.
 
-### func (\*UART) Configure
+
+### func (*UART) Configure
 
 ```go
 func (uart *UART) Configure(config UARTConfig) error
@@ -1310,7 +1546,8 @@ func (uart *UART) Configure(config UARTConfig) error
 
 Configure the UART.
 
-### func (\*UART) Read
+
+### func (*UART) Read
 
 ```go
 func (uart *UART) Read(data []byte) (n int, err error)
@@ -1318,7 +1555,8 @@ func (uart *UART) Read(data []byte) (n int, err error)
 
 Read from the RX buffer.
 
-### func (\*UART) ReadByte
+
+### func (*UART) ReadByte
 
 ```go
 func (uart *UART) ReadByte() (byte, error)
@@ -1327,7 +1565,8 @@ func (uart *UART) ReadByte() (byte, error)
 ReadByte reads a single byte from the RX buffer.
 If there is no data in the buffer, returns an error.
 
-### func (\*UART) Receive
+
+### func (*UART) Receive
 
 ```go
 func (uart *UART) Receive(data byte)
@@ -1336,7 +1575,8 @@ func (uart *UART) Receive(data byte)
 Receive handles adding data to the UART's data buffer.
 Usually called by the IRQ handler for a machine.
 
-### func (\*UART) SetBaudRate
+
+### func (*UART) SetBaudRate
 
 ```go
 func (uart *UART) SetBaudRate(br uint32)
@@ -1344,7 +1584,8 @@ func (uart *UART) SetBaudRate(br uint32)
 
 SetBaudRate sets the baudrate to be used for the UART.
 
-### func (\*UART) SetFormat
+
+### func (*UART) SetFormat
 
 ```go
 func (uart *UART) SetFormat(databits, stopbits uint8, parity UARTParity) error
@@ -1352,7 +1593,8 @@ func (uart *UART) SetFormat(databits, stopbits uint8, parity UARTParity) error
 
 SetFormat for number of data bits, stop bits, and parity for the UART.
 
-### func (\*UART) Write
+
+### func (*UART) Write
 
 ```go
 func (uart *UART) Write(data []byte) (n int, err error)
@@ -1361,7 +1603,8 @@ func (uart *UART) Write(data []byte) (n int, err error)
 Write data over the UART's Tx.
 This function blocks until the data is finished being sent.
 
-### func (\*UART) WriteByte
+
+### func (*UART) WriteByte
 
 ```go
 func (uart *UART) WriteByte(c byte) error
@@ -1369,6 +1612,9 @@ func (uart *UART) WriteByte(c byte) error
 
 WriteByte writes a byte of data over the UART's Tx.
 This function blocks until the data is finished being sent.
+
+
+
 
 ## type UARTConfig
 
@@ -1386,6 +1632,10 @@ UARTConfig is a struct with which a UART (or similar object) can be
 configured. The baud rate is usually respected, but TX and RX may be ignored
 depending on the chip and the type of object.
 
+
+
+
+
 ## type UARTParity
 
 ```go
@@ -1393,6 +1643,10 @@ type UARTParity uint8
 ```
 
 UARTParity is the parity setting to be used for UART communication.
+
+
+
+
 
 ## type USBDevice
 
@@ -1403,7 +1657,10 @@ type USBDevice struct {
 }
 ```
 
-### func (\*USBDevice) ClearStallEPIn
+
+
+
+### func (*USBDevice) ClearStallEPIn
 
 ```go
 func (dev *USBDevice) ClearStallEPIn(ep uint32)
@@ -1411,7 +1668,8 @@ func (dev *USBDevice) ClearStallEPIn(ep uint32)
 
 Clear the ENDPOINT_HALT/stall on a USB IN endpoint.
 
-### func (\*USBDevice) ClearStallEPOut
+
+### func (*USBDevice) ClearStallEPOut
 
 ```go
 func (dev *USBDevice) ClearStallEPOut(ep uint32)
@@ -1419,7 +1677,8 @@ func (dev *USBDevice) ClearStallEPOut(ep uint32)
 
 Clear the ENDPOINT_HALT/stall on a USB OUT endpoint.
 
-### func (\*USBDevice) Configure
+
+### func (*USBDevice) Configure
 
 ```go
 func (dev *USBDevice) Configure(config UARTConfig)
@@ -1427,7 +1686,8 @@ func (dev *USBDevice) Configure(config UARTConfig)
 
 Configure the USB peripheral. The config is here for compatibility with the UART interface.
 
-### func (\*USBDevice) SetStallEPIn
+
+### func (*USBDevice) SetStallEPIn
 
 ```go
 func (dev *USBDevice) SetStallEPIn(ep uint32)
@@ -1435,13 +1695,17 @@ func (dev *USBDevice) SetStallEPIn(ep uint32)
 
 Set ENDPOINT_HALT/stall status on a USB IN endpoint.
 
-### func (\*USBDevice) SetStallEPOut
+
+### func (*USBDevice) SetStallEPOut
 
 ```go
 func (dev *USBDevice) SetStallEPOut(ep uint32)
 ```
 
 Set ENDPOINT_HALT/stall status on a USB OUT endpoint.
+
+
+
 
 ## type WatchdogConfig
 
@@ -1456,3 +1720,8 @@ type WatchdogConfig struct {
 ```
 
 WatchdogConfig holds configuration for the watchdog timer.
+
+
+
+
+
