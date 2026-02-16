@@ -17,7 +17,7 @@ You can also install the development build of TinyGo if you want to test the lat
 
 ## Quick Install
 
-[Ubuntu/Debian](#ubuntu-debian)
+[Ubuntu/Debian](#ubuntudebian)
 
 [Fedora Linux](#fedora-linux)
 
