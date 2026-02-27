@@ -1,5 +1,5 @@
 ---
-title: "Seeed Studio XIAO SAMD21 aka Seeeduino XIAO"
+title: "Seeed Studio XIAO SAMD21"
 weight: 3
 ---
 
