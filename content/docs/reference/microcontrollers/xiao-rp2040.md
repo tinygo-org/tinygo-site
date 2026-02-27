@@ -1,9 +1,9 @@
 ---
-title: "Seeed XIAO RP2040"
+title: "Seeed Studio XIAO RP2040"
 weight: 3
 ---
 
-The [Seeed XIAO RP2040](https://www.seeedstudio.com/XIAO-RP2040-v1-0-p-5026.html) is a tiny development board based on the Raspberry Pi [RP2040](https://datasheets.raspberrypi.org/rp2040/rp2040-datasheet.pdf) microcontroller.
+The [Seeed Studio XIAO RP2040](https://www.seeedstudio.com/XIAO-RP2040-v1-0-p-5026.html) is a tiny development board based on the Raspberry Pi [RP2040](https://datasheets.raspberrypi.org/rp2040/rp2040-datasheet.pdf) microcontroller.
 
 ## Interfaces
 
@@ -40,7 +40,7 @@ The [Seeed XIAO RP2040](https://www.seeedstudio.com/XIAO-RP2040-v1-0-p-5026.html
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Seeed XIAO RP2040](../machine/xiao-rp2040)
+[Documentation for the machine package for the Seeed Studio XIAO RP2040](../machine/xiao-rp2040)
 
 ## Flashing
 
@@ -68,4 +68,4 @@ You can use the USB port to the XIAO RP2040 as a serial port.
 
 TinyGo has support for the RP2040's on-board Programmable Input/Output (PIO) block.
 
-For more informantion, see [https://github.com/tinygo-org/pio](https://github.com/tinygo-org/pio)
+For more information, see [https://github.com/tinygo-org/pio](https://github.com/tinygo-org/pio)
