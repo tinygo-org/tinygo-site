@@ -54,6 +54,31 @@ You can install the most common dependencies through Homebrew:
     brew tap ARMmbed/homebrew-formulae
     brew install arm-none-eabi-gcc
 
+However this will not support the Raspberry Pi Pico targets or the Raspberry Pi Debug Probe. Instead, compile openocd from source using [Raspberry Pi's openocd fork](https://github.com/raspberrypi/openocd):
+
+    brew tap ARMmbed/homebrew-formulae
+    brew install libtool automake libusb aclocal texinfo pkg-config capstone gdb arm-none-eabi-gcc
+
+    git clone git@github.com:raspberrypi/openocd.git
+    cd openocd
+
+    git submodule init
+    git submodule update
+
+    ./bootstrap
+    ./configure --disable-werror --enable-internal-jimtcl --enable-cmsis-dap-v2 --enable-bcm2835gpio
+    make -j4
+
+You can then add openocd and the required scripts to your environment like so:
+
+    export PATH=$PWD/src:$PATH
+    export OPENOCD_SCRIPTS=$PWD/tcl
+
+Or add it to your `~/.zshrc` so that it persists for future sessions:
+
+    echo "export PATH=\"$PWD/src:\$PATH\"" >> ~/.zshrc
+    echo "export OPENOCD_SCRIPTS=\"$PWD/tcl\"" >> ~/.zshrc
+
 ## Connecting a debug probe
 
 Sometimes you need a separate debug probe. Whether this is necessary depends on the board, some have a debug probe built onto the board already:
@@ -122,4 +147,18 @@ For example:
 
 ```
 $ tinygo gdb -target=arduino-nano33 -programmer=cmsis-dap examples/blinky1
+```
+
+If you have issues connecting to your probe the following flags may be helpful:
+
+| Flag                        | Explanation                                              |
+| --------------------------- | -------------------------------------------------------- |
+| `-ocd-output`               | Echoes the output of openocd to the terminal             |
+| `-ocd-commands "<command>"` | Sets custom openocd commands                             |
+| `-x`                        | Prints the commands tinygo is sending to openocd and gdb |
+
+For example, this custom openocd command is necessary when using a Rasbperry Pi Debug Probe to connect to a Raspberry Pi Pico 2:
+
+```
+$ tinygo gdb -target=pico2 -programmer=cmsis-dap -ocd-commands "adapter speed 5000" examples/blinky1
 ```
