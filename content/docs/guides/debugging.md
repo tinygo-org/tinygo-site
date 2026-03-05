@@ -24,29 +24,23 @@ For debugging directly on a chip, you need a few more dependencies. Which depend
   * You probably need to install OpenOCD. This program is present in most package managers and it is easiest to install it directly from there.
   * Some boards require something other than OpenOCD, for example some Nordic Semiconductor boards require `JLinkGDBServer`.
 
-### Debian or Ubuntu
+### Upstream OpenOCD
+
+Many debug probes will work out of the box with the upstream version of openocd available in your package manager.
+
+#### Debian or Ubuntu
 
 You can install the most common dependencies through the package manager:
 
     sudo apt-get install gdb-multiarch openocd
 
-### Fedora
+#### Fedora
 
 Fedora's `gdb` package comes compiled with multi arch support:
   
     dnf install gdb openocd
 
-To use the picoprobe as a debugger you must compile openocd from source using Raspberry Pi's openocd. [Getting Started with Raspberry Pi Pico](https://datasheets.raspberrypi.com/pico/getting-started-with-pico.pdf) Appendix A has build instructions we can modify:
-
-    dnf install automake autoconf build-essential texinfo libtool libftdi-devel libusb1-devel
-    git clone https://github.com/raspberrypi/openocd.git --recursive --branch rp2040 --depth=1
-    cd openocd
-    ./bootstrap
-    ./configure --enable-ftdi --enable-sysfsgpio --enable-bcm2835gpio
-    make -j$(nproc)
-    sudo make install
-
-### MacOS
+#### MacOS
 
 You can install the most common dependencies through Homebrew:
 
@@ -54,10 +48,26 @@ You can install the most common dependencies through Homebrew:
     brew tap ARMmbed/homebrew-formulae
     brew install arm-none-eabi-gcc
 
-However this will not support the Raspberry Pi Pico targets or the Raspberry Pi Debug Probe. Instead, compile openocd from source using [Raspberry Pi's openocd fork](https://github.com/raspberrypi/openocd):
+### Raspberry Pi Debug Probe
+
+To use the Raspberry Pi Debug Probe as a debugger you must compile openocd from source using [Raspberry Pi's openocd fork](https://github.com/raspberrypi/openocd).
+
+### Prerequisites
+
+#### Debian or Ubuntu
+
+    sudo apt-get install gdb-multiarch libtool pkg-config libusb-1.0-0-dev make
+
+#### Fedora
+
+    sudo dnf install libtool arm-none-eabi-gcc-cs libusb1-devel gdb
+
+#### MacOS
 
     brew tap ARMmbed/homebrew-formulae
     brew install libtool automake libusb aclocal texinfo pkg-config capstone gdb arm-none-eabi-gcc
+
+### Build
 
     git clone git@github.com:raspberrypi/openocd.git
     cd openocd
@@ -69,15 +79,26 @@ However this will not support the Raspberry Pi Pico targets or the Raspberry Pi 
     ./configure --disable-werror --enable-internal-jimtcl --enable-cmsis-dap-v2 --enable-bcm2835gpio
     make -j4
 
-You can then add openocd and the required scripts to your environment like so:
+### Installation
+
+You can use `sudo make install` to copy openocd into your system directories in the same way upstream OpenOCD would be installed by package managers. However, this can create conflicts with said package managers, and is harder to remove later.
+
+A safer approach is to add openocd and the required scripts to your environment like so:
 
     export PATH=$PWD/src:$PATH
     export OPENOCD_SCRIPTS=$PWD/tcl
 
-Or add it to your `~/.zshrc` so that it persists for future sessions:
+For convenience you can add this to your shell configuration file so that it persists for future sessions.
+
+#### macOS (and other systems using zsh)
 
     echo "export PATH=\"$PWD/src:\$PATH\"" >> ~/.zshrc
     echo "export OPENOCD_SCRIPTS=\"$PWD/tcl\"" >> ~/.zshrc
+
+#### Fedora (and other systems using bash)
+
+    echo "export PATH=\"$PWD/src:\$PATH\"" >> ~/.bashrc
+    echo "export OPENOCD_SCRIPTS=\"$PWD/tcl\"" >> ~/.bashrc
 
 ## Connecting a debug probe
 
