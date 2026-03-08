@@ -14,9 +14,14 @@ https://github.com/google/docsy
 
 ## Prerequisites
 
-Install Hugo command line tool for your operating system with the "extended" option, along with the needed NodeJS modules for processing the site CSS:
+Install [Hugo](https://gohugo.io/installation/) command line tool for your
+operating system with the "extended". Note that the most recent compatible
+version of Hugo is `v0.139.5`.
 
-https://www.docsy.dev/docs/getting-started/#prerequisites-and-installation
+    CGO_ENABLED=1 go install -tags extended github.com/gohugoio/hugo@v0.139.5
+
+Hugo will automatically download the [docsy](https://www.docsy.dev/docs/get-started/docsy-as-module/)
+NodeJS modules needed for processing the site CSS.
 
 ## Installation
 
