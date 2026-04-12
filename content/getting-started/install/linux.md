@@ -44,7 +44,7 @@ sudo dpkg -i tinygo_0.40.1_armhf.deb
 You will need to ensure that the path to the `tinygo` executable file is in your `PATH` variable.
 
 ```shell
-export PATH=$PATH:/usr/local/bin
+export PATH=$PATH:/usr/local/tinygo/bin
 ```
 
 You can test that the installation is working properly by running this code which should display the version number:
