@@ -97,10 +97,18 @@ title: {{.Target}}
 
 func main() {
 	// Get the target from the list of command line options.
+	subdirs := []string{"featured", "boards", "older"}
 	for _, target := range os.Args[1:] {
 		path := filepath.Join("..", "content", "docs", "reference", "microcontrollers", "machine", target+".md")
-		docPath := filepath.Join("..", "content", "docs", "reference", "microcontrollers", target+".md")
-		if _, err := os.Stat(docPath); err != nil {
+		var docPath string
+		for _, subdir := range subdirs {
+			candidate := filepath.Join("..", "content", "docs", "reference", "microcontrollers", subdir, target+".md")
+			if _, err := os.Stat(candidate); err == nil {
+				docPath = candidate
+				break
+			}
+		}
+		if docPath == "" {
 			fmt.Println("Skipping:                    ", target)
 			continue
 		}
