@@ -58,7 +58,7 @@ The mini32 is a small development board based on the popular [Espressif ESP32](h
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the ESP32-mini32](../machine/esp32-mini32)
+[Documentation for the machine package for the ESP32-mini32](../../machine/esp32-mini32)
 
 ## Flashing
 

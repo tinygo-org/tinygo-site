@@ -110,7 +110,7 @@ The [Microchip SAM E54 Xplained Pro](https://www.microchip.com/developmenttools/
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Adafruit SAM E54 Xplained Pro](../machine/atsame54-xpro)
+[Documentation for the machine package for the Adafruit SAM E54 Xplained Pro](../../machine/atsame54-xpro)
 
 ## Flashing
 

@@ -73,7 +73,7 @@ It has many built-in devices, such as a 1.8" 160x128 Color TFT Display, a dual-p
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Adafruit PyGamer](../machine/pygamer)
+[Documentation for the machine package for the Adafruit PyGamer](../../machine/pygamer)
 
 ## Flashing
 

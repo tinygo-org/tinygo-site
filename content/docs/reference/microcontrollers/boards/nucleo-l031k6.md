@@ -47,7 +47,7 @@ It has 2 user buttons, and 3 user LEDs.
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the STM32 Nucleo L031K6](../machine/nucleo-l031k6)
+[Documentation for the machine package for the STM32 Nucleo L031K6](../../machine/nucleo-l031k6)
 
 ## Flashing
 

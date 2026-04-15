@@ -44,7 +44,7 @@ The [Dragino LGT-92](https://www.dragino.com/products/lora-lorawan-end-node/item
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Dragino LGT-92](../machine/lgt-92)
+[Documentation for the machine package for the Dragino LGT-92](../../machine/lgt-92)
 
 ## Flashing
 

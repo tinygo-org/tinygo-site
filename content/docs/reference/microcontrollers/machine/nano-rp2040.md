@@ -1552,6 +1552,15 @@ func (uart *UART) Buffered() int
 Buffered returns the number of bytes currently stored in the RX buffer.
 
 
+### func (*UART) Close
+
+```go
+func (uart *UART) Close() error
+```
+
+Close the UART and disable its interrupt/power use.
+
+
 ### func (*UART) Configure
 
 ```go

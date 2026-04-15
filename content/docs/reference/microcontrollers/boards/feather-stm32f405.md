@@ -63,7 +63,7 @@ The [Adafruit Feather STM32F405](https://www.adafruit.com/product/4382) is a tin
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Adafruit Feather STM32F405](../machine/feather-stm32f405)
+[Documentation for the machine package for the Adafruit Feather STM32F405](../../machine/feather-stm32f405)
 
 ## Flashing
 

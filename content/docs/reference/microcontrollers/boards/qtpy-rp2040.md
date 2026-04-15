@@ -39,7 +39,7 @@ The [Adafruit QT Py RP2040](https://www.adafruit.com/product/4900) is a tiny dev
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Adafruit QT Py RP2040](../machine/qtpy-rp2040)
+[Documentation for the machine package for the Adafruit QT Py RP2040](../../machine/qtpy-rp2040)
 
 ## Flashing
 

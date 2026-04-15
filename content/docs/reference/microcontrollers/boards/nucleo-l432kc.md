@@ -49,7 +49,7 @@ It has 2 user buttons, and 3 user LEDs.
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the STM32 Nucleo L432KC](../machine/nucleo-l432kc)
+[Documentation for the machine package for the STM32 Nucleo L432KC](../../machine/nucleo-l432kc)
 
 ## Flashing
 

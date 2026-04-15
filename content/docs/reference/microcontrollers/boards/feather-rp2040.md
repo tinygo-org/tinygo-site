@@ -45,7 +45,7 @@ The [Adafruit Feather RP2040](https://www.adafruit.com/product/4884) is a tiny d
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Adafruit Feather RP2040](../machine/feather-rp2040)
+[Documentation for the machine package for the Adafruit Feather RP2040](../../machine/feather-rp2040)
 
 ## Flashing
 

@@ -54,7 +54,7 @@ The [Vicharak Shrike-Lite](https://github.com/vicharak-in/shrike) is a tiny deve
 
 ## Machine Package Docs
 
-[Documentation for the machine package for Shrike-Lite](../machine/vicharak_shrike-lite)
+[Documentation for the machine package for Shrike-Lite](../../machine/vicharak_shrike-lite)
 
 ## Flashing
 

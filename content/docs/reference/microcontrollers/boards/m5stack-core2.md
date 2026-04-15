@@ -97,7 +97,7 @@ The [m5stack-core2](https://shop.m5stack.com/products/m5stack-core2-esp32-iot-de
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the M5Stack Core2](../machine/m5stack-core2)
+[Documentation for the machine package for the M5Stack Core2](../../machine/m5stack-core2)
 
 ## Flashing
 

@@ -1,6 +1,6 @@
 ---
 title: "Adafruit PyBadge"
-weight: 3
+weight: 2
 ---
 
 The [Adafruit PyBadge](https://www.adafruit.com/product/4200) is a ARM development board based on the Atmel [ATSAMD51J19A](https://www.microchip.com/wwwproducts/en/ATSAMD51J19A) family of SoC.
@@ -71,7 +71,7 @@ It has many built-in devices, such as a 1.8" 160x128 Color TFT Display, 8 x butt
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Adafruit PyBadge](../machine/pybadge)
+[Documentation for the machine package for the Adafruit PyBadge](../../machine/pybadge)
 
 ## Flashing
 

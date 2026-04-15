@@ -113,7 +113,7 @@ The [Adafruit Grand Central M4](https://www.adafruit.com/product/4064) is a tiny
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Adafruit Grand Central M4](../machine/grandcentral-m4)
+[Documentation for the machine package for the Adafruit Grand Central M4](../../machine/grandcentral-m4)
 
 ## Flashing
 

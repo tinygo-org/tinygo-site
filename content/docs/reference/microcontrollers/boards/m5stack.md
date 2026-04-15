@@ -60,7 +60,7 @@ The [m5stack](https://docs.m5stack.com/en/core/basic) is a development board bas
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the M5Stack Core2](../machine/m5stack)
+[Documentation for the machine package for the M5Stack Core2](../../machine/m5stack)
 
 ## Flashing
 
