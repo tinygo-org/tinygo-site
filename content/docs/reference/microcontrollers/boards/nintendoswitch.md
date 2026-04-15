@@ -19,7 +19,7 @@ The [Nintendo Switch](https://en.wikipedia.org/wiki/Nintendo_Switch) is a handhe
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Nintendo Switch](../machine/nintendoswitch)
+[Documentation for the machine package for the Nintendo Switch](../../machine/nintendoswitch)
 
 ## Installing dependencies
 

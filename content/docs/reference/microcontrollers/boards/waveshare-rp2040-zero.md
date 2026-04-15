@@ -54,7 +54,7 @@ The [Waveshare RP2040-Zero](https://www.waveshare.com/wiki/RP2040-Zero) is a tin
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Waveshare RP2040-Zero](../machine/waveshare-rp2040-zero)
+[Documentation for the machine package for the Waveshare RP2040-Zero](../../machine/waveshare-rp2040-zero)
 
 ## Flashing
 

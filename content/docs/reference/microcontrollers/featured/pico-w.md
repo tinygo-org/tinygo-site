@@ -1,9 +1,9 @@
 ---
 title: "Raspberry Pi Pico W"
-weight: 3
+weight: 2
 ---
 
-The [Raspberry Pi Pico-W](https://www.raspberrypi.org/products/raspberry-pi-pico/) is a tiny development board based on the Raspberry Pi [RP2040](https://datasheets.raspberrypi.org/rp2040/rp2040-datasheet.pdf) microcontroller that also includes an onboard [Infineon CYW43439](https://www.infineon.com/cms/en/product/wireless-connectivity/airoc-wi-fi-plus-bluetooth-combos/wi-fi-4-802.11n/cyw43439/) wireless chip.
+The [Raspberry Pi Pico-W](https://www.raspberrypi.org/products/raspberry-pi-pico/) is a tiny development board based on the Raspberry Pi [RP2040](https://datasheets.raspberrypi.org/rp2040/rp2040-datasheet.pdf) microcontroller dual-core ARM Cortex-M0+ processor with 264KB of SRAM and 2MB of onboard flash storage. It also includes an onboard [Infineon CYW43439](https://www.infineon.com/cms/en/product/wireless-connectivity/airoc-wi-fi-plus-bluetooth-combos/wi-fi-4-802.11n/cyw43439/) wireless chip. As a result the Pico-W has both WiFi and Bluetooth support.
 
 ## Interfaces
 
@@ -16,6 +16,8 @@ The [Raspberry Pi Pico-W](https://www.raspberrypi.org/products/raspberry-pi-pico
 | ADC       | YES | YES |
 | PWM       | YES | YES |
 | USBDevice | YES | YES |
+| WiFi      | YES | YES |
+| Bluetooth | YES | YES |
 
 ## Pins
 
@@ -52,7 +54,7 @@ The [Raspberry Pi Pico-W](https://www.raspberrypi.org/products/raspberry-pi-pico
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Pico](../machine/pico)
+[Documentation for the machine package for the Pico](../../machine/pico)
 
 ## Flashing
 
@@ -78,12 +80,24 @@ Any troubleshooting tips go here.
 
 You can use the USB port to the Pico-W as a serial port.
 
+### Programmable Input/Output (PIO)
+
 TinyGo has support for the RP2040's on-board Programmable Input/Output (PIO) block.
 
 For more informantion, see [https://github.com/tinygo-org/pio](https://github.com/tinygo-org/pio)
 
-You can use the onboard wireless chip using the TinyGo Bluetooth package.
+### WiFi
 
-For more informantion, see [https://github.com/tinygo-org/bluetooth](https://github.com/tinygo-org/bluetooth)
+You can use the onboard wireless chip for WiFi using the CYW43439 package.
+
+For more information, see [https://github.com/soypat/cyw43439](https://github.com/soypat/cyw43439)
+
+### Bluetooth
+
+You can also use the onboard wireless chip for Bluetooth Low Energy using the TinyGo Bluetooth package.
+
+For more information, see [https://github.com/tinygo-org/bluetooth](https://github.com/tinygo-org/bluetooth)
+
+### Debugging
 
 You can refer to [getting started with Raspberry Pi Pico](https://datasheets.raspberrypi.org/pico/getting-started-with-pico.pdf) documentation on how to connect two Picos together (see Appendix A: Using Picoprobe) to debug and convert `UART0` output on target pico to USB output on picoprobe. You will need the [Picoprobe UF2](https://www.raspberrypi.org/documentation/rp2040/getting-started/#board-specifications), available on the Pico's website under "About" tab.

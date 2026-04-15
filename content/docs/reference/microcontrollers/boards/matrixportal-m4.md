@@ -71,7 +71,7 @@ The [Adafruit Matrix Portal M4](https://www.adafruit.com/product/4745) is an ARM
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Adafruit Matrix Portal M4](../machine/matrix-portal-m4)
+[Documentation for the machine package for the Adafruit Matrix Portal M4](../../machine/matrix-portal-m4)
 
 ## Flashing
 

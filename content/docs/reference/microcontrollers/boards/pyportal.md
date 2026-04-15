@@ -73,7 +73,7 @@ The PyPortal also has an Espressif ESP32 Wi-Fi coprocessor with TLS/SSL support 
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Adafruit PyPortal](../machine/pyportal)
+[Documentation for the machine package for the Adafruit PyPortal](../../machine/pyportal)
 
 ## Flashing
 

@@ -57,7 +57,7 @@ Peripherals:
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Nano RP2040](../machine/nano-rp2040)
+[Documentation for the machine package for the Nano RP2040](../../machine/nano-rp2040)
 
 ## Flashing
 

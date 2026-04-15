@@ -1,6 +1,6 @@
 
 ---
-title: feather-rp2040
+title: xiao-rp2350
 ---
 
 
@@ -8,28 +8,35 @@ title: feather-rp2040
 
 ```go
 const (
-	D4	= GPIO6
-	D5	= GPIO7
-	D6	= GPIO8
-	D9	= GPIO9
-	D10	= GPIO10
-	D11	= GPIO11
-	D12	= GPIO12
-	D13	= GPIO13
-	D24	= GPIO24
-	D25	= GPIO25
+	D0	Pin	= GPIO26
+	D1	Pin	= GPIO27
+	D2	Pin	= GPIO28
+	D3	Pin	= GPIO5
+	D4	Pin	= GPIO6
+	D5	Pin	= GPIO7
+	D6	Pin	= GPIO0
+	D7	Pin	= GPIO1
+	D8	Pin	= GPIO2
+	D9	Pin	= GPIO4
+	D10	Pin	= GPIO3
+	D11	Pin	= GPIO21
+	D12	Pin	= GPIO20
+	D13	Pin	= GPIO17
+	D14	Pin	= GPIO16
+	D15	Pin	= GPIO11
+	D16	Pin	= GPIO12
+	D17	Pin	= GPIO10
 )
 ```
 
-GPIO Pins
+Digital Pins
 
 
 ```go
 const (
-	A0	= GPIO26
-	A1	= GPIO27
-	A2	= GPIO28
-	A3	= GPIO29
+	A0	Pin	= D0
+	A1	Pin	= D1
+	A2	Pin	= D2
 )
 ```
 
@@ -37,54 +44,51 @@ Analog pins
 
 
 ```go
-const LED = GPIO13
+const (
+	NEOPIXEL	= GPIO22
+	WS2812		= GPIO22
+	NEO_PWR		= GPIO23
+	NEOPIXEL_POWER	= GPIO23
+
+	LED	= GPIO25
+)
 ```
 
+Onboard LEDs
 
 
 ```go
 const (
-	I2C0_SDA_PIN	= GPIO24
-	I2C0_SCL_PIN	= GPIO25
+	I2C0_SDA_PIN	Pin	= D14
+	I2C0_SCL_PIN	Pin	= D13
 
-	I2C1_SDA_PIN	= GPIO2
-	I2C1_SCL_PIN	= GPIO3
-
-	SDA_PIN	= I2C1_SDA_PIN
-	SCL_PIN	= I2C1_SCL_PIN
+	I2C1_SDA_PIN	Pin	= D4
+	I2C1_SCL_PIN	Pin	= D5
 )
 ```
 
-I2C Pins.
+I2C pins
 
 
 ```go
 const (
-	// Default Serial Clock Bus 0 for SPI communications
-	SPI0_SCK_PIN	= GPIO18
-	// Default Serial Out Bus 0 for SPI communications
-	SPI0_SDO_PIN	= GPIO19	// Tx
-	// Default Serial In Bus 0 for SPI communications
-	SPI0_SDI_PIN	= GPIO20	// Rx
+	SPI0_SCK_PIN	Pin	= D8
+	SPI0_SDO_PIN	Pin	= D10
+	SPI0_SDI_PIN	Pin	= D9
 
-	// Default Serial Clock Bus 1 for SPI communications
-	SPI1_SCK_PIN	= GPIO10
-	// Default Serial Out Bus 1 for SPI communications
-	SPI1_SDO_PIN	= GPIO11	// Tx
-	// Default Serial In Bus 1 for SPI communications
-	SPI1_SDI_PIN	= GPIO12	// Rx
+	SPI1_SCK_PIN	Pin	= D17
+	SPI1_SDO_PIN	Pin	= D15
+	SPI1_SDI_PIN	Pin	= D16
 )
 ```
 
-SPI default pins
+SPI pins
 
 
 ```go
 const (
 	UART0_TX_PIN	= GPIO0
 	UART0_RX_PIN	= GPIO1
-	UART1_TX_PIN	= GPIO8
-	UART1_RX_PIN	= GPIO9
 	UART_TX_PIN	= UART0_TX_PIN
 	UART_RX_PIN	= UART0_RX_PIN
 )
@@ -168,38 +172,29 @@ of the pins in a peripheral unconfigured (if supported by the hardware).
 
 ```go
 const (
-	LS_SE0	= 0b00
-	LS_J	= 0b01
-	LS_K	= 0b10
-	LS_SE1	= 0b11
-)
-```
-
-
-
-```go
-const (
-	cpuFreq			= 200 * MHz
-	_NUMBANK0_GPIOS		= 30
-	_NUMBANK0_IRQS		= 4
-	_NUMIRQ			= 32
-	rp2350ExtraReg		= 0
-	RESETS_RESET_Msk	= 0x01ffffff
+	cpuFreq			= 150 * MHz
+	_NUMBANK0_GPIOS		= 48
+	_NUMBANK0_IRQS		= 6
+	rp2350ExtraReg		= 1
+	_NUMIRQ			= 51
+	notimpl			= "rp2350: not implemented"
+	RESETS_RESET_Msk	= 0x1fffffff
 	initUnreset		= rp.RESETS_RESET_ADC |
-		rp.RESETS_RESET_RTC |
 		rp.RESETS_RESET_SPI0 |
 		rp.RESETS_RESET_SPI1 |
 		rp.RESETS_RESET_UART0 |
 		rp.RESETS_RESET_UART1 |
 		rp.RESETS_RESET_USBCTRL
-	initDontReset	= rp.RESETS_RESET_IO_QSPI |
-		rp.RESETS_RESET_PADS_QSPI |
-		rp.RESETS_RESET_PLL_USB |
-		rp.RESETS_RESET_USBCTRL |
+	initDontReset	= rp.RESETS_RESET_USBCTRL |
 		rp.RESETS_RESET_SYSCFG |
-		rp.RESETS_RESET_PLL_SYS
+		rp.RESETS_RESET_PLL_USB |
+		rp.RESETS_RESET_PLL_SYS |
+		rp.RESETS_RESET_PADS_QSPI |
+		rp.RESETS_RESET_IO_QSPI |
+		rp.RESETS_RESET_JTAG
 	padEnableMask	= rp.PADS_BANK0_GPIO0_IE_Msk |
-		rp.PADS_BANK0_GPIO0_OD_Msk
+		rp.PADS_BANK0_GPIO0_OD_Msk |
+		rp.PADS_BANK0_GPIO0_ISO_Msk
 )
 ```
 
@@ -218,6 +213,25 @@ const (
 	PinSPI
 	PinPIO0
 	PinPIO1
+	PinPIO2
+)
+```
+
+
+
+```go
+const (
+	clkGPOUT0	clockIndex	= iota	// GPIO Muxing 0
+	clkGPOUT1				// GPIO Muxing 1
+	clkGPOUT2				// GPIO Muxing 2
+	clkGPOUT3				// GPIO Muxing 3
+	clkRef					// Watchdog and timers reference clock
+	clkSys					// Processors, bus fabric, memory, memory mapped registers
+	clkPeri					// Peripheral clock for UART and SPI
+	ClkHSTX					// High speed interface
+	clkUSB					// USB clock
+	clkADC					// ADC clock
+	numClocks
 )
 ```
 
@@ -230,11 +244,12 @@ const (
 	ADC2	Pin	= GPIO28
 	ADC3	Pin	= GPIO29
 
+	// fifth ADC channel.
 	thermADC	= 30
 )
 ```
 
-Analog pins on RP2040.
+Analog pins on RP2350a.
 
 
 ```go
@@ -390,21 +405,6 @@ var (
 ```
 
 UART on the RP2040
-
-
-```go
-var RTC = (*rtcType)(unsafe.Pointer(rp.RTC))
-```
-
-
-
-```go
-var (
-	ErrRtcDelayTooSmall	= errors.New("RTC interrupt deplay is too small, shall be at least 1 second")
-	ErrRtcDelayTooLarge	= errors.New("RTC interrupt deplay is too large, shall be no more than 1 day")
-)
-```
-
 
 
 ```go

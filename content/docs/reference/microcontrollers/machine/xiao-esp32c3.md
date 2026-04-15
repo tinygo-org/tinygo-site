@@ -1,6 +1,6 @@
 
 ---
-title: m5stamp-c3
+title: xiao-esp32c3
 ---
 
 
@@ -8,47 +8,92 @@ title: m5stamp-c3
 
 ```go
 const (
-	IO0	= GPIO0
-	IO1	= GPIO1
-	IO2	= GPIO2
-	IO3	= GPIO3
-	IO4	= GPIO4
-	IO5	= GPIO5
-	IO6	= GPIO6
-	IO7	= GPIO7
-	IO8	= GPIO8
-	IO9	= GPIO9
-	IO10	= GPIO10
-	IO11	= GPIO11
-	IO12	= GPIO12
-	IO13	= GPIO13
-	IO14	= GPIO14
-	IO15	= GPIO15
-	IO16	= GPIO16
-	IO17	= GPIO17
-	IO18	= GPIO18
-	IO19	= GPIO19
-	IO20	= GPIO20
-	IO21	= GPIO21
+	D0	= GPIO2
+	D1	= GPIO3
+	D2	= GPIO4
+	D3	= GPIO5
+	D4	= GPIO6
+	D5	= GPIO7
+	D6	= GPIO21
+	D7	= GPIO20
+	D8	= GPIO8
+	D9	= GPIO9
+	D10	= GPIO10
+)
+```
 
-	XTAL_32K_P	= IO0
-	XTAL_32K_N	= IO1
-	MTMS		= IO4
-	MTDI		= IO5
-	MTCK		= IO6
-	MTDO		= IO7
-	VDD_SPI		= IO11
-	SPIHD		= IO12
-	SPISP		= IO13
-	SPICS0		= IO14
-	SPICLK		= IO15
-	SPID		= IO16
-	SPIQ		= IO17
-	U0RXD		= IO20
-	U0TXD		= IO21
+Digital Pins
 
-	UART_TX_PIN	= U0TXD
-	UART_RX_PIN	= U0RXD
+
+```go
+const (
+	A0	= GPIO2
+	A1	= GPIO3
+	A2	= GPIO4
+	A3	= GPIO5
+)
+```
+
+Analog pins
+
+
+```go
+const (
+	UART_RX_PIN	= GPIO20
+	UART_TX_PIN	= GPIO21
+)
+```
+
+UART pins
+
+
+```go
+const (
+	SDA_PIN	= GPIO6
+	SCL_PIN	= GPIO7
+)
+```
+
+I2C pins
+
+
+```go
+const (
+	SPI_SCK_PIN	= GPIO8
+	SPI_SDI_PIN	= GPIO9
+	SPI_SDO_PIN	= GPIO10
+)
+```
+
+SPI pins
+
+
+```go
+const (
+	TWI_FREQ_100KHZ	= 100000
+	TWI_FREQ_400KHZ	= 400000
+)
+```
+
+TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-speed bus.
+
+Deprecated: use 100 * machine.KHz or 400 * machine.KHz instead.
+
+
+```go
+const (
+	// I2CReceive indicates target has received a message from the controller.
+	I2CReceive	I2CTargetEvent	= iota
+
+	// I2CRequest indicates the controller is expecting a message from the target.
+	I2CRequest
+
+	// I2CFinish indicates the controller has ended the transaction.
+	//
+	// I2C controllers can chain multiple receive/request messages without
+	// relinquishing the bus by doing 'restarts'.  I2CFinish indicates the
+	// bus has been relinquished by an I2C 'stop'.
+	I2CFinish
 )
 ```
 
@@ -56,7 +101,11 @@ const (
 
 ```go
 const (
-	WS2812 = IO2
+	// I2CModeController represents an I2C peripheral in controller mode.
+	I2CModeController	I2CMode	= iota
+
+	// I2CModeTarget represents an I2C peripheral in target mode.
+	I2CModeTarget
 )
 ```
 
@@ -166,6 +215,15 @@ Pin change interrupt constants for SetInterrupt.
 
 ```go
 const (
+	I2CEXT0_SCL_OUT_IDX	= 53
+	I2CEXT0_SDA_OUT_IDX	= 54
+)
+```
+
+
+
+```go
+const (
 	LEDC_LS_SIG_OUT0_IDX = 45
 )
 ```
@@ -268,6 +326,19 @@ var (
 
 ```go
 var (
+	I2C0 = &I2C{
+		Bus:		esp.I2C0,
+		funcSCL:	I2CEXT0_SCL_OUT_IDX,
+		funcSDA:	I2CEXT0_SDA_OUT_IDX,
+		useExt1:	false,
+	}
+)
+```
+
+
+
+```go
+var (
 	PWM0	= &LEDCPWM{SigOutBase: LEDC_LS_SIG_OUT0_IDX, NumChannels: ledcChannelsC3, timerNum: 0}
 	PWM1	= &LEDCPWM{SigOutBase: LEDC_LS_SIG_OUT0_IDX, NumChannels: ledcChannelsC3, timerNum: 1}
 	PWM2	= &LEDCPWM{SigOutBase: LEDC_LS_SIG_OUT0_IDX, NumChannels: ledcChannelsC3, timerNum: 2}
@@ -324,10 +395,10 @@ var (
 
 
 ```go
-var Serial = DefaultUART
+var Serial Serialer
 ```
 
-Serial is implemented via the default (usually the first) UART on the chip.
+Serial is implemented via USB (USB-CDC).
 
 
 ```go
@@ -406,6 +477,14 @@ For maximum entropy also make sure that the SAR_ADC is enabled.
 See esp32-c3_technical_reference_manual_en.pdf p.524
 
 
+### func InitADC
+
+```go
+func InitADC()
+```
+
+
+
 ### func InitSerial
 
 ```go
@@ -454,6 +533,24 @@ type ADC struct {
 }
 ```
 
+
+
+
+### func (ADC) Configure
+
+```go
+func (a ADC) Configure(config ADCConfig) error
+```
+
+ESP32-C3: ADC1 = GPIO0–GPIO4 (ch 0–4), ADC2 = GPIO5 (ch 0). ADC2 shares with Wi‑Fi;
+readings may be noisy when Wi‑Fi is active.
+
+
+### func (ADC) Get
+
+```go
+func (a ADC) Get() uint16
+```
 
 
 
@@ -514,6 +611,117 @@ type BlockDevice interface {
 ```
 
 BlockDevice is the raw device that is meant to store flash data.
+
+
+
+
+
+## type I2C
+
+```go
+type I2C struct {
+	Bus			*esp.I2C_Type
+	funcSCL, funcSDA	uint32
+	useExt1			bool
+	txCmdBuf		[8]i2cCommand
+}
+```
+
+
+
+
+### func (*I2C) Configure
+
+```go
+func (i2c *I2C) Configure(config I2CConfig) error
+```
+
+
+
+### func (*I2C) ReadRegister
+
+```go
+func (i2c *I2C) ReadRegister(address uint8, register uint8, data []byte) error
+```
+
+ReadRegister transmits the register, restarts the connection as a read
+operation, and reads the response.
+
+Many I2C-compatible devices are organized in terms of registers. This method
+is a shortcut to easily read such registers. Also, it only works for devices
+with 7-bit addresses, which is the vast majority.
+
+
+### func (*I2C) SetBaudRate
+
+```go
+func (i2c *I2C) SetBaudRate(br uint32) error
+```
+
+
+
+### func (*I2C) Tx
+
+```go
+func (i2c *I2C) Tx(addr uint16, w, r []byte) (err error)
+```
+
+Tx does a single I2C transaction at the specified address.
+It clocks out the given address, writes the bytes in w, reads back len(r)
+bytes and stores them in r, and generates a stop condition on the bus.
+
+
+### func (*I2C) WriteRegister
+
+```go
+func (i2c *I2C) WriteRegister(address uint8, register uint8, data []byte) error
+```
+
+WriteRegister transmits first the register and then the data to the
+peripheral device.
+
+Many I2C-compatible devices are organized in terms of registers. This method
+is a shortcut to easily write to such registers. Also, it only works for
+devices with 7-bit addresses, which is the vast majority.
+
+
+
+
+## type I2CConfig
+
+```go
+type I2CConfig struct {
+	Frequency	uint32	// in Hz
+	SCL		Pin
+	SDA		Pin
+}
+```
+
+I2CConfig is used to store config info for I2C.
+
+
+
+
+
+## type I2CMode
+
+```go
+type I2CMode int
+```
+
+I2CMode determines if an I2C peripheral is in Controller or Target mode.
+
+
+
+
+
+## type I2CTargetEvent
+
+```go
+type I2CTargetEvent uint8
+```
+
+I2CTargetEvent reflects events on the I2C bus
 
 
 

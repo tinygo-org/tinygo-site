@@ -30,7 +30,7 @@ The [Adafruit Trinkey QT2040](https://www.adafruit.com/product/5056) is a tiny d
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Adafruit Trinkey QT2040](../machine/trinkey-qt2040)
+[Documentation for the machine package for the Adafruit Trinkey QT2040](../../machine/trinkey-qt2040)
 
 ## Flashing
 

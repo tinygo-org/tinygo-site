@@ -1,6 +1,6 @@
 ---
 title: "Raspberry Pi Pico 2 W"
-weight: 3
+weight: 2
 ---
 
 The [Raspberry Pi Pico 2 - W](https://www.raspberrypi.com/products/raspberry-pi-pico-2/) is a tiny development board based on the Raspberry Pi [RP2350](https://datasheets.raspberrypi.org/rp2350/rp2350-datasheet.pdf) microcontroller. It also includes an onboard [Infineon CYW43439](https://www.infineon.com/cms/en/product/wireless-connectivity/airoc-wi-fi-plus-bluetooth-combos/wi-fi-4-802.11n/cyw43439/) wireless chip.
@@ -52,7 +52,7 @@ The [Raspberry Pi Pico 2 - W](https://www.raspberrypi.com/products/raspberry-pi-
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Pico](../machine/pico)
+[Documentation for the machine package for the Pico](../../machine/pico)
 
 ## Flashing
 

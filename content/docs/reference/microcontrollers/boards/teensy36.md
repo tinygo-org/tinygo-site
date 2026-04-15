@@ -88,7 +88,7 @@ The [PJRC Teensy 3.6](https://www.pjrc.com/store/teensy36.html) is a small ARM d
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Teensy 3.6](../machine/teensy36)
+[Documentation for the machine package for the Teensy 3.6](../../machine/teensy36)
 
 ## Flashing
 

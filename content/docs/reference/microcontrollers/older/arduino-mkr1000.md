@@ -48,7 +48,7 @@ The [Arduino MKR1000](https://store.arduino.cc/arduino-mkr1000-wifi) is a very s
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Arduino MKR1000](../machine/arduino-mkr1000)
+[Documentation for the machine package for the Arduino MKR1000](../../machine/arduino-mkr1000)
 
 ## Installing BOSSA
 

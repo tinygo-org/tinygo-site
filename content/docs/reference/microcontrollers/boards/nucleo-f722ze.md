@@ -37,7 +37,7 @@ It has 2 user buttons, and 3 user LEDs.
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the STM32 Nucleo F722ZE](../machine/nucleo-f722ze)
+[Documentation for the machine package for the STM32 Nucleo F722ZE](../../machine/nucleo-f722ze)
 
 ## Flashing
 

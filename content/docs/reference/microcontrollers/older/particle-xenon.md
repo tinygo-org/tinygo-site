@@ -61,7 +61,7 @@ weight: 3
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Particle Xenon](../machine/particle-xenon)
+[Documentation for the machine package for the Particle Xenon](../../machine/particle-xenon)
 
 ## Flashing
 

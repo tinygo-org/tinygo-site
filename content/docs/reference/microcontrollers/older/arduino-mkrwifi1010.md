@@ -55,7 +55,7 @@ The [Arduino MKR WiFi 1010](https://store.arduino.cc/usa/mkr-wifi-1010) is a ver
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Arduino MKR WiFi 1010](../machine/arduino-mkrwifi1010)
+[Documentation for the machine package for the Arduino MKR WiFi 1010](../../machine/arduino-mkrwifi1010)
 
 ## Installing BOSSA
 

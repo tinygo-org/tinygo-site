@@ -1,6 +1,6 @@
 ---
 title: "Seeed Studio XIAO BLE"
-weight: 3
+weight: 1
 ---
 
 The [Seeed Studio XIAO BLE](https://www.seeedstudio.com/Seeed-XIAO-BLE-nRF52840-p-5201.html) is a tiny ARM development board based on the Nordic Semiconductor [nrf52840](https://www.nordicsemi.com/eng/Products/nRF52840) processor.
@@ -47,7 +47,7 @@ The [Seeed Studio XIAO BLE](https://www.seeedstudio.com/Seeed-XIAO-BLE-nRF52840-
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Seeed Studio XIAO BLE](../machine/xiao-ble)
+[Documentation for the machine package for the Seeed Studio XIAO BLE](../../machine/xiao-ble)
 
 ## Flashing
 

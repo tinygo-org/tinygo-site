@@ -36,7 +36,7 @@ The [Espressif ESP8266](https://www.espressif.com/en/products/socs/esp8266) d1mi
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the ESP8266 d1mini](../machine/d1mini)
+[Documentation for the machine package for the ESP8266 d1mini](../../machine/d1mini)
 
 ## Flashing
 

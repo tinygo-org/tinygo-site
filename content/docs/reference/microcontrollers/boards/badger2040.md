@@ -1,6 +1,6 @@
 ---
 title: "Pimoroni Badger2040"
-weight: 3
+weight: 2
 ---
 
 The [Pimoroni Badger2040](https://shop.pimoroni.com/products/badger-2040) is a badge with E Ink display based on the Raspberry Pi [RP2040](https://datasheets.raspberrypi.org/rp2040/rp2040-datasheet.pdf) microcontroller.
@@ -47,7 +47,7 @@ The [Pimoroni Badger2040](https://shop.pimoroni.com/products/badger-2040) is a b
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Pimoroni Badger2040](../machine/badger2040)
+[Documentation for the machine package for the Pimoroni Badger2040](../../machine/badger2040)
 
 ## Flashing
 

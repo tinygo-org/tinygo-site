@@ -64,7 +64,7 @@ The [Adafruit Metro M4 Express AirLift](https://www.adafruit.com/product/4000) i
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Adafruit Metro M4 Airlift](../machine/metro-m4-airlift)
+[Documentation for the machine package for the Adafruit Metro M4 Airlift](../../machine/metro-m4-airlift)
 
 ## Flashing
 

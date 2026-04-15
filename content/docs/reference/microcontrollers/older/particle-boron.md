@@ -69,7 +69,7 @@ weight: 3
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Particle Boron](../machine/particle-boron)
+[Documentation for the machine package for the Particle Boron](../../machine/particle-boron)
 
 ## Flashing
 

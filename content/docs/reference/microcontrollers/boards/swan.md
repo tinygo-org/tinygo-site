@@ -34,7 +34,7 @@ The Swan has a user button and an LED, LiPo charging and USB.
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Swan](../machine/swan)
+[Documentation for the machine package for the Swan](../../machine/swan)
 
 ## Flashing
 
