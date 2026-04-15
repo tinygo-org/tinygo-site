@@ -63,8 +63,8 @@ or `/dev/ttyACM1`. On MacOS, the port will look like `/dev/cu.usbserial-1420`.
 On Windows, the port will be something like `COM1` or `COM31`.
 
 `-baudrate={rate}`: The default baud rate is 115200. Boards using the AVR
-processor (e.g. [Arduino Nano]({{<ref "../microcontrollers/arduino-nano.md">}}),
-[Arduino Mega 2560]({{<ref "../microcontrollers/arduino-mega2560">}})) use 9600
+processor (e.g. [Arduino Nano]({{<ref "../microcontrollers/older/arduino-nano.md">}}),
+[Arduino Mega 2560]({{<ref "../microcontrollers/older/arduino-mega2560">}})) use 9600
 instead.
 
 `-target={name}`: If you have more than one microcontrollers attached, you can

@@ -29,7 +29,7 @@ The [nRF52840 MDK USB Dongle](https://wiki.makerdiary.com/nrf52840-mdk-usb-dongl
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the nRF52840-MDK-USB-Dongle](../machine/nrf52840-mdk-usb-dongle)
+[Documentation for the machine package for the nRF52840-MDK-USB-Dongle](../../machine/nrf52840-mdk-usb-dongle)
 
 ## Flashing
 

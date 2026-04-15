@@ -1,9 +1,9 @@
 ---
-title: "Seeed Wio Terminal"
+title: "SeeedStudio Wio Terminal"
 weight: 3
 ---
 
-The [Seeed Wio Terminal](https://www.seeedstudio.com/Wio-Terminal-p-4509.html) is a tiny ARM development board based on the Atmel [ATSAMD51P20](https://www.microchip.com/wwwproducts/en/ATSAMD51P20A) family of SoC.
+The [SeeedStudio Wio Terminal](https://www.seeedstudio.com/Wio-Terminal-p-4509.html) is a tiny ARM development board based on the Atmel [ATSAMD51P20](https://www.microchip.com/wwwproducts/en/ATSAMD51P20A) family of SoC.
 
 ## Interfaces
 
@@ -16,6 +16,7 @@ The [Seeed Wio Terminal](https://www.seeedstudio.com/Wio-Terminal-p-4509.html) i
 | ADC       | YES | YES |
 | PWM       | YES | YES |
 | USBDevice | YES | YES |
+| WiFi      | YES | YES |
 
 ## Pins
 
@@ -115,7 +116,7 @@ The [Seeed Wio Terminal](https://www.seeedstudio.com/Wio-Terminal-p-4509.html) i
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Seeed Wio Terminal](../machine/wioterminal)
+[Documentation for the machine package for the Seeed Wio Terminal](../../machine/wioterminal)
 
 ## Flashing
 

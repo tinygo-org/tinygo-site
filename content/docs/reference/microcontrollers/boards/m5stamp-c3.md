@@ -14,8 +14,8 @@ The [M5Stamp-C3](https://docs.m5stack.com/en/core/stamp_c3) is a development boa
 | SPI       | YES | YES |
 | I2C       | YES | Not yet |
 | ADC       | YES | YES |
-| PWM       | YES | Not yet |
-| USBDevice | YES | Not yet |
+| PWM       | YES | YES |
+| USBDevice | YES | YES |
 | WiFi      | YES | Not Yet |
 | Bluetooth | YES | Not yet |
 
@@ -23,12 +23,12 @@ The [M5Stamp-C3](https://docs.m5stack.com/en/core/stamp_c3) is a development boa
 
 | Pin               | Hardware pin | Alternative names |
 | ----------------- | ------------ | ----------------- |
-| `IO0`             | `GPIO0`      | `XTAL_32K_P`      |
-| `IO1`             | `GPIO1`      | `XTAL_32K_N`      |
-| `IO2`             | `GPIO2`      | `WS2812`          |
-| `IO3`             | `GPIO3`      |                   |
-| `IO4`             | `GPIO4`      | `MTMS`            |
-| `IO5`             | `GPIO5`      | `MTDI`            |
+| `IO0`             | `GPIO0`      | `XTAL_32K_P`, `ADC0` |
+| `IO1`             | `GPIO1`      | `XTAL_32K_N`, `ADC1` |
+| `IO2`             | `GPIO2`      | `WS2812`, `ADC2`  |
+| `IO3`             | `GPIO3`      | `ADC3`            |
+| `IO4`             | `GPIO4`      | `MTMS`, `ADC4`    |
+| `IO5`             | `GPIO5`      | `MTDI`, `ADC5`    |
 | `IO6`             | `GPIO6`      | `MTCK`            |
 | `IO7`             | `GPIO7`      | `MTDO`            |
 | `IO8`             | `GPIO8`      |                   |
@@ -48,7 +48,7 @@ The [M5Stamp-C3](https://docs.m5stack.com/en/core/stamp_c3) is a development boa
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the M5Stamp-C3](../machine/m5stamp-c3)
+[Documentation for the machine package for the M5Stamp-C3](../../machine/m5stamp-c3)
 
 ## Flashing
 

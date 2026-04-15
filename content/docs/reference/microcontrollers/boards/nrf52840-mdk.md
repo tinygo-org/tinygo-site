@@ -30,7 +30,7 @@ The [nRF52840-MDK](https://wiki.makerdiary.com/nrf52840-mdk/) (not to be confuse
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the nRF52840-MDK](../machine/nrf52840-mdk)
+[Documentation for the machine package for the nRF52840-MDK](../../machine/nrf52840-mdk)
 
 ## Flashing
 

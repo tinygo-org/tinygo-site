@@ -171,9 +171,9 @@ error code.)
 The default [baud rate](https://en.wikipedia.org/wiki/Serial_port#Speed) of the
 serial port for almost all microcontrollers supported by TinyGo is 115200. The
 exceptions are boards using the AVR processors ([Arduino Nano]({{<ref
-"../reference/microcontrollers/arduino-nano">}}), [Arduino Mega 1280]({{<ref
-"../reference/microcontrollers/arduino-mega1280">}}), [Arduino Mega 2560]({{<ref
-"../reference/microcontrollers/arduino-mega2560">}})). On these, the serial port
+"../reference/microcontrollers/older/arduino-nano">}}), [Arduino Mega 1280]({{<ref
+"../reference/microcontrollers/older/arduino-mega1280">}}), [Arduino Mega 2560]({{<ref
+"../reference/microcontrollers/older/arduino-mega2560">}})). On these, the serial port
 is set to 9600, so you need to override the baud rate of `tinygo monitor` like
 this:
 

@@ -96,7 +96,7 @@ Note: the AVR backend of LLVM is still experimental so you may encounter bugs.
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Arduino Mega 2560](../machine/arduino-mega2560)
+[Documentation for the machine package for the Arduino Mega 2560](../../machine/arduino-mega2560)
 
 ## Installing dependencies
 

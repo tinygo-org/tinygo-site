@@ -35,7 +35,7 @@ Info here
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the X9 Pro](../machine/x9pro)
+[Documentation for the machine package for the X9 Pro](../../machine/x9pro)
 
 ## Flashing
 

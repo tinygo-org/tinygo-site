@@ -34,7 +34,7 @@ It has onboard ethernet, 2 user buttons, and 3 user LEDs.
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the STM32 Nucleo l552ze](../machine/nucleo-l552ze)
+[Documentation for the machine package for the STM32 Nucleo l552ze](../../machine/nucleo-l552ze)
 
 ## Flashing
 

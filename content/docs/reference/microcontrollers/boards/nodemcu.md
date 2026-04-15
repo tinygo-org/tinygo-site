@@ -36,7 +36,7 @@ The [Espressif ESP8266](https://www.espressif.com/en/products/socs/esp8266) Node
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the ESP8266 NodeMCU](../machine/nodemcu)
+[Documentation for the machine package for the ESP8266 NodeMCU](../../machine/nodemcu)
 
 ## Flashing
 

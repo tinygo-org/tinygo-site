@@ -64,7 +64,7 @@ The [PJRC Teensy 4.0](https://www.pjrc.com/store/teensy40.html) is a small ARM d
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Teensy 4.0](../machine/teensy40)
+[Documentation for the machine package for the Teensy 4.0](../../machine/teensy40)
 
 ## Flashing
 

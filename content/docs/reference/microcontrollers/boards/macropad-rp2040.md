@@ -52,7 +52,7 @@ The [Adafruit MacroPad RP2040](https://www.adafruit.com/product/5100) is a tiny 
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Adafruit MacroPad RP2040](../machine/macropad-rp2040)
+[Documentation for the machine package for the Adafruit MacroPad RP2040](../../machine/macropad-rp2040)
 
 ## Flashing
 

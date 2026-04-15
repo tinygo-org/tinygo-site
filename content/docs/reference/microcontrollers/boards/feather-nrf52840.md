@@ -59,7 +59,7 @@ The [Adafruit Feather nRF52840](https://www.adafruit.com/product/4500) is a smal
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Adafruit Feather nRF52840](../machine/feather-nrf52840)
+[Documentation for the machine package for the Adafruit Feather nRF52840](../../machine/feather-nrf52840)
 
 ## Flashing
 

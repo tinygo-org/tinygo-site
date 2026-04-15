@@ -60,7 +60,7 @@ The [Sipeed MAix Bit](https://www.seeedstudio.com/Sipeed-MAix-BiT-for-RISC-V-AI-
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Sipeed MAix Bit](../machine/maixbit)
+[Documentation for the machine package for the Sipeed MAix Bit](../../machine/maixbit)
 
 ## Flashing
 

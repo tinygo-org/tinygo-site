@@ -46,7 +46,7 @@ Note: the AVR backend of LLVM is still experimental so you may encounter bugs.
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Arduino Nano](../machine/arduino-nano)
+[Documentation for the machine package for the Arduino Nano](../../machine/arduino-nano)
 
 ## Installing dependencies
 

@@ -134,6 +134,16 @@ USBCDC pins
 
 ```go
 const (
+	UART0_TX_PIN	= D1
+	UART0_RX_PIN	= D0
+)
+```
+
+UART0 pins
+
+
+```go
+const (
 	UART_TX_PIN	= D10
 	UART_RX_PIN	= D11
 )
@@ -383,6 +393,13 @@ const (
 
 
 ## Variables
+
+```go
+var UART0 = &sercomUSART0
+```
+
+UART0 on the Feather M0.
+
 
 ```go
 var UART1 = &sercomUSART1

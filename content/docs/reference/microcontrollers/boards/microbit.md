@@ -52,7 +52,7 @@ The BBC [micro:bit](https://microbit.org) is a tiny programmable computer design
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the BBC micro:bit](../machine/microbit)
+[Documentation for the machine package for the BBC micro:bit](../../machine/microbit)
 
 ## Flashing
 

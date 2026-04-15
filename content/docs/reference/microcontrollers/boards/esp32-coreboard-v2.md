@@ -58,7 +58,7 @@ The esp32-coreboard-v2 is a development board based on the [Espressif ESP32](htt
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the ESP32 Core board v2](../machine/esp32-coreboard-v2)
+[Documentation for the machine package for the ESP32 Core board v2](../../machine/esp32-coreboard-v2)
 
 ## Flashing
 
