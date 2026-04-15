@@ -451,6 +451,12 @@ var (
 
 
 ```go
+var Flash flashBlockDevice
+```
+
+
+
+```go
 var (
 	TIM2	= TIM{
 		EnableRegister:	&stm32.RCC.APB1ENR,
@@ -647,6 +653,26 @@ The identity is one burnt into the MCU itself.
 The length of the device ID for STM32 is 12 bytes (96 bits).
 
 
+### func FlashDataEnd
+
+```go
+func FlashDataEnd() uintptr
+```
+
+Return the end of the writable flash area. Usually this is the address one
+past the end of the on-chip flash.
+
+
+### func FlashDataStart
+
+```go
+func FlashDataStart() uintptr
+```
+
+Return the start of the writable flash area, aligned on a page boundary. This
+is usually just after the program and static data.
+
+
 ### func GetRNG
 
 ```go
@@ -701,6 +727,48 @@ type ADCConfig struct {
 
 ADCConfig holds ADC configuration parameters. If left unspecified, the zero
 value of each parameter will use the peripheral's default settings.
+
+
+
+
+
+## type BlockDevice
+
+```go
+type BlockDevice interface {
+	// ReadAt reads the given number of bytes from the block device.
+	io.ReaderAt
+
+	// WriteAt writes the given number of bytes to the block device.
+	//
+	// This interface directly writes data to the underlying block device.
+	// Different kinds of devices have different requirements: most can only
+	// write data after the page has been erased, and many can only write data
+	// with specific alignment (such as 4-byte alignment).
+	io.WriterAt
+
+	// Size returns the number of bytes in this block device.
+	Size() int64
+
+	// WriteBlockSize returns the block size in which data can be written to
+	// memory. It can be used by a client to optimize writes, non-aligned writes
+	// should always work correctly.
+	WriteBlockSize() int64
+
+	// EraseBlockSize returns the smallest erasable area on this particular chip
+	// in bytes. This is used for the block size in EraseBlocks.
+	// It must be a power of two, and may be as small as 1. A typical size is 4096.
+	EraseBlockSize() int64
+
+	// EraseBlocks erases the given number of blocks. An implementation may
+	// transparently coalesce ranges of blocks into larger bundles if the chip
+	// supports this. The start and len parameters are in block numbers, use
+	// EraseBlockSize to map addresses to blocks.
+	EraseBlocks(start, len int64) error
+}
+```
+
+BlockDevice is the raw device that is meant to store flash data.
 
 
 
@@ -1417,6 +1485,10 @@ type UART struct {
 	txReg		*volatile.Register32
 	statusReg	*volatile.Register32
 	txEmptyFlag	uint32
+	// errClearReg points to the ICR register on newer STM32 USART peripherals
+	// (L0, L4, L5, G0, F7, U5, WL, etc.) for clearing error flags. Nil for
+	// older peripherals (F1, F4) where errors are cleared by reading SR+DR.
+	errClearReg	*volatile.Register32
 }
 ```
 

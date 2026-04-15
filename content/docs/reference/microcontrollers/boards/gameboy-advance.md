@@ -19,7 +19,7 @@ The [Game Boy Advance](https://en.wikipedia.org/wiki/Game_Boy_Advance) is a hand
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Gameboy Advance](../machine/gameboy-advance)
+[Documentation for the machine package for the Gameboy Advance](../../machine/gameboy-advance)
 
 ## Installing dependencies
 

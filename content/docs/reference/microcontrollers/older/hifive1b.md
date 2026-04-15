@@ -41,7 +41,7 @@ The [HiFive1 Rev B](https://www.sifive.com/boards/hifive1-rev-b) is low-cost, Ar
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the SiFive HiFive1b](../machine/hifive1b)
+[Documentation for the machine package for the SiFive HiFive1b](../../machine/hifive1b)
 
 ## Flashing
 

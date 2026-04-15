@@ -58,7 +58,7 @@ The [Bluepill](http://wiki.stm32duino.com/index.php?title=Blue_Pill) is a popula
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Bluepill](../machine/bluepill)
+[Documentation for the machine package for the Bluepill](../../machine/bluepill)
 
 ## Flashing
 

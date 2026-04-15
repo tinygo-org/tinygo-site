@@ -68,7 +68,7 @@ weight: 3
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Particle Argon](../machine/particle-argon)
+[Documentation for the machine package for the Particle Argon](../../machine/particle-argon)
 
 ## Flashing
 

@@ -61,7 +61,7 @@ Peripherals:
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Arduino Nano33 IoT](../machine/arduino-nano33)
+[Documentation for the machine package for the Arduino Nano33 IoT](../../machine/arduino-nano33)
 
 ## Pin Mapping
 

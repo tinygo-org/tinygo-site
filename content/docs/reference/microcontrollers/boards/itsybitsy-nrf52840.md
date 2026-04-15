@@ -56,7 +56,7 @@ The [Adafruit ItsyBitsy-nRF52840](https://www.adafruit.com/product/4333) is a sm
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the ItsyBitsy-nRF52840](../machine/itsybitsy-nrf52840)
+[Documentation for the machine package for the ItsyBitsy-nRF52840](../../machine/itsybitsy-nrf52840)
 
 ## Flashing
 

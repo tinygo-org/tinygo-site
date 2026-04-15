@@ -51,7 +51,7 @@ The [nice!nano](https://nicekeyboards.com/products/nice-nano-v1-0) is a wireless
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the nice!nano](../machine/nicenano)
+[Documentation for the machine package for the nice!nano](../../machine/nicenano)
 
 ## Flashing
 

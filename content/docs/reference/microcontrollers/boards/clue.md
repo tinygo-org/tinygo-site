@@ -64,7 +64,7 @@ The [Adafruit CLUE](https://www.adafruit.com/product/4500) is small ARM developm
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Adafruit CLUE](../machine/clue)
+[Documentation for the machine package for the Adafruit CLUE](../../machine/clue)
 
 ## Flashing
 

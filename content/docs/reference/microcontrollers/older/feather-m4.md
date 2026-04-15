@@ -54,7 +54,7 @@ The [Adafruit Feather M4](https://www.adafruit.com/product/3857) is a tiny ARM d
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Adafruit Feather M4](../machine/feather-m4)
+[Documentation for the machine package for the Adafruit Feather M4](../../machine/feather-m4)
 
 ## Flashing
 

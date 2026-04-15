@@ -1,6 +1,6 @@
 ---
 title: "Pimoroni Badger2040-W"
-weight: 3
+weight: 2
 ---
 
 The [Pimoroni Badger2040-W](https://shop.pimoroni.com/products/badger-2040-w) is a badge with E Ink display based on the [Raspberry Pi Pico W](https://datasheets.raspberrypi.com/picow/pico-w-datasheet.pdf) microcontroller.
@@ -47,7 +47,7 @@ The [Pimoroni Badger2040-W](https://shop.pimoroni.com/products/badger-2040-w) is
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Pimoroni Badger2040](../machine/badger2040-w)
+[Documentation for the machine package for the Pimoroni Badger2040](../../machine/badger2040-w)
 
 ## Flashing
 

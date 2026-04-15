@@ -40,7 +40,7 @@ The [Seeed Seeeduino XIAO, which has been renamed to Seeed Studio XIAO SAMD21](h
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Seeed Seeeduino XIAO](../machine/xiao)
+[Documentation for the machine package for the Seeed Seeeduino XIAO](../../machine/xiao)
 
 ## Flashing
 

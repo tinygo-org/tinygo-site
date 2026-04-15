@@ -44,7 +44,7 @@ The [Adafruit QtPy](https://www.adafruit.com/product/4600) is a tiny ARM develop
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Adafruit QtPy](../machine/qtpy)
+[Documentation for the machine package for the Adafruit QtPy](../../machine/qtpy)
 
 ## Flashing
 

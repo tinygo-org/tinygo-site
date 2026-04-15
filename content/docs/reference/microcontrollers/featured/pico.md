@@ -1,9 +1,9 @@
 ---
 title: "Raspberry Pi Pico"
-weight: 3
+weight: 2
 ---
 
-The [Raspberry Pi Pico](https://www.raspberrypi.org/products/raspberry-pi-pico/) is a tiny development board based on the Raspberry Pi [RP2040](https://datasheets.raspberrypi.org/rp2040/rp2040-datasheet.pdf) microcontroller.
+The [Raspberry Pi Pico](https://www.raspberrypi.org/products/raspberry-pi-pico/) is a tiny development board based on the Raspberry Pi [RP2040](https://datasheets.raspberrypi.org/rp2040/rp2040-datasheet.pdf) microcontroller dual-core ARM Cortex-M0+ processor with 264KB of SRAM and 2MB of onboard flash storage.
 
 ## Interfaces
 
@@ -52,7 +52,7 @@ The [Raspberry Pi Pico](https://www.raspberrypi.org/products/raspberry-pi-pico/)
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Pico](../machine/pico)
+[Documentation for the machine package for the Pico](../../machine/pico)
 
 ## Flashing
 
@@ -78,8 +78,12 @@ Any troubleshooting tips go here.
 
 You can use the USB port to the Pico as a serial port.
 
+### Programmable Input/Output (PIO)
+
 TinyGo has support for the RP2040's on-board Programmable Input/Output (PIO) block.
 
 For more informantion, see [https://github.com/tinygo-org/pio](https://github.com/tinygo-org/pio)
+
+### Debugging
 
 You can refer to [getting started with Raspberry Pi Pico](https://datasheets.raspberrypi.org/pico/getting-started-with-pico.pdf) documentation on how to connect two Picos together (see Appendix A: Using Picoprobe) to debug and convert `UART0` output on target pico to USB output on picoprobe. You will need the [Picoprobe UF2](https://www.raspberrypi.org/documentation/rp2040/getting-started/#board-specifications), available on the Pico's website under "About" tab.

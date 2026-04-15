@@ -39,7 +39,7 @@ It has onboard LoRa®, (G)FSK, (G)MSK, and BPSK as well as 1 user LED, 1 user bu
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the LoRa E5](../machine/lorae5)
+[Documentation for the machine package for the LoRa E5](../../machine/lorae5)
 
 ## Flashing
 

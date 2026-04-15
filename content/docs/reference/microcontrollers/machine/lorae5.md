@@ -1367,6 +1367,10 @@ type UART struct {
 	txReg		*volatile.Register32
 	statusReg	*volatile.Register32
 	txEmptyFlag	uint32
+	// errClearReg points to the ICR register on newer STM32 USART peripherals
+	// (L0, L4, L5, G0, F7, U5, WL, etc.) for clearing error flags. Nil for
+	// older peripherals (F1, F4) where errors are cleared by reading SR+DR.
+	errClearReg	*volatile.Register32
 }
 ```
 

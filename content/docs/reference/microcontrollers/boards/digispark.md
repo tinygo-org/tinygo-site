@@ -15,10 +15,10 @@ Note: the AVR backend of LLVM is still experimental so you may encounter bugs.
 | --------- | ------------- | ----- |
 | GPIO      | YES | YES |
 | UART      | YES | Not yet |
-| SPI       | Requires software | Not yet |
+| SPI       | Requires software | YES |
 | I2C       | Requires software | Not yet |
 | ADC       | YES | YES |
-| PWM       | YES | Not yet |
+| PWM       | YES | YES |
 | USBDevice | NO  | NO  |
 
 ## Pins
@@ -34,7 +34,7 @@ Note: the AVR backend of LLVM is still experimental so you may encounter bugs.
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Digispark](../machine/digispark)
+[Documentation for the machine package for the Digispark](../../machine/digispark)
 
 ## Flashing
 

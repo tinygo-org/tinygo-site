@@ -59,7 +59,7 @@ The [Adafruit Feather M4 CAN](https://www.adafruit.com/product/4759) is a tiny A
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Adafruit Feather M4 CAN](../machine/feather-m4-can)
+[Documentation for the machine package for the Adafruit Feather M4 CAN](../../machine/feather-m4-can)
 
 ## Flashing
 

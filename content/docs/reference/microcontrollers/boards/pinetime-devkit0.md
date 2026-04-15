@@ -39,7 +39,7 @@ The [PineTime](https://wiki.pine64.org/index.php/PineTime) is a smartwatch by [P
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the PineTime](../machine/pinetime-devkit0)
+[Documentation for the machine package for the PineTime](../../machine/pinetime-devkit0)
 
 ## Flashing
 

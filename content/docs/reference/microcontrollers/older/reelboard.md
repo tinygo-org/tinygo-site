@@ -46,7 +46,7 @@ It is equipped with an Electrophoretic (electronic ink) Display (EPD), along wit
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the reel board](../machine/reelboard)
+[Documentation for the machine package for the reel board](../../machine/reelboard)
 
 ## Flashing
 

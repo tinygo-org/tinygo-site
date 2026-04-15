@@ -53,7 +53,7 @@ The [Pimoroni Tufty2040](https://shop.pimoroni.com/products/tufty-2040) is a tin
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Pimoroni Tufty2040](../machine/tufty2040)
+[Documentation for the machine package for the Pimoroni Tufty2040](../../machine/tufty2040)
 
 ## Flashing
 

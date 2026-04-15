@@ -55,7 +55,7 @@ Peripherals:
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Sparkfun Thing Plus RP2040](../machine/thingplus-rp2040)
+[Documentation for the machine package for the Sparkfun Thing Plus RP2040](../../machine/thingplus-rp2040)
 
 ## Flashing
 

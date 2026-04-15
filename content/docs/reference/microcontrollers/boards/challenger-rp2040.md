@@ -50,7 +50,7 @@ The [iLabs Challenger RP2040 LoRa](https://ilabs.se/product/challenger-rp2040-lo
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the iLabs Challenger RP2040 LoRa](../machine/challenger-rp2040)
+[Documentation for the machine package for the iLabs Challenger RP2040 LoRa](../../machine/challenger-rp2040)
 
 ## Flashing
 

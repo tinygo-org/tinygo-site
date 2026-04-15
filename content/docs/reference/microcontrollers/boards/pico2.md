@@ -1,6 +1,6 @@
 ---
 title: "Raspberry Pi Pico 2"
-weight: 3
+weight: 2
 ---
 
 The [Raspberry Pi Pico 2](https://www.raspberrypi.com/products/raspberry-pi-pico-2/) is a tiny development board based on the Raspberry Pi [RP2350](https://datasheets.raspberrypi.org/rp2350/rp2350-datasheet.pdf) microcontroller.
@@ -52,7 +52,7 @@ The [Raspberry Pi Pico 2](https://www.raspberrypi.com/products/raspberry-pi-pico
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Pico](../machine/pico)
+[Documentation for the machine package for the Pico](../../machine/pico)
 
 ## Flashing
 

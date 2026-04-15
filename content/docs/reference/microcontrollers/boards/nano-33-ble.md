@@ -65,7 +65,7 @@ which is the exact same board but with additional onboard sensors.
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Arduino Nano33 BLE](../machine/nano-33-ble)
+[Documentation for the machine package for the Arduino Nano33 BLE](../../machine/nano-33-ble)
 
 ## Installing BOSSA
 
@@ -119,7 +119,7 @@ Instructions needed here.
 Nordic Semiconductor's SoftDevice (s140v7) must be flashed first to enable use of [bluetooth](https://github.com/tinygo-org/bluetooth) on this board.
 
 SoftDevice overwrites original bootloader and flashing method described above is not available anymore.
-Instead, please use [debug]({{<ref "../../guides/debugging.md">}}) probe and
+Instead, please use [debug]({{<ref "../../../guides/debugging.md">}}) probe and
 flash your code with `nano-33-ble-s140v7` target.
 
 ## Notes

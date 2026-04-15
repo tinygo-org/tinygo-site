@@ -59,7 +59,7 @@ The [Adafruit Feather nRF52840 Sense](https://www.adafruit.com/product/4516) is 
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Adafruit Feather nRF52840 Sense](../machine/feather-nrf52840-sense)
+[Documentation for the machine package for the Adafruit Feather nRF52840 Sense](../../machine/feather-nrf52840-sense)
 
 ## Flashing
 

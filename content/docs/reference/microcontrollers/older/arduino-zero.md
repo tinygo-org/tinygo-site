@@ -56,7 +56,7 @@ The [Arduino Zero](https://store.arduino.cc/arduino-zero) is a very small ARM de
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Arduino Zero](../machine/arduino-zero)
+[Documentation for the machine package for the Arduino Zero](../../machine/arduino-zero)
 
 ## Installing BOSSA
 

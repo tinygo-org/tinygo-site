@@ -57,7 +57,7 @@ The [Adafruit ItsyBitsy M4](https://www.adafruit.com/product/3800) is very compa
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Adafruit ItsyBitsy M4](../machine/itsybitsy-m4)
+[Documentation for the machine package for the Adafruit ItsyBitsy M4](../../machine/itsybitsy-m4)
 
 ## Flashing
 

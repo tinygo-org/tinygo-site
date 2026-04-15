@@ -44,7 +44,7 @@ It has onboard LoRa®, (G)FSK, (G)MSK, and BPSK as well as 3 user LEDs, 3 user b
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the STM32 Nucleo WL55JC](../machine/nucleo-wl55jc)
+[Documentation for the machine package for the STM32 Nucleo WL55JC](../../machine/nucleo-wl55jc)
 
 ## Flashing
 
