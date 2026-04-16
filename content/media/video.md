@@ -7,6 +7,15 @@ description: >
   Videos/Podcasts talking about TinyGo
 ---
 
+**FOSDEM 2026 - Patricio Whittingslow - "Systems Programming: Lessons from Building a Networking Stack For Microcontrollers"** - *February 1, 2026*
+https://video.fosdem.org/2026/ub5132/QK9CA3-go-networking-on-microcontrollers.av1.webm
+
+**FOSDEM 2026 - Florian Forestier - "My old trains have a second life, with TinyGo!"** - *February 1, 2026*
+https://fosdem.org/2026/schedule/event/LJQSS3-my-train-goes-digital-with-tinygo-and-seeed-studi/
+
+**FOSDEM 2026 - Ron Evans - "Go Around The World Without Wires"** - *February 1, 2026*
+https://video.fosdem.org/2026/ub5132/ABPPKR-go_around_the_world_without_wires.av1.webm
+
 **TinyGo Code Review by Patricio Whittingslow** - *ongoing (playlist)*
 https://www.youtube.com/playlist?list=PLx6oFeWGZv8nV1blgYXrC9VI0Dgs-CcJ_
 
