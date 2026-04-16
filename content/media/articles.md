@@ -6,6 +6,10 @@ weight: 45
 description: >
   Articles and blog posts talking about TinyGo
 ---
+
+**Hackaday - "TinyGo Boldly Goes Where No Go Ever Did Go Before"** - *April 7, 2026*
+https://hackaday.com/2026/04/07/tinygo-boldly-goes-where-no-go-ever-did-go-before/
+
 **Hriday Keni - "TinyGo for Embedded Applications: Coding Without the Code-Phobia"** - *February 1, 2025*
 https://medium.com/@hrkeni/tinygo-for-embedded-applications-coding-without-the-code-phobia-28ed90b5bcb0
 
