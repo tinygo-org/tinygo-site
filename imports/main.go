@@ -2,14 +2,15 @@ package main
 
 import (
 	"bytes"
+	"context"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"os/exec"
 	"path/filepath"
 	"runtime"
 	"strings"
 	"text/template"
+	"time"
 )
 
 const (
@@ -123,7 +124,7 @@ func checkPackages(goroot string) error {
 	// Get a list of all packages to inspect with their direct dependencies.
 	pkgs := []*Package{}
 	pkgMap := map[string]*Package{}
-	for _, path := range strings.Split(string(pkgsList.Bytes()), "\n") {
+	for _, path := range strings.Split(pkgsList.String(), "\n") {
 		if !shouldTestPackage(path) {
 			// Don't count this package.
 			continue
@@ -150,7 +151,7 @@ func checkPackages(goroot string) error {
 		if err != nil {
 			return err
 		}
-		for _, importPath := range strings.Split(strings.TrimSpace(string(buf.Bytes())), "\n") {
+		for _, importPath := range strings.Split(strings.TrimSpace(buf.String()), "\n") {
 			if !shouldTestPackage(importPath) {
 				continue
 			}
@@ -251,34 +252,42 @@ func checkPackages(goroot string) error {
 func (pkg *Package) runTest() (result testResult) {
 	result.pkg = pkg
 
+	const testTimeout = 3 * time.Minute
+
 	// Prepare test files.
-	dir, err := ioutil.TempDir("", "tinygo-test-*")
+	dir, err := os.MkdirTemp("", "tinygo-test-*")
 	if err != nil {
 		panic("could not create temporary directory: " + err.Error())
 	}
 	defer os.RemoveAll(dir)
 	temporaryGoFile := filepath.Join(dir, "main.go")
-	ioutil.WriteFile(temporaryGoFile, []byte(fmt.Sprintf("package main\nimport _ \"%s\"\nfunc main(){}\n", pkg.Path)), 0600)
+	os.WriteFile(temporaryGoFile, []byte(fmt.Sprintf("package main\nimport _ \"%s\"\nfunc main(){}\n", pkg.Path)), 0600)
 	temporaryExecutableFile := filepath.Join(dir, "main")
 
 	// Run the compile test.
-	cmd := exec.Command("tinygo", "build", "-o", temporaryExecutableFile, temporaryGoFile)
+	ctx, cancel := context.WithTimeout(context.Background(), testTimeout)
+	defer cancel()
+	cmd := exec.CommandContext(ctx, "tinygo", "build", "-o", temporaryExecutableFile, temporaryGoFile)
+	cmd.WaitDelay = 10 * time.Second
 	cmd.Env = append(cmd.Environ(), "GOOS="+testGOOS, "GOARCH="+testGOARCH)
 	buf := new(bytes.Buffer)
 	cmd.Stdout = buf
 	cmd.Stderr = buf
 	result.compiles = cmd.Run() == nil
-	result.compilerOutput = string(buf.Bytes())
+	result.compilerOutput = buf.String()
 
 	// Run the actual test.
 	if result.compiles {
-		cmd := exec.Command("tinygo", "test", pkg.Path)
+		ctx, cancel := context.WithTimeout(context.Background(), testTimeout)
+		defer cancel()
+		cmd := exec.CommandContext(ctx, "tinygo", "test", pkg.Path)
+		cmd.WaitDelay = 10 * time.Second
 		cmd.Env = append(cmd.Environ(), "GOOS="+testGOOS, "GOARCH="+testGOARCH)
 		buf := new(bytes.Buffer)
 		cmd.Stdout = buf
 		cmd.Stderr = buf
 		result.passesTest = cmd.Run() == nil
-		result.testOutput = string(buf.Bytes())
+		result.testOutput = buf.String()
 	}
 
 	return
