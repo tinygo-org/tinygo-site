@@ -5,6 +5,19 @@ description: >
   Compatibility matrix between TinyGo versions and Go versions
 ---
 
+## Recent Versions
+
+|     TinyGo      |                Go 1.26                |                Go 1.25                |                Go 1.24                |                Go 1.23                |                Go 1.22                |                Go 1.21                |
+|:---------------:|:-------------------------------------:|:-------------------------------------:|:-------------------------------------:|:-------------------------------------:|:-------------------------------------:|:-------------------------------------:|
+|     0.41.0+     |  <span style="color: green">✔</span>  |  <span style="color: green">✔</span>  |  <span style="color: green">✔</span>  |  <span style="color: green">✔</span>  |                                       |                                       |
+| 0.39.0 - 0.40.1 |                                       |  <span style="color: green">✔</span>  |  <span style="color: green">✔</span>  |  <span style="color: green">✔</span>  |  <span style="color: green">✔</span>  |                                       |
+| 0.37.0 - 0.38.0 |                                       |  <span style="color: green">✔</span>  |  <span style="color: green">✔</span>  |  <span style="color: green">✔</span>  |  <span style="color: green">✔</span>  |                                       |
+| 0.35.0 - 0.36.0 |                                       |                                       |  <span style="color: green">✔</span>  |  <span style="color: green">✔</span>  |  <span style="color: green">✔</span>  |                                       |
+| 0.33.0 - 0.34.0 |                                       |                                       |                                       |  <span style="color: green">✔</span>  |  <span style="color: green">✔</span>  |  <span style="color: green">✔</span>  |
+| 0.31.0 - 0.32.0 |                                       |                                       |                                       |                                       |  <span style="color: green">✔</span>  |  <span style="color: green">✔</span>  |
+
+## Older Versions
+
 |     TinyGo      |                Go 1.20                |                Go 1.19                |                Go 1.18                |                Go 1.17                |                Go 1.16                |                Go 1.15                |                Go 1.14                |                Go 1.13                |                Go 1.12                |                Go 1.11                |
 |:---------------:|:-------------------------------------:|:-------------------------------------:|:-------------------------------------:|:-------------------------------------:|:-------------------------------------:|:-------------------------------------:|:-------------------------------------:|:-------------------------------------:|:-------------------------------------:|:-------------------------------------:|
 | 0.27.0 - 0.30.0 |  <span style="color: green">✔</span>  |  <span style="color: green">✔</span>  |  <span style="color: green">✔</span>  |                                       |                                       |                                       |                                       |                                       |                                       |                                       |
