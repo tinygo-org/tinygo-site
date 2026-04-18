@@ -1,7 +1,10 @@
 ---
 title: "Arduino Uno"
 weight: 2
+image: /images/boards/arduino.svg
 ---
+
+![Arduino UNO](/images/boards/arduino.svg)
 
 The [Arduino Uno](https://store.arduino.cc/arduino-uno-rev3) is based on the AVR [ATmega328p](https://www.microchip.com/wwwproducts/en/ATmega328p) microcontroller.
 
@@ -46,7 +49,7 @@ Note: the AVR backend of LLVM is still experimental so you may encounter bugs.
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Arduino Uno](../../machine/arduino)
+[Documentation for the machine package for the Arduino Uno](../../machine/arduino-uno)
 
 ## Installing dependencies
 
