@@ -48,6 +48,7 @@ You can install the most common dependencies through Homebrew:
     brew tap ARMmbed/homebrew-formulae
     brew install arm-none-eabi-gcc
     brew install automake
+    brew install pkg-config
 
 ### Raspberry Pi Debug Probe
 
