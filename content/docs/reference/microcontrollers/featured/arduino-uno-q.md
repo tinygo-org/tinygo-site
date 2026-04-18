@@ -1,7 +1,10 @@
 ---
 title: "Arduino UNO Q"
 weight: 2
+image: /images/boards/arduino.svg
 ---
+
+![Arduino UNO Q](/images/boards/arduino.svg)
 
 The [Arduino UNO Q](https://docs.arduino.cc/hardware/uno-q/) is a single board Debian Linux computer with a [Qualcomm Dragonwing QRB2210 MPU](https://www.qualcomm.com/internet-of-things/products/q2-series/qrb2210) and also an onboard [STMicro STM32U585 MCU](https://www.st.com/resource/en/datasheet/stm32u585ai.pdf) an Arm Cortex-M33 processor with 786KB of SRAM and 2MB of onboard flash storage. In addition it has an 8x13 LED matrix, along with a few other onboard LEDs. 
 

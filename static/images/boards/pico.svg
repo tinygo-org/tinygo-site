@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-1.3 0 52.3 21" width="52.3mm" height="21mm">
+  <!-- PCB -->
+  <rect x="0" y="0" width="51" height="21" fill="#006837"/>
+
+  <!-- USB port -->
+  <rect x="-1.3" y="6.5" width="6" height="8" fill="#ccc"/>
+
+  <!-- LED -->
+  <g data-part="led" transform="translate(4.4, 15.2)">
+    <rect width="1.2" height="2.0" fill="black"/>
+    <rect width="1.2" height="2.0" style="fill: var(--color, black); filter: drop-shadow(0 0 1px var(--shadow)) drop-shadow(0 0 1px var(--shadow));"/>
+  </g>
+
+  <!-- pads at the top -->
+  <g transform="translate(0.1, 0)" fill="transparent">
+    <g data-pin="VBUS" transform="translate(0, 0)">
+      <rect width="2.54" height="3.22" class="area"/>
+      <path transform="translate(0.47, 0)" d="M 0,0 H 1.6 V 1.61 A 0.8 0.8 0 0 1 0 1.61 Z" fill="#d4af37"></path>
+    </g>
+    <g data-pin="VSYS" transform="translate(2.54, 0)">
+      <path transform="translate(0.47, 0)" d="M 0,0 H 1.6 V 1.61 A 0.8 0.8 0 0 1 0 1.61 Z" fill="#d4af37"></path>
+      <rect width="2.54" height="3.22" class="area"/>
+    </g>
+    <g data-pin="GND#1" data-title="GND" transform="translate(5.08, 0)">
+      <path transform="translate(0.47, 0)" d="M 0,0 H 1.6 V 2.21 a 0.2 0.2 0 0 1 -0.2 0.2 h -1.2 a 0.2 0.2 0 0 1 -0.2 -0.2 Z" fill="#d4af37"></path>
+      <rect width="2.54" height="3.22" class="area"/>
+    </g>
+    <g data-pin="3V3_EN" transform="translate(7.62, 0)">
+      <path transform="translate(0.47, 0)" d="M 0,0 H 1.6 V 1.61 A 0.8 0.8 0 0 1 0 1.61 Z" fill="#d4af37"></path>
+      <rect width="2.54" height="3.22" class="area"/>
+    </g>
+    <g data-pin="3V3" transform="translate(10.16, 0)">
+      <path transform="translate(0.47, 0)" d="M 0,0 H 1.6 V 1.61 A 0.8 0.8 0 0 1 0 1.61 Z" fill="#d4af37"></path>
+      <rect width="2.54" height="3.22" class="area"/>
+    </g>
+    <g data-pin="ADC_VREF" transform="translate(12.7, 0)">
+      <path transform="translate(0.47, 0)" d="M 0,0 H 1.6 V 1.61 A 0.8 0.8 0 0 1 0 1.61 Z" fill="#d4af37"></path>
+      <rect width="2.54" height="3.22" class="area"/>
+    </g>
+    <g data-pin="GP28" transform="translate(15.24, 0)">
+      <path transform="translate(0.47, 0)" d="M 0,0 H 1.6 V 1.61 A 0.8 0.8 0 0 1 0 1.61 Z" fill="#d4af37"></path>
+      <rect width="2.54" height="3.22" class="area"/>
+    </g>
+    <g data-pin="GND#2" data-title="GND" transform="translate(17.78, 0)">
+      <path transform="translate(0.47, 0)" d="M 0,0 H 1.6 V 2.21 a 0.2 0.2 0 0 1 -0.2 0.2 h -1.2 a 0.2 0.2 0 0 1 -0.2 -0.2 Z" fill="#d4af37"></path>
+      <rect width="2.54" height="3.22" class="area"/>
+    </g>
+    <g data-pin="GP27" transform="translate(20.32, 0)">
+      <path transform="translate(0.47, 0)" d="M 0,0 H 1.6 V 1.61 A 0.8 0.8 0 0 1 0 1.61 Z" fill="#d4af37"></path>
+      <rect width="2.54" height="3.22" class="area"/>
+    </g>
+    <g data-pin="GP26" transform="translate(22.86, 0)">
+      <path transform="translate(0.47, 0)" d="M 0,0 H 1.6 V 1.61 A 0.8 0.8 0 0 1 0 1.61 Z" fill="#d4af37"></path>
+      <rect width="2.54" height="3.22" class="area"/>
+    </g>
+    <g data-pin="RUN" transform="translate(25.4, 0)">
+      <path transform="translate(0.47, 0)" d="M 0,0 H 1.6 V 1.61 A 0.8 0.8 0 0 1 0 1.61 Z" fill="#d4af37"></path>
+      <rect width="2.54" height="3.22" class="area"/>
+    </g>
+    <g data-pin="GP22" transform="translate(27.94, 0)">
+      <path transform="translate(0.47, 0)" d="M 0,0 H 1.6 V 1.61 A 0.8 0.8 0 0 1 0 1.61 Z" fill="#d4af37"></path>
+      <rect width="2.54" height="3.22" class="area"/>
+    </g>
+    <g data-pin="GND#3" data-title="GND" transform="translate(30.48, 0)">
+      <path transform="translate(0.47, 0)" d="M 0,0 H 1.6 V 2.21 a 0.2 0.2 0 0 1 -0.2 0.2 h -1.2 a 0.2 0.2 0 0 1 -0.2 -0.2 Z" fill="#d4af37"></path>
+      <rect width="2.54" height="3.22" class="area"/>
+    </g>
+    <g data-pin="GP21" transform="translate(33.02, 0)">
+      <path transform="translate(0.47, 0)" d="M 0,0 H 1.6 V 1.61 A 0.8 0.8 0 0 1 0 1.61 Z" fill="#d4af37"></path>
+      <rect width="2.54" height="3.22" class="area"/>
+    </g>
+    <g data-pin="GP20" transform="translate(35.56, 0)">
+      <path transform="translate(0.47, 0)" d="M 0,0 H 1.6 V 1.61 A 0.8 0.8 0 0 1 0 1.61 Z" fill="#d4af37"></path>
+      <rect width="2.54" height="3.22" class="area"/>
+    </g>
+    <g data-pin="GP19" transform="translate(38.1, 0)">
+      <path transform="translate(0.47, 0)" d="M 0,0 H 1.6 V 1.61 A 0.8 0.8 0 0 1 0 1.61 Z" fill="#d4af37"></path>
+      <rect width="2.54" height="3.22" class="area"/>
+    </g>
+    <g data-pin="GP18" transform="translate(40.64, 0)">
+      <path transform="translate(0.47, 0)" d="M 0,0 H 1.6 V 1.61 A 0.8 0.8 0 0 1 0 1.61 Z" fill="#d4af37"></path>
+      <rect width="2.54" height="3.22" class="area"/>
+    </g>
+    <g data-pin="GND#4" data-title="GND" transform="translate(43.18, 0)">
+      <path transform="translate(0.47, 0)" d="M 0,0 H 1.6 V 2.21 a 0.2 0.2 0 0 1 -0.2 0.2 h -1.2 a 0.2 0.2 0 0 1 -0.2 -0.2 Z" fill="#d4af37"></path>
+      <rect width="2.54" height="3.22" class="area"/>
+    </g>
+    <g data-pin="GP17" transform="translate(45.72, 0)">
+      <path transform="translate(0.47, 0)" d="M 0,0 H 1.6 V 1.61 A 0.8 0.8 0 0 1 0 1.61 Z" fill="#d4af37"></path>
+      <rect width="2.54" height="3.22" class="area"/>
+    </g>
+    <g data-pin="GP16" transform="translate(48.26, 0)">
+      <path transform="translate(0.47, 0)" d="M 0,0 H 1.6 V 1.61 A 0.8 0.8 0 0 1 0 1.61 Z" fill="#d4af37"></path>
+      <rect width="2.54" height="3.22" class="area"/>
+    </g>
+  </g>
+
+  <!-- pads at the bottom -->
+  <g transform="translate(0.1, 17.78)" fill="transparent">
+    <g data-pin="GP0" transform="translate(0, 0)">
+      <path transform="translate(0.47, 3.22)" d="M 0,0 H 1.6 V -1.61 A 0.8 0.8 0 0 0 0 -1.61 Z" fill="#d4af37"></path>
+      <rect width="2.54" height="3.22" class="area"/>
+    </g>
+    <g data-pin="GP1" transform="translate(2.54, 0)">
+      <path transform="translate(0.47, 3.22)" d="M 0,0 H 1.6 V -1.61 A 0.8 0.8 0 0 0 0 -1.61 Z" fill="#d4af37"></path>
+      <rect width="2.54" height="3.22" class="area"/>
+    </g>
+    <g data-pin="GND#5" data-title="GND" transform="translate(5.08, 0)">
+      <path transform="translate(0.47, 3.22)" d="M 0,0 H 1.6 V -2.21 a 0.2 0.2 0 0 0 -0.2 -0.2 H 0.2 a 0.2 0.2 0 0 0 -0.2 0.2 Z" fill="#d4af37"></path>
+      <rect width="2.54" height="3.22" class="area"/>
+    </g>
+    <g data-pin="GP2" transform="translate(7.62, 0)">
+      <path transform="translate(0.47, 3.22)" d="M 0,0 H 1.6 V -1.61 A 0.8 0.8 0 0 0 0 -1.61 Z" fill="#d4af37"></path>
+      <rect width="2.54" height="3.22" class="area"/>
+    </g>
+    <g data-pin="GP3" transform="translate(10.16, 0)">
+      <path transform="translate(0.47, 3.22)" d="M 0,0 H 1.6 V -1.61 A 0.8 0.8 0 0 0 0 -1.61 Z" fill="#d4af37"></path>
+      <rect width="2.54" height="3.22" class="area"/>
+    </g>
+    <g data-pin="GP4" transform="translate(12.7, 0)">
+      <path transform="translate(0.47, 3.22)" d="M 0,0 H 1.6 V -1.61 A 0.8 0.8 0 0 0 0 -1.61 Z" fill="#d4af37"></path>
+      <rect width="2.54" height="3.22" class="area"/>
+    </g>
+    <g data-pin="GP5" transform="translate(15.24, 0)">
+      <path transform="translate(0.47, 3.22)" d="M 0,0 H 1.6 V -1.61 A 0.8 0.8 0 0 0 0 -1.61 Z" fill="#d4af37"></path>
+      <rect width="2.54" height="3.22" class="area"/>
+    </g>
+    <g data-pin="GND#6" data-title="GND" transform="translate(17.78, 0)">
+      <path transform="translate(0.47, 3.22)" d="M 0,0 H 1.6 V -2.21 a 0.2 0.2 0 0 0 -0.2 -0.2 H 0.2 a 0.2 0.2 0 0 0 -0.2 0.2 Z" fill="#d4af37"></path>
+      <rect width="2.54" height="3.22" class="area"/>
+    </g>
+    <g data-pin="GP6" transform="translate(20.32, 0)">
+      <path transform="translate(0.47, 3.22)" d="M 0,0 H 1.6 V -1.61 A 0.8 0.8 0 0 0 0 -1.61 Z" fill="#d4af37"></path>
+      <rect width="2.54" height="3.22" class="area"/>
+    </g>
+    <g data-pin="GP7" transform="translate(22.86, 0)">
+      <path transform="translate(0.47, 3.22)" d="M 0,0 H 1.6 V -1.61 A 0.8 0.8 0 0 0 0 -1.61 Z" fill="#d4af37"></path>
+      <rect width="2.54" height="3.22" class="area"/>
+    </g>
+    <g data-pin="GP8" transform="translate(25.4, 0)">
+      <path transform="translate(0.47, 3.22)" d="M 0,0 H 1.6 V -1.61 A 0.8 0.8 0 0 0 0 -1.61 Z" fill="#d4af37"></path>
+      <rect width="2.54" height="3.22" class="area"/>
+    </g>
+    <g data-pin="GP9" transform="translate(27.94, 0)">
+      <path transform="translate(0.47, 3.22)" d="M 0,0 H 1.6 V -1.61 A 0.8 0.8 0 0 0 0 -1.61 Z" fill="#d4af37"></path>
+      <rect width="2.54" height="3.22" class="area"/>
+    </g>
+    <g data-pin="GND#7" data-title="GND" transform="translate(30.48, 0)">
+      <path transform="translate(0.47, 3.22)" d="M 0,0 H 1.6 V -2.21 a 0.2 0.2 0 0 0 -0.2 -0.2 H 0.2 a 0.2 0.2 0 0 0 -0.2 0.2 Z" fill="#d4af37"></path>
+      <rect width="2.54" height="3.22" class="area"/>
+    </g>
+    <g data-pin="GP10" transform="translate(33.02, 0)">
+      <path transform="translate(0.47, 3.22)" d="M 0,0 H 1.6 V -1.61 A 0.8 0.8 0 0 0 0 -1.61 Z" fill="#d4af37"></path>
+      <rect width="2.54" height="3.22" class="area"/>
+    </g>
+    <g data-pin="GP11" transform="translate(35.56, 0)">
+      <path transform="translate(0.47, 3.22)" d="M 0,0 H 1.6 V -1.61 A 0.8 0.8 0 0 0 0 -1.61 Z" fill="#d4af37"></path>
+      <rect width="2.54" height="3.22" class="area"/>
+    </g>
+    <g data-pin="GP12" transform="translate(38.1, 0)">
+      <path transform="translate(0.47, 3.22)" d="M 0,0 H 1.6 V -1.61 A 0.8 0.8 0 0 0 0 -1.61 Z" fill="#d4af37"></path>
+      <rect width="2.54" height="3.22" class="area"/>
+    </g>
+    <g data-pin="GP13" transform="translate(40.64, 0)">
+      <path transform="translate(0.47, 3.22)" d="M 0,0 H 1.6 V -1.61 A 0.8 0.8 0 0 0 0 -1.61 Z" fill="#d4af37"></path>
+      <rect width="2.54" height="3.22" class="area"/>
+    </g>
+    <g data-pin="GND#8" data-title="GND" transform="translate(43.18, 0)">
+      <path transform="translate(0.47, 3.22)" d="M 0,0 H 1.6 V -2.21 a 0.2 0.2 0 0 0 -0.2 -0.2 H 0.2 a 0.2 0.2 0 0 0 -0.2 0.2 Z" fill="#d4af37"></path>
+      <rect width="2.54" height="3.22" class="area"/>
+    </g>
+    <g data-pin="GP14" transform="translate(45.72, 0)">
+      <path transform="translate(0.47, 3.22)" d="M 0,0 H 1.6 V -1.61 A 0.8 0.8 0 0 0 0 -1.61 Z" fill="#d4af37"></path>
+      <rect width="2.54" height="3.22" class="area"/>
+    </g>
+    <g data-pin="GP15" transform="translate(48.26, 0)">
+      <path transform="translate(0.47, 3.22)" d="M 0,0 H 1.6 V -1.61 A 0.8 0.8 0 0 0 0 -1.61 Z" fill="#d4af37"></path>
+      <rect width="2.54" height="3.22" class="area"/>
+    </g>
+  </g>
+</svg>

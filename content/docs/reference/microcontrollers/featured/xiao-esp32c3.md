@@ -1,7 +1,10 @@
 ---
 title: "Seeed Studio XIAO ESP32C3"
 weight: 2
+image: /images/boards/xiao-esp32c3.svg
 ---
+
+![Seeed Studio XIAO ESP32C3](/images/boards/xiao-esp32c3.svg)
 
 The [Seeed Studio XIAO ESP32C3](https://wiki.seeedstudio.com/XIAO_ESP32C3_Getting_Started/) is a tiny development board based on the Espressif [ESP32C3](https://www.espressif.com/en/products/socs/esp32-c3) 32-bit RISC-V CPU microcontroller with 400KB of SRAM and 4MB of onboard flash storage. Thanks to the onboard radio, it supports both WiFi and Bluetooth wireless communication.
 

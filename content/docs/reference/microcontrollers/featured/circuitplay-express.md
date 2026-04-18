@@ -1,7 +1,10 @@
 ---
 title: "Adafruit Circuit Playground Express"
 weight: 2
+image: /images/boards/circuit-playground.svg
 ---
+
+![Circuit Playground Express](/images/boards/circuit-playground.svg)
 
 The [Adafruit Circuit Playground Express](https://www.adafruit.com/product/3333) is small ARM development board based on the Microchip [SAMD21](https://www.microchip.com/wwwproducts/en/ATSAMD21G18) processor with 192KB of SRAM and 2MB of onboard flash storage. It has several built-in devices such as WS2812 "NeoPixel" LEDs, buttons, an accelerometer, and some other sensors.
 

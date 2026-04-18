@@ -1,7 +1,10 @@
 ---
 title: "Raspberry Pi Pico W"
 weight: 2
+image: /images/boards/pico-w.svg
 ---
+
+![Raspberry Pi Pico-W](/images/boards/pico-w.svg)
 
 The [Raspberry Pi Pico-W](https://www.raspberrypi.org/products/raspberry-pi-pico/) is a tiny development board based on the Raspberry Pi [RP2040](https://datasheets.raspberrypi.org/rp2040/rp2040-datasheet.pdf) microcontroller dual-core ARM Cortex-M0+ processor with 264KB of SRAM and 2MB of onboard flash storage. It also includes an onboard [Infineon CYW43439](https://www.infineon.com/cms/en/product/wireless-connectivity/airoc-wi-fi-plus-bluetooth-combos/wi-fi-4-802.11n/cyw43439/) wireless chip. As a result the Pico-W has both WiFi and Bluetooth support.
 

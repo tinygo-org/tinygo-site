@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- note: setting the viewBox at the bounding box of the PCB, for easier copy-pasting between boards -->
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-6.2 0 74.8 53.3" width="74.8mm" height="53.3mm">
+  <!-- PCB -->
+  <path d="M 0,0 H 66.06 V 13 L 68.6,15.54 V 48.22 L 66.06,50.76 V 53.3 H 0 Z"
+    fill="#10A2A1"/>
+  <!-- USB port -->
+  <rect x="-6.2" y="9.6" width="16" height="12" fill="#ccc"/>
+  <!-- Vin port -->
+  <rect x="-2" y="40.9" width="14" height="8.6" fill="#333"/>
+  <!-- female header pins -->
+  <g transform="translate(44.47, 1.27)" fill="transparent">
+    <rect width="20.32" height="2.54" fill="#4d4d4d"/>
+    <g data-pin="D0" transform="translate(17.78, 0)">
+      <rect x="0.27" y="0.27" width="2" height="2" fill="#d4af37"/>
+      <rect width="2.54" height="2.54" class="area"/>
+    </g>
+    <g data-pin="D1" transform="translate(15.24, 0)">
+      <rect x="0.27" y="0.27" width="2" height="2" fill="#d4af37"/>
+      <rect width="2.54" height="2.54" class="area"/>
+    </g>
+    <g data-pin="D2" transform="translate(12.7, 0)">
+      <rect x="0.27" y="0.27" width="2" height="2" fill="#d4af37"/>
+      <rect width="2.54" height="2.54" class="area"/>
+    </g>
+    <g data-pin="D3" transform="translate(10.16, 0)">
+      <rect x="0.27" y="0.27" width="2" height="2" fill="#d4af37"/>
+      <rect width="2.54" height="2.54" class="area"/>
+    </g>
+    <g data-pin="D4" transform="translate(7.62, 0)">
+      <rect x="0.27" y="0.27" width="2" height="2" fill="#d4af37"/>
+      <rect width="2.54" height="2.54" class="area"/>
+    </g>
+    <g data-pin="D5" transform="translate(5.08, 0)">
+      <rect x="0.27" y="0.27" width="2" height="2" fill="#d4af37"/>
+      <rect width="2.54" height="2.54" class="area"/>
+    </g>
+    <g data-pin="D6" transform="translate(2.54, 0)">
+      <rect x="0.27" y="0.27" width="2" height="2" fill="#d4af37"/>
+      <rect width="2.54" height="2.54" class="area"/>
+    </g>
+    <g data-pin="D7" transform="translate(0, 0)">
+      <rect x="0.27" y="0.27" width="2" height="2" fill="#d4af37"/>
+      <rect width="2.54" height="2.54" class="area"/>
+    </g>
+  </g>
+  <g transform="translate(17.8, 1.27)" fill="transparent">
+    <rect width="25.4" height="2.54" fill="#4d4d4d"/>
+    <g data-pin="D8" transform="translate(22.86, 0)">
+      <rect x="0.27" y="0.27" width="2" height="2" fill="#d4af37"/>
+      <rect width="2.54" height="2.54" class="area"/>
+    </g>
+    <g data-pin="D9" transform="translate(20.32, 0)">
+      <rect x="0.27" y="0.27" width="2" height="2" fill="#d4af37"/>
+      <rect width="2.54" height="2.54" class="area"/>
+    </g>
+    <g data-pin="D10" transform="translate(17.78, 0)">
+      <rect x="0.27" y="0.27" width="2" height="2" fill="#d4af37"/>
+      <rect width="2.54" height="2.54" class="area"/>
+    </g>
+    <g data-pin="D11" transform="translate(15.24, 0)">
+      <rect x="0.27" y="0.27" width="2" height="2" fill="#d4af37"/>
+      <rect width="2.54" height="2.54" class="area"/>
+    </g>
+    <g data-pin="D12" transform="translate(12.7, 0)">
+      <rect x="0.27" y="0.27" width="2" height="2" fill="#d4af37"/>
+      <rect width="2.54" height="2.54" class="area"/>
+    </g>
+    <g data-pin="D13" transform="translate(10.16, 0)">
+      <rect x="0.27" y="0.27" width="2" height="2" fill="#d4af37"/>
+      <rect width="2.54" height="2.54" class="area"/>
+    </g>
+    <g data-pin="GND#1" data-title="GND" transform="translate(7.62, 0)">
+      <rect x="0.27" y="0.27" width="2" height="2" fill="#d4af37"/>
+      <rect width="2.54" height="2.54" class="area"/>
+    </g>
+    <g data-pin="AREF" transform="translate(5.08, 0)">
+      <rect x="0.27" y="0.27" width="2" height="2" fill="#d4af37"/>
+      <rect width="2.54" height="2.54" class="area"/>
+    </g>
+    <g data-pin="A4#2" data-title="A4" transform="translate(2.54, 0)">
+      <rect x="0.27" y="0.27" width="2" height="2" fill="#d4af37"/>
+      <rect width="2.54" height="2.54" class="area"/>
+    </g>
+    <g data-pin="A5#2" data-title="A5" transform="translate(0, 0)">
+      <rect x="0.27" y="0.27" width="2" height="2" fill="#d4af37"/>
+      <rect width="2.54" height="2.54" class="area"/>
+    </g>
+  </g>
+  <g transform="translate(27.96, 49.49)" fill="transparent">
+    <rect width="20.32" height="2.54" fill="#4d4d4d" />
+    <g data-pin="NC" data-title="Not Connected" transform="translate(0, 0)">
+      <rect x="0.27" y="0.27" width="2" height="2" fill="#d4af37"/>
+      <rect width="2.54" height="2.54" class="area"/>
+    </g>
+    <g data-pin="IOREF" transform="translate(2.54, 0)">
+      <rect x="0.27" y="0.27" width="2" height="2" fill="#d4af37"/>
+      <rect width="2.54" height="2.54" class="area"/>
+    </g>
+    <g data-pin="RESET" transform="translate(5.08, 0)">
+      <rect x="0.27" y="0.27" width="2" height="2" fill="#d4af37"/>
+      <rect width="2.54" height="2.54" class="area"/>
+    </g>
+    <g data-pin="3V3" data-title="3.3V" transform="translate(7.62, 0)">
+      <rect x="0.27" y="0.27" width="2" height="2" fill="#d4af37"/>
+      <rect width="2.54" height="2.54" class="area"/>
+    </g>
+    <g data-pin="5V" transform="translate(10.16, 0)">
+      <rect x="0.27" y="0.27" width="2" height="2" fill="#d4af37"/>
+      <rect width="2.54" height="2.54" class="area"/>
+    </g>
+    <g data-pin="GND#2" data-title="GND" transform="translate(12.70, 0)">
+      <rect x="0.27" y="0.27" width="2" height="2" fill="#d4af37"/>
+      <rect width="2.54" height="2.54" class="area"/>
+    </g>
+    <g data-pin="GND#3" data-title="GND" transform="translate(15.24, 0)">
+      <rect x="0.27" y="0.27" width="2" height="2" fill="#d4af37"/>
+      <rect width="2.54" height="2.54" class="area"/>
+    </g>
+    <g data-pin="VIN" transform="translate(17.78, 0)">
+      <rect x="0.27" y="0.27" width="2" height="2" fill="#d4af37"/>
+      <rect width="2.54" height="2.54" class="area"/>
+    </g>
+  </g>
+  <g transform="translate(49.55, 49.49)" fill="transparent">
+    <rect width="15.24" height="2.54" fill="#4d4d4d" />
+    <g data-pin="A0" transform="translate(0, 0)">
+      <rect x="0.27" y="0.27" width="2" height="2" fill="#d4af37"/>
+      <rect width="2.54" height="2.54" class="area"/>
+    </g>
+    <g data-pin="A1" transform="translate(2.54, 0)">
+      <rect x="0.27" y="0.27" width="2" height="2" fill="#d4af37"/>
+      <rect width="2.54" height="2.54" class="area"/>
+    </g>
+    <g data-pin="A2" transform="translate(5.08, 0)">
+      <rect x="0.27" y="0.27" width="2" height="2" fill="#d4af37"/>
+      <rect width="2.54" height="2.54" class="area"/>
+    </g>
+    <g data-pin="A3" transform="translate(7.62, 0)">
+      <rect x="0.27" y="0.27" width="2" height="2" fill="#d4af37"/>
+      <rect width="2.54" height="2.54" class="area"/>
+    </g>
+    <g data-pin="A4" transform="translate(10.16, 0)">
+      <rect x="0.27" y="0.27" width="2" height="2" fill="#d4af37"/>
+      <rect width="2.54" height="2.54" class="area"/>
+    </g>
+    <g data-pin="A5" transform="translate(12.7, 0)">
+      <rect x="0.27" y="0.27" width="2" height="2" fill="#d4af37"/>
+      <rect width="2.54" height="2.54" class="area"/>
+    </g>
+  </g>
+  <!-- power LED -->
+  <g transform="translate(55.06, 16.4)">
+    <rect width="2.0" height="1.2" fill="black"/>
+    <rect width="2.0" height="1.2" style="fill: #0f0; filter: drop-shadow(0 0 1px #0f0) drop-shadow(0 0 1px #0f0);"/>
+  </g>
+  <!-- LED -->
+  <g data-part="led" transform="translate(18.3, 9.4)">
+    <rect width="2.0" height="1.2" fill="black"/>
+    <rect width="2.0" height="1.2" style="fill: var(--color, black); filter: drop-shadow(0 0 1px var(--shadow)) drop-shadow(0 0 1px var(--shadow));"/>
+  </g>
+</svg>
