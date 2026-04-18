@@ -1,7 +1,10 @@
 ---
 title: "Raspberry Pi Pico"
 weight: 2
+image: /images/boards/pico.svg
 ---
+
+![Raspberry Pi Pico](/images/boards/pico.svg)
 
 The [Raspberry Pi Pico](https://www.raspberrypi.org/products/raspberry-pi-pico/) is a tiny development board based on the Raspberry Pi [RP2040](https://datasheets.raspberrypi.org/rp2040/rp2040-datasheet.pdf) microcontroller dual-core ARM Cortex-M0+ processor with 264KB of SRAM and 2MB of onboard flash storage.
 

@@ -1,0 +1,14 @@
+<div class="row">
+  {{ range .Page.Pages }}
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        {{ if .Params.image }}
+          <img src="{{ .Params.image }}" class="p-3 text-center mx-auto" alt="{{ .Title }}">
+        {{ end }}
+        <div class="card-body text-center">
+          <h5 class="card-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h5>
+        </div>
+      </div>
+    </div>
+  {{ end }}
+</div>

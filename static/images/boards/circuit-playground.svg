@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- note: setting the viewBox at the bounding box of the PCB, for easier copy-pasting between boards -->
+<!-- here is a technical drawing that can be used: https://learn.adafruit.com/introducing-circuit-playground/downloads -->
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 50.8 50.8" width="50.8mm" height="50.8mm">
+  <!-- PCB, TODO: the holes -->
+  <circle cx="25.4" cy="25.4" r="25.4" fill="#1c1c1c"/>
+
+  <!-- pins on the edge of the board -->
+  <!-- TODO: make the black circles actually transparent -->
+  <g transform="translate(25.4, 25.4)" fill="transparent">
+    <g transform="rotate(60) translate(21.4, -2.5)" data-pin="VOUT">
+      <path d="M 3.88 0 A 25.4 25.4 0 0 1 3.88 5 H 2.5 A 2.5 2.5 0 0 1 2.5 0 Z" fill="#997f28"/>
+      <circle cx="2" cy="2.5" r="1.5" fill="#1c1c1c"/>
+      <rect width="4" height="5" class="area"/>
+    </g>
+    <g transform="rotate(40) translate(21.4, -2.5)" data-pin="A0">
+      <path d="M 3.88 0 A 25.4 25.4 0 0 1 3.88 5 H 2.5 A 2.5 2.5 0 0 1 2.5 0 Z" fill="#997f28"/>
+      <circle cx="2" cy="2.5" r="1.5" fill="#1c1c1c"/>
+      <rect width="4" height="5" class="area"/>
+    </g>
+    <g transform="rotate(20) translate(21.4, -2.5)" data-pin="A1">
+      <path d="M 3.88 0 A 25.4 25.4 0 0 1 3.88 5 H 2.5 A 2.5 2.5 0 0 1 2.5 0 Z" fill="#997f28"/>
+      <circle cx="2" cy="2.5" r="1.5" fill="#1c1c1c"/>
+      <rect width="4" height="5" class="area"/>
+    </g>
+    <g transform="rotate(0) translate(21.4, -2.5)" data-pin="GND#1" data-title="GND">
+      <path d="M 3.88 0 A 25.4 25.4 0 0 1 3.88 5 H 2.5 A 2.5 2.5 0 0 1 2.5 0 Z" fill="#997f28"/>
+      <circle cx="2" cy="2.5" r="1.5" fill="#1c1c1c"/>
+      <rect width="4" height="5" class="area"/>
+    </g>
+    <g transform="rotate(340) translate(21.4, -2.5)" data-pin="A2">
+      <path d="M 3.88 0 A 25.4 25.4 0 0 1 3.88 5 H 2.5 A 2.5 2.5 0 0 1 2.5 0 Z" fill="#997f28"/>
+      <circle cx="2" cy="2.5" r="1.5" fill="#1c1c1c"/>
+      <rect width="4" height="5" class="area"/>
+    </g>
+    <g transform="rotate(320) translate(21.4, -2.5)" data-pin="A3">
+      <path d="M 3.88 0 A 25.4 25.4 0 0 1 3.88 5 H 2.5 A 2.5 2.5 0 0 1 2.5 0 Z" fill="#997f28"/>
+      <circle cx="2" cy="2.5" r="1.5" fill="#1c1c1c"/>
+      <rect width="4" height="5" class="area"/>
+    </g>
+    <g transform="rotate(300) translate(21.4, -2.5)" data-pin="3V3#1" data-title="3.3V">
+      <path d="M 3.88 0 A 25.4 25.4 0 0 1 3.88 5 H 2.5 A 2.5 2.5 0 0 1 2.5 0 Z" fill="#997f28"/>
+      <circle cx="2" cy="2.5" r="1.5" fill="#1c1c1c"/>
+      <rect width="4" height="5" class="area"/>
+    </g>
+    <g transform="rotate(240) translate(21.4, -2.5)" data-pin="GND#2" data-title="GND">
+      <path d="M 3.88 0 A 25.4 25.4 0 0 1 3.88 5 H 2.5 A 2.5 2.5 0 0 1 2.5 0 Z" fill="#997f28"/>
+      <circle cx="2" cy="2.5" r="1.5" fill="#1c1c1c"/>
+      <rect width="4" height="5" class="area"/>
+    </g>
+    <g transform="rotate(220) translate(21.4, -2.5)" data-pin="A4">
+      <path d="M 3.88 0 A 25.4 25.4 0 0 1 3.88 5 H 2.5 A 2.5 2.5 0 0 1 2.5 0 Z" fill="#997f28"/>
+      <circle cx="2" cy="2.5" r="1.5" fill="#1c1c1c"/>
+      <rect width="4" height="5" class="area"/>
+    </g>
+    <g transform="rotate(200) translate(21.4, -2.5)" data-pin="A5">
+      <path d="M 3.88 0 A 25.4 25.4 0 0 1 3.88 5 H 2.5 A 2.5 2.5 0 0 1 2.5 0 Z" fill="#997f28"/>
+      <circle cx="2" cy="2.5" r="1.5" fill="#1c1c1c"/>
+      <rect width="4" height="5" class="area"/>
+    </g>
+    <g transform="rotate(180) translate(21.4, -2.5)" data-pin="3V3#2" data-title="3.3V">
+      <path d="M 3.88 0 A 25.4 25.4 0 0 1 3.88 5 H 2.5 A 2.5 2.5 0 0 1 2.5 0 Z" fill="#997f28"/>
+      <circle cx="2" cy="2.5" r="1.5" fill="#1c1c1c"/>
+      <rect width="4" height="5" class="area"/>
+    </g>
+    <g transform="rotate(160) translate(21.4, -2.5)" data-pin="A6">
+      <path d="M 3.88 0 A 25.4 25.4 0 0 1 3.88 5 H 2.5 A 2.5 2.5 0 0 1 2.5 0 Z" fill="#997f28"/>
+      <circle cx="2" cy="2.5" r="1.5" fill="#1c1c1c"/>
+      <rect width="4" height="5" class="area"/>
+    </g>
+    <g transform="rotate(140) translate(21.4, -2.5)" data-pin="A7">
+      <path d="M 3.88 0 A 25.4 25.4 0 0 1 3.88 5 H 2.5 A 2.5 2.5 0 0 1 2.5 0 Z" fill="#997f28"/>
+      <circle cx="2" cy="2.5" r="1.5" fill="#1c1c1c"/>
+      <rect width="4" height="5" class="area"/>
+    </g>
+    <g transform="rotate(120) translate(21.4, -2.5)" data-pin="GND#3" data-title="GND">
+      <path d="M 3.88 0 A 25.4 25.4 0 0 1 3.88 5 H 2.5 A 2.5 2.5 0 0 1 2.5 0 Z" fill="#997f28"/>
+      <circle cx="2" cy="2.5" r="1.5" fill="#1c1c1c"/>
+      <rect width="4" height="5" class="area"/>
+    </g>
+  </g>
+
+  <!-- USB port -->
+  <rect x="21.65" y="0" width="7.5" height="5" fill="#ccc"/>
+
+  <!-- power LED -->
+  <g transform="translate(18.45, 2.5)">
+    <rect width="1.2" height="2.0" fill="black"/>
+    <rect width="1.2" height="2.0" style="fill: #0f0; filter: drop-shadow(0 0 1px #0f0) drop-shadow(0 0 1px #0f0);"/>
+  </g>
+
+  <!-- LED -->
+  <g data-part="led" transform="translate(31.15, 2.5)">
+    <rect width="1.2" height="2.0" fill="black"/>
+    <rect width="1.2" height="2.0" style="fill: var(--color, black); filter: drop-shadow(0 0 1px var(--shadow)) drop-shadow(0 0 1px var(--shadow));"/>
+  </g>
+
+  <!-- NeoPixel ring -->
+  <g data-part="neopixels" filter="drop-shadow(0 0 1.5px #fff0)">
+    <!-- created as a ring of 12 LEDs (like a clock face) with radius 17.4 of which two LEDs are missing -->
+    <circle data-type="rgbled" cx="34.1"  cy="10.33" r="1.5" fill="var(--color)" filter="drop-shadow(0 0 1px var(--shadow)) drop-shadow(0 0 1px var(--shadow))" style="will-change: filter"/>
+    <circle data-type="rgbled" cx="40.47" cy="16.7"  r="1.5" fill="var(--color)" filter="drop-shadow(0 0 1px var(--shadow)) drop-shadow(0 0 1px var(--shadow))" style="will-change: filter"/>
+    <circle data-type="rgbled" cx="42.8"  cy="25.4"  r="1.5" fill="var(--color)" filter="drop-shadow(0 0 1px var(--shadow)) drop-shadow(0 0 1px var(--shadow))" style="will-change: filter"/>
+    <circle data-type="rgbled" cx="40.47" cy="34.1"  r="1.5" fill="var(--color)" filter="drop-shadow(0 0 1px var(--shadow)) drop-shadow(0 0 1px var(--shadow))" style="will-change: filter"/>
+    <circle data-type="rgbled" cx="34.1"  cy="40.47" r="1.5" fill="var(--color)" filter="drop-shadow(0 0 1px var(--shadow)) drop-shadow(0 0 1px var(--shadow))" style="will-change: filter"/>
+    <circle data-type="rgbled" cx="16.7"  cy="40.47" r="1.5" fill="var(--color)" filter="drop-shadow(0 0 1px var(--shadow)) drop-shadow(0 0 1px var(--shadow))" style="will-change: filter"/>
+    <circle data-type="rgbled" cx="10.33" cy="34.1"  r="1.5" fill="var(--color)" filter="drop-shadow(0 0 1px var(--shadow)) drop-shadow(0 0 1px var(--shadow))" style="will-change: filter"/>
+    <circle data-type="rgbled" cx="8"     cy="25.4"  r="1.5" fill="var(--color)" filter="drop-shadow(0 0 1px var(--shadow)) drop-shadow(0 0 1px var(--shadow))" style="will-change: filter"/>
+    <circle data-type="rgbled" cx="10.33" cy="16.7"  r="1.5" fill="var(--color)" filter="drop-shadow(0 0 1px var(--shadow)) drop-shadow(0 0 1px var(--shadow))" style="will-change: filter"/>
+    <circle data-type="rgbled" cx="16.7"  cy="10.33" r="1.5" fill="var(--color)" filter="drop-shadow(0 0 1px var(--shadow)) drop-shadow(0 0 1px var(--shadow))" style="will-change: filter"/>
+  </g>
+
+  <!-- buttons -->
+  <g data-part="buttonLeft" data-clickarea="" transform="translate(15.24, 24.4)">
+    <rect x="-3" y="-3" rx="0.2" width="6" height="6" stroke="#777" stroke-width="0.7" style="opacity: var(--hover, 0)"/>
+    <rect x="-3" y="-3" rx="0.2" width="6" height="6" fill="#999"/>
+    <circle r="1.5" fill="black"/>
+    <circle r="1.55" fill="#666" style="opacity: var(--pressed, 0)"/>
+    <title>A</title>
+  </g>
+  <g data-part="buttonRight" data-clickarea="" transform="translate(35.56, 24.4)">
+    <rect x="-3" y="-3" width="6" height="6" stroke="#777" stroke-width="0.7" rx="0.2" style="opacity: var(--hover, 0)"/>
+    <rect x="-3" y="-3" width="6" height="6" fill="#999" rx="0.2"/>
+    <circle r="1.5" fill="black"/>
+    <circle r="1.55" fill="#666" style="opacity: var(--pressed, 0)"/>
+    <title>B</title>
+  </g>
+</svg>
