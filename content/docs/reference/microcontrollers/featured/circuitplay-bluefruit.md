@@ -1,7 +1,10 @@
 ---
 title: "Adafruit Circuit Playground Bluefruit"
 weight: 2
+image: /images/boards/circuit-playground.svg
 ---
+
+![Circuit Playground Bluefruit](/images/boards/circuit-playground.svg)
 
 The [Adafruit Circuit Playground Bluefruit](https://www.adafruit.com/product/4333) is small ARM development board based on the Nordic Semiconductor [nrf52840](https://www.nordicsemi.com/eng/Products/nRF52840) Cortex-M4 processor with 256KB of SRAM and 2MB of onboard flash storage. It has several built-in devices such as WS2812 "NeoPixel" LEDs, buttons, an accelerometer, and some other sensors. Thanks to using the `nrf52840` processor it offers onboard Bluetooth support.
 
