@@ -18,7 +18,7 @@ The [Seeed Studio XIAO ESP32S3](https://wiki.seeedstudio.com/xiao_esp32s3_gettin
 | I2C       | YES | YES |
 | ADC       | YES | YES |
 | PWM       | YES | YES |
-| USBDevice | YES | Not yet |
+| USBDevice | YES | YES |
 | WiFi      | YES | YES |
 | Bluetooth | YES | Not yet |
 

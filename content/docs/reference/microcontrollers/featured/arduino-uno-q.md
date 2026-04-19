@@ -17,7 +17,7 @@ The [Arduino UNO Q](https://docs.arduino.cc/hardware/uno-q/) is a single board D
 | SPI       | YES | YES |
 | I2C       | YES | YES |
 | ADC       | YES | YES |
-| PWM       | YES | YES |
+| PWM       | YES | Not yet |
 
 ## Pins
 

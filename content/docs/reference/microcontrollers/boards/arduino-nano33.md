@@ -20,6 +20,8 @@ Peripherals:
 | ADC       | YES | YES |
 | PWM       | YES | YES |
 | USBDevice | YES | YES |
+| WiFi      | YES | YES |
+| Bluetooth | YES | YES |
 
 ## Pins
 

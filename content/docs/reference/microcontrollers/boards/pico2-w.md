@@ -16,6 +16,8 @@ The [Raspberry Pi Pico 2 - W](https://www.raspberrypi.com/products/raspberry-pi-
 | ADC       | YES | YES |
 | PWM       | YES | YES |
 | USBDevice | YES | YES |
+| WiFi      | YES | YES |
+| Bluetooth | YES | YES |
 
 ## Pins
 
@@ -76,12 +78,22 @@ Any troubleshooting tips go here.
 
 ## Notes
 
-You can use the USB port to the Pico as a serial port.
+You can use the USB port to the Pico2 as a serial port.
 
-TinyGo has support for the RP2350's on-board Programmable Input/Output (PIO) block.
+### Programmable Input/Output (PIO)
+
+TinyGo has support for the RP2040's on-board Programmable Input/Output (PIO) block.
 
 For more informantion, see [https://github.com/tinygo-org/pio](https://github.com/tinygo-org/pio)
 
-You can use the onboard wireless chip using the TinyGo Bluetooth package.
+### WiFi
 
-For more informantion, see [https://github.com/tinygo-org/bluetooth](https://github.com/tinygo-org/bluetooth)
+You can use the onboard wireless chip for WiFi using the CYW43439 package.
+
+For more information, see [https://github.com/soypat/cyw43439](https://github.com/soypat/cyw43439)
+
+### Bluetooth
+
+You can also use the onboard wireless chip for Bluetooth Low Energy using the TinyGo Bluetooth package.
+
+For more information, see [https://github.com/tinygo-org/bluetooth](https://github.com/tinygo-org/bluetooth)
