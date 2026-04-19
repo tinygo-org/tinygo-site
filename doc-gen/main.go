@@ -14,6 +14,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"regexp"
+	"slices"
 	"strings"
 	"text/template"
 
@@ -433,8 +434,9 @@ func detectSupportedFeatures(pkg *packages.Package, buildTags []string) map[stri
 	if pkg.Types.Scope().Lookup("ADC") != nil {
 		features["ADC"] = true
 	}
+	bluetoothTags := []string{"nrf51", "nrf52", "nrf52840", "nrf52833", "cyw43439", "ninafw"}
 	for _, tag := range buildTags {
-		if tag == "nrf51" || tag == "nrf52" || tag == "nrf52840" || tag == "nrf52833" {
+		if slices.Contains(bluetoothTags, tag) {
 			features["Bluetooth"] = true
 		}
 	}
