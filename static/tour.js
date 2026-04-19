@@ -12,15 +12,13 @@ export { setupTour };
 const PLAYGROUND_API = location.hostname == 'localhost' ? 'http://localhost:8080/api' : 'https://playground-bttoqog3vq-uc.a.run.app/api';
 
 const boardNames = {
-	'arduino': 'Arduino Uno',
+	'arduino-uno': 'Arduino Uno',
 	'arduino-nano33': 'Arduino Nano 33 IoT',
 	'circuitplay-bluefruit': 'Adafruit Circuit Playground Bluefruit',
 	'circuitplay-express': 'Adafruit Circuit Playground Express',
 	'gopher-badge': 'Gopher Badge',
-	'hifive1b': 'SiFive HiFive1 rev B',
 	'microbit': 'BBC micro:bit v1',
 	'pico': 'Raspberry Pi Pico',
-	'reelboard': 'Phytec reel board',
 }
 
 // Configure the tour. This works on pages that use the "tour" layout.
@@ -29,7 +27,7 @@ const boardNames = {
 //   {
 //     code: '...',                // default code
 //     boards: {
-//       'arduino': {              // board name
+//       'arduino-uno': {              // board name
 //          code: '...',           // code for this board (optional)
 //          parts: {               // extra parts besides the main part (optional)
 //            led: { ... },        // configuration for this part

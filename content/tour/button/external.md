@@ -84,7 +84,7 @@ func main() {
 }`;
 setupTour({
 	boards: {
-		'arduino': {
+		'arduino-uno': {
 			code: code.replace('EXT_BUTTON', 'machine.D2 // Arduino Uno'),
 			parts: {
 				button: {

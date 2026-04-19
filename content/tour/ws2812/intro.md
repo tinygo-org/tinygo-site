@@ -115,7 +115,7 @@ setupTour({
 		'circuitplay-bluefruit': {},
 		'circuitplay-express': {},
 		'gopher-badge': {},
-		'arduino': {
+		'arduino-uno': {
 			code: code.replace('machine.WS2812', 'machine.D7'),
 			parts: {
 				main: {

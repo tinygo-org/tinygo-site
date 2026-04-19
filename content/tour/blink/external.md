@@ -54,7 +54,7 @@ func main() {
 }`;
 setupTour({
 	boards: {
-		'arduino': {
+		'arduino-uno': {
 			code: code.replace('machine.LED', 'machine.D2 // Arduino Uno'),
 			parts: {
 				led: {
