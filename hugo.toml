@@ -29,6 +29,7 @@ unsafe = true
 [params]
 copyright = "The TinyGo Authors"
 description = "A Go compiler for small places"
+images = ["/images/tinygo-banner-share.jpg"]
 
 # Google Custom Search Engine ID. Remove or comment out to disable search.
 gcs_engine_id = "feba5f0a3db52897d"
