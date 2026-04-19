@@ -16,6 +16,8 @@ The [Adafruit Metro M4 Express AirLift](https://www.adafruit.com/product/4000) i
 | ADC       | YES | YES |
 | PWM       | YES | YES |
 | USBDevice | YES | YES |
+| WiFi      | YES | YES |
+| Bluetooth | YES | YES |
 
 ## Pins
 

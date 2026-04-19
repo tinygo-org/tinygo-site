@@ -16,6 +16,8 @@ The [Pimoroni Badger2040-W](https://shop.pimoroni.com/products/badger-2040-w) is
 | ADC       | YES | YES |
 | PWM       | YES | YES |
 | USBDevice | YES | YES |
+| WiFi      | YES | YES |
+| Bluetooth | YES | YES |
 
 ## Pins
 
@@ -73,8 +75,20 @@ Any troubleshooting tips go here.
 
 You can use the USB port to the Badger2040-W as a serial port.
 
-The Badger2040-W has an onboard CYW43439 wireless chip for WiFi and Bluetooth communication.
+### Programmable Input/Output (PIO)
 
 TinyGo has support for the RP2040's on-board Programmable Input/Output (PIO) block.
 
 For more informantion, see [https://github.com/tinygo-org/pio](https://github.com/tinygo-org/pio)
+
+### WiFi
+
+You can use the onboard wireless chip for WiFi using the CYW43439 package.
+
+For more information, see [https://github.com/soypat/cyw43439](https://github.com/soypat/cyw43439)
+
+### Bluetooth
+
+You can also use the onboard wireless chip for Bluetooth Low Energy using the TinyGo Bluetooth package.
+
+For more information, see [https://github.com/tinygo-org/bluetooth](https://github.com/tinygo-org/bluetooth)

@@ -18,6 +18,8 @@ The PyPortal also has an Espressif ESP32 Wi-Fi coprocessor with TLS/SSL support 
 | ADC       | YES | YES |
 | PWM       | YES | YES |
 | USBDevice | YES | YES |
+| WiFi      | YES | YES |
+| Bluetooth | YES | YES |
 
 ## Pins
 

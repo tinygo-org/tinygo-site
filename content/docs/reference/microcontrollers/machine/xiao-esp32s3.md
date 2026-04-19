@@ -250,6 +250,17 @@ const (
 
 ```go
 const (
+	PinRising	PinChange	= iota + 1
+	PinFalling
+	PinToggle
+)
+```
+
+Pin change interrupt constants for SetInterrupt.
+
+
+```go
+const (
 	I2CEXT0_SCL_OUT_IDX	= 89
 	I2CEXT0_SDA_OUT_IDX	= 90
 	I2CEXT1_SCL_OUT_IDX	= 91
@@ -981,6 +992,33 @@ func (p Pin) Set(value bool)
 
 Set the pin to high or low.
 Warning: only use this on an output pin!
+
+
+### func (Pin) SetInterrupt
+
+```go
+func (p Pin) SetInterrupt(change PinChange, callback func(Pin)) (err error)
+```
+
+SetInterrupt sets an interrupt to be executed when a particular pin changes
+state. The pin should already be configured as an input, including a pull up
+or down if no external pull is provided.
+
+You can pass a nil func to unset the pin change interrupt. If you do so,
+the change parameter is ignored and can be set to any value (such as 0).
+If the pin is already configured with a callback, you must first unset
+this pins interrupt before you can set a new callback.
+
+
+
+
+## type PinChange
+
+```go
+type PinChange uint8
+```
+
+
 
 
 
