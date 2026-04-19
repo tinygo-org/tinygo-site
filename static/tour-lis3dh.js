@@ -26,7 +26,7 @@ export function setupLIS3DH(code) {
   				{from: 'main.A4', to: 'imu.SDA'},
   			],
   		},
-  		'arduino': {
+  		'arduino-uno': {
   			code: code.replace('SCL_PIN', 'ADC5').replace('SDA_PIN', 'ADC4'),
   			parts: {
   				main: {
@@ -71,23 +71,6 @@ export function setupLIS3DH(code) {
   		'gopher-badge': {
     		code: code.replace('SCL_PIN', 'I2C0_SCL_PIN').replace('SDA_PIN', 'I2C0_SDA_PIN'),
   		},
-  		'reelboard': {
-  			code: code.replace('SCL_PIN', 'P0_27').replace('SDA_PIN', 'P0_26'),
-  			parts: {
-  				main: {
-  					x: -10,
-  				},
-  				imu: {
-  					config: imuConfig,
-  					location: 'parts/adafruit-lis3dh.json',
-  					x: 50,
-  				},
-  			},
-  			wires: [
-  				{from: 'main.P19', to: 'imu.SCL'},
-  				{from: 'main.P20', to: 'imu.SDA'},
-  			],
-  		},
   		'pico': {
   			code: code.replace('SCL_PIN', 'GP17').replace('SDA_PIN', 'GP16'),
   			parts: {
@@ -104,24 +87,6 @@ export function setupLIS3DH(code) {
   			wires: [
   				{from: 'main.GP17', to: 'imu.SCL'},
   				{from: 'main.GP16', to: 'imu.SDA'},
-  			],
-  		},
-  		'hifive1b': {
-  			code: code.replace('SCL_PIN', 'D19').replace('SDA_PIN', 'D18'),
-  			parts: {
-  				main: {
-  					x: -10,
-  				},
-  				imu: {
-  					config: imuConfig,
-  					location: 'parts/adafruit-lis3dh.json',
-  					x: 45,
-  					rotation: 180,
-  				},
-  			},
-  			wires: [
-  				{from: 'main.D19', to: 'imu.SCL'},
-  				{from: 'main.D18', to: 'imu.SDA'},
   			],
   		},
   	}});

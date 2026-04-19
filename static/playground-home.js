@@ -178,13 +178,13 @@ var examples = {
 	// Simple "blinky light" example.
 	// The Arduino Uno, despite its limitations, is very well known and many
 	// people have one. So it seems like a good testcase.
-	arduino: {
-		target: 'arduino',
+	arduino_uno: {
+		target: 'arduino_uno',
 		code: exampleBlink,
 		parts: [
 			{
 				id: 'main',
-				location: 'parts/arduino.json',
+				location: 'parts/arduino_uno.json',
 				x: 0,
 				y: 0,
 			}

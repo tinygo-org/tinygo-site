@@ -57,7 +57,7 @@ import { setupTour } from '/tour.js';
 setupTour({
 	boards: {
 		'arduino-nano33': {},
-		'arduino': {},
+		'arduino-uno': {},
 		'circuitplay-bluefruit': {},
 		'circuitplay-express': {},
 		'pico': {},
