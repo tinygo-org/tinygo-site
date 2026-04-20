@@ -3,7 +3,7 @@ title: "M5Stamp C3"
 weight: 3
 ---
 
-The [M5Stamp-C3](https://docs.m5stack.com/en/core/stamp_c3) is a development board based on the Espressif ESP32-C3 a powerful chip that is used on many different board mostly because of the built-in radio that can be used for WiFi or Bluetooth wireless connections.
+The [M5Stamp-C3](https://docs.m5stack.com/en/core/stamp_c3) is a development board based on the Espressif [ESP32C3](https://www.espressif.com/en/products/socs/esp32-c3) 32-bit RISC-V CPU microcontroller with 400KB of SRAM and 4MB of onboard flash storage. Thanks to the onboard radio, it supports both WiFi and Bluetooth wireless communication.
 
 ## Interfaces
 
@@ -16,7 +16,7 @@ The [M5Stamp-C3](https://docs.m5stack.com/en/core/stamp_c3) is a development boa
 | ADC       | YES | YES |
 | PWM       | YES | YES |
 | USBDevice | YES | YES |
-| WiFi      | YES | Not Yet |
+| WiFi      | YES | YES |
 | Bluetooth | YES | Not yet |
 
 ## Pins
@@ -75,4 +75,8 @@ Goes here
 
 ## Notes
 
-Goes here
+### WiFi
+
+You can use the onboard wireless chip for WiFi using the `espradio` package.
+
+For more information, see [https://github.com/tinygo-org/espradio](https://github.com/tinygo-org/espradio)
