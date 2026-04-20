@@ -1,6 +1,7 @@
 ---
 title: "Porting code to TinyGo"
 type: "docs"
+weight: 4
 description: >
   How to port existing code to TinyGo.
 ---

@@ -1,6 +1,6 @@
 ---
-title: "Windows support"
-weight: 4
+title: "Windows programs"
+weight: 2
 description: |
   How to use TinyGo to create standard Windows executables.
 ---

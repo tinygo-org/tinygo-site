@@ -1,8 +1,8 @@
 ---
 title: "Driver Design and Development"
-weight: 10
+weight: 4
 description: |
-  Developing drivers from scratch for embedded Go
+  Developing drivers from scratch for embedded using TinyGo
 ---
 # Driver Design with TinyGo
 

@@ -1,6 +1,6 @@
 ---
 title: "Optimizing binaries"
-weight: 11
+weight: 4
 description: |
   How to improve speed or reduce code size for TinyGo programs.
 ---

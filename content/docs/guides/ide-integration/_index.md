@@ -1,6 +1,6 @@
 ---
 title: "IDE Integration"
-weight: 8
+weight: 3
 description: |
   TinyGo has some IDE support. This is how you can configure your IDE to recognize the machine package.
 ---

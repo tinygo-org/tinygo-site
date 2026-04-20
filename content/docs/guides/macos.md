@@ -1,6 +1,6 @@
 ---
-title: "macOS support"
-weight: 4
+title: "macOS programs"
+weight: 2
 description: |
   How to use TinyGo to create standard macOS executables.
 ---
