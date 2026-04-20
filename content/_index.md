@@ -10,6 +10,9 @@ title: "TinyGo Home"
 	<a class="btn btn-lg btn-primary mr-3 mb-4" href="{{< relref "/getting-started" >}}">
 		Get Started <i class="fas fa-arrow-alt-circle-right ml-2"></i>
 	</a>
+	<a class="btn btn-lg btn-primary mr-3 mb-4" href="{{< relref "#playground" >}}">
+		Try TinyGo <i class="fas fa-arrow-alt-circle-down ml-2"></i>
+	</a>
 	<a class="btn btn-lg btn-secondary mr-3 mb-4" href="https://github.com/tinygo-org/tinygo">
 		See the code <i class="fab fa-github ml-2 "></i>
 	</a>
@@ -36,6 +39,7 @@ Ready to get started? [Click here](getting-started).
 <div class="col">
 	<div class="container" id="playground">
 		<h1 class="text-center">Try TinyGo</h1>
+		<p class="text-center">Want to learn more? See the <a href="/tour/">Tour of TinyGo</a>. Just want free play with simulated devices? Explore the full <a href="/play/">TinyGo Playground</a>.</p>
 		<div class="row px-0">
 			<div class="col col-auto">
 				<div class="input-group mb-3">
@@ -50,7 +54,6 @@ Ready to get started? [Click here](getting-started).
 			</div>
 			<div class="col col-auto">
 				<button class="btn btn-secondary playground-btn-flash mb-3" disabled>Download binary</button>
-				<a href="/tour/" class="btn btn-link mb-3">Tour of TinyGo</a>
 			</div>
 		</div>
 		<div class="playground-editor mb-3" tabindex="-1"></div>
