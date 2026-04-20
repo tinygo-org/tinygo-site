@@ -174,6 +174,6 @@ https://github.com/tinygo-org/tinygo/actions/workflows/windows.yml?query=branch%
 
 Click on the link for the build you want to download. The most recent one is located at the top.
 
-Scroll down on that page to the "Artifacts" and click to download the file named "release-double-zipped".
+Scroll down on that page to the "Artifacts" and click to download the file which will be named something similar to `tinygo0.41.0-dev.windows-amd64.zip`.
 
-As you might suspect from the name, the file is a compressed zip file that contains the zip file with the actual TinyGo build. Extract that to your desired location, and run it to try the latest features and fixes.
+Download and extract that to your desired location, and run it to try the latest features and fixes.
