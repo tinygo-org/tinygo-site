@@ -70,10 +70,10 @@ The Pico comes with the [UF2 bootloader](https://github.com/Microsoft/uf2) alrea
 - Flash your TinyGo program to the board using this command:
 
     ```shell
-    tinygo flash -target=pico [PATH TO YOUR PROGRAM]
+    tinygo flash -target=pico-w [PATH TO YOUR PROGRAM]
     ```
 
-- The Pico board should restart and then begin running your program.
+- The Pico-W board should restart and then begin running your program.
 
 ### Troubleshooting
 
@@ -83,11 +83,40 @@ Any troubleshooting tips go here.
 
 You can use the USB port to the Pico-W as a serial port.
 
+### How to use the Pico-W onboard LED
+
+The Pico-W onboard LED is connected to the `CYW43439` wireless chip instead of the RP2040 processor, so the normal `examples/blinky1` program cannot be used on this board.
+
+Instead, you must use the [`cyw43439`](https://github.com/soypat/cyw43439) package to connect thru it to light up the LED. Here is an example:
+
+```go
+package main
+
+import (
+	"time"
+
+	blink "github.com/soypat/cyw43439/examples/pico-blink"
+)
+
+func main() {
+	led := blink.LED
+	led.Configure()
+	for {
+		led.High()
+		time.Sleep(time.Second)
+		led.Low()
+		time.Sleep(time.Second)
+	}
+}
+```
+
+For more information, see [https://github.com/soypat/cyw43439](https://github.com/soypat/cyw43439)
+
 ### Programmable Input/Output (PIO)
 
 TinyGo has support for the RP2040's on-board Programmable Input/Output (PIO) block.
 
-For more informantion, see [https://github.com/tinygo-org/pio](https://github.com/tinygo-org/pio)
+For more information, see [https://github.com/tinygo-org/pio](https://github.com/tinygo-org/pio)
 
 ### WiFi
 

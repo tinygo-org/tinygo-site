@@ -62,6 +62,10 @@ Any troubleshooting tips go here.
 
 ## Notes
 
+### No onboard LED
+
+The XIAO-ESP32C3 does not have an onboard LED, so the normal `examples/blinky1` program cannot be used on this board.
+
 ### WiFi
 
 You can use the onboard wireless chip for WiFi using the `espradio` package.

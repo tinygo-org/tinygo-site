@@ -54,23 +54,23 @@ The [Raspberry Pi Pico 2 - W](https://www.raspberrypi.com/products/raspberry-pi-
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Pico](../../machine/pico)
+[Documentation for the machine package for the Pico2-W](../../machine/pico)
 
 ## Flashing
 
 ### UF2
 
-The Pico 2 comes with the [UF2 bootloader](https://github.com/Microsoft/uf2) already installed.
+The Pico2-W comes with the [UF2 bootloader](https://github.com/Microsoft/uf2) already installed.
 
 ### CLI Flashing
 
 - Flash your TinyGo program to the board using this command:
 
     ```shell
-    tinygo flash -target=pico2 [PATH TO YOUR PROGRAM]
+    tinygo flash -target=pico2-w [PATH TO YOUR PROGRAM]
     ```
 
-- The Pico 2 board should restart and then begin running your program.
+- The Pico2-W board should restart and then begin running your program.
 
 ### Troubleshooting
 
@@ -80,9 +80,38 @@ Any troubleshooting tips go here.
 
 You can use the USB port to the Pico2 as a serial port.
 
+### How to use the Pico2-W onboard LED
+
+The Pico2-W onboard LED is connected to the `CYW43439` wireless chip instead of the RP2350 processor, so the normal `examples/blinky1` program cannot be used on this board.
+
+Instead, you must use the [`cyw43439`](https://github.com/soypat/cyw43439) package to connect thru it to light up the LED. Here is an example:
+
+```go
+package main
+
+import (
+	"time"
+
+	blink "github.com/soypat/cyw43439/examples/pico-blink"
+)
+
+func main() {
+	led := blink.LED
+	led.Configure()
+	for {
+		led.High()
+		time.Sleep(time.Second)
+		led.Low()
+		time.Sleep(time.Second)
+	}
+}
+```
+
+For more information, see [https://github.com/soypat/cyw43439](https://github.com/soypat/cyw43439)
+
 ### Programmable Input/Output (PIO)
 
-TinyGo has support for the RP2040's on-board Programmable Input/Output (PIO) block.
+TinyGo has support for the RP2350's on-board Programmable Input/Output (PIO) block.
 
 For more informantion, see [https://github.com/tinygo-org/pio](https://github.com/tinygo-org/pio)
 
