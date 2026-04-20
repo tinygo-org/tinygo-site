@@ -101,53 +101,10 @@ The [m5stack-core2](https://shop.m5stack.com/products/m5stack-core2-esp32-iot-de
 
 ## Flashing
 
-### CLI Flashing on Linux
+- Flash your TinyGo program to the board using this command:
 
-You need to install the `esptool` flashing tool:
-
-https://github.com/espressif/esptool#easy-installation
-
-Now you should be able to flash your board as follows:
-
-- Plug your ESP32 board into your computer's USB port.
-- Build and flash your TinyGo code using the `tinygo flash` command. This command flashes the ESP32 with the serial example:
-
-    ```
-    tinygo flash -target=m5stack-core2 -port=/dev/ttyUSB0 examples/serial
-    ```
-
-- The ESP32 board should restart and then begin running your program.
-
-### CLI Flashing on macOS
-
-You need to install the `esptool` flashing tool:
-
-https://github.com/espressif/esptool#easy-installation
-
-Now you should be able to flash your board as follows:
-
-- Plug your ESP32 board into your computer's USB port.
-- Build and flash your TinyGo code using the `tinygo flash` command. This command flashes the ESP32 with the serial example:
-
-    ```
-    tinygo flash -target=m5stack-core2 examples/serial
-    ```
-
-- The ESP32 board should restart and then begin running your program.
-
-### CLI Flashing on Windows
-
-You need to install the `esptool` flashing tool:
-
-https://github.com/espressif/esptool#easy-installation
-
-Now you should be able to flash your board as follows:
-
-- Plug your ESP32 board into your computer's USB port.
-- Build and flash your TinyGo code using the `tinygo flash` command. This command flashes the ESP32 with the serial example:
-
-    ```
-    tinygo flash -target=m5stack-core2 examples/serial
+    ```shell
+    tinygo flash -target=m5stack-core2 [PATH TO YOUR PROGRAM]
     ```
 
 - The ESP32 board should restart and then begin running your program.

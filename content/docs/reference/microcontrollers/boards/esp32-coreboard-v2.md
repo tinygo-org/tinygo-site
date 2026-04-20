@@ -62,53 +62,10 @@ The esp32-coreboard-v2 is a development board based on the [Espressif ESP32](htt
 
 ## Flashing
 
-### CLI Flashing on Linux
+- Flash your TinyGo program to the board using this command:
 
-You need to install the `esptool` flashing tool:
-
-https://github.com/espressif/esptool#easy-installation
-
-Now you should be able to flash your board as follows:
-
-- Plug your ESP32 board into your computer's USB port.
-- Build and flash your TinyGo code using the `tinygo flash` command. This command flashes the ESP32 with the blinky1 example:
-
-    ```
-    tinygo flash -target=esp32-coreboard-v2 -port=/dev/ttyUSB0 examples/blinky1
-    ```
-
-- The ESP32 board should restart and then begin running your program.
-
-### CLI Flashing on macOS
-
-You need to install the `esptool` flashing tool:
-
-https://github.com/espressif/esptool#easy-installation
-
-Now you should be able to flash your board as follows:
-
-- Plug your ESP32 board into your computer's USB port.
-- Build and flash your TinyGo code using the `tinygo flash` command. This command flashes the ESP32 with the blinky1 example:
-
-    ```
-    tinygo flash -target=esp32-coreboard-v2 examples/blinky1
-    ```
-
-- The ESP32 board should restart and then begin running your program.
-
-### CLI Flashing on Windows
-
-You need to install the `esptool` flashing tool:
-
-https://github.com/espressif/esptool#easy-installation
-
-Now you should be able to flash your board as follows:
-
-- Plug your ESP32 board into your computer's USB port.
-- Build and flash your TinyGo code using the `tinygo flash` command. This command flashes the ESP32 with the blinky1 example:
-
-    ```
-    tinygo flash -target=esp32-coreboard-v2 examples/blinky1
+    ```shell
+    tinygo flash -target=esp32-coreboard-v2 [PATH TO YOUR PROGRAM]
     ```
 
 - The ESP32 board should restart and then begin running your program.
