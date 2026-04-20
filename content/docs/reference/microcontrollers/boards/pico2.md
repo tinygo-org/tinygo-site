@@ -52,7 +52,7 @@ The [Raspberry Pi Pico 2](https://www.raspberrypi.com/products/raspberry-pi-pico
 
 ## Machine Package Docs
 
-[Documentation for the machine package for the Pico](../../machine/pico)
+[Documentation for the machine package for the Pico2](../../machine/pico)
 
 ## Flashing
 
