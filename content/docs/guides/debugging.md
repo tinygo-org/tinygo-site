@@ -1,6 +1,6 @@
 ---
 title: "Debugging"
-weight: 10
+weight: 4
 description: |
   Debug TinyGo programs using GDB.
 ---

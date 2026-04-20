@@ -1,8 +1,8 @@
 ---
-title: "Linux support"
-weight: 4
+title: "Linux programs"
+weight: 2
 description: |
-  How to use TinyGo to create normal Linux executables.
+  How to use TinyGo to create standard Linux executables.
 ---
 
 TinyGo also lets you compile programs for Linux systems, both 32-bit and 64-bit, on both x86 and ARM architectures.

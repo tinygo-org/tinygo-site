@@ -1,6 +1,6 @@
 ---
 title: "Build from source"
-weight: 2
+weight: 6
 description: >
   Build a development version of TinyGo from source if you want to help improve TinyGo or want to try the latest features.
 ---

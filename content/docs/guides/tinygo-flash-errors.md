@@ -1,6 +1,6 @@
 ---
 title: "Tinygo flash errors"
-weight: 11
+weight: 3
 description: |
   Solving common problems when flashing your first TinyGo program.
 ---

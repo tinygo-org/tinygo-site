@@ -1,6 +1,6 @@
 ---
 title: "Tips, Tricks and Gotchas"
-weight: 4
+weight: 3
 description: |
   Tips and tricks for small places.
   How to write efficient embedded code and avoid common mistakes.
