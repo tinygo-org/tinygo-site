@@ -184,7 +184,7 @@ var examples = {
 		parts: [
 			{
 				id: 'main',
-				location: 'parts/arduino_uno.json',
+				location: 'parts/arduino-uno.json',
 				x: 0,
 				y: 0,
 			}
