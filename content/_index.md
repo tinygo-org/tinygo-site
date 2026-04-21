@@ -46,7 +46,7 @@ Ready to get started? [Click here](getting-started).
 					<span class="input-group-text">Example</span>
 					<select class="form-select example_select" disabled>
 						<option value="hello">Hello world</option>
-						<option value="arduino" selected>Blinking LED (Arduino Uno)</option>
+						<option value="arduino_uno" selected>Blinking LED (Arduino Uno)</option>
 						<option value="circuitplay_express">RGB LEDs (Adafruit Circuit Playground Express)</option>
 						<option value="gopher_badge">Display (Gopher Badge)</option>
 					</select>
