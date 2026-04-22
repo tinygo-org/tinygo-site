@@ -33,7 +33,7 @@ You can test that the installation was successful by running the `version` comma
 
 ```shell
 > tinygo version
-tinygo version 0.41.0 windows/amd64 (using go version go1.25.5 and LLVM version 20.1.1)
+tinygo version 0.41.1 windows/amd64 (using go version go1.25.5 and LLVM version 20.1.1)
 ```
 
 Upgrading to the latest TinyGo version can be done via scoop with:
@@ -79,7 +79,7 @@ Upgrading to the latest versions can be as easy as:
 
     - Choose the download link for Microsoft Windows, Windows 7 or later, Intel 64-bit processor.
 
-- Download the TinyGo binary for Windows file from https://github.com/tinygo-org/tinygo/releases/download/v0.41.0/tinygo0.41.0.windows-amd64.zip
+- Download the TinyGo binary for Windows file from https://github.com/tinygo-org/tinygo/releases/download/v0.41.1/tinygo0.41.1.windows-amd64.zip
 
 - Decompress the file like this:
 
@@ -109,7 +109,7 @@ Upgrading to the latest versions can be as easy as:
 
     ```
     > tinygo version
-    tinygo version 0.41.0 windows/amd64 (using go version go1.25.5 and LLVM version 20.1.1)
+    tinygo version 0.41.1 windows/amd64 (using go version go1.25.5 and LLVM version 20.1.1)
     ```
 
 ### Flashing boards
@@ -174,6 +174,6 @@ https://github.com/tinygo-org/tinygo/actions/workflows/windows.yml?query=branch%
 
 Click on the link for the build you want to download. The most recent one is located at the top.
 
-Scroll down on that page to the "Artifacts" and click to download the file which will be named something similar to `tinygo0.41.0-dev.windows-amd64.zip`.
+Scroll down on that page to the "Artifacts" and click to download the file which will be named something similar to `tinygo0.41.1-dev.windows-amd64.zip`.
 
 Download and extract that to your desired location, and run it to try the latest features and fixes.
