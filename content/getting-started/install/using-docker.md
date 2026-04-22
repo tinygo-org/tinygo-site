@@ -9,7 +9,13 @@ You can use our Docker image to be able to run the TinyGo compiler on your compu
 
 ## Installing
 
+You can pull the TinyGo Docker container either from the Docker Container Registry:
+
     docker pull tinygo/tinygo:0.41.0
+
+Or from the Github Container Registry:
+
+    docker pull ghcr.io/tinygo-org/tinygo:0.41.0
 
 ## Using
 
@@ -23,13 +29,13 @@ A docker container exists for easy access to the TinyGo CLI. For example, to com
 See the [WebAssembly page](../../../docs/guides/webassembly) for more information on executing the compiled
 WebAssembly.
 
-To compile `blinky1.hex` targeting an ARM microcontroller, such as the PCA10040:
+To compile `blinky1.hex` targeting an ARM microcontroller, such as the Circuit Playground Express:
 
-    docker run --rm -v $(pwd):/src tinygo/tinygo:0.41.0 tinygo build -o /src/blinky1.hex -size=short -target=pca10040 examples/blinky1
+    docker run --rm -v $(pwd):/src tinygo/tinygo:0.41.0 tinygo build -o /src/blinky1.hex -size=short -target=circuitplay-express examples/blinky1
 
 To compile `blinky1.hex` targeting an AVR microcontroller such as the Arduino:
 
-    docker run --rm -v $(pwd):/src tinygo/tinygo:0.41.0 tinygo build -o /src/blinky1.hex -size=short -target=arduino examples/blinky1
+    docker run --rm -v $(pwd):/src tinygo/tinygo:0.41.0 tinygo build -o /src/blinky1.hex -size=short -target=arduino-uno examples/blinky1
 
 For projects that have remote dependencies outside of the standard library and
 go code within your own project, you will need to map your entire `$GOPATH`
@@ -39,7 +45,7 @@ into the docker image for those dependencies to be found:
 
 **note: At this time, tinygo does not resolve dependencies from the /vendor/ folder within your project.**
 
-For microcontroller development you must flash your hardware devices from your host environment, since you cannot run `tinygo flash` from inside the docker container.
+For microcontroller development you probably will want to flash your hardware devices from your host environment, since it is not simple to run `tinygo flash` from inside the Docker container.
 
 So your workflow could be:
 

@@ -9,7 +9,7 @@ description: >
 
 This page has information on how to install and use TinyGo on Windows 10. If you wish to build TinyGo from source, for example if you intend to contribute to the project, please take a look [here](../../../docs/guides/build).
 
-TinyGo requires Go v1.20+ to be already installed on your machine.
+TinyGo requires Go v1.23 or above to be already installed on your machine.
 
 ### Quick Install via Scoop
 
