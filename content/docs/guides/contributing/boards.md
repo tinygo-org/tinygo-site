@@ -30,7 +30,7 @@ func sleepTicks(d timeUnit)
 func ticks() timeUnit
 ```
 
-Defining the `timeUnit` is crucial, since the unit of time for most processors is usually dependant on the system clock settings.
+Defining the `timeUnit` is crucial, since the unit of time for most processors is usually dependent on the system clock settings.
 
 Based on that initial information, the functions `ticksToNanoseconds()` and `nanosecondsToTicks()` can be implemented in a fairly straightforward fashion.
 

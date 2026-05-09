@@ -179,7 +179,7 @@ If you have issues connecting to your probe the following flags may be helpful:
 | `-ocd-commands "<command>"` | Sets custom openocd commands                             |
 | `-x`                        | Prints the commands tinygo is sending to openocd and gdb |
 
-For example, this custom openocd command is necessary when using a Rasbperry Pi Debug Probe to connect to a Raspberry Pi Pico 2:
+For example, this custom openocd command is necessary when using a Raspberry Pi Debug Probe to connect to a Raspberry Pi Pico 2:
 
 ```
 $ tinygo gdb -target=pico2 -programmer=cmsis-dap -ocd-commands "adapter speed 5000" examples/blinky1
