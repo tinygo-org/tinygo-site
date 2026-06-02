@@ -320,6 +320,85 @@ func (uart *UART) WriteByte(c byte) error
 
 Write a single byte to the UART output.
 
+## PWM
+
+```go
+type PWMConfig struct {
+        Period uint64
+}
+```
+
+The `PWMConfig` struct contains configuration for the PWM peripheral.
+
+  * `Period` is the period of the PWM signal, in nanoseconds.
+
+```go
+type PWM struct {
+    // values are unexported or vary by chip
+}
+
+var (
+    PWM0 = PWM{...}
+    PWM1 = PWM{...}
+    PWM2 = PWM{...}
+)
+```
+
+The PWM struct corresponds to a single PWM/timer hardware peripheral, which controls 1 or more output channels. This interface exposes a simple PWM model, that can generate outputs with a variable period and duty cycle.
+
+Note: As of TinyGo 0.41, the name of the PWM peripheral type is not consistent across supported platforms. This could be: PWM, TCC, LEDCPWM, timerType, and pwmGroup. The name of the exported structs could be: Timerx, TCCx, PWMx, TIMx.
+
+For more information, see the [PWM tutorial](../tutorials/pwm)
+
+```go
+func (pwm PWM) Configure(config PWMConfig) error
+```
+
+Enables and configures the PWM peripheral for use. Does not enable any output channels.
+
+```go
+func (pwm PWM) SetPeriod(period uint64) error
+```
+
+Update the period of the PWM timer, in nanoseconds.
+
+```go
+func (pwm PWM) Period() uint64
+```
+
+Get the period of the PWM timer, in nanoseconds.
+
+```go
+func (pwm PWM) Top() uint32
+```
+
+Get the top (highest value before rollover) of the PWM.
+
+```go
+func (pwm PWM) Counter() uint32
+```
+
+Get the current value of the PWM counter.
+
+```go
+func (pwm PWM) Channel(pin Pin) (uint8, error)
+```
+
+Configures the specified pin for PWM mode, and assigns a PWM channel to it.
+
+```go
+func (pwm PWM) SetInverting(channel uint8, inverting bool)
+```
+
+Configure whether the ouput should be inverted. Normally, the PWM output will go high at the beginning of a cycle, then low when the counter is equal to the channel compare value. If inverted, the channel will start low, then turn high at the compare value.
+
+```go
+func (pwm PWM) Set(channel uint8, value uint32)
+```
+
+Update the compare value for the specified channel. To calculate the comparison value from a desired duty cycle, multiply the duty cycle by the value of Top().
+
+
 ## Watchdog
 
 ```go
