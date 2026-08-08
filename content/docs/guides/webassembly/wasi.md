@@ -17,13 +17,14 @@ Here is a small TinyGo program for use within a WASI host application:
 package main
 
 //go:wasmimport yourmodulename add
-func add(x, y uint32) uint32 {
-	return x + y
-}
+func add(x, y uint32) uint32
 
 // main is required for the `wasip1` target, even if it isn't used.
 func main() {}
 ```
+
+`//go:wasmimport` may only appear on function declarations without a body (the
+implementation is provided by the host).
 
 To compile the above TinyGo program for use on any WASI runtime:
 
