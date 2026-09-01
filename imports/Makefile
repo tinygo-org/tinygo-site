@@ -1,3 +1,2 @@
-
 all:
-	go run . > ../content/docs/reference/lang-support/stdlib.md
+	go run . > stdlib.md.tmp && mv stdlib.md.tmp ../content/docs/reference/lang-support/stdlib.md
