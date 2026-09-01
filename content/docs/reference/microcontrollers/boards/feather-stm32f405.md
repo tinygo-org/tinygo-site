@@ -15,7 +15,7 @@ The [Adafruit Feather STM32F405](https://www.adafruit.com/product/4382) is a tin
 | I2C       | YES | YES |
 | ADC       | YES | YES |
 | PWM       | YES | Not yet |
-| USBDevice | YES | Not yet |
+| USBDevice | YES | YES |
 
 ## Pins
 

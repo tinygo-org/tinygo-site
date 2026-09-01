@@ -17,7 +17,7 @@ It has 2 user buttons, and 3 user LEDs.
 | I2C       | YES | YES |
 | ADC       | YES | YES |
 | PWM       | YES | Not yet |
-| USBDevice | YES | Not yet |
+| USBDevice | YES | YES |
 
 ## Pins
 

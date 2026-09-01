@@ -329,9 +329,21 @@ const (
 
 	// for PWM
 	PinModePWMOutput	PinMode	= 12
+
+	// for USB (DP/DM lines)
+	PinModeUSB	PinMode	= 13
 )
 ```
 
+
+
+```go
+const NumberOfUSBEndpoints = 8
+```
+
+NumberOfUSBEndpoints is sized to cover TinyGo's full endpoint index space
+(0=control, 1=CDC ACM, 2=CDC OUT, 3=CDC IN, 4=HID IN, 5=HID OUT, 6=MIDI IN, 7=MIDI OUT).
+Physical OTG FS hardware has 4 IN + 4 OUT endpoints (0–3).
 
 
 ```go
@@ -915,7 +927,42 @@ var (
 
 
 
+```go
+var (
+	USBDev	= &USBDevice{}
+	USBCDC	Serialer
 
+	endPoints	= []usbEndpointEntry{
+		{
+			Endpoint:	usb.CONTROL_ENDPOINT,
+			Config:		usb.ENDPOINT_TYPE_CONTROL,
+		},
+	}
+)
+```
+
+
+
+```go
+var (
+	ErrUSBReadTimeout	= errors.New("USB read timeout")
+	ErrUSBBytesRead		= errors.New("USB invalid number of bytes read")
+	ErrUSBBytesWritten	= errors.New("USB invalid number of bytes written")
+)
+```
+
+
+
+
+
+
+### func AckUsbOutTransfer
+
+```go
+func AckUsbOutTransfer(ep uint32)
+```
+
+AckUsbOutTransfer re-arms the OUT endpoint to receive the next packet.
 
 
 ### func CPUFrequency
@@ -935,6 +982,14 @@ func CPUReset()
 CPUReset performs a hard system reset.
 
 
+### func ConfigureUSBEndpoint
+
+```go
+func ConfigureUSBEndpoint(desc descriptor.Descriptor, epSettings []usb.EndpointConfig, setup []usb.SetupConfig)
+```
+
+
+
 ### func DeviceID
 
 ```go
@@ -947,6 +1002,25 @@ a particular chipset.
 The identity is one burnt into the MCU itself.
 
 The length of the device ID for STM32 is 12 bytes (96 bits).
+
+
+### func EnableCDC
+
+```go
+func EnableCDC(txHandler func(), rxHandler func([]byte), setupHandler func(usb.Setup) bool)
+```
+
+
+
+### func EnterBootloader
+
+```go
+func EnterBootloader()
+```
+
+EnterBootloader resets the chip into the bootloader.
+This is currently a stub for STM32, required to satisfy machine.EnterBootloader
+called by machine/usb/cdc.
 
 
 ### func FlashDataEnd
@@ -1002,6 +1076,55 @@ func NewRingBuffer() *RingBuffer
 ```
 
 NewRingBuffer returns a new ring buffer.
+
+
+### func PLLParams168MHz
+
+```go
+func PLLParams168MHz() PLLParams
+```
+
+PLLParams168MHz returns the HSE PLL dividers needed to reach a 336MHz VCO
+(168MHz SYSCLK, P=2, Q=7) for the configured crystal frequency. M is chosen
+to bring the PLL input (HSE/M) to 2MHz, the value RM0090 pg. 95 recommends
+to minimize jitter; the previous hardcoded F407 table used 1MHz.
+
+
+### func PhysicalEndpoint
+
+```go
+func PhysicalEndpoint(ep uint32) uint32
+```
+
+PhysicalEndpoint maps a virtual endpoint index to the physical endpoint number
+used by the hardware. This is an identity mapping on all currently supported platforms.
+
+
+### func ReceiveUSBControlPacket
+
+```go
+func ReceiveUSBControlPacket() ([cdcLineInfoSize]byte, error)
+```
+
+ReceiveUSBControlPacket synchronously receives a CDC control OUT packet on EP0.
+
+
+### func SendUSBInPacket
+
+```go
+func SendUSBInPacket(ep uint32, data []byte) bool
+```
+
+SendUSBInPacket sends data on a USB IN endpoint (interrupt or bulk).
+
+
+### func SendZlp
+
+```go
+func SendZlp()
+```
+
+SendZlp sends a zero-length packet on EP0 IN (status stage for OUT control transfers).
 
 
 
@@ -1289,6 +1412,22 @@ type PDMConfig struct {
 }
 ```
 
+
+
+
+
+
+## type PLLParams
+
+```go
+type PLLParams struct {
+	M, N, P, Q, R uint32
+}
+```
+
+PLLParams holds the HSE main-PLL dividers/multipliers (RCC_PLLCFGR M/N/P/Q/R
+fields) needed to reach a chip's target VCO/SYSCLK frequency from a given
+crystal frequency. R is left zero on chips without a PLLR output.
 
 
 
@@ -1621,6 +1760,25 @@ SPIConfig is used to store config info for SPI.
 
 
 
+## type Serialer
+
+```go
+type Serialer interface {
+	WriteByte(c byte) error
+	Write(data []byte) (n int, err error)
+	Configure(config UARTConfig) error
+	Buffered() int
+	ReadByte() (byte, error)
+	DTR() bool
+	RTS() bool
+}
+```
+
+
+
+
+
+
 ## type TIM
 
 ```go
@@ -1683,6 +1841,15 @@ ch.Set(0) will set the output to low and ch.Set(ch.Top()) will set the output
 to high, assuming the output isn't inverted.
 
 
+### func (*TIM) SetEnabled
+
+```go
+func (t *TIM) SetEnabled(enable bool)
+```
+
+SetEnabled enables or disables the timer.
+
+
 ### func (*TIM) SetInverting
 
 ```go
@@ -1706,6 +1873,16 @@ Sets a callback to be called when a channel reaches it's set-point.
 
 For example, if `t.Set(ch, t.Top() / 4)` is used then the callback will
 be called every quarter-period of the timer's base Period.
+
+
+### func (*TIM) SetOnePulseMode
+
+```go
+func (t *TIM) SetOnePulseMode(enable bool)
+```
+
+SetOnePulseMode enables or disables the one-pulse mode.
+When enabled, the timer will automatically stop at the next update event.
 
 
 ### func (*TIM) SetPeriod
@@ -1874,8 +2051,11 @@ Usually called by the IRQ handler for a machine.
 func (uart *UART) SetBaudRate(br uint32)
 ```
 
-SetBaudRate sets the communication speed for the UART. Defer to chip-specific
-routines for calculation
+SetBaudRate sets the communication speed for the UART. Defers to
+chip-specific getBaudRateDivisor for the divisor calculation.
+
+On STM32U585 this function is overridden in machine_stm32u585.go because
+the U5 family requires UE=0 to write BRR.
 
 
 ### func (*UART) Write
@@ -1909,6 +2089,8 @@ type UARTConfig struct {
 	RX		Pin
 	RTS		Pin
 	CTS		Pin
+	InvertTX	bool	// Invert TX line (active low becomes active high, etc.)
+	InvertRX	bool	// Invert RX line (active low becomes active high, etc.)
 }
 ```
 
@@ -1928,6 +2110,89 @@ type UARTParity uint8
 
 UARTParity is the parity setting to be used for UART communication.
 
+
+
+
+
+## type USBDevice
+
+```go
+type USBDevice struct {
+	initcomplete		bool
+	InitEndpointComplete	bool
+}
+```
+
+
+
+
+### func (*USBDevice) Attach
+
+```go
+func (dev *USBDevice) Attach()
+```
+
+Attach connects the device to the USB bus by releasing soft disconnect,
+allowing the host to detect and enumerate it. It can be used together with
+Detach to delay enumeration until the USB configuration (device
+identifiers, classes, ...) is complete.
+
+
+### func (*USBDevice) ClearStallEPIn
+
+```go
+func (dev *USBDevice) ClearStallEPIn(ep uint32)
+```
+
+ClearStallEPIn clears the stall condition on an IN endpoint.
+
+
+### func (*USBDevice) ClearStallEPOut
+
+```go
+func (dev *USBDevice) ClearStallEPOut(ep uint32)
+```
+
+ClearStallEPOut clears the stall condition on an OUT endpoint.
+
+
+### func (*USBDevice) Configure
+
+```go
+func (dev *USBDevice) Configure(config UARTConfig)
+```
+
+Configure initialises the OTG FS USB peripheral in device mode.
+The config parameter is unused (present for interface compatibility).
+
+
+### func (*USBDevice) Detach
+
+```go
+func (dev *USBDevice) Detach()
+```
+
+Detach disconnects the device from the USB bus by asserting soft
+disconnect. To the host this appears as if the device was unplugged. A
+subsequent Attach makes the host enumerate the device again.
+
+
+### func (*USBDevice) SetStallEPIn
+
+```go
+func (dev *USBDevice) SetStallEPIn(ep uint32)
+```
+
+SetStallEPIn stalls an IN endpoint.
+
+
+### func (*USBDevice) SetStallEPOut
+
+```go
+func (dev *USBDevice) SetStallEPOut(ep uint32)
+```
+
+SetStallEPOut stalls an OUT endpoint.
 
 
 
