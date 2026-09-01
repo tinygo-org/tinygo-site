@@ -686,6 +686,17 @@ The identity is one burnt into the MCU itself.
 The length of the device ID for STM32 is 12 bytes (96 bits).
 
 
+### func EnterBootloader
+
+```go
+func EnterBootloader()
+```
+
+EnterBootloader resets the chip into the bootloader.
+This is currently a stub for STM32, required to satisfy machine.EnterBootloader
+called by machine/usb/cdc.
+
+
 ### func InitADC
 
 ```go
@@ -710,6 +721,14 @@ func NewRingBuffer() *RingBuffer
 ```
 
 NewRingBuffer returns a new ring buffer.
+
+
+### func PLLParams72MHz
+
+```go
+func PLLParams72MHz() F103PLLParams
+```
+
 
 
 
@@ -770,6 +789,23 @@ value of each parameter will use the peripheral's default settings.
 type ChannelCallback func(channel uint8)
 ```
 
+
+
+
+
+
+## type F103PLLParams
+
+```go
+type F103PLLParams struct {
+	Prediv	uint32
+	Mul	uint32
+}
+```
+
+F103PLLParams holds the HSE prescaler (PLLXTPRE) and PLL multiplier
+(PLLMUL) needed to reach 72MHz SYSCLK from a given crystal frequency. The
+F1 PLL has no dedicated input divider, only an optional /2 HSE prescaler.
 
 
 
@@ -954,6 +990,22 @@ type PDMConfig struct {
 }
 ```
 
+
+
+
+
+
+## type PLLParams
+
+```go
+type PLLParams struct {
+	M, N, P, Q, R uint32
+}
+```
+
+PLLParams holds the HSE main-PLL dividers/multipliers (RCC_PLLCFGR M/N/P/Q/R
+fields) needed to reach a chip's target VCO/SYSCLK frequency from a given
+crystal frequency. R is left zero on chips without a PLLR output.
 
 
 
@@ -1328,6 +1380,15 @@ ch.Set(0) will set the output to low and ch.Set(ch.Top()) will set the output
 to high, assuming the output isn't inverted.
 
 
+### func (*TIM) SetEnabled
+
+```go
+func (t *TIM) SetEnabled(enable bool)
+```
+
+SetEnabled enables or disables the timer.
+
+
 ### func (*TIM) SetInverting
 
 ```go
@@ -1351,6 +1412,16 @@ Sets a callback to be called when a channel reaches it's set-point.
 
 For example, if `t.Set(ch, t.Top() / 4)` is used then the callback will
 be called every quarter-period of the timer's base Period.
+
+
+### func (*TIM) SetOnePulseMode
+
+```go
+func (t *TIM) SetOnePulseMode(enable bool)
+```
+
+SetOnePulseMode enables or disables the one-pulse mode.
+When enabled, the timer will automatically stop at the next update event.
 
 
 ### func (*TIM) SetPeriod
@@ -1519,8 +1590,11 @@ Usually called by the IRQ handler for a machine.
 func (uart *UART) SetBaudRate(br uint32)
 ```
 
-SetBaudRate sets the communication speed for the UART. Defer to chip-specific
-routines for calculation
+SetBaudRate sets the communication speed for the UART. Defers to
+chip-specific getBaudRateDivisor for the divisor calculation.
+
+On STM32U585 this function is overridden in machine_stm32u585.go because
+the U5 family requires UE=0 to write BRR.
 
 
 ### func (*UART) Write
@@ -1554,6 +1628,8 @@ type UARTConfig struct {
 	RX		Pin
 	RTS		Pin
 	CTS		Pin
+	InvertTX	bool	// Invert TX line (active low becomes active high, etc.)
+	InvertRX	bool	// Invert RX line (active low becomes active high, etc.)
 }
 ```
 

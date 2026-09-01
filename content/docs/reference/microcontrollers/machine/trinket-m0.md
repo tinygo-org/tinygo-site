@@ -496,6 +496,13 @@ var (
 var (
 	USBDev	= &USBDevice{}
 	USBCDC	Serialer
+
+	endPoints	= []usbEndpointEntry{
+		{
+			Endpoint:	usb.CONTROL_ENDPOINT,
+			Config:		usb.ENDPOINT_TYPE_CONTROL,
+		},
+	}
 )
 ```
 
@@ -631,6 +638,16 @@ func NewRingBuffer() *RingBuffer
 ```
 
 NewRingBuffer returns a new ring buffer.
+
+
+### func PhysicalEndpoint
+
+```go
+func PhysicalEndpoint(ep uint32) uint32
+```
+
+PhysicalEndpoint maps a virtual endpoint index to the physical endpoint number
+used by the hardware. This is an identity mapping on all currently supported platforms.
 
 
 ### func ReceiveUSBControlPacket
@@ -1677,6 +1694,8 @@ type UARTConfig struct {
 	RX		Pin
 	RTS		Pin
 	CTS		Pin
+	InvertTX	bool	// Invert TX line (active low becomes active high, etc.)
+	InvertRX	bool	// Invert RX line (active low becomes active high, etc.)
 }
 ```
 
@@ -1712,6 +1731,33 @@ type USBDevice struct {
 
 
 
+### func (*USBDevice) Attach
+
+```go
+func (dev *USBDevice) Attach()
+```
+
+Attach connects the device to the USB bus, allowing the host to detect and
+enumerate it. It can be used together with Detach to delay enumeration
+until the USB configuration (device identifiers, classes, ...) is complete.
+
+
+### func (*USBDevice) ClearStallEPIn
+
+```go
+func (dev *USBDevice) ClearStallEPIn(ep uint32)
+```
+
+
+
+### func (*USBDevice) ClearStallEPOut
+
+```go
+func (dev *USBDevice) ClearStallEPOut(ep uint32)
+```
+
+
+
 ### func (*USBDevice) Configure
 
 ```go
@@ -1719,6 +1765,33 @@ func (dev *USBDevice) Configure(config UARTConfig)
 ```
 
 Configure the USB peripheral. The config is here for compatibility with the UART interface.
+
+
+### func (*USBDevice) Detach
+
+```go
+func (dev *USBDevice) Detach()
+```
+
+Detach disconnects the device from the USB bus. To the host this appears
+as if the device was unplugged. A subsequent Attach makes the host
+enumerate the device again.
+
+
+### func (*USBDevice) SetStallEPIn
+
+```go
+func (dev *USBDevice) SetStallEPIn(ep uint32)
+```
+
+
+
+### func (*USBDevice) SetStallEPOut
+
+```go
+func (dev *USBDevice) SetStallEPOut(ep uint32)
+```
+
 
 
 

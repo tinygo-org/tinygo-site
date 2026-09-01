@@ -233,6 +233,9 @@ const (
 
 	// for PWM
 	PinModePWMOutput	PinMode	= 12
+
+	// for USB (DP/DM lines)
+	PinModeUSB	PinMode	= 13
 )
 ```
 
@@ -442,7 +445,7 @@ const (
 
 
 ```go
-const APB1_TIM_FREQ = 4e6	// 4MHz (MSI default)
+const APB1_TIM_FREQ = 160e6	// 160MHz (PLL1: MSIS 4MHz × 80 / 1 / 2)
 
 ```
 
@@ -452,7 +455,7 @@ and clock frequencies
 
 
 ```go
-const APB2_TIM_FREQ = 4e6	// 4MHz (MSI default)
+const APB2_TIM_FREQ = 160e6	// 160MHz (PLL1: MSIS 4MHz × 80 / 1 / 2)
 
 ```
 
@@ -769,6 +772,17 @@ The identity is one burnt into the MCU itself.
 The length of the device ID for STM32 is 12 bytes (96 bits).
 
 
+### func EnterBootloader
+
+```go
+func EnterBootloader()
+```
+
+EnterBootloader resets the chip into the bootloader.
+This is currently a stub for STM32, required to satisfy machine.EnterBootloader
+called by machine/usb/cdc.
+
+
 ### func GetRNG
 
 ```go
@@ -1044,6 +1058,22 @@ type PDMConfig struct {
 }
 ```
 
+
+
+
+
+
+## type PLLParams
+
+```go
+type PLLParams struct {
+	M, N, P, Q, R uint32
+}
+```
+
+PLLParams holds the HSE main-PLL dividers/multipliers (RCC_PLLCFGR M/N/P/Q/R
+fields) needed to reach a chip's target VCO/SYSCLK frequency from a given
+crystal frequency. R is left zero on chips without a PLLR output.
 
 
 
@@ -1439,6 +1469,15 @@ ch.Set(0) will set the output to low and ch.Set(ch.Top()) will set the output
 to high, assuming the output isn't inverted.
 
 
+### func (*TIM) SetEnabled
+
+```go
+func (t *TIM) SetEnabled(enable bool)
+```
+
+SetEnabled enables or disables the timer.
+
+
 ### func (*TIM) SetInverting
 
 ```go
@@ -1462,6 +1501,16 @@ Sets a callback to be called when a channel reaches it's set-point.
 
 For example, if `t.Set(ch, t.Top() / 4)` is used then the callback will
 be called every quarter-period of the timer's base Period.
+
+
+### func (*TIM) SetOnePulseMode
+
+```go
+func (t *TIM) SetOnePulseMode(enable bool)
+```
+
+SetOnePulseMode enables or disables the one-pulse mode.
+When enabled, the timer will automatically stop at the next update event.
 
 
 ### func (*TIM) SetPeriod
@@ -1630,8 +1679,11 @@ Usually called by the IRQ handler for a machine.
 func (uart *UART) SetBaudRate(br uint32)
 ```
 
-SetBaudRate sets the communication speed for the UART. Defer to chip-specific
-routines for calculation
+SetBaudRate overrides the shared implementation for STM32U5. On this
+family the BRR register is read-only while UE=1 (USART enabled), so the
+USART must be briefly disabled to change the baud rate. This matters when
+the servo library (or any code) calls SetBaudRate after Configure has
+already enabled the USART.
 
 
 ### func (*UART) Write
@@ -1665,6 +1717,8 @@ type UARTConfig struct {
 	RX		Pin
 	RTS		Pin
 	CTS		Pin
+	InvertTX	bool	// Invert TX line (active low becomes active high, etc.)
+	InvertRX	bool	// Invert RX line (active low becomes active high, etc.)
 }
 ```
 

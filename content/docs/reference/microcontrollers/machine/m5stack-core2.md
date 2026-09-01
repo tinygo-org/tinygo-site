@@ -254,6 +254,17 @@ Hardware pin numbers
 
 ```go
 const (
+	PinRising	PinChange	= iota + 1
+	PinFalling
+	PinToggle
+)
+```
+
+Pin change interrupt constants for SetInterrupt.
+
+
+```go
+const (
 	Mode0	= 0
 	Mode1	= 1
 	Mode2	= 2
@@ -319,11 +330,28 @@ var DefaultUART = UART0
 ```go
 var (
 	UART0	= &_UART0
-	_UART0	= UART{Bus: esp.UART0, Buffer: NewRingBuffer()}
+	_UART0	= UART{
+		Bus:		esp.UART0,
+		Buffer:		NewRingBuffer(),
+		txrxSignal:	14,
+		rtsctsSignal:	15,
+	}
 	UART1	= &_UART1
-	_UART1	= UART{Bus: esp.UART1, Buffer: NewRingBuffer()}
+	_UART1	= UART{
+		Bus:		esp.UART1,
+		Buffer:		NewRingBuffer(),
+		txrxSignal:	17,
+		rtsctsSignal:	18,
+	}
 	UART2	= &_UART2
-	_UART2	= UART{Bus: esp.UART2, Buffer: NewRingBuffer()}
+	_UART2	= UART{
+		Bus:		esp.UART2,
+		Buffer:		NewRingBuffer(),
+		txrxSignal:	198,
+		rtsctsSignal:	199,
+	}
+
+	onceUart	= sync.Once{}
 )
 ```
 
@@ -334,6 +362,14 @@ var (
 	// SPI0 and SPI1 are reserved for use by the caching system etc.
 	SPI2	= &SPI{esp.SPI2}
 	SPI3	= &SPI{esp.SPI3}
+)
+```
+
+
+
+```go
+var (
+	ErrInvalidADCPin = errors.New("invalid ADC pin for ESP32")
 )
 ```
 
@@ -385,6 +421,15 @@ CPUFrequency returns the current CPU frequency of the chip.
 Currently it is a fixed frequency but it may allow changing in the future.
 
 
+### func InitADC
+
+```go
+func InitADC()
+```
+
+InitADC powers up SAR ADC1 and puts it under software control.
+
+
 ### func InitSerial
 
 ```go
@@ -413,6 +458,28 @@ type ADC struct {
 ```
 
 
+
+
+### func (ADC) Configure
+
+```go
+func (a ADC) Configure(config ADCConfig) error
+```
+
+Configure routes the pin to the SAR ADC and sets its attenuation. It returns
+an error if the pin has no ADC1 channel. ADCConfig is accepted for API
+compatibility but its fields are not used; attenuation is fixed at 11 dB.
+
+
+### func (ADC) Get
+
+```go
+func (a ADC) Get() uint16
+```
+
+Get runs a single conversion and returns the result scaled from the 12-bit
+hardware value to the full 16-bit range, so values run 0..65520. It returns
+0 if the pin has no ADC1 channel.
 
 
 
@@ -742,6 +809,33 @@ Set the pin to high or low.
 Warning: only use this on an output pin!
 
 
+### func (Pin) SetInterrupt
+
+```go
+func (p Pin) SetInterrupt(change PinChange, callback func(Pin)) error
+```
+
+SetInterrupt sets an interrupt to be executed when a particular pin changes
+state. The pin should already be configured as an input, including a pull up
+or down if no external pull is provided.
+
+You can pass a nil func to unset the pin change interrupt. If you do so,
+the change parameter is ignored and can be set to any value (such as 0).
+If the pin is already configured with a callback, you must first unset
+this pins interrupt before you can set a new callback.
+
+
+
+
+## type PinChange
+
+```go
+type PinChange uint8
+```
+
+
+
+
 
 
 ## type PinConfig
@@ -901,6 +995,12 @@ etc.
 type UART struct {
 	Bus	*esp.UART_Type
 	Buffer	*RingBuffer
+
+	txrxSignal		uint32
+	rtsctsSignal		uint32
+	parityErrorDetected	bool
+	dataErrorDetected	bool
+	dataOverflowDetected	bool
 }
 ```
 
@@ -919,7 +1019,7 @@ Buffered returns the number of bytes currently stored in the RX buffer.
 ### func (*UART) Configure
 
 ```go
-func (uart *UART) Configure(config UARTConfig)
+func (uart *UART) Configure(config UARTConfig) error
 ```
 
 
@@ -984,6 +1084,8 @@ type UARTConfig struct {
 	RX		Pin
 	RTS		Pin
 	CTS		Pin
+	InvertTX	bool	// Invert TX line (active low becomes active high, etc.)
+	InvertRX	bool	// Invert RX line (active low becomes active high, etc.)
 }
 ```
 

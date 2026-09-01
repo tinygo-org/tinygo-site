@@ -46,6 +46,44 @@ Digital Pins
 
 ```go
 const (
+	GP0	Pin	= GPIO0
+	GP1	Pin	= GPIO1
+	GP2	Pin	= GPIO2
+	GP3	Pin	= GPIO3
+	GP4	Pin	= GPIO4
+	GP5	Pin	= GPIO5
+	GP6	Pin	= GPIO6
+	GP7	Pin	= GPIO7
+	GP8	Pin	= GPIO8
+	GP9	Pin	= GPIO9
+	GP10	Pin	= GPIO10
+	GP11	Pin	= GPIO11
+	GP12	Pin	= GPIO12
+	GP13	Pin	= GPIO13
+	GP14	Pin	= GPIO14
+	GP15	Pin	= GPIO15
+	GP16	Pin	= GPIO16
+	GP17	Pin	= GPIO17
+	GP18	Pin	= GPIO18
+	GP19	Pin	= GPIO19
+	GP20	Pin	= GPIO20
+	GP21	Pin	= GPIO21
+	GP22	Pin	= GPIO22
+	GP23	Pin	= GPIO23
+	GP24	Pin	= GPIO24
+	GP25	Pin	= GPIO25
+	GP26	Pin	= GPIO26
+	GP27	Pin	= GPIO27
+	GP28	Pin	= GPIO28
+	GP29	Pin	= GPIO29
+)
+```
+
+GPIO pin aliases
+
+
+```go
+const (
 	A0	Pin	= D26
 	A1	Pin	= D27
 	A2	Pin	= D28
@@ -545,6 +583,13 @@ var (
 var (
 	USBDev	= &USBDevice{}
 	USBCDC	Serialer
+
+	endPoints	= []usbEndpointEntry{
+		{
+			Endpoint:	usb.CONTROL_ENDPOINT,
+			Config:		usb.ENDPOINT_TYPE_CONTROL,
+		},
+	}
 )
 ```
 
@@ -731,6 +776,16 @@ func PWMPeripheral(pin Pin) (sliceNum uint8, err error)
 Peripheral returns the RP2040 PWM peripheral which ranges from 0 to 7. Each
 PWM peripheral has 2 channels, A and B which correspond to 0 and 1 in the program.
 This number corresponds to the package's PWM0 throughout PWM7 handles
+
+
+### func PhysicalEndpoint
+
+```go
+func PhysicalEndpoint(ep uint32) uint32
+```
+
+PhysicalEndpoint maps a virtual endpoint index to the physical endpoint number
+used by the hardware. This is an identity mapping on all currently supported platforms.
 
 
 ### func ReadTemperature
@@ -1615,6 +1670,8 @@ type UARTConfig struct {
 	RX		Pin
 	RTS		Pin
 	CTS		Pin
+	InvertTX	bool	// Invert TX line (active low becomes active high, etc.)
+	InvertRX	bool	// Invert RX line (active low becomes active high, etc.)
 }
 ```
 
@@ -1650,6 +1707,18 @@ type USBDevice struct {
 
 
 
+### func (*USBDevice) Attach
+
+```go
+func (dev *USBDevice) Attach()
+```
+
+Attach connects the device to the USB bus by enabling the DP pull-up,
+allowing the host to detect and enumerate it. It can be used together with
+Detach to delay enumeration until the USB configuration (device
+identifiers, classes, ...) is complete.
+
+
 ### func (*USBDevice) ClearStallEPIn
 
 ```go
@@ -1675,6 +1744,17 @@ func (dev *USBDevice) Configure(config UARTConfig)
 ```
 
 Configure the USB peripheral. The config is here for compatibility with the UART interface.
+
+
+### func (*USBDevice) Detach
+
+```go
+func (dev *USBDevice) Detach()
+```
+
+Detach disconnects the device from the USB bus by disabling the DP pull-up.
+To the host this appears as if the device was unplugged. A subsequent
+Attach makes the host enumerate the device again.
 
 
 ### func (*USBDevice) SetStallEPIn

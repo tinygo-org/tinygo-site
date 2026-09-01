@@ -1066,6 +1066,8 @@ type UARTConfig struct {
 	RX		Pin
 	RTS		Pin
 	CTS		Pin
+	InvertTX	bool	// Invert TX line (active low becomes active high, etc.)
+	InvertRX	bool	// Invert RX line (active low becomes active high, etc.)
 }
 ```
 
@@ -1104,6 +1106,16 @@ USB device features are no-ops.
 
 
 
+### func (*USBDevice) Attach
+
+```go
+func (dev *USBDevice) Attach()
+```
+
+Attach and Detach are no-ops: the USB Serial/JTAG controller has no
+software-controlled soft-connect, it is always attached to the bus.
+
+
 ### func (*USBDevice) ClearStallEPIn
 
 ```go
@@ -1116,6 +1128,14 @@ func (dev *USBDevice) ClearStallEPIn(ep uint32)
 
 ```go
 func (dev *USBDevice) ClearStallEPOut(ep uint32)
+```
+
+
+
+### func (*USBDevice) Detach
+
+```go
+func (dev *USBDevice) Detach()
 ```
 
 

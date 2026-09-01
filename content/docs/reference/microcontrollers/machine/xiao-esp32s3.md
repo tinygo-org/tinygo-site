@@ -555,6 +555,21 @@ func NewRingBuffer() *RingBuffer
 NewRingBuffer returns a new ring buffer.
 
 
+### func ReadTemperature
+
+```go
+func ReadTemperature() int32
+```
+
+ReadTemperature reads the on-chip temperature sensor (TSENS) and returns
+a value in millicelsius (°C × 1000). Uses the default measurement range
+(offset = 0, approximately −10 °C to 80 °C, ±3 °C accuracy).
+
+The conversion uses the same formula as ESP-IDF with no eFuse calibration:
+
+	T = (0.4386 × raw − 20.52) °C
+
+
 ### func SendUSBInPacket
 
 ```go
@@ -1280,6 +1295,8 @@ type UARTConfig struct {
 	RX		Pin
 	RTS		Pin
 	CTS		Pin
+	InvertTX	bool	// Invert TX line (active low becomes active high, etc.)
+	InvertRX	bool	// Invert RX line (active low becomes active high, etc.)
 }
 ```
 
@@ -1318,6 +1335,16 @@ USB device features are no-ops.
 
 
 
+### func (*USBDevice) Attach
+
+```go
+func (dev *USBDevice) Attach()
+```
+
+Attach and Detach are no-ops: the USB Serial/JTAG controller has no
+software-controlled soft-connect, it is always attached to the bus.
+
+
 ### func (*USBDevice) ClearStallEPIn
 
 ```go
@@ -1330,6 +1357,14 @@ func (dev *USBDevice) ClearStallEPIn(ep uint32)
 
 ```go
 func (dev *USBDevice) ClearStallEPOut(ep uint32)
+```
+
+
+
+### func (*USBDevice) Detach
+
+```go
+func (dev *USBDevice) Detach()
 ```
 
 
