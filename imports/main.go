@@ -9,6 +9,7 @@ import (
 	"path/filepath"
 	"runtime"
 	"strings"
+	"syscall"
 	"text/template"
 	"time"
 )
@@ -21,6 +22,23 @@ const (
 // The environment to pass to `go` commands when they are invoked.
 var commandEnv = []string{"GOPATH=/does-not-exist", "GO111MODULE=off", "GOOS=" + testGOOS, "GOARCH=" + testGOARCH}
 
+// These tests use functionality that TinyGo does not implement.
+// See TEST_SKIP_FLAG in make/test.mk of the TinyGo repository.
+var skippedTests = []string{
+	"TestExtraMethods",
+	"TestParseAndBytesRoundTrip/P256/Generic",
+	"TestAsValidation",
+	"TestUnmarshalNestingLimitSlice",
+	"TestUnmarshalNestingLimitStruct",
+}
+
+// These packages need a larger stack for their tests.
+// See the tinygo-test target in make/test.mk of the TinyGo repository.
+var testStackSizes = map[string]string{
+	"encoding/xml": "16MB",
+	"io/fs":        "6MB",
+}
+
 var markdownTemplate = template.Must(template.New("markdown").Parse(`
 ---
 title: Packages supported by TinyGo
@@ -31,6 +49,10 @@ The following table shows all Go standard library packages and whether they can 
 Note that the fact they can be imported, does not mean that all functions and types in the program can be used. For example, sometimes using some functions or types of the package will still trigger compiler errors.
 
 Test results are for {{.goos}}/{{.goarch}}.
+
+Some tests are skipped because they use functionality that TinyGo does not implement. Some packages are also tested with a larger stack than the default. This is the same procedure that the TinyGo CI uses. These are the skipped tests.
+{{range .skippedTests}}
+  * ` + "`{{.}}`" + `{{end}}
 
 Package | Importable | Passes tests
 --- | --- | --- |{{ range .pkgs}}
@@ -243,9 +265,10 @@ func checkPackages(goroot string) error {
 
 	// Print the output to stdout.
 	return markdownTemplate.Execute(os.Stdout, map[string]interface{}{
-		"pkgs":   pkgMap,
-		"goos":   testGOOS,
-		"goarch": testGOARCH,
+		"pkgs":         pkgMap,
+		"goos":         testGOOS,
+		"goarch":       testGOARCH,
+		"skippedTests": skippedTests,
 	})
 }
 
@@ -268,6 +291,10 @@ func (pkg *Package) runTest() (result testResult) {
 	ctx, cancel := context.WithTimeout(context.Background(), testTimeout)
 	defer cancel()
 	cmd := exec.CommandContext(ctx, "tinygo", "build", "-o", temporaryExecutableFile, temporaryGoFile)
+	cmd.SysProcAttr = &syscall.SysProcAttr{Setpgid: true}
+	cmd.Cancel = func() error {
+		return syscall.Kill(-cmd.Process.Pid, syscall.SIGKILL)
+	}
 	cmd.WaitDelay = 10 * time.Second
 	cmd.Env = append(cmd.Environ(), "GOOS="+testGOOS, "GOARCH="+testGOARCH)
 	buf := new(bytes.Buffer)
@@ -280,7 +307,18 @@ func (pkg *Package) runTest() (result testResult) {
 	if result.compiles {
 		ctx, cancel := context.WithTimeout(context.Background(), testTimeout)
 		defer cancel()
-		cmd := exec.CommandContext(ctx, "tinygo", "test", pkg.Path)
+		args := []string{"test", "-skip=" + strings.Join(skippedTests, "|")}
+		if stackSize, ok := testStackSizes[pkg.Path]; ok {
+			args = append(args, "-stack-size="+stackSize)
+		}
+		args = append(args, pkg.Path)
+		cmd := exec.CommandContext(ctx, "tinygo", args...)
+		// The test binary must die with its parent.
+		// If it does not, it can keep all CPUs busy and make other tests fail.
+		cmd.SysProcAttr = &syscall.SysProcAttr{Setpgid: true}
+		cmd.Cancel = func() error {
+			return syscall.Kill(-cmd.Process.Pid, syscall.SIGKILL)
+		}
 		cmd.WaitDelay = 10 * time.Second
 		cmd.Env = append(cmd.Environ(), "GOOS="+testGOOS, "GOARCH="+testGOARCH)
 		buf := new(bytes.Buffer)

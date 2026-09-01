@@ -9,16 +9,24 @@ Note that the fact they can be imported, does not mean that all functions and ty
 
 Test results are for linux/amd64.
 
+Some tests are skipped because they use functionality that TinyGo does not implement. Some packages are also tested with a larger stack than the default. This is the same procedure that the TinyGo CI uses. These are the skipped tests.
+
+  * `TestExtraMethods`
+  * `TestParseAndBytesRoundTrip/P256/Generic`
+  * `TestAsValidation`
+  * `TestUnmarshalNestingLimitSlice`
+  * `TestUnmarshalNestingLimitStruct`
+
 Package | Importable | Passes tests
 --- | --- | --- |
-archive/tar |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#archivetar)  | 
+archive/tar |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 archive/zip |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 bufio |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#bufio)  | 
 bytes |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#bytes)  | 
 cmp |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 compress/bzip2 |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 compress/flate |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
-compress/gzip |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#compressgzip)  | 
+compress/gzip |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 compress/lzw |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 compress/zlib |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 container/heap |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
@@ -26,29 +34,30 @@ container/list |  <span style="color: green">✔</span> yes  |  <span style="col
 container/ring |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 context |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 crypto |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#crypto)  | 
-crypto/aes |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#cryptoaes)  | 
+crypto/aes |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 crypto/cipher |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#cryptocipher)  | 
 crypto/des |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 crypto/dsa |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
-crypto/ecdh |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#cryptoecdh)  | 
-crypto/ecdsa |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#cryptoecdsa)  | 
-crypto/ed25519 |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#cryptoed25519)  | 
+crypto/ecdh |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
+crypto/ecdsa |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
+crypto/ed25519 |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 crypto/elliptic |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
-crypto/fips140 |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#cryptofips140)  | 
+crypto/fips140 |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 crypto/hkdf |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
-crypto/hmac |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#cryptohmac)  | 
-crypto/hpke |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#cryptohpke)  | 
+crypto/hmac |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
+crypto/hpke |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 crypto/md5 |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
+crypto/mldsa |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#cryptomldsa)  | 
 crypto/mlkem |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 crypto/mlkem/mlkemtest |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 crypto/pbkdf2 |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 crypto/rand |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
-crypto/rc4 |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#cryptorc4)  | 
+crypto/rc4 |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 crypto/rsa |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#cryptorsa)  | 
 crypto/sha1 |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
-crypto/sha256 |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#cryptosha256)  | 
+crypto/sha256 |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 crypto/sha3 |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
-crypto/sha512 |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#cryptosha512)  | 
+crypto/sha512 |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 crypto/subtle |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#cryptosubtle)  | 
 crypto/tls |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 crypto/x509 |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#cryptox509)  | 
@@ -60,7 +69,7 @@ debug/dwarf |  <span style="color: green">✔</span> yes  |  <span style="color:
 debug/elf |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 debug/gosym |  [<span style="color: red">✗</span> no](#debuggosym)  |  <span style="color: gray">✗</span> no  | 
 debug/macho |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
-debug/pe |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#debugpe)  | 
+debug/pe |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 debug/plan9obj |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 embed |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 encoding |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
@@ -68,11 +77,13 @@ encoding/ascii85 |  <span style="color: green">✔</span> yes  |  <span style="c
 encoding/asn1 |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 encoding/base32 |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 encoding/base64 |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
-encoding/binary |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#encodingbinary)  | 
+encoding/binary |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 encoding/csv |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 encoding/gob |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#encodinggob)  | 
 encoding/hex |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 encoding/json |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#encodingjson)  | 
+encoding/json/jsontext |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#encodingjsonjsontext)  | 
+encoding/json/v2 |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#encodingjsonv2)  | 
 encoding/pem |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#encodingpem)  | 
 encoding/xml |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 errors |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
@@ -81,30 +92,30 @@ flag |  <span style="color: green">✔</span> yes  |  [<span style="color: red">
 fmt |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#fmt)  | 
 go/ast |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 go/build |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#gobuild)  | 
-go/build/constraint |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
+go/build/constraint |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#gobuildconstraint)  | 
 go/constant |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#goconstant)  | 
 go/doc |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#godoc)  | 
-go/doc/comment |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#godoccomment)  | 
+go/doc/comment |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 go/format |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
-go/importer |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#goimporter)  | 
+go/importer |  [<span style="color: red">✗</span> no](#goimporter)  |  <span style="color: gray">✗</span> no  | 
 go/parser |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#goparser)  | 
-go/printer |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
+go/printer |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#goprinter)  | 
 go/scanner |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 go/token |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
-go/types |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#gotypes)  | 
+go/types |  [<span style="color: red">✗</span> no](#gotypes)  |  <span style="color: gray">✗</span> no  | 
 go/version |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 hash |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 hash/adler32 |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
-hash/crc32 |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#hashcrc32)  | 
+hash/crc32 |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 hash/crc64 |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 hash/fnv |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
-hash/maphash |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#hashmaphash)  | 
+hash/maphash |  [<span style="color: red">✗</span> no](#hashmaphash)  |  <span style="color: gray">✗</span> no  | 
 html |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 html/template |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#htmltemplate)  | 
 image |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 image/color |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#imagecolor)  | 
 image/color/palette |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
-image/draw |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#imagedraw)  | 
+image/draw |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 image/gif |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 image/jpeg |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#imagejpeg)  | 
 image/png |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
@@ -133,13 +144,13 @@ net/http/cookiejar |  [<span style="color: red">✗</span> no](#nethttpcookiejar
 net/http/fcgi |  [<span style="color: red">✗</span> no](#nethttpfcgi)  |  <span style="color: gray">✗</span> no  | 
 net/http/httptest |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 net/http/httptrace |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
-net/http/httputil |  [<span style="color: red">✗</span> no](#nethttphttputil)  |  <span style="color: gray">✗</span> no  | 
+net/http/httputil |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 net/http/pprof |  [<span style="color: red">✗</span> no](#nethttppprof)  |  <span style="color: gray">✗</span> no  | 
 net/mail |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 net/netip |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#netnetip)  | 
 net/rpc |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#netrpc)  | 
 net/rpc/jsonrpc |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#netrpcjsonrpc)  | 
-net/smtp |  [<span style="color: red">✗</span> no](#netsmtp)  |  <span style="color: gray">✗</span> no  | 
+net/smtp |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#netsmtp)  | 
 net/textproto |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 net/url |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 os |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
@@ -150,10 +161,10 @@ path |  <span style="color: green">✔</span> yes  |  <span style="color: green"
 path/filepath |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#pathfilepath)  | 
 plugin |  [<span style="color: red">✗</span> no](#plugin)  |  <span style="color: gray">✗</span> no  | 
 reflect |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
-regexp |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
+regexp |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#regexp)  | 
 regexp/syntax |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 slices |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#slices)  | 
-sort |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#sort)  | 
+sort |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 strconv |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 strings |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#strings)  | 
 structs |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
@@ -178,21 +189,8 @@ unicode/utf16 |  <span style="color: green">✔</span> yes  |  <span style="colo
 unicode/utf8 |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 unique |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 unsafe |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
+uuid |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#uuid)  | 
 weak |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#weak)  | 
-
-
-
-## archive/tar
-
-
-
-The compiler gave the following error when running the tests for this package:
-
-
-    [tinygo: panic at <Go interface method>]
-    panic: runtime error at 0x0000000000280e67: nil pointer dereference
-    FAIL	archive/tar	0.480s
-
 
 
 
@@ -226,10 +224,9 @@ The compiler gave the following error when running the tests for this package:
 
     GC Warning: Failed to expand heap by 9007199254741120 KiB
     GC Warning: Failed to expand heap by 9007199254740992 KiB
-    GC Warning: Out of Memory! Heap size: 37 MiB. Returning NULL!
-    [tinygo: panic at /home/ron/Development/tinygo/tinygo-122/lib/musl/src/string/memset.c:14:7]
-    panic: runtime error at 0x0000000000235be9: caught signal SIGSEGV
-    FAIL	bytes	6.595s
+    GC Warning: Out of Memory! Heap size: 35 MiB. Returning NULL!
+    fatal error: gc: out of memory
+    FAIL	bytes	4.883s
 
 
 
@@ -238,30 +235,6 @@ The compiler gave the following error when running the tests for this package:
 
 
 
-
-
-
-
-## compress/gzip
-
-
-
-The compiler gave the following error when running the tests for this package:
-
-
-    --- FAIL: TestGZIPFilesHaveZeroMTimes (0.00s)
-        skipping test on non-builder
-        SkipNow is incomplete, requires runtime.Goexit()
-        error evaluating GOROOT:  lstat /usr/local/go: file does not exist
-        FailNow is incomplete, requires runtime.Goexit()
-        skipping: GOROOT directory not found: /usr/local/go
-        SkipNow is incomplete, requires runtime.Goexit()
-        error collecting list of .gz files in GOROOT:  lstat : file does not exist
-        FailNow is incomplete, requires runtime.Goexit()
-        expected to find some .gz files under GOROOT
-        FailNow is incomplete, requires runtime.Goexit()
-    FAIL
-    FAIL	compress/gzip	0.603s
 
 
 
@@ -287,24 +260,12 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    [tinygo: panic at <Go interface method>]
-    panic: runtime error at 0x00000000002672ec: nil pointer dereference
-    FAIL	crypto	0.017s
+    --- FAIL: TestDisallowedAssemblyInstructions (0.00s)
+        lstat /usr/local/go/src/crypto: file does not exist
+    FAIL
+    FAIL	crypto	0.019s
 
 
-
-
-
-
-## crypto/aes
-
-
-
-The compiler gave the following error when running the tests for this package:
-
-
-    panic: unimplemented: (reflect.Type).Method()
-    FAIL	crypto/aes	0.003s
 
 
 
@@ -319,7 +280,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).Method()
-    FAIL	crypto/cipher	0.004s
+    FAIL	crypto/cipher	0.027s
 
 
 
@@ -330,155 +291,42 @@ The compiler gave the following error when running the tests for this package:
 
 
 
-## crypto/ecdh
-
-
-
-The compiler gave the following error when running the tests for this package:
-
-
-    --- FAIL: TestLinker (0.00s)
-        skipping test: 'go build' unavailable: /home/ron/.gvm/go/bin/go tool -n compile: files setting not implemented
-        SkipNow is incomplete, requires runtime.Goexit()
-        platform cannot run go tool
-        FailNow is incomplete, requires runtime.Goexit()
-        [ build -o hello.exe hello.go]: exec: no command
-        FailNow is incomplete, requires runtime.Goexit()
-        [./hello.exe]: directory setting not implemented
-        FailNow is incomplete, requires runtime.Goexit()
-        unexpected output: 
-        skipping test: 'go build' unavailable: /home/ron/.gvm/go/bin/go tool -n compile: files setting not implemented
-        SkipNow is incomplete, requires runtime.Goexit()
-        platform cannot run go tool
-        FailNow is incomplete, requires runtime.Goexit()
-        [ tool nm hello.exe]: exec: no command
-    [...more lines following...]
 
 
 
 
 
 
-## crypto/ecdsa
+
+
+
+
+
+
+
+
+
+
+
+
+## crypto/mldsa
 
 
 
 The compiler gave the following error when running the tests for this package:
 
 
-    [tinygo: panic at /home/ron/.gvm/go/src/crypto/ecdsa/ecdsa_test.go:563:6]
-    panic: runtime error at 0x00000000002c272b: index out of range
-    FAIL	crypto/ecdsa	0.916s
+    [...no test output...]
 
 
 
 
 
 
-## crypto/ed25519
 
 
 
-The compiler gave the following error when running the tests for this package:
 
-
-    --- FAIL: TestEd25519Vectors (0.00s)
-        skipping test: 'go build' unavailable: /home/ron/.gvm/go/bin/go tool -n compile: files setting not implemented
-        SkipNow is incomplete, requires runtime.Goexit()
-        platform cannot run go tool
-        FailNow is incomplete, requires runtime.Goexit()
-        skipping test: 'go build' unavailable: /home/ron/.gvm/go/bin/go tool -n compile: files setting not implemented
-        SkipNow is incomplete, requires runtime.Goexit()
-        platform cannot run go tool
-        FailNow is incomplete, requires runtime.Goexit()
-         env GOMODCACHE: exec: no command
-        FailNow is incomplete, requires runtime.Goexit()
-        fetching filippo.io/mostly-harmless/ed25519vectors@v0.0.0-20210322192420-30a2d7243a94
-        skipping test: 'go build' unavailable: /home/ron/.gvm/go/bin/go tool -n compile: files setting not implemented
-        SkipNow is incomplete, requires runtime.Goexit()
-        platform cannot run go tool
-    [...more lines following...]
-
-
-
-
-
-
-
-
-## crypto/fips140
-
-
-
-The compiler gave the following error when running the tests for this package:
-
-
-    --- FAIL: TestWithoutEnforcement (0.00s)
-        test requires FIPS 140 mode: FIPS 140-3 mode is incompatible with the purego build tag
-        SkipNow is incomplete, requires runtime.Goexit()
-        running with GODEBUG=fips140=only:
-        fips140=only subprocess failed: files setting not implemented
-    FAIL
-    FAIL	crypto/fips140	0.001s
-
-
-
-
-
-
-
-
-## crypto/hmac
-
-
-
-The compiler gave the following error when running the tests for this package:
-
-
-    panic: unimplemented: (reflect.Type).Method()
-    FAIL	crypto/hmac	0.012s
-
-
-
-
-
-
-## crypto/hpke
-
-
-
-The compiler gave the following error when running the tests for this package:
-
-
-    [tinygo: panic at <Go interface method>]
-    panic: runtime error at 0x000000000034bbbe: nil pointer dereference
-    FAIL	crypto/hpke	3.874s
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## crypto/rc4
-
-
-
-The compiler gave the following error when running the tests for this package:
-
-
-    [tinygo: panic at /home/ron/.gvm/go/src/crypto/rc4/rc4.go]
-    panic: runtime error at 0x0000000000260059: index out of range
-    FAIL	crypto/rc4	0.019s
 
 
 
@@ -502,32 +350,6 @@ The compiler gave the following error when running the tests for this package:
 
 
 
-## crypto/sha256
-
-
-
-The compiler gave the following error when running the tests for this package:
-
-
-    panic: unimplemented: (reflect.Type).Method()
-    FAIL	crypto/sha256	0.016s
-
-
-
-
-
-
-
-
-## crypto/sha512
-
-
-
-The compiler gave the following error when running the tests for this package:
-
-
-    panic: unimplemented: (reflect.Type).Method()
-    FAIL	crypto/sha512	0.004s
 
 
 
@@ -542,7 +364,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).NumIn()
-    FAIL	crypto/subtle	0.001s
+    FAIL	crypto/subtle	0.002s
 
 
 
@@ -578,7 +400,7 @@ The compiler gave the following error when running the tests for this package:
 
     FAIL	database/sql	0.000s
     # database/sql
-    /home/ron/.gvm/go/src/database/sql/sql_test.go:4839:4: b.SetParallelism undefined (type *testing.B has no field or method SetParallelism)
+    /home/ron/.gvm/go/src/database/sql/sql_test.go:5264:4: b.SetParallelism undefined (type *testing.B has no field or method SetParallelism)
 
 
 
@@ -632,16 +454,6 @@ The compiler gave the following error when this package was imported:
 
 
 
-## debug/pe
-
-
-
-The compiler gave the following error when running the tests for this package:
-
-
-    [tinygo: panic at /home/ron/.gvm/go/src/debug/pe/file_test.go]
-    panic: runtime error at 0x000000000028b6f2: index out of range
-    FAIL	debug/pe	0.005s
 
 
 
@@ -654,24 +466,6 @@ The compiler gave the following error when running the tests for this package:
 
 
 
-
-
-
-
-
-
-
-
-## encoding/binary
-
-
-
-The compiler gave the following error when running the tests for this package:
-
-
-    [tinygo: panic at /home/ron/.gvm/go/src/encoding/binary/binary.go:116:7]
-    panic: runtime error at 0x000000000025c0b5: index out of range
-    FAIL	encoding/binary	0.006s
 
 
 
@@ -687,9 +481,8 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    [tinygo: panic at /home/ron/Development/tinygo/tinygo-122/src/internal/reflectlite/type.go:389:16]
-    panic: runtime error at 0x000000000024c3f9: caught signal SIGSEGV
-    FAIL	encoding/gob	0.007s
+    panic: nil pointer dereference
+    FAIL	encoding/gob	0.005s
 
 
 
@@ -706,8 +499,51 @@ The compiler gave the following error when running the tests for this package:
 
 
     FAIL	encoding/json	0.000s
-    /home/ron/.gvm/go/src/testing/synctest/synctest.go:290: linker could not find symbol internal/synctest.Run
-    /home/ron/.gvm/go/src/testing/synctest/synctest.go:291: linker could not find symbol testing/synctest.testingSynctestTest
+    /home/ron/.gvm/go/src/testing/synctest/synctest.go:291: linker could not find symbol internal/synctest.Run
+    /home/ron/.gvm/go/src/testing/synctest/synctest.go:292: linker could not find symbol testing/synctest.testingSynctestTest
+
+
+
+
+
+
+## encoding/json/jsontext
+
+
+
+The compiler gave the following error when running the tests for this package:
+
+
+    FAIL	encoding/json/jsontext	0.066s
+
+
+
+
+
+
+## encoding/json/v2
+
+
+
+The compiler gave the following error when running the tests for this package:
+
+
+    FAIL	encoding/json/v2	0.000s
+    # encoding/json/v2_test
+    too many levels of pointers for typecode: *****bool
+    too many levels of pointers for typecode: ******bool
+    too many levels of pointers for typecode: *******bool
+    too many levels of pointers for typecode: ********bool
+    too many levels of pointers for typecode: *********bool
+    too many levels of pointers for typecode: **********bool
+    too many levels of pointers for typecode: ***********bool
+    too many levels of pointers for typecode: *****bool
+    too many levels of pointers for typecode: ******bool
+    too many levels of pointers for typecode: *******bool
+    too many levels of pointers for typecode: ********bool
+    too many levels of pointers for typecode: *********bool
+    too many levels of pointers for typecode: **********bool
+    [...more lines following...]
 
 
 
@@ -722,7 +558,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).NumOut()
-    FAIL	encoding/pem	0.386s
+    FAIL	encoding/pem	0.934s
 
 
 
@@ -788,24 +624,36 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    --- FAIL: TestDotSlashImport (0.01s)
+    --- FAIL: TestDotSlashImport (0.00s)
         import ".": unknown compiler "tinygo"
-        FailNow is incomplete, requires runtime.Goexit()
-        import "./file": unknown compiler "tinygo"
-        FailNow is incomplete, requires runtime.Goexit()
     --- FAIL: TestLocalDirectory (0.00s)
         import ".": unknown compiler "tinygo"
-        FailNow is incomplete, requires runtime.Goexit()
-        ImportPath=".", want "go/build"
-        FailNow is incomplete, requires runtime.Goexit()
     --- FAIL: TestImportCmd (0.00s)
         go/build: go list cmd/internal/objfile: files setting not implemented
             
             
-        FailNow is incomplete, requires runtime.Goexit()
+    --- FAIL: TestIssue23594 (0.00s)
+        could not import testdata: import ".": unknown compiler "tinygo"
+    --- FAIL: TestCgoImportsIgnored (0.00s)
+        import ".": unknown compiler "tinygo"
+    --- FAIL: TestAllTags (0.00s)
+        import ".": unknown compiler "tinygo"
+    --- FAIL: TestAllTagsNonSourceFile (0.00s)
     [...more lines following...]
 
 
+
+
+
+
+## go/build/constraint
+
+
+
+The compiler gave the following error when running the tests for this package:
+
+
+    FAIL	go/build/constraint	0.011s
 
 
 
@@ -819,9 +667,10 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    [tinygo: panic at /home/ron/.gvm/go/src/go/constant/value.go]
-    panic: runtime error at 0x000000000026b5b6: divide by zero
-    FAIL	go/constant	0.006s
+    --- FAIL: TestOps (0.00s)
+        0 % 0 = "runtime_error:_integer_divide_by_zero": got "divide by zero"; want "runtime error: integer divide by zero"
+    FAIL
+    FAIL	go/constant	0.005s
 
 
 
@@ -843,33 +692,6 @@ The compiler gave the following error when running the tests for this package:
 
 
 
-## go/doc/comment
-
-
-
-The compiler gave the following error when running the tests for this package:
-
-
-    --- FAIL: TestStd (0.00s)
-        skipping test: 'go build' unavailable: /home/ron/.gvm/go/bin/go tool -n compile: files setting not implemented
-        SkipNow is incomplete, requires runtime.Goexit()
-        platform cannot run go tool
-        FailNow is incomplete, requires runtime.Goexit()
-        exec: no command
-        FailNow is incomplete, requires runtime.Goexit()
-        stdPkgs is out of date: regenerate with 'go generate'
-            diff stdPkgs want
-            --- stdPkgs
-            +++ want
-            @@ -1,40 +1,1 @@
-            -bufio
-            -bytes
-            -cmp
-    [...more lines following...]
-
-
-
-
 
 
 
@@ -877,14 +699,9 @@ The compiler gave the following error when running the tests for this package:
 ## go/importer
 
 
+This package cannot be imported because the following dependencies cannot be compiled:
 
-The compiler gave the following error when running the tests for this package:
-
-
-    [tinygo: panic at <Go interface method>]
-    panic: runtime error at 0x00000000003420ef: nil pointer dereference
-    FAIL	go/importer	0.007s
-
+  * [go/types](#gotypes)
 
 
 
@@ -897,9 +714,21 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    FAIL	go/parser	0.068s
+    FAIL	go/parser	0.038s
 
 
+
+
+
+
+## go/printer
+
+
+
+The compiler gave the following error when running the tests for this package:
+
+
+    FAIL	go/printer	0.039s
 
 
 
@@ -913,11 +742,9 @@ The compiler gave the following error when running the tests for this package:
 ## go/types
 
 
+This package cannot be imported because the following dependencies cannot be compiled:
 
-The compiler gave the following error when running the tests for this package:
-
-
-    [...no test output...]
+  * [hash/maphash](#hashmaphash)
 
 
 
@@ -925,20 +752,6 @@ The compiler gave the following error when running the tests for this package:
 
 
 
-
-
-
-
-
-## hash/crc32
-
-
-
-The compiler gave the following error when running the tests for this package:
-
-
-    panic: not available
-    FAIL	hash/crc32	0.019s
 
 
 
@@ -953,24 +766,24 @@ The compiler gave the following error when running the tests for this package:
 
 
 
-The compiler gave the following error when running the tests for this package:
+The compiler gave the following error when this package was imported:
 
 
-    FAIL	hash/maphash	0.000s
     # internal/runtime/maps
-    /home/ron/.gvm/go/src/internal/runtime/maps/group.go:289:39: undefined: abi.MapType
-    /home/ron/.gvm/go/src/internal/runtime/maps/group.go:296:40: undefined: abi.MapType
-    /home/ron/.gvm/go/src/internal/runtime/maps/group.go:318:25: undefined: abi.MapType
-    /home/ron/.gvm/go/src/internal/runtime/maps/group.go:327:42: undefined: abi.MapType
-    /home/ron/.gvm/go/src/internal/runtime/maps/group.go:337:26: undefined: abi.MapType
-    /home/ron/.gvm/go/src/internal/runtime/maps/group.go:341:32: undefined: abi.MapGroupSlots
-    /home/ron/.gvm/go/src/internal/runtime/maps/group.go:353:32: undefined: abi.MapGroupSlots
-    /home/ron/.gvm/go/src/internal/runtime/maps/map.go:264:21: undefined: abi.MapType
-    /home/ron/.gvm/go/src/internal/runtime/maps/map.go:271:17: undefined: abi.MapGroupSlots
-    /home/ron/.gvm/go/src/internal/runtime/maps/map.go:293:32: undefined: abi.MapGroupSlots
-    /home/ron/.gvm/go/src/internal/runtime/maps/map.go:403:28: undefined: abi.MapType
-    /home/ron/.gvm/go/src/internal/runtime/maps/map.go:407:35: undefined: abi.MapType
-    /home/ron/.gvm/go/src/internal/runtime/maps/map.go:426:38: undefined: abi.MapType
+    /home/ron/.gvm/go/src/internal/runtime/maps/group.go:298:39: undefined: abi.MapType
+    /home/ron/.gvm/go/src/internal/runtime/maps/group.go:305:40: undefined: abi.MapType
+    /home/ron/.gvm/go/src/internal/runtime/maps/group.go:327:25: undefined: abi.MapType
+    /home/ron/.gvm/go/src/internal/runtime/maps/group.go:336:42: undefined: abi.MapType
+    /home/ron/.gvm/go/src/internal/runtime/maps/group.go:346:26: undefined: abi.MapType
+    /home/ron/.gvm/go/src/internal/runtime/maps/group.go:350:32: undefined: abi.MapGroupSlots
+    /home/ron/.gvm/go/src/internal/runtime/maps/group.go:362:32: undefined: abi.MapGroupSlots
+    /home/ron/.gvm/go/src/internal/runtime/maps/map.go:283:21: undefined: abi.MapType
+    /home/ron/.gvm/go/src/internal/runtime/maps/map.go:290:17: undefined: abi.MapGroupSlots
+    /home/ron/.gvm/go/src/internal/runtime/maps/map.go:312:32: undefined: abi.MapGroupSlots
+    /home/ron/.gvm/go/src/internal/runtime/maps/map.go:422:28: undefined: abi.MapType
+    /home/ron/.gvm/go/src/internal/runtime/maps/map.go:426:35: undefined: abi.MapType
+    /home/ron/.gvm/go/src/internal/runtime/maps/map.go:445:38: undefined: abi.MapType
+    /home/ron/.gvm/go/src/internal/runtime/maps/map.go:465:40: undefined: abi.MapType
     [...more lines following...]
 
 
@@ -988,7 +801,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).NumOut()
-    FAIL	html/template	0.001s
+    FAIL	html/template	0.002s
 
 
 
@@ -1010,19 +823,6 @@ The compiler gave the following error when running the tests for this package:
 
 
 
-
-
-
-
-## image/draw
-
-
-
-The compiler gave the following error when running the tests for this package:
-
-
-    panic: unimplemented: (reflect.Type).NumIn()
-    FAIL	image/draw	0.038s
 
 
 
@@ -1065,9 +865,8 @@ The compiler gave the following error when running the tests for this package:
         multiReader did not flatten chained multiReaders: expected readDepth 3, got 1
     --- FAIL: TestMultiReaderFreesExhaustedReaders (5.00s)
         timeout waiting for collection of buf1
-        FailNow is incomplete, requires runtime.Goexit()
     FAIL
-    FAIL	io	5.029s
+    FAIL	io	5.037s
 
 
 
@@ -1121,14 +920,14 @@ The compiler gave the following error when running the tests for this package:
         log output should match "^[A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "???:0: hello 23 world"
         log output should match "^[A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "???:0: hello 23 world"
         log output should match "^[A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "???:0: hello 23 world"
-        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "XXX2026/04/20 18:19:10.490380 ???:0: hello 23 world"
-        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "XXX2026/04/20 18:19:10.490497 ???:0: hello 23 world"
-        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "XXX2026/04/20 18:19:10.490527 ???:0: hello 23 world"
-        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "XXX2026/04/20 18:19:10.490551 ???:0: hello 23 world"
-        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(67|69): XXXhello 23 world$" is "2026/04/20 18:19:10.490666 ???:0: XXXhello 23 world"
-        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(67|69): XXXhello 23 world$" is "2026/04/20 18:19:10.490693 ???:0: XXXhello 23 world"
-        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(67|69): XXXhello 23 world$" is "2026/04/20 18:19:10.490802 ???:0: XXXhello 23 world"
-        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(67|69): XXXhello 23 world$" is "2026/04/20 18:19:10.490830 ???:0: XXXhello 23 world"
+        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "XXX2026/09/01 10:29:09.833603 ???:0: hello 23 world"
+        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "XXX2026/09/01 10:29:09.833816 ???:0: hello 23 world"
+        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "XXX2026/09/01 10:29:09.833881 ???:0: hello 23 world"
+        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "XXX2026/09/01 10:29:09.833938 ???:0: hello 23 world"
+        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(67|69): XXXhello 23 world$" is "2026/09/01 10:29:09.834000 ???:0: XXXhello 23 world"
+        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(67|69): XXXhello 23 world$" is "2026/09/01 10:29:09.834661 ???:0: XXXhello 23 world"
+        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(67|69): XXXhello 23 world$" is "2026/09/01 10:29:09.834699 ???:0: XXXhello 23 world"
+        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(67|69): XXXhello 23 world$" is "2026/09/01 10:29:09.834734 ???:0: XXXhello 23 world"
     [...more lines following...]
 
 
@@ -1161,7 +960,6 @@ The compiler gave the following error when running the tests for this package:
     FAIL	log/syslog	0.000s
     # log/syslog
     /home/ron/.gvm/go/src/log/syslog/syslog_test.go:35:21: oe.Temporary undefined (type *net.OpError has no field or method Temporary)
-    /home/ron/.gvm/go/src/log/syslog/syslog_test.go:110:15: undefined: net.ListenPacket
 
 
 
@@ -1179,7 +977,8 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    [...no test output...]
+    panic: unimplemented: (reflect.Type).NumOut()
+    FAIL	math/big	3.922s
 
 
 
@@ -1193,8 +992,19 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    [tinygo: panic at /home/ron/.gvm/go/src/math/bits/bits.go:510:21]
-    panic: runtime error at 0x000000000022b692: divide by zero
+    --- FAIL: TestDivPanicOverflow (0.00s)
+        Div should have panicked when y<=hi
+    --- FAIL: TestDiv32PanicOverflow (0.00s)
+        Div32 should have panicked when y<=hi
+    --- FAIL: TestDiv64PanicOverflow (0.00s)
+        Div64 should have panicked when y<=hi
+    --- FAIL: TestDivPanicZero (0.00s)
+        Div should have panicked when y==0
+    --- FAIL: TestDiv32PanicZero (0.00s)
+        Div32 expected panic: "runtime error: integer divide by zero", got: "divide by zero" 
+    --- FAIL: TestDiv64PanicZero (0.00s)
+        Div64 should have panicked when y==0
+    FAIL
     FAIL	math/bits	0.003s
 
 
@@ -1212,7 +1022,21 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).Method()
-    FAIL	math/rand	1.939s
+    --- FAIL: TestDefaultRace (0.00s)
+        --- FAIL: TestDefaultRace/0 (0.00s)
+            files setting not implemented
+        --- FAIL: TestDefaultRace/1 (0.00s)
+            files setting not implemented
+        --- FAIL: TestDefaultRace/2 (0.00s)
+            files setting not implemented
+        --- FAIL: TestDefaultRace/3 (0.00s)
+            files setting not implemented
+        --- FAIL: TestDefaultRace/4 (0.00s)
+            files setting not implemented
+        --- FAIL: TestDefaultRace/5 (0.00s)
+            files setting not implemented
+    FAIL	math/rand	2.280s
+    [...more lines following...]
 
 
 
@@ -1226,8 +1050,7 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    panic: unimplemented: (reflect.Type).Method()
-    FAIL	math/rand/v2	3.065s
+    [...no test output...]
 
 
 
@@ -1251,7 +1074,7 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when this package was imported:
 
 
-    ../../../../../tmp/tinygo-test-3366960319/main.go:2:8: package net/http/cgi is not in std (/home/ron/.cache/tinygo/goroot-3f907f422909f8c14177c762d0377d28008de1630656826539080e09fca7aa2c/src/net/http/cgi)
+    ../../../../../tmp/tinygo-test-159087105/main.go:2:8: package net/http/cgi is not in std (/home/ron/.cache/tinygo/goroot-6e1e5c96d60878ab9fd0c20fbb926c829d01a7953b6da77ca58cb6777f8e4e68/src/net/http/cgi)
 
 
 
@@ -1265,7 +1088,7 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when this package was imported:
 
 
-    ../../../../../tmp/tinygo-test-1383193711/main.go:2:8: package net/http/cookiejar is not in std (/home/ron/.cache/tinygo/goroot-3f907f422909f8c14177c762d0377d28008de1630656826539080e09fca7aa2c/src/net/http/cookiejar)
+    ../../../../../tmp/tinygo-test-3685785041/main.go:2:8: package net/http/cookiejar is not in std (/home/ron/.cache/tinygo/goroot-6e1e5c96d60878ab9fd0c20fbb926c829d01a7953b6da77ca58cb6777f8e4e68/src/net/http/cookiejar)
 
 
 
@@ -1287,23 +1110,6 @@ This package cannot be imported because the following dependencies cannot be com
 
 
 
-## net/http/httputil
-
-
-
-The compiler gave the following error when this package was imported:
-
-
-    # net/http/httputil
-    /home/ron/Development/tinygo/tinygo-122/src/net/http/httputil/dump.go:119:3: unknown field Dial in struct literal of type http.Transport
-    /home/ron/Development/tinygo/tinygo-122/src/net/http/httputil/dump.go:123:10: t.CloseIdleConnections undefined (type *http.Transport has no field or method CloseIdleConnections)
-    /home/ron/Development/tinygo/tinygo-122/src/net/http/httputil/reverseproxy.go:620:8: undefined: http.NewResponseController
-    /home/ron/Development/tinygo/tinygo-122/src/net/http/httputil/reverseproxy.go:701:18: undefined: http.NewResponseController
-    /home/ron/Development/tinygo/tinygo-122/src/net/http/httputil/reverseproxy.go:837:13: undefined: http.NewResponseController
-
-
-
-
 
 
 ## net/http/pprof
@@ -1314,7 +1120,7 @@ The compiler gave the following error when this package was imported:
 
 
     # net/http/pprof
-    /home/ron/Development/tinygo/tinygo-122/src/net/http/pprof/pprof.go:129:14: undefined: http.NewResponseController
+    /home/ron/Development/tinygo/tinygo-122/src/net/http/pprof/pprof.go:378:18: undefined: goexperiment.GoroutineLeakProfile
 
 
 
@@ -1330,22 +1136,19 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when running the tests for this package:
 
 
-    --- FAIL: TestInlining (0.00s)
-        skipping test: 'go build' unavailable: /home/ron/.gvm/go/bin/go tool -n compile: files setting not implemented
-        SkipNow is incomplete, requires runtime.Goexit()
-        skipping test: 'go build' unavailable: /home/ron/.gvm/go/bin/go tool -n compile: files setting not implemented
-        SkipNow is incomplete, requires runtime.Goexit()
-        platform cannot run go tool
-        FailNow is incomplete, requires runtime.Goexit()
-        go build: exec: no command, 
-        FailNow is incomplete, requires runtime.Goexit()
-        "(*uint128).halves" is no longer inlinable
-        "Addr.BitLen" is no longer inlinable
-        "Addr.hasZone" is no longer inlinable
-        "Addr.Is4" is no longer inlinable
-        "Addr.Is4In6" is no longer inlinable
-        "Addr.Is6" is no longer inlinable
-    [...more lines following...]
+    --- FAIL: TestAddrStringAllocs (0.01s)
+        --- FAIL: TestAddrStringAllocs/ipv4 (0.00s)
+            allocs=0, want 1
+        --- FAIL: TestAddrStringAllocs/ipv6 (0.00s)
+            allocs=0, want 1
+        --- FAIL: TestAddrStringAllocs/ipv6+zone (0.00s)
+            allocs=0, want 1
+        --- FAIL: TestAddrStringAllocs/ipv4-in-ipv6 (0.00s)
+            allocs=0, want 1
+        --- FAIL: TestAddrStringAllocs/ipv4-in-ipv6+zone (0.00s)
+            allocs=0, want 1
+    FAIL
+    FAIL	net/netip	0.041s
 
 
 
@@ -1359,9 +1162,8 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    [tinygo: panic at /home/ron/Development/tinygo/tinygo-122/src/runtime/interface.go:89:15]
-    panic: runtime error at 0x000000000026ccd5: type assert failed
-    FAIL	net/rpc	0.004s
+    panic: type assert failed
+    FAIL	net/rpc	0.002s
 
 
 
@@ -1387,12 +1189,16 @@ The compiler gave the following error when running the tests for this package:
 
 
 
-The compiler gave the following error when this package was imported:
+The compiler gave the following error when running the tests for this package:
 
 
+    FAIL	net/smtp	0.000s
     # net/smtp
-    /home/ron/.gvm/go/src/net/smtp/smtp.go:72:24: undefined: tls.Conn
-    /home/ron/.gvm/go/src/net/smtp/smtp.go:172:25: undefined: tls.Conn
+    /home/ron/.gvm/go/src/net/smtp/smtp_test.go:622:19: undefined: tls.X509KeyPair
+    /home/ron/.gvm/go/src/net/smtp/smtp_test.go:629:17: undefined: tls.Listen
+    /home/ron/.gvm/go/src/net/smtp/smtp_test.go:631:17: undefined: tls.Listen
+    /home/ron/.gvm/go/src/net/smtp/smtp_test.go:1040:29: cs.HandshakeComplete undefined (type tls.ConnectionState has no field or method HandshakeComplete)
+    /home/ron/.gvm/go/src/net/smtp/smtp_test.go:1080:24: undefined: tls.X509KeyPair
 
 
 
@@ -1412,14 +1218,9 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when running the tests for this package:
 
 
-    FAIL	os/exec	0.000s
-    # os/exec_test
-    /home/ron/.gvm/go/src/os/exec/exec_test.go:260:17: undefined: net.FileListener
-    /home/ron/.gvm/go/src/os/exec/exec_test.go:405:92: cmd.ProcessState.Pid undefined (type *os.ProcessState has no field or method Pid)
-    /home/ron/.gvm/go/src/os/exec/exec_test.go:704:34: ln.(*net.TCPListener).File undefined (type *net.TCPListener has no field or method File)
-    /home/ron/.gvm/go/src/os/exec/exec_test.go:709:18: undefined: net.FileListener
-    /home/ron/.gvm/go/src/os/exec/exec_test.go:720:5: ts.StartTLS undefined (type *httptest.Server has no field or method StartTLS)
-    /home/ron/.gvm/go/src/os/exec/exec_test.go:809:35: ln.(*net.TCPListener).File undefined (type *net.TCPListener has no field or method File)
+    FAIL		0.000s
+    package os/exec_test
+    	imports internal/poll: build constraints exclude all Go files in /home/ron/.cache/tinygo/goroot-6e1e5c96d60878ab9fd0c20fbb926c829d01a7953b6da77ca58cb6777f8e4e68/src/internal/poll
 
 
 
@@ -1453,22 +1254,7 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    --- FAIL: TestWindowsGlob (0.00s)
-        skipping windows specific test
-        SkipNow is incomplete, requires runtime.Goexit()
-        tmpDir path "/tmp/TestWindowsGlob251716594/000" must have drive letter in it
-        FailNow is incomplete, requires runtime.Goexit()
-        Glob("/tmp/TestWindowsGlob251716594/000\\a") returns [], but ["/tmp/TestWindowsGlob251716594/000\\a"] expected
-        Glob("/tmp/TestWindowsGlob251716594/000\\a") returns [], but ["/tmp/TestWindowsGlob251716594/000\\a"] expected
-        Glob("/tmp/TestWindowsGlob251716594/000\\a") returns [], but ["/tmp/TestWindowsGlob251716594/000\\a"] expected
-        Glob("/tmp/TestWindowsGlob251716594/000\\b") returns [], but ["/tmp/TestWindowsGlob251716594/000\\b"] expected
-        Glob("/tmp/TestWindowsGlob251716594/000\\b") returns [], but ["/tmp/TestWindowsGlob251716594/000\\b"] expected
-        Glob("/tmp/TestWindowsGlob251716594/000\\b") returns [], but ["/tmp/TestWindowsGlob251716594/000\\b"] expected
-        Glob("/tmp/TestWindowsGlob251716594/000\\*") returns [], but ["/tmp/TestWindowsGlob251716594/000\\a" "/tmp/TestWindowsGlob251716594/000\\b" "/tmp/TestWindowsGlob251716594/000\\dir"] expected
-        Glob("/tmp/TestWindowsGlob251716594/000\\*") returns [], but ["/tmp/TestWindowsGlob251716594/000\\a" "/tmp/TestWindowsGlob251716594/000\\b" "/tmp/TestWindowsGlob251716594/000\\dir"] expected
-        Glob("/tmp/TestWindowsGlob251716594/000\\*") returns [], but ["/tmp/TestWindowsGlob251716594/000\\a" "/tmp/TestWindowsGlob251716594/000\\b" "/tmp/TestWindowsGlob251716594/000\\dir"] expected
-        Glob("/tmp/TestWindowsGlob251716594/000\\d*") returns [], but ["/tmp/TestWindowsGlob251716594/000\\dir"] expected
-    [...more lines following...]
+    FAIL	path/filepath	0.002s
 
 
 
@@ -1492,6 +1278,18 @@ The compiler gave the following error when this package was imported:
 
 
 
+## regexp
+
+
+
+The compiler gave the following error when running the tests for this package:
+
+
+    FAIL	regexp	1.109s
+
+
+
+
 
 
 
@@ -1510,33 +1308,6 @@ The compiler gave the following error when running the tests for this package:
 
 
 
-## sort
-
-
-
-The compiler gave the following error when running the tests for this package:
-
-
-    --- FAIL: TestCountStableOps (1.06s)
-        Counting skipped as non-verbose mode.
-        SkipNow is incomplete, requires runtime.Goexit()
-        Stable      100 elements:         930 Swap,        830 Less
-        Stable      300 elements:        3916 Swap,       3005 Less
-        Stable     1000 elements:       19565 Swap,      12317 Less
-        Stable     3000 elements:       82318 Swap,      43024 Less
-        Stable    10000 elements:      348714 Swap,     165881 Less
-        Stable    30000 elements:     1337530 Swap,     558098 Less
-        Stable   100000 elements:     5791059 Swap,    2085637 Less
-        Stable   300000 elements:    20465506 Swap,    6870726 Less
-        Stable  1000000 elements:    84482753 Swap,   25125401 Less
-    --- FAIL: TestCountSortOps (0.61s)
-        Counting skipped as non-verbose mode.
-        SkipNow is incomplete, requires runtime.Goexit()
-    [...more lines following...]
-
-
-
-
 
 
 
@@ -1550,10 +1321,9 @@ The compiler gave the following error when running the tests for this package:
 
     GC Warning: Failed to expand heap by 9007199254741120 KiB
     GC Warning: Failed to expand heap by 9007199254740992 KiB
-    GC Warning: Out of Memory! Heap size: 11 MiB. Returning NULL!
-    [tinygo: panic at /home/ron/Development/tinygo/tinygo-122/lib/musl/src/string/memset.c:14:7]
-    panic: runtime error at 0x00000000002357d9: caught signal SIGSEGV
-    FAIL	strings	7.551s
+    GC Warning: Out of Memory! Heap size: 15 MiB. Returning NULL!
+    fatal error: gc: out of memory
+    FAIL	strings	7.942s
 
 
 
@@ -1571,9 +1341,7 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    [tinygo: panic at /home/ron/.gvm/go/src/sync/atomic/doc.go:93:6]
-    panic: runtime error at 0x000000000025fa33: caught signal SIGSEGV
-    FAIL	sync/atomic	2.845s
+    [...no test output...]
 
 
 
@@ -1592,8 +1360,8 @@ The compiler gave the following error when running the tests for this package:
     /home/ron/.gvm/go/src/syscall/creds_test.go:53:19: undefined: net.FileConn
     /home/ron/.gvm/go/src/syscall/creds_test.go:60:19: undefined: net.FileConn
     /home/ron/.gvm/go/src/syscall/syscall_unix_test.go:183:16: undefined: net.FileConn
-    /home/ron/.gvm/go/src/syscall/syscall_unix_test.go:238:14: undefined: net.UnixConn
     /home/ron/.gvm/go/src/syscall/syscall_unix_test.go:242:18: undefined: net.FileConn
+    /home/ron/.gvm/go/src/syscall/syscall_unix_test.go:272:21: uc.WriteMsgUnix undefined (type *net.UnixConn has no field or method WriteMsgUnix)
 
 
 
@@ -1659,9 +1427,11 @@ The compiler gave the following error when running the tests for this package:
 
 
     FAIL	testing/synctest	0.000s
-    # testing/synctest_test
-    /home/ron/.gvm/go/src/testing/synctest/example_test.go:109:4: unknown field DialContext in struct literal of type http.Transport
-    /home/ron/.gvm/go/src/testing/synctest/example_test.go:113:4: unknown field ExpectContinueTimeout in struct literal of type http.Transport
+    /home/ron/.gvm/go/src/testing/synctest/synctest.go:291: linker could not find symbol internal/synctest.Run
+    /home/ron/.gvm/go/src/testing/synctest/synctest.go:292: linker could not find symbol testing/synctest.testingSynctestTest
+    /home/ron/.gvm/go/src/testing/synctest/synctest.go:311: linker could not find symbol internal/synctest.Wait
+    /home/ron/.gvm/go/src/testing/synctest/synctest.go:311: linker could not find symbol internal/synctest.Wait
+    /home/ron/.gvm/go/src/testing/synctest/synctest.go:311: linker could not find symbol internal/synctest.Wait
 
 
 
@@ -1680,7 +1450,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).NumOut()
-    FAIL	text/template	0.001s
+    FAIL	text/template	0.002s
 
 
 
@@ -1697,7 +1467,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).NumOut()
-    FAIL	time	0.008s
+    FAIL	time	0.009s
 
 
 
@@ -1722,6 +1492,22 @@ The compiler gave the following error when this package was imported:
 
 
 
+
+
+
+
+
+
+## uuid
+
+
+
+The compiler gave the following error when running the tests for this package:
+
+
+    FAIL	uuid	0.000s
+    /home/ron/.gvm/go/src/testing/synctest/synctest.go:291: linker could not find symbol internal/synctest.Run
+    /home/ron/.gvm/go/src/testing/synctest/synctest.go:292: linker could not find symbol testing/synctest.testingSynctestTest
 
 
 
