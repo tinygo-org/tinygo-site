@@ -346,7 +346,7 @@ var (
 
 The PWM struct corresponds to a single PWM/timer hardware peripheral, which controls 1 or more output channels. This interface exposes a simple PWM model, that can generate outputs with a variable period and duty cycle.
 
-Note: As of TinyGo 0.41, the name of the PWM peripheral type is not consistent across supported platforms. This could be: PWM, TCC, LEDCPWM, timerType, and pwmGroup. The name of the exported structs could be: Timerx, TCCx, PWMx, TIMx.
+Note: As of TinyGo 0.42, the name of the PWM peripheral type is not consistent across supported platforms. This could be: PWM, TCC, LEDCPWM, timerType, and pwmGroup. The name of the exported structs could be: Timerx, TCCx, PWMx, TIMx.
 
 For more information, see the [PWM tutorial](../tutorials/pwm)
 
