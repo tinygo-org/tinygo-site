@@ -81,7 +81,7 @@ Below is an example of running `tinygo version` and example output to check that
 TinyGo was installed correctly (copy only what's in front of the `$` sign to your terminal!):
 ```shell
 $ tinygo version
-tinygo version 0.41.1-dev-d4189fec linux/amd64 (using go version go1.26.2 and LLVM version 20.1.1)
+tinygo version 0.42.0-dev-d4189fec linux/amd64 (using go version go1.27.0 and LLVM version 22.1.4)
 ```
 
 If not see the [troubleshooting](#troubleshooting) section.
