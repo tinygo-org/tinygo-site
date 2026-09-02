@@ -25,6 +25,9 @@ Output filename, see the ``build`` command.
   - `-target=cortex-m-qemu`  
     Run on a Stellaris LM3S as emulated by QEMU. This is mostly useful for testing.
 
+  - `-target=uefi-amd64`  
+    Compile programs into [UEFI applications](../../../guides/uefi/) that the firmware starts before an operating system.
+
 - `-port`
 Specify the serial port used for flashing. This is used for the Arduino Uno, which is flashed over a serial port. It defaults to ``/dev/ttyACM0`` as that is the default port on Linux.
 
