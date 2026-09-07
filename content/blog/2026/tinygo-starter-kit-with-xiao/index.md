@@ -1,7 +1,7 @@
 ---
 title: "Announcing the TinyGo Starter Kit with Seeed Studio XIAO"
 linkTitle: "TinyGo Starter Kit"
-date: 2026-09-08T00:00:00Z
+date: 2026-09-09T00:00:00Z
 author: "TinyGo Team"
 tags: ["news", "hardware", "seeedstudio", "esp32", "espressif", "tutorial"]
 description: >
