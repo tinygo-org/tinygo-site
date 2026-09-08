@@ -12,7 +12,7 @@ description: >
 
 *Gopher artwork by Juliette ([@wytterra](https://www.instagram.com/wytterra/))*
 
-As you should already know, TinyGo :heart: the Seeed Studio XIAO boards. Since "Xiao" actually means "Tiny" in Chinese, of course it is a natural fit.
+As you should already know, TinyGo ❤️ the Seeed Studio XIAO boards. Since "Xiao" actually means "Tiny" in Chinese, of course it is a natural fit.
 
 So today we get to share something new: the [**TinyGo Starter Kit with Seeed Studio XIAO**](https://www.seeedstudio.com/tinygo-xiao-starter-kit.html). Open the box and you will find a XIAO ESP32-C3, a Grove Base for XIAO, eleven Grove modules that we picked out one at a time, and a tutorial series that walks you through every one of them. The idea was not to hand you a pile of parts, but to give you a clear path from your first `tinygo flash` to a gadget that actually does something.
 
