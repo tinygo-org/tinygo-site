@@ -42,7 +42,7 @@ supports WiFi on some of these processors with Bluetooth coming soon:
 * [ESP8266](https://en.wikipedia.org/wiki/ESP8266) based on the Xtensa LX106
   processor. WiFi not yet supported.
 * [ESP32](https://en.wikipedia.org/wiki/ESP32) based on the Xtensa LX6
-  processor.  WiFi not yet supported.
+  processor.  WiFi supported.
 
 The introductory Arduino boards based on the 8-bit AVR processors work
 relatively well under TinyGo. But they have limited amounts of flash and static
