@@ -1,9 +1,9 @@
 ---
-title: "Seeed Studio XIAO RP23550"
+title: "Seeed Studio XIAO RP2350"
 weight: 1
 ---
 
-The [Seeed Studio XIAO RP2350]() is a tiny development board based on the Raspberry Pi [RP2350]() microcontroller.
+The [Seeed Studio XIAO RP2350](https://www.seeedstudio.com/Seeed-XIAO-RP2350-p-5944.html) is a tiny development board based on the Raspberry Pi [RP2350](https://datasheets.raspberrypi.org/rp2350/rp2350-datasheet.pdf) microcontroller.
 
 ## Interfaces
 
