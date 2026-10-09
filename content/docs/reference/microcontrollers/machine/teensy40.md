@@ -458,6 +458,12 @@ const (
 
 
 ```go
+const NumberOfUSBEndpoints = 8
+```
+
+
+
+```go
 const (
 	Mode0	= 0
 	Mode1	= 1
@@ -737,10 +743,10 @@ var (
 
 
 ```go
-var Serial = DefaultUART
+var Serial Serialer
 ```
 
-Serial is implemented via the default (usually the first) UART on the chip.
+Serial is implemented via USB (USB-CDC).
 
 
 ```go
@@ -752,7 +758,43 @@ var (
 
 
 
+```go
+var (
+	USBDev	= &USBDevice{}
+	USBCDC	Serialer
 
+	endPoints	= []usbEndpointEntry{
+		{
+			Endpoint:	usb.CONTROL_ENDPOINT,
+			Config:		usb.ENDPOINT_TYPE_CONTROL,
+		},
+	}
+)
+```
+
+
+
+```go
+var (
+	ErrUSBReadTimeout	= errors.New("USB read timeout")
+	ErrUSBBytesRead		= errors.New("USB invalid number of bytes read")
+	ErrUSBBytesWritten	= errors.New("USB invalid number of bytes written")
+)
+```
+
+
+
+
+
+
+### func AckUsbOutTransfer
+
+```go
+func AckUsbOutTransfer(ep uint32)
+```
+
+AckUsbOutTransfer re-arms an OUT endpoint after its data was consumed.
+Thread context callers must not interleave with the USB interrupt handler.
 
 
 ### func CPUFrequency
@@ -770,6 +812,32 @@ func CPUReset()
 ```
 
 CPUReset performs a hard system reset.
+
+
+### func ConfigureUSBEndpoint
+
+```go
+func ConfigureUSBEndpoint(desc descriptor.Descriptor, epSettings []usb.EndpointConfig, setup []usb.SetupConfig)
+```
+
+
+
+### func EnableCDC
+
+```go
+func EnableCDC(txHandler func(), rxHandler func([]byte), setupHandler func(usb.Setup) bool)
+```
+
+
+
+### func EnterBootloader
+
+```go
+func EnterBootloader()
+```
+
+EnterBootloader resets into the HalfKay bootloader. The bootloader chip
+watches for this breakpoint, the same as Teensyduino soft reboot.
 
 
 ### func InitADC
@@ -796,6 +864,44 @@ func NewRingBuffer() *RingBuffer
 ```
 
 NewRingBuffer returns a new ring buffer.
+
+
+### func PhysicalEndpoint
+
+```go
+func PhysicalEndpoint(ep uint32) uint32
+```
+
+PhysicalEndpoint maps a virtual endpoint index to the physical endpoint number
+used by the hardware. This is an identity mapping on all currently supported platforms.
+
+
+### func ReceiveUSBControlPacket
+
+```go
+func ReceiveUSBControlPacket() (b [cdcLineInfoSize]byte, err error)
+```
+
+ReceiveUSBControlPacket waits for and returns the EP0 OUT data stage that
+was primed when the setup packet was dispatched.
+
+
+### func SendUSBInPacket
+
+```go
+func SendUSBInPacket(ep uint32, data []byte) bool
+```
+
+SendUSBInPacket sends a packet for USB (interrupt in / bulk in). It reports
+false when the data does not fit or the previous transfer is still active.
+
+
+### func SendZlp
+
+```go
+func SendZlp()
+```
+
 
 
 
@@ -1370,6 +1476,25 @@ SPIConfig is used to store config info for SPI.
 
 
 
+## type Serialer
+
+```go
+type Serialer interface {
+	WriteByte(c byte) error
+	Write(data []byte) (n int, err error)
+	Configure(config UARTConfig) error
+	Buffered() int
+	ReadByte() (byte, error)
+	DTR() bool
+	RTS() bool
+}
+```
+
+
+
+
+
+
 ## type UART
 
 ```go
@@ -1527,6 +1652,83 @@ type UARTParity uint8
 
 UARTParity is the parity setting to be used for UART communication.
 
+
+
+
+
+## type USBDevice
+
+```go
+type USBDevice struct {
+	initcomplete		bool
+	InitEndpointComplete	bool
+}
+```
+
+
+
+
+### func (*USBDevice) Attach
+
+```go
+func (dev *USBDevice) Attach()
+```
+
+Attach connects the device to the USB bus (run the controller).
+
+
+### func (*USBDevice) ClearStallEPIn
+
+```go
+func (dev *USBDevice) ClearStallEPIn(ep uint32)
+```
+
+Clear the ENDPOINT_HALT/stall on a USB IN endpoint.
+
+
+### func (*USBDevice) ClearStallEPOut
+
+```go
+func (dev *USBDevice) ClearStallEPOut(ep uint32)
+```
+
+Clear the ENDPOINT_HALT/stall on a USB OUT endpoint.
+
+
+### func (*USBDevice) Configure
+
+```go
+func (dev *USBDevice) Configure(config UARTConfig)
+```
+
+Configure the USB peripheral. The config is here for compatibility with the UART interface.
+
+
+### func (*USBDevice) Detach
+
+```go
+func (dev *USBDevice) Detach()
+```
+
+Detach disconnects the device from the USB bus.
+
+
+### func (*USBDevice) SetStallEPIn
+
+```go
+func (dev *USBDevice) SetStallEPIn(ep uint32)
+```
+
+Set ENDPOINT_HALT/stall status on a USB IN endpoint.
+
+
+### func (*USBDevice) SetStallEPOut
+
+```go
+func (dev *USBDevice) SetStallEPOut(ep uint32)
+```
+
+Set ENDPOINT_HALT/stall status on a USB OUT endpoint.
 
 
 

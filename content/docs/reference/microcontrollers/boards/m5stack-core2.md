@@ -14,7 +14,7 @@ The [m5stack-core2](https://shop.m5stack.com/products/m5stack-core2-esp32-iot-de
 | SPI       | YES | YES |
 | I2C       | YES | YES |
 | ADC       | YES | YES |
-| PWM       | YES | Not yet |
+| PWM       | YES | YES |
 | USBDevice | NO  | NO  |
 | WiFi      | YES | Not Yet |
 | Bluetooth | YES | Not yet |

@@ -277,6 +277,16 @@ Pin change interrupt constants for SetInterrupt.
 
 
 ```go
+const LEDC_HS_SIG_OUT0_IDX = 71
+```
+
+The GPIO matrix can send an internal signal to almost any pin. Each signal has
+a number. High-speed LEDC channel 0 is number 71, and the rest follow on from
+there, so channels 0 to 7 are 71 to 78.
+(From Espressif's soc/gpio_sig_map.h: LEDC_HS_SIG_OUT0_IDX.)
+
+
+```go
 const (
 	Mode0	= 0
 	Mode1	= 1
@@ -364,7 +374,7 @@ var (
 		rtsctsSignal:	199,
 	}
 
-	onceUart	= sync.Once{}
+	uartInterruptConfigured	bool
 )
 ```
 
@@ -392,6 +402,17 @@ var (
 var (
 	I2C0	= &I2C{Bus: esp.I2C0, funcSCL: 29, funcSDA: 30}
 	I2C1	= &I2C{Bus: esp.I2C1, funcSCL: 95, funcSDA: 96}
+)
+```
+
+
+
+```go
+var (
+	PWM0	= &LEDCPWM{SigOutBase: LEDC_HS_SIG_OUT0_IDX, NumChannels: ledcChannelsESP32, timerNum: 0}
+	PWM1	= &LEDCPWM{SigOutBase: LEDC_HS_SIG_OUT0_IDX, NumChannels: ledcChannelsESP32, timerNum: 1}
+	PWM2	= &LEDCPWM{SigOutBase: LEDC_HS_SIG_OUT0_IDX, NumChannels: ledcChannelsESP32, timerNum: 2}
+	PWM3	= &LEDCPWM{SigOutBase: LEDC_HS_SIG_OUT0_IDX, NumChannels: ledcChannelsESP32, timerNum: 3}
 )
 ```
 
@@ -631,6 +652,71 @@ type I2CTargetEvent uint8
 ```
 
 I2CTargetEvent reflects events on the I2C bus
+
+
+
+
+
+## type LEDCPWM
+
+```go
+type LEDCPWM struct {
+	SigOutBase	uint32	// GPIO matrix signal index for channel 0 (e.g. 73 on S3, 45 on C3)
+	NumChannels	uint8
+	timerNum	uint8	// 0–3: which LEDC timer (frequency) this PWM uses
+	dutyRes		uint8
+	configured	bool
+}
+```
+
+
+
+
+### func (*LEDCPWM) Channel
+
+```go
+func (pwm *LEDCPWM) Channel(pin Pin) (uint8, error)
+```
+
+
+
+### func (*LEDCPWM) Configure
+
+```go
+func (pwm *LEDCPWM) Configure(config PWMConfig) error
+```
+
+
+
+### func (*LEDCPWM) Set
+
+```go
+func (pwm *LEDCPWM) Set(channel uint8, value uint32)
+```
+
+
+
+### func (*LEDCPWM) SetInverting
+
+```go
+func (pwm *LEDCPWM) SetInverting(channel uint8, inverting bool)
+```
+
+SetInverting inverts the output of a channel.
+
+LEDC has no invert bit. IDLE_LV only sets the pin level when SIG_OUT_EN is 0,
+so it cannot invert a running signal. The GPIO matrix does it instead, with
+INV_SEL in the FUNCn_OUT_SEL_CFG register of the pin.
+
+Call this after Channel. Pin.configure writes the whole register, so it
+clears INV_SEL.
+
+
+### func (*LEDCPWM) Top
+
+```go
+func (pwm *LEDCPWM) Top() uint32
+```
 
 
 

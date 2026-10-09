@@ -1,6 +1,6 @@
 
 ---
-title: m5stack-core2
+title: esp32h2-devkitm-1
 ---
 
 
@@ -8,165 +8,30 @@ title: m5stack-core2
 
 ```go
 const (
-	IO0	= GPIO0
-	IO1	= GPIO1	// U0TXD
-	IO2	= GPIO2
-	IO3	= GPIO3	// U0RXD
-	IO4	= GPIO4
-	IO5	= GPIO5
-	IO6	= GPIO6		// SD_CLK
-	IO7	= GPIO7		// SD_DATA0
-	IO8	= GPIO8		// SD_DATA1
-	IO9	= GPIO9		// SD_DATA2
-	IO10	= GPIO10	// SD_DATA3
-	IO11	= GPIO11	// SD_CMD
-	IO12	= GPIO12
-	IO13	= GPIO13	// U0RXD
-	IO14	= GPIO14	// U1TXD
-	IO15	= GPIO15
-	IO16	= GPIO16
-	IO17	= GPIO17
-	IO18	= GPIO18	// SPI0_SCK
-	IO19	= GPIO19
-	IO21	= GPIO21	// SDA0
-	IO22	= GPIO22	// SCL0
-	IO23	= GPIO23	// SPI0_SDO
-	IO25	= GPIO25
-	IO26	= GPIO26
-	IO27	= GPIO27
-	IO32	= GPIO32	// SDA1
-	IO33	= GPIO33	// SCL1
-	IO34	= GPIO34
-	IO35	= GPIO35	// ADC1
-	IO36	= GPIO36	// ADC2
-	IO38	= GPIO38	// SPI0_SDI
-	IO39	= GPIO39
+	WS2812 = GPIO8
 )
 ```
 
+Data pin of the onboard addressable RGB LED. The board has no plain LED.
 
 
 ```go
 const (
-	SPI0_SCK_PIN	= IO18
-	SPI0_SDO_PIN	= IO23
-	SPI0_SDI_PIN	= IO38
-	SPI0_CS0_PIN	= IO5
-
-	// LCD (ILI9342C)
-	LCD_SCK_PIN	= SPI0_SCK_PIN
-	LCD_SDO_PIN	= SPI0_SDO_PIN
-	LCD_SDI_PIN	= SPI0_SDI_PIN
-	LCD_SS_PIN	= SPI0_CS0_PIN
-	LCD_DC_PIN	= IO15
-
-	// SD CARD
-	SDCARD_SCK_PIN	= SPI0_SCK_PIN
-	SDCARD_SDO_PIN	= SPI0_SDO_PIN
-	SDCARD_SDI_PIN	= SPI0_SDI_PIN
-	SDCARD_SS_PIN	= IO4
+	BUTTON = GPIO9
 )
 ```
 
-SPI pins
+BOOT button
 
 
 ```go
 const (
-	// Internal I2C (AXP192 / FT6336U / BM8563 / MPU6886)
-	SDA0_PIN	= IO21
-	SCL0_PIN	= IO22
-
-	// External I2C (PORT A)
-	SDA1_PIN	= IO32
-	SCL1_PIN	= IO33
-
-	SDA_PIN	= SDA1_PIN
-	SCL_PIN	= SCL1_PIN
-)
-```
-
-I2C pins
-
-
-```go
-const (
-	ADC1	Pin	= IO35
-	ADC2	Pin	= IO36
-)
-```
-
-ADC pins
-
-
-```go
-const (
-	DAC1	Pin	= IO25
-	DAC2	Pin	= IO26
-)
-```
-
-DAC pins
-
-
-```go
-const (
-	// UART0 (CP2104)
-	UART0_TX_PIN	= IO1
-	UART0_RX_PIN	= IO3
-
-	UART1_TX_PIN	= IO14
-	UART1_RX_PIN	= IO13
-
-	UART_TX_PIN	= UART0_TX_PIN
-	UART_RX_PIN	= UART0_RX_PIN
+	UART_TX_PIN	= GPIO24
+	UART_RX_PIN	= GPIO23
 )
 ```
 
 UART pins
-
-
-```go
-const (
-	TWI_FREQ_100KHZ	= 100000
-	TWI_FREQ_400KHZ	= 400000
-)
-```
-
-TWI_FREQ is the I2C bus speed. Normally either 100 kHz, or 400 kHz for high-speed bus.
-
-Deprecated: use 100 * machine.KHz or 400 * machine.KHz instead.
-
-
-```go
-const (
-	// I2CReceive indicates target has received a message from the controller.
-	I2CReceive	I2CTargetEvent	= iota
-
-	// I2CRequest indicates the controller is expecting a message from the target.
-	I2CRequest
-
-	// I2CFinish indicates the controller has ended the transaction.
-	//
-	// I2C controllers can chain multiple receive/request messages without
-	// relinquishing the bus by doing 'restarts'.  I2CFinish indicates the
-	// bus has been relinquished by an I2C 'stop'.
-	I2CFinish
-)
-```
-
-
-
-```go
-const (
-	// I2CModeController represents an I2C peripheral in controller mode.
-	I2CModeController	I2CMode	= iota
-
-	// I2CModeTarget represents an I2C peripheral in target mode.
-	I2CModeTarget
-)
-```
-
 
 
 ```go
@@ -205,6 +70,7 @@ const (
 	PinInput
 	PinInputPullup
 	PinInputPulldown
+	PinAnalog
 )
 ```
 
@@ -232,24 +98,17 @@ const (
 	GPIO17	Pin	= 17
 	GPIO18	Pin	= 18
 	GPIO19	Pin	= 19
+	GPIO20	Pin	= 20
 	GPIO21	Pin	= 21
 	GPIO22	Pin	= 22
 	GPIO23	Pin	= 23
+	GPIO24	Pin	= 24
 	GPIO25	Pin	= 25
 	GPIO26	Pin	= 26
 	GPIO27	Pin	= 27
-	GPIO32	Pin	= 32
-	GPIO33	Pin	= 33
-	GPIO34	Pin	= 34
-	GPIO35	Pin	= 35
-	GPIO36	Pin	= 36
-	GPIO37	Pin	= 37
-	GPIO38	Pin	= 38
-	GPIO39	Pin	= 39
 )
 ```
 
-Hardware pin numbers
 
 
 ```go
@@ -261,28 +120,6 @@ const (
 ```
 
 Pin change interrupt constants for SetInterrupt.
-
-
-```go
-const LEDC_HS_SIG_OUT0_IDX = 71
-```
-
-The GPIO matrix can send an internal signal to almost any pin. Each signal has
-a number. High-speed LEDC channel 0 is number 71, and the rest follow on from
-there, so channels 0 to 7 are 71 to 78.
-(From Espressif's soc/gpio_sig_map.h: LEDC_HS_SIG_OUT0_IDX.)
-
-
-```go
-const (
-	Mode0	= 0
-	Mode1	= 1
-	Mode2	= 2
-	Mode3	= 3
-)
-```
-
-SPI phase and polarity configs CPOL and CPHA
 
 
 ```go
@@ -325,81 +162,37 @@ var (
 
 ```go
 var (
-	ErrInvalidSPIBus = errors.New("machine: invalid SPI bus")
+	_USBCDC	= &USB_DEVICE{
+		Bus:	esp.USB_DEVICE,
+		Buffer:	NewRingBuffer(),
+	}
+
+	USBCDC	Serialer	= _USBCDC
 )
 ```
 
 
 
 ```go
-var DefaultUART = UART0
+var USBDev = &USBDevice{}
 ```
 
 
 
 ```go
 var (
+	DefaultUART	= UART0
+
 	UART0	= &_UART0
-	_UART0	= UART{
-		Bus:		esp.UART0,
-		Buffer:		NewRingBuffer(),
-		txrxSignal:	14,
-		rtsctsSignal:	15,
-	}
+	_UART0	= UART{Bus: esp.UART0, Buffer: NewRingBuffer()}
 	UART1	= &_UART1
-	_UART1	= UART{
-		Bus:		esp.UART1,
-		Buffer:		NewRingBuffer(),
-		txrxSignal:	17,
-		rtsctsSignal:	18,
-	}
-	UART2	= &_UART2
-	_UART2	= UART{
-		Bus:		esp.UART2,
-		Buffer:		NewRingBuffer(),
-		txrxSignal:	198,
-		rtsctsSignal:	199,
-	}
+	_UART1	= UART{Bus: esp.UART1, Buffer: NewRingBuffer()}
 
-	uartInterruptConfigured	bool
-)
-```
-
-
-
-```go
-var (
-	// SPI0 and SPI1 are reserved for use by the caching system etc.
-	SPI2	= &SPI{esp.SPI2}
-	SPI3	= &SPI{esp.SPI3}
-)
-```
-
-
-
-```go
-var (
-	ErrInvalidADCPin = errors.New("invalid ADC pin for ESP32")
-)
-```
-
-
-
-```go
-var (
-	I2C0	= &I2C{Bus: esp.I2C0, funcSCL: 29, funcSDA: 30}
-	I2C1	= &I2C{Bus: esp.I2C1, funcSCL: 95, funcSDA: 96}
-)
-```
-
-
-
-```go
-var (
-	PWM0	= &LEDCPWM{SigOutBase: LEDC_HS_SIG_OUT0_IDX, NumChannels: ledcChannelsESP32, timerNum: 0}
-	PWM1	= &LEDCPWM{SigOutBase: LEDC_HS_SIG_OUT0_IDX, NumChannels: ledcChannelsESP32, timerNum: 1}
-	PWM2	= &LEDCPWM{SigOutBase: LEDC_HS_SIG_OUT0_IDX, NumChannels: ledcChannelsESP32, timerNum: 2}
-	PWM3	= &LEDCPWM{SigOutBase: LEDC_HS_SIG_OUT0_IDX, NumChannels: ledcChannelsESP32, timerNum: 3}
+	onceUart		= sync.Once{}
+	errSamePins		= errors.New("UART: invalid pin combination")
+	errWrongUART		= errors.New("UART: unsupported UARTn")
+	errWrongBitSize		= errors.New("UART: invalid data size")
+	errWrongStopBitSize	= errors.New("UART: invalid bit size")
 )
 ```
 
@@ -420,15 +213,6 @@ var Serial = DefaultUART
 Serial is implemented via the default (usually the first) UART on the chip.
 
 
-```go
-var (
-	ErrTxInvalidSliceSize		= errors.New("SPI write and read slices must be same size")
-	errSPIInvalidMachineConfig	= errors.New("SPI port was not configured properly by the machine")
-)
-```
-
-
-
 
 
 
@@ -442,13 +226,23 @@ CPUFrequency returns the current CPU frequency of the chip.
 Currently it is a fixed frequency but it may allow changing in the future.
 
 
-### func InitADC
+### func ConfigureUSBEndpoint
 
 ```go
-func InitADC()
+func ConfigureUSBEndpoint(desc descriptor.Descriptor, epSettings []usb.EndpointConfig, setup []usb.SetupConfig)
 ```
 
-InitADC powers up SAR ADC1 and puts it under software control.
+ConfigureUSBEndpoint is a no-op on ESP32-C6 and ESP32-H2. The hardware does
+not support programmable USB endpoints.
+
+
+### func FlushSerial
+
+```go
+func FlushSerial()
+```
+
+FlushSerial flushes any pending USB serial TX data.
 
 
 ### func InitSerial
@@ -468,6 +262,24 @@ func NewRingBuffer() *RingBuffer
 NewRingBuffer returns a new ring buffer.
 
 
+### func SendUSBInPacket
+
+```go
+func SendUSBInPacket(ep uint32, data []byte) bool
+```
+
+SendUSBInPacket is a no-op on ESP32-C6 and ESP32-H2.
+
+
+### func SendZlp
+
+```go
+func SendZlp()
+```
+
+SendZlp is a no-op on ESP32-C6 and ESP32-H2.
+
+
 
 
 ## type ADC
@@ -479,28 +291,6 @@ type ADC struct {
 ```
 
 
-
-
-### func (ADC) Configure
-
-```go
-func (a ADC) Configure(config ADCConfig) error
-```
-
-Configure routes the pin to the SAR ADC and sets its attenuation. It returns
-an error if the pin has no ADC1 channel. ADCConfig is accepted for API
-compatibility but its fields are not used; attenuation is fixed at 11 dB.
-
-
-### func (ADC) Get
-
-```go
-func (a ADC) Get() uint16
-```
-
-Get runs a single conversion and returns the result scaled from the 12-bit
-hardware value to the full 16-bit range, so values run 0..65520. It returns
-0 if the pin has no ADC1 channel.
 
 
 
@@ -518,192 +308,6 @@ type ADCConfig struct {
 
 ADCConfig holds ADC configuration parameters. If left unspecified, the zero
 value of each parameter will use the peripheral's default settings.
-
-
-
-
-
-## type I2C
-
-```go
-type I2C struct {
-	Bus			*esp.I2C_Type
-	funcSCL, funcSDA	uint32
-	config			I2CConfig
-}
-```
-
-
-
-
-### func (*I2C) CheckDevice
-
-```go
-func (i2c *I2C) CheckDevice(addr uint16) bool
-```
-
-CheckDevice does an empty I2C transaction at the specified address.
-This can be used to find out if any device with that address is
-connected, e.g. for enumerating all devices on the bus.
-
-
-### func (*I2C) Configure
-
-```go
-func (i2c *I2C) Configure(config I2CConfig) error
-```
-
-
-
-### func (*I2C) ReadRegister
-
-```go
-func (i2c *I2C) ReadRegister(address uint8, register uint8, data []byte) error
-```
-
-ReadRegister transmits the register, restarts the connection as a read
-operation, and reads the response.
-
-Many I2C-compatible devices are organized in terms of registers. This method
-is a shortcut to easily read such registers. Also, it only works for devices
-with 7-bit addresses, which is the vast majority.
-
-
-### func (*I2C) SetBaudRate
-
-```go
-func (i2c *I2C) SetBaudRate(br uint32) error
-```
-
-
-
-### func (*I2C) Tx
-
-```go
-func (i2c *I2C) Tx(addr uint16, w, r []byte) (err error)
-```
-
-Tx does a single I2C transaction at the specified address.
-It clocks out the given address, writes the bytes in w, reads back len(r)
-bytes and stores them in r, and generates a stop condition on the bus.
-
-
-### func (*I2C) WriteRegister
-
-```go
-func (i2c *I2C) WriteRegister(address uint8, register uint8, data []byte) error
-```
-
-WriteRegister transmits first the register and then the data to the
-peripheral device.
-
-Many I2C-compatible devices are organized in terms of registers. This method
-is a shortcut to easily write to such registers. Also, it only works for
-devices with 7-bit addresses, which is the vast majority.
-
-
-
-
-## type I2CConfig
-
-```go
-type I2CConfig struct {
-	Frequency	uint32	// in Hz
-	SCL		Pin
-	SDA		Pin
-}
-```
-
-I2CConfig is used to store config info for I2C.
-
-
-
-
-
-## type I2CMode
-
-```go
-type I2CMode int
-```
-
-I2CMode determines if an I2C peripheral is in Controller or Target mode.
-
-
-
-
-
-## type I2CTargetEvent
-
-```go
-type I2CTargetEvent uint8
-```
-
-I2CTargetEvent reflects events on the I2C bus
-
-
-
-
-
-## type LEDCPWM
-
-```go
-type LEDCPWM struct {
-	SigOutBase	uint32	// GPIO matrix signal index for channel 0 (e.g. 73 on S3, 45 on C3)
-	NumChannels	uint8
-	timerNum	uint8	// 0–3: which LEDC timer (frequency) this PWM uses
-	dutyRes		uint8
-	configured	bool
-}
-```
-
-
-
-
-### func (*LEDCPWM) Channel
-
-```go
-func (pwm *LEDCPWM) Channel(pin Pin) (uint8, error)
-```
-
-
-
-### func (*LEDCPWM) Configure
-
-```go
-func (pwm *LEDCPWM) Configure(config PWMConfig) error
-```
-
-
-
-### func (*LEDCPWM) Set
-
-```go
-func (pwm *LEDCPWM) Set(channel uint8, value uint32)
-```
-
-
-
-### func (*LEDCPWM) SetInverting
-
-```go
-func (pwm *LEDCPWM) SetInverting(channel uint8, inverting bool)
-```
-
-SetInverting inverts the output of a channel.
-
-LEDC has no invert bit. IDLE_LV only sets the pin level when SIG_OUT_EN is 0,
-so it cannot invert a running signal. The GPIO matrix does it instead, with
-INV_SEL in the FUNCn_OUT_SEL_CFG register of the pin.
-
-Call this after Channel. Pin.configure writes the whole register, so it
-clears INV_SEL.
-
-
-### func (*LEDCPWM) Top
-
-```go
-func (pwm *LEDCPWM) Top() uint32
-```
 
 
 
@@ -835,8 +439,8 @@ Configure this pin with the given configuration.
 func (p Pin) Get() bool
 ```
 
-Get returns the current value of a GPIO pin when the pin is configured as an
-input or as an output.
+Get returns the current value of a GPIO pin when configured as an input or as
+an output.
 
 
 ### func (Pin) High
@@ -898,7 +502,7 @@ Warning: only use this on an output pin!
 ### func (Pin) SetInterrupt
 
 ```go
-func (p Pin) SetInterrupt(change PinChange, callback func(Pin)) error
+func (p Pin) SetInterrupt(change PinChange, callback func(Pin)) (err error)
 ```
 
 SetInterrupt sets an interrupt to be executed when a particular pin changes
@@ -1006,70 +610,20 @@ Used returns how many bytes in buffer have been used.
 
 
 
-## type SPI
+## type Serialer
 
 ```go
-type SPI struct {
-	Bus *esp.SPI_Type
+type Serialer interface {
+	WriteByte(c byte) error
+	Write(data []byte) (n int, err error)
+	Configure(config UARTConfig) error
+	Buffered() int
+	ReadByte() (byte, error)
+	DTR() bool
+	RTS() bool
 }
 ```
 
-Serial Peripheral Interface on the ESP32.
-
-
-
-### func (*SPI) Configure
-
-```go
-func (spi *SPI) Configure(config SPIConfig) error
-```
-
-Configure and make the SPI peripheral ready to use.
-
-
-### func (*SPI) Transfer
-
-```go
-func (spi *SPI) Transfer(w byte) (byte, error)
-```
-
-Transfer writes/reads a single byte using the SPI interface. If you need to
-transfer larger amounts of data, Tx will be faster.
-
-
-### func (*SPI) Tx
-
-```go
-func (spi *SPI) Tx(w, r []byte) error
-```
-
-Tx handles read/write operation for SPI interface. Since SPI is a synchronous write/read
-interface, there must always be the same number of bytes written as bytes read.
-This is accomplished by sending zero bits if r is bigger than w or discarding
-the incoming data if w is bigger than r.
-
-
-
-
-## type SPIConfig
-
-```go
-type SPIConfig struct {
-	Frequency	uint32
-	SCK		Pin
-	SDO		Pin
-	SDI		Pin
-	LSBFirst	bool
-	Mode		uint8
-}
-```
-
-SPIConfig configures a SPI peripheral on the ESP32. Make sure to set at least
-SCK, SDO and SDI (possibly to NoPin if not in use). The default for LSBFirst
-(false) and Mode (0) are good for most applications. The frequency defaults
-to 1MHz if not set but can be configured up to 40MHz. Possible values are
-40MHz and integer divisions from 40MHz such as 20MHz, 13.3MHz, 10MHz, 8MHz,
-etc.
 
 
 
@@ -1079,14 +633,11 @@ etc.
 
 ```go
 type UART struct {
-	Bus	*esp.UART_Type
-	Buffer	*RingBuffer
-
-	txrxSignal		uint32
-	rtsctsSignal		uint32
-	parityErrorDetected	bool
-	dataErrorDetected	bool
-	dataOverflowDetected	bool
+	Bus			*esp.UART_Type
+	Buffer			*RingBuffer
+	ParityErrorDetected	bool	// set when parity error detected
+	DataErrorDetected	bool	// set when data corruption detected
+	DataOverflowDetected	bool	// set when data overflow detected in UART FIFO buffer or RingBuffer
 }
 ```
 
@@ -1137,6 +688,22 @@ func (uart *UART) Receive(data byte)
 
 Receive handles adding data to the UART's data buffer.
 Usually called by the IRQ handler for a machine.
+
+
+### func (*UART) SetBaudRate
+
+```go
+func (uart *UART) SetBaudRate(baudRate uint32)
+```
+
+
+
+### func (*UART) SetFormat
+
+```go
+func (uart *UART) SetFormat(dataBits, stopBits int, parity UARTParity) error
+```
+
 
 
 ### func (*UART) Write
@@ -1190,6 +757,149 @@ type UARTParity uint8
 ```
 
 UARTParity is the parity setting to be used for UART communication.
+
+
+
+
+
+## type USBDevice
+
+```go
+type USBDevice struct {
+	initcomplete		bool
+	InitEndpointComplete	bool
+}
+```
+
+USBDevice provides a stub USB device for the ESP32-C6 and ESP32-H2. The
+hardware only supports a fixed-function CDC-ACM serial port, so the
+programmable USB device features are no-ops.
+
+
+
+### func (*USBDevice) Attach
+
+```go
+func (dev *USBDevice) Attach()
+```
+
+Attach and Detach are no-ops: the USB Serial/JTAG controller has no
+software-controlled soft-connect, it is always attached to the bus.
+
+
+### func (*USBDevice) ClearStallEPIn
+
+```go
+func (dev *USBDevice) ClearStallEPIn(ep uint32)
+```
+
+
+
+### func (*USBDevice) ClearStallEPOut
+
+```go
+func (dev *USBDevice) ClearStallEPOut(ep uint32)
+```
+
+
+
+### func (*USBDevice) Detach
+
+```go
+func (dev *USBDevice) Detach()
+```
+
+
+
+### func (*USBDevice) SetStallEPIn
+
+```go
+func (dev *USBDevice) SetStallEPIn(ep uint32)
+```
+
+
+
+### func (*USBDevice) SetStallEPOut
+
+```go
+func (dev *USBDevice) SetStallEPOut(ep uint32)
+```
+
+
+
+
+
+## type USB_DEVICE
+
+```go
+type USB_DEVICE struct {
+	Bus		*esp.USB_DEVICE_Type
+	Buffer		*RingBuffer
+	txPending	bool	// unflushed data in the EP1 TX FIFO
+	txStalled	bool	// set when flushAndWait fails (no host reading); cleared when FIFO becomes writable
+}
+```
+
+
+
+
+### func (*USB_DEVICE) Buffered
+
+```go
+func (usbdev *USB_DEVICE) Buffered() int
+```
+
+Buffered returns the number of bytes waiting in the receive ring buffer.
+
+
+### func (*USB_DEVICE) Configure
+
+```go
+func (usbdev *USB_DEVICE) Configure(config UARTConfig) error
+```
+
+Configure initialises the USB Serial/JTAG controller clock, pads, and
+interrupt so that received data is buffered automatically.
+
+
+### func (*USB_DEVICE) DTR
+
+```go
+func (usbdev *USB_DEVICE) DTR() bool
+```
+
+
+
+### func (*USB_DEVICE) RTS
+
+```go
+func (usbdev *USB_DEVICE) RTS() bool
+```
+
+
+
+### func (*USB_DEVICE) ReadByte
+
+```go
+func (usbdev *USB_DEVICE) ReadByte() (byte, error)
+```
+
+ReadByte returns a byte from the receive ring buffer.
+
+
+### func (*USB_DEVICE) Write
+
+```go
+func (usbdev *USB_DEVICE) Write(data []byte) (n int, err error)
+```
+
+
+
+### func (*USB_DEVICE) WriteByte
+
+```go
+func (usbdev *USB_DEVICE) WriteByte(c byte) error
+```
 
 
 
