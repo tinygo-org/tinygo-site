@@ -32,15 +32,15 @@ compress/zlib |  <span style="color: green">✔</span> yes  |  <span style="colo
 container/heap |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 container/list |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 container/ring |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
-context |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
-crypto |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#crypto)  | 
+context |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#context)  | 
+crypto |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 crypto/aes |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 crypto/cipher |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#cryptocipher)  | 
 crypto/des |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 crypto/dsa |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 crypto/ecdh |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 crypto/ecdsa |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
-crypto/ed25519 |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
+crypto/ed25519 |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#cryptoed25519)  | 
 crypto/elliptic |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 crypto/fips140 |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 crypto/hkdf |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
@@ -55,19 +55,19 @@ crypto/rand |  <span style="color: green">✔</span> yes  |  <span style="color:
 crypto/rc4 |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 crypto/rsa |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#cryptorsa)  | 
 crypto/sha1 |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
-crypto/sha256 |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
-crypto/sha3 |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
-crypto/sha512 |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
+crypto/sha256 |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#cryptosha256)  | 
+crypto/sha3 |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#cryptosha3)  | 
+crypto/sha512 |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#cryptosha512)  | 
 crypto/subtle |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#cryptosubtle)  | 
 crypto/tls |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 crypto/x509 |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#cryptox509)  | 
 crypto/x509/pkix |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 database/sql |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#databasesql)  | 
 database/sql/driver |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
-debug/buildinfo |  [<span style="color: red">✗</span> no](#debugbuildinfo)  |  <span style="color: gray">✗</span> no  | 
+debug/buildinfo |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 debug/dwarf |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 debug/elf |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
-debug/gosym |  [<span style="color: red">✗</span> no](#debuggosym)  |  <span style="color: gray">✗</span> no  | 
+debug/gosym |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 debug/macho |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 debug/pe |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 debug/plan9obj |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
@@ -77,7 +77,7 @@ encoding/ascii85 |  <span style="color: green">✔</span> yes  |  <span style="c
 encoding/asn1 |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 encoding/base32 |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 encoding/base64 |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
-encoding/binary |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
+encoding/binary |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#encodingbinary)  | 
 encoding/csv |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 encoding/gob |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#encodinggob)  | 
 encoding/hex |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
@@ -93,7 +93,7 @@ fmt |  <span style="color: green">✔</span> yes  |  [<span style="color: red">�
 go/ast |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 go/build |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#gobuild)  | 
 go/build/constraint |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#gobuildconstraint)  | 
-go/constant |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#goconstant)  | 
+go/constant |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 go/doc |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#godoc)  | 
 go/doc/comment |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 go/format |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
@@ -115,15 +115,15 @@ html/template |  <span style="color: green">✔</span> yes  |  [<span style="col
 image |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 image/color |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#imagecolor)  | 
 image/color/palette |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
-image/draw |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
+image/draw |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#imagedraw)  | 
 image/gif |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
-image/jpeg |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#imagejpeg)  | 
+image/jpeg |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 image/png |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 index/suffixarray |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 io |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#io)  | 
 io/fs |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 io/ioutil |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
-iter |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#iter)  | 
+iter |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 log |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#log)  | 
 log/slog |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#logslog)  | 
 log/syslog |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#logsyslog)  | 
@@ -134,7 +134,7 @@ math/bits |  <span style="color: green">✔</span> yes  |  [<span style="color: 
 math/cmplx |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 math/rand |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#mathrand)  | 
 math/rand/v2 |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#mathrandv2)  | 
-mime |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
+mime |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#mime)  | 
 mime/multipart |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 mime/quotedprintable |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 net |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
@@ -151,7 +151,7 @@ net/netip |  <span style="color: green">✔</span> yes  |  [<span style="color: 
 net/rpc |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#netrpc)  | 
 net/rpc/jsonrpc |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#netrpcjsonrpc)  | 
 net/smtp |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#netsmtp)  | 
-net/textproto |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
+net/textproto |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#nettextproto)  | 
 net/url |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 os |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 os/exec |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#osexec)  | 
@@ -160,19 +160,19 @@ os/user |  <span style="color: green">✔</span> yes  |  <span style="color: gre
 path |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 path/filepath |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#pathfilepath)  | 
 plugin |  [<span style="color: red">✗</span> no](#plugin)  |  <span style="color: gray">✗</span> no  | 
-reflect |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
+reflect |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#reflect)  | 
 regexp |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#regexp)  | 
 regexp/syntax |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 slices |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#slices)  | 
-sort |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
-strconv |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
+sort |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#sort)  | 
+strconv |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#strconv)  | 
 strings |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#strings)  | 
 structs |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 sync |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
-sync/atomic |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#syncatomic)  | 
+sync/atomic |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 syscall |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#syscall)  | 
 testing |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
-testing/cryptotest |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#testingcryptotest)  | 
+testing/cryptotest |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 testing/fstest |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 testing/iotest |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 testing/quick |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#testingquick)  | 
@@ -185,11 +185,11 @@ text/template/parse |  <span style="color: green">✔</span> yes  |  <span style
 time |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#time)  | 
 time/tzdata |  [<span style="color: red">✗</span> no](#timetzdata)  |  <span style="color: gray">✗</span> no  | 
 unicode |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
-unicode/utf16 |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
-unicode/utf8 |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
+unicode/utf16 |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#unicodeutf16)  | 
+unicode/utf8 |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#unicodeutf8)  | 
 unique |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 unsafe |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
-uuid |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#uuid)  | 
+uuid |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 weak |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#weak)  | 
 
 
@@ -222,11 +222,12 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    GC Warning: Failed to expand heap by 9007199254741120 KiB
-    GC Warning: Failed to expand heap by 9007199254740992 KiB
-    GC Warning: Out of Memory! Heap size: 35 MiB. Returning NULL!
-    fatal error: gc: out of memory
-    FAIL	bytes	4.883s
+    --- FAIL: TestNewBufferShallow (0.00s)
+        allocations occurred while shallow copying
+    --- FAIL: TestReplace (0.00s)
+        Replace("☺☻☹", "", "<>", -1) allocates 2.00 objects
+    FAIL
+    FAIL	bytes	15.437s
 
 
 
@@ -251,19 +252,19 @@ The compiler gave the following error when running the tests for this package:
 
 
 
-
-
-## crypto
+## context
 
 
 
 The compiler gave the following error when running the tests for this package:
 
 
-    --- FAIL: TestDisallowedAssemblyInstructions (0.00s)
-        lstat /usr/local/go/src/crypto: file does not exist
+    --- FAIL: TestAllocs (0.00s)
+        WithTimeout(bg, 5*time.Millisecond) allocs = 9.000000 want 8
     FAIL
-    FAIL	crypto	0.019s
+    FAIL	context	0.029s
+
+
 
 
 
@@ -280,7 +281,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).Method()
-    FAIL	crypto/cipher	0.027s
+    FAIL	crypto/cipher	0.014s
 
 
 
@@ -291,6 +292,21 @@ The compiler gave the following error when running the tests for this package:
 
 
 
+
+
+
+
+## crypto/ed25519
+
+
+
+The compiler gave the following error when running the tests for this package:
+
+
+    --- FAIL: TestAllocations (0.02s)
+        expected zero allocations, got 46.0
+    FAIL
+    FAIL	crypto/ed25519	0.063s
 
 
 
@@ -341,7 +357,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).NumOut()
-    FAIL	crypto/rsa	0.011s
+    FAIL	crypto/rsa	0.009s
 
 
 
@@ -350,6 +366,60 @@ The compiler gave the following error when running the tests for this package:
 
 
 
+## crypto/sha256
+
+
+
+The compiler gave the following error when running the tests for this package:
+
+
+    --- FAIL: TestAllocations (0.00s)
+        allocs = 12, want 0
+    --- FAIL: TestAllocatonsWithTypeAsserts (0.00s)
+        allocs = 6; want = 0
+    FAIL
+    FAIL	crypto/sha256	0.061s
+
+
+
+
+
+
+## crypto/sha3
+
+
+
+The compiler gave the following error when running the tests for this package:
+
+
+    --- FAIL: TestAllocations (0.00s)
+        --- FAIL: TestAllocations/New (0.00s)
+            expected zero allocations, got 5.0
+        --- FAIL: TestAllocations/NewSHAKE (0.00s)
+            expected zero allocations, got 3.0
+        --- FAIL: TestAllocations/Sum (0.00s)
+            expected zero allocations, got 4.0
+        --- FAIL: TestAllocations/SumSHAKE (0.00s)
+            expected zero allocations, got 3.0
+    FAIL
+    FAIL	crypto/sha3	9.214s
+
+
+
+
+
+
+## crypto/sha512
+
+
+
+The compiler gave the following error when running the tests for this package:
+
+
+    --- FAIL: TestAllocations (0.00s)
+        allocs = 14, want 0
+    FAIL
+    FAIL	crypto/sha512	0.067s
 
 
 
@@ -380,9 +450,7 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    FAIL	crypto/x509	0.000s
-    # crypto/x509
-    /home/ron/.gvm/go/src/crypto/x509/verify_test.go:1549:31: undefined: rand.Text
+    [...no test output...]
 
 
 
@@ -398,54 +466,11 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    FAIL	database/sql	0.000s
-    # database/sql
-    /home/ron/.gvm/go/src/database/sql/sql_test.go:5264:4: b.SetParallelism undefined (type *testing.B has no field or method SetParallelism)
-
-
-
-
-
-
-
-
-## debug/buildinfo
-
-
-
-The compiler gave the following error when this package was imported:
-
-
-    # debug/buildinfo
-    /home/ron/.gvm/go/src/debug/buildinfo/buildinfo.go:93:19: undefined: debug.ParseBuildInfo
-
-
-
-
-
-
-
-
-
-
-## debug/gosym
-
-
-
-The compiler gave the following error when this package was imported:
-
-
-    # debug/gosym
-    /home/ron/.gvm/go/src/debug/gosym/pclntab.go:221:17: undefined: abi.PCLnTabMagic
-    /home/ron/.gvm/go/src/debug/gosym/pclntab.go:222:17: undefined: abi.PCLnTabMagic
-    /home/ron/.gvm/go/src/debug/gosym/pclntab.go:225:22: undefined: abi.Go12PCLnTabMagic
-    /home/ron/.gvm/go/src/debug/gosym/pclntab.go:227:22: undefined: abi.Go12PCLnTabMagic
-    /home/ron/.gvm/go/src/debug/gosym/pclntab.go:229:22: undefined: abi.Go116PCLnTabMagic
-    /home/ron/.gvm/go/src/debug/gosym/pclntab.go:231:22: undefined: abi.Go116PCLnTabMagic
-    /home/ron/.gvm/go/src/debug/gosym/pclntab.go:233:22: undefined: abi.Go118PCLnTabMagic
-    /home/ron/.gvm/go/src/debug/gosym/pclntab.go:235:22: undefined: abi.Go118PCLnTabMagic
-    /home/ron/.gvm/go/src/debug/gosym/pclntab.go:237:22: undefined: abi.Go120PCLnTabMagic
-    /home/ron/.gvm/go/src/debug/gosym/pclntab.go:239:22: undefined: abi.Go120PCLnTabMagic
+    --- FAIL: TestGrabConnAllocs (0.00s)
+    --- FAIL: TestGrabConnAllocs (0.00s)
+        Conn.grabConn allocated 1 objects; want 0
+    FAIL
+    FAIL	database/sql	0.342s
 
 
 
@@ -466,6 +491,43 @@ The compiler gave the following error when this package was imported:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## encoding/binary
+
+
+
+The compiler gave the following error when running the tests for this package:
+
+
+    --- FAIL: TestAppendAllocs (0.00s)
+        Append allocated 2 times instead of not allocating at all
+    --- FAIL: TestSizeAllocs (0.00s)
+        --- FAIL: TestSizeAllocs/binary.Struct (0.00s)
+            Expected no allocations, got 1
+        --- FAIL: TestSizeAllocs/*binary.Struct (0.00s)
+            Expected no allocations, got 1
+        --- FAIL: TestSizeAllocs/[]binary.Struct (0.00s)
+            Expected no allocations, got 1
+        --- FAIL: TestSizeAllocs/[]binary.Struct#01 (0.00s)
+            Expected no allocations, got 1
+        --- FAIL: TestSizeAllocs/[1]binary.Struct (0.00s)
+            Expected no allocations, got 1
+    FAIL
+    FAIL	encoding/binary	0.019s
+    [...more lines following...]
 
 
 
@@ -481,8 +543,8 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when running the tests for this package:
 
 
-    panic: nil pointer dereference
-    FAIL	encoding/gob	0.005s
+    panic: unimplemented: reflect.ArrayOf()
+    FAIL	encoding/gob	2.610s
 
 
 
@@ -498,9 +560,8 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    FAIL	encoding/json	0.000s
-    /home/ron/.gvm/go/src/testing/synctest/synctest.go:291: linker could not find symbol internal/synctest.Run
-    /home/ron/.gvm/go/src/testing/synctest/synctest.go:292: linker could not find symbol testing/synctest.testingSynctestTest
+    panic: unimplemented: reflect.SliceOf()
+    FAIL	encoding/json	0.014s
 
 
 
@@ -514,7 +575,7 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    FAIL	encoding/json/jsontext	0.066s
+    FAIL	encoding/json/jsontext	0.012s
 
 
 
@@ -558,7 +619,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).NumOut()
-    FAIL	encoding/pem	0.934s
+    FAIL	encoding/pem	0.465s
 
 
 
@@ -608,7 +669,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Value).Method()
-    FAIL	fmt	0.001s
+    FAIL	fmt	0.002s
 
 
 
@@ -629,9 +690,9 @@ The compiler gave the following error when running the tests for this package:
     --- FAIL: TestLocalDirectory (0.00s)
         import ".": unknown compiler "tinygo"
     --- FAIL: TestImportCmd (0.00s)
-        go/build: go list cmd/internal/objfile: files setting not implemented
-            
-            
+        import "cmd/internal/objfile": unknown compiler "tinygo"
+    --- FAIL: TestImportVendor (0.00s)
+        cannot find vendored c/d from testdata src/a/b directory: import "c/d": unknown compiler "tinygo"
     --- FAIL: TestIssue23594 (0.00s)
         could not import testdata: import ".": unknown compiler "tinygo"
     --- FAIL: TestCgoImportsIgnored (0.00s)
@@ -653,24 +714,9 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    FAIL	go/build/constraint	0.011s
+    FAIL	go/build/constraint	0.008s
 
 
-
-
-
-
-## go/constant
-
-
-
-The compiler gave the following error when running the tests for this package:
-
-
-    --- FAIL: TestOps (0.00s)
-        0 % 0 = "runtime_error:_integer_divide_by_zero": got "divide by zero"; want "runtime error: integer divide by zero"
-    FAIL
-    FAIL	go/constant	0.005s
 
 
 
@@ -714,7 +760,7 @@ This package cannot be imported because the following dependencies cannot be com
 The compiler gave the following error when running the tests for this package:
 
 
-    FAIL	go/parser	0.038s
+    FAIL	go/parser	0.033s
 
 
 
@@ -728,7 +774,7 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    FAIL	go/printer	0.039s
+    FAIL	go/printer	0.034s
 
 
 
@@ -827,19 +873,19 @@ The compiler gave the following error when running the tests for this package:
 
 
 
-
-
-
-
-## image/jpeg
+## image/draw
 
 
 
 The compiler gave the following error when running the tests for this package:
 
 
-    FAIL	image/jpeg	0.000s
-    /home/ron/.gvm/go/src/image/jpeg/reader_test.go:253: linker could not find symbol runtime/debug.SetTraceback
+    panic: unimplemented: (reflect.Type).NumIn()
+    FAIL	image/draw	0.039s
+
+
+
+
 
 
 
@@ -857,8 +903,6 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    --- FAIL: TestMultiWriter_WriteStringSingleAlloc (0.00s)
-        num allocations = 0; want 1
     --- FAIL: TestMultiWriterSingleChainFlatten (0.00s)
         multiWriter did not flatten chained multiWriters: expected writeDepth 12, got 4
     --- FAIL: TestMultiReaderFlatten (0.00s)
@@ -873,33 +917,6 @@ The compiler gave the following error when running the tests for this package:
 
 
 
-
-
-
-
-## iter
-
-
-
-The compiler gave the following error when running the tests for this package:
-
-
-    --- FAIL: TestPull (0.00s)
-        --- FAIL: TestPull/0 (0.00s)
-            have 0 extra goroutines, want 1
-            have 0 extra goroutines, want 1
-        --- FAIL: TestPull/1 (0.00s)
-            have 0 extra goroutines, want 1
-            have 0 extra goroutines, want 1
-            have 0 extra goroutines, want 1
-        --- FAIL: TestPull/2 (0.00s)
-            have 0 extra goroutines, want 1
-            have 0 extra goroutines, want 1
-            have 0 extra goroutines, want 1
-            have 0 extra goroutines, want 1
-        --- FAIL: TestPull/3 (0.00s)
-            have 0 extra goroutines, want 1
-    [...more lines following...]
 
 
 
@@ -920,14 +937,14 @@ The compiler gave the following error when running the tests for this package:
         log output should match "^[A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "???:0: hello 23 world"
         log output should match "^[A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "???:0: hello 23 world"
         log output should match "^[A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "???:0: hello 23 world"
-        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "XXX2026/09/01 10:29:09.833603 ???:0: hello 23 world"
-        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "XXX2026/09/01 10:29:09.833816 ???:0: hello 23 world"
-        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "XXX2026/09/01 10:29:09.833881 ???:0: hello 23 world"
-        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "XXX2026/09/01 10:29:09.833938 ???:0: hello 23 world"
-        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(67|69): XXXhello 23 world$" is "2026/09/01 10:29:09.834000 ???:0: XXXhello 23 world"
-        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(67|69): XXXhello 23 world$" is "2026/09/01 10:29:09.834661 ???:0: XXXhello 23 world"
-        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(67|69): XXXhello 23 world$" is "2026/09/01 10:29:09.834699 ???:0: XXXhello 23 world"
-        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(67|69): XXXhello 23 world$" is "2026/09/01 10:29:09.834734 ???:0: XXXhello 23 world"
+        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "XXX2026/10/10 00:02:17.700244 ???:0: hello 23 world"
+        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "XXX2026/10/10 00:02:17.700355 ???:0: hello 23 world"
+        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "XXX2026/10/10 00:02:17.700399 ???:0: hello 23 world"
+        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "XXX2026/10/10 00:02:17.700437 ???:0: hello 23 world"
+        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(67|69): XXXhello 23 world$" is "2026/10/10 00:02:17.700478 ???:0: XXXhello 23 world"
+        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(67|69): XXXhello 23 world$" is "2026/10/10 00:02:17.700512 ???:0: XXXhello 23 world"
+        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(67|69): XXXhello 23 world$" is "2026/10/10 00:02:17.700627 ???:0: XXXhello 23 world"
+        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(67|69): XXXhello 23 world$" is "2026/10/10 00:02:17.700665 ???:0: XXXhello 23 world"
     [...more lines following...]
 
 
@@ -978,7 +995,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).NumOut()
-    FAIL	math/big	3.922s
+    FAIL	math/big	4.936s
 
 
 
@@ -1000,12 +1017,10 @@ The compiler gave the following error when running the tests for this package:
         Div64 should have panicked when y<=hi
     --- FAIL: TestDivPanicZero (0.00s)
         Div should have panicked when y==0
-    --- FAIL: TestDiv32PanicZero (0.00s)
-        Div32 expected panic: "runtime error: integer divide by zero", got: "divide by zero" 
     --- FAIL: TestDiv64PanicZero (0.00s)
         Div64 should have panicked when y==0
     FAIL
-    FAIL	math/bits	0.003s
+    FAIL	math/bits	0.004s
 
 
 
@@ -1022,21 +1037,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).Method()
-    --- FAIL: TestDefaultRace (0.00s)
-        --- FAIL: TestDefaultRace/0 (0.00s)
-            files setting not implemented
-        --- FAIL: TestDefaultRace/1 (0.00s)
-            files setting not implemented
-        --- FAIL: TestDefaultRace/2 (0.00s)
-            files setting not implemented
-        --- FAIL: TestDefaultRace/3 (0.00s)
-            files setting not implemented
-        --- FAIL: TestDefaultRace/4 (0.00s)
-            files setting not implemented
-        --- FAIL: TestDefaultRace/5 (0.00s)
-            files setting not implemented
-    FAIL	math/rand	2.280s
-    [...more lines following...]
+    FAIL	math/rand	2.653s
 
 
 
@@ -1050,9 +1051,25 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    [...no test output...]
+    panic: unimplemented: (reflect.Type).Method()
+    FAIL	math/rand/v2	3.154s
 
 
+
+
+
+
+## mime
+
+
+
+The compiler gave the following error when running the tests for this package:
+
+
+    --- FAIL: TestLookupMallocs (0.01s)
+        allocs = 8; want 0
+    FAIL
+    FAIL	mime	0.014s
 
 
 
@@ -1074,7 +1091,7 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when this package was imported:
 
 
-    ../../../../../tmp/tinygo-test-159087105/main.go:2:8: package net/http/cgi is not in std (/home/ron/.cache/tinygo/goroot-6e1e5c96d60878ab9fd0c20fbb926c829d01a7953b6da77ca58cb6777f8e4e68/src/net/http/cgi)
+    ../../../../../tmp/tinygo-test-2311794891/main.go:2:8: package net/http/cgi is not in std (/home/ron/.cache/tinygo/goroot-7008f93e066cbb20d8039de3101dac378bc56bd4ed0ecafa578a369b60b78723/src/net/http/cgi)
 
 
 
@@ -1088,7 +1105,7 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when this package was imported:
 
 
-    ../../../../../tmp/tinygo-test-3685785041/main.go:2:8: package net/http/cookiejar is not in std (/home/ron/.cache/tinygo/goroot-6e1e5c96d60878ab9fd0c20fbb926c829d01a7953b6da77ca58cb6777f8e4e68/src/net/http/cookiejar)
+    ../../../../../tmp/tinygo-test-375347846/main.go:2:8: package net/http/cookiejar is not in std (/home/ron/.cache/tinygo/goroot-7008f93e066cbb20d8039de3101dac378bc56bd4ed0ecafa578a369b60b78723/src/net/http/cookiejar)
 
 
 
@@ -1136,19 +1153,22 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when running the tests for this package:
 
 
-    --- FAIL: TestAddrStringAllocs (0.01s)
+    --- FAIL: TestNoAllocs (0.01s)
+        --- FAIL: TestNoAllocs/Addr.IsGlobalUnicast (0.00s)
+            allocs = 1; want 0
+        --- FAIL: TestNoAllocs/Addr.IsInterfaceLocalMulticast (0.00s)
+            allocs = 1; want 0
+        --- FAIL: TestNoAllocs/Addr.IsLinkLocalMulticast (0.00s)
+            allocs = 1; want 0
+        --- FAIL: TestNoAllocs/Addr.IsLinkLocalUnicast (0.00s)
+            allocs = 1; want 0
+        --- FAIL: TestNoAllocs/Addr.IsPrivate (0.00s)
+            allocs = 1; want 0
+    --- FAIL: TestAddrStringAllocs (0.00s)
         --- FAIL: TestAddrStringAllocs/ipv4 (0.00s)
-            allocs=0, want 1
+            allocs=2, want 1
         --- FAIL: TestAddrStringAllocs/ipv6 (0.00s)
-            allocs=0, want 1
-        --- FAIL: TestAddrStringAllocs/ipv6+zone (0.00s)
-            allocs=0, want 1
-        --- FAIL: TestAddrStringAllocs/ipv4-in-ipv6 (0.00s)
-            allocs=0, want 1
-        --- FAIL: TestAddrStringAllocs/ipv4-in-ipv6+zone (0.00s)
-            allocs=0, want 1
-    FAIL
-    FAIL	net/netip	0.041s
+    [...more lines following...]
 
 
 
@@ -1163,7 +1183,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: type assert failed
-    FAIL	net/rpc	0.002s
+    FAIL	net/rpc	0.003s
 
 
 
@@ -1205,6 +1225,21 @@ The compiler gave the following error when running the tests for this package:
 
 
 
+## net/textproto
+
+
+
+The compiler gave the following error when running the tests for this package:
+
+
+    --- FAIL: TestCommonHeaders (0.00s)
+        canonicalMIMEHeaderKey allocs = 1; want 0
+    FAIL
+    FAIL	net/textproto	0.010s
+
+
+
+
 
 
 
@@ -1220,7 +1255,7 @@ The compiler gave the following error when running the tests for this package:
 
     FAIL		0.000s
     package os/exec_test
-    	imports internal/poll: build constraints exclude all Go files in /home/ron/.cache/tinygo/goroot-6e1e5c96d60878ab9fd0c20fbb926c829d01a7953b6da77ca58cb6777f8e4e68/src/internal/poll
+    	imports internal/poll: build constraints exclude all Go files in /home/ron/.cache/tinygo/goroot-7008f93e066cbb20d8039de3101dac378bc56bd4ed0ecafa578a369b60b78723/src/internal/poll
 
 
 
@@ -1276,6 +1311,33 @@ The compiler gave the following error when this package was imported:
 
 
 
+## reflect
+
+
+
+The compiler gave the following error when running the tests for this package:
+
+
+    --- FAIL: TestMapIterSet (0.00s)
+        wanted 0 alloc, got 44
+    --- FAIL: TestDeepEqualAllocs (0.01s)
+        --- FAIL: TestDeepEqualAllocs/int8 (0.00s)
+            DeepEqual(99, 99) allocated 2 times
+        --- FAIL: TestDeepEqualAllocs/[]int8 (0.00s)
+            DeepEqual([99], [99]) allocated 2 times
+        --- FAIL: TestDeepEqualAllocs/int16 (0.00s)
+            DeepEqual(99, 99) allocated 2 times
+        --- FAIL: TestDeepEqualAllocs/[]int16 (0.00s)
+            DeepEqual([99], [99]) allocated 2 times
+        --- FAIL: TestDeepEqualAllocs/int32 (0.00s)
+            DeepEqual(99, 99) allocated 2 times
+        --- FAIL: TestDeepEqualAllocs/[]int32 (0.00s)
+            DeepEqual([99], [99]) allocated 2 times
+    [...more lines following...]
+
+
+
+
 
 
 ## regexp
@@ -1285,7 +1347,7 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when running the tests for this package:
 
 
-    FAIL	regexp	1.109s
+    FAIL	regexp	0.438s
 
 
 
@@ -1301,11 +1363,62 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    [...no test output...]
+    --- FAIL: TestInsert (0.00s)
+        too many allocations inserting 50 elements: got 59, want less than 25
+    --- FAIL: TestGrow (0.00s)
+        Grow should allocate once when given insufficient capacity; allocated 2 times
+    --- FAIL: TestConcat (0.00s)
+        Concat([[1]]) allocated 2 times; want 1
+        Concat([[1] [2]]) allocated 2 times; want 1
+        Concat([[1] [] [2]]) allocated 2 times; want 1
+    FAIL
+    FAIL	slices	0.398s
 
 
 
 
+
+
+## sort
+
+
+
+The compiler gave the following error when running the tests for this package:
+
+
+    --- FAIL: TestSearchWrappersDontAlloc (0.00s)
+        expected no allocs for runSearchWrappers, got 18
+    FAIL
+    FAIL	sort	0.752s
+
+
+
+
+
+
+## strconv
+
+
+
+The compiler gave the following error when running the tests for this package:
+
+
+    --- FAIL: TestCountMallocs (2.62s)
+        AppendInt(localBuf[:0], 123, 10): 1 allocs, want <=0
+        AppendFloat(localBuf[:0], 1.23, 'g', 5, 64): 1 allocs, want <=0
+    --- FAIL: TestAllocationsFromBytes (0.00s)
+        --- FAIL: TestAllocationsFromBytes/Atoi (0.00s)
+            got 1 allocs, want 0 allocs
+        --- FAIL: TestAllocationsFromBytes/ParseBool (0.00s)
+            got 1 allocs, want 0 allocs
+        --- FAIL: TestAllocationsFromBytes/ParseInt (0.00s)
+            got 1 allocs, want 0 allocs
+        --- FAIL: TestAllocationsFromBytes/ParseUint (0.00s)
+            got 1 allocs, want 0 allocs
+        --- FAIL: TestAllocationsFromBytes/ParseFloat (0.00s)
+            got 1 allocs, want 0 allocs
+        --- FAIL: TestAllocationsFromBytes/ParseComplex (0.00s)
+    [...more lines following...]
 
 
 
@@ -1319,29 +1432,28 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    GC Warning: Failed to expand heap by 9007199254741120 KiB
-    GC Warning: Failed to expand heap by 9007199254740992 KiB
-    GC Warning: Out of Memory! Heap size: 15 MiB. Returning NULL!
-    fatal error: gc: out of memory
-    FAIL	strings	7.942s
+    --- FAIL: TestBuilderGrow (0.01s)
+        growLen=0: got 1 allocs during Write; want 0
+        growLen=100: got 3 allocs during Write; want 1
+        growLen=1000: got 3 allocs during Write; want 1
+        growLen=10000: got 3 allocs during Write; want 1
+        growLen=100000: got 3 allocs during Write; want 1
+    --- FAIL: TestBuilderAllocs (0.00s)
+        Builder allocs = 2; want 1
+    --- FAIL: TestBuilderGrowSizeclasses (0.00s)
+        unexpected amount of allocations: 3, want: 1
+    --- FAIL: TestIndexRune (0.00s)
+        expected no allocations, got 1.000000
+    --- FAIL: TestReplace (0.00s)
+        Replace("hello", "l", "L", -1) allocates 2.00 objects
+        Replace("radar", "r", "<r>", -1) allocates 2.00 objects
+    [...more lines following...]
 
 
 
 
 
 
-
-
-
-
-## sync/atomic
-
-
-
-The compiler gave the following error when running the tests for this package:
-
-
-    [...no test output...]
 
 
 
@@ -1366,19 +1478,6 @@ The compiler gave the following error when running the tests for this package:
 
 
 
-
-
-
-
-## testing/cryptotest
-
-
-
-The compiler gave the following error when running the tests for this package:
-
-
-    FAIL	testing/cryptotest	0.000s
-    /home/ron/.gvm/go/src/testing/cryptotest/rand.go:52: linker could not find symbol testing.checkParallel
 
 
 
@@ -1426,12 +1525,8 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    FAIL	testing/synctest	0.000s
-    /home/ron/.gvm/go/src/testing/synctest/synctest.go:291: linker could not find symbol internal/synctest.Run
-    /home/ron/.gvm/go/src/testing/synctest/synctest.go:292: linker could not find symbol testing/synctest.testingSynctestTest
-    /home/ron/.gvm/go/src/testing/synctest/synctest.go:311: linker could not find symbol internal/synctest.Wait
-    /home/ron/.gvm/go/src/testing/synctest/synctest.go:311: linker could not find symbol internal/synctest.Wait
-    /home/ron/.gvm/go/src/testing/synctest/synctest.go:311: linker could not find symbol internal/synctest.Wait
+    panic: deadlock: all goroutines in bubble are blocked
+    FAIL	testing/synctest	0.202s
 
 
 
@@ -1467,7 +1562,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).NumOut()
-    FAIL	time	0.009s
+    FAIL	time	0.036s
 
 
 
@@ -1481,7 +1576,7 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when this package was imported:
 
 
-    /home/ron/Development/tinygo/tinygo-122/src/runtime/scheduler_threads.go:27: linker could not find symbol time.registerLoadFromEmbeddedTZData
+    /home/ron/Development/tinygo/tinygo-122/src/runtime/runtime.go:24: linker could not find symbol time.registerLoadFromEmbeddedTZData
 
 
 
@@ -1490,24 +1585,43 @@ The compiler gave the following error when this package was imported:
 
 
 
-
-
-
-
-
-
-
-
-## uuid
+## unicode/utf16
 
 
 
 The compiler gave the following error when running the tests for this package:
 
 
-    FAIL	uuid	0.000s
-    /home/ron/.gvm/go/src/testing/synctest/synctest.go:291: linker could not find symbol internal/synctest.Run
-    /home/ron/.gvm/go/src/testing/synctest/synctest.go:292: linker could not find symbol testing/synctest.testingSynctestTest
+    --- FAIL: TestAllocationsDecode (0.00s)
+        Decode allocated 1 times
+        Decode allocated 1 times
+        Decode allocated 1 times
+        Decode allocated 1 times
+    FAIL
+    FAIL	unicode/utf16	0.002s
+
+
+
+
+
+
+## unicode/utf8
+
+
+
+The compiler gave the following error when running the tests for this package:
+
+
+    --- FAIL: TestRuneCountNonASCIIAllocation (0.00s)
+        unexpected RuneCount allocation, got 1, want 0
+    FAIL
+    FAIL	unicode/utf8	0.004s
+
+
+
+
+
+
 
 
 
@@ -1521,9 +1635,7 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    FAIL	weak	0.000s
-    /home/ron/.gvm/go/src/weak/pointer.go: linker could not find symbol weak.runtime_makeStrongFromWeak
-    /home/ron/.gvm/go/src/weak/pointer.go: linker could not find symbol weak.runtime_makeStrongFromWeak
+    [...no test output...]
 
 
 
