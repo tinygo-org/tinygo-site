@@ -14,7 +14,7 @@ The esp32-coreboard-v2 is a development board based on the [Espressif ESP32](htt
 | SPI       | YES | YES |
 | I2C       | YES | YES |
 | ADC       | YES | YES |
-| PWM       | YES | Not yet |
+| PWM       | YES | YES |
 | USBDevice | NO  | NO  |
 | WiFi      | YES | Not Yet |
 | Bluetooth | YES | Not yet |

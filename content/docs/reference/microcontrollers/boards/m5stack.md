@@ -14,7 +14,7 @@ The [m5stack](https://docs.m5stack.com/en/core/basic) is a development board bas
 | SPI       | YES | YES |
 | I2C       | YES | YES |
 | ADC       | YES | YES |
-| PWM       | YES | Not yet |
+| PWM       | YES | YES |
 | USBDevice | NO  | NO  |
 | WiFi      | YES | Not Yet |
 | Bluetooth | YES | Not yet |

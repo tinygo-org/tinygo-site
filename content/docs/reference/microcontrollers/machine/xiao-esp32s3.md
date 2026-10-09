@@ -127,6 +127,48 @@ const (
 
 
 ```go
+const (
+	I2SModeSource	I2SMode	= iota
+	I2SModeReceiver
+	I2SModePDM
+	I2SModeSourceReceiver
+)
+```
+
+
+
+```go
+const (
+	I2StandardPhilips	I2SStandard	= iota
+	I2SStandardMSB
+	I2SStandardLSB
+)
+```
+
+
+
+```go
+const (
+	I2SClockSourceInternal	I2SClockSource	= iota
+	I2SClockSourceExternal
+)
+```
+
+
+
+```go
+const (
+	I2SDataFormatDefault	I2SDataFormat	= 0
+	I2SDataFormat8bit			= 8
+	I2SDataFormat16bit			= 16
+	I2SDataFormat24bit			= 24
+	I2SDataFormat32bit			= 32
+)
+```
+
+
+
+```go
 const Device = deviceName
 ```
 
@@ -363,6 +405,14 @@ const (
 
 ```go
 var (
+	ErrInvalidSampleFrequency = errors.New("i2s: invalid sample frequency")
+)
+```
+
+
+
+```go
+var (
 	ErrTimeoutRNG		= errors.New("machine: RNG Timeout")
 	ErrClockRNG		= errors.New("machine: RNG Clock Error")
 	ErrSeedRNG		= errors.New("machine: RNG Seed Error")
@@ -438,6 +488,12 @@ var (
 	SPI0	= &SPI{Bus: esp.SPI2, busID: 2}	// Primary SPI (FSPI)
 	SPI1	= &SPI{Bus: esp.SPI3, busID: 3}	// Secondary SPI (HSPI)
 )
+```
+
+
+
+```go
+var I2S0 = I2S{Bus: esp.I2S0}
 ```
 
 
@@ -765,6 +821,177 @@ I2CTargetEvent reflects events on the I2C bus
 
 
 
+## type I2S
+
+```go
+type I2S struct {
+	Bus	*esp.I2S_Type
+
+	config		I2SConfig
+	configured	bool
+	running		bool
+
+	tx	i2sRing
+	rx	i2sRing
+	silence	[]uint32
+	scratch	[]uint32
+	writing	volatile.Register8
+
+	txDesc	[i2sDescCount]i2sDescriptor
+	rxDesc	[i2sDescCount]i2sDescriptor
+	txData	[i2sDescCount]bool
+	rxData	[i2sDescCount]bool
+	txNext	int
+	rxNext	int
+}
+```
+
+I2S on the ESP32-C3, ESP32-C6 and ESP32-S3 (I2S0 only).
+
+Samples are copied into a ring of RAM buffers that GDMA channel 0 plays or
+fills in the background, so audio keeps running between calls.
+
+
+
+### func (*I2S) Configure
+
+```go
+func (i2s *I2S) Configure(config I2SConfig) error
+```
+
+Configure sets up the I2S peripheral and starts it.
+
+
+### func (*I2S) Enable
+
+```go
+func (i2s *I2S) Enable(enabled bool)
+```
+
+Enable starts or stops the I2S peripheral. Queued samples are dropped.
+
+
+### func (*I2S) ReadMono
+
+```go
+func (i2s *I2S) ReadMono(b []uint16) (int, error)
+```
+
+ReadMono reads the left channel. Only 16-bit samples are supported.
+
+
+### func (*I2S) ReadStereo
+
+```go
+func (i2s *I2S) ReadStereo(b []uint32) (int, error)
+```
+
+ReadStereo reads frames in the same layout WriteStereo uses.
+
+
+### func (*I2S) SetSampleFrequency
+
+```go
+func (i2s *I2S) SetSampleFrequency(freq uint32) error
+```
+
+SetSampleFrequency sets the sample rate.
+
+
+### func (*I2S) WriteMono
+
+```go
+func (i2s *I2S) WriteMono(b []uint16) (int, error)
+```
+
+WriteMono plays each sample on both channels. It returns once all samples
+are queued. Only 16-bit samples are supported.
+
+
+### func (*I2S) WriteStereo
+
+```go
+func (i2s *I2S) WriteStereo(b []uint32) (int, error)
+```
+
+WriteStereo queues stereo frames. At 16-bit each value is one frame with
+left in the low half. At 32-bit each value is one sample, left then right.
+
+
+
+
+## type I2SClockSource
+
+```go
+type I2SClockSource uint8
+```
+
+
+
+
+
+
+## type I2SConfig
+
+```go
+type I2SConfig struct {
+	// clock
+	SCK	Pin
+	// word select
+	WS	Pin
+	// data out
+	SDO	Pin
+	// data in
+	SDI		Pin
+	Mode		I2SMode
+	Standard	I2SStandard
+	ClockSource	I2SClockSource
+	DataFormat	I2SDataFormat
+	AudioFrequency	uint32
+	MainClockOutput	bool
+	Stereo		bool
+}
+```
+
+All fields are optional and may not be required or used on a particular platform.
+
+
+
+
+
+## type I2SDataFormat
+
+```go
+type I2SDataFormat uint8
+```
+
+
+
+
+
+
+## type I2SMode
+
+```go
+type I2SMode uint8
+```
+
+
+
+
+
+
+## type I2SStandard
+
+```go
+type I2SStandard uint8
+```
+
+
+
+
+
+
 ## type LEDCPWM
 
 ```go
@@ -774,7 +1001,6 @@ type LEDCPWM struct {
 	timerNum	uint8	// 0–3: which LEDC timer (frequency) this PWM uses
 	dutyRes		uint8
 	configured	bool
-	channelPin	[8]Pin
 }
 ```
 
@@ -811,6 +1037,14 @@ func (pwm *LEDCPWM) Set(channel uint8, value uint32)
 func (pwm *LEDCPWM) SetInverting(channel uint8, inverting bool)
 ```
 
+SetInverting inverts the output of a channel.
+
+LEDC has no invert bit. IDLE_LV only sets the pin level when SIG_OUT_EN is 0,
+so it cannot invert a running signal. The GPIO matrix does it instead, with
+INV_SEL in the FUNCn_OUT_SEL_CFG register of the pin.
+
+Call this after Channel. Pin.configure writes the whole register, so it
+clears INV_SEL.
 
 
 ### func (*LEDCPWM) Top

@@ -15,7 +15,7 @@ The [PJRC Teensy 4.0](https://www.pjrc.com/store/teensy40.html) is a small ARM d
 | I2C       | YES | YES |
 | ADC       | YES | YES |
 | PWM       | YES | Not yet |
-| USBDevice | YES | Not yet |
+| USBDevice | YES | YES |
 
 ## Pins
 

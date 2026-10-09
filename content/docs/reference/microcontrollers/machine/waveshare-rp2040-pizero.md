@@ -1,47 +1,61 @@
 
 ---
-title: nano-33-ble
+title: waveshare-rp2040-pizero
 ---
 
 
 ## Constants
 
 ```go
-const HasLowFrequencyCrystal = true
-```
-
-
-
-```go
 const (
-	D2	Pin	= P1_11
-	D3	Pin	= P1_12
-	D4	Pin	= P1_15
-	D5	Pin	= P1_13
-	D6	Pin	= P1_14
-	D7	Pin	= P0_23
-	D8	Pin	= P0_21
-	D9	Pin	= P0_27
-	D10	Pin	= P1_02
-	D11	Pin	= P1_01
-	D12	Pin	= P1_08
-	D13	Pin	= P0_13
+	GP0	Pin	= GPIO0
+	GP1	Pin	= GPIO1
+	GP2	Pin	= GPIO2
+	GP3	Pin	= GPIO3
+	GP4	Pin	= GPIO4
+	GP5	Pin	= GPIO5
+	GP6	Pin	= GPIO6
+	GP7	Pin	= GPIO7
+	GP8	Pin	= GPIO8
+	GP9	Pin	= GPIO9
+	GP10	Pin	= GPIO10
+	GP11	Pin	= GPIO11
+	GP12	Pin	= GPIO12
+	GP13	Pin	= GPIO13
+	GP14	Pin	= GPIO14
+	GP15	Pin	= GPIO15
+	GP16	Pin	= GPIO16
+	GP17	Pin	= GPIO17
+	GP18	Pin	= GPIO18
+	GP19	Pin	= GPIO19
+	GP20	Pin	= GPIO20
+	GP21	Pin	= GPIO21
+	GP22	Pin	= GPIO22
+	GP23	Pin	= GPIO23
+	GP24	Pin	= GPIO24
+	GP25	Pin	= GPIO25
+	GP26	Pin	= GPIO26
+	GP27	Pin	= GPIO27
+	GP28	Pin	= GPIO28
+	GP29	Pin	= GPIO29
+
+	// The Pico SDK board header defines no default LED pin.
+	LED	Pin	= NoPin
+
+	// Onboard crystal oscillator frequency, in MHz.
+	xoscFreq	= 12	// MHz
 )
 ```
 
-Digital Pins
+GPIO pins
 
 
 ```go
 const (
-	A0	Pin	= P0_04
-	A1	Pin	= P0_05
-	A2	Pin	= P0_30
-	A3	Pin	= P0_29
-	A4	Pin	= P0_31
-	A5	Pin	= P0_02
-	A6	Pin	= P0_28
-	A7	Pin	= P0_03
+	A0	Pin	= GP26
+	A1	Pin	= GP27
+	A2	Pin	= GP28
+	A3	Pin	= GP29
 )
 ```
 
@@ -50,134 +64,47 @@ Analog pins
 
 ```go
 const (
-	LED		= LED_BUILTIN
-	LED1		= LED_RED
-	LED2		= LED_GREEN
-	LED3		= LED_BLUE
-	LED_BUILTIN	= P0_13
-	LED_RED		= P0_24
-	LED_GREEN	= P0_16
-	LED_BLUE	= P0_06
-	LED_PWR		= P1_09
+	I2C0_SDA_PIN	Pin	= NoPin
+	I2C0_SCL_PIN	Pin	= NoPin
+
+	I2C1_SDA_PIN	Pin	= GP6
+	I2C1_SCL_PIN	Pin	= GP7
 )
 ```
 
-Onboard LEDs
+I2C default pins
 
 
 ```go
 const (
-	UART_RX_PIN	= P1_10
-	UART_TX_PIN	= P1_03
+	SPI0_RX_PIN	Pin	= GP16
+	SPI0_CSN_PIN	Pin	= GP17
+	SPI0_SCK_PIN	Pin	= GP18
+	SPI0_TX_PIN	Pin	= GP19
+	SPI0_SDO_PIN	Pin	= SPI0_TX_PIN
+	SPI0_SDI_PIN	Pin	= SPI0_RX_PIN
+
+	SPI1_SCK_PIN	Pin	= GP10
+	SPI1_SDO_PIN	Pin	= GP11
+	SPI1_SDI_PIN	Pin	= GP12
 )
 ```
 
-UART0 pins
+SPI default pins
 
 
 ```go
 const (
-	// Defaults to internal
-	SDA_PIN	= SDA1_PIN
-	SCL_PIN	= SCL1_PIN
-
-	// I2C0 (external) pins
-	SDA0_PIN	= P0_31
-	SCL0_PIN	= P0_02
-
-	// I2C1 (internal) pins
-	SDA1_PIN	= P0_14
-	SCL1_PIN	= P0_15
-
-	I2C_PULLUP	= P1_00	// Set high for I2C to work
+	UART0_TX_PIN	= GP0
+	UART0_RX_PIN	= GP1
+	UART1_TX_PIN	= GP8
+	UART1_RX_PIN	= GP9
+	UART_TX_PIN	= UART0_TX_PIN
+	UART_RX_PIN	= UART0_RX_PIN
 )
 ```
 
-I2C pins
-
-
-```go
-const (
-	SPI0_SCK_PIN	= P0_13
-	SPI0_SDO_PIN	= P1_01
-	SPI0_SDI_PIN	= P1_08
-)
-```
-
-SPI pins
-
-
-```go
-const (
-	APDS_INT	= P0_19	// Proximity (APDS9960) interrupt pin
-
-	LSM_PWR	= P0_22	// IMU (LSM9DS1) power
-	LPS_PWR	= P0_22	// Pressure (LPS22HB) power
-	HTS_PWR	= P0_22	// Humidity (HTS221) power
-
-	MIC_PWR	= P0_17	// Microphone (MP34DT06JTR) power
-	MIC_CLK	= P0_26
-	MIC_DIN	= P0_25
-)
-```
-
-Peripherals
-
-
-```go
-const (
-	P0_00	Pin	= 0
-	P0_01	Pin	= 1
-	P0_02	Pin	= 2
-	P0_03	Pin	= 3
-	P0_04	Pin	= 4
-	P0_05	Pin	= 5
-	P0_06	Pin	= 6
-	P0_07	Pin	= 7
-	P0_08	Pin	= 8
-	P0_09	Pin	= 9
-	P0_10	Pin	= 10
-	P0_11	Pin	= 11
-	P0_12	Pin	= 12
-	P0_13	Pin	= 13
-	P0_14	Pin	= 14
-	P0_15	Pin	= 15
-	P0_16	Pin	= 16
-	P0_17	Pin	= 17
-	P0_18	Pin	= 18
-	P0_19	Pin	= 19
-	P0_20	Pin	= 20
-	P0_21	Pin	= 21
-	P0_22	Pin	= 22
-	P0_23	Pin	= 23
-	P0_24	Pin	= 24
-	P0_25	Pin	= 25
-	P0_26	Pin	= 26
-	P0_27	Pin	= 27
-	P0_28	Pin	= 28
-	P0_29	Pin	= 29
-	P0_30	Pin	= 30
-	P0_31	Pin	= 31
-	P1_00	Pin	= 32
-	P1_01	Pin	= 33
-	P1_02	Pin	= 34
-	P1_03	Pin	= 35
-	P1_04	Pin	= 36
-	P1_05	Pin	= 37
-	P1_06	Pin	= 38
-	P1_07	Pin	= 39
-	P1_08	Pin	= 40
-	P1_09	Pin	= 41
-	P1_10	Pin	= 42
-	P1_11	Pin	= 43
-	P1_12	Pin	= 44
-	P1_13	Pin	= 45
-	P1_14	Pin	= 46
-	P1_15	Pin	= 47
-)
-```
-
-Hardware pins
+UART pins
 
 
 ```go
@@ -224,48 +151,6 @@ const (
 
 
 ```go
-const (
-	I2SModeSource	I2SMode	= iota
-	I2SModeReceiver
-	I2SModePDM
-	I2SModeSourceReceiver
-)
-```
-
-
-
-```go
-const (
-	I2StandardPhilips	I2SStandard	= iota
-	I2SStandardMSB
-	I2SStandardLSB
-)
-```
-
-
-
-```go
-const (
-	I2SClockSourceInternal	I2SClockSource	= iota
-	I2SClockSourceExternal
-)
-```
-
-
-
-```go
-const (
-	I2SDataFormatDefault	I2SDataFormat	= 0
-	I2SDataFormat8bit			= 8
-	I2SDataFormat16bit			= 16
-	I2SDataFormat24bit			= 24
-	I2SDataFormat32bit			= 32
-)
-```
-
-
-
-```go
 const Device = deviceName
 ```
 
@@ -297,10 +182,10 @@ of the pins in a peripheral unconfigured (if supported by the hardware).
 
 ```go
 const (
-	PinInput		PinMode	= (nrf.GPIO_PIN_CNF_DIR_Input << nrf.GPIO_PIN_CNF_DIR_Pos) | (nrf.GPIO_PIN_CNF_INPUT_Connect << nrf.GPIO_PIN_CNF_INPUT_Pos)
-	PinInputPullup		PinMode	= PinInput | (nrf.GPIO_PIN_CNF_PULL_Pullup << nrf.GPIO_PIN_CNF_PULL_Pos)
-	PinInputPulldown	PinMode	= PinInput | (nrf.GPIO_PIN_CNF_PULL_Pulldown << nrf.GPIO_PIN_CNF_PULL_Pos)
-	PinOutput		PinMode	= (nrf.GPIO_PIN_CNF_DIR_Output << nrf.GPIO_PIN_CNF_DIR_Pos) | (nrf.GPIO_PIN_CNF_INPUT_Connect << nrf.GPIO_PIN_CNF_INPUT_Pos)
+	LS_SE0	= 0b00
+	LS_J	= 0b01
+	LS_K	= 0b10
+	LS_SE1	= 0b11
 )
 ```
 
@@ -308,13 +193,114 @@ const (
 
 ```go
 const (
-	PinRising	PinChange	= nrf.GPIOTE_CONFIG_POLARITY_LoToHi
-	PinFalling	PinChange	= nrf.GPIOTE_CONFIG_POLARITY_HiToLo
-	PinToggle	PinChange	= nrf.GPIOTE_CONFIG_POLARITY_Toggle
+	cpuFreq			= 200 * MHz
+	_NUMBANK0_GPIOS		= 30
+	_NUMBANK0_IRQS		= 4
+	_NUMIRQ			= 32
+	rp2350ExtraReg		= 0
+	RESETS_RESET_Msk	= 0x01ffffff
+	initUnreset		= rp.RESETS_RESET_ADC |
+		rp.RESETS_RESET_RTC |
+		rp.RESETS_RESET_SPI0 |
+		rp.RESETS_RESET_SPI1 |
+		rp.RESETS_RESET_UART0 |
+		rp.RESETS_RESET_UART1 |
+		rp.RESETS_RESET_USBCTRL
+	initDontReset	= rp.RESETS_RESET_IO_QSPI |
+		rp.RESETS_RESET_PADS_QSPI |
+		rp.RESETS_RESET_PLL_USB |
+		rp.RESETS_RESET_USBCTRL |
+		rp.RESETS_RESET_SYSCFG |
+		rp.RESETS_RESET_PLL_SYS
+	padEnableMask	= rp.PADS_BANK0_GPIO0_IE_Msk |
+		rp.PADS_BANK0_GPIO0_OD_Msk
+)
+```
+
+
+
+```go
+const (
+	PinOutput	PinMode	= iota
+	PinInput
+	PinInputPulldown
+	PinInputPullup
+	PinAnalog
+	PinUART
+	PinPWM
+	PinI2C
+	PinSPI
+	PinPIO0
+	PinPIO1
+)
+```
+
+
+
+```go
+const (
+	ADC0	Pin	= GPIO26
+	ADC1	Pin	= GPIO27
+	ADC2	Pin	= GPIO28
+	ADC3	Pin	= GPIO29
+
+	thermADC	= 30
+)
+```
+
+Analog pins on RP2040.
+
+
+```go
+const (
+	// Edge falling
+	PinFalling	PinChange	= 4 << iota
+	// Edge rising
+	PinRising
+
+	PinToggle	= PinFalling | PinRising
 )
 ```
 
 Pin change interrupt constants for SetInterrupt.
+
+
+```go
+const (
+	// GPIO pins
+	GPIO0	Pin	= 0	// peripherals: PWM0 channel A, I2C0 SDA
+	GPIO1	Pin	= 1	// peripherals: PWM0 channel B, I2C0 SCL
+	GPIO2	Pin	= 2	// peripherals: PWM1 channel A, I2C1 SDA
+	GPIO3	Pin	= 3	// peripherals: PWM1 channel B, I2C1 SCL
+	GPIO4	Pin	= 4	// peripherals: PWM2 channel A, I2C0 SDA
+	GPIO5	Pin	= 5	// peripherals: PWM2 channel B, I2C0 SCL
+	GPIO6	Pin	= 6	// peripherals: PWM3 channel A, I2C1 SDA
+	GPIO7	Pin	= 7	// peripherals: PWM3 channel B, I2C1 SCL
+	GPIO8	Pin	= 8	// peripherals: PWM4 channel A, I2C0 SDA
+	GPIO9	Pin	= 9	// peripherals: PWM4 channel B, I2C0 SCL
+	GPIO10	Pin	= 10	// peripherals: PWM5 channel A, I2C1 SDA
+	GPIO11	Pin	= 11	// peripherals: PWM5 channel B, I2C1 SCL
+	GPIO12	Pin	= 12	// peripherals: PWM6 channel A, I2C0 SDA
+	GPIO13	Pin	= 13	// peripherals: PWM6 channel B, I2C0 SCL
+	GPIO14	Pin	= 14	// peripherals: PWM7 channel A, I2C1 SDA
+	GPIO15	Pin	= 15	// peripherals: PWM7 channel B, I2C1 SCL
+	GPIO16	Pin	= 16	// peripherals: PWM0 channel A, I2C0 SDA
+	GPIO17	Pin	= 17	// peripherals: PWM0 channel B, I2C0 SCL
+	GPIO18	Pin	= 18	// peripherals: PWM1 channel A, I2C1 SDA
+	GPIO19	Pin	= 19	// peripherals: PWM1 channel B, I2C1 SCL
+	GPIO20	Pin	= 20	// peripherals: PWM2 channel A, I2C0 SDA
+	GPIO21	Pin	= 21	// peripherals: PWM2 channel B, I2C0 SCL
+	GPIO22	Pin	= 22	// peripherals: PWM3 channel A
+	GPIO23	Pin	= 23	// peripherals: PWM3 channel B
+	GPIO24	Pin	= 24	// peripherals: PWM4 channel A
+	GPIO25	Pin	= 25	// peripherals: PWM4 channel B
+	GPIO26	Pin	= 26	// peripherals: PWM5 channel A, I2C1 SDA
+	GPIO27	Pin	= 27	// peripherals: PWM5 channel B, I2C1 SCL
+	GPIO28	Pin	= 28	// peripherals: PWM6 channel A
+	GPIO29	Pin	= 29	// peripherals: PWM6 channel B
+)
+```
+
 
 
 ```go
@@ -325,11 +311,24 @@ const NumberOfUSBEndpoints = 8
 
 ```go
 const (
-	// WatchdogMaxTimeout in milliseconds (approx 36h)
-	WatchdogMaxTimeout = (0xffffffff * 1000) / 32768
+	// WatchdogMaxTimeout in milliseconds (approx 8.3s).
+	//
+	// Nominal 1us per watchdog tick, 24-bit counter,
+	// but due to errata two ticks consumed per 1us.
+	// See: Errata RP2040-E1
+	WatchdogMaxTimeout = (rp.WATCHDOG_LOAD_LOAD_Msk / 1000) / 2
 )
 ```
 
+
+
+```go
+const XOSC_STARTUP_DELAY_MULTIPLIER = 64
+```
+
+On some boards, the XOSC can take longer than usual to stabilize. On such
+boards, this is needed to avoid a hard fault on boot/reset. Refer to
+PICO_XOSC_STARTUP_DELAY_MULTIPLIER in the Pico SDK for additional details.
 
 
 ```go
@@ -368,9 +367,7 @@ const (
 ## Variables
 
 ```go
-var (
-	ErrInvalidSampleFrequency = errors.New("i2s: invalid sample frequency")
-)
+var DefaultUART = UART0
 ```
 
 
@@ -392,13 +389,36 @@ var (
 
 ```go
 var (
-	// UART0 is the hardware UART on the NRF SoC.
-	_UART0	= UART{Buffer: NewRingBuffer()}
 	UART0	= &_UART0
+	_UART0	= UART{
+		Buffer:	NewRingBuffer(),
+		Bus:	rp.UART0,
+	}
+
+	UART1	= &_UART1
+	_UART1	= UART{
+		Buffer:	NewRingBuffer(),
+		Bus:	rp.UART1,
+	}
 )
 ```
 
-UART
+UART on the RP2040
+
+
+```go
+var RTC = (*rtcType)(unsafe.Pointer(rp.RTC))
+```
+
+
+
+```go
+var (
+	ErrRtcDelayTooSmall	= errors.New("RTC interrupt deplay is too small, shall be at least 1 second")
+	ErrRtcDelayTooLarge	= errors.New("RTC interrupt deplay is too large, shall be no more than 1 day")
+)
+```
+
 
 
 ```go
@@ -409,37 +429,23 @@ var Flash flashBlockDevice
 
 ```go
 var (
-	PWM0	= &PWM{PWM: nrf.PWM0}
-	PWM1	= &PWM{PWM: nrf.PWM1}
-	PWM2	= &PWM{PWM: nrf.PWM2}
-	PWM3	= &PWM{PWM: nrf.PWM3}
+	I2C0	= &_I2C0
+	_I2C0	= I2C{
+		Bus: rp.I2C0,
+	}
+	I2C1	= &_I2C1
+	_I2C1	= I2C{
+		Bus: rp.I2C1,
+	}
 )
 ```
 
-PWM
-
-
-```go
-var ADC_VDDH = ADC{adcVDDHPin}
-```
-
-ADC instance for the VDDH input pin. This pin is typically connected to USB
-input voltage (~5V) or directly to a battery.
+I2C on the RP2040/RP2350
 
 
 ```go
 var (
-	I2C0	= &I2C{Bus: nrf.TWIM0, BusT: nrf.TWIS0}
-	I2C1	= &I2C{Bus: nrf.TWIM1, BusT: nrf.TWIS1}
-)
-```
-
-There are 2 I2C interfaces on the NRF.
-
-
-```go
-var (
-	Watchdog = &watchdogImpl{}
+	ErrBadPeriod = errors.New("period outside valid range 8ns..268ms")
 )
 ```
 
@@ -447,19 +453,67 @@ var (
 
 ```go
 var (
-	SPI0	= &SPI{Bus: nrf.SPIM0, buf: new([1]byte)}
-	SPI1	= &SPI{Bus: nrf.SPIM1, buf: new([1]byte)}
-	SPI2	= &SPI{Bus: nrf.SPIM2, buf: new([1]byte)}
+	PWM0	= getPWMGroup(0)
+	PWM1	= getPWMGroup(1)
+	PWM2	= getPWMGroup(2)
+	PWM3	= getPWMGroup(3)
+	PWM4	= getPWMGroup(4)
+	PWM5	= getPWMGroup(5)
+	PWM6	= getPWMGroup(6)
+	PWM7	= getPWMGroup(7)
 )
 ```
 
-There are 3 SPI interfaces on the NRF528xx.
+Hardware Pulse Width Modulation (PWM) API
+PWM peripherals available on RP2040. Each peripheral has 2 pins available for
+a total of 16 available PWM outputs. Some pins may not be available on some boards.
+
+The RP2040 PWM block has 8 identical slices. Each slice can drive two PWM output signals, or
+measure the frequency or duty cycle of an input signal. This gives a total of up to 16 controllable
+PWM outputs. All 30 GPIOs can be driven by the PWM block
+
+The PWM hardware functions by continuously comparing the input value to a free-running counter. This produces a
+toggling output where the amount of time spent at the high output level is proportional to the input value. The fraction of
+time spent at the high signal level is known as the duty cycle of the signal.
+
+The default behaviour of a PWM slice is to count upward until the wrap value (\ref pwm_config_set_wrap) is reached, and then
+immediately wrap to 0. PWM slices also offer a phase-correct mode, where the counter starts to count downward after
+reaching TOP, until it reaches 0 again.
 
 
 ```go
-var I2S0 = I2S{Bus: nrf.I2S}
+var (
+	SPI0	= &SPI{
+		Bus: rp.SPI0,
+	}
+	SPI1	= &SPI{
+		Bus: rp.SPI1,
+	}
+)
 ```
 
+SPI on the RP2040
+
+
+```go
+var (
+	ErrLSBNotSupported	= errors.New("SPI LSB unsupported on PL022")
+	ErrSPITimeout		= errors.New("SPI timeout")
+	ErrSPIBaud		= errors.New("SPI baud too low or above 66.5Mhz")
+	errSPIInvalidSDI	= errors.New("invalid SPI SDI pin")
+	errSPIInvalidSDO	= errors.New("invalid SPI SDO pin")
+	errSPIInvalidSCK	= errors.New("invalid SPI SCK pin")
+)
+```
+
+
+
+```go
+var Watchdog = &watchdogImpl{}
+```
+
+Watchdog provides access to the hardware watchdog available
+in the RP2040.
 
 
 ```go
@@ -522,7 +576,6 @@ func AckUsbOutTransfer(ep uint32)
 ```
 
 AckUsbOutTransfer is called to acknowledge the completion of a USB OUT transfer.
-It also clears the NAK state and resumes data flow if it was paused.
 
 
 ### func CPUFrequency
@@ -542,12 +595,31 @@ func CPUReset()
 CPUReset performs a hard system reset.
 
 
+### func ChipVersion
+
+```go
+func ChipVersion() uint8
+```
+
+ChipVersion returns the version of the chip. 1 is returned for B0 and B1
+chip.
+
+
 ### func ConfigureUSBEndpoint
 
 ```go
 func ConfigureUSBEndpoint(desc descriptor.Descriptor, epSettings []usb.EndpointConfig, setup []usb.SetupConfig)
 ```
 
+
+
+### func CurrentCore
+
+```go
+func CurrentCore() int
+```
+
+CurrentCore returns the core number the call was made from.
 
 
 ### func DeviceID
@@ -584,38 +656,8 @@ func EnableCDC(txHandler func(), rxHandler func([]byte), setupHandler func(usb.S
 func EnterBootloader()
 ```
 
-EnterBootloader resets the chip into the serial bootloader. After
-reset, it can be flashed using serial/nrfutil.
-
-
-### func EnterOTABootloader
-
-```go
-func EnterOTABootloader()
-```
-
-EnterOTABootloader resets the chip into the bootloader so that it can be
-flashed via an OTA update
-
-
-### func EnterSerialBootloader
-
-```go
-func EnterSerialBootloader()
-```
-
-EnterSerialBootloader resets the chip into the serial bootloader. After
-reset, it can be flashed using serial/nrfutil.
-
-
-### func EnterUF2Bootloader
-
-```go
-func EnterUF2Bootloader()
-```
-
-EnterUF2Bootloader resets the chip into the UF2 bootloader. After reset, it
-can be flashed via nrfutil or by copying a UF2 file to the mass storage device
+EnterBootloader should perform a system reset in preparation
+to switch to the bootloader to flash new firmware.
 
 
 ### func FlashDataEnd
@@ -641,11 +683,14 @@ is usually just after the program and static data.
 ### func GetRNG
 
 ```go
-func GetRNG() (ret uint32, err error)
+func GetRNG() (uint32, error)
 ```
 
-GetRNG returns 32 bits of non-deterministic random data based on internal thermal noise.
-According to Nordic's documentation, the random output is suitable for cryptographic purposes.
+GetRNG returns 32 bits of semi-random data based on ring oscillator.
+
+Unlike some other implementations of GetRNG, these random numbers are not
+cryptographically secure and must not be used for cryptographic operations
+(nonces, etc).
 
 
 ### func InitADC
@@ -654,7 +699,7 @@ According to Nordic's documentation, the random output is suitable for cryptogra
 func InitADC()
 ```
 
-InitADC initializes the registers needed for ADC.
+InitADC resets the ADC peripheral.
 
 
 ### func InitSerial
@@ -674,6 +719,26 @@ func NewRingBuffer() *RingBuffer
 NewRingBuffer returns a new ring buffer.
 
 
+### func NumCores
+
+```go
+func NumCores() int
+```
+
+NumCores returns number of cores available on the device.
+
+
+### func PWMPeripheral
+
+```go
+func PWMPeripheral(pin Pin) (sliceNum uint8, err error)
+```
+
+Peripheral returns the RP2040 PWM peripheral which ranges from 0 to 7. Each
+PWM peripheral has 2 channels, A and B which correspond to 0 and 1 in the program.
+This number corresponds to the package's PWM0 throughout PWM7 handles
+
+
 ### func PhysicalEndpoint
 
 ```go
@@ -687,11 +752,10 @@ used by the hardware. This is an identity mapping on all currently supported pla
 ### func ReadTemperature
 
 ```go
-func ReadTemperature() int32
+func ReadTemperature() (millicelsius int32)
 ```
 
-ReadTemperature reads the silicon die temperature of the chip. The return
-value is in milli-celsius.
+ReadTemperature does a one-shot sample of the internal temperature sensor and returns a milli-celsius reading.
 
 
 ### func ReceiveUSBControlPacket
@@ -708,7 +772,7 @@ func ReceiveUSBControlPacket() ([cdcLineInfoSize]byte, error)
 func SendUSBInPacket(ep uint32, data []byte) bool
 ```
 
-SendUSBInPacket sends a packet for USBHID (interrupt in / bulk in).
+SendUSBInPacket sends a packet for USB (interrupt in / bulk in).
 
 
 ### func SendZlp
@@ -732,26 +796,62 @@ type ADC struct {
 
 
 
-### func (*ADC) Configure
+### func (ADC) Configure
 
 ```go
-func (a *ADC) Configure(config ADCConfig)
+func (a ADC) Configure(config ADCConfig) error
 ```
 
-Configure configures an ADC pin to be able to read analog data.
-Reference voltage can be 150, 300, 600, 1200, 1800, 2400, 3000(default), 3600 mV
-Resolution can be 8, 10, 12(default), 14 bits
-SampleTime will be ceiled to 3(default), 5, 10, 15, 20 or 40(max) µS respectively
-Samples can be 1(default), 2, 4, 8, 16, 32, 64, 128, 256 samples
+Configure sets the ADC pin to analog input mode.
 
 
-### func (*ADC) Get
+### func (ADC) Get
 
 ```go
-func (a *ADC) Get() uint16
+func (a ADC) Get() uint16
 ```
 
-Get returns the current value of an ADC pin in the range 0..0xffff.
+Get returns a one-shot ADC sample reading.
+
+
+### func (ADC) GetADCChannel
+
+```go
+func (a ADC) GetADCChannel() (c ADCChannel, err error)
+```
+
+GetADCChannel returns the channel associated with the ADC pin.
+
+
+
+
+## type ADCChannel
+
+```go
+type ADCChannel uint8
+```
+
+ADCChannel is the ADC peripheral mux channel. 0-4.
+
+
+
+### func (ADCChannel) Configure
+
+```go
+func (c ADCChannel) Configure(config ADCConfig) error
+```
+
+Configure sets the channel's associated pin to analog input mode.
+The powered on temperature sensor increases ADC_AVDD current by approximately 40 μA.
+
+
+### func (ADCChannel) Pin
+
+```go
+func (c ADCChannel) Pin() (p Pin, err error)
+```
+
+The Pin method returns the GPIO Pin associated with the ADC mux channel, if it has one.
 
 
 
@@ -820,13 +920,12 @@ BlockDevice is the raw device that is meant to store flash data.
 
 ```go
 type I2C struct {
-	Bus	*nrf.TWIM_Type	// Called Bus to align with Bus field in nrf51
-	BusT	*nrf.TWIS_Type
-	mode	I2CMode
+	Bus		*rp.I2C0_Type
+	mode		I2CMode
+	txInProgress	bool
 }
 ```
 
-I2C on the NRF528xx.
 
 
 
@@ -836,13 +935,22 @@ I2C on the NRF528xx.
 func (i2c *I2C) Configure(config I2CConfig) error
 ```
 
-Configure is intended to setup the I2C interface.
+Configure initializes i2c peripheral and configures I2C config's pins passed.
+Here's a list of valid SDA and SCL GPIO pins on bus I2C0 of the rp2040:
+
+	SDA: 0, 4, 8, 12, 16, 20
+	SCL: 1, 5, 9, 13, 17, 21
+
+Same as above for I2C1 bus:
+
+	SDA: 2, 6, 10, 14, 18, 26
+	SCL: 3, 7, 11, 15, 19, 27
 
 
 ### func (*I2C) Listen
 
 ```go
-func (i2c *I2C) Listen(addr uint8) error
+func (i2c *I2C) Listen(addr uint16) error
 ```
 
 Listen starts listening for I2C requests sent to specified address
@@ -870,7 +978,6 @@ with 7-bit addresses, which is the vast majority.
 func (i2c *I2C) Reply(buf []byte) error
 ```
 
-Reply supplies the response data the controller.
 
 
 ### func (*I2C) SetBaudRate
@@ -886,13 +993,22 @@ enabling the I2C hardware if disabled beforehand.
 ### func (*I2C) Tx
 
 ```go
-func (i2c *I2C) Tx(addr uint16, w, r []byte) (err error)
+func (i2c *I2C) Tx(addr uint16, w, r []byte) error
 ```
 
-Tx does a single I2C transaction at the specified address (when in controller mode).
+Tx performs a write and then a read transfer placing the result in
+in r.
 
-It clocks out the given address, writes the bytes in w, reads back len(r)
-bytes and stores them in r, and generates a stop condition on the bus.
+Passing a nil value for w or r skips the transfer corresponding to write
+or read, respectively.
+
+	i2c.Tx(addr, nil, r)
+
+Performs only a read transfer.
+
+	i2c.Tx(addr, w, nil)
+
+Performs only a write transfer.
 
 
 ### func (*I2C) WaitForEvent
@@ -901,13 +1017,6 @@ bytes and stores them in r, and generates a stop condition on the bus.
 func (i2c *I2C) WaitForEvent(buf []byte) (evt I2CTargetEvent, count int, err error)
 ```
 
-WaitForEvent blocks the current go-routine until an I2C event is received (when in Target mode).
-
-The passed buffer will be populated for receive events, with the number of bytes
-received returned in count.  For other event types, buf is not modified and a count
-of zero is returned.
-
-For request events, the caller MUST call `Reply` to avoid hanging the i2c bus indefinitely.
 
 
 ### func (*I2C) WriteRegister
@@ -931,8 +1040,9 @@ devices with 7-bit addresses, which is the vast majority.
 ```go
 type I2CConfig struct {
 	Frequency	uint32
-	SCL		Pin
-	SDA		Pin
+	// SDA/SCL Serial Data and clock pins. Refer to datasheet to see
+	// which pins match the desired bus.
+	SDA, SCL	Pin
 	Mode		I2CMode
 }
 ```
@@ -962,173 +1072,6 @@ type I2CTargetEvent uint8
 ```
 
 I2CTargetEvent reflects events on the I2C bus
-
-
-
-
-
-## type I2S
-
-```go
-type I2S struct {
-	Bus	*nrf.I2S_Type
-
-	config		I2SConfig
-	configured	bool
-	running		bool
-	hfclkOwned	bool
-
-	tx	i2sRing
-	rx	i2sRing
-	silence	[]uint32
-	scratch	[]uint32
-	writing	volatile.Register8
-}
-```
-
-I2S on the nRF52832, nRF52833 and nRF52840.
-
-Samples are copied into a ring of RAM buffers that EasyDMA plays or fills
-in the background, so audio keeps running between calls.
-
-
-
-### func (*I2S) Configure
-
-```go
-func (i2s *I2S) Configure(config I2SConfig) error
-```
-
-Configure sets up the I2S peripheral and starts it.
-If you use Bluetooth, enable it first since the SoftDevice then owns the clock.
-
-
-### func (*I2S) Enable
-
-```go
-func (i2s *I2S) Enable(enabled bool)
-```
-
-Enable starts or stops the I2S peripheral. Queued samples are dropped.
-
-
-### func (*I2S) ReadMono
-
-```go
-func (i2s *I2S) ReadMono(b []uint16) (int, error)
-```
-
-ReadMono reads the left channel. Only 16-bit samples are supported.
-
-
-### func (*I2S) ReadStereo
-
-```go
-func (i2s *I2S) ReadStereo(b []uint32) (int, error)
-```
-
-ReadStereo reads frames in the same layout WriteStereo uses.
-
-
-### func (*I2S) SetSampleFrequency
-
-```go
-func (i2s *I2S) SetSampleFrequency(freq uint32) error
-```
-
-SetSampleFrequency sets the sample rate. The MCK divider only has fixed
-steps, so the rate is the closest one within 2%.
-
-
-### func (*I2S) WriteMono
-
-```go
-func (i2s *I2S) WriteMono(b []uint16) (int, error)
-```
-
-WriteMono plays each sample on both channels. It returns once all samples
-are queued. Only 16-bit samples are supported.
-
-
-### func (*I2S) WriteStereo
-
-```go
-func (i2s *I2S) WriteStereo(b []uint32) (int, error)
-```
-
-WriteStereo queues stereo frames. At 16-bit each value is one frame with
-left in the low half. At 24-bit each value is one sample, left then right.
-
-
-
-
-## type I2SClockSource
-
-```go
-type I2SClockSource uint8
-```
-
-
-
-
-
-
-## type I2SConfig
-
-```go
-type I2SConfig struct {
-	// clock
-	SCK	Pin
-	// word select
-	WS	Pin
-	// data out
-	SDO	Pin
-	// data in
-	SDI		Pin
-	Mode		I2SMode
-	Standard	I2SStandard
-	ClockSource	I2SClockSource
-	DataFormat	I2SDataFormat
-	AudioFrequency	uint32
-	MainClockOutput	bool
-	Stereo		bool
-}
-```
-
-All fields are optional and may not be required or used on a particular platform.
-
-
-
-
-
-## type I2SDataFormat
-
-```go
-type I2SDataFormat uint8
-```
-
-
-
-
-
-
-## type I2SMode
-
-```go
-type I2SMode uint8
-```
-
-
-
-
-
-
-## type I2SStandard
-
-```go
-type I2SStandard uint8
-```
-
 
 
 
@@ -1195,39 +1138,6 @@ WriteByte is a no-op: the null serial doesn't write bytes.
 
 
 
-## type PDM
-
-```go
-type PDM struct {
-	device		*nrf.PDM_Type
-	defaultBuffer	int16
-}
-```
-
-PDM represents a PDM device
-
-
-
-### func (*PDM) Configure
-
-```go
-func (pdm *PDM) Configure(config PDMConfig) error
-```
-
-Configure is intended to set up the PDM interface prior to use.
-
-
-### func (*PDM) Read
-
-```go
-func (pdm *PDM) Read(buf []int16) (uint32, error)
-```
-
-Read stores a set of samples in the given target buffer.
-
-
-
-
 ## type PDMConfig
 
 ```go
@@ -1239,110 +1149,6 @@ type PDMConfig struct {
 ```
 
 
-
-
-
-
-## type PWM
-
-```go
-type PWM struct {
-	PWM	*nrf.PWM_Type
-
-	channelValues	[4]volatile.Register16
-}
-```
-
-PWM is one PWM peripheral, which consists of a counter and multiple output
-channels (that can be connected to actual pins). You can set the frequency
-using SetPeriod, but only for all the channels in this PWM peripheral at
-once.
-
-
-
-### func (*PWM) Channel
-
-```go
-func (pwm *PWM) Channel(pin Pin) (uint8, error)
-```
-
-Channel returns a PWM channel for the given pin.
-
-
-### func (*PWM) Configure
-
-```go
-func (pwm *PWM) Configure(config PWMConfig) error
-```
-
-Configure enables and configures this PWM.
-On the nRF52 series, the maximum period is around 0.26s.
-
-
-### func (*PWM) Set
-
-```go
-func (pwm *PWM) Set(channel uint8, value uint32)
-```
-
-Set updates the channel value. This is used to control the channel duty
-cycle. For example, to set it to a 25% duty cycle, use:
-
-	ch.Set(ch.Top() / 4)
-
-ch.Set(0) will set the output to low and ch.Set(ch.Top()) will set the output
-to high, assuming the output isn't inverted.
-
-
-### func (*PWM) SetInverting
-
-```go
-func (pwm *PWM) SetInverting(channel uint8, inverting bool)
-```
-
-SetInverting sets whether to invert the output of this channel.
-Without inverting, a 25% duty cycle would mean the output is high for 25% of
-the time and low for the rest. Inverting flips the output as if a NOT gate
-was placed at the output, meaning that the output would be 25% low and 75%
-high with a duty cycle of 25%.
-
-
-### func (*PWM) SetPeriod
-
-```go
-func (pwm *PWM) SetPeriod(period uint64) error
-```
-
-SetPeriod updates the period of this PWM peripheral.
-To set a particular frequency, use the following formula:
-
-	period = 1e9 / frequency
-
-If you use a period of 0, a period that works well for LEDs will be picked.
-
-SetPeriod will not change the prescaler, but also won't change the current
-value in any of the channels. This means that you may need to update the
-value for the particular channel.
-
-Note that you cannot pick any arbitrary period after the PWM peripheral has
-been configured. If you want to switch between frequencies, pick the lowest
-frequency (longest period) once when calling Configure and adjust the
-frequency here as needed.
-
-
-### func (*PWM) Top
-
-```go
-func (pwm *PWM) Top() uint32
-```
-
-Top returns the current counter top, for use in duty cycle calculation. It
-will only change with a call to Configure or SetPeriod, otherwise it is
-constant.
-
-The value returned here is hardware dependent. In general, it's best to treat
-it as an opaque value that can be divided by some number and passed to
-pwm.Set (see pwm.Set for more information).
 
 
 
@@ -1388,7 +1194,7 @@ other peripherals like ADC, I2C, etc.
 func (p Pin) Configure(config PinConfig)
 ```
 
-Configure this pin with the given configuration.
+Configure configures the gpio pin as per mode.
 
 
 ### func (Pin) Get
@@ -1397,8 +1203,7 @@ Configure this pin with the given configuration.
 func (p Pin) Get() bool
 ```
 
-Get returns the current value of a GPIO pin when the pin is configured as an
-input or as an output.
+Get reads the pin value.
 
 
 ### func (Pin) High
@@ -1429,8 +1234,6 @@ pin to low that is not configured as an output pin.
 func (p Pin) PortMaskClear() (*uint32, uint32)
 ```
 
-Return the register and mask to disable a given port. This can be used to
-implement bit-banged drivers.
 
 
 ### func (Pin) PortMaskSet
@@ -1439,18 +1242,15 @@ implement bit-banged drivers.
 func (p Pin) PortMaskSet() (*uint32, uint32)
 ```
 
-Return the register and mask to enable a given GPIO pin. This can be used to
-implement bit-banged drivers.
 
 
 ### func (Pin) Set
 
 ```go
-func (p Pin) Set(high bool)
+func (p Pin) Set(value bool)
 ```
 
-Set the pin to high or low.
-Warning: only use this on an output pin!
+Set drives the pin high if value is true else drives it low.
 
 
 ### func (Pin) SetInterrupt
@@ -1476,6 +1276,8 @@ parameter is ignored and can be set to any value (such as 0).
 type PinChange uint8
 ```
 
+PinChange represents one or more trigger events that can happen on a given GPIO pin
+on the RP2040. ORed PinChanges are valid input to most IRQ functions.
 
 
 
@@ -1567,12 +1369,10 @@ Used returns how many bytes in buffer have been used.
 
 ```go
 type SPI struct {
-	Bus	*nrf.SPIM_Type
-	buf	*[1]byte	// 1-byte buffer for the Transfer method
+	Bus *rp.SPI0_Type
 }
 ```
 
-SPI on the NRF.
 
 
 
@@ -1582,7 +1382,47 @@ SPI on the NRF.
 func (spi *SPI) Configure(config SPIConfig) error
 ```
 
-Configure is intended to set up the SPI interface.
+Configure is intended to setup/initialize the SPI interface.
+Default baudrate of 4MHz is used if Frequency == 0. Default
+word length (data bits) is 8.
+Below is a list of GPIO pins corresponding to SPI0 bus on the rp2040:
+
+	SI : 0, 4, 17  a.k.a RX and MISO (if rp2040 is master)
+	SO : 3, 7, 19  a.k.a TX and MOSI (if rp2040 is master)
+	SCK: 2, 6, 18
+
+SPI1 bus GPIO pins:
+
+	SI : 8, 12
+	SO : 11, 15
+	SCK: 10, 14
+
+No pin configuration is needed of SCK, SDO and SDI needed after calling Configure.
+
+
+### func (*SPI) GetBaudRate
+
+```go
+func (spi *SPI) GetBaudRate() uint32
+```
+
+
+
+### func (*SPI) PrintRegs
+
+```go
+func (spi *SPI) PrintRegs()
+```
+
+PrintRegs prints SPI's peripheral common registries current values
+
+
+### func (*SPI) SetBaudRate
+
+```go
+func (spi *SPI) SetBaudRate(br uint32) error
+```
+
 
 
 ### func (*SPI) Transfer
@@ -1591,20 +1431,40 @@ Configure is intended to set up the SPI interface.
 func (spi *SPI) Transfer(w byte) (byte, error)
 ```
 
-Transfer writes/reads a single byte using the SPI interface.
+Write a single byte and read a single byte from TX/RX FIFO.
 
 
 ### func (*SPI) Tx
 
 ```go
-func (spi *SPI) Tx(w, r []byte) error
+func (spi *SPI) Tx(w, r []byte) (err error)
 ```
 
-Tx handles read/write operation for SPI interface. Since SPI is a synchronous
-write/read interface, there must always be the same number of bytes written
-as bytes read. Therefore, if the number of bytes don't match it will be
-padded until they fit: if len(w) > len(r) the extra bytes received will be
-dropped and if len(w) < len(r) extra 0 bytes will be sent.
+Tx handles read/write operation for SPI interface. Since SPI is a synchronous write/read
+interface, there must always be the same number of bytes written as bytes read.
+The Tx method knows about this, and offers a few different ways of calling it.
+
+This form sends the bytes in tx buffer, putting the resulting bytes read into the rx buffer.
+Note that the tx and rx buffers must be the same size:
+
+	spi.Tx(tx, rx)
+
+This form sends the tx buffer, ignoring the result. Useful for sending "commands" that return zeros
+until all the bytes in the command packet have been received:
+
+	spi.Tx(tx, nil)
+
+This form sends zeros, putting the result into the rx buffer. Good for reading a "result packet":
+
+	spi.Tx(nil, rx)
+
+Remark: This implementation (RP2040) allows reading into buffer with a custom repeated
+value on tx.
+
+	spi.Tx([]byte{0xff}, rx) // may cause unwanted heap allocations.
+
+This form sends 0xff and puts the result into rx buffer. Useful for reading from SD cards
+which require 0xff input on SI.
 
 
 
@@ -1614,11 +1474,16 @@ dropped and if len(w) < len(r) extra 0 bytes will be sent.
 ```go
 type SPIConfig struct {
 	Frequency	uint32
-	SCK		Pin
-	SDO		Pin
-	SDI		Pin
+	// LSB not supported on rp2040.
 	LSBFirst	bool
-	Mode		uint8
+	// Mode's two most LSB are CPOL and CPHA. i.e. Mode==2 (0b10) is CPOL=1, CPHA=0
+	Mode	uint8
+	// Serial clock pin
+	SCK	Pin
+	// TX or Serial Data Out (MOSI if rp2040 is master)
+	SDO	Pin
+	// RX or Serial Data In (MISO if rp2040 is master)
+	SDI	Pin
 }
 ```
 
@@ -1651,11 +1516,13 @@ type Serialer interface {
 
 ```go
 type UART struct {
-	Buffer *RingBuffer
+	Buffer		*RingBuffer
+	Bus		*rp.UART0_Type
+	Interrupt	interrupt.Interrupt
 }
 ```
 
-UART on the NRF.
+UART on the RP2040.
 
 
 
@@ -1668,10 +1535,19 @@ func (uart *UART) Buffered() int
 Buffered returns the number of bytes currently stored in the RX buffer.
 
 
+### func (*UART) Close
+
+```go
+func (uart *UART) Close() error
+```
+
+Close the UART and disable its interrupt/power use.
+
+
 ### func (*UART) Configure
 
 ```go
-func (uart *UART) Configure(config UARTConfig)
+func (uart *UART) Configure(config UARTConfig) error
 ```
 
 Configure the UART.
@@ -1712,7 +1588,16 @@ Usually called by the IRQ handler for a machine.
 func (uart *UART) SetBaudRate(br uint32)
 ```
 
-SetBaudRate sets the communication speed for the UART.
+SetBaudRate sets the baudrate to be used for the UART.
+
+
+### func (*UART) SetFormat
+
+```go
+func (uart *UART) SetFormat(databits, stopbits uint8, parity UARTParity) error
+```
+
+SetFormat for number of data bits, stop bits, and parity for the UART.
 
 
 ### func (*UART) Write
