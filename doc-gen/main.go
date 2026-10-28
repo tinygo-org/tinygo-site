@@ -50,7 +50,7 @@ type Pin struct {
 // - P0_00 (nrf series),
 // - GPIO0 (esp series, rp2040)
 // - P00 (sifive)
-var pinIsHardwareName = regexp.MustCompile("^(P[A-Z][0-9]+|P[0-1]_[0-9]{2}|GPIO[0-9]+|P[0-9]{2})$")
+var pinIsHardwareName = regexp.MustCompile("^(P[A-Z][0-9]+|P[0-9]_[0-9]{2}|GPIO[0-9]+|P[0-9]{2})$")
 
 var markdownTemplateText = `
 ---
