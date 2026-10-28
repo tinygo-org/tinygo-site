@@ -470,16 +470,28 @@ Alternative peripheral pin functions
 
 
 ```go
-const APB1_TIM_FREQ = 42000000 * 2
+const APB1_FREQ = 42000000
 ```
 
-Internal use: configured speed of the APB1 and APB2 timers, this should be kept
-in sync with any changes to runtime package which configures the oscillators
-and clock frequencies
+Internal use: configured speed of the APB1 and APB2 buses and timers, this
+should be kept in sync with any changes to runtime package which configures
+the oscillators and clock frequencies.
 
 
 ```go
-const APB2_TIM_FREQ = 84000000 * 2
+const APB2_FREQ = 84000000
+```
+
+
+
+```go
+const APB1_TIM_FREQ = APB1_FREQ * 2
+```
+
+
+
+```go
+const APB2_TIM_FREQ = APB2_FREQ * 2
 ```
 
 
@@ -655,45 +667,6 @@ var (
 		busFreq:	APB1_TIM_FREQ,
 	}
 
-	TIM6	= TIM{
-		EnableRegister:	&stm32.RCC.APB1ENR,
-		EnableFlag:	stm32.RCC_APB1ENR_TIM6EN,
-		Device:		stm32.TIM6,
-		Channels: [4]TimerChannel{
-			TimerChannel{Pins: []PinFunction{}},
-			TimerChannel{Pins: []PinFunction{}},
-			TimerChannel{Pins: []PinFunction{}},
-			TimerChannel{Pins: []PinFunction{}},
-		},
-		busFreq:	APB1_TIM_FREQ,
-	}
-
-	TIM7	= TIM{
-		EnableRegister:	&stm32.RCC.APB1ENR,
-		EnableFlag:	stm32.RCC_APB1ENR_TIM7EN,
-		Device:		stm32.TIM7,
-		Channels: [4]TimerChannel{
-			TimerChannel{Pins: []PinFunction{}},
-			TimerChannel{Pins: []PinFunction{}},
-			TimerChannel{Pins: []PinFunction{}},
-			TimerChannel{Pins: []PinFunction{}},
-		},
-		busFreq:	APB1_TIM_FREQ,
-	}
-
-	TIM8	= TIM{
-		EnableRegister:	&stm32.RCC.APB2ENR,
-		EnableFlag:	stm32.RCC_APB2ENR_TIM8EN,
-		Device:		stm32.TIM8,
-		Channels: [4]TimerChannel{
-			TimerChannel{Pins: []PinFunction{{PC6, AF3_TIM8_9_10_11}, {PI5, AF3_TIM8_9_10_11}}},
-			TimerChannel{Pins: []PinFunction{{PC7, AF3_TIM8_9_10_11}, {PI6, AF3_TIM8_9_10_11}}},
-			TimerChannel{Pins: []PinFunction{{PC8, AF3_TIM8_9_10_11}, {PI7, AF3_TIM8_9_10_11}}},
-			TimerChannel{Pins: []PinFunction{{PC9, AF3_TIM8_9_10_11}, {PI2, AF3_TIM8_9_10_11}}},
-		},
-		busFreq:	APB2_TIM_FREQ,
-	}
-
 	TIM9	= TIM{
 		EnableRegister:	&stm32.RCC.APB2ENR,
 		EnableFlag:	stm32.RCC_APB2ENR_TIM9EN,
@@ -729,6 +702,51 @@ var (
 			TimerChannel{Pins: []PinFunction{}},
 			TimerChannel{Pins: []PinFunction{}},
 			TimerChannel{Pins: []PinFunction{}},
+		},
+		busFreq:	APB2_TIM_FREQ,
+	}
+)
+```
+
+
+
+```go
+var (
+	TIM6	= TIM{
+		EnableRegister:	&stm32.RCC.APB1ENR,
+		EnableFlag:	stm32.RCC_APB1ENR_TIM6EN,
+		Device:		stm32.TIM6,
+		Channels: [4]TimerChannel{
+			TimerChannel{Pins: []PinFunction{}},
+			TimerChannel{Pins: []PinFunction{}},
+			TimerChannel{Pins: []PinFunction{}},
+			TimerChannel{Pins: []PinFunction{}},
+		},
+		busFreq:	APB1_TIM_FREQ,
+	}
+
+	TIM7	= TIM{
+		EnableRegister:	&stm32.RCC.APB1ENR,
+		EnableFlag:	stm32.RCC_APB1ENR_TIM7EN,
+		Device:		stm32.TIM7,
+		Channels: [4]TimerChannel{
+			TimerChannel{Pins: []PinFunction{}},
+			TimerChannel{Pins: []PinFunction{}},
+			TimerChannel{Pins: []PinFunction{}},
+			TimerChannel{Pins: []PinFunction{}},
+		},
+		busFreq:	APB1_TIM_FREQ,
+	}
+
+	TIM8	= TIM{
+		EnableRegister:	&stm32.RCC.APB2ENR,
+		EnableFlag:	stm32.RCC_APB2ENR_TIM8EN,
+		Device:		stm32.TIM8,
+		Channels: [4]TimerChannel{
+			TimerChannel{Pins: []PinFunction{{PC6, AF3_TIM8_9_10_11}, {PI5, AF3_TIM8_9_10_11}}},
+			TimerChannel{Pins: []PinFunction{{PC7, AF3_TIM8_9_10_11}, {PI6, AF3_TIM8_9_10_11}}},
+			TimerChannel{Pins: []PinFunction{{PC8, AF3_TIM8_9_10_11}, {PI7, AF3_TIM8_9_10_11}}},
+			TimerChannel{Pins: []PinFunction{{PC9, AF3_TIM8_9_10_11}, {PI2, AF3_TIM8_9_10_11}}},
 		},
 		busFreq:	APB2_TIM_FREQ,
 	}
@@ -836,6 +854,18 @@ func AckUsbOutTransfer(ep uint32)
 ```
 
 AckUsbOutTransfer re-arms the OUT endpoint to receive the next packet.
+
+
+### func AssignCore
+
+```go
+func AssignCore(core int)
+```
+
+AssignCore assigns the calling goroutine to core until it exits. Without the
+cores scheduler only core 0 is valid.
+
+Experimental: this API may change or be removed in a future release.
 
 
 ### func CPUFrequency

@@ -103,6 +103,18 @@ Serial is a null device: writes to it are ignored.
 
 
 
+### func AssignCore
+
+```go
+func AssignCore(core int)
+```
+
+AssignCore assigns the calling goroutine to core until it exits. Without the
+cores scheduler only core 0 is valid.
+
+Experimental: this API may change or be removed in a future release.
+
+
 ### func InitSerial
 
 ```go
