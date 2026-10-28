@@ -85,7 +85,7 @@ encoding/json |  <span style="color: green">✔</span> yes  |  [<span style="col
 encoding/json/jsontext |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#encodingjsonjsontext)  | 
 encoding/json/v2 |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#encodingjsonv2)  | 
 encoding/pem |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#encodingpem)  | 
-encoding/xml |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
+encoding/xml |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#encodingxml)  | 
 errors |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 expvar |  <span style="color: green">✔</span> yes  |  <span style="color: green">✔</span> yes  | 
 flag |  <span style="color: green">✔</span> yes  |  [<span style="color: red">✗</span> no](#flag)  | 
@@ -227,7 +227,7 @@ The compiler gave the following error when running the tests for this package:
     --- FAIL: TestReplace (0.00s)
         Replace("☺☻☹", "", "<>", -1) allocates 2.00 objects
     FAIL
-    FAIL	bytes	15.437s
+    FAIL	bytes	16.453s
 
 
 
@@ -262,7 +262,7 @@ The compiler gave the following error when running the tests for this package:
     --- FAIL: TestAllocs (0.00s)
         WithTimeout(bg, 5*time.Millisecond) allocs = 9.000000 want 8
     FAIL
-    FAIL	context	0.029s
+    FAIL	context	0.031s
 
 
 
@@ -281,7 +281,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).Method()
-    FAIL	crypto/cipher	0.014s
+    FAIL	crypto/cipher	0.030s
 
 
 
@@ -304,9 +304,9 @@ The compiler gave the following error when running the tests for this package:
 
 
     --- FAIL: TestAllocations (0.02s)
-        expected zero allocations, got 46.0
+        expected zero allocations, got 48.0
     FAIL
-    FAIL	crypto/ed25519	0.063s
+    FAIL	crypto/ed25519	0.056s
 
 
 
@@ -376,9 +376,9 @@ The compiler gave the following error when running the tests for this package:
     --- FAIL: TestAllocations (0.00s)
         allocs = 12, want 0
     --- FAIL: TestAllocatonsWithTypeAsserts (0.00s)
-        allocs = 6; want = 0
+        allocs = 5; want = 0
     FAIL
-    FAIL	crypto/sha256	0.061s
+    FAIL	crypto/sha256	0.041s
 
 
 
@@ -402,7 +402,7 @@ The compiler gave the following error when running the tests for this package:
         --- FAIL: TestAllocations/SumSHAKE (0.00s)
             expected zero allocations, got 3.0
     FAIL
-    FAIL	crypto/sha3	9.214s
+    FAIL	crypto/sha3	5.863s
 
 
 
@@ -417,9 +417,9 @@ The compiler gave the following error when running the tests for this package:
 
 
     --- FAIL: TestAllocations (0.00s)
-        allocs = 14, want 0
+        allocs = 13, want 0
     FAIL
-    FAIL	crypto/sha512	0.067s
+    FAIL	crypto/sha512	0.041s
 
 
 
@@ -434,7 +434,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).NumIn()
-    FAIL	crypto/subtle	0.002s
+    FAIL	crypto/subtle	0.001s
 
 
 
@@ -470,7 +470,7 @@ The compiler gave the following error when running the tests for this package:
     --- FAIL: TestGrabConnAllocs (0.00s)
         Conn.grabConn allocated 1 objects; want 0
     FAIL
-    FAIL	database/sql	0.342s
+    FAIL	database/sql	0.334s
 
 
 
@@ -526,7 +526,7 @@ The compiler gave the following error when running the tests for this package:
         --- FAIL: TestSizeAllocs/[1]binary.Struct (0.00s)
             Expected no allocations, got 1
     FAIL
-    FAIL	encoding/binary	0.019s
+    FAIL	encoding/binary	0.017s
     [...more lines following...]
 
 
@@ -544,7 +544,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: reflect.ArrayOf()
-    FAIL	encoding/gob	2.610s
+    FAIL	encoding/gob	3.125s
 
 
 
@@ -561,7 +561,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: reflect.SliceOf()
-    FAIL	encoding/json	0.014s
+    FAIL	encoding/json	0.013s
 
 
 
@@ -575,7 +575,7 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    FAIL	encoding/json/jsontext	0.012s
+    FAIL	encoding/json/jsontext	0.011s
 
 
 
@@ -619,9 +619,21 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).NumOut()
-    FAIL	encoding/pem	0.465s
+    FAIL	encoding/pem	0.624s
 
 
+
+
+
+
+## encoding/xml
+
+
+
+The compiler gave the following error when running the tests for this package:
+
+
+    FAIL	encoding/xml	104.859s
 
 
 
@@ -669,7 +681,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Value).Method()
-    FAIL	fmt	0.002s
+    FAIL	fmt	0.001s
 
 
 
@@ -714,7 +726,7 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    FAIL	go/build/constraint	0.008s
+    FAIL	go/build/constraint	0.009s
 
 
 
@@ -760,7 +772,7 @@ This package cannot be imported because the following dependencies cannot be com
 The compiler gave the following error when running the tests for this package:
 
 
-    FAIL	go/parser	0.033s
+    FAIL	go/parser	0.031s
 
 
 
@@ -774,7 +786,7 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    FAIL	go/printer	0.034s
+    FAIL	go/printer	0.036s
 
 
 
@@ -881,7 +893,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).NumIn()
-    FAIL	image/draw	0.039s
+    FAIL	image/draw	0.030s
 
 
 
@@ -910,7 +922,7 @@ The compiler gave the following error when running the tests for this package:
     --- FAIL: TestMultiReaderFreesExhaustedReaders (5.00s)
         timeout waiting for collection of buf1
     FAIL
-    FAIL	io	5.037s
+    FAIL	io	5.035s
 
 
 
@@ -937,14 +949,14 @@ The compiler gave the following error when running the tests for this package:
         log output should match "^[A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "???:0: hello 23 world"
         log output should match "^[A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "???:0: hello 23 world"
         log output should match "^[A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "???:0: hello 23 world"
-        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "XXX2026/10/10 00:02:17.700244 ???:0: hello 23 world"
-        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "XXX2026/10/10 00:02:17.700355 ???:0: hello 23 world"
-        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "XXX2026/10/10 00:02:17.700399 ???:0: hello 23 world"
-        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "XXX2026/10/10 00:02:17.700437 ???:0: hello 23 world"
-        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(67|69): XXXhello 23 world$" is "2026/10/10 00:02:17.700478 ???:0: XXXhello 23 world"
-        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(67|69): XXXhello 23 world$" is "2026/10/10 00:02:17.700512 ???:0: XXXhello 23 world"
-        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(67|69): XXXhello 23 world$" is "2026/10/10 00:02:17.700627 ???:0: XXXhello 23 world"
-        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(67|69): XXXhello 23 world$" is "2026/10/10 00:02:17.700665 ???:0: XXXhello 23 world"
+        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "XXX2026/10/28 10:05:26.961716 ???:0: hello 23 world"
+        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "XXX2026/10/28 10:05:26.961864 ???:0: hello 23 world"
+        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "XXX2026/10/28 10:05:26.961907 ???:0: hello 23 world"
+        log output should match "^XXX[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(67|69): hello 23 world$" is "XXX2026/10/28 10:05:26.962072 ???:0: hello 23 world"
+        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(67|69): XXXhello 23 world$" is "2026/10/28 10:05:26.962217 ???:0: XXXhello 23 world"
+        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] .*/[A-Za-z0-9_\\-]+\\.go:(67|69): XXXhello 23 world$" is "2026/10/28 10:05:26.962258 ???:0: XXXhello 23 world"
+        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(67|69): XXXhello 23 world$" is "2026/10/28 10:05:26.962490 ???:0: XXXhello 23 world"
+        log output should match "^[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.[0-9][0-9][0-9][0-9][0-9][0-9] [A-Za-z0-9_\\-]+\\.go:(67|69): XXXhello 23 world$" is "2026/10/28 10:05:26.962543 ???:0: XXXhello 23 world"
     [...more lines following...]
 
 
@@ -995,7 +1007,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).NumOut()
-    FAIL	math/big	4.936s
+    FAIL	math/big	2.924s
 
 
 
@@ -1037,7 +1049,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).Method()
-    FAIL	math/rand	2.653s
+    FAIL	math/rand	2.554s
 
 
 
@@ -1052,7 +1064,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).Method()
-    FAIL	math/rand/v2	3.154s
+    FAIL	math/rand/v2	3.258s
 
 
 
@@ -1091,7 +1103,7 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when this package was imported:
 
 
-    ../../../../../tmp/tinygo-test-2311794891/main.go:2:8: package net/http/cgi is not in std (/home/ron/.cache/tinygo/goroot-7008f93e066cbb20d8039de3101dac378bc56bd4ed0ecafa578a369b60b78723/src/net/http/cgi)
+    ../../../../../tmp/tinygo-test-2890488929/main.go:2:8: package net/http/cgi is not in std (/home/ron/.cache/tinygo/goroot-ac4068a6489958ecb95f4df13bde78c90c2dca0d44b6939aff6b6ab2093d36ba/src/net/http/cgi)
 
 
 
@@ -1105,7 +1117,7 @@ The compiler gave the following error when this package was imported:
 The compiler gave the following error when this package was imported:
 
 
-    ../../../../../tmp/tinygo-test-375347846/main.go:2:8: package net/http/cookiejar is not in std (/home/ron/.cache/tinygo/goroot-7008f93e066cbb20d8039de3101dac378bc56bd4ed0ecafa578a369b60b78723/src/net/http/cookiejar)
+    ../../../../../tmp/tinygo-test-9674280/main.go:2:8: package net/http/cookiejar is not in std (/home/ron/.cache/tinygo/goroot-ac4068a6489958ecb95f4df13bde78c90c2dca0d44b6939aff6b6ab2093d36ba/src/net/http/cookiejar)
 
 
 
@@ -1183,7 +1195,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: type assert failed
-    FAIL	net/rpc	0.003s
+    FAIL	net/rpc	0.002s
 
 
 
@@ -1235,7 +1247,7 @@ The compiler gave the following error when running the tests for this package:
     --- FAIL: TestCommonHeaders (0.00s)
         canonicalMIMEHeaderKey allocs = 1; want 0
     FAIL
-    FAIL	net/textproto	0.010s
+    FAIL	net/textproto	0.009s
 
 
 
@@ -1255,7 +1267,7 @@ The compiler gave the following error when running the tests for this package:
 
     FAIL		0.000s
     package os/exec_test
-    	imports internal/poll: build constraints exclude all Go files in /home/ron/.cache/tinygo/goroot-7008f93e066cbb20d8039de3101dac378bc56bd4ed0ecafa578a369b60b78723/src/internal/poll
+    	imports internal/poll: build constraints exclude all Go files in /home/ron/.cache/tinygo/goroot-ac4068a6489958ecb95f4df13bde78c90c2dca0d44b6939aff6b6ab2093d36ba/src/internal/poll
 
 
 
@@ -1270,8 +1282,10 @@ The compiler gave the following error when running the tests for this package:
 
 
     FAIL	os/signal	0.000s
-    /home/ron/.gvm/go/src/os/signal/signal_unix.go:61: linker could not find symbol os/signal.signal_ignored
-    /home/ron/Development/tinygo/tinygo-122/src/syscall/syscall_linux.go:1127: linker could not find symbol syscall.runtime_doAllThreadsSyscall
+    # internal/testpty
+    warning: future releases of the clang compiler will prefer GCC installations containing libstdc++ include directories; '/../lib/gcc/x86_64-linux-gnu/13' would be chosen over '/../lib/gcc/x86_64-linux-gnu/14'
+    warning: future releases of the clang compiler will prefer GCC installations containing libstdc++ include directories; '/../lib/gcc/x86_64-linux-gnu/13' would be chosen over '/../lib/gcc/x86_64-linux-gnu/14'
+    warning: future releases of the clang compiler will prefer GCC installations containing libstdc++ include directories; '/../lib/gcc/x86_64-linux-gnu/13' would be chosen over '/../lib/gcc/x86_64-linux-gnu/14'
 
 
 
@@ -1304,7 +1318,9 @@ The compiler gave the following error when this package was imported:
 
 
     # plugin
-    /home/ron/.gvm/go/src/plugin/plugin_dlopen.go:10:6: not implemented: build constraints in #cgo line
+    warning: future releases of the clang compiler will prefer GCC installations containing libstdc++ include directories; '/../lib/gcc/x86_64-linux-gnu/13' would be chosen over '/../lib/gcc/x86_64-linux-gnu/14'
+    warning: future releases of the clang compiler will prefer GCC installations containing libstdc++ include directories; '/../lib/gcc/x86_64-linux-gnu/13' would be chosen over '/../lib/gcc/x86_64-linux-gnu/14'
+    warning: future releases of the clang compiler will prefer GCC installations containing libstdc++ include directories; '/../lib/gcc/x86_64-linux-gnu/13' would be chosen over '/../lib/gcc/x86_64-linux-gnu/14'
 
 
 
@@ -1347,7 +1363,7 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    FAIL	regexp	0.438s
+    FAIL	regexp	1.266s
 
 
 
@@ -1372,7 +1388,7 @@ The compiler gave the following error when running the tests for this package:
         Concat([[1] [2]]) allocated 2 times; want 1
         Concat([[1] [] [2]]) allocated 2 times; want 1
     FAIL
-    FAIL	slices	0.398s
+    FAIL	slices	0.785s
 
 
 
@@ -1389,7 +1405,7 @@ The compiler gave the following error when running the tests for this package:
     --- FAIL: TestSearchWrappersDontAlloc (0.00s)
         expected no allocs for runSearchWrappers, got 18
     FAIL
-    FAIL	sort	0.752s
+    FAIL	sort	0.691s
 
 
 
@@ -1403,7 +1419,7 @@ The compiler gave the following error when running the tests for this package:
 The compiler gave the following error when running the tests for this package:
 
 
-    --- FAIL: TestCountMallocs (2.62s)
+    --- FAIL: TestCountMallocs (2.83s)
         AppendInt(localBuf[:0], 123, 10): 1 allocs, want <=0
         AppendFloat(localBuf[:0], 1.23, 'g', 5, 64): 1 allocs, want <=0
     --- FAIL: TestAllocationsFromBytes (0.00s)
@@ -1434,10 +1450,10 @@ The compiler gave the following error when running the tests for this package:
 
     --- FAIL: TestBuilderGrow (0.01s)
         growLen=0: got 1 allocs during Write; want 0
-        growLen=100: got 3 allocs during Write; want 1
-        growLen=1000: got 3 allocs during Write; want 1
-        growLen=10000: got 3 allocs during Write; want 1
-        growLen=100000: got 3 allocs during Write; want 1
+        growLen=100: got 2 allocs during Write; want 1
+        growLen=1000: got 2 allocs during Write; want 1
+        growLen=10000: got 2 allocs during Write; want 1
+        growLen=100000: got 2 allocs during Write; want 1
     --- FAIL: TestBuilderAllocs (0.00s)
         Builder allocs = 2; want 1
     --- FAIL: TestBuilderGrowSizeclasses (0.00s)
@@ -1526,7 +1542,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: deadlock: all goroutines in bubble are blocked
-    FAIL	testing/synctest	0.202s
+    FAIL	testing/synctest	0.482s
 
 
 
@@ -1545,7 +1561,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).NumOut()
-    FAIL	text/template	0.002s
+    FAIL	text/template	0.001s
 
 
 
@@ -1562,7 +1578,7 @@ The compiler gave the following error when running the tests for this package:
 
 
     panic: unimplemented: (reflect.Type).NumOut()
-    FAIL	time	0.036s
+    FAIL	time	0.008s
 
 
 
@@ -1615,7 +1631,7 @@ The compiler gave the following error when running the tests for this package:
     --- FAIL: TestRuneCountNonASCIIAllocation (0.00s)
         unexpected RuneCount allocation, got 1, want 0
     FAIL
-    FAIL	unicode/utf8	0.004s
+    FAIL	unicode/utf8	0.003s
 
 
 
