@@ -434,7 +434,7 @@ func detectSupportedFeatures(pkg *packages.Package, buildTags []string) map[stri
 	if pkg.Types.Scope().Lookup("ADC") != nil {
 		features["ADC"] = true
 	}
-	bluetoothTags := []string{"nrf51", "nrf52", "nrf52840", "nrf52833", "cyw43439", "ninafw"}
+	bluetoothTags := []string{"nrf51", "nrf52", "nrf52840", "nrf52833", "cyw43439", "ninafw", "esp32", "esp32c3", "esp32s3"}
 	for _, tag := range buildTags {
 		if slices.Contains(bluetoothTags, tag) {
 			features["Bluetooth"] = true

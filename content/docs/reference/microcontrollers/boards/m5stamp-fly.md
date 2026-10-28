@@ -15,7 +15,8 @@ The [M5Stack StampFly](https://docs.m5stack.com/en/app/StampFly_v1.1) is a small
 | I2C       | YES | YES |
 | ADC       | YES | YES |
 | PWM       | YES | YES |
-| Bluetooth | YES | Not yet |
+| WiFi      | YES | YES |
+| Bluetooth | YES | YES |
 | USBDevice | YES | YES |
 
 ## Pins
@@ -76,3 +77,15 @@ The UART pins are shared with the SPI bus, so the serial console uses USB.
 The board has an addressable RGB LED on `GPIO39` named `WS2812`. The Stamp-S3A module has another one on `GPIO21` named `WS2812_STAMP`.
 
 The motors are driven by PWM on `MOTOR_FRONT_LEFT`, `MOTOR_FRONT_RIGHT`, `MOTOR_REAR_LEFT`, and `MOTOR_REAR_RIGHT`. Remove the propellers before testing motor code.
+
+### WiFi
+
+You can use the onboard wireless chip for WiFi using the `espradio` package.
+
+For more information, see [https://github.com/tinygo-org/espradio](https://github.com/tinygo-org/espradio)
+
+### Bluetooth
+
+You can use the onboard wireless chip for Bluetooth Low Energy using the `bluetooth` package.
+
+For more information, see [https://github.com/tinygo-org/bluetooth](https://github.com/tinygo-org/bluetooth)

@@ -20,7 +20,7 @@ The [Seeed Studio XIAO ESP32S3](https://wiki.seeedstudio.com/xiao_esp32s3_gettin
 | PWM       | YES | YES |
 | USBDevice | YES | YES |
 | WiFi      | YES | YES |
-| Bluetooth | YES | Not yet |
+| Bluetooth | YES | YES |
 
 ## Pins
 
@@ -77,3 +77,9 @@ Any troubleshooting tips go here.
 You can use the onboard wireless chip for WiFi using the `espradio` package.
 
 For more information, see [https://github.com/tinygo-org/espradio](https://github.com/tinygo-org/espradio)
+
+### Bluetooth
+
+You can use the onboard wireless chip for Bluetooth Low Energy using the `bluetooth` package.
+
+For more information, see [https://github.com/tinygo-org/bluetooth](https://github.com/tinygo-org/bluetooth)
