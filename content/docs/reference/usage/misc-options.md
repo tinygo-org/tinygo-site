@@ -5,6 +5,27 @@ description: |
   Command line flags that are less commonly used and don't usually impact the build.
 ---
 
+- `-llvm-features=<features>`
+    Control LLVM target features used when generating machine code. These are architecture-specific capabilities, such as instruction set extensions, not Go language features or build tags.
+
+    Pass a comma-separated list without spaces. Use `+name` to enable a feature and `-name` to disable it. For example, when building for an x86-64 CPU that supports AVX2:
+
+    ```sh
+    GOOS=linux GOARCH=amd64 tinygo build -llvm-features=+avx2 -o app .
+    ```
+
+    TinyGo appends these settings to the selected target's `features` list. LLVM also derives defaults from the selected CPU. Normally the target defaults are sufficient; changing them can produce code that will not run on the intended hardware or WebAssembly engine.
+
+    Available feature names depend on the target architecture and LLVM version. To list them, install LLVM and use its `llvm-as` and `llc` tools:
+
+    ```sh
+    llvm-as < /dev/null | llc -march=arm -mattr=help
+    ```
+
+    Replace `arm` with the LLVM architecture, such as `aarch64`, `x86`, `riscv32`, or `wasm32`. The output lists CPUs and features with brief descriptions. Use the LLVM version reported by `tinygo version` to get a matching list. These tools are not required for normal TinyGo builds and may need to be installed separately.
+
+    See LLVM's [`llc` documentation](https://llvm.org/docs/CommandGuide/llc.html) for more about target features.
+
 - `-no-debug`
 Disable outputting debug symbols. This can be useful for WebAssembly, as there is no debugger for .wasm files yet and .wasm files are generally served directly. Avoiding debug symbols can have a big impact on generated binary size, reducing them by more than half.
 This is not necessary on microcontrollers because debugging symbols are not flashed to the microcontroller. Additionally, you will need it when you use `tinygo gdb`. In general, it is recommended to include debug symbols unless you have a good reason not to.
