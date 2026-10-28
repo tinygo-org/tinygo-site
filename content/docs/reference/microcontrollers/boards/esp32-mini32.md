@@ -16,8 +16,8 @@ The mini32 is a small development board based on the popular [Espressif ESP32](h
 | ADC       | YES | YES |
 | PWM       | YES | YES |
 | USBDevice | NO  | NO  |
-| WiFi      | YES | Not Yet |
-| Bluetooth | YES | Not yet |
+| WiFi      | YES | YES |
+| Bluetooth | YES | YES |
 
 ## Pins
 
@@ -76,4 +76,16 @@ Goes here
 
 ## Notes
 
-Goes here
+### WiFi
+
+You can use the onboard wireless chip for WiFi using the `espradio` package.
+
+For more information, see [https://github.com/tinygo-org/espradio](https://github.com/tinygo-org/espradio)
+
+### Bluetooth
+
+You can use the onboard wireless chip for Bluetooth Low Energy using the `bluetooth` package.
+
+For more information, see [https://github.com/tinygo-org/bluetooth](https://github.com/tinygo-org/bluetooth)
+
+On the ESP32, Bluetooth needs 64KB of RAM. TinyGo only reserves it in programs that use Bluetooth.

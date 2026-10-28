@@ -17,7 +17,7 @@ The [M5Stamp-C3](https://docs.m5stack.com/en/core/stamp_c3) is a development boa
 | PWM       | YES | YES |
 | USBDevice | YES | YES |
 | WiFi      | YES | YES |
-| Bluetooth | YES | Not yet |
+| Bluetooth | YES | YES |
 
 ## Pins
 
@@ -80,3 +80,9 @@ Goes here
 You can use the onboard wireless chip for WiFi using the `espradio` package.
 
 For more information, see [https://github.com/tinygo-org/espradio](https://github.com/tinygo-org/espradio)
+
+### Bluetooth
+
+You can use the onboard wireless chip for Bluetooth Low Energy using the `bluetooth` package.
+
+For more information, see [https://github.com/tinygo-org/bluetooth](https://github.com/tinygo-org/bluetooth)

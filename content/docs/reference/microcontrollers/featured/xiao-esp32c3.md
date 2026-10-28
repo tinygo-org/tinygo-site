@@ -20,7 +20,7 @@ The [Seeed Studio XIAO ESP32C3](https://wiki.seeedstudio.com/XIAO_ESP32C3_Gettin
 | PWM       | YES | YES |
 | USBDevice | NO  | NO  |
 | WiFi      | YES | YES |
-| Bluetooth | YES | Not yet |
+| Bluetooth | YES | YES |
 
 ## Pins
 
@@ -71,3 +71,9 @@ The XIAO-ESP32C3 does not have an onboard LED, so the normal `examples/blinky1` 
 You can use the onboard wireless chip for WiFi using the `espradio` package.
 
 For more information, see [https://github.com/tinygo-org/espradio](https://github.com/tinygo-org/espradio)
+
+### Bluetooth
+
+You can use the onboard wireless chip for Bluetooth Low Energy using the `bluetooth` package.
+
+For more information, see [https://github.com/tinygo-org/bluetooth](https://github.com/tinygo-org/bluetooth)
