@@ -55,9 +55,18 @@ sudo apt-get install clang-18 llvm-18-dev lld-18 libclang-18-dev
 
 For **MacOS**, you can install LLVM through [Homebrew](https://formulae.brew.sh/formula/llvm). The Clang/LLVM version from Apple is not supported by TinyGo.
 
+TinyGo uses LLVM 20 by default. Install LLVM 20 and LLD with Homebrew:
+
+```shell
+brew install llvm@20 lld
+```
+
+Homebrew's current default is LLVM 23. To use it instead, install the unversioned packages:
+
 ```shell
 brew install llvm lld
 ```
+
 #### Fedora
 
 For **Fedora** users you can install LLVM from the repository. Note that the version of LLVM [varies by Fedora version](https://packages.fedoraproject.org/pkgs/llvm/llvm-libs/), for example Fedora 37 has LLVM 15.
@@ -69,10 +78,16 @@ sudo dnf install llvm-devel lld-libs lld
 
 ### Build TinyGo
 
-After LLVM has been installed, installing TinyGo should be as easy as running the following command from within the cloned `tinygo` repository (see [instructions on how to clone](./..)):
+After LLVM has been installed, run the command for your LLVM version from within the cloned `tinygo` repository (see [instructions on how to clone](./..)):
 
 ```shell
 go install
+```
+
+This builds TinyGo with the default LLVM version, LLVM 20. To use a different LLVM version, build with its matching tag. For example, to use LLVM 23:
+
+```shell
+go install -tags llvm23
 ```
 
 You should now have a working TinyGo installation! What's left now is to complete the [additional requirements](../additional-requirements)
