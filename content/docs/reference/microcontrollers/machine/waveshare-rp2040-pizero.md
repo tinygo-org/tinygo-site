@@ -500,6 +500,7 @@ var (
 	ErrLSBNotSupported	= errors.New("SPI LSB unsupported on PL022")
 	ErrSPITimeout		= errors.New("SPI timeout")
 	ErrSPIBaud		= errors.New("SPI baud too low or above 66.5Mhz")
+	ErrSPIDMA		= errors.New("SPI DMA bus error")
 	errSPIInvalidSDI	= errors.New("invalid SPI SDI pin")
 	errSPIInvalidSDO	= errors.New("invalid SPI SDO pin")
 	errSPIInvalidSCK	= errors.New("invalid SPI SCK pin")
@@ -576,6 +577,18 @@ func AckUsbOutTransfer(ep uint32)
 ```
 
 AckUsbOutTransfer is called to acknowledge the completion of a USB OUT transfer.
+
+
+### func AssignCore
+
+```go
+func AssignCore(core int)
+```
+
+AssignCore assigns the calling goroutine to core until it exits. Without the
+cores scheduler only core 0 is valid.
+
+Experimental: this API may change or be removed in a future release.
 
 
 ### func CPUFrequency
@@ -687,6 +700,8 @@ func GetRNG() (uint32, error)
 ```
 
 GetRNG returns 32 bits of semi-random data based on ring oscillator.
+
+It is safe to call from multiple goroutines.
 
 Unlike some other implementations of GetRNG, these random numbers are not
 cryptographically secure and must not be used for cryptographic operations

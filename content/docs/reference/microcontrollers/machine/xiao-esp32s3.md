@@ -335,15 +335,6 @@ const (
 
 ```go
 const (
-	// IO MUX function number for SPI direct connection
-	SPI_IOMUX_FUNC = 4
-)
-```
-
-
-
-```go
-const (
 	// SPI2 (FSPI) signals - Hardware SPI2 - CORRECT VALUES from ESP-IDF
 	SPI2_CLK_OUT_IDX	= uint32(101)	// FSPICLK_OUT_IDX
 	SPI2_CLK_IN_IDX		= uint32(101)	// FSPICLK_IN_IDX
@@ -544,6 +535,18 @@ var (
 
 
 
+### func AssignCore
+
+```go
+func AssignCore(core int)
+```
+
+AssignCore assigns the calling goroutine to core until it exits. Without the
+cores scheduler only core 0 is valid.
+
+Experimental: this API may change or be removed in a future release.
+
+
 ### func ConfigureUSBEndpoint
 
 ```go
@@ -551,6 +554,35 @@ func ConfigureUSBEndpoint(desc descriptor.Descriptor, epSettings []usb.EndpointC
 ```
 
 ConfigureUSBEndpoint is a no-op on ESP32-S3.
+
+
+### func CurrentCore
+
+```go
+func CurrentCore() int
+```
+
+CurrentCore returns the core number the call was made from.
+
+
+### func FlashDataEnd
+
+```go
+func FlashDataEnd() uintptr
+```
+
+Return the end of the writable flash area. Usually this is the address one
+past the end of the on-chip flash.
+
+
+### func FlashDataStart
+
+```go
+func FlashDataStart() uintptr
+```
+
+Return the start of the writable flash area, aligned on a page boundary. This
+is usually just after the program and static data.
 
 
 ### func FlushSerial
@@ -609,6 +641,15 @@ func NewRingBuffer() *RingBuffer
 ```
 
 NewRingBuffer returns a new ring buffer.
+
+
+### func NumCores
+
+```go
+func NumCores() int
+```
+
+NumCores returns number of cores available on the device.
 
 
 ### func ReadTemperature
@@ -705,6 +746,48 @@ type ADCConfig struct {
 
 ADCConfig holds ADC configuration parameters. If left unspecified, the zero
 value of each parameter will use the peripheral's default settings.
+
+
+
+
+
+## type BlockDevice
+
+```go
+type BlockDevice interface {
+	// ReadAt reads the given number of bytes from the block device.
+	io.ReaderAt
+
+	// WriteAt writes the given number of bytes to the block device.
+	//
+	// This interface directly writes data to the underlying block device.
+	// Different kinds of devices have different requirements: most can only
+	// write data after the page has been erased, and many can only write data
+	// with specific alignment (such as 4-byte alignment).
+	io.WriterAt
+
+	// Size returns the number of bytes in this block device.
+	Size() int64
+
+	// WriteBlockSize returns the block size in which data can be written to
+	// memory. It can be used by a client to optimize writes, non-aligned writes
+	// should always work correctly.
+	WriteBlockSize() int64
+
+	// EraseBlockSize returns the smallest erasable area on this particular chip
+	// in bytes. This is used for the block size in EraseBlocks.
+	// It must be a power of two, and may be as small as 1. A typical size is 4096.
+	EraseBlockSize() int64
+
+	// EraseBlocks erases the given number of blocks. An implementation may
+	// transparently coalesce ranges of blocks into larger bundles if the chip
+	// supports this. The start and len parameters are in block numbers, use
+	// EraseBlockSize to map addresses to blocks.
+	EraseBlocks(start, len int64) error
+}
+```
+
+BlockDevice is the raw device that is meant to store flash data.
 
 
 

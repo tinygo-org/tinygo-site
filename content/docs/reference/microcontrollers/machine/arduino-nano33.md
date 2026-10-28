@@ -590,6 +590,18 @@ func AckUsbOutTransfer(ep uint32)
 AckUsbOutTransfer is called to acknowledge the completion of a USB OUT transfer.
 
 
+### func AssignCore
+
+```go
+func AssignCore(core int)
+```
+
+AssignCore assigns the calling goroutine to core until it exits. Without the
+cores scheduler only core 0 is valid.
+
+Experimental: this API may change or be removed in a future release.
+
+
 ### func CPUFrequency
 
 ```go
