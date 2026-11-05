@@ -94,5 +94,17 @@ Use the specified scheduler. The default scheduler varies by platform. For examp
   - `scheduler=asyncify` The asyncify scheduler is a scheduler for WASM based off of [Binaryen's Asyncify Pass](https://github.com/WebAssembly/binaryen/blob/main/src/passes/Asyncify.cpp).
   - `scheduler=none` The none scheduler disables scheduler support, which means that goroutines and channels are not available. It can be used to reduce firmware size and RAM consumption if goroutines and channels are not needed.
 
+- `-buildmode`
+Set how a WebAssembly program starts and when it exits. This only affects WebAssembly targets: other targets accept only `default`, which changes nothing for them. The default depends on the target: `default` for `wasip1` and `wasm`, and `c-shared` for `wasip2` and `wasm-unknown`. See [Commands and reactors]({{< ref "/docs/guides/webassembly/wasi.md#commands-and-reactors" >}}) for how to choose.
+
+  - `-buildmode=default`
+    Build a command. The host calls `_start`, which runs `main`, and the program exits when `main` returns.
+
+  - `-buildmode=c-shared`
+    Build a reactor. The host calls `_initialize` once, before anything else. After that it can call the module's `//go:wasmexport` functions whenever it needs to. `main` is not called, except on `wasip2`, where the host runs it through the `wasi:cli/run` interface.
+
+  - `-buildmode=wasi-legacy`
+    Build a WASI command whose `_start` returns when `main` returns instead of exiting, so that the host can call `//export` functions afterwards. This is how TinyGo 0.34 and earlier built WASI commands. Use it only for hosts that depend on that behavior; see [The wasi-legacy build mode]({{< ref "/docs/guides/webassembly/wasi.md#the-wasi-legacy-build-mode" >}}).
+
 - `-ldflags`
 The TinyGo `ldflags` flag has the same behavior as the Go link tool `ldflags` flag. It passes a value along to the TinyGo linker. This is commonly used to set the value for a variable at the time that the program is compiled for example `-ldflags="-X 'package_path.variable_name=new_value'"` See [How to set build-time variables]({{< ref "tips-n-tricks.md" >}}) for more information.
