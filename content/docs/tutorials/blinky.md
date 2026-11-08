@@ -9,8 +9,13 @@ For this tutorial, previous experience with Go is not required but recommended.
 
 You will need a board with an onboard LED. Most education and development boards will work, with the notable exception of the BBC micro:bit. Boards that are a good start are one of the following:
 
-  - [Adafruit Circuit Playground Express](../../reference/microcontrollers/circuitplay-express/)
-  - [Arduino Nano 33 IoT](../../reference/microcontrollers/arduino-nano33/)
+- [Adafruit Circuit Playground Express](../../reference/microcontrollers/featured/circuitplay-express/)
+- [Arduino Nano 33 IoT](../../reference/microcontrollers/boards/arduino-nano33/)
+- [Raspberry Pi Pico](../../reference/microcontrollers/featured/pico/)
+
+Note: on the Raspberry Pi Pico W boards the LED is wired via the `CYW43439` wireless chip, see [How to use the Pico2-W onboard LED](../../reference/microcontrollers/boards/pico2-w/#how-to-use-the-pico2-w-onboard-led)
+
+# Implementation
 
 Now that you have a board, let's get started. Start by creating a new directory (for example, named blink) and navigating into it. If you are using Go modules, initialize a new module with the following command:
 
@@ -70,8 +75,8 @@ import (
 
 For this small program we need two packages, which are a kind of libraries:
 
- 1. The machine package, which provides direct access to the hardware in a somewhat portable way. For example, it allows controlling GPIO pins.
- 2. The time package, which - you guessed - handles time. You can get the current time with `time.Now()` and sleep for a while with `time.Sleep(duration)`. It also provides some extra utilities such as parsing and formatting time and stuff like time zone handling.
+1.  The machine package, which provides direct access to the hardware in a somewhat portable way. For example, it allows controlling GPIO pins.
+2.  The time package, which - you guessed - handles time. You can get the current time with `time.Now()` and sleep for a while with `time.Sleep(duration)`. It also provides some extra utilities such as parsing and formatting time and stuff like time zone handling.
 
 Of these, only the time package is standard Go. The machine package was invented by the TinyGo project.
 
@@ -87,7 +92,6 @@ led := machine.LED
 
 This declares a new variable named `led`. If you are not familiar with Go, the `:=` operator is somewhat like `auto` in C++: it declares a new variable while inferencing the type from the right hand size. In this case, this is the `machine.LED` constant which has type `machine.Pin`.
 
-
 ```go
 led.Configure(machine.PinConfig{Mode: machine.PinOutput})
 ```
@@ -102,7 +106,6 @@ led.Configure(config)
 ```
 
 The first three lines define a new `machine.PinConfig` object and sets the `Mode` field to `machine.PinOutput`. This means that `config.Mode` will now equal `machine.PinOutput`.
-
 
 ```go
 for {
