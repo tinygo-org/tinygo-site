@@ -193,6 +193,21 @@ var examples = {
 	},
 
 	// Commonly used board, and a nice demo with LEDs.
+	pico: {
+		target: 'pico',
+		code: exampleBlink,
+		parts: [
+			{
+				id: 'main',
+				location: 'parts/pico.json',
+				x: 0,
+				y: 0,
+			},
+		],
+		wires: [],
+  },
+	
+	// Commonly used board, and a nice demo with LEDs.
 	circuitplay_express: {
 		target: 'circuitplay_express',
 		code: exampleLEDs,

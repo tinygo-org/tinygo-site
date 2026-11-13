@@ -49,6 +49,7 @@ Ready to get started? [Click here](getting-started).
 						<option value="arduino_uno" selected>Blinking LED (Arduino Uno)</option>
 						<option value="circuitplay_express">RGB LEDs (Adafruit Circuit Playground Express)</option>
 						<option value="gopher_badge">Display (Gopher Badge)</option>
+						<option value="pico">Blinking LED (Raspberry Pico)</option>
 					</select>
 				</div>
 			</div>
@@ -71,10 +72,8 @@ Try TinyGo online
 See the code here
 {{% /blocks/feature %}}
 
-
 {{% blocks/feature icon="fab fa-mastodon" title="TinyGo on Mastodon" url="https://mastodon.social/@TinyGo" %}}
 Join us on Mastodon
 {{% /blocks/feature %}}
 
 {{< /blocks/section >}}
-
